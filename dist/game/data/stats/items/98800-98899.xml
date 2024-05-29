@@ -447,12 +447,18 @@
 	<item id="98834" name="Spellbook: Glorious Warrior: Enhanced Abilities Lv. 4" additionalName="Sealed" type="EtcItem">
 		<!-- A spellbook for learning the Glorious Warrior: Enhanced Abilities Lv. 4 skill. <Classes> All classes after the 3rd class change <Skill effect> When used, increases character's STR, INT, DEX, WIT, CON and MEN. Applies a buff that increases Max HP/ MP. -->
 		<set name="icon" val="icon.etc_spell_books_black_i00" />
-		<set name="default_action" val="NONE" />
+		<set name="default_action" val="SKILL_REDUCE" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="PAPER" />
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
+		<set name="is_destroyable" val="false" />
 		<set name="is_sellable" val="false" />
+		<set name="is_stackable" val="true" />
+		<set name="handler" val="ItemSkills" />
+		<skills>
+			<skill id="40164" level="4" /> <!-- Spellbook: Glorious Warrior's Ability Lv. 4 -->
+		</skills>
 	</item>
 	<item id="98835" name="Spellbook: Glorious Warrior: Enhanced Abilities Lv. 5" additionalName="Sealed" type="EtcItem">
 		<!-- A spellbook for learning the Glorious Warrior: Enhanced Abilities Lv. 5 skill. <Classes> All classes after the 3rd class change <Skill effect> When used, increases character's STR, INT, DEX, WIT, CON and MEN. Applies a buff that increases Max HP/ MP. Applies a buff that increases P./ M. Def. -->
@@ -462,17 +468,29 @@
 		<set name="material" val="PAPER" />
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
+		<set name="is_destroyable" val="false" />
 		<set name="is_sellable" val="false" />
+		<set name="is_stackable" val="true" />
+		<set name="handler" val="ItemSkills" />
+		<skills>
+			<skill id="40164" level="5" /> <!-- Spellbook: Glorious Warrior's Ability Lv. 5 -->
+		</skills>
 	</item>
 	<item id="98836" name="Spellbook: Glorious Warrior: Enhanced Abilities Lv. 6" additionalName="Sealed" type="EtcItem">
 		<!-- A spellbook for learning the Glorious Warrior: Enhanced Abilities Lv. 6 skill. <Classes> All classes after the 3rd class change <Skill effect> When used, increases character's STR, INT, DEX, WIT, CON and MEN. Applies a buff that increases Max HP/ MP. Applies a buff that increases P./ M. Def. Applies a buff that decreases received skill damage. -->
 		<set name="icon" val="icon.etc_spell_books_black_i00" />
-		<set name="default_action" val="NONE" />
+		<set name="default_action" val="SKILL_REDUCE" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="PAPER" />
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
+		<set name="is_destroyable" val="false" />
 		<set name="is_sellable" val="false" />
+		<set name="is_stackable" val="true" />
+		<set name="handler" val="ItemSkills" />
+		<skills>
+			<skill id="40164" level="6" /> <!-- Spellbook: Glorious Warrior's Ability Lv. 6 -->
+		</skills>
 	</item>
 	<item id="98837" name="Spellbook: Glorious Warrior: Quick Escape" additionalName="Sealed" type="EtcItem">
 		<!-- A spellbook for learning the Glorious Warrior: Quick Escape skill. <Classes> All classes after the 3rd class change <Skill effect> Reduces common teleport casting time. -->

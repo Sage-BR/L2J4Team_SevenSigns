@@ -513,7 +513,27 @@
 	</skill>
 	<skill id="40461" toLevel="1" name="Tower of Insolence's Time Stone - Sealed">
 		<icon>icon.skill0000</icon>
+		<magicLevel>1</magicLevel>
 		<operateType>A1</operateType>
+		<magicCriticalRate>5</magicCriticalRate>
+		<hitCancelTime>0</hitCancelTime>
+		<targetType>SELF</targetType>
+		<affectScope>SINGLE</affectScope>
+		<itemConsumeCount>1</itemConsumeCount>
+		<itemConsumeId>98034</itemConsumeId> <!-- Tower of Insolence's Time Stone - Sealed -->
+		<conditions>
+			<condition name="CheckLevel">
+				<minLevel>80</minLevel>
+				<maxLevel>999</maxLevel>
+				<affectType>CASTER</affectType>
+			</condition>
+		</conditions>
+		<effects>
+			<effect name="AddHuntingTime">
+				<zoneId>26</zoneId>
+				<time>3600000</time>
+			</effect>
+		</effects>
 	</skill>
 	<skill id="40462" toLevel="1" name="Incredible Upgrade Stone">
 		<icon>icon.skill0000</icon>
@@ -566,29 +586,51 @@
 	</skill>
 	<skill id="40467" toLevel="1" name="Kelbim's Fortress' Time Stone">
 		<icon>icon.citadel_of_kelbim</icon>
+		<magicLevel>1</magicLevel>
 		<operateType>A1</operateType>
-		<isMagic>0</isMagic>
-		<mpConsume>0</mpConsume>
-		<castRange>-1</castRange>
-		<hitTime>500</hitTime>
-		<coolTime>500</coolTime>
-		<reuseDelay>1000</reuseDelay>
-		<effectPoint>0</effectPoint>
-		<hpConsume>0</hpConsume>
-		<abnormalTime>0</abnormalTime>
+		<magicCriticalRate>5</magicCriticalRate>
+		<hitCancelTime>0</hitCancelTime>
+		<targetType>SELF</targetType>
+		<affectScope>SINGLE</affectScope>
+		<itemConsumeCount>1</itemConsumeCount>
+		<itemConsumeId>98198</itemConsumeId> <!-- Kelbim's Fortress Time Stone -->
+		<conditions>
+			<condition name="CheckLevel">
+				<minLevel>85</minLevel>
+				<maxLevel>999</maxLevel>
+				<affectType>CASTER</affectType>
+			</condition>
+		</conditions>
+		<effects>
+			<effect name="AddHuntingTime">
+				<zoneId>27</zoneId>
+				<time>3600000</time>
+			</effect>
+		</effects>
 	</skill>
 	<skill id="40468" toLevel="1" name="Kelbim's Fortress' Time Stone (Sealed)">
 		<icon>icon.citadel_of_kelbim</icon>
+		<magicLevel>1</magicLevel>
 		<operateType>A1</operateType>
-		<isMagic>0</isMagic>
-		<mpConsume>0</mpConsume>
-		<castRange>-1</castRange>
-		<hitTime>500</hitTime>
-		<coolTime>500</coolTime>
-		<reuseDelay>1000</reuseDelay>
-		<effectPoint>0</effectPoint>
-		<hpConsume>0</hpConsume>
-		<abnormalTime>0</abnormalTime>
+		<magicCriticalRate>5</magicCriticalRate>
+		<hitCancelTime>0</hitCancelTime>
+		<targetType>SELF</targetType>
+		<affectScope>SINGLE</affectScope>
+		<itemConsumeCount>1</itemConsumeCount>
+		<itemConsumeId>98199</itemConsumeId> <!-- Kelbim's Fortress Time Stone -->
+		<conditions>
+			<condition name="CheckLevel">
+				<minLevel>85</minLevel>
+				<maxLevel>999</maxLevel>
+				<affectType>CASTER</affectType>
+			</condition>
+		</conditions>
+		<effects>
+			<effect name="AddHuntingTime">
+				<zoneId>27</zoneId>
+				<time>3600000</time>
+			</effect>
+		</effects>
 	</skill>
 	<skill id="40469" toLevel="4" name="Sky Lantern Summoning Kit">
 		<icon>
@@ -638,29 +680,51 @@
 	</skill>
 	<skill id="40471" toLevel="1" name="Pagan Temple's Time Stone">
 		<icon>icon.temple_of_heresy</icon>
+		<magicLevel>1</magicLevel>
 		<operateType>A1</operateType>
-		<isMagic>0</isMagic>
-		<mpConsume>0</mpConsume>
-		<castRange>-1</castRange>
-		<hitTime>500</hitTime>
-		<coolTime>500</coolTime>
-		<reuseDelay>1000</reuseDelay>
-		<effectPoint>0</effectPoint>
-		<hpConsume>0</hpConsume>
-		<abnormalTime>0</abnormalTime>
+		<magicCriticalRate>5</magicCriticalRate>
+		<hitCancelTime>0</hitCancelTime>
+		<targetType>SELF</targetType>
+		<affectScope>SINGLE</affectScope>
+		<itemConsumeCount>1</itemConsumeCount>
+		<itemConsumeId>98213</itemConsumeId> <!-- Pagan Temple's Time Stone -->
+		<conditions>
+			<condition name="CheckLevel">
+				<minLevel>85</minLevel>
+				<maxLevel>999</maxLevel>
+				<affectType>CASTER</affectType>
+			</condition>
+		</conditions>
+		<effects>
+			<effect name="AddHuntingTime">
+				<zoneId>28</zoneId>
+				<time>3600000</time>
+			</effect>
+		</effects>
 	</skill>
 	<skill id="40472" toLevel="1" name="Pagan Temple's Time Stone (Sealed)">
 		<icon>icon.temple_of_heresy</icon>
+		<magicLevel>1</magicLevel>
 		<operateType>A1</operateType>
-		<isMagic>0</isMagic>
-		<mpConsume>0</mpConsume>
-		<castRange>-1</castRange>
-		<hitTime>500</hitTime>
-		<coolTime>500</coolTime>
-		<reuseDelay>1000</reuseDelay>
-		<effectPoint>0</effectPoint>
-		<hpConsume>0</hpConsume>
-		<abnormalTime>0</abnormalTime>
+		<magicCriticalRate>5</magicCriticalRate>
+		<hitCancelTime>0</hitCancelTime>
+		<targetType>SELF</targetType>
+		<affectScope>SINGLE</affectScope>
+		<itemConsumeCount>1</itemConsumeCount>
+		<itemConsumeId>98214</itemConsumeId> <!-- Pagan Temple's Time Stone -->
+		<conditions>
+			<condition name="CheckLevel">
+				<minLevel>85</minLevel>
+				<maxLevel>999</maxLevel>
+				<affectType>CASTER</affectType>
+			</condition>
+		</conditions>
+		<effects>
+			<effect name="AddHuntingTime">
+				<zoneId>28</zoneId>
+				<time>3600000</time>
+			</effect>
+		</effects>
 	</skill>
 	<skill id="40473" toLevel="1" name="Extra Pass: Temple's Underground Passage">
 		<icon>icon.etc_ticket_red_i00</icon>

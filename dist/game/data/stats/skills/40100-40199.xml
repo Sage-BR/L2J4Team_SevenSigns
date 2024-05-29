@@ -810,17 +810,53 @@
 		<icon>icon.skill0000</icon>
 		<operateType>A1</operateType>
 	</skill>
-	<skill id="40167" toLevel="1" name="">
-		<!-- AUTO GENERATED SKILL TODO: FIX IT -->
+	<skill id="40167" toLevel="1" name="Spellbook: Glorious Warrior's Ability Lv. 4">
+		<icon>icon.skill0000</icon>
+		<hitTime>1500</hitTime>
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<itemConsumeCount>1</itemConsumeCount>
+		<itemConsumeId>98834</itemConsumeId> <!-- Spellbook: Glorious Warrior's Ability (Lv. 4) -->
 		<operateType>A1</operateType>
+		<targetType>SELF</targetType>
+		<affectScope>SINGLE</affectScope>
+		<effects>
+			<effect name="SetSkill">
+				<skillId>45361</skillId> <!-- Glorious Warrior: Enhanced Abilities -->
+				<skillLevel>4</skillLevel>
+			</effect>
+		</effects>
 	</skill>
-	<skill id="40168" toLevel="1" name="">
-		<!-- AUTO GENERATED SKILL TODO: FIX IT -->
+	<skill id="40168" toLevel="1" name="Spellbook: Glorious Warrior's Ability Lv. 5">
+		<icon>icon.skill0000</icon>
+		<hitTime>1500</hitTime>
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<itemConsumeCount>1</itemConsumeCount>
+		<itemConsumeId>98835</itemConsumeId> <!-- Spellbook: Glorious Warrior's Ability (Lv. 5) -->
 		<operateType>A1</operateType>
+		<targetType>SELF</targetType>
+		<affectScope>SINGLE</affectScope>
+		<effects>
+			<effect name="SetSkill">
+				<skillId>45361</skillId> <!-- Glorious Warrior: Enhanced Abilities -->
+				<skillLevel>5</skillLevel>
+			</effect>
+		</effects>
 	</skill>
-	<skill id="40169" toLevel="1" name="">
-		<!-- AUTO GENERATED SKILL TODO: FIX IT -->
+	<skill id="40169" toLevel="1" name="Spellbook: Glorious Warrior's Ability Lv. 6">
+		<icon>icon.skill0000</icon>
+		<hitTime>1500</hitTime>
+		<isMagic>2</isMagic> <!-- Static Skill -->
+		<itemConsumeCount>1</itemConsumeCount>
+		<itemConsumeId>98836</itemConsumeId> <!-- Spellbook: Glorious Warrior's Ability (Lv. 6) -->
 		<operateType>A1</operateType>
+		<targetType>SELF</targetType>
+		<affectScope>SINGLE</affectScope>
+		<effects>
+			<effect name="SetSkill">
+				<skillId>45361</skillId> <!-- Glorious Warrior: Enhanced Abilities -->
+				<skillLevel>6</skillLevel>
+			</effect>
+		</effects>
 	</skill>
 	<skill id="40170" toLevel="1" name="Reanimated Corpse Mask">
 		<!-- For 20 min., acquired XP/ SP +30%. -->
