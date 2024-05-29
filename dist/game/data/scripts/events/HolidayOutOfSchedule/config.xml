@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<event name="Holiday out of Schedule" active="12 12 2022-05 01 2023" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../xsd/eventConfig.xsd">
+	<spawnlist>
+		<!-- Rudolph - Humanized -->
+		<add npc="34338" x="-84488" y="243146" z="-3728" heading="28693" />	<!-- Talking Island -->
+		<add npc="34338" x="44845" y="50692" z="-3056" heading="50119" /> <!-- Elven Village -->
+		<add npc="34338" x="-44363" y="-113500" z="-240" heading="608" /> <!-- Orc Village -->
+		<add npc="34338" x="11881" y="17532" z="-4568" heading="40593" /> <!-- Dark Elven Village -->
+		<add npc="34338" x="115725" y="-178255" z="-936" heading="35281" /> <!-- Dwarf Village -->
+		<add npc="34338" x="-81038" y="149990" z="-3040" heading="61823" /> <!-- Gluddin -->
+		<add npc="34338" x="-14133" y="123877" z="-3112" heading="41864" /> <!-- Gludio -->
+		<add npc="34338" x="16148" y="142849" z="-2696" heading="13978" /> <!-- Dion -->
+		<add npc="34338" x="83332" y="149160" z="-3384" heading="49152" /> <!-- Giran -->
+		<add npc="34338" x="82638" y="54149" z="-1488" heading="49153" /> <!-- Oren -->
+		<add npc="34338" x="147784" y="25627" z="-1992" heading="17329" /> <!-- Aden -->
+		<add npc="34338" x="117375" y="76707" z="-2688" heading="45519" /> <!-- Hunters Village -->
+		<add npc="34338" x="147418" y="-55440" z="-2728" heading="58825" /> <!-- Goddard -->
+		<!-- 2015 Christmas Tree, Large -->
+		<add npc="34278" x="147450" y="28304" z="-2264" heading="15850" /> <!-- Aden -->
+		<add npc="34278" x="82734" y="148768" z="-3464" heading="33453" /> <!-- Giran -->
+	</spawnlist>
+	<messages>
+		<add type="onEnter" text="Holiday out of schedule: Event start!" />
+		<add type="onEnd" text="Holiday out of schedule: Event end!" />
+	</messages>
+</event>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<event name="Blossom Festival" active="25 10 2023-25 10 2033" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../xsd/eventConfig.xsd">
+	<spawnlist>
+		<add npc="9034" x="83332" y="149161" z="-3384" heading="49151" /> <!-- Verlin's Messenger -->
+		<add npc="9034" x="147783" y="25627" z="-1996" heading="28180" /> <!-- Verlin's Messenger -->
+	</spawnlist>
+</event>

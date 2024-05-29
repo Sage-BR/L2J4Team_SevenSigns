@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="rewards.xsd">
+	<params>
+		<minimum level="5" />
+		<maximum level="-1" /> <!-- -1 = no limit -->
+	</params>
+	<letters>
+		<!-- name of letter, for using down / id of this letter -->
+		<item name="A" id="3875" />
+		<item name="E" id="3877" />
+		<item name="G" id="3879" />
+		<item name="H" id="3880" />
+		<item name="I" id="3881" />
+		<item name="L" id="3882" />
+		<item name="N" id="3883" />
+		<item name="R" id="3885" />
+		<item name="S" id="3886" />
+		<item name="T" id="3887" />
+		<item name="II" id="3888" />
+		<item name="M" id="34956" />
+		<item name="D" id="92021" />
+		<item name="K" id="93412" />
+		<item name="U" id="93413" />
+	</letters>
+	<!-- client id -->
+	<reward id="0">
+		<!-- split letter with ";" / LINEAGE II -> L;I;N;E;A;G;E;II -->
+		<word>L;I;N;E;A;G;E;II</word> <!-- LINEAGE II -->
+		<!-- sumChances - sum item chances cumulatively -->
+		<rewards sumChances="true">
+			<!-- item id; count; chance; enchantLevel; / id="-1" = no reward -->
+			<item id="49683" count="1" chance="5" /> <!-- Talisman of Baium -->
+			<item id="91119" count="1" chance="5" /> <!-- Ignis' Necklace -->
+			<item id="91117" count="1" chance="5" /> <!-- Nebula's Necklace -->
+			<item id="91121" count="1" chance="5" /> <!-- Procella's Necklace -->
+			<item id="91123" count="1" chance="5" /> <!-- Petram's Necklace -->
+			<item id="91952" count="1" chance="5" /> <!-- Ring of Insolance -->
+			<item id="91953" count="1" chance="5" /> <!-- Dragon Valley's Earring -->
+			<item id="91035" count="1" chance="15" /> <!-- Water Spirit Ore -->
+			<item id="91036" count="1" chance="15" /> <!-- Fire Spirit Ore -->
+			<item id="91037" count="1" chance="15" /> <!-- Wind Spirit Ore -->
+			<item id="91038" count="1" chance="15" /> <!-- Earth Spirit Ore -->
+			<item id="91641" count="1" chance="30" /> <!-- Sayha's Blessing -->
+			<item id="49674" count="1" chance="30" /> <!-- XP Growth Scroll -->
+			<item id="90907" count="1" chance="30" /> <!-- Soulshot Ticket -->
+			<item id="91757" count="1" chance="30" /> <!-- Magic Lamp Charging Potion -->
+			<item id="91974" count="1" chance="30" /> <!-- HP Recovery Potion -->
+			<item id="3031" count="10" chance="30" /> <!-- Spirit Ore -->
+		</rewards>
+	</reward>
+	<reward id="1">
+		<word>D;E;A;T;H</word> <!-- DEATH -->
+		<rewards sumChances="true">
+			<item id="91012" count="1" chance="5" /> <!-- Top-grade A-grade Weapon Pack -->
+			<item id="93459" count="1" chance="5" /> <!-- A-grade Armor Pack - Majestic Equipment -->
+			<item id="93460" count="1" chance="5" /> <!-- A-grade Armor Pack - Equipment of Nightmare -->
+			<item id="93461" count="1" chance="5" /> <!-- A-grade Armor Pack - Tallum Equipment -->
+			<item id="93462" count="1" chance="5" /> <!-- A-grade Armor Pack - Dark Crystal Equipment -->
+			<item id="90015" count="1" chance="5" /> <!-- Top-grade Life Stone - Weapon -->
+			<item id="93100" count="1" chance="5" /> <!-- Mid-grade Life Stone Shield / Sigil -->
+			<item id="91938" count="1" chance="5" /> <!-- Primeval Isle's Time Stone -->
+			<item id="93699" count="1" chance="5" /> <!-- Charging Stone of Random Crafting - 1 charge -->
+			<item id="91641" count="1" chance="5" /> <!-- Sayha's Blessing -->
+			<item id="49674" count="1" chance="5" /> <!-- XP Growth Scroll -->
+			<item id="90907" count="1" chance="5" /> <!-- Soulshot Ticket -->
+			<item id="91757" count="1" chance="5" /> <!-- Magic Lamp Charging Potion -->
+			<item id="91974" count="10" chance="5" /> <!-- HP Recovery Potion -->
+			<item id="3031" count="10" chance="5" /> <!-- Spirit Ore -->
+		</rewards>
+	</reward>
+	<reward id="2">
+		<word>K;N;I;G;H;T</word> <!-- KNIGHT -->
+		<rewards sumChances="true">
+			<item id="93103" count="1" chance="5" /> <!-- Spellbook: Divine Beam -->
+			<item id="92401" count="1" chance="5" /> <!-- Spellbook: White Guardian -->
+			<item id="91945" count="1" chance="5" /> <!-- Book of Shadows -->
+			<item id="91944" count="1" chance="5" /> <!-- Book of Light -->
+			<item id="91943" count="1" chance="15" /> <!-- Crystal of Shadows -->
+			<item id="91942" count="1" chance="15" /> <!-- Crystal of Light -->
+			<item id="8619" count="1" chance="15" /> <!-- Buff Expansion Book Lv. 2 -->
+			<item id="8620" count="1" chance="15" /> <!-- Buff Expansion Book Lv. 3 -->
+			<item id="90045" count="1" chance="15" /> <!-- Magical Tablet -->
+			<item id="91641" count="1" chance="30" /> <!-- Sayha's Blessing -->
+			<item id="49674" count="1" chance="30" /> <!-- XP Growth Scroll -->
+			<item id="90907" count="5" chance="30" /> <!-- Soulshot Ticket -->
+			<item id="91757" count="1" chance="30" /> <!-- Magic Lamp Charging Potion -->
+			<item id="91974" count="10" chance="30" /> <!-- HP Recovery Potion -->
+			<item id="3031" count="10" chance="30" /> <!-- Spirit Ore -->
+		</rewards>
+	</reward>
+	<reward id="3">
+		<word>S;U;M;M;E;R</word> <!-- SUMMER -->
+		<rewards sumChances="true">
+			<item id="93976" count="1" chance="5" /> <!-- Blessed Scroll: Enchant A-grade Weapon -->
+			<item id="93977" count="1" chance="5" /> <!-- Blessed Scroll: Enchant A-grade Armor -->
+			<item id="729" count="1" chance="5" /> <!-- Scroll: Enchant A-grade Weapon -->
+			<item id="730" count="1" chance="5" /> <!-- Scroll: Enchant A-grade Armor -->
+			<item id="947" count="1" chance="5" /> <!-- Scroll: Enchant B-grade Weapon -->
+			<item id="948" count="1" chance="5" /> <!-- Scroll: Enchant B-grade Armor -->
+			<item id="91967" count="1" chance="5" /> <!-- Scroll: Enchant Dragon Valley's Earring -->
+			<item id="91966" count="1" chance="5" /> <!-- Scroll: Enchant Ring of Insolance -->
+			<item id="91641" count="1" chance="5" /> <!-- Sayha's Blessing -->
+			<item id="91780" count="1" chance="5" /> <!-- Battle Scroll -->
+			<item id="93486" count="1" chance="5" /> <!-- Combat Scroll -->
+			<item id="49674" count="1" chance="5" /> <!-- XP Growth Scroll -->
+			<item id="90907" count="1" chance="5" /> <!-- Soulshot Ticket -->
+			<item id="1538" count="1" chance="5" /> <!-- Improved Scroll of Escape -->
+			<item id="91757" count="1" chance="5" /> <!-- Magic Lamp Charging Potion -->
+			<item id="91974" count="10" chance="5" /> <!-- HP Recovery Potion -->
+			<item id="3031" count="10" chance="5" /> <!-- Spirit Ore -->
+		</rewards>
+	</reward>
+</list>

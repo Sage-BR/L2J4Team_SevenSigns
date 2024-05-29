@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<event name="Battle With Keber" active="19 08 2020-16 10 2020" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../xsd/eventConfig.xsd">
+	<spawnlist>
+		<add npc="34216" x="146966" y="25726" z="-2020" heading="6133" /> <!-- Bonnie -->
+		<add npc="34216" x="83673" y="148857" z="-3413" heading="29500" /> <!-- Bonnie -->
+		<add npc="18551" x="133474" y="7730" z="-4320" heading="0" /> <!-- Keber's Seal Stone / Plains of Glory -->
+		<add npc="18551" x="161481" y="22041" z="-3696" heading="0" /> <!-- Keber's Seal Stone / War-Torn Plains -->
+		<add npc="18551" x="180942" y="52673" z="-6100" heading="0" /> <!-- Keber's Seal Stone / Silent Valley -->
+	</spawnlist>
+</event>
