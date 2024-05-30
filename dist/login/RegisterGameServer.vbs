@@ -15,4 +15,4 @@ Else
 End If
 
 'Run the installer.
-shell.Run "cmd /c start ""L2J Mobius - Register Game Server"" " & path & "java -Djava.util.logging.config.file=console.cfg -cp ./../libs/* org.l2jmobius.tools.gsregistering.BaseGameServerRegister -c", 1, False
+shell.Run "cmd /c start ""L2J 4Team - Register Game Server"" " & path & "java -Djava.util.logging.config.file=console.cfg -cp ./../libs/* org.l2j.tools.gsregistering.BaseGameServerRegister -c", 1, False

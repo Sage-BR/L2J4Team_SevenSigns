@@ -15,4 +15,4 @@ Else
 End If
 
 'Generate command.
-shell.Run "cmd /c start ""L2J 4Team - Game Server"" " & path & "java -server -XX:+UseCodeCacheFlushing -XX:+OptimizeStringConcat -XX:+UseG1GC -XX:+TieredCompilation -XX:+UseCompressedOops -Xmx3g -Xms3g -cp ../libs/GameServer.jar; org.l2j.gameserver.GameServer", 1, False
+shell.Run "cmd /c start ""L2J 4Team - Game Server"" " & path & "java -server -XX:+UseCodeCacheFlushing -XX:+OptimizeStringConcat -XX:+UseG1GC -XX:+TieredCompilation -XX:+UseCompressedOops -XX:SurvivorRatio=8 -XX:NewRatio=4 -Xmx3g -Xms3g -cp ../libs/GameServer.jar; org.l2j.gameserver.GameServer", 1, False
