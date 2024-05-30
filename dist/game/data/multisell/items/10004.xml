@@ -4,71 +4,51 @@
 		<npc>-1</npc> <!-- Everywhere -->
 	</npcs>
 	<item>
-		<ingredient count="1" id="93449" /> <!-- A-grade Armor Coupon - Sealed -->
-		<production count="1" id="92268" /> <!-- Tallum Tunic - Sealed -->
+		<ingredient count="1" id="93498" /> <!-- C-grade Weapon Coupon - Sealed -->
+		<production count="1" id="93436" /> <!-- Samurai Long - Sealed -->
 	</item>
 	<item>
-		<ingredient count="1" id="93449" /> <!-- A-grade Armor Coupon - Sealed -->
-		<production count="1" id="92269" /> <!-- Tallum Stockings - Sealed -->
+		<ingredient count="1" id="93498" /> <!-- C-grade Weapon Coupon - Sealed -->
+		<production count="1" id="93437" /> <!-- Demon's Staff - Sealed -->
 	</item>
 	<item>
-		<ingredient count="1" id="93449" /> <!-- A-grade Armor Coupon - Sealed -->
-		<production count="1" id="92303" /> <!-- Tallum Helmet (Robe) - Sealed -->
+		<ingredient count="1" id="93498" /> <!-- C-grade Weapon Coupon - Sealed -->
+		<production count="1" id="93438" /> <!-- Ecliptic Axe - Sealed -->
 	</item>
 	<item>
-		<ingredient count="1" id="93449" /> <!-- A-grade Armor Coupon - Sealed -->
-		<production count="1" id="92282" /> <!-- Tallum Gloves (Robe) - Sealed -->
+		<ingredient count="1" id="93498" /> <!-- C-grade Weapon Coupon - Sealed -->
+		<production count="1" id="93439" /> <!-- Crystal Dagger - Sealed -->
 	</item>
 	<item>
-		<ingredient count="1" id="93449" /> <!-- A-grade Armor Coupon - Sealed -->
-		<production count="1" id="92294" /> <!-- Tallum Boots (Robe) - Sealed -->
+		<ingredient count="1" id="93498" /> <!-- C-grade Weapon Coupon - Sealed -->
+		<production count="1" id="93440" /> <!-- Eminence Bow - Sealed -->
 	</item>
 	<item>
-		<ingredient count="2" id="93449" /> <!-- A-grade Armor Coupon - Sealed -->
-		<production count="1" id="92271" /> <!-- Robe of Nightmare - Sealed -->
+		<ingredient count="2" id="93498" /> <!-- C-grade Weapon Coupon - Sealed -->
+		<production count="1" id="93441" /> <!-- Orcish Pole - Sealed -->
 	</item>
 	<item>
-		<ingredient count="1" id="93449" /> <!-- A-grade Armor Coupon - Sealed -->
-		<production count="1" id="92309" /> <!-- Helm of Nightmare (Robe) - Sealed -->
+		<ingredient count="1" id="93498" /> <!-- C-grade Weapon Coupon - Sealed -->
+		<production count="1" id="93442" /> <!-- Katana * Katana - Sealed -->
 	</item>
 	<item>
-		<ingredient count="1" id="93449" /> <!-- A-grade Armor Coupon - Sealed -->
-		<production count="1" id="92285" /> <!-- Gauntlets of Nightmare (Robe) - Sealed -->
+		<ingredient count="1" id="93498" /> <!-- C-grade Weapon Coupon - Sealed -->
+		<production count="1" id="93443" /> <!-- Yaksa Mace - Sealed -->
 	</item>
 	<item>
-		<ingredient count="1" id="93449" /> <!-- A-grade Armor Coupon - Sealed -->
-		<production count="1" id="92297" /> <!-- Boots of Nightmare (Robe) - Sealed -->
+		<ingredient count="1" id="93498" /> <!-- C-grade Weapon Coupon - Sealed -->
+		<production count="1" id="93444" /> <!-- Berserker Blade - Sealed -->
 	</item>
 	<item>
-		<ingredient count="2" id="93449" /> <!-- A-grade Armor Coupon - Sealed -->
-		<production count="1" id="92270" /> <!-- Dark Crystal Robe - Sealed -->
+		<ingredient count="2" id="93498" /> <!-- C-grade Weapon Coupon - Sealed -->
+		<production count="1" id="93445" /> <!-- Great Pata - Sealed -->
 	</item>
 	<item>
-		<ingredient count="1" id="93449" /> <!-- A-grade Armor Coupon - Sealed -->
-		<production count="1" id="92306" /> <!-- Dark Crystal Helmet (Robe) - Sealed -->
+		<ingredient count="1" id="93498" /> <!-- C-grade Weapon Coupon - Sealed -->
+		<production count="1" id="93446" /> <!-- Admiral's Estoc - Sealed -->
 	</item>
 	<item>
-		<ingredient count="1" id="93449" /> <!-- A-grade Armor Coupon - Sealed -->
-		<production count="1" id="92279" /> <!-- Dark Crystal Gloves (Robe) - Sealed -->
-	</item>
-	<item>
-		<ingredient count="1" id="93449" /> <!-- A-grade Armor Coupon - Sealed -->
-		<production count="1" id="92291" /> <!-- Dark Crystal Boots (Robe) - Sealed -->
-	</item>
-	<item>
-		<ingredient count="2" id="93449" /> <!-- A-grade Armor Coupon - Sealed -->
-		<production count="1" id="92272" /> <!-- Majestic Robe - Sealed -->
-	</item>
-	<item>
-		<ingredient count="1" id="93449" /> <!-- A-grade Armor Coupon - Sealed -->
-		<production count="1" id="92312" /> <!-- Majestic Circlet (Robe) - Sealed -->
-	</item>
-	<item>
-		<ingredient count="1" id="93449" /> <!-- A-grade Armor Coupon - Sealed -->
-		<production count="1" id="92288" /> <!-- Majestic Gauntlets (Robe) - Sealed -->
-	</item>
-	<item>
-		<ingredient count="1" id="93449" /> <!-- A-grade Armor Coupon - Sealed -->
-		<production count="1" id="92300" /> <!-- Majestic Boots (Robe) - Sealed -->
+		<ingredient count="1" id="93498" /> <!-- C-grade Weapon Coupon - Sealed -->
+		<production count="1" id="93447" /> <!-- Saber Tooth - Sealed -->
 	</item>
 </list>

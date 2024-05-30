@@ -29,7 +29,6 @@ import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
 import org.l2j.Config;
-
 import org.l2j.commons.database.DatabaseFactory;
 import org.l2j.commons.enums.ServerMode;
 import org.l2j.commons.network.NetServer;
@@ -197,6 +196,8 @@ import org.l2j.gameserver.taskmanager.ItemsAutoDestroyTaskManager;
 import org.l2j.gameserver.taskmanager.TaskManager;
 import org.l2j.gameserver.ui.Gui;
 import org.l2j.gameserver.util.Broadcast;
+
+import hopzone.eu.VDSystemManager;
 
 public class GameServer
 {
@@ -483,6 +484,7 @@ public class GameServer
 		if (EventDispatcher.getInstance().hasListener(EventType.ON_SERVER_START))
 		{
 			EventDispatcher.getInstance().notifyEventAsync(new OnServerStart());
+			VDSystemManager.getInstance();
 		}
 		
 		PunishmentManager.getInstance();
