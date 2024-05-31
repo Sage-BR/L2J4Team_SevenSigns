@@ -81,13 +81,7 @@ public class RequestUpgradeSystemResult implements ClientPacket
 		}
 		
 		final long adena = upgradeHolder.getAdena();
-		if ((adena > 0) && (player.getAdena() < adena))
-		{
-			player.sendPacket(new ExUpgradeSystemResult(0, 0));
-			return;
-		}
-		
-		if ((existingItem.getTemplate().getId() != upgradeHolder.getRequiredItemId()) || (existingItem.getEnchantLevel() != upgradeHolder.getRequiredItemEnchant()))
+		if (((adena > 0) && (player.getAdena() < adena)) || (existingItem.getTemplate().getId() != upgradeHolder.getRequiredItemId()) || (existingItem.getEnchantLevel() != upgradeHolder.getRequiredItemEnchant()))
 		{
 			player.sendPacket(new ExUpgradeSystemResult(0, 0));
 			return;

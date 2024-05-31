@@ -17,7 +17,6 @@
 package org.l2j.gameserver.network.clientpackets;
 
 import org.l2j.Config;
-
 import org.l2j.commons.network.ReadablePacket;
 import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.network.GameClient;
@@ -40,12 +39,7 @@ public class RequestExAddContactToContactList implements ClientPacket
 	@Override
 	public void run(GameClient client)
 	{
-		if (!Config.ALLOW_MAIL)
-		{
-			return;
-		}
-		
-		if (_name == null)
+		if (!Config.ALLOW_MAIL || (_name == null))
 		{
 			return;
 		}

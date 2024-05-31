@@ -20,7 +20,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.l2j.Config;
-
 import org.l2j.gameserver.model.StatSet;
 import org.l2j.gameserver.model.VehiclePathPoint;
 import org.l2j.gameserver.model.World;

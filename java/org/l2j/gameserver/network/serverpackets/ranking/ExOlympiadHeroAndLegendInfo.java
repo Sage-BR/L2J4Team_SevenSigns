@@ -22,13 +22,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import org.l2j.Config;
-
 import org.l2j.commons.database.DatabaseFactory;
 import org.l2j.gameserver.data.sql.ClanTable;
 import org.l2j.gameserver.instancemanager.RankManager;
 import org.l2j.gameserver.model.olympiad.Hero;
-import org.l2j.gameserver.network.ServerPackets;
 import org.l2j.gameserver.network.PacketLogger;
+import org.l2j.gameserver.network.ServerPackets;
 import org.l2j.gameserver.network.serverpackets.ServerPacket;
 
 /**

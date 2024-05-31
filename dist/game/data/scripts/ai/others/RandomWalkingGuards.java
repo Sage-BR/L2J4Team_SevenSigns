@@ -17,7 +17,6 @@
 package ai.others;
 
 import org.l2j.Config;
-
 import org.l2j.gameserver.geoengine.GeoEngine;
 import org.l2j.gameserver.model.Location;
 import org.l2j.gameserver.model.actor.Npc;

@@ -20,7 +20,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.l2j.Config;
-
 import org.l2j.commons.util.CommonUtil;
 import org.l2j.commons.util.Rnd;
 import org.l2j.gameserver.data.xml.HitConditionBonusData;
@@ -422,13 +421,8 @@ public class Formulas
 	 */
 	public static boolean calcAtkBreak(Creature target, double dmg)
 	{
-		if (target.isChanneling())
-		{
-			return false;
-		}
-		
 		// Cannot interrupt targets affected by Burst or Superior Burst Casting.
-		if (target.hasAbnormalType(AbnormalType.DC_MOD))
+		if (target.isChanneling() || target.hasAbnormalType(AbnormalType.DC_MOD))
 		{
 			return false;
 		}

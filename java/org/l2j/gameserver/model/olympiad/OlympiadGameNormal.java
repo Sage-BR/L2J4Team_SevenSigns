@@ -26,7 +26,6 @@ import java.util.Set;
 import java.util.logging.Level;
 
 import org.l2j.Config;
-
 import org.l2j.commons.database.DatabaseFactory;
 import org.l2j.commons.util.Rnd;
 import org.l2j.gameserver.model.Location;
@@ -196,12 +195,7 @@ public abstract class OlympiadGameNormal extends AbstractOlympiadGame
 	@Override
 	protected final boolean makeCompetitionStart()
 	{
-		if (!super.makeCompetitionStart())
-		{
-			return false;
-		}
-		
-		if ((_playerOne.getPlayer() == null) || (_playerTwo.getPlayer() == null))
+		if (!super.makeCompetitionStart() || (_playerOne.getPlayer() == null) || (_playerTwo.getPlayer() == null))
 		{
 			return false;
 		}
@@ -279,12 +273,7 @@ public abstract class OlympiadGameNormal extends AbstractOlympiadGame
 	@Override
 	protected final boolean checkBattleStatus()
 	{
-		if (_aborted)
-		{
-			return false;
-		}
-		
-		if ((_playerOne.getPlayer() == null) || _playerOne.isDisconnected())
+		if (_aborted || (_playerOne.getPlayer() == null) || _playerOne.isDisconnected())
 		{
 			return false;
 		}

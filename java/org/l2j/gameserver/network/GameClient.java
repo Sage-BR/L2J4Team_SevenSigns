@@ -25,7 +25,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.l2j.Config;
-
 import org.l2j.commons.database.DatabaseFactory;
 import org.l2j.commons.network.EncryptionInterface;
 import org.l2j.commons.network.NetClient;

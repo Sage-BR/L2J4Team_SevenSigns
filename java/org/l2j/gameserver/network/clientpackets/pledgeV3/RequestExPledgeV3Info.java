@@ -41,12 +41,7 @@ public class RequestExPledgeV3Info implements ClientPacket
 	public void run(GameClient client)
 	{
 		final Player player = client.getPlayer();
-		if (player == null)
-		{
-			return;
-		}
-		
-		if (player.getClan() == null)
+		if ((player == null) || (player.getClan() == null))
 		{
 			return;
 		}

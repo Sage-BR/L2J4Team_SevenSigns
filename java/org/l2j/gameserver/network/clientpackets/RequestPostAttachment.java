@@ -19,7 +19,6 @@ package org.l2j.gameserver.network.clientpackets;
 import static org.l2j.gameserver.model.itemcontainer.Inventory.ADENA_ID;
 
 import org.l2j.Config;
-
 import org.l2j.commons.network.ReadablePacket;
 import org.l2j.gameserver.data.xml.ItemData;
 import org.l2j.gameserver.enums.ItemLocation;
@@ -59,12 +58,7 @@ public class RequestPostAttachment implements ClientPacket
 		}
 		
 		final Player player = client.getPlayer();
-		if (player == null)
-		{
-			return;
-		}
-		
-		if (!client.getFloodProtectors().canPerformTransaction())
+		if ((player == null) || !client.getFloodProtectors().canPerformTransaction())
 		{
 			return;
 		}

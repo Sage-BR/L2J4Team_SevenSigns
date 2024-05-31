@@ -17,7 +17,6 @@
 package org.l2j.gameserver.model.itemcontainer;
 
 import org.l2j.Config;
-
 import org.l2j.gameserver.enums.ItemLocation;
 import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.model.clan.Clan;

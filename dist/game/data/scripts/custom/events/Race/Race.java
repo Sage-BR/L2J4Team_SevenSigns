@@ -23,7 +23,6 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ScheduledFuture;
 
 import org.l2j.Config;
-
 import org.l2j.commons.threads.ThreadPool;
 import org.l2j.gameserver.data.xml.SkillData;
 import org.l2j.gameserver.enums.ChatType;

@@ -12,7 +12,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.l2j.Config;
-
 import org.l2j.commons.database.DatabaseFactory;
 import org.l2j.commons.util.CommonUtil;
 import org.l2j.commons.util.Rnd;
@@ -318,12 +317,7 @@ public class AchievementBox
 	
 	public void tryFinishBox()
 	{
-		if ((_boxTimeForOpen == 0) || (_boxTimeForOpen >= System.currentTimeMillis()))
-		{
-			return;
-		}
-		
-		if ((_owner == null) || !_owner.isOnline())
+		if ((_boxTimeForOpen == 0) || (_boxTimeForOpen >= System.currentTimeMillis()) || (_owner == null) || !_owner.isOnline())
 		{
 			return;
 		}

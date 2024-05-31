@@ -22,7 +22,6 @@ import java.util.Set;
 import java.util.function.Supplier;
 
 import org.l2j.Config;
-
 import org.l2j.gameserver.network.clientpackets.*;
 import org.l2j.gameserver.network.clientpackets.adenadistribution.RequestDivideAdena;
 import org.l2j.gameserver.network.clientpackets.adenadistribution.RequestDivideAdenaCancel;

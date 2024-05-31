@@ -30,7 +30,6 @@ import java.util.function.Function;
 import java.util.logging.Logger;
 
 import org.l2j.Config;
-
 import org.l2j.gameserver.data.xml.NpcData;
 import org.l2j.gameserver.model.Spawn;
 import org.l2j.gameserver.model.World;

@@ -31,7 +31,6 @@ import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 import org.l2j.Config;
-
 import org.l2j.commons.database.DatabaseFactory;
 import org.l2j.commons.threads.ThreadPool;
 import org.l2j.gameserver.data.sql.CharInfoTable;

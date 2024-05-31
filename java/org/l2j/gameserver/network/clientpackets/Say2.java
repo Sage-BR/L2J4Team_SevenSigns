@@ -19,7 +19,6 @@ package org.l2j.gameserver.network.clientpackets;
 import java.util.logging.Logger;
 
 import org.l2j.Config;
-
 import org.l2j.commons.network.ReadablePacket;
 import org.l2j.gameserver.enums.ChatType;
 import org.l2j.gameserver.handler.ChatHandler;

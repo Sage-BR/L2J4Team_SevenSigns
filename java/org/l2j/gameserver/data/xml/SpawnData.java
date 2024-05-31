@@ -28,10 +28,10 @@ import java.util.function.Predicate;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import org.l2j.Config;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 
+import org.l2j.Config;
 import org.l2j.commons.threads.ThreadPool;
 import org.l2j.commons.util.IXmlReader;
 import org.l2j.gameserver.model.ChanceLocation;

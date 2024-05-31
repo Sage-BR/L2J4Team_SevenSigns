@@ -263,12 +263,7 @@ public class SecondaryPasswordAuth
 	
 	private boolean validatePassword(String password)
 	{
-		if (!Util.isDigit(password))
-		{
-			return false;
-		}
-		
-		if ((password.length() < 6) || (password.length() > 8))
+		if (!Util.isDigit(password) || (password.length() < 6) || (password.length() > 8))
 		{
 			return false;
 		}

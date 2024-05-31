@@ -20,7 +20,6 @@ import java.util.concurrent.ScheduledFuture;
 import java.util.logging.Logger;
 
 import org.l2j.Config;
-
 import org.l2j.commons.threads.ThreadPool;
 import org.l2j.commons.util.Rnd;
 import org.l2j.gameserver.data.xml.FishingData;
@@ -434,12 +433,7 @@ public class Fishing
 	 */
 	private static int computeBaitZ(Player player, int baitX, int baitY, FishingZone fishingZone, WaterZone waterZone)
 	{
-		if ((fishingZone == null))
-		{
-			return Integer.MIN_VALUE;
-		}
-		
-		if ((waterZone == null))
+		if ((fishingZone == null) || (waterZone == null))
 		{
 			return Integer.MIN_VALUE;
 		}

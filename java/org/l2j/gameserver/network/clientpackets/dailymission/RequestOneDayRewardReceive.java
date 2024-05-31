@@ -51,12 +51,7 @@ public class RequestOneDayRewardReceive implements ClientPacket
 		}
 		
 		final Player player = client.getPlayer();
-		if (player == null)
-		{
-			return;
-		}
-		
-		if (player.hasRequest(RewardRequest.class))
+		if ((player == null) || player.hasRequest(RewardRequest.class))
 		{
 			return;
 		}

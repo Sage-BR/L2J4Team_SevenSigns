@@ -21,9 +21,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
-import org.l2j.Config;
 import org.w3c.dom.Document;
 
+import org.l2j.Config;
 import org.l2j.commons.util.IXmlReader;
 import org.l2j.gameserver.model.StatSet;
 import org.l2j.gameserver.model.holders.ItemHolder;

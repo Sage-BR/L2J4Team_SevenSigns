@@ -20,7 +20,6 @@ import java.util.Arrays;
 import java.util.logging.Logger;
 
 import org.l2j.Config;
-
 import org.l2j.commons.network.ReadablePacket;
 import org.l2j.loginserver.GameServerTable;
 import org.l2j.loginserver.GameServerTable.GameServerInfo;

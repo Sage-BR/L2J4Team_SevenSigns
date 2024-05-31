@@ -21,7 +21,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.l2j.Config;
-
 import org.l2j.gameserver.data.xml.MultisellData;
 import org.l2j.gameserver.enums.CategoryType;
 import org.l2j.gameserver.handler.BypassHandler;

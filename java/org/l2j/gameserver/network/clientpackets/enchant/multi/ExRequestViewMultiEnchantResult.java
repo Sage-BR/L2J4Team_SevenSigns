@@ -39,12 +39,7 @@ public class ExRequestViewMultiEnchantResult implements ClientPacket
 	public void run(GameClient client)
 	{
 		final Player player = client.getPlayer();
-		if (player == null)
-		{
-			return;
-		}
-		
-		if (player.getRequest(EnchantItemRequest.class) == null)
+		if ((player == null) || (player.getRequest(EnchantItemRequest.class) == null))
 		{
 			return;
 		}

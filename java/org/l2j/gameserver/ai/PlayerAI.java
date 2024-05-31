@@ -354,11 +354,7 @@ public class PlayerAI extends PlayableAI
 			return;
 		}
 		final WorldObject target = getTarget();
-		if (checkTargetLost(target))
-		{
-			return;
-		}
-		if (maybeMoveToPawn(target, 36))
+		if (checkTargetLost(target) || maybeMoveToPawn(target, 36))
 		{
 			return;
 		}
@@ -373,11 +369,7 @@ public class PlayerAI extends PlayableAI
 			return;
 		}
 		final WorldObject target = getTarget();
-		if (checkTargetLost(target))
-		{
-			return;
-		}
-		if (maybeMoveToPawn(target, 36))
+		if (checkTargetLost(target) || maybeMoveToPawn(target, 36))
 		{
 			return;
 		}

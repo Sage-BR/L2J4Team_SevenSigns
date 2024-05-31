@@ -23,7 +23,6 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.logging.Logger;
 
 import org.l2j.Config;
-
 import org.l2j.gameserver.model.actor.Creature;
 import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.model.olympiad.OlympiadManager;
@@ -73,13 +72,8 @@ public class AntiFeedManager
 		}
 		
 		final Player targetPlayer = target.getActingPlayer();
-		if (targetPlayer == null)
-		{
-			return false;
-		}
-		
 		// Players in offline mode should't be valid targets.
-		if (targetPlayer.getClient().isDetached())
+		if ((targetPlayer == null) || targetPlayer.getClient().isDetached())
 		{
 			return false;
 		}
@@ -224,12 +218,7 @@ public class AntiFeedManager
 		}
 		
 		final Player player = client.getPlayer();
-		if (player == null)
-		{
-			return;
-		}
-		
-		if (player.isInOfflineMode())
+		if ((player == null) || player.isInOfflineMode())
 		{
 			return;
 		}

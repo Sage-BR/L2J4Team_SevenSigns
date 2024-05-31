@@ -17,7 +17,6 @@
 package handlers.skillconditionhandlers;
 
 import org.l2j.Config;
-
 import org.l2j.gameserver.model.StatSet;
 import org.l2j.gameserver.model.WorldObject;
 import org.l2j.gameserver.model.actor.Attackable;

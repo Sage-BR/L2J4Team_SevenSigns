@@ -20,7 +20,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.l2j.Config;
-
 import org.l2j.commons.database.DatabaseBackup;
 import org.l2j.commons.database.DatabaseFactory;
 import org.l2j.commons.threads.ThreadPool;
@@ -117,12 +116,7 @@ public class Shutdown extends Thread
 	@Override
 	public void run()
 	{
-		if (this == getInstance())
-		{
-			return;
-		}
-		
-		if (_countdownFinished)
+		if ((this == getInstance()) || _countdownFinished)
 		{
 			return;
 		}

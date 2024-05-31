@@ -34,7 +34,6 @@ import java.util.logging.Logger;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
-import org.l2j.Config;
 import org.w3c.dom.Document;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
@@ -42,6 +41,7 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.ErrorHandler;
 import org.xml.sax.SAXParseException;
 
+import org.l2j.Config;
 import org.l2j.commons.threads.ThreadPool;
 import org.l2j.commons.util.file.filter.XMLFilter;
 import org.l2j.gameserver.model.Location;

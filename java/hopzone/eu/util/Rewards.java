@@ -21,30 +21,20 @@
  */
 package hopzone.eu.util;
 
-import hopzone.eu.Configurations;
-
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import hopzone.eu.Configurations;
+
 /**
- * @Author Nightwolf
- * iToPz Discord: https://discord.gg/KkPms6B5aE
- * @Author Rationale
- * Base structure credits goes on Rationale Discord: Rationale#7773
- * <p>
- * VDS Stands for: Vote Donation System
- * Script website: https://itopz.com/
- * Partner website: https://hopzone.eu/
- * Script version: 1.8
- * Pack Support: 4Team Essence SevenSigns
- * <p>
- * Freemium Donate Panel V4: https://www.denart-designs.com/
- * Download: https://mega.nz/folder/6oxUyaIJ#qQDUXeoXlPvBjbPMDYzu-g
- * Buy: https://shop.denart-designs.com/product/auto-donate-panel-v4/
- *
- * Quick Guide: https://github.com/nightw0lv/VDSystem/tree/master/Guide
+ * @Author Nightwolf iToPz Discord: https://discord.gg/KkPms6B5aE
+ * @Author Rationale Base structure credits goes on Rationale Discord: Rationale#7773
+ *         <p>
+ *         VDS Stands for: Vote Donation System Script website: https://itopz.com/ Partner website: https://hopzone.eu/ Script version: 1.8 Pack Support: 4Team Essence SevenSigns
+ *         <p>
+ *         Freemium Donate Panel V4: https://www.denart-designs.com/ Download: https://mega.nz/folder/6oxUyaIJ#qQDUXeoXlPvBjbPMDYzu-g Buy: https://shop.denart-designs.com/product/auto-donate-panel-v4/ Quick Guide: https://github.com/nightw0lv/VDSystem/tree/master/Guide
  */
 public enum Rewards
 {
@@ -68,28 +58,27 @@ public enum Rewards
 	L2RANKZONE_GLOBAL_REWARDS(Configurations.L2RANKZONE_GLOBAL_REWARDS),
 	TOP4TEAMBR_INDIVIDUAL_REWARDS(Configurations.TOP4TEAMBR_INDIVIDUAL_REWARDS),
 	TOP4TEAMBR_GLOBAL_REWARDS(Configurations.TOP4TEAMBR_GLOBAL_REWARDS);
-
+	
 	private final Map<Integer, List<Long[]>> _list;
 	private static final Rewards[] _rewards = values();
-
+	
 	Rewards(final Map<Integer, List<Long[]>> text)
 	{
 		_list = text;
 	}
-
+	
 	public Set<Integer> keys()
 	{
 		return _list.keySet();
 	}
-
+	
 	public Long[] get(int id)
 	{
 		return _list.get(id).get(0);
 	}
-
+	
 	/**
 	 * returns enum from string
-	 *
 	 * @param TOPSITE string
 	 * @return Individual
 	 */

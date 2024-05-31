@@ -22,7 +22,6 @@ import java.util.logging.Formatter;
 import java.util.logging.LogRecord;
 
 import org.l2j.Config;
-
 import org.l2j.commons.util.StringUtil;
 import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.network.GameClient;

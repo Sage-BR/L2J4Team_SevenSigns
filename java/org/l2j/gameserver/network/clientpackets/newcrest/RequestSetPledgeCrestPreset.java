@@ -47,12 +47,7 @@ public class RequestSetPledgeCrestPreset implements ClientPacket
 		}
 		
 		final Clan clan = player.getClan();
-		if (clan == null)
-		{
-			return;
-		}
-		
-		if (clan.getLevel() < 3)
+		if ((clan == null) || (clan.getLevel() < 3))
 		{
 			return;
 		}

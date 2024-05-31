@@ -19,7 +19,6 @@ package handlers.voicedcommandhandlers;
 import java.util.function.Consumer;
 
 import org.l2j.Config;
-
 import org.l2j.gameserver.enums.ChatType;
 import org.l2j.gameserver.enums.PlayerAction;
 import org.l2j.gameserver.handler.IVoicedCommandHandler;

@@ -28,7 +28,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.l2j.Config;
-
 import org.l2j.commons.database.DatabaseFactory;
 import org.l2j.gameserver.data.xml.ItemData;
 import org.l2j.gameserver.enums.ItemLocation;
@@ -390,12 +389,7 @@ public abstract class ItemContainer
 		
 		synchronized (item)
 		{
-			if (!_items.contains(item))
-			{
-				return null;
-			}
-			
-			if (count > item.getCount())
+			if (!_items.contains(item) || (count > item.getCount()))
 			{
 				return null;
 			}

@@ -42,13 +42,8 @@ public class ExPetUnequipItem implements ClientPacket
 			return;
 		}
 		final Pet pet = player.getPet();
-		if (pet == null)
-		{
-			return;
-		}
-		
 		// Flood protect UseItem
-		if (!client.getFloodProtectors().canUseItem())
+		if ((pet == null) || !client.getFloodProtectors().canUseItem())
 		{
 			return;
 		}

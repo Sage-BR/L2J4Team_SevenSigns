@@ -22,7 +22,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.l2j.Config;
-
 import org.l2j.commons.network.ReadablePacket;
 import org.l2j.commons.util.Rnd;
 import org.l2j.gameserver.data.xml.LimitShopClanData;
@@ -94,12 +93,7 @@ public class RequestPurchaseLimitShopItemBuy implements ClientPacket
 	public void run(GameClient client)
 	{
 		final Player player = client.getPlayer();
-		if (player == null)
-		{
-			return;
-		}
-		
-		if (_product == null)
+		if ((player == null) || (_product == null))
 		{
 			return;
 		}

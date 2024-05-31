@@ -32,7 +32,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.l2j.Config;
-
 import org.l2j.commons.database.DatabaseFactory;
 import org.l2j.commons.threads.ThreadPool;
 import org.l2j.gameserver.data.sql.ClanTable;
@@ -1112,12 +1111,7 @@ public class FortSiege extends ListenersContainer implements Siegable
 			
 			for (Fort fort : FortManager.getInstance().getForts())
 			{
-				if (fort.getSiege().getAttackerClan(player.getClanId()) != null)
-				{
-					return 3; // Players clan is already registered to siege
-				}
-				
-				if ((fort.getOwnerClan() == player.getClan()) && (fort.getSiege().isInProgress() || (fort.getSiege()._siegeStartTask != null)))
+				if ((fort.getSiege().getAttackerClan(player.getClanId()) != null) || ((fort.getOwnerClan() == player.getClan()) && (fort.getSiege().isInProgress() || (fort.getSiege()._siegeStartTask != null))))
 				{
 					return 3; // Players clan is already registered to siege
 				}
@@ -1366,11 +1360,7 @@ public class FortSiege extends ListenersContainer implements Siegable
 			
 			if (siege.getSiegeDate().get(Calendar.DAY_OF_WEEK) == getSiegeDate().get(Calendar.DAY_OF_WEEK))
 			{
-				if (siege.checkIsAttacker(clan))
-				{
-					return true;
-				}
-				if (siege.checkIsDefender(clan))
+				if (siege.checkIsAttacker(clan) || siege.checkIsDefender(clan))
 				{
 					return true;
 				}

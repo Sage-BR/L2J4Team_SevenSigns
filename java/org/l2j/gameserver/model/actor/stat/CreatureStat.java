@@ -32,7 +32,6 @@ import java.util.function.BiFunction;
 import java.util.function.BiPredicate;
 
 import org.l2j.Config;
-
 import org.l2j.gameserver.enums.AttributeType;
 import org.l2j.gameserver.enums.Position;
 import org.l2j.gameserver.model.actor.Creature;

@@ -19,7 +19,6 @@ package org.l2j.gameserver.network.clientpackets.primeshop;
 import java.util.Calendar;
 
 import org.l2j.Config;
-
 import org.l2j.commons.network.ReadablePacket;
 import org.l2j.gameserver.data.sql.CharInfoTable;
 import org.l2j.gameserver.data.xml.PrimeShopData;

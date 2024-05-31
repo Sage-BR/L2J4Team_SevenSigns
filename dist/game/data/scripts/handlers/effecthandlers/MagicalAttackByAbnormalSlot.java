@@ -21,7 +21,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.l2j.Config;
-
 import org.l2j.gameserver.enums.ShotType;
 import org.l2j.gameserver.model.StatSet;
 import org.l2j.gameserver.model.actor.Creature;

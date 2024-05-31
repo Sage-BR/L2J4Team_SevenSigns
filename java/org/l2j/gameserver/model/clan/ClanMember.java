@@ -24,7 +24,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.l2j.Config;
-
 import org.l2j.commons.database.DatabaseFactory;
 import org.l2j.gameserver.enums.ClanRewardType;
 import org.l2j.gameserver.instancemanager.SiegeManager;
@@ -157,11 +156,7 @@ public class ClanMember
 	 */
 	public boolean isOnline()
 	{
-		if ((_player == null) || !_player.isOnline())
-		{
-			return false;
-		}
-		if ((_player.getClient() == null) || _player.getClient().isDetached())
+		if ((_player == null) || !_player.isOnline() || (_player.getClient() == null) || _player.getClient().isDetached())
 		{
 			return false;
 		}

@@ -27,49 +27,39 @@ import hopzone.eu.util.VDSThreadPool;
 import hopzone.eu.vote.VDSystem;
 
 /**
- * @Author Nightwolf
- * iToPz Discord: https://discord.gg/KkPms6B5aE
- * @Author Rationale
- * Base structure credits goes on Rationale Discord: Rationale#7773
- * <p>
- * VDS Stands for: Vote Donation System
- * Script website: https://itopz.com/
- * Partner website: https://hopzone.eu/
- * Script version: 1.8
- * Pack Support: 4Team Essence SevenSigns
- * <p>
- * Freemium Donate Panel V4: https://www.denart-designs.com/
- * Download: https://mega.nz/folder/6oxUyaIJ#qQDUXeoXlPvBjbPMDYzu-g
- * Buy: https://shop.denart-designs.com/product/auto-donate-panel-v4/
- *
- * Quick Guide: https://github.com/nightw0lv/VDSystem/tree/master/Guide
+ * @Author Nightwolf iToPz Discord: https://discord.gg/KkPms6B5aE
+ * @Author Rationale Base structure credits goes on Rationale Discord: Rationale#7773
+ *         <p>
+ *         VDS Stands for: Vote Donation System Script website: https://itopz.com/ Partner website: https://hopzone.eu/ Script version: 1.8 Pack Support: 4Team Essence SevenSigns
+ *         <p>
+ *         Freemium Donate Panel V4: https://www.denart-designs.com/ Download: https://mega.nz/folder/6oxUyaIJ#qQDUXeoXlPvBjbPMDYzu-g Buy: https://shop.denart-designs.com/product/auto-donate-panel-v4/ Quick Guide: https://github.com/nightw0lv/VDSystem/tree/master/Guide
  */
 public class VDSystemManager
 {
 	private static final Logs _log = new Logs(VDSystemManager.class.getSimpleName());
-
+	
 	public VDSystemManager()
 	{
 		_log.log("VDS Manager");
-
+		
 		// thread initiator
 		VDSThreadPool.init();
-
+		
 		// load configurations
 		Configurations.load();
-
+		
 		// load gui console
 		Gui.getInstance();
-
+		
 		// load iTopz
 		VDSystem.getInstance();
 	}
-
+	
 	public static VDSystemManager getInstance()
 	{
 		return VDSystemManager.SingletonHolder._instance;
 	}
-
+	
 	private static class SingletonHolder
 	{
 		protected static final VDSystemManager _instance = new VDSystemManager();

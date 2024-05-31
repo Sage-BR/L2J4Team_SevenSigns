@@ -27,7 +27,6 @@ import java.util.regex.PatternSyntaxException;
 import java.util.stream.Collectors;
 
 import org.l2j.Config;
-
 import org.l2j.gameserver.data.sql.ClanTable;
 import org.l2j.gameserver.data.xml.CategoryData;
 import org.l2j.gameserver.data.xml.ClassListData;

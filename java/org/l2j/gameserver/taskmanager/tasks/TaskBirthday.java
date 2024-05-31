@@ -25,7 +25,6 @@ import java.util.GregorianCalendar;
 import java.util.logging.Level;
 
 import org.l2j.Config;
-
 import org.l2j.commons.database.DatabaseFactory;
 import org.l2j.gameserver.data.sql.CharInfoTable;
 import org.l2j.gameserver.enums.MailType;

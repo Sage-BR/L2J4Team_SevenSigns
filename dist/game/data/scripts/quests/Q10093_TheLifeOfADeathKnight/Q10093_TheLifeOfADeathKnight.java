@@ -17,7 +17,6 @@
 package quests.Q10093_TheLifeOfADeathKnight;
 
 import org.l2j.Config;
-
 import org.l2j.gameserver.data.xml.TeleportListData;
 import org.l2j.gameserver.model.Location;
 import org.l2j.gameserver.model.actor.Npc;

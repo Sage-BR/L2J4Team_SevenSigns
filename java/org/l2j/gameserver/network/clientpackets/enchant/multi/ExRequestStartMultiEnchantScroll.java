@@ -56,7 +56,7 @@ public class ExRequestStartMultiEnchantScroll implements ClientPacket
 		
 		final Item scroll = player.getInventory().getItemByObjectId(_scrollObjectId);
 		final EnchantScroll scrollTemplate = EnchantItemData.getInstance().getEnchantScroll(scroll);
-		if (scrollTemplate == null || scrollTemplate.isBlessed() || scrollTemplate.isBlessedDown() || scrollTemplate.isSafe() || scrollTemplate.isGiant())
+		if ((scrollTemplate == null) || scrollTemplate.isBlessed() || scrollTemplate.isBlessedDown() || scrollTemplate.isSafe() || scrollTemplate.isGiant())
 		{
 			player.sendPacket(new ExResetSelectMultiEnchantScroll(player, _scrollObjectId, 1));
 			return;

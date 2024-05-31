@@ -21,7 +21,6 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import org.l2j.Config;
-
 import org.l2j.commons.network.ReadablePacket;
 import org.l2j.gameserver.data.xml.RandomCraftData;
 import org.l2j.gameserver.model.actor.Player;
@@ -63,12 +62,7 @@ public class ExRequestRandomCraftExtract implements ClientPacket
 		}
 		
 		final Player player = client.getPlayer();
-		if (player == null)
-		{
-			return;
-		}
-		
-		if (player.hasItemRequest() || player.hasRequest(RandomCraftRequest.class))
+		if ((player == null) || player.hasItemRequest() || player.hasRequest(RandomCraftRequest.class))
 		{
 			return;
 		}

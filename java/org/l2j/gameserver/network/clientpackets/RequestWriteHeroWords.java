@@ -39,12 +39,7 @@ public class RequestWriteHeroWords implements ClientPacket
 	public void run(GameClient client)
 	{
 		final Player player = client.getPlayer();
-		if ((player == null) || !player.isHero())
-		{
-			return;
-		}
-		
-		if ((_heroWords == null) || (_heroWords.length() > 300))
+		if ((player == null) || !player.isHero() || (_heroWords == null) || (_heroWords.length() > 300))
 		{
 			return;
 		}

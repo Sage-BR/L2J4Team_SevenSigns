@@ -17,7 +17,6 @@
 package org.l2j.gameserver.network.clientpackets;
 
 import org.l2j.Config;
-
 import org.l2j.commons.network.ReadablePacket;
 import org.l2j.gameserver.enums.PartyMessageType;
 import org.l2j.gameserver.model.Party;

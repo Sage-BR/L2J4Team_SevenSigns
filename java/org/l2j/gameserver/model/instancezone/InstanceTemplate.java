@@ -26,7 +26,6 @@ import java.util.concurrent.TimeUnit;
 import java.util.function.BiConsumer;
 
 import org.l2j.Config;
-
 import org.l2j.commons.util.Rnd;
 import org.l2j.gameserver.enums.GroupType;
 import org.l2j.gameserver.enums.InstanceReenterType;

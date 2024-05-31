@@ -25,7 +25,6 @@ import java.util.concurrent.ScheduledFuture;
 import java.util.logging.Level;
 
 import org.l2j.Config;
-
 import org.l2j.commons.database.DatabaseFactory;
 import org.l2j.commons.threads.ThreadPool;
 import org.l2j.gameserver.util.Broadcast;

@@ -21,7 +21,6 @@ import java.time.ZoneId;
 import java.time.zone.ZoneRules;
 
 import org.l2j.Config;
-
 import org.l2j.gameserver.network.ServerPackets;
 
 /**

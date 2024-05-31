@@ -23,7 +23,6 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.logging.Logger;
 
 import org.l2j.Config;
-
 import org.l2j.commons.threads.ThreadPool;
 import org.l2j.commons.util.Rnd;
 import org.l2j.gameserver.data.xml.ItemData;
@@ -201,14 +200,7 @@ public class RecipeManager
 				return;
 			}
 			
-			if (_target.isAlikeDead())
-			{
-				_target.sendPacket(ActionFailed.STATIC_PACKET);
-				abort();
-				return;
-			}
-			
-			if (_target.isProcessingTransaction())
+			if (_target.isAlikeDead() || _target.isProcessingTransaction())
 			{
 				_target.sendPacket(ActionFailed.STATIC_PACKET);
 				abort();

@@ -46,12 +46,7 @@ public class RequestPetUseItem implements ClientPacket
 	public void run(GameClient client)
 	{
 		final Player player = client.getPlayer();
-		if ((player == null) || !player.hasPet())
-		{
-			return;
-		}
-		
-		if (!client.getFloodProtectors().canUseItem())
+		if ((player == null) || !player.hasPet() || !client.getFloodProtectors().canUseItem())
 		{
 			return;
 		}

@@ -19,7 +19,6 @@ package org.l2j.gameserver.model.actor.stat;
 import java.util.logging.Logger;
 
 import org.l2j.Config;
-
 import org.l2j.gameserver.data.xml.ExperienceData;
 import org.l2j.gameserver.data.xml.PetDataTable;
 import org.l2j.gameserver.data.xml.SkillTreeData;
@@ -280,12 +279,7 @@ public class PlayableStat extends CreatureStat
 	private void addReputationToClanBasedOnLevel(Player player, int leveledUpCount)
 	{
 		Clan clan = player.getClan();
-		if (clan == null)
-		{
-			return;
-		}
-		
-		if (clan.getLevel() < 3) // When a character from clan level 3 or above increases its level, CRP are added
+		if ((clan == null) || (clan.getLevel() < 3)) // When a character from clan level 3 or above increases its level, CRP are added
 		{
 			return;
 		}

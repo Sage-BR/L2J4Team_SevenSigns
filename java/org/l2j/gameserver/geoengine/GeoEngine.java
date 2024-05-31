@@ -22,7 +22,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.l2j.Config;
-
 import org.l2j.gameserver.data.xml.DoorData;
 import org.l2j.gameserver.data.xml.FenceData;
 import org.l2j.gameserver.geoengine.geodata.Cell;
@@ -257,13 +256,8 @@ public class GeoEngine
 	public boolean canSeeTarget(int x, int y, int z, int tx, int ty, int tz, Instance instance)
 	{
 		// Door checks.
-		if (DoorData.getInstance().checkIfDoorsBetween(x, y, z, tx, ty, tz, instance, true))
-		{
-			return false;
-		}
-		
 		// Fence checks.
-		if (FenceData.getInstance().checkIfFenceBetween(x, y, z, tx, ty, tz, instance))
+		if (DoorData.getInstance().checkIfDoorsBetween(x, y, z, tx, ty, tz, instance, true) || FenceData.getInstance().checkIfFenceBetween(x, y, z, tx, ty, tz, instance))
 		{
 			return false;
 		}
@@ -440,13 +434,8 @@ public class GeoEngine
 		final int nearestToZ = getNearestZ(tGeoX, tGeoY, tz);
 		
 		// Door checks.
-		if (DoorData.getInstance().checkIfDoorsBetween(x, y, nearestFromZ, tx, ty, nearestToZ, instance, false))
-		{
-			return new Location(x, y, getHeight(x, y, nearestFromZ));
-		}
-		
 		// Fence checks.
-		if (FenceData.getInstance().checkIfFenceBetween(x, y, nearestFromZ, tx, ty, nearestToZ, instance))
+		if (DoorData.getInstance().checkIfDoorsBetween(x, y, nearestFromZ, tx, ty, nearestToZ, instance, false) || FenceData.getInstance().checkIfFenceBetween(x, y, nearestFromZ, tx, ty, nearestToZ, instance))
 		{
 			return new Location(x, y, getHeight(x, y, nearestFromZ));
 		}
@@ -496,13 +485,8 @@ public class GeoEngine
 		final int nearestToZ = getNearestZ(tGeoX, tGeoY, toZ);
 		
 		// Door checks.
-		if (DoorData.getInstance().checkIfDoorsBetween(fromX, fromY, nearestFromZ, toX, toY, nearestToZ, instance, false))
-		{
-			return false;
-		}
-		
 		// Fence checks.
-		if (FenceData.getInstance().checkIfFenceBetween(fromX, fromY, nearestFromZ, toX, toY, nearestToZ, instance))
+		if (DoorData.getInstance().checkIfDoorsBetween(fromX, fromY, nearestFromZ, toX, toY, nearestToZ, instance, false) || FenceData.getInstance().checkIfFenceBetween(fromX, fromY, nearestFromZ, toX, toY, nearestToZ, instance))
 		{
 			return false;
 		}

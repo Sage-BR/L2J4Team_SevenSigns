@@ -19,7 +19,6 @@ package org.l2j.gameserver.model.actor.tasks.player;
 import java.util.logging.Logger;
 
 import org.l2j.Config;
-
 import org.l2j.gameserver.data.xml.AdminData;
 import org.l2j.gameserver.enums.IllegalActionPunishmentType;
 import org.l2j.gameserver.instancemanager.PunishmentManager;

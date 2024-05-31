@@ -19,7 +19,6 @@ package org.l2j.gameserver.network.clientpackets;
 import static org.l2j.gameserver.model.actor.Npc.INTERACTION_DISTANCE;
 
 import org.l2j.Config;
-
 import org.l2j.commons.network.ReadablePacket;
 import org.l2j.gameserver.data.sql.OfflineTraderTable;
 import org.l2j.gameserver.enums.PrivateStoreType;
@@ -105,12 +104,7 @@ public class RequestPrivateStoreSell implements ClientPacket
 		}
 		
 		final Player storePlayer = World.getInstance().getPlayer(_storePlayerId);
-		if ((storePlayer == null) || !player.isInsideRadius3D(storePlayer, INTERACTION_DISTANCE))
-		{
-			return;
-		}
-		
-		if (player.getInstanceWorld() != storePlayer.getInstanceWorld())
+		if ((storePlayer == null) || !player.isInsideRadius3D(storePlayer, INTERACTION_DISTANCE) || (player.getInstanceWorld() != storePlayer.getInstanceWorld()))
 		{
 			return;
 		}

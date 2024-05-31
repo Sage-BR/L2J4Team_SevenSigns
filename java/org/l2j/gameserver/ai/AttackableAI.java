@@ -27,7 +27,6 @@ import java.util.Set;
 import java.util.logging.Logger;
 
 import org.l2j.Config;
-
 import org.l2j.commons.util.Rnd;
 import org.l2j.gameserver.enums.AISkillScope;
 import org.l2j.gameserver.enums.AIType;
@@ -100,19 +99,10 @@ public class AttackableAI extends CreatureAI
 	 */
 	private boolean isAggressiveTowards(Creature target)
 	{
-		if ((target == null) || (getActiveChar() == null))
-		{
-			return false;
-		}
 		
 		// Check if the target isn't invulnerable
-		if (target.isInvul())
-		{
-			return false;
-		}
-		
 		// Check if the target isn't a Folk or a Door
-		if (target.isDoor())
+		if ((target == null) || (getActiveChar() == null) || target.isInvul() || target.isDoor())
 		{
 			return false;
 		}
@@ -742,12 +732,8 @@ public class AttackableAI extends CreatureAI
 							return;
 						}
 						// Don't call npcs who are already doing some action (e.g. attacking, casting).
-						if ((called.getAI()._intention != CtrlIntention.AI_INTENTION_IDLE) && (called.getAI()._intention != CtrlIntention.AI_INTENTION_ACTIVE))
-						{
-							return;
-						}
 						// Don't call npcs who aren't in the same clan.
-						if (!getActiveChar().getTemplate().isClan(called.getTemplate().getClans()))
+						if (((called.getAI()._intention != CtrlIntention.AI_INTENTION_IDLE) && (called.getAI()._intention != CtrlIntention.AI_INTENTION_ACTIVE)) || !getActiveChar().getTemplate().isClan(called.getTemplate().getClans()))
 						{
 							return;
 						}
@@ -1045,18 +1031,9 @@ public class AttackableAI extends CreatureAI
 	
 	private boolean checkSkillTarget(Skill skill, WorldObject target)
 	{
-		if (target == null)
-		{
-			return false;
-		}
 		
 		// Check if target is valid and within cast range.
-		if (skill.getTarget(getActiveChar(), target, false, getActiveChar().isMovementDisabled(), false) == null)
-		{
-			return false;
-		}
-		
-		if (!Util.checkIfInRange(skill.getCastRange(), getActiveChar(), target, true))
+		if ((target == null) || (skill.getTarget(getActiveChar(), target, false, getActiveChar().isMovementDisabled(), false) == null) || !Util.checkIfInRange(skill.getCastRange(), getActiveChar(), target, true))
 		{
 			return false;
 		}
@@ -1121,12 +1098,7 @@ public class AttackableAI extends CreatureAI
 			
 			if (npc.isMovementDisabled())
 			{
-				if (!npc.isInsideRadius2D(target, npc.getPhysicalAttackRange() + npc.getTemplate().getCollisionRadius() + ((Creature) target).getTemplate().getCollisionRadius()))
-				{
-					return false;
-				}
-				
-				if (!GeoEngine.getInstance().canSeeTarget(npc, target))
+				if (!npc.isInsideRadius2D(target, npc.getPhysicalAttackRange() + npc.getTemplate().getCollisionRadius() + ((Creature) target).getTemplate().getCollisionRadius()) || !GeoEngine.getInstance().canSeeTarget(npc, target))
 				{
 					return false;
 				}
@@ -1287,13 +1259,8 @@ public class AttackableAI extends CreatureAI
 		
 		// Check if region and its neighbors are active.
 		final WorldRegion region = _actor.getWorldRegion();
-		if ((region == null) || !region.areNeighborsActive())
-		{
-			return;
-		}
-		
 		// Check if the actor is all skills disabled.
-		if (getActiveChar().isAllSkillsDisabled())
+		if ((region == null) || !region.areNeighborsActive() || getActiveChar().isAllSkillsDisabled())
 		{
 			return;
 		}

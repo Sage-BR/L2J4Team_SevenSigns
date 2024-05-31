@@ -121,13 +121,8 @@ public class TriggerSkillByAttack extends AbstractEffect
 		}
 		
 		// Check if there is dependancy on critical.
-		if (_isCritical != event.isCritical())
-		{
-			return;
-		}
-		
 		// When no normal attacks are allowed.
-		if (!_allowNormalAttack && (event.getSkill() == null))
+		if ((_isCritical != event.isCritical()) || (!_allowNormalAttack && (event.getSkill() == null)))
 		{
 			return;
 		}

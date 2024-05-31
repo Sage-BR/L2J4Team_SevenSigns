@@ -21,7 +21,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.l2j.Config;
-
 import org.l2j.commons.network.ReadablePacket;
 import org.l2j.commons.threads.ThreadPool;
 import org.l2j.gameserver.data.xml.ClanHallData;
@@ -93,12 +92,7 @@ public class RequestRestartPoint implements ClientPacket
 	public void run(GameClient client)
 	{
 		final Player player = client.getPlayer();
-		if (player == null)
-		{
-			return;
-		}
-		
-		if (!player.canRevive())
+		if ((player == null) || !player.canRevive())
 		{
 			return;
 		}

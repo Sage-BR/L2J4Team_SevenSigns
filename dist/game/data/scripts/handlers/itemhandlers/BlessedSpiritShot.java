@@ -164,17 +164,7 @@ public class BlessedSpiritShot implements IItemHandler
 		}
 		
 		final long shotCount = item.getCount();
-		if (shotCount < shotConsumption)
-		{
-			// Not enough SpiritShots to use.
-			if (!activeOwner.disableAutoShot(itemId))
-			{
-				activeOwner.sendPacket(SystemMessageId.YOU_DON_T_HAVE_ENOUGH_SPIRITSHOTS_FOR_THE_SERVITOR);
-			}
-			return false;
-		}
-		
-		if (!activeOwner.destroyItemWithoutTrace("Consume", item.getObjectId(), shotConsumption, null, false))
+		if ((shotCount < shotConsumption) || !activeOwner.destroyItemWithoutTrace("Consume", item.getObjectId(), shotConsumption, null, false))
 		{
 			if (!activeOwner.disableAutoShot(itemId))
 			{

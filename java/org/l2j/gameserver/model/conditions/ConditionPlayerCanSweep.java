@@ -17,7 +17,6 @@
 package org.l2j.gameserver.model.conditions;
 
 import org.l2j.Config;
-
 import org.l2j.gameserver.model.WorldObject;
 import org.l2j.gameserver.model.actor.Attackable;
 import org.l2j.gameserver.model.actor.Creature;

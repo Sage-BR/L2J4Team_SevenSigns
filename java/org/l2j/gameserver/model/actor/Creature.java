@@ -40,7 +40,6 @@ import java.util.function.Predicate;
 import java.util.logging.Logger;
 
 import org.l2j.Config;
-
 import org.l2j.commons.threads.ThreadPool;
 import org.l2j.commons.util.EmptyQueue;
 import org.l2j.commons.util.Rnd;
@@ -1367,25 +1366,12 @@ public abstract class Creature extends WorldObject implements ISkillsHolder, IDe
 			for (Creature obj : World.getInstance().getVisibleObjectsInRange(this, Creature.class, maxRadius))
 			{
 				// Skip main target.
-				if (obj == target)
-				{
-					continue;
-				}
 				
 				// Skip dead or fake dead target.
-				if (obj.isAlikeDead())
-				{
-					continue;
-				}
 				
 				// Check if target is auto attackable.
-				if (!obj.isAutoAttackable(this))
-				{
-					continue;
-				}
-				
 				// Check if target is within attack angle.
-				if (Math.abs(calculateDirectionTo(obj) - headingAngle) > physicalAttackAngle)
+				if ((obj == target) || obj.isAlikeDead() || !obj.isAutoAttackable(this) || (Math.abs(calculateDirectionTo(obj) - headingAngle) > physicalAttackAngle))
 				{
 					continue;
 				}
@@ -1842,12 +1828,8 @@ public abstract class Creature extends WorldObject implements ISkillsHolder, IDe
 							return;
 						}
 						// Don't call npcs who are already doing some action (e.g. attacking, casting).
-						if ((called.getAI().getIntention() != CtrlIntention.AI_INTENTION_IDLE) && (called.getAI().getIntention() != CtrlIntention.AI_INTENTION_ACTIVE))
-						{
-							return;
-						}
 						// Don't call npcs who aren't in the same clan.
-						if (!template.isClan(called.getTemplate().getClans()))
+						if (((called.getAI().getIntention() != CtrlIntention.AI_INTENTION_IDLE) && (called.getAI().getIntention() != CtrlIntention.AI_INTENTION_ACTIVE)) || !template.isClan(called.getTemplate().getClans()))
 						{
 							return;
 						}
@@ -2821,12 +2803,7 @@ public abstract class Creature extends WorldObject implements ISkillsHolder, IDe
 	
 	public void broadcastModifiedStats(Set<Stat> changed)
 	{
-		if (!isSpawned())
-		{
-			return;
-		}
-		
-		if ((changed == null) || changed.isEmpty())
+		if (!isSpawned() || (changed == null) || changed.isEmpty())
 		{
 			return;
 		}
@@ -3081,15 +3058,7 @@ public abstract class Creature extends WorldObject implements ISkillsHolder, IDe
 	public boolean isOnGeodataPath()
 	{
 		final MoveData m = _move;
-		if (m == null)
-		{
-			return false;
-		}
-		if (m.onGeodataPathIndex == -1)
-		{
-			return false;
-		}
-		if (m.onGeodataPathIndex == (m.geoPath.size() - 1))
+		if ((m == null) || (m.onGeodataPathIndex == -1) || (m.onGeodataPathIndex == (m.geoPath.size() - 1)))
 		{
 			return false;
 		}
@@ -4351,13 +4320,7 @@ public abstract class Creature extends WorldObject implements ISkillsHolder, IDe
 				return;
 			}
 		}
-		if ((player.getTarget() != null) && !player.getTarget().canBeAttacked() && !player.getAccessLevel().allowPeaceAttack())
-		{
-			// If target is not attackable, send a Server->Client packet ActionFailed
-			player.sendPacket(ActionFailed.STATIC_PACKET);
-			return;
-		}
-		if (player.isConfused())
+		if (((player.getTarget() != null) && !player.getTarget().canBeAttacked() && !player.getAccessLevel().allowPeaceAttack()) || player.isConfused())
 		{
 			// If target is confused, send a Server->Client packet ActionFailed
 			player.sendPacket(ActionFailed.STATIC_PACKET);

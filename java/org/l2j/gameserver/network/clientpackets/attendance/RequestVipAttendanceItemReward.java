@@ -19,7 +19,6 @@ package org.l2j.gameserver.network.clientpackets.attendance;
 import java.util.List;
 
 import org.l2j.Config;
-
 import org.l2j.commons.network.ReadablePacket;
 import org.l2j.gameserver.data.xml.AttendanceRewardData;
 import org.l2j.gameserver.model.actor.Player;

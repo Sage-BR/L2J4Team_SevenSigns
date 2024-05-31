@@ -19,7 +19,6 @@ package org.l2j.gameserver.model.actor.tasks.npc;
 import java.util.concurrent.ScheduledFuture;
 
 import org.l2j.Config;
-
 import org.l2j.commons.threads.ThreadPool;
 import org.l2j.gameserver.model.actor.Creature;
 import org.l2j.gameserver.model.actor.Npc;

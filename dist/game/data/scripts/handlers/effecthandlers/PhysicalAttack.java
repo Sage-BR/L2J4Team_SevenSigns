@@ -22,7 +22,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.l2j.Config;
-
 import org.l2j.commons.util.Rnd;
 import org.l2j.gameserver.enums.Race;
 import org.l2j.gameserver.enums.ShotType;

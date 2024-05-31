@@ -22,7 +22,6 @@ import java.util.Map;
 import java.util.logging.Logger;
 
 import org.l2j.Config;
-
 import org.l2j.gameserver.model.holders.ItemChanceHolder;
 import org.l2j.gameserver.model.holders.ItemHolder;
 

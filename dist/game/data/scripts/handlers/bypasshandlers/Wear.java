@@ -20,7 +20,6 @@ import java.util.StringTokenizer;
 import java.util.logging.Level;
 
 import org.l2j.Config;
-
 import org.l2j.gameserver.data.xml.BuyListData;
 import org.l2j.gameserver.handler.IBypassHandler;
 import org.l2j.gameserver.model.actor.Creature;
@@ -39,12 +38,7 @@ public class Wear implements IBypassHandler
 	@Override
 	public boolean useBypass(String command, Player player, Creature target)
 	{
-		if (!target.isNpc())
-		{
-			return false;
-		}
-		
-		if (!Config.ALLOW_WEAR)
+		if (!target.isNpc() || !Config.ALLOW_WEAR)
 		{
 			return false;
 		}

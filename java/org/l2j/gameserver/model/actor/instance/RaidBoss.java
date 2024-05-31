@@ -17,7 +17,6 @@
 package org.l2j.gameserver.model.actor.instance;
 
 import org.l2j.Config;
-
 import org.l2j.gameserver.enums.InstanceType;
 import org.l2j.gameserver.model.actor.templates.NpcTemplate;
 import org.l2j.gameserver.network.serverpackets.PlaySound;

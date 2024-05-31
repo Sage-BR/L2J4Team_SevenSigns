@@ -29,7 +29,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.l2j.Config;
-
 import org.l2j.commons.database.DatabaseFactory;
 import org.l2j.commons.threads.ThreadPool;
 import org.l2j.gameserver.ai.CtrlIntention;
@@ -279,12 +278,7 @@ public class Servitor extends Summon implements Runnable
 	@Override
 	public void storeEffect(boolean storeEffects)
 	{
-		if (!Config.SUMMON_STORE_SKILL_COOLTIME)
-		{
-			return;
-		}
-		
-		if ((getOwner() == null) || getOwner().isInOlympiadMode())
+		if (!Config.SUMMON_STORE_SKILL_COOLTIME || (getOwner() == null) || getOwner().isInOlympiadMode())
 		{
 			return;
 		}

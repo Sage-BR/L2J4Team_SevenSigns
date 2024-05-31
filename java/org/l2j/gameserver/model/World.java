@@ -28,7 +28,6 @@ import java.util.function.Predicate;
 import java.util.logging.Logger;
 
 import org.l2j.Config;
-
 import org.l2j.gameserver.ai.CreatureAI;
 import org.l2j.gameserver.ai.CtrlEvent;
 import org.l2j.gameserver.ai.CtrlIntention;
@@ -653,12 +652,7 @@ public class World
 			
 			for (WorldObject wo : visibleObjects)
 			{
-				if ((wo == object) || !clazz.isInstance(wo))
-				{
-					continue;
-				}
-				
-				if (wo.getInstanceWorld() != object.getInstanceWorld())
+				if ((wo == object) || !clazz.isInstance(wo) || (wo.getInstanceWorld() != object.getInstanceWorld()))
 				{
 					continue;
 				}
@@ -712,12 +706,7 @@ public class World
 			
 			for (WorldObject wo : visibleObjects)
 			{
-				if ((wo == object) || !clazz.isInstance(wo))
-				{
-					continue;
-				}
-				
-				if (wo.getInstanceWorld() != object.getInstanceWorld())
+				if ((wo == object) || !clazz.isInstance(wo) || (wo.getInstanceWorld() != object.getInstanceWorld()))
 				{
 					continue;
 				}

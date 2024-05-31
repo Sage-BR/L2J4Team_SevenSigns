@@ -21,7 +21,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.l2j.Config;
-
 import org.l2j.gameserver.ai.CtrlIntention;
 import org.l2j.gameserver.enums.PartyMessageType;
 import org.l2j.gameserver.instancemanager.AntiFeedManager;
@@ -114,12 +113,7 @@ public abstract class AbstractOlympiadGame
 	 */
 	protected static SystemMessage checkDefaulted(Player player)
 	{
-		if ((player == null) || !player.isOnline())
-		{
-			return new SystemMessage(SystemMessageId.YOUR_OPPONENT_MADE_HASTE_WITH_THEIR_TAIL_BETWEEN_THEIR_LEGS_THE_MATCH_HAS_BEEN_CANCELLED);
-		}
-		
-		if ((player.getClient() == null) || player.getClient().isDetached())
+		if ((player == null) || !player.isOnline() || (player.getClient() == null) || player.getClient().isDetached())
 		{
 			return new SystemMessage(SystemMessageId.YOUR_OPPONENT_MADE_HASTE_WITH_THEIR_TAIL_BETWEEN_THEIR_LEGS_THE_MATCH_HAS_BEEN_CANCELLED);
 		}

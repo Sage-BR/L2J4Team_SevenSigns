@@ -20,7 +20,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.l2j.Config;
-
 import org.l2j.commons.util.Rnd;
 import org.l2j.gameserver.model.Location;
 

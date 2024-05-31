@@ -61,19 +61,10 @@ public class ArmorsetSkillHolder extends SkillHolder
 	public boolean validateConditions(Playable playable, ArmorSet armorSet, Function<Item, Integer> idProvider)
 	{
 		// Playable doesn't have full busy (1 of 3) artifact real slot
-		if (_artifactSlotMask > armorSet.getArtifactSlotMask(playable, _artifactBookSlot))
-		{
-			return false;
-		}
 		
 		// Playable doesn't have enough items equipped to use this skill
-		if (_minimumPieces > armorSet.getPiecesCount(playable, idProvider))
-		{
-			return false;
-		}
-		
 		// Playable set enchantment isn't enough to use this skill
-		if (_minEnchant > armorSet.getLowestSetEnchant(playable))
+		if ((_artifactSlotMask > armorSet.getArtifactSlotMask(playable, _artifactBookSlot)) || (_minimumPieces > armorSet.getPiecesCount(playable, idProvider)) || (_minEnchant > armorSet.getLowestSetEnchant(playable)))
 		{
 			return false;
 		}

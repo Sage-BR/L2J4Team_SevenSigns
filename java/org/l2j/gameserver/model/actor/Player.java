@@ -46,7 +46,6 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.logging.Level;
 
 import org.l2j.Config;
-
 import org.l2j.commons.database.DatabaseFactory;
 import org.l2j.commons.threads.ThreadPool;
 import org.l2j.commons.util.CommonUtil;
@@ -1958,13 +1957,8 @@ public class Player extends Playable
 	public void revalidateZone(boolean force)
 	{
 		// Cannot validate if not in a world region (happens during teleport)
-		if (getWorldRegion() == null)
-		{
-			return;
-		}
-		
 		// This function is called too often from movement code.
-		if (!force && (calculateDistance3D(_lastZoneValidateLocation) < 100))
+		if ((getWorldRegion() == null) || (!force && (calculateDistance3D(_lastZoneValidateLocation) < 100)))
 		{
 			return;
 		}
@@ -2392,13 +2386,8 @@ public class Player extends Playable
 	public void useEquippableItem(Item item, boolean abortAttack)
 	{
 		// Check if the item is null.
-		if (item == null)
-		{
-			return;
-		}
-		
 		// Check if the item is owned by this player.
-		if (item.getOwnerId() != getObjectId())
+		if ((item == null) || (item.getOwnerId() != getObjectId()))
 		{
 			return;
 		}
@@ -2891,12 +2880,7 @@ public class Player extends Playable
 		{
 			final int skillId = skill.getId();
 			final Skill oldSkill = getKnownSkill(skillId);
-			if (oldSkill == skill)
-			{
-				continue;
-			}
-			
-			if (getReplacementSkill(skillId) != skillId)
+			if ((oldSkill == skill) || (getReplacementSkill(skillId) != skillId))
 			{
 				continue;
 			}
@@ -4091,12 +4075,7 @@ public class Player extends Playable
 		}
 		
 		// Pet is summoned and not the item that summoned the pet AND not the buggle from strider you're mounting
-		if (((_pet != null) && (_pet.getControlObjectId() == objectId)) || (_mountObjectID == objectId))
-		{
-			return null;
-		}
-		
-		if (isProcessingItem(objectId))
+		if (((_pet != null) && (_pet.getControlObjectId() == objectId)) || (_mountObjectID == objectId) || isProcessingItem(objectId))
 		{
 			return null;
 		}
@@ -5426,13 +5405,8 @@ public class Player extends Playable
 		}
 		
 		// Olympiad support
-		if (isInOlympiadMode() || killedPlayer.isInOlympiadMode())
-		{
-			return;
-		}
-		
 		// Duel support
-		if (isInDuel() && killedPlayer.isInDuel())
+		if (isInOlympiadMode() || killedPlayer.isInOlympiadMode() || (isInDuel() && killedPlayer.isInDuel()))
 		{
 			return;
 		}
@@ -5573,12 +5547,7 @@ public class Player extends Playable
 	public void updatePvPStatus(Creature target)
 	{
 		final Player targetPlayer = target.getActingPlayer();
-		if (targetPlayer == null)
-		{
-			return;
-		}
-		
-		if (this == targetPlayer)
+		if ((targetPlayer == null) || (this == targetPlayer))
 		{
 			return;
 		}
@@ -6244,19 +6213,10 @@ public class Player extends Playable
 		}
 		
 		// Don't allow disarming a cursed weapon
-		if (isCursedWeaponEquipped())
-		{
-			return false;
-		}
 		
 		// Don't allow disarming a Combat Flag or Territory Ward.
-		if (_combatFlagEquippedId)
-		{
-			return false;
-		}
-		
 		// Don't allow disarming if the weapon is force equip.
-		if (wpn.getWeaponItem().isForceEquip())
+		if (isCursedWeaponEquipped() || _combatFlagEquippedId || wpn.getWeaponItem().isForceEquip())
 		{
 			return false;
 		}
@@ -7653,19 +7613,10 @@ public class Player extends Playable
 						final Skill skill = info.getSkill();
 						
 						// Do not store those effects.
-						if (skill.isDeleteAbnormalOnLeave())
-						{
-							continue;
-						}
 						
 						// Do not save heals.
-						if (skill.getAbnormalType() == AbnormalType.LIFE_FORCE_OTHERS)
-						{
-							continue;
-						}
-						
 						// Toggles are skipped, unless they are necessary to be always on.
-						if ((skill.isToggle() && !skill.isNecessaryToggle()))
+						if (skill.isDeleteAbnormalOnLeave() || (skill.getAbnormalType() == AbnormalType.LIFE_FORCE_OTHERS) || (skill.isToggle() && !skill.isNecessaryToggle()))
 						{
 							continue;
 						}
@@ -8682,12 +8633,7 @@ public class Player extends Playable
 			return false;
 		}
 		
-		if (AttackStanceTaskManager.getInstance().hasAttackStanceTask(this) && !(isGM() && Config.GM_RESTART_FIGHTING))
-		{
-			return false;
-		}
-		
-		if (isRegisteredOnEvent())
+		if ((AttackStanceTaskManager.getInstance().hasAttackStanceTask(this) && !(isGM() && Config.GM_RESTART_FIGHTING)) || isRegisteredOnEvent())
 		{
 			return false;
 		}
@@ -8710,13 +8656,8 @@ public class Player extends Playable
 	@Override
 	public boolean isAutoAttackable(Creature attacker)
 	{
-		if (attacker == null)
-		{
-			return false;
-		}
-		
 		// Invisible or untargetable players should not be attackable.
-		if (isInvisible() || isAffected(EffectFlag.UNTARGETABLE))
+		if ((attacker == null) || isInvisible() || isAffected(EffectFlag.UNTARGETABLE))
 		{
 			return false;
 		}
@@ -8900,14 +8841,8 @@ public class Player extends Playable
 		Skill usedSkill = skill;
 		
 		// Passive skills cannot be used.
-		if (usedSkill.isPassive())
-		{
-			sendPacket(ActionFailed.STATIC_PACKET);
-			return false;
-		}
-		
 		// If Alternate rule Karma punishment is set to true, forbid skill Return to player with Karma
-		if (!Config.ALT_GAME_KARMA_PLAYER_CAN_TELEPORT && (getReputation() < 0) && usedSkill.hasEffectType(EffectType.TELEPORT))
+		if (usedSkill.isPassive() || (!Config.ALT_GAME_KARMA_PLAYER_CAN_TELEPORT && (getReputation() < 0) && usedSkill.hasEffectType(EffectType.TELEPORT)))
 		{
 			sendPacket(ActionFailed.STATIC_PACKET);
 			return false;
@@ -10184,12 +10119,7 @@ public class Player extends Playable
 		
 		try
 		{
-			if ((getTotalSubClasses() == Config.MAX_SUBCLASS) || (classIndex == 0))
-			{
-				return false;
-			}
-			
-			if (getSubClasses().containsKey(classIndex))
+			if ((getTotalSubClasses() == Config.MAX_SUBCLASS) || (classIndex == 0) || getSubClasses().containsKey(classIndex))
 			{
 				return false;
 			}
@@ -10363,11 +10293,7 @@ public class Player extends Playable
 	
 	public boolean isDualClassActive()
 	{
-		if (!isSubClassActive())
-		{
-			return false;
-		}
-		if (_subClasses.isEmpty())
+		if (!isSubClassActive() || _subClasses.isEmpty())
 		{
 			return false;
 		}
@@ -11358,12 +11284,7 @@ public class Player extends Playable
 		}
 		
 		// Pet is summoned and not the item that summoned the pet AND not the buggle from strider you're mounting
-		if (((_pet != null) && (_pet.getControlObjectId() == objectId)) || (_mountObjectID == objectId))
-		{
-			return false;
-		}
-		
-		if (isProcessingItem(objectId))
+		if (((_pet != null) && (_pet.getControlObjectId() == objectId)) || (_mountObjectID == objectId) || isProcessingItem(objectId))
 		{
 			return false;
 		}
@@ -13079,12 +13000,7 @@ public class Player extends Playable
 	
 	public void teleportBookmarkAdd(int x, int y, int z, int icon, String tag, String name)
 	{
-		if (!teleportBookmarkCondition(1))
-		{
-			return;
-		}
-		
-		if (isInsideZone(ZoneId.TIMED_HUNTING))
+		if (!teleportBookmarkCondition(1) || isInsideZone(ZoneId.TIMED_HUNTING))
 		{
 			return;
 		}
@@ -13275,19 +13191,7 @@ public class Player extends Playable
 	
 	public boolean isAllowedToEnchantSkills()
 	{
-		if (isSubclassLocked())
-		{
-			return false;
-		}
-		if (isTransformed())
-		{
-			return false;
-		}
-		if (AttackStanceTaskManager.getInstance().hasAttackStanceTask(this))
-		{
-			return false;
-		}
-		if (isCastingNow())
+		if (isSubclassLocked() || isTransformed() || AttackStanceTaskManager.getInstance().hasAttackStanceTask(this) || isCastingNow())
 		{
 			return false;
 		}
@@ -13648,14 +13552,8 @@ public class Player extends Playable
 		}
 		
 		final int deltaZ = getZ() - z;
-		if (deltaZ <= getBaseTemplate().getSafeFallHeight())
-		{
-			_fallingTimestamp = 0;
-			return false;
-		}
-		
 		// If there is no geodata loaded for the place we are, client Z correction might cause falling damage.
-		if (!GeoEngine.getInstance().hasGeo(getX(), getY()))
+		if ((deltaZ <= getBaseTemplate().getSafeFallHeight()) || !GeoEngine.getInstance().hasGeo(getX(), getY()))
 		{
 			_fallingTimestamp = 0;
 			return false;
@@ -13894,22 +13792,14 @@ public class Player extends Playable
 			}
 			else if (isInParty() && target.isInParty())
 			{
-				if (getParty() == target.getParty())
-				{
-					return false;
-				}
-				if (((getParty().getCommandChannel() != null) || (target.getParty().getCommandChannel() != null)) && (getParty().getCommandChannel() == target.getParty().getCommandChannel()))
+				if ((getParty() == target.getParty()) || (((getParty().getCommandChannel() != null) || (target.getParty().getCommandChannel() != null)) && (getParty().getCommandChannel() == target.getParty().getCommandChannel())))
 				{
 					return false;
 				}
 			}
 			else if ((getClan() != null) && (target.getClan() != null))
 			{
-				if (getClanId() == target.getClanId())
-				{
-					return false;
-				}
-				if (((getAllyId() > 0) || (target.getAllyId() > 0)) && (getAllyId() == target.getAllyId()))
+				if ((getClanId() == target.getClanId()) || (((getAllyId() > 0) || (target.getAllyId() > 0)) && (getAllyId() == target.getAllyId())))
 				{
 					return false;
 				}

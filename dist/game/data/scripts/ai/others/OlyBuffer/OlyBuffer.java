@@ -17,7 +17,6 @@
 package ai.others.OlyBuffer;
 
 import org.l2j.Config;
-
 import org.l2j.gameserver.model.actor.Npc;
 import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.model.holders.SkillHolder;

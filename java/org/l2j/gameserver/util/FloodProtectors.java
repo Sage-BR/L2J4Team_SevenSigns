@@ -17,7 +17,6 @@
 package org.l2j.gameserver.util;
 
 import org.l2j.Config;
-
 import org.l2j.gameserver.network.GameClient;
 
 /**

@@ -19,7 +19,6 @@ package org.l2j.gameserver.model.effects;
 import java.util.logging.Logger;
 
 import org.l2j.Config;
-
 import org.l2j.gameserver.model.actor.Creature;
 import org.l2j.gameserver.model.item.instance.Item;
 import org.l2j.gameserver.model.skill.Skill;

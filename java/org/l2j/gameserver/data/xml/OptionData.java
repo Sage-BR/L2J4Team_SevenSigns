@@ -28,9 +28,9 @@ import org.w3c.dom.Document;
 import org.l2j.commons.util.IXmlReader;
 import org.l2j.gameserver.handler.EffectHandler;
 import org.l2j.gameserver.model.StatSet;
-import org.l2j.gameserver.model.options.Options;
 import org.l2j.gameserver.model.options.OptionSkillHolder;
 import org.l2j.gameserver.model.options.OptionSkillType;
+import org.l2j.gameserver.model.options.Options;
 import org.l2j.gameserver.model.skill.Skill;
 
 /**

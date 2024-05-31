@@ -23,7 +23,6 @@ import java.util.Set;
 import java.util.StringTokenizer;
 
 import org.l2j.Config;
-
 import org.l2j.gameserver.data.xml.SkillData;
 import org.l2j.gameserver.data.xml.SkillTreeData;
 import org.l2j.gameserver.enums.SkillFinishType;

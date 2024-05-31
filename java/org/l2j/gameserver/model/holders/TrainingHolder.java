@@ -20,7 +20,6 @@ import java.io.Serializable;
 import java.util.concurrent.TimeUnit;
 
 import org.l2j.Config;
-
 import org.l2j.gameserver.model.actor.Player;
 
 /**

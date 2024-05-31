@@ -44,12 +44,7 @@ public class RequestNewHennaPotenSelect implements ClientPacket
 	public void run(GameClient client)
 	{
 		final Player player = client.getPlayer();
-		if (player == null)
-		{
-			return;
-		}
-		
-		if ((_slotId < 1) || (_slotId > player.getHennaPotenList().length))
+		if ((player == null) || (_slotId < 1) || (_slotId > player.getHennaPotenList().length))
 		{
 			return;
 		}

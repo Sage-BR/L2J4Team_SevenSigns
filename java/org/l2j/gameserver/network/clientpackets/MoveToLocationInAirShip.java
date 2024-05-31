@@ -73,13 +73,7 @@ public class MoveToLocationInAirShip implements ClientPacket
 			return;
 		}
 		
-		if (player.isSitting() || player.isMovementDisabled())
-		{
-			player.sendPacket(ActionFailed.STATIC_PACKET);
-			return;
-		}
-		
-		if (!player.isInAirShip())
+		if (player.isSitting() || player.isMovementDisabled() || !player.isInAirShip())
 		{
 			player.sendPacket(ActionFailed.STATIC_PACKET);
 			return;

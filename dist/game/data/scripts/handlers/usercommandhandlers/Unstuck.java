@@ -19,7 +19,6 @@ package handlers.usercommandhandlers;
 import static org.l2j.gameserver.ai.CtrlIntention.AI_INTENTION_ACTIVE;
 
 import org.l2j.Config;
-
 import org.l2j.gameserver.data.xml.SkillData;
 import org.l2j.gameserver.handler.IUserCommandHandler;
 import org.l2j.gameserver.model.actor.Player;

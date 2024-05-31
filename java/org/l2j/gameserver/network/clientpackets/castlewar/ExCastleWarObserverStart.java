@@ -59,12 +59,7 @@ public class ExCastleWarObserverStart implements ClientPacket
 		}
 		
 		final Castle castle = CastleManager.getInstance().getCastleById(_castleId);
-		if (castle == null)
-		{
-			return;
-		}
-		
-		if (!castle.getSiege().isInProgress())
+		if ((castle == null) || !castle.getSiege().isInProgress())
 		{
 			return;
 		}

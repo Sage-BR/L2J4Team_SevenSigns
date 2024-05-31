@@ -51,12 +51,7 @@ public class RequestHuntPassReward implements ClientPacket
 	public void run(GameClient client)
 	{
 		final Player player = client.getPlayer();
-		if (player == null)
-		{
-			return;
-		}
-		
-		if (player.hasRequest(RewardRequest.class))
+		if ((player == null) || player.hasRequest(RewardRequest.class))
 		{
 			return;
 		}
@@ -145,12 +140,7 @@ public class RequestHuntPassReward implements ClientPacket
 	{
 		final HuntPass huntPass = player.getHuntPass();
 		final int premiumRewardIndex = huntPass.getPremiumRewardStep();
-		if (premiumRewardIndex >= HuntPassData.getInstance().getPremiumRewardsCount())
-		{
-			return;
-		}
-		
-		if (!huntPass.isPremium())
+		if ((premiumRewardIndex >= HuntPassData.getInstance().getPremiumRewardsCount()) || !huntPass.isPremium())
 		{
 			return;
 		}
@@ -163,12 +153,7 @@ public class RequestHuntPassReward implements ClientPacket
 	{
 		final HuntPass huntPass = player.getHuntPass();
 		final int rewardIndex = huntPass.getRewardStep();
-		if (rewardIndex >= HuntPassData.getInstance().getRewardsCount())
-		{
-			return;
-		}
-		
-		if (huntPass.isPremium() && ((huntPass.getPremiumRewardStep() < rewardIndex) || (huntPass.getPremiumRewardStep() >= HuntPassData.getInstance().getPremiumRewardsCount())))
+		if ((rewardIndex >= HuntPassData.getInstance().getRewardsCount()) || (huntPass.isPremium() && ((huntPass.getPremiumRewardStep() < rewardIndex) || (huntPass.getPremiumRewardStep() >= HuntPassData.getInstance().getPremiumRewardsCount()))))
 		{
 			return;
 		}

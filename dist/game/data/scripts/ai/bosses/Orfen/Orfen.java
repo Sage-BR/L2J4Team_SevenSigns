@@ -17,7 +17,6 @@
 package ai.bosses.Orfen;
 
 import org.l2j.Config;
-
 import org.l2j.gameserver.ai.CtrlIntention;
 import org.l2j.gameserver.enums.ChatType;
 import org.l2j.gameserver.instancemanager.GrandBossManager;

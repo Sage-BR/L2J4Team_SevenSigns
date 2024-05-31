@@ -20,7 +20,6 @@ import java.util.List;
 import java.util.Locale;
 
 import org.l2j.Config;
-
 import org.l2j.commons.util.StringUtil;
 import org.l2j.gameserver.instancemanager.IdManager;
 import org.l2j.gameserver.instancemanager.games.MonsterRace;

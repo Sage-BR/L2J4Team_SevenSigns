@@ -17,7 +17,6 @@
 package org.l2j.gameserver.network.clientpackets;
 
 import org.l2j.Config;
-
 import org.l2j.commons.network.ReadablePacket;
 import org.l2j.gameserver.data.xml.SkillData;
 import org.l2j.gameserver.enums.SkillFinishType;
@@ -59,15 +58,7 @@ public class RequestDispel implements ClientPacket
 			return;
 		}
 		final Skill skill = SkillData.getInstance().getSkill(_skillId, _skillLevel, _skillSubLevel);
-		if (skill == null)
-		{
-			return;
-		}
-		if (!skill.canBeDispelled() || skill.isDebuff())
-		{
-			return;
-		}
-		if (skill.getAbnormalType() == AbnormalType.TRANSFORM)
+		if ((skill == null) || !skill.canBeDispelled() || skill.isDebuff() || (skill.getAbnormalType() == AbnormalType.TRANSFORM))
 		{
 			return;
 		}

@@ -17,7 +17,6 @@
 package org.l2j.gameserver.network.serverpackets;
 
 import org.l2j.Config;
-
 import org.l2j.gameserver.instancemanager.events.LetterCollectorManager;
 import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.network.ServerPackets;

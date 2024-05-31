@@ -22,7 +22,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.l2j.Config;
-
 import org.l2j.commons.util.CommonUtil;
 import org.l2j.gameserver.model.quest.Quest;
 import org.l2j.gameserver.scripting.ScriptEngineManager;

@@ -19,7 +19,6 @@ package org.l2j.gameserver.network.clientpackets.friend;
 import java.util.logging.Logger;
 
 import org.l2j.Config;
-
 import org.l2j.commons.network.ReadablePacket;
 import org.l2j.gameserver.model.World;
 import org.l2j.gameserver.model.actor.Player;
@@ -50,12 +49,7 @@ public class RequestSendFriendMsg implements ClientPacket
 	public void run(GameClient client)
 	{
 		final Player player = client.getPlayer();
-		if (player == null)
-		{
-			return;
-		}
-		
-		if ((_message == null) || _message.isEmpty() || (_message.length() > 300))
+		if ((player == null) || (_message == null) || _message.isEmpty() || (_message.length() > 300))
 		{
 			return;
 		}

@@ -52,12 +52,7 @@ public class TradeDone implements ClientPacket
 		}
 		
 		final TradeList trade = player.getActiveTradeList();
-		if (trade == null)
-		{
-			return;
-		}
-		
-		if (trade.isLocked())
+		if ((trade == null) || trade.isLocked())
 		{
 			return;
 		}

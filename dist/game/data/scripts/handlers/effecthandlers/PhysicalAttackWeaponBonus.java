@@ -20,7 +20,6 @@ import java.util.EnumMap;
 import java.util.Map;
 
 import org.l2j.Config;
-
 import org.l2j.gameserver.enums.ShotType;
 import org.l2j.gameserver.model.StatSet;
 import org.l2j.gameserver.model.actor.Attackable;

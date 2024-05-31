@@ -17,7 +17,6 @@
 package custom.FactionSystem;
 
 import org.l2j.Config;
-
 import org.l2j.gameserver.enums.ChatType;
 import org.l2j.gameserver.model.World;
 import org.l2j.gameserver.model.actor.Npc;

@@ -17,7 +17,6 @@
 package custom.FakePlayers;
 
 import org.l2j.Config;
-
 import org.l2j.gameserver.model.WorldObject;
 import org.l2j.gameserver.model.actor.Npc;
 import org.l2j.gameserver.model.actor.Player;

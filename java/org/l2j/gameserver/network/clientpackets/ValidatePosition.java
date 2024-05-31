@@ -54,12 +54,7 @@ public class ValidatePosition implements ClientPacket
 		final int realX = player.getX();
 		final int realY = player.getY();
 		int realZ = player.getZ();
-		if ((_x == 0) && (_y == 0) && (realX != 0))
-		{
-			return;
-		}
-		
-		if (player.isInVehicle())
+		if (((_x == 0) && (_y == 0) && (realX != 0)) || player.isInVehicle())
 		{
 			return;
 		}

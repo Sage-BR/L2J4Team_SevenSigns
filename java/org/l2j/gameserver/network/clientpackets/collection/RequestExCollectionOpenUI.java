@@ -38,12 +38,7 @@ public class RequestExCollectionOpenUI implements ClientPacket
 	public void run(GameClient client)
 	{
 		final Player player = client.getPlayer();
-		if (player == null)
-		{
-			return;
-		}
-		
-		if (player.hasRequest(AutoPeelRequest.class))
+		if ((player == null) || player.hasRequest(AutoPeelRequest.class))
 		{
 			return;
 		}

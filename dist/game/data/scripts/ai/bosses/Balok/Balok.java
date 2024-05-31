@@ -25,7 +25,6 @@ import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.atomic.AtomicReference;
 
 import org.l2j.Config;
-
 import org.l2j.commons.threads.ThreadPool;
 import org.l2j.commons.util.Rnd;
 import org.l2j.gameserver.data.xml.SpawnData;
@@ -634,12 +633,7 @@ public class Balok extends AbstractNpcAI
 	public void onPlayerLogin(OnPlayerLogin event)
 	{
 		final Player player = event.getPlayer();
-		if (player == null)
-		{
-			return;
-		}
-		
-		if (!_inProgress)
+		if ((player == null) || !_inProgress)
 		{
 			return;
 		}

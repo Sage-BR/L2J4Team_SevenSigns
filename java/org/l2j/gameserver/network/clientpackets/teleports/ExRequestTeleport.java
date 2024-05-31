@@ -17,7 +17,6 @@
 package org.l2j.gameserver.network.clientpackets.teleports;
 
 import org.l2j.Config;
-
 import org.l2j.commons.network.ReadablePacket;
 import org.l2j.gameserver.data.xml.TeleportListData;
 import org.l2j.gameserver.instancemanager.CastleManager;
@@ -84,14 +83,8 @@ public class ExRequestTeleport implements ClientPacket
 		}
 		
 		// Karma related configurations.
-		if ((!Config.ALT_GAME_KARMA_PLAYER_CAN_TELEPORT || !Config.ALT_GAME_KARMA_PLAYER_CAN_USE_GK) && (player.getReputation() < 0))
-		{
-			player.sendPacket(SystemMessageId.YOU_CANNOT_TELEPORT_RIGHT_NOW);
-			return;
-		}
-		
 		// Cannot escape effect.
-		if (player.cannotEscape())
+		if (((!Config.ALT_GAME_KARMA_PLAYER_CAN_TELEPORT || !Config.ALT_GAME_KARMA_PLAYER_CAN_USE_GK) && (player.getReputation() < 0)) || player.cannotEscape())
 		{
 			player.sendPacket(SystemMessageId.YOU_CANNOT_TELEPORT_RIGHT_NOW);
 			return;

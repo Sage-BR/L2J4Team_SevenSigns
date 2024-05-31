@@ -19,7 +19,6 @@ package org.l2j.gameserver.network.clientpackets;
 import static org.l2j.gameserver.model.actor.Npc.INTERACTION_DISTANCE;
 
 import org.l2j.Config;
-
 import org.l2j.commons.network.ReadablePacket;
 import org.l2j.gameserver.data.xml.BuyListData;
 import org.l2j.gameserver.model.WorldObject;

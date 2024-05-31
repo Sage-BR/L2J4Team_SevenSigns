@@ -57,11 +57,7 @@ public class Fan implements IAffectScopeHandler
 			{
 				return false;
 			}
-			if (c.isDead() && (targetType != TargetType.NPC_BODY) && (targetType != TargetType.PC_BODY))
-			{
-				return false;
-			}
-			if (Math.abs(Util.calculateAngleFrom(creature, c) - (headingAngle + fanStartAngle)) > fanHalfAngle)
+			if ((c.isDead() && (targetType != TargetType.NPC_BODY) && (targetType != TargetType.PC_BODY)) || (Math.abs(Util.calculateAngleFrom(creature, c) - (headingAngle + fanStartAngle)) > fanHalfAngle))
 			{
 				return false;
 			}

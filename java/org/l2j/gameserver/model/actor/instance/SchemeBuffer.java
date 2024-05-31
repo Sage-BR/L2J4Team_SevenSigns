@@ -25,7 +25,6 @@ import java.util.Map.Entry;
 import java.util.StringTokenizer;
 
 import org.l2j.Config;
-
 import org.l2j.gameserver.data.SchemeBufferTable;
 import org.l2j.gameserver.data.xml.SkillData;
 import org.l2j.gameserver.model.actor.Npc;

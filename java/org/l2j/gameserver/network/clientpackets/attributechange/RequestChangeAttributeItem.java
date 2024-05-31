@@ -17,7 +17,6 @@
 package org.l2j.gameserver.network.clientpackets.attributechange;
 
 import org.l2j.Config;
-
 import org.l2j.commons.network.ReadablePacket;
 import org.l2j.gameserver.enums.AttributeType;
 import org.l2j.gameserver.model.actor.Player;

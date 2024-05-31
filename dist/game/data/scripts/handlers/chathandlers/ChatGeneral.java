@@ -19,7 +19,6 @@ package handlers.chathandlers;
 import java.util.StringTokenizer;
 
 import org.l2j.Config;
-
 import org.l2j.gameserver.enums.ChatType;
 import org.l2j.gameserver.enums.PlayerCondOverride;
 import org.l2j.gameserver.handler.IChatHandler;

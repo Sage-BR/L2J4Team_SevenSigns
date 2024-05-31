@@ -17,7 +17,6 @@
 package ai.areas.TowerOfInsolence.DimensionalVortex;
 
 import org.l2j.Config;
-
 import org.l2j.commons.threads.ThreadPool;
 import org.l2j.gameserver.instancemanager.GlobalVariablesManager;
 import org.l2j.gameserver.instancemanager.HeavenlyRiftManager;

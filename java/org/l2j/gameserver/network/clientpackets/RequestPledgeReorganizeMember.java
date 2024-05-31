@@ -58,12 +58,7 @@ public class RequestPledgeReorganizeMember implements ClientPacket
 		}
 		
 		final Clan clan = player.getClan();
-		if (clan == null)
-		{
-			return;
-		}
-		
-		if (!player.hasClanPrivilege(ClanPrivilege.CL_MANAGE_RANKS))
+		if ((clan == null) || !player.hasClanPrivilege(ClanPrivilege.CL_MANAGE_RANKS))
 		{
 			return;
 		}

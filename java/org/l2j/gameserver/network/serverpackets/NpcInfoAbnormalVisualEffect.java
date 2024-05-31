@@ -19,7 +19,6 @@ package org.l2j.gameserver.network.serverpackets;
 import java.util.Set;
 
 import org.l2j.Config;
-
 import org.l2j.gameserver.enums.Team;
 import org.l2j.gameserver.model.actor.Npc;
 import org.l2j.gameserver.model.skill.AbnormalVisualEffect;

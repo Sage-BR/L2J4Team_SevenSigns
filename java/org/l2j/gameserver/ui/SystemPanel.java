@@ -31,7 +31,6 @@ import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
 
 import org.l2j.Config;
-
 import org.l2j.gameserver.GameServer;
 import org.l2j.gameserver.model.World;
 import org.l2j.gameserver.util.Locator;

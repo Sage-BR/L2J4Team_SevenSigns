@@ -27,7 +27,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.l2j.Config;
-
 import org.l2j.commons.util.file.filter.HTMLFilter;
 import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.util.BuilderUtil;

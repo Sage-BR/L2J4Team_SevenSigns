@@ -23,7 +23,6 @@ import java.util.Map;
 import java.util.logging.Logger;
 
 import org.l2j.Config;
-
 import org.l2j.gameserver.data.xml.AdminData;
 import org.l2j.gameserver.enums.ChatType;
 import org.l2j.gameserver.enums.PetitionState;
@@ -251,12 +250,7 @@ public class PetitionManager
 		{
 			for (Petition currPetition : _pendingPetitions.values())
 			{
-				if (currPetition == null)
-				{
-					continue;
-				}
-				
-				if (currPetition.getState() != PetitionState.IN_PROCESS)
+				if ((currPetition == null) || (currPetition.getState() != PetitionState.IN_PROCESS))
 				{
 					continue;
 				}
@@ -422,12 +416,7 @@ public class PetitionManager
 	
 	public void viewPetition(Player player, int petitionId)
 	{
-		if (!player.isGM())
-		{
-			return;
-		}
-		
-		if (!isValidPetition(petitionId))
+		if (!player.isGM() || !isValidPetition(petitionId))
 		{
 			return;
 		}

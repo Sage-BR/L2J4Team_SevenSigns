@@ -30,7 +30,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.l2j.Config;
-
 import org.l2j.commons.database.DatabaseFactory;
 import org.l2j.commons.threads.ThreadPool;
 import org.l2j.commons.time.SchedulingPattern;
@@ -270,11 +269,7 @@ public class DBSpawnManager
 	 */
 	public void addNewSpawn(Spawn spawn, long respawnTime, double currentHP, double currentMP, boolean storeInDb)
 	{
-		if (spawn == null)
-		{
-			return;
-		}
-		if (_spawns.containsKey(spawn.getId()))
+		if ((spawn == null) || _spawns.containsKey(spawn.getId()))
 		{
 			return;
 		}

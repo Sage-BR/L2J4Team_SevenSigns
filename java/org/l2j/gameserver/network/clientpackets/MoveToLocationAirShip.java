@@ -52,12 +52,7 @@ public class MoveToLocationAirShip implements ClientPacket
 	public void run(GameClient client)
 	{
 		final Player player = client.getPlayer();
-		if (player == null)
-		{
-			return;
-		}
-		
-		if (!player.isInAirShip())
+		if ((player == null) || !player.isInAirShip())
 		{
 			return;
 		}

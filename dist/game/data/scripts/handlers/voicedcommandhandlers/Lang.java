@@ -19,7 +19,6 @@ package handlers.voicedcommandhandlers;
 import java.util.StringTokenizer;
 
 import org.l2j.Config;
-
 import org.l2j.commons.threads.ThreadPool;
 import org.l2j.gameserver.data.xml.NpcNameLocalisationData;
 import org.l2j.gameserver.handler.IVoicedCommandHandler;

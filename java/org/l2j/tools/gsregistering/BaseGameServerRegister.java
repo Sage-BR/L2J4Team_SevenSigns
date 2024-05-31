@@ -31,7 +31,6 @@ import java.util.Properties;
 import java.util.ResourceBundle;
 
 import org.l2j.Config;
-
 import org.l2j.commons.database.DatabaseFactory;
 import org.l2j.commons.enums.ServerMode;
 import org.l2j.commons.util.CommonUtil;

@@ -87,13 +87,7 @@ public class RequestShowResetShopList implements ClientPacket
 			requiredAdena += face.getResetAdena();
 		}
 		
-		if ((player.getAdena() < requiredAdena))
-		{
-			player.sendPacket(new ExResponseBeautyRegistReset(player, ExResponseBeautyRegistReset.RESTORE, ExResponseBeautyRegistReset.FAILURE));
-			return;
-		}
-		
-		if ((requiredAdena > 0) && !player.reduceAdena(getClass().getSimpleName(), requiredAdena, null, true))
+		if ((player.getAdena() < requiredAdena) || ((requiredAdena > 0) && !player.reduceAdena(getClass().getSimpleName(), requiredAdena, null, true)))
 		{
 			player.sendPacket(new ExResponseBeautyRegistReset(player, ExResponseBeautyRegistReset.RESTORE, ExResponseBeautyRegistReset.FAILURE));
 			return;

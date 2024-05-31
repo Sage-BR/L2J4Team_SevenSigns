@@ -17,7 +17,6 @@
 package org.l2j.gameserver.util;
 
 import org.l2j.Config;
-
 import org.l2j.gameserver.data.xml.SendMessageLocalisationData;
 import org.l2j.gameserver.enums.ChatType;
 import org.l2j.gameserver.model.actor.Player;
@@ -71,13 +70,7 @@ public class BuilderUtil
 	{
 		if (player.hasEnteredWorld())
 		{
-			if (player.isInvisible() && hide)
-			{
-				// already hiding
-				return false;
-			}
-			
-			if (!player.isInvisible() && !hide)
+			if ((player.isInvisible() && hide) || (!player.isInvisible() && !hide))
 			{
 				// already visible
 				return false;

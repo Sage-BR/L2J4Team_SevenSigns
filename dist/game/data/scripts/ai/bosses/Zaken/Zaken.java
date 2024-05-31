@@ -17,7 +17,6 @@
 package ai.bosses.Zaken;
 
 import org.l2j.Config;
-
 import org.l2j.gameserver.instancemanager.GrandBossManager;
 import org.l2j.gameserver.model.StatSet;
 import org.l2j.gameserver.model.actor.Npc;

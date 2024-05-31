@@ -23,9 +23,9 @@ import java.util.Map;
 import java.util.Set;
 import java.util.logging.Logger;
 
-import org.l2j.Config;
 import org.w3c.dom.Document;
 
+import org.l2j.Config;
 import org.l2j.commons.util.IXmlReader;
 import org.l2j.gameserver.data.sql.CharInfoTable;
 import org.l2j.gameserver.model.StatSet;

@@ -34,11 +34,11 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import org.l2j.Config;
 import org.w3c.dom.Document;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 
+import org.l2j.Config;
 import org.l2j.commons.database.DatabaseFactory;
 import org.l2j.commons.util.IXmlReader;
 import org.l2j.gameserver.data.xml.DoorData;

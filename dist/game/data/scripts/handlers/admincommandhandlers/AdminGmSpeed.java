@@ -21,7 +21,6 @@ import java.util.Set;
 import java.util.StringTokenizer;
 
 import org.l2j.Config;
-
 import org.l2j.gameserver.handler.AdminCommandHandler;
 import org.l2j.gameserver.handler.IAdminCommandHandler;
 import org.l2j.gameserver.model.WorldObject;

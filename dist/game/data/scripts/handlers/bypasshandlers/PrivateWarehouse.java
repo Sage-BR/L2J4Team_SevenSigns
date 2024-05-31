@@ -19,7 +19,6 @@ package handlers.bypasshandlers;
 import java.util.logging.Level;
 
 import org.l2j.Config;
-
 import org.l2j.gameserver.handler.IBypassHandler;
 import org.l2j.gameserver.model.actor.Creature;
 import org.l2j.gameserver.model.actor.Player;
@@ -39,17 +38,7 @@ public class PrivateWarehouse implements IBypassHandler
 	@Override
 	public boolean useBypass(String command, Player player, Creature target)
 	{
-		if (!Config.ALLOW_WAREHOUSE)
-		{
-			return false;
-		}
-		
-		if (!target.isNpc())
-		{
-			return false;
-		}
-		
-		if (player.hasItemRequest())
+		if (!Config.ALLOW_WAREHOUSE || !target.isNpc() || player.hasItemRequest())
 		{
 			return false;
 		}

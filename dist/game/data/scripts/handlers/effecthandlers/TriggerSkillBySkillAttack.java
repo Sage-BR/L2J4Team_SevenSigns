@@ -85,12 +85,7 @@ public class TriggerSkillBySkillAttack extends AbstractEffect
 			return;
 		}
 		
-		if (event.getSkill() == null)
-		{
-			return;
-		}
-		
-		if (event.getSkill().getId() != _attackSkill.getSkillId())
+		if ((event.getSkill() == null) || (event.getSkill().getId() != _attackSkill.getSkillId()))
 		{
 			return;
 		}

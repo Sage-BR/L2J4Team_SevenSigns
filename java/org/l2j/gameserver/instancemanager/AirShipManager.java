@@ -223,12 +223,7 @@ public class AirShipManager
 	public VehiclePathPoint[] getTeleportDestination(int dockId, int index)
 	{
 		final AirShipTeleportList all = _teleports.get(dockId);
-		if (all == null)
-		{
-			return null;
-		}
-		
-		if ((index < -1) || (index >= all.getRoute().length))
+		if ((all == null) || (index < -1) || (index >= all.getRoute().length))
 		{
 			return null;
 		}
@@ -239,12 +234,7 @@ public class AirShipManager
 	public int getFuelConsumption(int dockId, int index)
 	{
 		final AirShipTeleportList all = _teleports.get(dockId);
-		if (all == null)
-		{
-			return 0;
-		}
-		
-		if ((index < -1) || (index >= all.getFuel().length))
+		if ((all == null) || (index < -1) || (index >= all.getFuel().length))
 		{
 			return 0;
 		}

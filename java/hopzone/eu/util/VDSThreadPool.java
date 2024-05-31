@@ -21,25 +21,19 @@
  */
 package hopzone.eu.util;
 
-import java.util.concurrent.*;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.ScheduledFuture;
+import java.util.concurrent.ScheduledThreadPoolExecutor;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 /**
- * @Author Nightwolf
- * iToPz Discord: https://discord.gg/KkPms6B5aE
- * @Author Rationale
- * Base structure credits goes on Rationale Discord: Rationale#7773
- * <p>
- * VDS Stands for: Vote Donation System
- * Script website: https://itopz.com/
- * Partner website: https://hopzone.eu/
- * Script version: 1.8
- * Pack Support: 4Team Essence SevenSigns
- * <p>
- * Freemium Donate Panel V4: https://www.denart-designs.com/
- * Download: https://mega.nz/folder/6oxUyaIJ#qQDUXeoXlPvBjbPMDYzu-g
- * Buy: https://shop.denart-designs.com/product/auto-donate-panel-v4/
- *
- * Quick Guide: https://github.com/nightw0lv/VDSystem/tree/master/Guide
+ * @Author Nightwolf iToPz Discord: https://discord.gg/KkPms6B5aE
+ * @Author Rationale Base structure credits goes on Rationale Discord: Rationale#7773
+ *         <p>
+ *         VDS Stands for: Vote Donation System Script website: https://itopz.com/ Partner website: https://hopzone.eu/ Script version: 1.8 Pack Support: 4Team Essence SevenSigns
+ *         <p>
+ *         Freemium Donate Panel V4: https://www.denart-designs.com/ Download: https://mega.nz/folder/6oxUyaIJ#qQDUXeoXlPvBjbPMDYzu-g Buy: https://shop.denart-designs.com/product/auto-donate-panel-v4/ Quick Guide: https://github.com/nightw0lv/VDSystem/tree/master/Guide
  */
 public class VDSThreadPool
 {
@@ -48,95 +42,106 @@ public class VDSThreadPool
 	private static int _threadPoolRandomizer;
 	protected static ScheduledThreadPoolExecutor[] _scheduledPools;
 	protected static ThreadPoolExecutor[] _instantPools;
-
+	
 	public static void init()
 	{
 		// Feed scheduled pool.
 		int poolCount = Runtime.getRuntime().availableProcessors();
-
+		
 		_scheduledPools = new ScheduledThreadPoolExecutor[poolCount];
-		for (int i = 0;
-		     i < poolCount;
-		     i++)
-		{ _scheduledPools[i] = new ScheduledThreadPoolExecutor(4); }
-
+		for (int i = 0; i < poolCount; i++)
+		{
+			_scheduledPools[i] = new ScheduledThreadPoolExecutor(4);
+		}
+		
 		// Feed instant pool.
 		poolCount = Runtime.getRuntime().availableProcessors();
-
+		
 		_instantPools = new ThreadPoolExecutor[poolCount];
-		for (int i = 0;
-		     i < poolCount;
-		     i++)
-		{ _instantPools[i] = new ThreadPoolExecutor(2, 2, 0, TimeUnit.SECONDS, new ArrayBlockingQueue<Runnable>(100000)); }
-
+		for (int i = 0; i < poolCount; i++)
+		{
+			_instantPools[i] = new ThreadPoolExecutor(2, 2, 0, TimeUnit.SECONDS, new ArrayBlockingQueue<Runnable>(100000));
+		}
+		
 		// Pre-start core threads.
 		for (ScheduledThreadPoolExecutor threadPool : _scheduledPools)
-		{ threadPool.prestartAllCoreThreads(); }
-
+		{
+			threadPool.prestartAllCoreThreads();
+		}
+		
 		for (ThreadPoolExecutor threadPool : _instantPools)
-		{ threadPool.prestartAllCoreThreads(); }
-
+		{
+			threadPool.prestartAllCoreThreads();
+		}
+		
 		// Launch purge task.
 		scheduleAtFixedRate(() ->
 		{
 			for (ScheduledThreadPoolExecutor threadPool : _scheduledPools)
-			{ threadPool.purge(); }
-
+			{
+				threadPool.purge();
+			}
+			
 			for (ThreadPoolExecutor threadPool : _instantPools)
-			{ threadPool.purge(); }
+			{
+				threadPool.purge();
+			}
 		}, 600000, 600000);
-
+		
 		_log.info("Initializing Threads.");
 	}
-
+	
 	public static ScheduledFuture<?> scheduleAtFixedRate(Runnable r, long delay, long period)
 	{
 		try
 		{
 			return getPool(_scheduledPools).scheduleAtFixedRate(new TaskWrapper(r), validate(delay), validate(period), TimeUnit.MILLISECONDS);
-		} catch (Exception e)
+		}
+		catch (Exception e)
 		{
 			return null;
 		}
 	}
-
+	
 	public static ScheduledFuture<?> schedule(Runnable r, long delay)
 	{
 		try
 		{
 			return getPool(_scheduledPools).schedule(new TaskWrapper(r), validate(delay), TimeUnit.MILLISECONDS);
-		} catch (Exception e)
+		}
+		catch (Exception e)
 		{
 			return null;
 		}
 	}
-
+	
 	private static <T> T getPool(T[] threadPools)
 	{
 		return threadPools[_threadPoolRandomizer++ % threadPools.length];
 	}
-
+	
 	private static long validate(long delay)
 	{
 		return Math.max(0, Math.min(MAX_DELAY, delay));
 	}
-
+	
 	public static final class TaskWrapper implements Runnable
 	{
 		private final Runnable _runnable;
-
+		
 		public TaskWrapper(Runnable runnable)
 		{
 			_runnable = runnable;
 		}
-
+		
 		@Override
 		public void run()
 		{
 			try
 			{
 				_runnable.run();
-			} catch (RuntimeException e)
+			}
+			catch (RuntimeException e)
 			{
 				_log.error("VDS: Exception on Thread.", e);
 			}

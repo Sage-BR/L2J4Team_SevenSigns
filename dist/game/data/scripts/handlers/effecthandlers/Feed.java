@@ -17,7 +17,6 @@
 package handlers.effecthandlers;
 
 import org.l2j.Config;
-
 import org.l2j.gameserver.enums.MountType;
 import org.l2j.gameserver.model.StatSet;
 import org.l2j.gameserver.model.actor.Creature;

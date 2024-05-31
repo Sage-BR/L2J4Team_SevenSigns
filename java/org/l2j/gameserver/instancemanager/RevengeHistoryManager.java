@@ -275,13 +275,7 @@ public class RevengeHistoryManager
 			player.sendPacket(SystemMessageId.THE_CHARACTER_IS_IN_A_LOCATION_WHERE_IT_IS_IMPOSSIBLE_TO_USE_THIS_FUNCTION);
 			return false;
 		}
-		if (killer.isDead())
-		{
-			player.sendPacket(SystemMessageId.THE_CHARACTER_IS_IN_A_LOCATION_WHERE_IT_IS_IMPOSSIBLE_TO_USE_THIS_FUNCTION);
-			return false;
-		}
-		
-		if (player.isInInstance() || player.isInTimedHuntingZone() || player.isInsideZone(ZoneId.SIEGE))
+		if (killer.isDead() || player.isInInstance() || player.isInTimedHuntingZone() || player.isInsideZone(ZoneId.SIEGE))
 		{
 			player.sendPacket(SystemMessageId.THE_CHARACTER_IS_IN_A_LOCATION_WHERE_IT_IS_IMPOSSIBLE_TO_USE_THIS_FUNCTION);
 			return false;
@@ -318,12 +312,7 @@ public class RevengeHistoryManager
 			}
 		}
 		
-		if (revenge == null)
-		{
-			return;
-		}
-		
-		if (revenge.wasShared())
+		if ((revenge == null) || revenge.wasShared())
 		{
 			return;
 		}
@@ -373,12 +362,7 @@ public class RevengeHistoryManager
 			}
 		}
 		
-		if (revenge == null)
-		{
-			return;
-		}
-		
-		if (!revenge.wasShared())
+		if ((revenge == null) || !revenge.wasShared())
 		{
 			return;
 		}
@@ -419,12 +403,7 @@ public class RevengeHistoryManager
 			}
 		}
 		
-		if (revenge == null)
-		{
-			return;
-		}
-		
-		if (revenge.wasShared())
+		if ((revenge == null) || revenge.wasShared())
 		{
 			return;
 		}

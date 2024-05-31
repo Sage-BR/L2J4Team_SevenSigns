@@ -22,7 +22,6 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.logging.Logger;
 
 import org.l2j.Config;
-
 import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.network.SystemMessageId;
 import org.l2j.gameserver.util.Util;

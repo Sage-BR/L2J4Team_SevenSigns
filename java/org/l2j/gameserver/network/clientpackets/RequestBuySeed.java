@@ -24,7 +24,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.l2j.Config;
-
 import org.l2j.commons.network.ReadablePacket;
 import org.l2j.gameserver.data.xml.ItemData;
 import org.l2j.gameserver.instancemanager.CastleManager;

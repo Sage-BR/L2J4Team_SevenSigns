@@ -27,7 +27,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.l2j.Config;
-
 import org.l2j.commons.database.DatabaseFactory;
 import org.l2j.commons.threads.ThreadPool;
 import org.l2j.gameserver.model.World;
@@ -204,12 +203,7 @@ public class ItemsOnGroundManager implements Runnable
 		{
 			for (Item item : _items)
 			{
-				if (item == null)
-				{
-					continue;
-				}
-				
-				if (CursedWeaponsManager.getInstance().isCursed(item.getId()))
+				if ((item == null) || CursedWeaponsManager.getInstance().isCursed(item.getId()))
 				{
 					continue; // Cursed Items not saved to ground, prevent double save
 				}

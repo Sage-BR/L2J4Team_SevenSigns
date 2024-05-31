@@ -17,7 +17,6 @@
 package org.l2j.gameserver.model.holders;
 
 import org.l2j.Config;
-
 import org.l2j.gameserver.data.xml.ExperienceData;
 import org.l2j.gameserver.enums.ClassId;
 

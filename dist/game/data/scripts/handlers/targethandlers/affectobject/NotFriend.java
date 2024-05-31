@@ -17,7 +17,6 @@
 package handlers.targethandlers.affectobject;
 
 import org.l2j.Config;
-
 import org.l2j.gameserver.handler.IAffectObjectHandler;
 import org.l2j.gameserver.model.CommandChannel;
 import org.l2j.gameserver.model.Party;
@@ -50,13 +49,8 @@ public class NotFriend implements IAffectObjectHandler
 		if ((player != null) && (targetPlayer != null))
 		{
 			// Same player.
-			if (player == targetPlayer)
-			{
-				return false;
-			}
-			
 			// Peace Zone.
-			if (target.isInsidePeaceZone(player) && !player.getAccessLevel().allowPeaceAttack())
+			if ((player == targetPlayer) || (target.isInsidePeaceZone(player) && !player.getAccessLevel().allowPeaceAttack()))
 			{
 				return false;
 			}

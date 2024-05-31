@@ -87,22 +87,7 @@ public class ZoneRegion
 		{
 			if (e instanceof PeaceZone)
 			{
-				if (e.isInsideZone(x, up, z))
-				{
-					return false;
-				}
-				
-				if (e.isInsideZone(x, down, z))
-				{
-					return false;
-				}
-				
-				if (e.isInsideZone(left, y, z))
-				{
-					return false;
-				}
-				
-				if (e.isInsideZone(right, y, z))
+				if (e.isInsideZone(x, up, z) || e.isInsideZone(x, down, z) || e.isInsideZone(left, y, z) || e.isInsideZone(right, y, z))
 				{
 					return false;
 				}

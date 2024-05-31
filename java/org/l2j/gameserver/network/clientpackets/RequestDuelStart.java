@@ -106,12 +106,7 @@ public class RequestDuelStart implements ClientPacket
 		}
 		
 		final Player targetChar = World.getInstance().getPlayer(_player);
-		if (targetChar == null)
-		{
-			player.sendPacket(SystemMessageId.THERE_IS_NO_OPPONENT_TO_RECEIVE_YOUR_CHALLENGE_FOR_A_DUEL);
-			return;
-		}
-		if (player == targetChar)
+		if ((targetChar == null) || (player == targetChar))
 		{
 			player.sendPacket(SystemMessageId.THERE_IS_NO_OPPONENT_TO_RECEIVE_YOUR_CHALLENGE_FOR_A_DUEL);
 			return;

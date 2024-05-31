@@ -26,7 +26,6 @@ import java.util.Set;
 import java.util.StringJoiner;
 
 import org.l2j.Config;
-
 import org.l2j.commons.util.Rnd;
 import org.l2j.gameserver.cache.HtmCache;
 import org.l2j.gameserver.data.xml.ItemData;
@@ -355,12 +354,7 @@ public class DropSearchBoard implements IParseBoardHandler
 		final List<ItemTemplate> items = new ArrayList<>();
 		for (ItemTemplate item : ItemData.getInstance().getAllItems())
 		{
-			if (item == null)
-			{
-				continue;
-			}
-			
-			if (!existInDropData.contains(item.getId()))
+			if ((item == null) || !existInDropData.contains(item.getId()))
 			{
 				continue;
 			}

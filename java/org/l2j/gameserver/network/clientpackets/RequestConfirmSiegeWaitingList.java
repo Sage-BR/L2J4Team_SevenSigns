@@ -46,13 +46,8 @@ public class RequestConfirmSiegeWaitingList implements ClientPacket
 	public void run(GameClient client)
 	{
 		final Player player = client.getPlayer();
-		if (player == null)
-		{
-			return;
-		}
-		
 		// Check if the player has a clan
-		if (player.getClan() == null)
+		if ((player == null) || (player.getClan() == null))
 		{
 			return;
 		}

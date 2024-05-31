@@ -45,12 +45,7 @@ public class SummonExceptMaster implements IAffectScopeHandler
 			final int limit = (affectLimit > 0) ? affectLimit : Integer.MAX_VALUE;
 			for (Creature c : target.getActingPlayer().getServitorsAndPets())
 			{
-				if (c.isDead())
-				{
-					continue;
-				}
-				
-				if ((affectRange > 0) && !Util.checkIfInRange(affectRange, c, target, true))
+				if (c.isDead() || ((affectRange > 0) && !Util.checkIfInRange(affectRange, c, target, true)))
 				{
 					continue;
 				}

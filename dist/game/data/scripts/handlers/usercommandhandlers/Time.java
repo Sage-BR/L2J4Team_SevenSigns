@@ -20,7 +20,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import org.l2j.Config;
-
 import org.l2j.gameserver.handler.IUserCommandHandler;
 import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.network.SystemMessageId;

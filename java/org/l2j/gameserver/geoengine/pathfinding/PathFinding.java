@@ -19,7 +19,6 @@ package org.l2j.gameserver.geoengine.pathfinding;
 import java.util.List;
 
 import org.l2j.Config;
-
 import org.l2j.gameserver.geoengine.pathfinding.cellnodes.CellPathFinding;
 import org.l2j.gameserver.geoengine.pathfinding.geonodes.GeoPathFinding;
 import org.l2j.gameserver.model.World;

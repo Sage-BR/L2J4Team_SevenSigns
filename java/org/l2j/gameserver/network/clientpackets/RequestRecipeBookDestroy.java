@@ -37,12 +37,7 @@ public class RequestRecipeBookDestroy implements ClientPacket
 	public void run(GameClient client)
 	{
 		final Player player = client.getPlayer();
-		if (player == null)
-		{
-			return;
-		}
-		
-		if (!client.getFloodProtectors().canPerformTransaction())
+		if ((player == null) || !client.getFloodProtectors().canPerformTransaction())
 		{
 			return;
 		}

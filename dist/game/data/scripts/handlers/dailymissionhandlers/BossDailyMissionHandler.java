@@ -19,7 +19,6 @@ package handlers.dailymissionhandlers;
 import java.util.List;
 
 import org.l2j.Config;
-
 import org.l2j.gameserver.enums.DailyMissionStatus;
 import org.l2j.gameserver.handler.AbstractDailyMissionHandler;
 import org.l2j.gameserver.model.CommandChannel;

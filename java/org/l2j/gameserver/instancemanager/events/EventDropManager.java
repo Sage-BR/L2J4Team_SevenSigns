@@ -21,7 +21,6 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 import org.l2j.Config;
-
 import org.l2j.commons.util.Rnd;
 import org.l2j.gameserver.model.actor.Attackable;
 import org.l2j.gameserver.model.actor.Creature;
@@ -48,13 +47,8 @@ public class EventDropManager
 	
 	public void doEventDrop(Creature attacker, Attackable attackable)
 	{
-		if (EVENT_DROPS.isEmpty())
-		{
-			return;
-		}
-		
 		// Event items drop only for players.
-		if ((attacker == null) || !attacker.isPlayable() || attackable.isFakePlayer())
+		if (EVENT_DROPS.isEmpty() || (attacker == null) || !attacker.isPlayable() || attackable.isFakePlayer())
 		{
 			return;
 		}

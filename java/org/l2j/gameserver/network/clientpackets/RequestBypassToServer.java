@@ -19,7 +19,6 @@ package org.l2j.gameserver.network.clientpackets;
 import java.util.StringTokenizer;
 
 import org.l2j.Config;
-
 import org.l2j.commons.network.ReadablePacket;
 import org.l2j.commons.util.CommonUtil;
 import org.l2j.gameserver.ai.CtrlIntention;
@@ -109,12 +108,7 @@ public class RequestBypassToServer implements ClientPacket
 		if (requiresBypassValidation)
 		{
 			bypassOriginId = player.validateHtmlAction(_command);
-			if (bypassOriginId == -1)
-			{
-				return;
-			}
-			
-			if ((bypassOriginId > 0) && !Util.isInsideRangeOfObjectId(player, bypassOriginId, Npc.INTERACTION_DISTANCE))
+			if ((bypassOriginId == -1) || ((bypassOriginId > 0) && !Util.isInsideRangeOfObjectId(player, bypassOriginId, Npc.INTERACTION_DISTANCE)))
 			{
 				// No logging here, this could be a common case where the player has the html still open and run too far away and then clicks a html action
 				return;

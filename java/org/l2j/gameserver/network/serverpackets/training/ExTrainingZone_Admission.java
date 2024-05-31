@@ -17,7 +17,6 @@
 package org.l2j.gameserver.network.serverpackets.training;
 
 import org.l2j.Config;
-
 import org.l2j.gameserver.data.xml.ExperienceData;
 import org.l2j.gameserver.network.ServerPackets;
 import org.l2j.gameserver.network.serverpackets.ServerPacket;

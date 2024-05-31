@@ -96,12 +96,7 @@ public class FuncTemplate
 	
 	public boolean meetCondition(Creature effected, Skill skill)
 	{
-		if ((_attachCond != null) && !_attachCond.test(effected, effected, skill))
-		{
-			return false;
-		}
-		
-		if ((_applayCond != null) && !_applayCond.test(effected, effected, skill))
+		if (((_attachCond != null) && !_attachCond.test(effected, effected, skill)) || ((_applayCond != null) && !_applayCond.test(effected, effected, skill)))
 		{
 			return false;
 		}

@@ -54,12 +54,7 @@ public class Party implements IAffectScopeHandler
 			final Predicate<Playable> filter = plbl ->
 			{
 				// Range skills appear to not affect you unless you are the main target.
-				if ((plbl == creature) && (target != creature))
-				{
-					return false;
-				}
-				
-				if ((affectLimit > 0) && (affected.get() >= affectLimit))
+				if (((plbl == creature) && (target != creature)) || ((affectLimit > 0) && (affected.get() >= affectLimit)))
 				{
 					return false;
 				}
@@ -111,15 +106,7 @@ public class Party implements IAffectScopeHandler
 			final AtomicInteger affected = new AtomicInteger(0);
 			final Predicate<Npc> filter = n ->
 			{
-				if ((affectLimit > 0) && (affected.get() >= affectLimit))
-				{
-					return false;
-				}
-				if (n.isDead())
-				{
-					return false;
-				}
-				if (n.isAutoAttackable(npc))
+				if (((affectLimit > 0) && (affected.get() >= affectLimit)) || n.isDead() || n.isAutoAttackable(npc))
 				{
 					return false;
 				}

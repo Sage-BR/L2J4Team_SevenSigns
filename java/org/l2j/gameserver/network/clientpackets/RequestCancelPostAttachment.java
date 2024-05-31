@@ -17,7 +17,6 @@
 package org.l2j.gameserver.network.clientpackets;
 
 import org.l2j.Config;
-
 import org.l2j.commons.network.ReadablePacket;
 import org.l2j.gameserver.enums.ItemLocation;
 import org.l2j.gameserver.enums.PrivateStoreType;
@@ -52,12 +51,7 @@ public class RequestCancelPostAttachment implements ClientPacket
 	public void run(GameClient client)
 	{
 		final Player player = client.getPlayer();
-		if ((player == null) || !Config.ALLOW_MAIL || !Config.ALLOW_ATTACHMENTS)
-		{
-			return;
-		}
-		
-		if (!client.getFloodProtectors().canPerformTransaction())
+		if ((player == null) || !Config.ALLOW_MAIL || !Config.ALLOW_ATTACHMENTS || !client.getFloodProtectors().canPerformTransaction())
 		{
 			return;
 		}

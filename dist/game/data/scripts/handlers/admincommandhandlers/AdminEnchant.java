@@ -19,7 +19,6 @@ package handlers.admincommandhandlers;
 import java.util.logging.Logger;
 
 import org.l2j.Config;
-
 import org.l2j.gameserver.data.xml.EnchantItemGroupsData;
 import org.l2j.gameserver.handler.IAdminCommandHandler;
 import org.l2j.gameserver.model.actor.Player;

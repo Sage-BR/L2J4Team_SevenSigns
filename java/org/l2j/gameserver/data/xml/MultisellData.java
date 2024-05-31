@@ -28,10 +28,10 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import org.l2j.Config;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 
+import org.l2j.Config;
 import org.l2j.commons.util.IXmlReader;
 import org.l2j.commons.util.file.filter.NumericNameFilter;
 import org.l2j.gameserver.enums.SpecialItemType;

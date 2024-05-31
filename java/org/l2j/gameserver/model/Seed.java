@@ -17,7 +17,6 @@
 package org.l2j.gameserver.model;
 
 import org.l2j.Config;
-
 import org.l2j.gameserver.data.xml.ItemData;
 import org.l2j.gameserver.model.item.ItemTemplate;
 

@@ -17,7 +17,6 @@
 package org.l2j.gameserver.model.actor.tasks.attackable;
 
 import org.l2j.Config;
-
 import org.l2j.commons.threads.ThreadPool;
 import org.l2j.gameserver.model.actor.Attackable;
 

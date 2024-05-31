@@ -17,7 +17,6 @@
 package org.l2j.gameserver.model.actor.stat;
 
 import org.l2j.Config;
-
 import org.l2j.gameserver.model.actor.Summon;
 
 public class SummonStat extends PlayableStat

@@ -26,7 +26,6 @@ import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 import org.l2j.Config;
-
 import org.l2j.commons.enums.ServerMode;
 
 /**

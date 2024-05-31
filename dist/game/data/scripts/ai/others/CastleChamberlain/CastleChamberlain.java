@@ -24,7 +24,6 @@ import java.util.Map;
 import java.util.StringTokenizer;
 
 import org.l2j.Config;
-
 import org.l2j.commons.util.CommonUtil;
 import org.l2j.gameserver.data.sql.ClanTable;
 import org.l2j.gameserver.data.xml.TeleporterData;

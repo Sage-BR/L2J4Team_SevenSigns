@@ -17,7 +17,6 @@
 package org.l2j.gameserver.network.clientpackets;
 
 import org.l2j.Config;
-
 import org.l2j.commons.network.ReadablePacket;
 import org.l2j.gameserver.model.World;
 import org.l2j.gameserver.model.actor.Player;
@@ -91,13 +90,8 @@ public class RequestPackageSend implements ClientPacket
 		}
 		
 		// get current tradelist if any
-		if (player.getActiveTradeList() != null)
-		{
-			return;
-		}
-		
 		// Alt game - Karma punishment
-		if (!Config.ALT_GAME_KARMA_PLAYER_CAN_USE_WAREHOUSE && (player.getReputation() < 0))
+		if ((player.getActiveTradeList() != null) || (!Config.ALT_GAME_KARMA_PLAYER_CAN_USE_WAREHOUSE && (player.getReputation() < 0)))
 		{
 			return;
 		}

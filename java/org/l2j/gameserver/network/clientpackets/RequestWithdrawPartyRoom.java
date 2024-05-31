@@ -45,12 +45,7 @@ public class RequestWithdrawPartyRoom implements ClientPacket
 		}
 		
 		final MatchingRoom room = player.getMatchingRoom();
-		if (room == null)
-		{
-			return;
-		}
-		
-		if ((room.getId() != _roomId) || (room.getRoomType() != MatchingRoomType.PARTY))
+		if ((room == null) || (room.getId() != _roomId) || (room.getRoomType() != MatchingRoomType.PARTY))
 		{
 			return;
 		}

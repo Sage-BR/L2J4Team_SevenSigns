@@ -21,7 +21,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.l2j.Config;
-
 import org.l2j.commons.util.CommonUtil;
 import org.l2j.gameserver.ai.CtrlIntention;
 import org.l2j.gameserver.enums.MountType;

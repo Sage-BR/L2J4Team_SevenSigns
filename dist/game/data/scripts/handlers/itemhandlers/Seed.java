@@ -19,7 +19,6 @@ package handlers.itemhandlers;
 import java.util.List;
 
 import org.l2j.Config;
-
 import org.l2j.gameserver.enums.ItemSkillType;
 import org.l2j.gameserver.handler.IItemHandler;
 import org.l2j.gameserver.instancemanager.CastleManorManager;

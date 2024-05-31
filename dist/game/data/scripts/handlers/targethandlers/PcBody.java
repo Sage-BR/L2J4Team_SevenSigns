@@ -42,12 +42,7 @@ public class PcBody implements ITargetTypeHandler
 	@Override
 	public WorldObject getTarget(Creature creature, WorldObject selectedTarget, Skill skill, boolean forceUse, boolean dontMove, boolean sendMessage)
 	{
-		if (selectedTarget == null)
-		{
-			return null;
-		}
-		
-		if (!selectedTarget.isCreature())
+		if ((selectedTarget == null) || !selectedTarget.isCreature())
 		{
 			return null;
 		}

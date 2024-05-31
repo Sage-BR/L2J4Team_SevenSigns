@@ -19,7 +19,6 @@ package handlers.admincommandhandlers;
 import java.util.List;
 
 import org.l2j.Config;
-
 import org.l2j.gameserver.geoengine.pathfinding.AbstractNodeLoc;
 import org.l2j.gameserver.geoengine.pathfinding.PathFinding;
 import org.l2j.gameserver.handler.IAdminCommandHandler;

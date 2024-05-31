@@ -114,13 +114,7 @@ public class RequestActionUse implements ClientPacket
 			case 51: // General Manufacture
 			{
 				// Player shouldn't be able to set stores if he/she is alike dead (dead or fake death)
-				if (player.isAlikeDead())
-				{
-					player.sendPacket(ActionFailed.STATIC_PACKET);
-					return;
-				}
-				
-				if (player.isSellingBuffs())
+				if (player.isAlikeDead() || player.isSellingBuffs())
 				{
 					player.sendPacket(ActionFailed.STATIC_PACKET);
 					return;

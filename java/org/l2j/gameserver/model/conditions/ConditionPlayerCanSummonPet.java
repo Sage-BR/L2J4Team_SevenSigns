@@ -17,7 +17,6 @@
 package org.l2j.gameserver.model.conditions;
 
 import org.l2j.Config;
-
 import org.l2j.gameserver.data.sql.CharSummonTable;
 import org.l2j.gameserver.model.actor.Creature;
 import org.l2j.gameserver.model.actor.Player;

@@ -17,7 +17,6 @@
 package org.l2j.gameserver.model.instancezone.conditions;
 
 import org.l2j.Config;
-
 import org.l2j.gameserver.model.StatSet;
 import org.l2j.gameserver.model.actor.Npc;
 import org.l2j.gameserver.model.actor.Player;

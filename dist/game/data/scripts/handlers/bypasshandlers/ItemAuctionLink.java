@@ -22,7 +22,6 @@ import java.util.StringTokenizer;
 import java.util.logging.Level;
 
 import org.l2j.Config;
-
 import org.l2j.gameserver.handler.IBypassHandler;
 import org.l2j.gameserver.instancemanager.ItemAuctionManager;
 import org.l2j.gameserver.model.actor.Creature;
@@ -73,12 +72,7 @@ public class ItemAuctionLink implements IBypassHandler
 			final String cmd = st.nextToken();
 			if ("show".equalsIgnoreCase(cmd))
 			{
-				if (!player.getClient().getFloodProtectors().canUseItemAuction())
-				{
-					return false;
-				}
-				
-				if (player.isItemAuctionPolling())
+				if (!player.getClient().getFloodProtectors().canUseItemAuction() || player.isItemAuctionPolling())
 				{
 					return false;
 				}

@@ -24,7 +24,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.l2j.Config;
-
 import org.l2j.commons.time.SchedulingPattern;
 import org.l2j.commons.util.Rnd;
 import org.l2j.gameserver.data.xml.NpcData;

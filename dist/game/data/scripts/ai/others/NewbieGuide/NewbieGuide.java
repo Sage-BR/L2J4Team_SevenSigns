@@ -17,7 +17,6 @@
 package ai.others.NewbieGuide;
 
 import org.l2j.Config;
-
 import org.l2j.gameserver.enums.Race;
 import org.l2j.gameserver.model.actor.Npc;
 import org.l2j.gameserver.model.actor.Player;

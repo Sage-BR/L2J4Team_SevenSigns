@@ -17,7 +17,6 @@
 package org.l2j.gameserver.network.clientpackets.newhenna;
 
 import org.l2j.Config;
-
 import org.l2j.commons.network.ReadablePacket;
 import org.l2j.gameserver.data.xml.HennaData;
 import org.l2j.gameserver.enums.PlayerCondOverride;
@@ -55,12 +54,7 @@ public class RequestNewHennaEquip implements ClientPacket
 	public void run(GameClient client)
 	{
 		final Player player = client.getPlayer();
-		if (player == null)
-		{
-			return;
-		}
-		
-		if (!client.getFloodProtectors().canPerformTransaction())
+		if ((player == null) || !client.getFloodProtectors().canPerformTransaction())
 		{
 			return;
 		}

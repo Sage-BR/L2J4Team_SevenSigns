@@ -38,7 +38,6 @@ import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
 
 import org.l2j.Config;
-
 import org.l2j.commons.database.DatabaseFactory;
 import org.l2j.commons.util.Rnd;
 import org.l2j.loginserver.GameServerTable.GameServerInfo;

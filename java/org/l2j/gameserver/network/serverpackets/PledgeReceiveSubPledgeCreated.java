@@ -18,8 +18,8 @@ package org.l2j.gameserver.network.serverpackets;
 
 import org.l2j.gameserver.model.clan.Clan;
 import org.l2j.gameserver.model.clan.Clan.SubPledge;
-import org.l2j.gameserver.network.ServerPackets;
 import org.l2j.gameserver.network.PacketLogger;
+import org.l2j.gameserver.network.ServerPackets;
 
 /**
  * @author -Wooden-

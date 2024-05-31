@@ -17,7 +17,6 @@
 package org.l2j.gameserver.model.actor.status;
 
 import org.l2j.Config;
-
 import org.l2j.gameserver.ai.CtrlIntention;
 import org.l2j.gameserver.data.xml.NpcNameLocalisationData;
 import org.l2j.gameserver.enums.PrivateStoreType;
@@ -85,12 +84,7 @@ public class PlayerStatus extends PlayableStatus
 			return;
 		}
 		
-		if (getActiveChar().isHpBlocked() && !(isDOT || isHPConsumption))
-		{
-			return;
-		}
-		
-		if (getActiveChar().isAffected(EffectFlag.DUELIST_FURY) && !attacker.isAffected(EffectFlag.FACEOFF))
+		if ((getActiveChar().isHpBlocked() && !(isDOT || isHPConsumption)) || (getActiveChar().isAffected(EffectFlag.DUELIST_FURY) && !attacker.isAffected(EffectFlag.FACEOFF)))
 		{
 			return;
 		}

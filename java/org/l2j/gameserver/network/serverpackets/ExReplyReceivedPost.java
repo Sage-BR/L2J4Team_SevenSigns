@@ -22,8 +22,8 @@ import org.l2j.gameserver.enums.MailType;
 import org.l2j.gameserver.model.Message;
 import org.l2j.gameserver.model.item.instance.Item;
 import org.l2j.gameserver.model.itemcontainer.ItemContainer;
-import org.l2j.gameserver.network.ServerPackets;
 import org.l2j.gameserver.network.PacketLogger;
+import org.l2j.gameserver.network.ServerPackets;
 import org.l2j.gameserver.network.SystemMessageId;
 
 /**

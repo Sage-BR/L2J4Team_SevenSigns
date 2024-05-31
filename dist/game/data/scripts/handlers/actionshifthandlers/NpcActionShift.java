@@ -19,7 +19,6 @@ package handlers.actionshifthandlers;
 import java.util.Set;
 
 import org.l2j.Config;
-
 import org.l2j.commons.util.CommonUtil;
 import org.l2j.gameserver.data.xml.ClanHallData;
 import org.l2j.gameserver.data.xml.NpcData;

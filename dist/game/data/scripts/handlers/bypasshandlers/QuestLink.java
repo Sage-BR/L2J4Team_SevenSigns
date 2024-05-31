@@ -24,7 +24,6 @@ import java.util.Set;
 import java.util.TreeMap;
 
 import org.l2j.Config;
-
 import org.l2j.gameserver.data.xml.NewQuestData;
 import org.l2j.gameserver.handler.IBypassHandler;
 import org.l2j.gameserver.instancemanager.QuestManager;

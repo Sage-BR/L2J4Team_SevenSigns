@@ -17,7 +17,6 @@
 package org.l2j.gameserver.network.clientpackets;
 
 import org.l2j.Config;
-
 import org.l2j.commons.network.ReadablePacket;
 import org.l2j.gameserver.data.xml.AdminData;
 import org.l2j.gameserver.enums.PlayerCondOverride;
@@ -63,13 +62,8 @@ public class RequestDropItem implements ClientPacket
 	public void run(GameClient client)
 	{
 		final Player player = client.getPlayer();
-		if ((player == null) || player.isDead())
-		{
-			return;
-		}
-		
 		// Flood protect drop to avoid packet lag
-		if (!client.getFloodProtectors().canDropItem())
+		if ((player == null) || player.isDead() || !client.getFloodProtectors().canDropItem())
 		{
 			return;
 		}

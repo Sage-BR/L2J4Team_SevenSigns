@@ -17,7 +17,6 @@
 package handlers.skillconditionhandlers;
 
 import org.l2j.Config;
-
 import org.l2j.gameserver.data.sql.CharSummonTable;
 import org.l2j.gameserver.enums.PrivateStoreType;
 import org.l2j.gameserver.model.StatSet;

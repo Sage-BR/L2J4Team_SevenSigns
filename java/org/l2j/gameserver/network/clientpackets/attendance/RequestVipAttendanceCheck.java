@@ -17,7 +17,6 @@
 package org.l2j.gameserver.network.clientpackets.attendance;
 
 import org.l2j.Config;
-
 import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.model.itemcontainer.Inventory;
 import org.l2j.gameserver.network.GameClient;

@@ -22,7 +22,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.l2j.Config;
-
 import org.l2j.commons.util.Rnd;
 import org.l2j.gameserver.enums.Race;
 

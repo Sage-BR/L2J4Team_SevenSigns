@@ -24,7 +24,6 @@ import java.util.concurrent.TimeUnit;
 import java.util.logging.Logger;
 
 import org.l2j.Config;
-
 import org.l2j.commons.util.CommonUtil;
 
 /**

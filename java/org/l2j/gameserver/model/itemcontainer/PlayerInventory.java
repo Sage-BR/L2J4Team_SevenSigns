@@ -28,7 +28,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.l2j.Config;
-
 import org.l2j.commons.database.DatabaseFactory;
 import org.l2j.gameserver.data.xml.AgathionData;
 import org.l2j.gameserver.data.xml.ItemData;
@@ -141,11 +140,7 @@ public class PlayerInventory extends Inventory
 		final List<Item> list = new LinkedList<>();
 		for (Item item : _items)
 		{
-			if (!allowAdena && (item.getId() == ADENA_ID))
-			{
-				continue;
-			}
-			if (!allowAncientAdena && (item.getId() == ANCIENT_ADENA_ID))
+			if ((!allowAdena && (item.getId() == ADENA_ID)) || (!allowAncientAdena && (item.getId() == ANCIENT_ADENA_ID)))
 			{
 				continue;
 			}
@@ -1181,12 +1176,7 @@ public class PlayerInventory extends Inventory
 			}
 		}
 		
-		if ((ammunition == null) || (ammunition.getItemType() != type))
-		{
-			return;
-		}
-		
-		if (ammunition.getEtcItem().isInfinite())
+		if ((ammunition == null) || (ammunition.getItemType() != type) || ammunition.getEtcItem().isInfinite())
 		{
 			return;
 		}

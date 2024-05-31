@@ -267,19 +267,10 @@ public class Weapon extends ItemTemplate
 			if (type == ItemSkillType.ON_MAGIC_SKILL)
 			{
 				// Trigger only if both are good or bad magic.
-				if (trigger.isBad() != skill.isBad())
-				{
-					return;
-				}
 				
 				// No Trigger if not Magic Skill or is toggle
-				if (trigger.isMagic() != skill.isMagic())
-				{
-					return;
-				}
-				
 				// No Trigger if skill is toggle
-				if (trigger.isToggle())
+				if ((trigger.isBad() != skill.isBad()) || (trigger.isMagic() != skill.isMagic()) || trigger.isToggle())
 				{
 					return;
 				}

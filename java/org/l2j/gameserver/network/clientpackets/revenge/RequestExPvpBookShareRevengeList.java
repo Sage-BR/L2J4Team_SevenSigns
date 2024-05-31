@@ -39,12 +39,7 @@ public class RequestExPvpBookShareRevengeList implements ClientPacket
 	public void run(GameClient client)
 	{
 		final Player player = client.getPlayer();
-		if (player == null)
-		{
-			return;
-		}
-		
-		if (_objectId != player.getObjectId())
+		if ((player == null) || (_objectId != player.getObjectId()))
 		{
 			return;
 		}

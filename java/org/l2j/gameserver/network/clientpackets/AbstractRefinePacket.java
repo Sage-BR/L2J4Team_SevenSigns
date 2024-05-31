@@ -19,7 +19,6 @@ package org.l2j.gameserver.network.clientpackets;
 import java.util.Arrays;
 
 import org.l2j.Config;
-
 import org.l2j.gameserver.enums.ItemLocation;
 import org.l2j.gameserver.enums.PrivateStoreType;
 import org.l2j.gameserver.model.actor.Player;
@@ -45,12 +44,7 @@ public abstract class AbstractRefinePacket implements ClientPacket
 	 */
 	protected static boolean isValid(Player player, Item item, Item mineralItem, Item feeItem, VariationFee fee)
 	{
-		if (fee == null)
-		{
-			return false;
-		}
-		
-		if (!isValid(player, item, mineralItem))
+		if ((fee == null) || !isValid(player, item, mineralItem))
 		{
 			return false;
 		}
@@ -81,19 +75,10 @@ public abstract class AbstractRefinePacket implements ClientPacket
 	 */
 	protected static boolean isValid(Player player, Item item, Item mineralItem)
 	{
-		if (!isValid(player, item))
-		{
-			return false;
-		}
 		
 		// Item must belong to owner
-		if (mineralItem.getOwnerId() != player.getObjectId())
-		{
-			return false;
-		}
-		
 		// Lifestone must be located in inventory
-		if (mineralItem.getItemLocation() != ItemLocation.INVENTORY)
+		if (!isValid(player, item) || (mineralItem.getOwnerId() != player.getObjectId()) || (mineralItem.getItemLocation() != ItemLocation.INVENTORY))
 		{
 			return false;
 		}
@@ -109,22 +94,9 @@ public abstract class AbstractRefinePacket implements ClientPacket
 	 */
 	protected static boolean isValid(Player player, Item item)
 	{
-		if (!isValid(player))
-		{
-			return false;
-		}
 		
 		// Item must belong to owner
-		if (item.getOwnerId() != player.getObjectId())
-		{
-			return false;
-		}
-		
-		if (item.isHeroItem())
-		{
-			return false;
-		}
-		if (item.isShadowItem())
+		if (!isValid(player) || (item.getOwnerId() != player.getObjectId()) || item.isHeroItem() || item.isShadowItem())
 		{
 			return false;
 		}
@@ -210,11 +182,7 @@ public abstract class AbstractRefinePacket implements ClientPacket
 			player.sendPacket(SystemMessageId.YOU_CANNOT_AUGMENT_ITEMS_WHILE_SITTING_DOWN);
 			return false;
 		}
-		if (player.isCursedWeaponEquipped())
-		{
-			return false;
-		}
-		if (player.hasRequest(EnchantItemRequest.class, EnchantItemAttributeRequest.class) || player.isProcessingTransaction())
+		if (player.isCursedWeaponEquipped() || player.hasRequest(EnchantItemRequest.class, EnchantItemAttributeRequest.class) || player.isProcessingTransaction())
 		{
 			return false;
 		}

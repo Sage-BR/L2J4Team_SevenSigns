@@ -17,7 +17,6 @@
 package org.l2j.gameserver.network.clientpackets.classchange;
 
 import org.l2j.Config;
-
 import org.l2j.commons.network.ReadablePacket;
 import org.l2j.gameserver.data.xml.CategoryData;
 import org.l2j.gameserver.enums.CategoryType;

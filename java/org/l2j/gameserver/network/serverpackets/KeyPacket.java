@@ -17,7 +17,6 @@
 package org.l2j.gameserver.network.serverpackets;
 
 import org.l2j.Config;
-
 import org.l2j.gameserver.network.ServerPackets;
 
 public class KeyPacket extends ServerPacket

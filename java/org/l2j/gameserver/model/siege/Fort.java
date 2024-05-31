@@ -33,7 +33,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.l2j.Config;
-
 import org.l2j.commons.database.DatabaseFactory;
 import org.l2j.commons.threads.ThreadPool;
 import org.l2j.gameserver.data.SpawnTable;
@@ -709,11 +708,7 @@ public class Fort extends AbstractResidence
 	
 	public boolean updateFunctions(Player player, int type, int lvl, int lease, long rate, boolean addNew)
 	{
-		if (player == null)
-		{
-			return false;
-		}
-		if ((lease > 0) && !player.destroyItemByItemId("Consume", Inventory.ADENA_ID, lease, null, true))
+		if ((player == null) || ((lease > 0) && !player.destroyItemByItemId("Consume", Inventory.ADENA_ID, lease, null, true)))
 		{
 			return false;
 		}

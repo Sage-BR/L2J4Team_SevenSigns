@@ -57,12 +57,7 @@ public class ReuseSkillIdByDamage extends AbstractEffect
 	
 	private void onDamageReceivedEvent(OnCreatureDamageReceived event)
 	{
-		if (event.isDamageOverTime() || (_chance == 0))
-		{
-			return;
-		}
-		
-		if (event.getAttacker() == event.getTarget())
+		if (event.isDamageOverTime() || (_chance == 0) || (event.getAttacker() == event.getTarget()))
 		{
 			return;
 		}

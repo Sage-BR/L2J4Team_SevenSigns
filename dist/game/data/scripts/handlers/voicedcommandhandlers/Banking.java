@@ -17,7 +17,6 @@
 package handlers.voicedcommandhandlers;
 
 import org.l2j.Config;
-
 import org.l2j.gameserver.handler.IVoicedCommandHandler;
 import org.l2j.gameserver.model.actor.Player;
 

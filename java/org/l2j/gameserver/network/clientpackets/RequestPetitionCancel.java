@@ -17,7 +17,6 @@
 package org.l2j.gameserver.network.clientpackets;
 
 import org.l2j.Config;
-
 import org.l2j.gameserver.data.xml.AdminData;
 import org.l2j.gameserver.enums.ChatType;
 import org.l2j.gameserver.instancemanager.PetitionManager;

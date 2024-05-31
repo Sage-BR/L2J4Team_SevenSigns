@@ -17,7 +17,6 @@
 package org.l2j.gameserver.network.clientpackets.enchant;
 
 import org.l2j.Config;
-
 import org.l2j.commons.network.ReadablePacket;
 import org.l2j.gameserver.data.xml.EnchantChallengePointData;
 import org.l2j.gameserver.data.xml.EnchantChallengePointData.EnchantChallengePointsItemInfo;

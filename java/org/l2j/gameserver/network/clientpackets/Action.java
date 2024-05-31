@@ -17,7 +17,6 @@
 package org.l2j.gameserver.network.clientpackets;
 
 import org.l2j.Config;
-
 import org.l2j.commons.network.ReadablePacket;
 import org.l2j.gameserver.enums.PlayerCondOverride;
 import org.l2j.gameserver.model.World;
@@ -103,14 +102,7 @@ public class Action implements ClientPacket
 		}
 		
 		// If object requested does not exist, add warn msg into logs
-		if (obj == null)
-		{
-			// pressing e.g. pickup many times quickly would get you here
-			player.sendPacket(ActionFailed.STATIC_PACKET);
-			return;
-		}
-		
-		if ((!obj.isTargetable() || player.isTargetingDisabled()) && !player.canOverrideCond(PlayerCondOverride.TARGET_ALL))
+		if ((obj == null) || ((!obj.isTargetable() || player.isTargetingDisabled()) && !player.canOverrideCond(PlayerCondOverride.TARGET_ALL)))
 		{
 			player.sendPacket(ActionFailed.STATIC_PACKET);
 			return;

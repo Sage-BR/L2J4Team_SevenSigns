@@ -19,13 +19,12 @@ package org.l2j.gameserver.network.serverpackets;
 import java.util.Calendar;
 
 import org.l2j.Config;
-
 import org.l2j.gameserver.data.sql.ClanTable;
 import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.model.clan.Clan;
 import org.l2j.gameserver.model.siege.Castle;
-import org.l2j.gameserver.network.ServerPackets;
 import org.l2j.gameserver.network.PacketLogger;
+import org.l2j.gameserver.network.ServerPackets;
 
 /**
  * Shows the Siege Info<br>

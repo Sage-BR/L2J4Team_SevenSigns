@@ -86,13 +86,7 @@ public class RequestExTryToPutShapeShiftingEnchantSupportItem implements ClientP
 			return;
 		}
 		
-		if ((extractItem.getItemLocation() != ItemLocation.INVENTORY) && (extractItem.getItemLocation() != ItemLocation.PAPERDOLL))
-		{
-			player.removeRequest(ShapeShiftingItemRequest.class);
-			return;
-		}
-		
-		if ((stone = inventory.getItemByObjectId(stone.getObjectId())) == null)
+		if (((extractItem.getItemLocation() != ItemLocation.INVENTORY) && (extractItem.getItemLocation() != ItemLocation.PAPERDOLL)) || ((stone = inventory.getItemByObjectId(stone.getObjectId())) == null))
 		{
 			player.removeRequest(ShapeShiftingItemRequest.class);
 			return;

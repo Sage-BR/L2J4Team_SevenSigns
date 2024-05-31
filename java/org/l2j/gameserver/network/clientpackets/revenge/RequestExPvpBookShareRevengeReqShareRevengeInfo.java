@@ -46,12 +46,7 @@ public class RequestExPvpBookShareRevengeReqShareRevengeInfo implements ClientPa
 	public void run(GameClient client)
 	{
 		final Player player = client.getPlayer();
-		if (player == null)
-		{
-			return;
-		}
-		
-		if (!_victimName.equals(player.getName()))
+		if ((player == null) || !_victimName.equals(player.getName()))
 		{
 			return;
 		}

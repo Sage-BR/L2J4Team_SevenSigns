@@ -17,7 +17,6 @@
 package org.l2j.gameserver.network.clientpackets;
 
 import org.l2j.Config;
-
 import org.l2j.commons.network.ReadablePacket;
 import org.l2j.gameserver.data.xml.AdminData;
 import org.l2j.gameserver.instancemanager.PetitionManager;
@@ -52,12 +51,7 @@ public class RequestPetition implements ClientPacket
 	public void run(GameClient client)
 	{
 		final Player player = client.getPlayer();
-		if (player == null)
-		{
-			return;
-		}
-		
-		if ((_type <= 0) || (_type >= 10))
+		if ((player == null) || (_type <= 0) || (_type >= 10))
 		{
 			return;
 		}

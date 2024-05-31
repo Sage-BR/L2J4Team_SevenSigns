@@ -17,7 +17,6 @@
 package org.l2j.loginserver.network.clientpackets;
 
 import org.l2j.Config;
-
 import org.l2j.commons.network.ReadablePacket;
 import org.l2j.loginserver.network.LoginClient;
 import org.l2j.loginserver.network.serverpackets.PIAgreementCheck;

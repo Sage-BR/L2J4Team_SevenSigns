@@ -24,7 +24,6 @@ import java.util.Map.Entry;
 import java.util.stream.Collectors;
 
 import org.l2j.Config;
-
 import org.l2j.gameserver.enums.ClassId;
 import org.l2j.gameserver.enums.RankingOlympiadCategory;
 import org.l2j.gameserver.enums.RankingOlympiadScope;

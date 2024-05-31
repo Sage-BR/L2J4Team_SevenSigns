@@ -33,9 +33,9 @@ import java.util.Map.Entry;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import org.l2j.Config;
 import org.w3c.dom.Document;
 
+import org.l2j.Config;
 import org.l2j.commons.util.IXmlReader;
 import org.l2j.gameserver.scripting.java.JavaExecutionContext;
 import org.l2j.gameserver.scripting.java.JavaScriptingEngine;

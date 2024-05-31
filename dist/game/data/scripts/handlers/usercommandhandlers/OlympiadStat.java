@@ -17,7 +17,6 @@
 package handlers.usercommandhandlers;
 
 import org.l2j.Config;
-
 import org.l2j.gameserver.handler.IUserCommandHandler;
 import org.l2j.gameserver.model.WorldObject;
 import org.l2j.gameserver.model.actor.Player;

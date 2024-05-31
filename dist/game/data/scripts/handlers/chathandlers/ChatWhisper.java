@@ -17,7 +17,6 @@
 package handlers.chathandlers;
 
 import org.l2j.Config;
-
 import org.l2j.gameserver.data.xml.FakePlayerData;
 import org.l2j.gameserver.enums.ChatType;
 import org.l2j.gameserver.enums.PlayerCondOverride;

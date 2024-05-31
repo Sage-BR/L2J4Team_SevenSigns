@@ -28,12 +28,7 @@ public class RequestItemList implements ClientPacket
 	public void run(GameClient client)
 	{
 		final Player player = client.getPlayer();
-		if (player == null)
-		{
-			return;
-		}
-		
-		if (player.isInventoryDisabled())
+		if ((player == null) || player.isInventoryDisabled())
 		{
 			return;
 		}

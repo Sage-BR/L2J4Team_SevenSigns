@@ -19,8 +19,9 @@ package org.l2j.commons.database;
 import java.sql.Connection;
 import java.util.logging.Logger;
 
-import org.l2j.Config;
 import org.mariadb.jdbc.MariaDbPoolDataSource;
+
+import org.l2j.Config;
 
 /**
  * @author Mobius

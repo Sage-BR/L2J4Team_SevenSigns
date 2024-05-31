@@ -24,7 +24,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.l2j.Config;
-
 import org.l2j.commons.util.StringUtil;
 import org.l2j.gameserver.geoengine.GeoEngine;
 import org.l2j.gameserver.geoengine.pathfinding.AbstractNode;

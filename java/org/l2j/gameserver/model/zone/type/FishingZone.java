@@ -19,7 +19,6 @@ package org.l2j.gameserver.model.zone.type;
 import java.lang.ref.WeakReference;
 
 import org.l2j.Config;
-
 import org.l2j.commons.threads.ThreadPool;
 import org.l2j.gameserver.enums.PlayerCondOverride;
 import org.l2j.gameserver.model.actor.Creature;

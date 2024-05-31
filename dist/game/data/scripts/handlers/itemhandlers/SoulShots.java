@@ -169,18 +169,8 @@ public class SoulShots implements IItemHandler
 			return false;
 		}
 		
-		if (shotCount < shotConsumption)
-		{
-			// Not enough Soulshots to use.
-			if (!activeOwner.disableAutoShot(itemId))
-			{
-				activeOwner.sendPacket(SystemMessageId.YOU_DON_T_HAVE_ENOUGH_SOULSHOTS_NEEDED_FOR_A_SERVITOR);
-			}
-			return false;
-		}
-		
 		// If the player doesn't have enough beast soulshot remaining, remove any auto soulshot task.
-		if (!activeOwner.destroyItemWithoutTrace("Consume", item.getObjectId(), shotConsumption, null, false))
+		if ((shotCount < shotConsumption) || !activeOwner.destroyItemWithoutTrace("Consume", item.getObjectId(), shotConsumption, null, false))
 		{
 			if (!activeOwner.disableAutoShot(itemId))
 			{

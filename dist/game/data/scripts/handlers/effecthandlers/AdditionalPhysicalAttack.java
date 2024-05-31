@@ -39,12 +39,7 @@ public class AdditionalPhysicalAttack extends PhysicalAttack
 	@Override
 	public void instant(Creature effector, Creature effected, Skill skill, Item item)
 	{
-		if (effector.isPlayer() && effector.hasAbnormalType(AbnormalType.SEAL_OF_DAMAGE))
-		{
-			return;
-		}
-		
-		if (Rnd.get(100) < _chance)
+		if ((effector.isPlayer() && effector.hasAbnormalType(AbnormalType.SEAL_OF_DAMAGE)) || (Rnd.get(100) < _chance))
 		{
 			return;
 		}

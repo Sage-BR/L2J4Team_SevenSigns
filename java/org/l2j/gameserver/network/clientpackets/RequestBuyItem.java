@@ -23,7 +23,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.l2j.Config;
-
 import org.l2j.commons.network.ReadablePacket;
 import org.l2j.gameserver.data.xml.BuyListData;
 import org.l2j.gameserver.enums.TaxType;
@@ -88,14 +87,8 @@ public class RequestBuyItem implements ClientPacket
 			return;
 		}
 		
-		if (_items == null)
-		{
-			player.sendPacket(ActionFailed.STATIC_PACKET);
-			return;
-		}
-		
 		// Alt game - Karma punishment
-		if (!Config.ALT_GAME_KARMA_PLAYER_CAN_SHOP && (player.getReputation() < 0))
+		if ((_items == null) || (!Config.ALT_GAME_KARMA_PLAYER_CAN_SHOP && (player.getReputation() < 0)))
 		{
 			player.sendPacket(ActionFailed.STATIC_PACKET);
 			return;

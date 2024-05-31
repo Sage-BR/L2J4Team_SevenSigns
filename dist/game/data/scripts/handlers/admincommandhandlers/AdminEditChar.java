@@ -29,7 +29,6 @@ import java.util.StringTokenizer;
 import java.util.logging.Logger;
 
 import org.l2j.Config;
-
 import org.l2j.commons.database.DatabaseFactory;
 import org.l2j.gameserver.data.sql.CharInfoTable;
 import org.l2j.gameserver.data.xml.CategoryData;
@@ -1618,11 +1617,7 @@ public class AdminEditChar implements IAdminCommandHandler
 			{
 				return true;
 			}
-			if (obj == null)
-			{
-				return false;
-			}
-			if (getClass() != obj.getClass())
+			if ((obj == null) || (getClass() != obj.getClass()))
 			{
 				return false;
 			}

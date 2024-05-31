@@ -62,11 +62,7 @@ public class Range implements IAffectScopeHandler
 			{
 				return false;
 			}
-			if ((c != target) && (affectObject != null) && !affectObject.checkAffectedObject(creature, c))
-			{
-				return false;
-			}
-			if (!GeoEngine.getInstance().canSeeTarget(target, c))
+			if (((c != target) && (affectObject != null) && !affectObject.checkAffectedObject(creature, c)) || !GeoEngine.getInstance().canSeeTarget(target, c))
 			{
 				return false;
 			}

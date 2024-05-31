@@ -109,11 +109,7 @@ public class DoppelgangerAI extends CreatureAI
 	private void thinkInteract()
 	{
 		final WorldObject target = getTarget();
-		if (checkTargetLost(target))
-		{
-			return;
-		}
-		if (maybeMoveToPawn(target, 36))
+		if (checkTargetLost(target) || maybeMoveToPawn(target, 36))
 		{
 			return;
 		}

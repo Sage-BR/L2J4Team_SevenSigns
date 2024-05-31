@@ -17,7 +17,6 @@
 package org.l2j.gameserver.model.zone.type;
 
 import org.l2j.Config;
-
 import org.l2j.gameserver.data.xml.SkillData;
 import org.l2j.gameserver.enums.MountType;
 import org.l2j.gameserver.enums.Race;

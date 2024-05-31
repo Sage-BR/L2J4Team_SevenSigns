@@ -55,12 +55,7 @@ public class ExPacket implements ClientPacket
 	@Override
 	public void run(GameClient client)
 	{
-		if (_newPacket == null)
-		{
-			return;
-		}
-		
-		if (!_packetEnum.getConnectionStates().contains(client.getConnectionState()))
+		if ((_newPacket == null) || !_packetEnum.getConnectionStates().contains(client.getConnectionState()))
 		{
 			return;
 		}

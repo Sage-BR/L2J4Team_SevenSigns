@@ -20,7 +20,6 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.l2j.Config;
-
 import org.l2j.commons.network.ReadablePacket;
 import org.l2j.commons.threads.ThreadPool;
 import org.l2j.gameserver.ai.CtrlEvent;
@@ -81,13 +80,8 @@ public class UseItem implements ClientPacket
 	public void run(GameClient client)
 	{
 		final Player player = client.getPlayer();
-		if (player == null)
-		{
-			return;
-		}
-		
 		// Flood protect UseItem
-		if (!client.getFloodProtectors().canUseItem())
+		if ((player == null) || !client.getFloodProtectors().canUseItem())
 		{
 			return;
 		}

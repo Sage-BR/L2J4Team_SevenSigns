@@ -20,7 +20,6 @@ import java.util.Collection;
 import java.util.StringTokenizer;
 
 import org.l2j.Config;
-
 import org.l2j.gameserver.cache.HtmCache;
 import org.l2j.gameserver.handler.IAdminCommandHandler;
 import org.l2j.gameserver.model.World;

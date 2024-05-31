@@ -25,7 +25,6 @@ import java.util.StringTokenizer;
 import java.util.logging.Logger;
 
 import org.l2j.Config;
-
 import org.l2j.gameserver.data.SpawnTable;
 import org.l2j.gameserver.data.xml.AdminData;
 import org.l2j.gameserver.data.xml.NpcData;

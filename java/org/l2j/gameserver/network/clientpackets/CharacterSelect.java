@@ -19,7 +19,6 @@ package org.l2j.gameserver.network.clientpackets;
 import java.util.logging.Logger;
 
 import org.l2j.Config;
-
 import org.l2j.commons.network.ReadablePacket;
 import org.l2j.gameserver.data.sql.CharInfoTable;
 import org.l2j.gameserver.data.xml.AdminData;
@@ -111,16 +110,10 @@ public class CharacterSelect implements ClientPacket
 					}
 					
 					// Banned?
+					// Selected character is banned (compatibility with previous versions).
 					if (PunishmentManager.getInstance().hasPunishment(info.getObjectId(), PunishmentAffect.CHARACTER, PunishmentType.BAN) //
 						|| PunishmentManager.getInstance().hasPunishment(client.getAccountName(), PunishmentAffect.ACCOUNT, PunishmentType.BAN) //
-						|| PunishmentManager.getInstance().hasPunishment(client.getIp(), PunishmentAffect.IP, PunishmentType.BAN))
-					{
-						client.close(ServerClose.STATIC_PACKET);
-						return;
-					}
-					
-					// Selected character is banned (compatibility with previous versions).
-					if (info.getAccessLevel() < 0)
+						|| PunishmentManager.getInstance().hasPunishment(client.getIp(), PunishmentAffect.IP, PunishmentType.BAN) || (info.getAccessLevel() < 0))
 					{
 						client.close(ServerClose.STATIC_PACKET);
 						return;

@@ -23,7 +23,6 @@ import java.sql.SQLException;
 import java.util.Map.Entry;
 
 import org.l2j.Config;
-
 import org.l2j.loginserver.GameServerTable;
 
 public class GameServerRegister extends BaseGameServerRegister

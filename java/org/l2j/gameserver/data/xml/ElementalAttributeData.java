@@ -20,9 +20,9 @@ import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.l2j.Config;
 import org.w3c.dom.Document;
 
+import org.l2j.Config;
 import org.l2j.commons.util.IXmlReader;
 import org.l2j.commons.util.Rnd;
 import org.l2j.gameserver.enums.AttributeType;

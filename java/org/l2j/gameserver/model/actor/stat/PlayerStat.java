@@ -19,7 +19,6 @@ package org.l2j.gameserver.model.actor.stat;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import org.l2j.Config;
-
 import org.l2j.gameserver.data.sql.CharInfoTable;
 import org.l2j.gameserver.data.xml.ExperienceData;
 import org.l2j.gameserver.enums.ElementalType;
@@ -78,12 +77,7 @@ public class PlayerStat extends PlayableStat
 		final Player player = getActiveChar();
 		
 		// Allowed to gain exp?
-		if (!player.getAccessLevel().canGainExp())
-		{
-			return false;
-		}
-		
-		if (!super.addExp(value))
+		if (!player.getAccessLevel().canGainExp() || !super.addExp(value))
 		{
 			return false;
 		}

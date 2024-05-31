@@ -22,7 +22,6 @@ import java.util.List;
 import java.util.logging.Logger;
 
 import org.l2j.Config;
-
 import org.l2j.gameserver.data.xml.ItemData;
 import org.l2j.gameserver.enums.SpecialItemType;
 import org.l2j.gameserver.enums.TeleportType;

@@ -20,7 +20,6 @@ import java.util.List;
 import java.util.Set;
 
 import org.l2j.Config;
-
 import org.l2j.commons.util.Rnd;
 
 /**

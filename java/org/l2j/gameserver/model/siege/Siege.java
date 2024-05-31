@@ -32,7 +32,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.l2j.Config;
-
 import org.l2j.commons.database.DatabaseFactory;
 import org.l2j.commons.threads.ThreadPool;
 import org.l2j.gameserver.cache.RelationCache;
@@ -1246,15 +1245,7 @@ public class Siege implements Siegable
 			}
 			if (siege.getSiegeDate().get(Calendar.DAY_OF_WEEK) == getSiegeDate().get(Calendar.DAY_OF_WEEK))
 			{
-				if (siege.checkIsAttacker(clan))
-				{
-					return true;
-				}
-				if (siege.checkIsDefender(clan))
-				{
-					return true;
-				}
-				if (siege.checkIsDefenderWaiting(clan))
+				if (siege.checkIsAttacker(clan) || siege.checkIsDefender(clan) || siege.checkIsDefenderWaiting(clan))
 				{
 					return true;
 				}

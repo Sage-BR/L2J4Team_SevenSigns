@@ -21,7 +21,6 @@ import static org.l2j.gameserver.model.itemcontainer.Inventory.MAX_ADENA;
 import java.util.Arrays;
 
 import org.l2j.Config;
-
 import org.l2j.commons.network.ReadablePacket;
 import org.l2j.gameserver.data.xml.EnsoulData;
 import org.l2j.gameserver.data.xml.ItemData;

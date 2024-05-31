@@ -17,7 +17,6 @@
 package ai.areas.TowerOfInsolence.Arushinai;
 
 import org.l2j.Config;
-
 import org.l2j.gameserver.instancemanager.GlobalVariablesManager;
 import org.l2j.gameserver.instancemanager.HeavenlyRiftManager;
 import org.l2j.gameserver.model.Party;

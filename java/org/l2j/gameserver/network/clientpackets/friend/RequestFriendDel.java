@@ -56,15 +56,7 @@ public class RequestFriendDel implements ClientPacket
 		}
 		
 		final int id = CharInfoTable.getInstance().getIdByName(_name);
-		if (id == -1)
-		{
-			sm = new SystemMessage(SystemMessageId.C1_IS_NOT_ON_YOUR_FRIEND_LIST);
-			sm.addString(_name);
-			player.sendPacket(sm);
-			return;
-		}
-		
-		if (!player.getFriendList().contains(id))
+		if ((id == -1) || !player.getFriendList().contains(id))
 		{
 			sm = new SystemMessage(SystemMessageId.C1_IS_NOT_ON_YOUR_FRIEND_LIST);
 			sm.addString(_name);

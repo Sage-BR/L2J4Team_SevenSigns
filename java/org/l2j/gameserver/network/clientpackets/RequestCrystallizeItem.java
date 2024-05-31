@@ -19,7 +19,6 @@ package org.l2j.gameserver.network.clientpackets;
 import java.util.List;
 
 import org.l2j.Config;
-
 import org.l2j.commons.network.ReadablePacket;
 import org.l2j.commons.util.Rnd;
 import org.l2j.gameserver.data.xml.ItemCrystallizationData;
@@ -117,13 +116,7 @@ public class RequestCrystallizeItem implements ClientPacket
 			return;
 		}
 		
-		if (!itemToRemove.getTemplate().isCrystallizable() || (itemToRemove.getTemplate().getCrystalCount() <= 0) || (itemToRemove.getTemplate().getCrystalType() == CrystalType.NONE))
-		{
-			player.sendPacket(SystemMessageId.THIS_ITEM_CANNOT_BE_CRYSTALLIZED);
-			return;
-		}
-		
-		if (!player.getInventory().canManipulateWithItemId(itemToRemove.getId()))
+		if (!itemToRemove.getTemplate().isCrystallizable() || (itemToRemove.getTemplate().getCrystalCount() <= 0) || (itemToRemove.getTemplate().getCrystalType() == CrystalType.NONE) || !player.getInventory().canManipulateWithItemId(itemToRemove.getId()))
 		{
 			player.sendPacket(SystemMessageId.THIS_ITEM_CANNOT_BE_CRYSTALLIZED);
 			return;

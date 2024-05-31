@@ -25,7 +25,6 @@ import java.util.Base64;
 import java.util.Scanner;
 
 import org.l2j.Config;
-
 import org.l2j.commons.database.DatabaseFactory;
 import org.l2j.commons.enums.ServerMode;
 

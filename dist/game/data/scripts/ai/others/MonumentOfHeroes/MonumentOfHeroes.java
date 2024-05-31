@@ -19,7 +19,6 @@ package ai.others.MonumentOfHeroes;
 import java.util.List;
 
 import org.l2j.Config;
-
 import org.l2j.gameserver.data.xml.ClassListData;
 import org.l2j.gameserver.enums.CategoryType;
 import org.l2j.gameserver.model.actor.Npc;

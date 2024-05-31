@@ -484,8 +484,10 @@ public class GameServer
 		if (EventDispatcher.getInstance().hasListener(EventType.ON_SERVER_START))
 		{
 			EventDispatcher.getInstance().notifyEventAsync(new OnServerStart());
-			VDSystemManager.getInstance();
+			
 		}
+		
+		VDSystemManager.getInstance();
 		
 		PunishmentManager.getInstance();
 		

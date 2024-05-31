@@ -56,11 +56,7 @@ public class PointBlank implements IAffectScopeHandler
 			}
 			if (affectObject != null)
 			{
-				if (c.isDead() && (skill.getAffectObject() != AffectObject.OBJECT_DEAD_NPC_BODY))
-				{
-					return false;
-				}
-				if (!affectObject.checkAffectedObject(creature, c))
+				if ((c.isDead() && (skill.getAffectObject() != AffectObject.OBJECT_DEAD_NPC_BODY)) || !affectObject.checkAffectedObject(creature, c))
 				{
 					return false;
 				}

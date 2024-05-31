@@ -26,7 +26,6 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.logging.Logger;
 
 import org.l2j.Config;
-
 import org.l2j.gameserver.data.xml.ItemData;
 import org.l2j.gameserver.enums.PrivateStoreType;
 import org.l2j.gameserver.instancemanager.PrivateStoreHistoryManager;
@@ -192,12 +191,7 @@ public class TradeList
 		}
 		
 		final Item item = (Item) o;
-		if (!(item.isTradeable() || (_owner.isGM() && Config.GM_TRADE_RESTRICTED_ITEMS)) || item.isQuestItem())
-		{
-			return null;
-		}
-		
-		if (!_owner.getInventory().canManipulateWithItemId(item.getId()))
+		if (!(item.isTradeable() || (_owner.isGM() && Config.GM_TRADE_RESTRICTED_ITEMS)) || item.isQuestItem() || !_owner.getInventory().canManipulateWithItemId(item.getId()))
 		{
 			return null;
 		}
@@ -908,12 +902,7 @@ public class TradeList
 				break;
 			}
 			
-			if (ownerInventory.getAdena() < _totalPrice)
-			{
-				continue;
-			}
-			
-			if ((item.getObjectId() < 1) || (item.getObjectId() > sellerItems.length))
+			if ((ownerInventory.getAdena() < _totalPrice) || (item.getObjectId() < 1) || (item.getObjectId() > sellerItems.length))
 			{
 				continue;
 			}

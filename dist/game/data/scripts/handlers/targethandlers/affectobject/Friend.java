@@ -17,7 +17,6 @@
 package handlers.targethandlers.affectobject;
 
 import org.l2j.Config;
-
 import org.l2j.gameserver.handler.IAffectObjectHandler;
 import org.l2j.gameserver.model.CommandChannel;
 import org.l2j.gameserver.model.Party;

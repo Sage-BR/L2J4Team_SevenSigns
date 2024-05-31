@@ -20,7 +20,6 @@ import java.util.Calendar;
 import java.util.Date;
 
 import org.l2j.Config;
-
 import org.l2j.commons.network.ReadablePacket;
 import org.l2j.gameserver.instancemanager.CastleManager;
 import org.l2j.gameserver.model.actor.Player;

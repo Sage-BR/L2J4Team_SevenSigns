@@ -20,7 +20,6 @@ import java.text.SimpleDateFormat;
 import java.util.StringTokenizer;
 
 import org.l2j.Config;
-
 import org.l2j.commons.util.CommonUtil;
 import org.l2j.gameserver.data.xml.SkillData;
 import org.l2j.gameserver.data.xml.TeleporterData;
@@ -882,11 +881,7 @@ public class FortManager extends Merchant
 					final int skillId = Integer.parseInt(val);
 					try
 					{
-						if (getFort().getFortFunction(Fort.FUNC_SUPPORT) == null)
-						{
-							return;
-						}
-						if (getFort().getFortFunction(Fort.FUNC_SUPPORT).getLvl() == 0)
+						if ((getFort().getFortFunction(Fort.FUNC_SUPPORT) == null) || (getFort().getFortFunction(Fort.FUNC_SUPPORT).getLvl() == 0))
 						{
 							return;
 						}

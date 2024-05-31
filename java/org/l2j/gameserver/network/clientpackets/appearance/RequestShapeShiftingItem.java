@@ -70,14 +70,7 @@ public class RequestShapeShiftingItem implements ClientPacket
 		final PlayerInventory inventory = player.getInventory();
 		final Item targetItem = inventory.getItemByObjectId(_targetItemObjId);
 		Item stone = request.getAppearanceStone();
-		if ((targetItem == null) || (stone == null))
-		{
-			player.sendPacket(ExShapeShiftingResult.CLOSE);
-			player.removeRequest(ShapeShiftingItemRequest.class);
-			return;
-		}
-		
-		if ((stone.getOwnerId() != player.getObjectId()) || (targetItem.getOwnerId() != player.getObjectId()))
+		if ((targetItem == null) || (stone == null) || (stone.getOwnerId() != player.getObjectId()) || (targetItem.getOwnerId() != player.getObjectId()))
 		{
 			player.sendPacket(ExShapeShiftingResult.CLOSE);
 			player.removeRequest(ShapeShiftingItemRequest.class);

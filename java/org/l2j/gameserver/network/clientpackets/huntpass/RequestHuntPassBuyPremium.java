@@ -19,7 +19,6 @@ package org.l2j.gameserver.network.clientpackets.huntpass;
 import java.util.Calendar;
 
 import org.l2j.Config;
-
 import org.l2j.commons.network.ReadablePacket;
 import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.network.GameClient;

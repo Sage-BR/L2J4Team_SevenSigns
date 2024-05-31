@@ -17,7 +17,6 @@
 package org.l2j.gameserver.network.clientpackets.pet;
 
 import org.l2j.Config;
-
 import org.l2j.commons.network.ReadablePacket;
 import org.l2j.gameserver.enums.PrivateStoreType;
 import org.l2j.gameserver.model.actor.Player;
@@ -60,13 +59,8 @@ public class RequestGiveItemToPet implements ClientPacket
 			return;
 		}
 		
-		if (player.hasItemRequest())
-		{
-			return;
-		}
-		
 		// Alt game - Karma punishment
-		if (!Config.ALT_GAME_KARMA_PLAYER_CAN_TRADE && (player.getReputation() < 0))
+		if (player.hasItemRequest() || (!Config.ALT_GAME_KARMA_PLAYER_CAN_TRADE && (player.getReputation() < 0)))
 		{
 			return;
 		}

@@ -24,7 +24,6 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 
 import org.l2j.Config;
-
 import org.l2j.gameserver.model.actor.Player;
 
 /**

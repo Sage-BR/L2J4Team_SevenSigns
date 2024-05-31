@@ -17,7 +17,6 @@
 package org.l2j.gameserver.network.clientpackets.sayune;
 
 import org.l2j.Config;
-
 import org.l2j.gameserver.data.xml.SayuneData;
 import org.l2j.gameserver.instancemanager.ZoneManager;
 import org.l2j.gameserver.model.SayuneEntry;

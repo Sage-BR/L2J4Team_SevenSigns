@@ -22,7 +22,6 @@ import java.util.Map;
 import java.util.logging.Logger;
 
 import org.l2j.Config;
-
 import org.l2j.commons.network.ReadablePacket;
 import org.l2j.commons.util.Rnd;
 import org.l2j.gameserver.data.xml.EnchantChallengePointData;
@@ -91,12 +90,7 @@ public class ExRequestMultiEnchantItemList implements ClientPacket
 		player.getChallengeInfo().setChallengePointsPendingRecharge(-1, -1);
 		
 		final EnchantItemRequest request = player.getRequest(EnchantItemRequest.class);
-		if (request == null)
-		{
-			return;
-		}
-		
-		if ((request.getEnchantingScroll() == null) || request.isProcessing())
+		if ((request == null) || (request.getEnchantingScroll() == null) || request.isProcessing())
 		{
 			return;
 		}

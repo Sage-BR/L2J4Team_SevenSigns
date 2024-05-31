@@ -17,7 +17,6 @@
 package org.l2j.gameserver.network.clientpackets;
 
 import org.l2j.Config;
-
 import org.l2j.commons.network.ReadablePacket;
 import org.l2j.gameserver.enums.MailType;
 import org.l2j.gameserver.instancemanager.MailManager;
@@ -52,12 +51,7 @@ public class RequestRejectPostAttachment implements ClientPacket
 		}
 		
 		final Player player = client.getPlayer();
-		if (player == null)
-		{
-			return;
-		}
-		
-		if (!client.getFloodProtectors().canPerformTransaction())
+		if ((player == null) || !client.getFloodProtectors().canPerformTransaction())
 		{
 			return;
 		}

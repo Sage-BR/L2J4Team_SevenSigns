@@ -19,7 +19,6 @@ package org.l2j.gameserver.network.clientpackets;
 import java.util.logging.Logger;
 
 import org.l2j.Config;
-
 import org.l2j.commons.network.ReadablePacket;
 import org.l2j.commons.util.Rnd;
 import org.l2j.gameserver.data.xml.SkillData;
@@ -86,22 +85,7 @@ public class RequestExEnchantSkill implements ClientPacket
 			return;
 		}
 		
-		if (!player.isAllowedToEnchantSkills())
-		{
-			return;
-		}
-		
-		if (player.isSellingBuffs())
-		{
-			return;
-		}
-		
-		if (player.isInOlympiadMode())
-		{
-			return;
-		}
-		
-		if (player.getPrivateStoreType() != PrivateStoreType.NONE)
+		if (!player.isAllowedToEnchantSkills() || player.isSellingBuffs() || player.isInOlympiadMode() || (player.getPrivateStoreType() != PrivateStoreType.NONE))
 		{
 			return;
 		}

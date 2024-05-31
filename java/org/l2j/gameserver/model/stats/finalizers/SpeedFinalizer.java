@@ -19,7 +19,6 @@ package org.l2j.gameserver.model.stats.finalizers;
 import java.util.OptionalDouble;
 
 import org.l2j.Config;
-
 import org.l2j.gameserver.data.xml.PetDataTable;
 import org.l2j.gameserver.instancemanager.ZoneManager;
 import org.l2j.gameserver.model.PetLevelData;

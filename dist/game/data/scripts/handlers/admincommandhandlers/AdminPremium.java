@@ -20,7 +20,6 @@ import java.text.SimpleDateFormat;
 import java.util.concurrent.TimeUnit;
 
 import org.l2j.Config;
-
 import org.l2j.gameserver.cache.HtmCache;
 import org.l2j.gameserver.handler.IAdminCommandHandler;
 import org.l2j.gameserver.instancemanager.PcCafePointsManager;

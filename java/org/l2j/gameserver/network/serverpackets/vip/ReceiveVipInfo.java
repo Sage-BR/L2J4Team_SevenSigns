@@ -20,7 +20,6 @@ import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 
 import org.l2j.Config;
-
 import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.model.vip.VipManager;
 import org.l2j.gameserver.network.ServerPackets;

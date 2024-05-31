@@ -44,17 +44,7 @@ public class ExRequestClassChangeVerifying implements ClientPacket
 	public void run(GameClient client)
 	{
 		final Player player = client.getPlayer();
-		if (player == null)
-		{
-			return;
-		}
-		
-		if (_classId != player.getClassId().getId())
-		{
-			return;
-		}
-		
-		if (player.isInCategory(CategoryType.FOURTH_CLASS_GROUP))
+		if ((player == null) || (_classId != player.getClassId().getId()) || player.isInCategory(CategoryType.FOURTH_CLASS_GROUP))
 		{
 			return;
 		}

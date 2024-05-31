@@ -34,7 +34,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.l2j.Config;
-
 import org.l2j.commons.database.DatabaseFactory;
 import org.l2j.commons.util.StringUtil;
 import org.l2j.gameserver.data.xml.AgathionData;
@@ -1847,11 +1846,7 @@ public class Item extends WorldObject
 	
 	public boolean isAvailable()
 	{
-		if (!_itemTemplate.isConditionAttached())
-		{
-			return true;
-		}
-		if ((_loc == ItemLocation.PET) || (_loc == ItemLocation.PET_EQUIP))
+		if (!_itemTemplate.isConditionAttached() || (_loc == ItemLocation.PET) || (_loc == ItemLocation.PET_EQUIP))
 		{
 			return true;
 		}
@@ -2565,11 +2560,7 @@ public class Item extends WorldObject
 					final Player player = getActingPlayer();
 					if (player != null)
 					{
-						if (!stone.getRaces().isEmpty() && !stone.getRaces().contains(player.getRace()))
-						{
-							return 0;
-						}
-						if (!stone.getRacesNot().isEmpty() && stone.getRacesNot().contains(player.getRace()))
+						if ((!stone.getRaces().isEmpty() && !stone.getRaces().contains(player.getRace())) || (!stone.getRacesNot().isEmpty() && stone.getRacesNot().contains(player.getRace())))
 						{
 							return 0;
 						}

@@ -17,7 +17,6 @@
 package handlers.playeractions;
 
 import org.l2j.Config;
-
 import org.l2j.gameserver.data.BotReportTable;
 import org.l2j.gameserver.handler.IPlayerActionHandler;
 import org.l2j.gameserver.model.ActionDataHolder;

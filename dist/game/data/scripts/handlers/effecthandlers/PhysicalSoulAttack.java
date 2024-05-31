@@ -17,7 +17,6 @@
 package handlers.effecthandlers;
 
 import org.l2j.Config;
-
 import org.l2j.gameserver.enums.ShotType;
 import org.l2j.gameserver.model.StatSet;
 import org.l2j.gameserver.model.actor.Attackable;
@@ -72,12 +71,7 @@ public class PhysicalSoulAttack extends AbstractEffect
 	@Override
 	public void instant(Creature effector, Creature effected, Skill skill, Item item)
 	{
-		if (!effector.isPlayer())
-		{
-			return;
-		}
-		
-		if (effector.isAlikeDead())
+		if (!effector.isPlayer() || effector.isAlikeDead())
 		{
 			return;
 		}

@@ -20,7 +20,6 @@ import static org.l2j.gameserver.model.itemcontainer.Inventory.ADENA_ID;
 import static org.l2j.gameserver.model.itemcontainer.Inventory.MAX_ADENA;
 
 import org.l2j.Config;
-
 import org.l2j.commons.network.ReadablePacket;
 import org.l2j.gameserver.data.sql.CharInfoTable;
 import org.l2j.gameserver.data.xml.AdminData;
@@ -161,13 +160,7 @@ public class RequestSendPost implements ClientPacket
 			return;
 		}
 		
-		if (_subject.length() > MAX_SUBJ_LENGTH)
-		{
-			player.sendPacket(SystemMessageId.THE_ALLOWED_LENGTH_FOR_A_TITLE_EXCEEDED);
-			return;
-		}
-		
-		if (_text.length() > MAX_TEXT_LENGTH)
+		if ((_subject.length() > MAX_SUBJ_LENGTH) || (_text.length() > MAX_TEXT_LENGTH))
 		{
 			// not found message for this
 			player.sendPacket(SystemMessageId.THE_ALLOWED_LENGTH_FOR_A_TITLE_EXCEEDED);

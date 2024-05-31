@@ -19,7 +19,6 @@ package org.l2j.gameserver.model.stats;
 import java.util.OptionalDouble;
 
 import org.l2j.Config;
-
 import org.l2j.gameserver.enums.PlayerCondOverride;
 import org.l2j.gameserver.model.actor.Creature;
 import org.l2j.gameserver.model.actor.instance.Pet;

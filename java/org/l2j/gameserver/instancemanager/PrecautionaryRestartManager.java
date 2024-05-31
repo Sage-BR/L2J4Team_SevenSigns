@@ -25,7 +25,6 @@ import javax.management.MBeanServer;
 import javax.management.ObjectName;
 
 import org.l2j.Config;
-
 import org.l2j.commons.threads.ThreadPool;
 import org.l2j.gameserver.Shutdown;
 import org.l2j.gameserver.model.World;
@@ -150,17 +149,7 @@ public class PrecautionaryRestartManager
 				continue;
 			}
 			
-			if (player.isInOlympiadMode())
-			{
-				return true;
-			}
-			
-			if (player.isOnEvent())
-			{
-				return true;
-			}
-			
-			if (player.isInInstance())
+			if (player.isInOlympiadMode() || player.isOnEvent() || player.isInInstance())
 			{
 				return true;
 			}

@@ -24,7 +24,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.l2j.Config;
-
 import org.l2j.gameserver.handler.ActionHandler;
 import org.l2j.gameserver.handler.ActionShiftHandler;
 import org.l2j.gameserver.handler.AdminCommandHandler;

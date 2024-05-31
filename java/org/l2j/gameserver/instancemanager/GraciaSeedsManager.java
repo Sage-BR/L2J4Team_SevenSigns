@@ -20,7 +20,6 @@ import java.util.Calendar;
 import java.util.logging.Logger;
 
 import org.l2j.Config;
-
 import org.l2j.commons.threads.ThreadPool;
 import org.l2j.gameserver.instancemanager.tasks.UpdateSoDStateTask;
 import org.l2j.gameserver.model.quest.Quest;

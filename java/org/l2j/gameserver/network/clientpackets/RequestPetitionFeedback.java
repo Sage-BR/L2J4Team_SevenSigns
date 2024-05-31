@@ -49,12 +49,7 @@ public class RequestPetitionFeedback implements ClientPacket
 	public void run(GameClient client)
 	{
 		final Player player = client.getPlayer();
-		if ((player == null) || (player.getLastPetitionGmName() == null))
-		{
-			return;
-		}
-		
-		if ((_rate > 4) || (_rate < 0))
+		if ((player == null) || (player.getLastPetitionGmName() == null) || (_rate > 4) || (_rate < 0))
 		{
 			return;
 		}
