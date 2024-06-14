@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/multisell.xsd">
+	<npcs>
+		<npc>-1</npc> <!-- Item Multisell -->
+	</npcs>
+	<!-- Colorful Yarn (Time-limited) - Sealed (72448) -->
+	<item>
+		<ingredient id="72448" count="500" /> <!-- Colorful Yarn (Time-limited) - Sealed -->
+		<production id="72455" count="1" /> <!-- Nana's Doll Clothes - Santa Claus (Time-limited) - Sealed -->
+	</item>
+	<item>
+		<ingredient id="72448" count="400" /> <!-- Colorful Yarn (Time-limited) - Sealed -->
+		<ingredient id="57" count="20000000" /> <!-- Adena -->
+		<production id="97122" count="1" /> <!-- Spellbook Coupon - 2 Stars (Time-limited) - Sealed -->
+	</item>
+	<item>
+		<ingredient id="72448" count="200" /> <!-- Colorful Yarn (Time-limited) - Sealed -->
+		<ingredient id="57" count="10000000" /> <!-- Adena -->
+		<production id="97121" count="1" /> <!-- Spellbook Coupon - 1 Star (Time-limited) - Sealed -->
+	</item>
+	<item>
+		<ingredient id="72448" count="1" /> <!-- Colorful Yarn (Time-limited) - Sealed -->
+		<ingredient id="57" count="100000" /> <!-- Adena -->
+		<production id="72456" count="1" /> <!-- Transformation Scroll: Rudolph (Time-limited) - Sealed -->
+	</item>
+	<item>
+		<ingredient id="72448" count="1" /> <!-- Colorful Yarn (Time-limited) - Sealed -->
+		<production id="94380" count="1" /> <!-- Scroll: Boost Attack (Time-limited) - Sealed -->
+	</item>
+	<item>
+		<ingredient id="72448" count="1" /> <!-- Colorful Yarn (Time-limited) - Sealed -->
+		<production id="94381" count="1" /> <!-- Scroll: Boost Defense (Time-limited) - Sealed -->
+	</item>
+	<item>
+		<ingredient id="72448" count="1" /> <!-- Colorful Yarn (Time-limited) - Sealed -->
+		<production id="91840" count="1" /> <!-- XP Growth Scroll (Time-limited) - Sealed -->
+	</item>
+	<item>
+		<ingredient id="72448" count="1" /> <!-- Colorful Yarn (Time-limited) - Sealed -->
+		<ingredient id="57" count="2000" /> <!-- Adena -->
+		<production id="94872" count="1" /> <!-- Life Control Tower's Scroll of Blessing (Time-limited) - Sealed -->
+	</item>
+	<item>
+		<ingredient id="72448" count="1" /> <!-- Colorful Yarn (Time-limited) - Sealed -->
+		<production id="90907" count="100" /> <!-- Soulshot Ticket - Sealed -->
+	</item>
+</list>

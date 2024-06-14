@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,7 +16,6 @@
  */
 package org.l2j.gameserver.network.clientpackets.pledgedonation;
 
-import org.l2j.commons.network.ReadablePacket;
 import org.l2j.commons.util.Rnd;
 import org.l2j.gameserver.enums.MailType;
 import org.l2j.gameserver.instancemanager.MailManager;
@@ -26,29 +25,27 @@ import org.l2j.gameserver.model.clan.Clan;
 import org.l2j.gameserver.model.itemcontainer.Inventory;
 import org.l2j.gameserver.model.itemcontainer.Mail;
 import org.l2j.gameserver.model.variables.PlayerVariables;
-import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.clientpackets.ClientPacket;
-import org.l2j.gameserver.network.serverpackets.limitshop.ExBloodyCoinCount;
 import org.l2j.gameserver.network.serverpackets.pledgedonation.ExPledgeDonationInfo;
 import org.l2j.gameserver.network.serverpackets.pledgedonation.ExPledgeDonationRequest;
 
 /**
  * @author Berezkin Nikolay
  */
-public class RequestExPledgeDonationRequest implements ClientPacket
+public class RequestExPledgeDonationRequest extends ClientPacket
 {
 	private int _type;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_type = packet.readByte();
+		_type = readByte();
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
-		final Player player = client.getPlayer();
+		final Player player = getPlayer();
 		if (player == null)
 		{
 			return;
@@ -105,7 +102,6 @@ public class RequestExPledgeDonationRequest implements ClientPacket
 		}
 		player.getVariables().set(PlayerVariables.CLAN_DONATION_POINTS, Math.max(player.getClanDonationPoints() - 1, 0));
 		criticalSuccess(player, clan, _type);
-		player.sendPacket(new ExBloodyCoinCount(player));
 		player.sendItemList();
 		player.sendPacket(new ExPledgeDonationRequest(true, _type, player.getClanDonationPoints()));
 		player.sendPacket(new ExPledgeDonationInfo(player.getClanDonationPoints(), true));

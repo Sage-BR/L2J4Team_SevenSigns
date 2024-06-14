@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,6 +22,15 @@ import org.l2j.gameserver.network.clientpackets.ClientPacket;
  * This Packet doesn't seem to be doing anything.
  * @author NosBit
  */
-public class RequestCommissionCancel implements ClientPacket
+public class RequestCommissionCancel extends ClientPacket
 {
+	@Override
+	protected void readImpl()
+	{
+	}
+	
+	@Override
+	protected void runImpl()
+	{
+	}
 }

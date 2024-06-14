@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -279,7 +279,12 @@ public class PlayableStat extends CreatureStat
 	private void addReputationToClanBasedOnLevel(Player player, int leveledUpCount)
 	{
 		Clan clan = player.getClan();
-		if ((clan == null) || (clan.getLevel() < 3)) // When a character from clan level 3 or above increases its level, CRP are added
+		if (clan == null)
+		{
+			return;
+		}
+		
+		if (clan.getLevel() < 3) // When a character from clan level 3 or above increases its level, CRP are added
 		{
 			return;
 		}

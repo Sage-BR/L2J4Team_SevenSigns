@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,6 +16,8 @@
  */
 package org.l2j.gameserver.network.serverpackets;
 
+import org.l2j.commons.network.WritableBuffer;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 
 public class FriendAddRequest extends ServerPacket
@@ -31,10 +33,10 @@ public class FriendAddRequest extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.FRIEND_ADD_REQUEST.writeId(this);
-		writeByte(1);
-		writeString(_requestorName);
+		ServerPackets.FRIEND_ADD_REQUEST.writeId(this, buffer);
+		buffer.writeByte(1);
+		buffer.writeString(_requestorName);
 	}
 }

@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,10 +22,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.data.xml.BeautyShopData;
 import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.model.beautyshop.BeautyData;
 import org.l2j.gameserver.model.beautyshop.BeautyItem;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 
 /**
@@ -57,43 +59,43 @@ public class ExBeautyItemList extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_BEAUTY_ITEM_LIST.writeId(this);
-		writeInt(HAIR_TYPE);
-		writeInt(_beautyData.getHairList().size());
+		ServerPackets.EX_BEAUTY_ITEM_LIST.writeId(this, buffer);
+		buffer.writeInt(HAIR_TYPE);
+		buffer.writeInt(_beautyData.getHairList().size());
 		for (BeautyItem hair : _beautyData.getHairList().values())
 		{
-			writeInt(0); // ?
-			writeInt(hair.getId());
-			writeInt(hair.getAdena());
-			writeInt(hair.getResetAdena());
-			writeInt(hair.getBeautyShopTicket());
-			writeInt(1); // Limit
+			buffer.writeInt(0); // ?
+			buffer.writeInt(hair.getId());
+			buffer.writeInt(hair.getAdena());
+			buffer.writeInt(hair.getResetAdena());
+			buffer.writeInt(hair.getBeautyShopTicket());
+			buffer.writeInt(1); // Limit
 		}
-		writeInt(FACE_TYPE);
-		writeInt(_beautyData.getFaceList().size());
+		buffer.writeInt(FACE_TYPE);
+		buffer.writeInt(_beautyData.getFaceList().size());
 		for (BeautyItem face : _beautyData.getFaceList().values())
 		{
-			writeInt(0); // ?
-			writeInt(face.getId());
-			writeInt(face.getAdena());
-			writeInt(face.getResetAdena());
-			writeInt(face.getBeautyShopTicket());
-			writeInt(1); // Limit
+			buffer.writeInt(0); // ?
+			buffer.writeInt(face.getId());
+			buffer.writeInt(face.getAdena());
+			buffer.writeInt(face.getResetAdena());
+			buffer.writeInt(face.getBeautyShopTicket());
+			buffer.writeInt(1); // Limit
 		}
-		writeInt(COLOR_TYPE);
-		writeInt(_colorCount);
+		buffer.writeInt(COLOR_TYPE);
+		buffer.writeInt(_colorCount);
 		for (Entry<Integer, List<BeautyItem>> entry : _colorData.entrySet())
 		{
 			for (BeautyItem color : entry.getValue())
 			{
-				writeInt(entry.getKey());
-				writeInt(color.getId());
-				writeInt(color.getAdena());
-				writeInt(color.getResetAdena());
-				writeInt(color.getBeautyShopTicket());
-				writeInt(1);
+				buffer.writeInt(entry.getKey());
+				buffer.writeInt(color.getId());
+				buffer.writeInt(color.getAdena());
+				buffer.writeInt(color.getResetAdena());
+				buffer.writeInt(color.getBeautyShopTicket());
+				buffer.writeInt(1);
 			}
 		}
 	}

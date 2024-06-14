@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,15 +21,13 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 import org.l2j.commons.database.DatabaseFactory;
-import org.l2j.commons.network.ReadablePacket;
 import org.l2j.gameserver.model.actor.Player;
-import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.PacketLogger;
 
 /**
  * @author Plim
  */
-public class RequestPetitionFeedback implements ClientPacket
+public class RequestPetitionFeedback extends ClientPacket
 {
 	private static final String INSERT_FEEDBACK = "INSERT INTO petition_feedback VALUES (?,?,?,?,?)";
 	
@@ -38,18 +36,23 @@ public class RequestPetitionFeedback implements ClientPacket
 	private String _message;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		packet.readInt(); // unknown
-		_rate = packet.readInt();
-		_message = packet.readString();
+		readInt(); // unknown
+		_rate = readInt();
+		_message = readString();
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
-		final Player player = client.getPlayer();
-		if ((player == null) || (player.getLastPetitionGmName() == null) || (_rate > 4) || (_rate < 0))
+		final Player player = getPlayer();
+		if ((player == null) || (player.getLastPetitionGmName() == null))
+		{
+			return;
+		}
+		
+		if ((_rate > 4) || (_rate < 0))
 		{
 			return;
 		}

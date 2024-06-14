@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,6 +16,7 @@
  */
 package org.l2j.gameserver.network.serverpackets.enchant;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.data.xml.EnchantItemData;
 import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.model.actor.request.EnchantItemRequest;
@@ -23,6 +24,7 @@ import org.l2j.gameserver.model.holders.ItemHolder;
 import org.l2j.gameserver.model.item.enchant.EnchantScroll;
 import org.l2j.gameserver.model.item.enchant.EnchantSupportItem;
 import org.l2j.gameserver.model.item.instance.Item;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 import org.l2j.gameserver.network.serverpackets.ServerPacket;
 
@@ -39,7 +41,7 @@ public class ResetEnchantItemFailRewardInfo extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
 		if (_player.getRequest(EnchantItemRequest.class) == null)
 		{
@@ -84,30 +86,30 @@ public class ResetEnchantItemFailRewardInfo extends ServerPacket
 			}
 		}
 		
-		ServerPackets.EX_RES_ENCHANT_ITEM_FAIL_REWARD_INFO.writeId(this);
+		ServerPackets.EX_RES_ENCHANT_ITEM_FAIL_REWARD_INFO.writeId(this, buffer);
 		
-		writeInt(enchantItem.getObjectId());
+		buffer.writeInt(enchantItem.getObjectId());
 		
 		int challengeGroup = _player.getChallengeInfo().getNowGroup();
 		int challengePoint = _player.getChallengeInfo().getNowPoint();
-		writeInt(challengeGroup);
-		writeInt(challengePoint);
+		buffer.writeInt(challengeGroup);
+		buffer.writeInt(challengePoint);
 		
 		if (result != null)
 		{
-			writeInt(1); // Loop count.
-			writeInt(result.getId());
-			writeInt((int) result.getCount());
+			buffer.writeInt(1); // Loop count.
+			buffer.writeInt(result.getId());
+			buffer.writeInt((int) result.getCount());
 		}
 		else if (addedItem != null)
 		{
-			writeInt(1); // Loop count.
-			writeInt(enchantItem.getId());
-			writeInt(1);
+			buffer.writeInt(1); // Loop count.
+			buffer.writeInt(enchantItem.getId());
+			buffer.writeInt(1);
 		}
 		else
 		{
-			writeInt(0); // Loop count.
+			buffer.writeInt(0); // Loop count.
 		}
 	}
 }

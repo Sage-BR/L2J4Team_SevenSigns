@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,6 +16,8 @@
  */
 package org.l2j.gameserver.network.serverpackets;
 
+import org.l2j.commons.network.WritableBuffer;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 
 public class SocialAction extends ServerPacket
@@ -33,11 +35,17 @@ public class SocialAction extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.SOCIAL_ACTION.writeId(this);
-		writeInt(_objectId);
-		writeInt(_actionId);
-		writeInt(0); // TODO: Find me!
+		ServerPackets.SOCIAL_ACTION.writeId(this, buffer);
+		buffer.writeInt(_objectId);
+		buffer.writeInt(_actionId);
+		buffer.writeInt(0); // TODO: Find me!
+	}
+	
+	@Override
+	public boolean canBeDropped(GameClient client)
+	{
+		return true;
 	}
 }

@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,7 +16,6 @@
  */
 package org.l2j.gameserver.network.clientpackets.appearance;
 
-import org.l2j.commons.network.ReadablePacket;
 import org.l2j.gameserver.data.xml.AppearanceItemData;
 import org.l2j.gameserver.enums.ItemLocation;
 import org.l2j.gameserver.model.actor.Player;
@@ -26,7 +25,6 @@ import org.l2j.gameserver.model.item.appearance.AppearanceStone;
 import org.l2j.gameserver.model.item.appearance.AppearanceType;
 import org.l2j.gameserver.model.item.instance.Item;
 import org.l2j.gameserver.model.itemcontainer.PlayerInventory;
-import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.SystemMessageId;
 import org.l2j.gameserver.network.clientpackets.ClientPacket;
 import org.l2j.gameserver.network.serverpackets.appearance.ExPutShapeShiftingExtractionItemResult;
@@ -35,22 +33,22 @@ import org.l2j.gameserver.network.serverpackets.appearance.ExPutShapeShiftingTar
 /**
  * @author UnAfraid
  */
-public class RequestExTryToPutShapeShiftingEnchantSupportItem implements ClientPacket
+public class RequestExTryToPutShapeShiftingEnchantSupportItem extends ClientPacket
 {
 	private int _targetItemObjId;
 	private int _extracItemObjId;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_targetItemObjId = packet.readInt();
-		_extracItemObjId = packet.readInt();
+		_targetItemObjId = readInt();
+		_extracItemObjId = readInt();
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
-		final Player player = client.getPlayer();
+		final Player player = getPlayer();
 		if (player == null)
 		{
 			return;
@@ -86,7 +84,13 @@ public class RequestExTryToPutShapeShiftingEnchantSupportItem implements ClientP
 			return;
 		}
 		
-		if (((extractItem.getItemLocation() != ItemLocation.INVENTORY) && (extractItem.getItemLocation() != ItemLocation.PAPERDOLL)) || ((stone = inventory.getItemByObjectId(stone.getObjectId())) == null))
+		if ((extractItem.getItemLocation() != ItemLocation.INVENTORY) && (extractItem.getItemLocation() != ItemLocation.PAPERDOLL))
+		{
+			player.removeRequest(ShapeShiftingItemRequest.class);
+			return;
+		}
+		
+		if ((stone = inventory.getItemByObjectId(stone.getObjectId())) == null)
 		{
 			player.removeRequest(ShapeShiftingItemRequest.class);
 			return;

@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -30,6 +30,7 @@ import org.w3c.dom.Node;
 import org.l2j.commons.util.IXmlReader;
 import org.l2j.gameserver.model.actor.Summon;
 import org.l2j.gameserver.model.holders.SkillHolder;
+import org.l2j.gameserver.model.skill.Skill;
 
 /**
  * @author Mobius
@@ -150,10 +151,51 @@ public class PetSkillData implements IXmlReader
 			{
 				continue;
 			}
+			
 			skillIds.add(skillHolder.getSkillId());
 		}
 		
 		return skillIds;
+	}
+	
+	public List<Skill> getKnownSkills(Summon pet)
+	{
+		final List<Skill> skills = new ArrayList<>();
+		if (!_skillTrees.containsKey(pet.getId()))
+		{
+			return skills;
+		}
+		
+		for (SkillHolder skillHolder : _skillTrees.get(pet.getId()).values())
+		{
+			final Skill skill = skillHolder.getSkill();
+			if (skills.contains(skill))
+			{
+				continue;
+			}
+			
+			skills.add(skill);
+		}
+		
+		return skills;
+	}
+	
+	public Skill getKnownSkill(Summon pet, int skillId)
+	{
+		if (!_skillTrees.containsKey(pet.getId()))
+		{
+			return null;
+		}
+		
+		for (SkillHolder skillHolder : _skillTrees.get(pet.getId()).values())
+		{
+			if (skillHolder.getSkillId() == skillId)
+			{
+				return skillHolder.getSkill();
+			}
+		}
+		
+		return null;
 	}
 	
 	public static PetSkillData getInstance()

@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,9 +18,11 @@ package org.l2j.gameserver.network.serverpackets;
 
 import java.util.Collection;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.instancemanager.FortManager;
 import org.l2j.gameserver.model.clan.Clan;
 import org.l2j.gameserver.model.siege.Fort;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 
 /**
@@ -35,19 +37,19 @@ public class ExShowFortressInfo extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_SHOW_FORTRESS_INFO.writeId(this);
+		ServerPackets.EX_SHOW_FORTRESS_INFO.writeId(this, buffer);
 		final Collection<Fort> forts = FortManager.getInstance().getForts();
-		writeInt(forts.size());
+		buffer.writeInt(forts.size());
 		for (Fort fort : forts)
 		{
 			final Clan clan = fort.getOwnerClan();
-			writeInt(fort.getResidenceId());
-			writeString(clan != null ? clan.getName() : "");
-			writeInt(fort.getSiege().isInProgress());
+			buffer.writeInt(fort.getResidenceId());
+			buffer.writeString(clan != null ? clan.getName() : "");
+			buffer.writeInt(fort.getSiege().isInProgress());
 			// Time of possession
-			writeInt(fort.getOwnedTime());
+			buffer.writeInt(fort.getOwnedTime());
 		}
 	}
 }

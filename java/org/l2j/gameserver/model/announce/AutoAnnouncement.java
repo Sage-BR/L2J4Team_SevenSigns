@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -24,7 +24,6 @@ import java.sql.Statement;
 import java.util.concurrent.ScheduledFuture;
 import java.util.logging.Level;
 
-import org.l2j.Config;
 import org.l2j.commons.database.DatabaseFactory;
 import org.l2j.commons.threads.ThreadPool;
 import org.l2j.gameserver.util.Broadcast;
@@ -168,7 +167,7 @@ public class AutoAnnouncement extends Announcement implements Runnable
 	{
 		if ((_currentState == -1) || (_currentState > 0))
 		{
-			for (String content : getContent().split(Config.EOL))
+			for (String content : getContent().split(System.lineSeparator()))
 			{
 				Broadcast.toAllOnlinePlayers(content, (getType() == AnnouncementType.AUTO_CRITICAL));
 			}

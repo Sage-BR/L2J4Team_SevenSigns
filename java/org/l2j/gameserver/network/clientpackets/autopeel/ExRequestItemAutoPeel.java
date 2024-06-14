@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,39 +18,42 @@ package org.l2j.gameserver.network.clientpackets.autopeel;
 
 import java.util.Collections;
 
-import org.l2j.commons.network.ReadablePacket;
 import org.l2j.gameserver.handler.IItemHandler;
 import org.l2j.gameserver.handler.ItemHandler;
 import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.model.actor.request.AutoPeelRequest;
 import org.l2j.gameserver.model.item.EtcItem;
 import org.l2j.gameserver.model.item.instance.Item;
-import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.clientpackets.ClientPacket;
 import org.l2j.gameserver.network.serverpackets.autopeel.ExResultItemAutoPeel;
 
 /**
  * @author Mobius
  */
-public class ExRequestItemAutoPeel implements ClientPacket
+public class ExRequestItemAutoPeel extends ClientPacket
 {
 	private int _itemObjectId;
 	private long _totalPeelCount;
 	private long _remainingPeelCount;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_itemObjectId = packet.readInt();
-		_totalPeelCount = packet.readLong();
-		_remainingPeelCount = packet.readLong();
+		_itemObjectId = readInt();
+		_totalPeelCount = readLong();
+		_remainingPeelCount = readLong();
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
-		final Player player = client.getPlayer();
+		final Player player = getPlayer();
 		if (player == null)
+		{
+			return;
+		}
+		
+		if ((_totalPeelCount < 1) || (_remainingPeelCount < 0))
 		{
 			return;
 		}
@@ -63,6 +66,7 @@ public class ExRequestItemAutoPeel implements ClientPacket
 			{
 				return;
 			}
+			
 			request = new AutoPeelRequest(player, item);
 			player.addRequest(request);
 		}
@@ -75,6 +79,13 @@ public class ExRequestItemAutoPeel implements ClientPacket
 		final Item item = request.getItem();
 		if ((item.getObjectId() != _itemObjectId) || (item.getOwnerId() != player.getObjectId()))
 		{
+			player.removeRequest(request.getClass());
+			return;
+		}
+		
+		if (!item.getTemplate().checkCondition(player, item, true))
+		{
+			player.sendPacket(new ExResultItemAutoPeel(false, _totalPeelCount, _remainingPeelCount, Collections.emptyList()));
 			player.removeRequest(request.getClass());
 			return;
 		}

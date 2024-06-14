@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,7 +20,10 @@ import java.time.Instant;
 import java.time.ZoneId;
 import java.time.zone.ZoneRules;
 
+import org.l2j.commons.network.WritableBuffer;
+
 import org.l2j.Config;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 
 /**
@@ -42,12 +45,12 @@ public class ExEnterWorld extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_ENTER_WORLD.writeId(this);
-		writeInt(_epochInSeconds);
-		writeInt(-_zoneIdOffsetSeconds);
-		writeInt(_daylight);
-		writeInt(Config.MAX_FREE_TELEPORT_LEVEL);
+		ServerPackets.EX_ENTER_WORLD.writeId(this, buffer);
+		buffer.writeInt(_epochInSeconds);
+		buffer.writeInt(-_zoneIdOffsetSeconds);
+		buffer.writeInt(_daylight);
+		buffer.writeInt(Config.MAX_FREE_TELEPORT_LEVEL);
 	}
 }

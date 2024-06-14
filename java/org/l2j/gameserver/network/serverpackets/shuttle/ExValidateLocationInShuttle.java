@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,8 +16,10 @@
  */
 package org.l2j.gameserver.network.serverpackets.shuttle;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.model.Location;
 import org.l2j.gameserver.model.actor.Player;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 import org.l2j.gameserver.network.serverpackets.ServerPacket;
 
@@ -40,14 +42,14 @@ public class ExValidateLocationInShuttle extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_VALIDATE_LOCATION_IN_SHUTTLE.writeId(this);
-		writeInt(_player.getObjectId());
-		writeInt(_shipId);
-		writeInt(_loc.getX());
-		writeInt(_loc.getY());
-		writeInt(_loc.getZ());
-		writeInt(_heading);
+		ServerPackets.EX_VALIDATE_LOCATION_IN_SHUTTLE.writeId(this, buffer);
+		buffer.writeInt(_player.getObjectId());
+		buffer.writeInt(_shipId);
+		buffer.writeInt(_loc.getX());
+		buffer.writeInt(_loc.getY());
+		buffer.writeInt(_loc.getZ());
+		buffer.writeInt(_heading);
 	}
 }

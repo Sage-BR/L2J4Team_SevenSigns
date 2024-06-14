@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -54,7 +54,12 @@ public class Sweeper extends AbstractEffect
 		
 		final Player player = effector.getActingPlayer();
 		final Attackable monster = (Attackable) effected;
-		if (!monster.checkSpoilOwner(player, false) || !player.getInventory().checkInventorySlotsAndWeight(monster.getSpoilLootItems(), false, false))
+		if (!monster.checkSpoilOwner(player, false))
+		{
+			return;
+		}
+		
+		if (!player.getInventory().checkInventorySlotsAndWeight(monster.getSpoilLootItems(), false, false))
 		{
 			return;
 		}

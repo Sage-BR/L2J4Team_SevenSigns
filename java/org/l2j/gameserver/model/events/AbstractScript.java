@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -2573,7 +2573,12 @@ public abstract class AbstractScript extends ManagedScript implements IEventTime
 	 */
 	public static void rewardItems(Player player, int itemId, long countValue)
 	{
-		if (player.isSimulatingTalking() || (countValue <= 0))
+		if (player.isSimulatingTalking())
+		{
+			return;
+		}
+		
+		if (countValue <= 0)
 		{
 			return;
 		}
@@ -2722,7 +2727,12 @@ public abstract class AbstractScript extends ManagedScript implements IEventTime
 	 */
 	public static void giveItems(Player player, int itemId, long count, int enchantlevel, boolean playSound)
 	{
-		if (player.isSimulatingTalking() || (count <= 0))
+		if (player.isSimulatingTalking())
+		{
+			return;
+		}
+		
+		if (count <= 0)
 		{
 			return;
 		}
@@ -2756,7 +2766,12 @@ public abstract class AbstractScript extends ManagedScript implements IEventTime
 	 */
 	public static void giveItems(Player player, int itemId, long count, AttributeType attributeType, int attributeValue)
 	{
-		if (player.isSimulatingTalking() || (count <= 0))
+		if (player.isSimulatingTalking())
+		{
+			return;
+		}
+		
+		if (count <= 0)
 		{
 			return;
 		}
@@ -2968,8 +2983,16 @@ public abstract class AbstractScript extends ManagedScript implements IEventTime
 	 */
 	protected static boolean takeAllItems(Player player, ItemHolder... itemList)
 	{
+		if (player.isSimulatingTalking())
+		{
+			return false;
+		}
+		if ((itemList == null) || (itemList.length == 0))
+		{
+			return false;
+		}
 		// first check if the player has all items to avoid taking half the items from the list
-		if (player.isSimulatingTalking() || (itemList == null) || (itemList.length == 0) || !hasAllItems(player, true, itemList))
+		if (!hasAllItems(player, true, itemList))
 		{
 			return false;
 		}
@@ -3088,6 +3111,29 @@ public abstract class AbstractScript extends ManagedScript implements IEventTime
 	 * @return a random integer number from {@code min} to {@code max}
 	 */
 	public static int getRandom(int min, int max)
+	{
+		return Rnd.get(min, max);
+	}
+	
+	/**
+	 * Get a random long from 0 (inclusive) to {@code max} (exclusive).<br>
+	 * Use this method instead of importing {@link org.l2j.commons.util.Rnd} utility.
+	 * @param max the maximum value for randomization
+	 * @return a random long number from 0 to {@code max - 1}
+	 */
+	public static long getRandom(long max)
+	{
+		return Rnd.get(max);
+	}
+	
+	/**
+	 * Get a random long from {@code min} (inclusive) to {@code max} (inclusive).<br>
+	 * Use this method instead of importing {@link org.l2j.commons.util.Rnd} utility.
+	 * @param min the minimum value for randomization
+	 * @param max the maximum value for randomization
+	 * @return a random long number from {@code min} to {@code max}
+	 */
+	public static long getRandom(long min, long max)
 	{
 		return Rnd.get(min, max);
 	}
@@ -3258,17 +3304,14 @@ public abstract class AbstractScript extends ManagedScript implements IEventTime
 	public Door getDoor(int doorId, int instanceId)
 	{
 		Door door = null;
-		if (instanceId <= 0)
+		final Instance instance = InstanceManager.getInstance().getInstance(instanceId);
+		if (instance != null)
 		{
-			door = DoorData.getInstance().getDoor(doorId);
+			door = instance.getDoor(doorId);
 		}
 		else
 		{
-			final Instance inst = InstanceManager.getInstance().getInstance(instanceId);
-			if (inst != null)
-			{
-				door = inst.getDoor(doorId);
-			}
+			door = DoorData.getInstance().getDoor(doorId);
 		}
 		return door;
 	}

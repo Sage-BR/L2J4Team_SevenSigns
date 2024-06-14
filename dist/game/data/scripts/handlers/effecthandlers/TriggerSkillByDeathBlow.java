@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -59,7 +59,17 @@ public class TriggerSkillByDeathBlow extends AbstractEffect
 	
 	private void onDamageReceivedEvent(OnCreatureDamageReceived event)
 	{
-		if ((event.getDamage() < event.getTarget().getCurrentHp()) || (_chance == 0) || (_skill.getSkillLevel() == 0) || (event.getAttacker() == event.getTarget()))
+		if (event.getDamage() < event.getTarget().getCurrentHp())
+		{
+			return;
+		}
+		
+		if ((_chance == 0) || (_skill.getSkillLevel() == 0))
+		{
+			return;
+		}
+		
+		if (event.getAttacker() == event.getTarget())
 		{
 			return;
 		}

@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -389,7 +389,12 @@ public abstract class ItemContainer
 		
 		synchronized (item)
 		{
-			if (!_items.contains(item) || (count > item.getCount()))
+			if (!_items.contains(item))
+			{
+				return null;
+			}
+			
+			if (count > item.getCount())
 			{
 				return null;
 			}

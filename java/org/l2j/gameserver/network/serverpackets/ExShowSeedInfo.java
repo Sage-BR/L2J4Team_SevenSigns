@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,9 +18,11 @@ package org.l2j.gameserver.network.serverpackets;
 
 import java.util.List;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.instancemanager.CastleManorManager;
 import org.l2j.gameserver.model.Seed;
 import org.l2j.gameserver.model.SeedProduction;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 
 /**
@@ -41,40 +43,40 @@ public class ExShowSeedInfo extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_SHOW_SEED_INFO.writeId(this);
-		writeByte(_hideButtons); // Hide "Seed Purchase" button
-		writeInt(_manorId); // Manor ID
-		writeInt(0); // Unknown
+		ServerPackets.EX_SHOW_SEED_INFO.writeId(this, buffer);
+		buffer.writeByte(_hideButtons); // Hide "Seed Purchase" button
+		buffer.writeInt(_manorId); // Manor ID
+		buffer.writeInt(0); // Unknown
 		if (_seeds == null)
 		{
-			writeInt(0);
+			buffer.writeInt(0);
 			return;
 		}
-		writeInt(_seeds.size());
+		buffer.writeInt(_seeds.size());
 		for (SeedProduction seed : _seeds)
 		{
-			writeInt(seed.getId()); // Seed id
-			writeLong(seed.getAmount()); // Left to buy
-			writeLong(seed.getStartAmount()); // Started amount
-			writeLong(seed.getPrice()); // Sell Price
+			buffer.writeInt(seed.getId()); // Seed id
+			buffer.writeLong(seed.getAmount()); // Left to buy
+			buffer.writeLong(seed.getStartAmount()); // Started amount
+			buffer.writeLong(seed.getPrice()); // Sell Price
 			final Seed s = CastleManorManager.getInstance().getSeed(seed.getId());
 			if (s == null)
 			{
-				writeInt(0); // Seed level
-				writeByte(1); // Reward 1
-				writeInt(0); // Reward 1 - item id
-				writeByte(1); // Reward 2
-				writeInt(0); // Reward 2 - item id
+				buffer.writeInt(0); // Seed level
+				buffer.writeByte(1); // Reward 1
+				buffer.writeInt(0); // Reward 1 - item id
+				buffer.writeByte(1); // Reward 2
+				buffer.writeInt(0); // Reward 2 - item id
 			}
 			else
 			{
-				writeInt(s.getLevel()); // Seed level
-				writeByte(1); // Reward 1
-				writeInt(s.getReward(1)); // Reward 1 - item id
-				writeByte(1); // Reward 2
-				writeInt(s.getReward(2)); // Reward 2 - item id
+				buffer.writeInt(s.getLevel()); // Seed level
+				buffer.writeByte(1); // Reward 1
+				buffer.writeInt(s.getReward(1)); // Reward 1 - item id
+				buffer.writeByte(1); // Reward 2
+				buffer.writeInt(s.getReward(2)); // Reward 2 - item id
 			}
 		}
 	}

@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,7 +19,9 @@ package org.l2j.gameserver.network.serverpackets;
 import java.util.Arrays;
 import java.util.List;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.model.actor.Player;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.NpcStringId;
 import org.l2j.gameserver.network.ServerPackets;
 
@@ -120,24 +122,24 @@ public class ExSendUIEvent extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_SEND_UIEVENT.writeId(this);
-		writeInt(_objectId);
-		writeInt(_type); // 0 = show, 1 = hide (there is 2 = pause and 3 = resume also but they don't work well you can only pause count down and you cannot resume it because resume hides the counter).
-		writeInt(0); // unknown
-		writeInt(0); // unknown
-		writeString(String.valueOf(_countUp)); // 0 = count down, 1 = count up timer always disappears 10 seconds before end
-		writeString(String.valueOf(_startTime));
-		writeString(String.valueOf(_startTime2));
-		writeString(String.valueOf(_endTime));
-		writeString(String.valueOf(_endTime2));
-		writeInt(_npcstringId);
+		ServerPackets.EX_SEND_UIEVENT.writeId(this, buffer);
+		buffer.writeInt(_objectId);
+		buffer.writeInt(_type); // 0 = show, 1 = hide (there is 2 = pause and 3 = resume also but they don't work well you can only pause count down and you cannot resume it because resume hides the counter).
+		buffer.writeInt(0); // unknown
+		buffer.writeInt(0); // unknown
+		buffer.writeString(String.valueOf(_countUp)); // 0 = count down, 1 = count up timer always disappears 10 seconds before end
+		buffer.writeString(String.valueOf(_startTime));
+		buffer.writeString(String.valueOf(_startTime2));
+		buffer.writeString(String.valueOf(_endTime));
+		buffer.writeString(String.valueOf(_endTime2));
+		buffer.writeInt(_npcstringId);
 		if (_params != null)
 		{
 			for (String param : _params)
 			{
-				writeString(param);
+				buffer.writeString(param);
 			}
 		}
 	}

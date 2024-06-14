@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,7 +18,9 @@ package org.l2j.gameserver.network.serverpackets;
 
 import java.util.List;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.model.actor.Player;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 
 /**
@@ -46,23 +48,23 @@ public class ExCubeGameTeamList extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_BLOCK_UP_SET_LIST.writeId(this);
-		writeInt(0);
-		writeInt(_roomNumber);
-		writeInt(0xffffffff);
-		writeInt(_bluePlayers.size());
+		ServerPackets.EX_BLOCK_UP_SET_LIST.writeId(this, buffer);
+		buffer.writeInt(0);
+		buffer.writeInt(_roomNumber);
+		buffer.writeInt(0xffffffff);
+		buffer.writeInt(_bluePlayers.size());
 		for (Player player : _bluePlayers)
 		{
-			writeInt(player.getObjectId());
-			writeString(player.getName());
+			buffer.writeInt(player.getObjectId());
+			buffer.writeString(player.getName());
 		}
-		writeInt(_redPlayers.size());
+		buffer.writeInt(_redPlayers.size());
 		for (Player player : _redPlayers)
 		{
-			writeInt(player.getObjectId());
-			writeString(player.getName());
+			buffer.writeInt(player.getObjectId());
+			buffer.writeString(player.getName());
 		}
 	}
 }

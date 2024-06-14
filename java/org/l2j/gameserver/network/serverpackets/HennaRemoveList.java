@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,7 +16,9 @@
  */
 package org.l2j.gameserver.network.serverpackets;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.model.actor.Player;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 
 /**
@@ -33,21 +35,21 @@ public class HennaRemoveList extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.HENNA_UNEQUIP_LIST.writeId(this);
-		// writeLong(_player.getAdena());
-		// writeInt(3); // seems to be max size
-		// writeInt(3 - _player.getHennaEmptySlots());
+		ServerPackets.HENNA_UNEQUIP_LIST.writeId(this, buffer);
+		// buffer.writeLong(_player.getAdena());
+		// buffer.writeInt(3); // seems to be max size
+		// buffer.writeInt(3 - _player.getHennaEmptySlots());
 		// for (Henna henna : _player.getHennaList())
 		// {
 		// if (henna != null)
 		// {
-		// writeInt(henna.getDyeId());
-		// writeInt(henna.getDyeItemId());
-		// writeLong(henna.getCancelCount());
-		// writeLong(henna.getCancelFee());
-		// writeInt(0);
+		// buffer.writeInt(henna.getDyeId());
+		// buffer.writeInt(henna.getDyeItemId());
+		// buffer.writeLong(henna.getCancelCount());
+		// buffer.writeLong(henna.getCancelFee());
+		// buffer.writeInt(0);
 		// }
 		// }
 	}

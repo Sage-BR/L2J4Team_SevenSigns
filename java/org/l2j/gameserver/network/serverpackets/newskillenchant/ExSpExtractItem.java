@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,7 +16,9 @@
  */
 package org.l2j.gameserver.network.serverpackets.newskillenchant;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.model.itemcontainer.Inventory;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 import org.l2j.gameserver.network.serverpackets.AbstractItemPacket;
 
@@ -26,11 +28,11 @@ import org.l2j.gameserver.network.serverpackets.AbstractItemPacket;
 public class ExSpExtractItem extends AbstractItemPacket
 {
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_SP_EXTRACT_ITEM.writeId(this);
-		writeByte(0);
-		writeBoolean(false);
-		writeInt(Inventory.SP_POUCH);
+		ServerPackets.EX_SP_EXTRACT_ITEM.writeId(this, buffer);
+		buffer.writeByte(0);
+		buffer.writeByte(0);
+		buffer.writeInt(Inventory.SP_POUCH);
 	}
 }

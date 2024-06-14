@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/multisell.xsd">
+	<npcs>
+		<npc>-1</npc> <!-- Item Multisell -->
+	</npcs>
+	<!-- Hardin's Spellbook Coupon - 2 Stars (Not Available) - Sealed (98856) -->
+	<item>
+		<ingredient id="98856" count="1" /> <!-- Hardin's Spellbook Coupon - 2 Stars (Not Available) - Sealed -->
+		<production id="98554" count="1" /> <!-- Spellbook: Maximum Critical Lv. 3 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98856" count="1" /> <!-- Hardin's Spellbook Coupon - 2 Stars (Not Available) - Sealed -->
+		<production id="98499" count="1" /> <!-- Spellbook: Noda's Hidden Power - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98856" count="1" /> <!-- Hardin's Spellbook Coupon - 2 Stars (Not Available) - Sealed -->
+		<production id="98500" count="1" /> <!-- Spellbook: Return Motion - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98856" count="1" /> <!-- Hardin's Spellbook Coupon - 2 Stars (Not Available) - Sealed -->
+		<production id="98501" count="1" /> <!-- Spellbook: Shadow Boost - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98856" count="1" /> <!-- Hardin's Spellbook Coupon - 2 Stars (Not Available) - Sealed -->
+		<production id="98275" count="1" /> <!-- Spellbook: Deadly Resilience - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98856" count="1" /> <!-- Hardin's Spellbook Coupon - 2 Stars (Not Available) - Sealed -->
+		<production id="98276" count="1" /> <!-- Spellbook: Sounds of Muse - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98856" count="1" /> <!-- Hardin's Spellbook Coupon - 2 Stars (Not Available) - Sealed -->
+		<production id="98277" count="1" /> <!-- Spellbook: Dancer's Play - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98856" count="1" /> <!-- Hardin's Spellbook Coupon - 2 Stars (Not Available) - Sealed -->
+		<production id="98278" count="1" /> <!-- Spellbook: Spell of Power - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98856" count="1" /> <!-- Hardin's Spellbook Coupon - 2 Stars (Not Available) - Sealed -->
+		<production id="98279" count="1" /> <!-- Spellbook: Spell of Fatality - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98856" count="1" /> <!-- Hardin's Spellbook Coupon - 2 Stars (Not Available) - Sealed -->
+		<production id="98280" count="1" /> <!-- Spellbook: Splash Attack - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98856" count="1" /> <!-- Hardin's Spellbook Coupon - 2 Stars (Not Available) - Sealed -->
+		<production id="98281" count="1" /> <!-- Spellbook: Titan Spirit - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98856" count="1" /> <!-- Hardin's Spellbook Coupon - 2 Stars (Not Available) - Sealed -->
+		<production id="98282" count="1" /> <!-- Spellbook: Khavatari Spirit - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98856" count="1" /> <!-- Hardin's Spellbook Coupon - 2 Stars (Not Available) - Sealed -->
+		<production id="98283" count="1" /> <!-- Spellbook: Instigator - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98856" count="1" /> <!-- Hardin's Spellbook Coupon - 2 Stars (Not Available) - Sealed -->
+		<production id="98284" count="1" /> <!-- Spellbook: Long Range Attack Lv. 3 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98856" count="1" /> <!-- Hardin's Spellbook Coupon - 2 Stars (Not Available) - Sealed -->
+		<production id="98285" count="1" /> <!-- Spellbook: Mighty Children of Eva - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98856" count="1" /> <!-- Hardin's Spellbook Coupon - 2 Stars (Not Available) - Sealed -->
+		<production id="98286" count="1" /> <!-- Spellbook: Mighty Children of Shillien - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98856" count="1" /> <!-- Hardin's Spellbook Coupon - 2 Stars (Not Available) - Sealed -->
+		<production id="98287" count="1" /> <!-- Spellbook: Einhasad's Expert Blessing - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98856" count="1" /> <!-- Hardin's Spellbook Coupon - 2 Stars (Not Available) - Sealed -->
+		<production id="98288" count="1" /> <!-- Spellbook: Eva's Summoner - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98856" count="1" /> <!-- Hardin's Spellbook Coupon - 2 Stars (Not Available) - Sealed -->
+		<production id="98289" count="1" /> <!-- Spellbook: Shillien's Summoner - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98856" count="1" /> <!-- Hardin's Spellbook Coupon - 2 Stars (Not Available) - Sealed -->
+		<production id="98290" count="1" /> <!-- Spellbook: Einhasad's Summoner - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98856" count="1" /> <!-- Hardin's Spellbook Coupon - 2 Stars (Not Available) - Sealed -->
+		<production id="98554" count="1" /> <!-- Spellbook: Maximum Critical Lv. 3 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98856" count="1" /> <!-- Hardin's Spellbook Coupon - 2 Stars (Not Available) - Sealed -->
+		<production id="98499" count="1" /> <!-- Spellbook: Noda's Hidden Power - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98856" count="1" /> <!-- Hardin's Spellbook Coupon - 2 Stars (Not Available) - Sealed -->
+		<production id="98500" count="1" /> <!-- Spellbook: Return Motion - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98856" count="1" /> <!-- Hardin's Spellbook Coupon - 2 Stars (Not Available) - Sealed -->
+		<production id="98501" count="1" /> <!-- Spellbook: Shadow Boost - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98856" count="1" /> <!-- Hardin's Spellbook Coupon - 2 Stars (Not Available) - Sealed -->
+		<production id="98275" count="1" /> <!-- Spellbook: Deadly Resilience - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98856" count="1" /> <!-- Hardin's Spellbook Coupon - 2 Stars (Not Available) - Sealed -->
+		<production id="98276" count="1" /> <!-- Spellbook: Sounds of Muse - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98856" count="1" /> <!-- Hardin's Spellbook Coupon - 2 Stars (Not Available) - Sealed -->
+		<production id="98277" count="1" /> <!-- Spellbook: Dancer's Play - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98856" count="1" /> <!-- Hardin's Spellbook Coupon - 2 Stars (Not Available) - Sealed -->
+		<production id="98278" count="1" /> <!-- Spellbook: Spell of Power - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98856" count="1" /> <!-- Hardin's Spellbook Coupon - 2 Stars (Not Available) - Sealed -->
+		<production id="98279" count="1" /> <!-- Spellbook: Spell of Fatality - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98856" count="1" /> <!-- Hardin's Spellbook Coupon - 2 Stars (Not Available) - Sealed -->
+		<production id="98280" count="1" /> <!-- Spellbook: Splash Attack - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98856" count="1" /> <!-- Hardin's Spellbook Coupon - 2 Stars (Not Available) - Sealed -->
+		<production id="98281" count="1" /> <!-- Spellbook: Titan Spirit - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98856" count="1" /> <!-- Hardin's Spellbook Coupon - 2 Stars (Not Available) - Sealed -->
+		<production id="98282" count="1" /> <!-- Spellbook: Khavatari Spirit - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98856" count="1" /> <!-- Hardin's Spellbook Coupon - 2 Stars (Not Available) - Sealed -->
+		<production id="98283" count="1" /> <!-- Spellbook: Instigator - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98856" count="1" /> <!-- Hardin's Spellbook Coupon - 2 Stars (Not Available) - Sealed -->
+		<production id="98284" count="1" /> <!-- Spellbook: Long Range Attack Lv. 3 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98856" count="1" /> <!-- Hardin's Spellbook Coupon - 2 Stars (Not Available) - Sealed -->
+		<production id="98285" count="1" /> <!-- Spellbook: Mighty Children of Eva - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98856" count="1" /> <!-- Hardin's Spellbook Coupon - 2 Stars (Not Available) - Sealed -->
+		<production id="98286" count="1" /> <!-- Spellbook: Mighty Children of Shillien - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98856" count="1" /> <!-- Hardin's Spellbook Coupon - 2 Stars (Not Available) - Sealed -->
+		<production id="98287" count="1" /> <!-- Spellbook: Einhasad's Expert Blessing - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98856" count="1" /> <!-- Hardin's Spellbook Coupon - 2 Stars (Not Available) - Sealed -->
+		<production id="98288" count="1" /> <!-- Spellbook: Eva's Summoner - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98856" count="1" /> <!-- Hardin's Spellbook Coupon - 2 Stars (Not Available) - Sealed -->
+		<production id="98289" count="1" /> <!-- Spellbook: Shillien's Summoner - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98856" count="1" /> <!-- Hardin's Spellbook Coupon - 2 Stars (Not Available) - Sealed -->
+		<production id="98290" count="1" /> <!-- Spellbook: Einhasad's Summoner - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98856" count="1" /> <!-- Hardin's Spellbook Coupon - 2 Stars (Not Available) - Sealed -->
+		<production id="98554" count="1" /> <!-- Spellbook: Maximum Critical Lv. 3 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98856" count="1" /> <!-- Hardin's Spellbook Coupon - 2 Stars (Not Available) - Sealed -->
+		<production id="98499" count="1" /> <!-- Spellbook: Noda's Hidden Power - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98856" count="1" /> <!-- Hardin's Spellbook Coupon - 2 Stars (Not Available) - Sealed -->
+		<production id="98500" count="1" /> <!-- Spellbook: Return Motion - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98856" count="1" /> <!-- Hardin's Spellbook Coupon - 2 Stars (Not Available) - Sealed -->
+		<production id="98501" count="1" /> <!-- Spellbook: Shadow Boost - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98856" count="1" /> <!-- Hardin's Spellbook Coupon - 2 Stars (Not Available) - Sealed -->
+		<production id="98275" count="1" /> <!-- Spellbook: Deadly Resilience - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98856" count="1" /> <!-- Hardin's Spellbook Coupon - 2 Stars (Not Available) - Sealed -->
+		<production id="98276" count="1" /> <!-- Spellbook: Sounds of Muse - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98856" count="1" /> <!-- Hardin's Spellbook Coupon - 2 Stars (Not Available) - Sealed -->
+		<production id="98277" count="1" /> <!-- Spellbook: Dancer's Play - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98856" count="1" /> <!-- Hardin's Spellbook Coupon - 2 Stars (Not Available) - Sealed -->
+		<production id="98278" count="1" /> <!-- Spellbook: Spell of Power - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98856" count="1" /> <!-- Hardin's Spellbook Coupon - 2 Stars (Not Available) - Sealed -->
+		<production id="98279" count="1" /> <!-- Spellbook: Spell of Fatality - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98856" count="1" /> <!-- Hardin's Spellbook Coupon - 2 Stars (Not Available) - Sealed -->
+		<production id="98280" count="1" /> <!-- Spellbook: Splash Attack - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98856" count="1" /> <!-- Hardin's Spellbook Coupon - 2 Stars (Not Available) - Sealed -->
+		<production id="98281" count="1" /> <!-- Spellbook: Titan Spirit - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98856" count="1" /> <!-- Hardin's Spellbook Coupon - 2 Stars (Not Available) - Sealed -->
+		<production id="98282" count="1" /> <!-- Spellbook: Khavatari Spirit - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98856" count="1" /> <!-- Hardin's Spellbook Coupon - 2 Stars (Not Available) - Sealed -->
+		<production id="98283" count="1" /> <!-- Spellbook: Instigator - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98856" count="1" /> <!-- Hardin's Spellbook Coupon - 2 Stars (Not Available) - Sealed -->
+		<production id="98284" count="1" /> <!-- Spellbook: Long Range Attack Lv. 3 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98856" count="1" /> <!-- Hardin's Spellbook Coupon - 2 Stars (Not Available) - Sealed -->
+		<production id="98285" count="1" /> <!-- Spellbook: Mighty Children of Eva - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98856" count="1" /> <!-- Hardin's Spellbook Coupon - 2 Stars (Not Available) - Sealed -->
+		<production id="98286" count="1" /> <!-- Spellbook: Mighty Children of Shillien - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98856" count="1" /> <!-- Hardin's Spellbook Coupon - 2 Stars (Not Available) - Sealed -->
+		<production id="98287" count="1" /> <!-- Spellbook: Einhasad's Expert Blessing - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98856" count="1" /> <!-- Hardin's Spellbook Coupon - 2 Stars (Not Available) - Sealed -->
+		<production id="98288" count="1" /> <!-- Spellbook: Eva's Summoner - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98856" count="1" /> <!-- Hardin's Spellbook Coupon - 2 Stars (Not Available) - Sealed -->
+		<production id="98289" count="1" /> <!-- Spellbook: Shillien's Summoner - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98856" count="1" /> <!-- Hardin's Spellbook Coupon - 2 Stars (Not Available) - Sealed -->
+		<production id="98290" count="1" /> <!-- Spellbook: Einhasad's Summoner - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98856" count="1" /> <!-- Hardin's Spellbook Coupon - 2 Stars (Not Available) - Sealed -->
+		<production id="98554" count="1" /> <!-- Spellbook: Maximum Critical Lv. 3 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98856" count="1" /> <!-- Hardin's Spellbook Coupon - 2 Stars (Not Available) - Sealed -->
+		<production id="98499" count="1" /> <!-- Spellbook: Noda's Hidden Power - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98856" count="1" /> <!-- Hardin's Spellbook Coupon - 2 Stars (Not Available) - Sealed -->
+		<production id="98500" count="1" /> <!-- Spellbook: Return Motion - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98856" count="1" /> <!-- Hardin's Spellbook Coupon - 2 Stars (Not Available) - Sealed -->
+		<production id="98501" count="1" /> <!-- Spellbook: Shadow Boost - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98856" count="1" /> <!-- Hardin's Spellbook Coupon - 2 Stars (Not Available) - Sealed -->
+		<production id="98275" count="1" /> <!-- Spellbook: Deadly Resilience - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98856" count="1" /> <!-- Hardin's Spellbook Coupon - 2 Stars (Not Available) - Sealed -->
+		<production id="98276" count="1" /> <!-- Spellbook: Sounds of Muse - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98856" count="1" /> <!-- Hardin's Spellbook Coupon - 2 Stars (Not Available) - Sealed -->
+		<production id="98277" count="1" /> <!-- Spellbook: Dancer's Play - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98856" count="1" /> <!-- Hardin's Spellbook Coupon - 2 Stars (Not Available) - Sealed -->
+		<production id="98278" count="1" /> <!-- Spellbook: Spell of Power - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98856" count="1" /> <!-- Hardin's Spellbook Coupon - 2 Stars (Not Available) - Sealed -->
+		<production id="98279" count="1" /> <!-- Spellbook: Spell of Fatality - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98856" count="1" /> <!-- Hardin's Spellbook Coupon - 2 Stars (Not Available) - Sealed -->
+		<production id="98280" count="1" /> <!-- Spellbook: Splash Attack - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98856" count="1" /> <!-- Hardin's Spellbook Coupon - 2 Stars (Not Available) - Sealed -->
+		<production id="98281" count="1" /> <!-- Spellbook: Titan Spirit - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98856" count="1" /> <!-- Hardin's Spellbook Coupon - 2 Stars (Not Available) - Sealed -->
+		<production id="98282" count="1" /> <!-- Spellbook: Khavatari Spirit - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98856" count="1" /> <!-- Hardin's Spellbook Coupon - 2 Stars (Not Available) - Sealed -->
+		<production id="98283" count="1" /> <!-- Spellbook: Instigator - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98856" count="1" /> <!-- Hardin's Spellbook Coupon - 2 Stars (Not Available) - Sealed -->
+		<production id="98284" count="1" /> <!-- Spellbook: Long Range Attack Lv. 3 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98856" count="1" /> <!-- Hardin's Spellbook Coupon - 2 Stars (Not Available) - Sealed -->
+		<production id="98285" count="1" /> <!-- Spellbook: Mighty Children of Eva - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98856" count="1" /> <!-- Hardin's Spellbook Coupon - 2 Stars (Not Available) - Sealed -->
+		<production id="98286" count="1" /> <!-- Spellbook: Mighty Children of Shillien - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98856" count="1" /> <!-- Hardin's Spellbook Coupon - 2 Stars (Not Available) - Sealed -->
+		<production id="98287" count="1" /> <!-- Spellbook: Einhasad's Expert Blessing - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98856" count="1" /> <!-- Hardin's Spellbook Coupon - 2 Stars (Not Available) - Sealed -->
+		<production id="98288" count="1" /> <!-- Spellbook: Eva's Summoner - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98856" count="1" /> <!-- Hardin's Spellbook Coupon - 2 Stars (Not Available) - Sealed -->
+		<production id="98289" count="1" /> <!-- Spellbook: Shillien's Summoner - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98856" count="1" /> <!-- Hardin's Spellbook Coupon - 2 Stars (Not Available) - Sealed -->
+		<production id="98290" count="1" /> <!-- Spellbook: Einhasad's Summoner - Sealed -->
+	</item>
+</list>

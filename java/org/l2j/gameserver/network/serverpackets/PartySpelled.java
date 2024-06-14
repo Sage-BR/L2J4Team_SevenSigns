@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,9 +19,11 @@ package org.l2j.gameserver.network.serverpackets;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.model.actor.Creature;
 import org.l2j.gameserver.model.skill.BuffInfo;
 import org.l2j.gameserver.model.skill.Skill;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 
 public class PartySpelled extends ServerPacket
@@ -46,32 +48,32 @@ public class PartySpelled extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.PARTY_SPELLED.writeId(this);
-		writeInt(_creature.isServitor() ? 2 : _creature.isPet() ? 1 : 0);
-		writeInt(_creature.getObjectId());
-		writeInt(_effects.size() + _effects2.size());
+		ServerPackets.PARTY_SPELLED.writeId(this, buffer);
+		buffer.writeInt(_creature.isServitor() ? 2 : _creature.isPet() ? 1 : 0);
+		buffer.writeInt(_creature.getObjectId());
+		buffer.writeInt(_effects.size() + _effects2.size());
 		for (BuffInfo info : _effects)
 		{
 			if ((info != null) && info.isInUse())
 			{
-				writeInt(info.getSkill().getDisplayId());
-				writeShort(info.getSkill().getDisplayLevel());
-				writeShort(0); // Sub level
-				writeInt(info.getSkill().getAbnormalType().getClientId());
-				writeOptionalInt(info.getTime());
+				buffer.writeInt(info.getSkill().getDisplayId());
+				buffer.writeShort(info.getSkill().getDisplayLevel());
+				buffer.writeShort(0); // Sub level
+				buffer.writeInt(info.getSkill().getAbnormalType().getClientId());
+				writeOptionalInt(info.getTime(), buffer);
 			}
 		}
 		for (Skill skill : _effects2)
 		{
 			if (skill != null)
 			{
-				writeInt(skill.getDisplayId());
-				writeShort(skill.getDisplayLevel());
-				writeShort(0); // Sub level
-				writeInt(skill.getAbnormalType().getClientId());
-				writeShort(-1);
+				buffer.writeInt(skill.getDisplayId());
+				buffer.writeShort(skill.getDisplayLevel());
+				buffer.writeShort(0); // Sub level
+				buffer.writeInt(skill.getAbnormalType().getClientId());
+				buffer.writeShort(-1);
 			}
 		}
 	}

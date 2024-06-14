@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -75,7 +75,6 @@ import org.l2j.gameserver.network.serverpackets.SystemMessage;
 import org.l2j.gameserver.network.serverpackets.orcfortress.OrcFortressSiegeInfoHUD;
 import org.l2j.gameserver.util.Broadcast;
 
-//public class FortSiege implements Siegable
 public class FortSiege extends ListenersContainer implements Siegable
 {
 	protected static final Logger LOGGER = Logger.getLogger(FortSiege.class.getName());
@@ -85,15 +84,12 @@ public class FortSiege extends ListenersContainer implements Siegable
 	public static final String ORC_FORTRESS_GREG_BOTTOM_RIGHT_SPAWN = "orc_fortress_greg_bottom_right";
 	public static final String GREG_SPAWN_VAR = "GREG_SPAWN";
 	
-	boolean _hasSpawnedPreparationNpcs = false;
-	
 	private static final AtomicReference<SpawnTemplate> SPAWN_PREPARATION_NPCS = new AtomicReference<>();
-	
 	private static final ZoneType FORTRESS_ZONE = ZoneManager.getInstance().getZoneByName("orc_fortress_general_area");
 	
-	ScheduledFuture<?> _siegeGregSentryTask = null;
-	
-	int _flagCount = 0;
+	private ScheduledFuture<?> _siegeGregSentryTask = null;
+	private boolean _hasSpawnedPreparationNpcs = false;
+	private int _flagCount = 0;
 	
 	// SQL
 	private static final String DELETE_FORT_SIEGECLANS_BY_CLAN_ID = "DELETE FROM fortsiege_clans WHERE fort_id = ? AND clan_id = ?";
@@ -542,7 +538,7 @@ public class FortSiege extends ListenersContainer implements Siegable
 			removeCommanders(); // Remove commander from this fort
 			_fort.spawnNpcCommanders(); // Spawn NPC commanders
 			unspawnSiegeGuard(); // Remove all spawned siege guard from this fort
-			_fort.CloseOrcFortressDoors();
+			_fort.closeOrcFortressDoors();
 			if (_fort.getResidenceId() != FortManager.ORC_FORTRESS)
 			{
 				_fort.resetDoors();
@@ -550,10 +546,10 @@ public class FortSiege extends ListenersContainer implements Siegable
 			}
 			else
 			{
-				_fort.CloseOrcFortressDoors();
+				_fort.closeOrcFortressDoors();
 				LOGGER.info("FortSiege: Closed Orc Fortress doors.");
 			}
-			_fort.SetOrcFortressOwnerNpcs(true);
+			_fort.setOrcFortressOwnerNpcs(true);
 			ThreadPool.schedule(new ScheduleSuspiciousMerchantSpawn(), FortSiegeManager.getInstance().getSuspiciousMerchantRespawnDelay() * 60 * 1000); // Prepare 3hr task for suspicious merchant respawn
 			setSiegeDateTime(true); // store suspicious merchant spawn in DB
 			if (_siegeEnd != null)
@@ -618,11 +614,11 @@ public class FortSiege extends ListenersContainer implements Siegable
 			}
 			else
 			{
-				_fort.OpenOrcFortressDoors();
+				_fort.openOrcFortressDoors();
 				LOGGER.info("FortSiege: Opened Orc Fortress doors.");
 			}
 			
-			_fort.SetOrcFortressOwnerNpcs(false);
+			_fort.setOrcFortressOwnerNpcs(false);
 			spawnSiegeGuard(); // Spawn siege guard
 			_fort.setVisibleFlag(false);
 			_fort.getZone().setSiegeInstance(this);
@@ -1111,7 +1107,12 @@ public class FortSiege extends ListenersContainer implements Siegable
 			
 			for (Fort fort : FortManager.getInstance().getForts())
 			{
-				if ((fort.getSiege().getAttackerClan(player.getClanId()) != null) || ((fort.getOwnerClan() == player.getClan()) && (fort.getSiege().isInProgress() || (fort.getSiege()._siegeStartTask != null))))
+				if (fort.getSiege().getAttackerClan(player.getClanId()) != null)
+				{
+					return 3; // Players clan is already registered to siege
+				}
+				
+				if ((fort.getOwnerClan() == player.getClan()) && (fort.getSiege().isInProgress() || (fort.getSiege()._siegeStartTask != null)))
 				{
 					return 3; // Players clan is already registered to siege
 				}
@@ -1360,7 +1361,11 @@ public class FortSiege extends ListenersContainer implements Siegable
 			
 			if (siege.getSiegeDate().get(Calendar.DAY_OF_WEEK) == getSiegeDate().get(Calendar.DAY_OF_WEEK))
 			{
-				if (siege.checkIsAttacker(clan) || siege.checkIsDefender(clan))
+				if (siege.checkIsAttacker(clan))
+				{
+					return true;
+				}
+				if (siege.checkIsDefender(clan))
 				{
 					return true;
 				}

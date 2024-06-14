@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,8 +19,10 @@ package org.l2j.gameserver.network.serverpackets;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.enums.SkillEnchantType;
 import org.l2j.gameserver.model.skill.Skill;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 
 public class ExEnchantSkillList extends ServerPacket
@@ -39,16 +41,16 @@ public class ExEnchantSkillList extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_ENCHANT_SKILL_LIST.writeId(this);
-		writeInt(_type.ordinal());
-		writeInt(_skills.size());
+		ServerPackets.EX_ENCHANT_SKILL_LIST.writeId(this, buffer);
+		buffer.writeInt(_type.ordinal());
+		buffer.writeInt(_skills.size());
 		for (Skill skill : _skills)
 		{
-			writeInt(skill.getId());
-			writeShort(skill.getLevel());
-			writeShort(skill.getSubLevel());
+			buffer.writeInt(skill.getId());
+			buffer.writeShort(skill.getLevel());
+			buffer.writeShort(skill.getSubLevel());
 		}
 	}
 }

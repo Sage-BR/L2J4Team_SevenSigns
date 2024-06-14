@@ -1,0 +1,9 @@
+<html><title>Chat</title><body>Dream Priestess:<br>
+Greetings! I am the Dream Priestess, and I'll be your guide in the Dreamland.<br>
+I help those who are willing to enter the Dream Dungeon.<br>
+But the journey there is dangerous. You have to gather <font color="LEVEL">a party</font> or <font color="LEVEL">a command channel</font> of 2-10 people whose level is <font color="LEVEL">76 or higher</font>. I won't let you in, otherwise.<br>
+To prevent a potential invasion in the Dreamland, the Dream Dungeon gates are opened only once a week.<br>
+Are you ready to go inside?<br>
+<Button ALIGN="LEFT" ICON="NORMAL" action="bypass -h Quest DreamPriestess enter_dream_dungeon">Enter the dream</button>
+<Button ALIGN=LEFT ICON="QUEST" action="bypass -h npc_%objectId%_Quest">Quest</Button>
+</body></html>

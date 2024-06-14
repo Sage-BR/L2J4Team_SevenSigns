@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,9 +19,11 @@ package org.l2j.gameserver.network.serverpackets;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.model.actor.instance.Pet;
 import org.l2j.gameserver.model.item.instance.Item;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 
 public class GMViewItemList extends AbstractItemPacket
@@ -54,23 +56,23 @@ public class GMViewItemList extends AbstractItemPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.GM_VIEW_ITEM_LIST.writeId(this);
-		writeByte(_sendType);
+		ServerPackets.GM_VIEW_ITEM_LIST.writeId(this, buffer);
+		buffer.writeByte(_sendType);
 		if (_sendType == 2)
 		{
-			writeInt(_items.size());
+			buffer.writeInt(_items.size());
 		}
 		else
 		{
-			writeString(_playerName);
-			writeInt(_limit); // inventory limit
+			buffer.writeString(_playerName);
+			buffer.writeInt(_limit); // inventory limit
 		}
-		writeInt(_items.size());
+		buffer.writeInt(_items.size());
 		for (Item item : _items)
 		{
-			writeItem(item);
+			writeItem(item, buffer);
 		}
 	}
 }

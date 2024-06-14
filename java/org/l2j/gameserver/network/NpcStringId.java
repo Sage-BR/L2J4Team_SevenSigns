@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -1213,7 +1213,7 @@ public class NpcStringId
 	@ClientString(id = 7164, message = "Ha, ha, ha!...")
 	public static NpcStringId HA_HA_HA;
 	
-	@ClientString(id = 7165, message = "Kuh, huh")
+	@ClientString(id = 7165, message = "Kuh, huh...")
 	public static NpcStringId KUH_HUH;
 	
 	@ClientString(id = 7166, message = "Aah! Kuh...$s1!...Kuh, huh...")
@@ -3082,8 +3082,8 @@ public class NpcStringId
 	@ClientString(id = 10078, message = "$s1! How dare you defy the will of Einhasad!")
 	public static NpcStringId S1_HOW_DARE_YOU_DEFY_THE_WILL_OF_EINHASAD;
 	
-	@ClientString(id = 10079, message = "The door to the 3rd floor of the altar is now open.")
-	public static NpcStringId THE_DOOR_TO_THE_3RD_FLOOR_OF_THE_ALTAR_IS_NOW_OPEN;
+	@ClientString(id = 10079, message = "The door to the altar's third floor is now open.")
+	public static NpcStringId THE_DOOR_TO_THE_ALTAR_S_THIRD_FLOOR_IS_NOW_OPEN;
 	
 	@ClientString(id = 10101, message = "Sword of Solidarity")
 	public static NpcStringId SWORD_OF_SOLIDARITY;
@@ -3352,11 +3352,11 @@ public class NpcStringId
 	@ClientString(id = 11538, message = "Congratulations, $s1! You have become the Hero of Aeore Shillien Saints.")
 	public static NpcStringId CONGRATULATIONS_S1_YOU_HAVE_BECOME_THE_HERO_OF_AEORE_SHILLIEN_SAINTS;
 	
-	@ClientString(id = 11539, message = "Congratulations, $s1! You have become a Hero of the Eviscerators.")
-	public static NpcStringId CONGRATULATIONS_S1_YOU_HAVE_BECOME_A_HERO_OF_THE_EVISCERATORS;
+	@ClientString(id = 11539, message = "Congratulations, $s1! You have become the Hero of Eviscerators.")
+	public static NpcStringId CONGRATULATIONS_S1_YOU_HAVE_BECOME_THE_HERO_OF_EVISCERATORS;
 	
-	@ClientString(id = 11540, message = "Congratulations, $s1! You have become a Hero of Sayha's Seers.")
-	public static NpcStringId CONGRATULATIONS_S1_YOU_HAVE_BECOME_A_HERO_OF_SAYHA_S_SEERS;
+	@ClientString(id = 11540, message = "Congratulations, $s1! You have become the Hero of Sayha's Seers.")
+	public static NpcStringId CONGRATULATIONS_S1_YOU_HAVE_BECOME_THE_HERO_OF_SAYHA_S_SEERS;
 	
 	@ClientString(id = 11550, message = "This looks like the right place...")
 	public static NpcStringId THIS_LOOKS_LIKE_THE_RIGHT_PLACE;
@@ -4090,8 +4090,8 @@ public class NpcStringId
 	@ClientString(id = 18303, message = "|Lv. 40-99| Relics Exploration (Completed)")
 	public static NpcStringId LV_40_99_RELICS_EXPLORATION_COMPLETED;
 	
-	@ClientString(id = 18304, message = "|Lv. 40-99| Giants Relics Exploration")
-	public static NpcStringId LV_40_99_GIANTS_RELICS_EXPLORATION;
+	@ClientString(id = 18304, message = "|Lv. 40-99| Giant's Relics Exploration")
+	public static NpcStringId LV_40_99_GIANT_S_RELICS_EXPLORATION;
 	
 	@ClientString(id = 18401, message = "|Lv. 40-99| Art of Persuasion")
 	public static NpcStringId LV_40_99_ART_OF_PERSUASION;
@@ -4144,7 +4144,7 @@ public class NpcStringId
 	@ClientString(id = 18554, message = "Self-destruction in 10 sec. Evacuate immediately, please!")
 	public static NpcStringId SELF_DESTRUCTION_IN_10_SEC_EVACUATE_IMMEDIATELY_PLEASE;
 	
-	@ClientString(id = 18555, message = "So bored is there no one I can play with?")
+	@ClientString(id = 18555, message = "So bored... is there no one I can play with?")
 	public static NpcStringId SO_BORED_IS_THERE_NO_ONE_I_CAN_PLAY_WITH;
 	
 	@ClientString(id = 18556, message = "Hey, I didn't get to put in one word! Sheesh!")
@@ -4384,7 +4384,7 @@ public class NpcStringId
 	@ClientString(id = 19619, message = "I must go back to Shillien just like this. Outrageous.")
 	public static NpcStringId I_MUST_GO_BACK_TO_SHILLIEN_JUST_LIKE_THIS_OUTRAGEOUS;
 	
-	@ClientString(id = 19624, message = "Who dares summon the merchant of Mammon?")
+	@ClientString(id = 19624, message = "Who dares summon the merchant of Mammon...?")
 	public static NpcStringId WHO_DARES_SUMMON_THE_MERCHANT_OF_MAMMON;
 	
 	@ClientString(id = 19701, message = "|Lv. 79-99| Seven Signs, the Sacred Book of Seal")
@@ -5470,14 +5470,14 @@ public class NpcStringId
 	@ClientString(id = 33537, message = "<Button ALIGN=LEFT ICON='NORMAL' action='bypass -h menu_select?ask=335&reply=22'>B: 30 Kronbe Venom Sacs</button>")
 	public static NpcStringId BUTTON_ALIGN_LEFT_ICON_NORMAL_ACTION_BYPASS_H_MENU_SELECT_ASK_335_REPLY_22_B_30_KRONBE_VENOM_SACS_BUTTON;
 	
-	@ClientString(id = 33538, message = "<Button ALIGN=LEFT ICON='NORMAL' action='bypass -h menu_select?ask=335&reply=24'>A: Lesser Giant's Tablet</button>")
-	public static NpcStringId BUTTON_ALIGN_LEFT_ICON_NORMAL_ACTION_BYPASS_H_MENU_SELECT_ASK_335_REPLY_24_A_LESSER_GIANT_S_TABLET_BUTTON;
+	@ClientString(id = 33538, message = "<Button ALIGN=LEFT ICON='NORMAL' action='bypass -h menu_select?ask=335&reply=24'>A: 30 Eva's Charms</button>")
+	public static NpcStringId BUTTON_ALIGN_LEFT_ICON_NORMAL_ACTION_BYPASS_H_MENU_SELECT_ASK_335_REPLY_24_A_30_EVA_S_CHARMS_BUTTON;
 	
 	@ClientString(id = 33539, message = "<Button ALIGN=LEFT ICON='NORMAL' action='bypass -h menu_select?ask=335&reply=25'>A: Book of Shunaiman</button>")
 	public static NpcStringId BUTTON_ALIGN_LEFT_ICON_NORMAL_ACTION_BYPASS_H_MENU_SELECT_ASK_335_REPLY_25_A_BOOK_OF_SHUNAIMAN_BUTTON;
 	
-	@ClientString(id = 33540, message = "<Button ALIGN=LEFT ICON='NORMAL' action='bypass -h menu_select?ask=335&reply=27'>C: 40 Trisalim Venom Sacs</button>")
-	public static NpcStringId BUTTON_ALIGN_LEFT_ICON_NORMAL_ACTION_BYPASS_H_MENU_SELECT_ASK_335_REPLY_27_C_40_TRISALIM_VENOM_SACS_BUTTON;
+	@ClientString(id = 33540, message = "<Button ALIGN=LEFT ICON='NORMAL' action='bypass -h menu_select?ask=335&reply=27'>C: Book of Shunaiman</button>")
+	public static NpcStringId BUTTON_ALIGN_LEFT_ICON_NORMAL_ACTION_BYPASS_H_MENU_SELECT_ASK_335_REPLY_27_C_BOOK_OF_SHUNAIMAN_BUTTON;
 	
 	@ClientString(id = 33541, message = "<Button ALIGN=LEFT ICON='NORMAL' action='bypass -h menu_select?ask=335&reply=28'>C: 40 Rotting Tree Spores</button>")
 	public static NpcStringId BUTTON_ALIGN_LEFT_ICON_NORMAL_ACTION_BYPASS_H_MENU_SELECT_ASK_335_REPLY_28_C_40_ROTTING_TREE_SPORES_BUTTON;
@@ -5488,11 +5488,11 @@ public class NpcStringId
 	@ClientString(id = 33543, message = "<Button ALIGN=LEFT ICON='NORMAL' action='bypass -h menu_select?ask=335&reply=30'>C: 50 Taik Orc Totems</button>")
 	public static NpcStringId BUTTON_ALIGN_LEFT_ICON_NORMAL_ACTION_BYPASS_H_MENU_SELECT_ASK_335_REPLY_30_C_50_TAIK_ORC_TOTEMS_BUTTON;
 	
-	@ClientString(id = 33544, message = "<Button ALIGN=LEFT ICON='NORMAL' action='bypass -h menu_select?ask=335&reply=31'>C: 30 Skins of Farcran</button>")
-	public static NpcStringId BUTTON_ALIGN_LEFT_ICON_NORMAL_ACTION_BYPASS_H_MENU_SELECT_ASK_335_REPLY_31_C_30_SKINS_OF_FARCRAN_BUTTON;
+	@ClientString(id = 33544, message = "<Button ALIGN=LEFT ICON='NORMAL' action='bypass -h menu_select?ask=335&reply=31'>C: 40 Harit Barbed Necklaces</button>")
+	public static NpcStringId BUTTON_ALIGN_LEFT_ICON_NORMAL_ACTION_BYPASS_H_MENU_SELECT_ASK_335_REPLY_31_C_40_HARIT_BARBED_NECKLACES_BUTTON;
 	
-	@ClientString(id = 33545, message = "<Button ALIGN=LEFT ICON='NORMAL' action='bypass -h menu_select?ask=335&reply=32'>C: 40 Tempest Shards</button>")
-	public static NpcStringId BUTTON_ALIGN_LEFT_ICON_NORMAL_ACTION_BYPASS_H_MENU_SELECT_ASK_335_REPLY_32_C_40_TEMPEST_SHARDS_BUTTON;
+	@ClientString(id = 33545, message = "<Button ALIGN=LEFT ICON='NORMAL' action='bypass -h menu_select?ask=335&reply=32'>C: 20 Ancient Empire's Coins</button>")
+	public static NpcStringId BUTTON_ALIGN_LEFT_ICON_NORMAL_ACTION_BYPASS_H_MENU_SELECT_ASK_335_REPLY_32_C_20_ANCIENT_EMPIRE_S_COINS_BUTTON;
 	
 	@ClientString(id = 33546, message = "<Button ALIGN=LEFT ICON='NORMAL' action='bypass -h menu_select?ask=335&reply=33'>C: 30 Skins of Farcran</button>")
 	public static NpcStringId BUTTON_ALIGN_LEFT_ICON_NORMAL_ACTION_BYPASS_H_MENU_SELECT_ASK_335_REPLY_33_C_30_SKINS_OF_FARCRAN_BUTTON;
@@ -5503,35 +5503,35 @@ public class NpcStringId
 	@ClientString(id = 33548, message = "<Button ALIGN=LEFT ICON='NORMAL' action='bypass -h menu_select?ask=335&reply=36'>C: 30 Manes of Vanor Silenos</button>")
 	public static NpcStringId BUTTON_ALIGN_LEFT_ICON_NORMAL_ACTION_BYPASS_H_MENU_SELECT_ASK_335_REPLY_36_C_30_MANES_OF_VANOR_SILENOS_BUTTON;
 	
-	@ClientString(id = 33549, message = "<Button ALIGN=LEFT ICON='NORMAL' action='bypass -h menu_select?ask=335&reply=37'>C: 30 Totems of Tarlk Bugbears</button>")
-	public static NpcStringId BUTTON_ALIGN_LEFT_ICON_NORMAL_ACTION_BYPASS_H_MENU_SELECT_ASK_335_REPLY_37_C_30_TOTEMS_OF_TARLK_BUGBEARS_BUTTON;
+	@ClientString(id = 33549, message = "<Button ALIGN=LEFT ICON='NORMAL' action='bypass -h menu_select?ask=335&reply=37'>C: 40 Satyr Manes</button>")
+	public static NpcStringId BUTTON_ALIGN_LEFT_ICON_NORMAL_ACTION_BYPASS_H_MENU_SELECT_ASK_335_REPLY_37_C_40_SATYR_MANES_BUTTON;
 	
 	@ClientString(id = 33550, message = "<Button ALIGN=LEFT ICON='NORMAL' action='bypass -h menu_select?ask=335&reply=38'>B: Situation Preparation - Overlord Okun of Timak</button>")
 	public static NpcStringId BUTTON_ALIGN_LEFT_ICON_NORMAL_ACTION_BYPASS_H_MENU_SELECT_ASK_335_REPLY_38_B_SITUATION_PREPARATION_OVERLORD_OKUN_OF_TIMAK_BUTTON;
 	
-	@ClientString(id = 33551, message = "<Button ALIGN=LEFT ICON='NORMAL' action='bypass -h menu_select?ask=335&reply=39'>B: Situation Preparation - Overlord Kakran of Taik</button>")
-	public static NpcStringId BUTTON_ALIGN_LEFT_ICON_NORMAL_ACTION_BYPASS_H_MENU_SELECT_ASK_335_REPLY_39_B_SITUATION_PREPARATION_OVERLORD_KAKRAN_OF_TAIK_BUTTON;
+	@ClientString(id = 33551, message = "<Button ALIGN=LEFT ICON='NORMAL' action='bypass -h menu_select?ask=335&reply=39'>B: 30 Vanor Silenos Manes</button>")
+	public static NpcStringId BUTTON_ALIGN_LEFT_ICON_NORMAL_ACTION_BYPASS_H_MENU_SELECT_ASK_335_REPLY_39_B_30_VANOR_SILENOS_MANES_BUTTON;
 	
-	@ClientString(id = 33552, message = "<Button ALIGN=LEFT ICON='NORMAL' action='bypass -h menu_select?ask=335&reply=40'>B: 40 Narcissus Soulstones</button>")
-	public static NpcStringId BUTTON_ALIGN_LEFT_ICON_NORMAL_ACTION_BYPASS_H_MENU_SELECT_ASK_335_REPLY_40_B_40_NARCISSUS_SOULSTONES_BUTTON;
+	@ClientString(id = 33552, message = "<Button ALIGN=LEFT ICON='NORMAL' action='bypass -h menu_select?ask=335&reply=40'>B: 30 Tarlk Bugbear Totems</button>")
+	public static NpcStringId BUTTON_ALIGN_LEFT_ICON_NORMAL_ACTION_BYPASS_H_MENU_SELECT_ASK_335_REPLY_40_B_30_TARLK_BUGBEAR_TOTEMS_BUTTON;
 	
-	@ClientString(id = 33553, message = "<Button ALIGN=LEFT ICON='NORMAL' action='bypass -h menu_select?ask=335&reply=41'>B: 20 Eyes of Deprived</button>")
-	public static NpcStringId BUTTON_ALIGN_LEFT_ICON_NORMAL_ACTION_BYPASS_H_MENU_SELECT_ASK_335_REPLY_41_B_20_EYES_OF_DEPRIVED_BUTTON;
+	@ClientString(id = 33553, message = "<Button ALIGN=LEFT ICON='NORMAL' action='bypass -h menu_select?ask=335&reply=41'>B: Preparation - Timak Prefect Okun</button>")
+	public static NpcStringId BUTTON_ALIGN_LEFT_ICON_NORMAL_ACTION_BYPASS_H_MENU_SELECT_ASK_335_REPLY_41_B_PREPARATION_TIMAK_PREFECT_OKUN_BUTTON;
 	
-	@ClientString(id = 33554, message = "<Button ALIGN=LEFT ICON='NORMAL' action='bypass -h menu_select?ask=335&reply=42'>B: 20 Unicorn Horns</button>")
-	public static NpcStringId BUTTON_ALIGN_LEFT_ICON_NORMAL_ACTION_BYPASS_H_MENU_SELECT_ASK_335_REPLY_42_B_20_UNICORN_HORNS_BUTTON;
+	@ClientString(id = 33554, message = "<Button ALIGN=LEFT ICON='NORMAL' action='bypass -h menu_select?ask=335&reply=42'>B: Preparation - Taik Prefect Kakran</button>")
+	public static NpcStringId BUTTON_ALIGN_LEFT_ICON_NORMAL_ACTION_BYPASS_H_MENU_SELECT_ASK_335_REPLY_42_B_PREPARATION_TAIK_PREFECT_KAKRAN_BUTTON;
 	
-	@ClientString(id = 33555, message = "<Button ALIGN=LEFT ICON='NORMAL' action='bypass -h menu_select?ask=335&reply=43'>B: Silenos Golden Mane</button>")
-	public static NpcStringId BUTTON_ALIGN_LEFT_ICON_NORMAL_ACTION_BYPASS_H_MENU_SELECT_ASK_335_REPLY_43_B_SILENOS_GOLDEN_MANE_BUTTON;
+	@ClientString(id = 33555, message = "<Button ALIGN=LEFT ICON='NORMAL' action='bypass -h menu_select?ask=335&reply=43'>B: 40 Narcissus' Soulstones</button>")
+	public static NpcStringId BUTTON_ALIGN_LEFT_ICON_NORMAL_ACTION_BYPASS_H_MENU_SELECT_ASK_335_REPLY_43_B_40_NARCISSUS_SOULSTONES_BUTTON;
 	
 	@ClientString(id = 33556, message = "<Button ALIGN=LEFT ICON='NORMAL' action='bypass -h menu_select?ask=335&reply=44'>A: 20 Demonic Eye's Eyeballs</button>")
 	public static NpcStringId BUTTON_ALIGN_LEFT_ICON_NORMAL_ACTION_BYPASS_H_MENU_SELECT_ASK_335_REPLY_44_A_20_DEMONIC_EYE_S_EYEBALLS_BUTTON;
 	
-	@ClientString(id = 33557, message = "<Button ALIGN=LEFT ICON='NORMAL' action='bypass -h menu_select?ask=335&reply=45'>A: Bust of Travis</button>")
-	public static NpcStringId BUTTON_ALIGN_LEFT_ICON_NORMAL_ACTION_BYPASS_H_MENU_SELECT_ASK_335_REPLY_45_A_BUST_OF_TRAVIS_BUTTON;
+	@ClientString(id = 33557, message = "<Button ALIGN=LEFT ICON='NORMAL' action='bypass -h menu_select?ask=335&reply=45'>A: 20 Unicorn Horns</button>")
+	public static NpcStringId BUTTON_ALIGN_LEFT_ICON_NORMAL_ACTION_BYPASS_H_MENU_SELECT_ASK_335_REPLY_45_A_20_UNICORN_HORNS_BUTTON;
 	
-	@ClientString(id = 33558, message = "<Button ALIGN=LEFT ICON='NORMAL' action='bypass -h menu_select?ask=335&reply=46'>A: 10 Swords of Cadmus</button>")
-	public static NpcStringId BUTTON_ALIGN_LEFT_ICON_NORMAL_ACTION_BYPASS_H_MENU_SELECT_ASK_335_REPLY_46_A_10_SWORDS_OF_CADMUS_BUTTON;
+	@ClientString(id = 33558, message = "<Button ALIGN=LEFT ICON='NORMAL' action='bypass -h menu_select?ask=335&reply=46'>A: Kerunos' Gold Mane</button>")
+	public static NpcStringId BUTTON_ALIGN_LEFT_ICON_NORMAL_ACTION_BYPASS_H_MENU_SELECT_ASK_335_REPLY_46_A_KERUNOS_GOLD_MANE_BUTTON;
 	
 	@ClientString(id = 33601, message = "|Lv. 40-60| Coins of Magic")
 	public static NpcStringId LV_40_60_COINS_OF_MAGIC;
@@ -5593,8 +5593,8 @@ public class NpcStringId
 	@ClientString(id = 34402, message = "|Lv. 48-55| 1000 Years, the End of Lamentation (In progress)")
 	public static NpcStringId LV_48_55_1000_YEARS_THE_END_OF_LAMENTATION_IN_PROGRESS;
 	
-	@ClientString(id = 34404, message = "|Lv. 48-55| 1000 years, the End of Lamentation")
-	public static NpcStringId LV_48_55_1000_YEARS_THE_END_OF_LAMENTATION_2;
+	@ClientString(id = 34404, message = "|Lv. 48-55| A Thousand Years, the End of Lamentation")
+	public static NpcStringId LV_48_55_A_THOUSAND_YEARS_THE_END_OF_LAMENTATION;
 	
 	@ClientString(id = 34501, message = "Method to Raise the Dead")
 	public static NpcStringId METHOD_TO_RAISE_THE_DEAD;
@@ -5671,14 +5671,14 @@ public class NpcStringId
 	@ClientString(id = 35053, message = "$s1 has obtained Green Soul Crystal Lv. $s2.")
 	public static NpcStringId S1_HAS_OBTAINED_GREEN_SOUL_CRYSTAL_LV_S2;
 	
-	@ClientString(id = 35054, message = "$s1 has obtained Blue Cursed Soul Crystal Lv. $s2.")
-	public static NpcStringId S1_HAS_OBTAINED_BLUE_CURSED_SOUL_CRYSTAL_LV_S2;
+	@ClientString(id = 35054, message = "$s1 has obtained Cursed Blue Soul Crystal Lv. $s2.")
+	public static NpcStringId S1_HAS_OBTAINED_CURSED_BLUE_SOUL_CRYSTAL_LV_S2;
 	
-	@ClientString(id = 35055, message = "$s1 has obtained Red Cursed Soul Crystal Lv. $s2.")
-	public static NpcStringId S1_HAS_OBTAINED_RED_CURSED_SOUL_CRYSTAL_LV_S2;
+	@ClientString(id = 35055, message = "$s1 has obtained Cursed Red Soul Crystal Lv. $s2.")
+	public static NpcStringId S1_HAS_OBTAINED_CURSED_RED_SOUL_CRYSTAL_LV_S2;
 	
-	@ClientString(id = 35056, message = "$s1 has obtained Green Cursed Soul Crystal Lv. $s2.")
-	public static NpcStringId S1_HAS_OBTAINED_GREEN_CURSED_SOUL_CRYSTAL_LV_S2;
+	@ClientString(id = 35056, message = "$s1 has obtained Cursed Green Soul Crystal Lv. $s2.")
+	public static NpcStringId S1_HAS_OBTAINED_CURSED_GREEN_SOUL_CRYSTAL_LV_S2;
 	
 	@ClientString(id = 35101, message = "Black Swan")
 	public static NpcStringId BLACK_SWAN;
@@ -6838,8 +6838,8 @@ public class NpcStringId
 	@ClientString(id = 45505, message = "Defeat monsters")
 	public static NpcStringId DEFEAT_MONSTERS_48;
 	
-	@ClientString(id = 45650, message = "$s1 received a $s2 item as a reward from the separated soul.")
-	public static NpcStringId S1_RECEIVED_A_S2_ITEM_AS_A_REWARD_FROM_THE_SEPARATED_SOUL;
+	@ClientString(id = 45650, message = "$s1 has obtained $s2 as a reward from Separated Soul.")
+	public static NpcStringId S1_HAS_OBTAINED_S2_AS_A_REWARD_FROM_SEPARATED_SOUL;
 	
 	@ClientString(id = 45651, message = "Sealed Vorpal Helmet")
 	public static NpcStringId SEALED_VORPAL_HELMET;
@@ -7057,7 +7057,7 @@ public class NpcStringId
 	@ClientString(id = 46205, message = "Defeat monsters")
 	public static NpcStringId DEFEAT_MONSTERS_54;
 	
-	@ClientString(id = 46350, message = "Att... attack... $s1.. Ro... rogue... $s2..")
+	@ClientString(id = 46350, message = "Att... attack... $s1... Ro... rogue... $s2...")
 	public static NpcStringId ATT_ATTACK_S1_RO_ROGUE_S2;
 	
 	@ClientString(id = 46401, message = "|Lv. 83+| Barracks' Main Force")
@@ -7195,8 +7195,8 @@ public class NpcStringId
 	@ClientString(id = 47804, message = "Nightmares of Dwarves")
 	public static NpcStringId NIGHTMARES_OF_DWARVES_2;
 	
-	@ClientString(id = 47850, message = "$s1 received a $s2 item as a reward from the Head Priest of the Earth Daichir.")
-	public static NpcStringId S1_RECEIVED_A_S2_ITEM_AS_A_REWARD_FROM_THE_HEAD_PRIEST_OF_THE_EARTH_DAICHIR;
+	@ClientString(id = 47850, message = "$s1, Priest of the Earth Daichir gives you $s2 as a reward.")
+	public static NpcStringId S1_PRIEST_OF_THE_EARTH_DAICHIR_GIVES_YOU_S2_AS_A_REWARD;
 	
 	@ClientString(id = 47851, message = "Blessed God's Shaper")
 	public static NpcStringId BLESSED_GOD_S_SHAPER;
@@ -7477,11 +7477,11 @@ public class NpcStringId
 	@ClientString(id = 50004, message = "Brothers Bound in Chains")
 	public static NpcStringId BROTHERS_BOUND_IN_CHAINS_2;
 	
-	@ClientString(id = 50005, message = "$s1 obtains High-grade Stable Scroll: Enchant Weapon!")
-	public static NpcStringId S1_OBTAINS_HIGH_GRADE_STABLE_SCROLL_ENCHANT_WEAPON;
+	@ClientString(id = 50005, message = "$s1 has obtained High-grade Stable Scroll: Enchant Weapon!")
+	public static NpcStringId S1_HAS_OBTAINED_HIGH_GRADE_STABLE_SCROLL_ENCHANT_WEAPON;
 	
-	@ClientString(id = 50006, message = "$s1 obtains High-grade Stable Scroll: Enchant Armor!")
-	public static NpcStringId S1_OBTAINS_HIGH_GRADE_STABLE_SCROLL_ENCHANT_ARMOR;
+	@ClientString(id = 50006, message = "$s1 has obtained High-grade Stable Scroll: Enchant Armor!")
+	public static NpcStringId S1_HAS_OBTAINED_HIGH_GRADE_STABLE_SCROLL_ENCHANT_ARMOR;
 	
 	@ClientString(id = 50007, message = "Insolent scum! How dare you intrude here! You won't get away with it!")
 	public static NpcStringId INSOLENT_SCUM_HOW_DARE_YOU_INTRUDE_HERE_YOU_WON_T_GET_AWAY_WITH_IT;
@@ -7564,8 +7564,8 @@ public class NpcStringId
 	@ClientString(id = 50502, message = "|Lv. 1-99| Blood Offering (In progress)")
 	public static NpcStringId LV_1_99_BLOOD_OFFERING_IN_PROGRESS;
 	
-	@ClientString(id = 50503, message = "|Lv. 1-99| $s1 has won the event for players of Lv. $s2 and gained $s3 points.")
-	public static NpcStringId LV_1_99_S1_HAS_WON_THE_EVENT_FOR_PLAYERS_OF_LV_S2_AND_GAINED_S3_POINTS;
+	@ClientString(id = 50503, message = "|Lv. 1-99| $s1 has won the main event for players below Lv. $s2 and gained $s3 points.")
+	public static NpcStringId LV_1_99_S1_HAS_WON_THE_MAIN_EVENT_FOR_PLAYERS_BELOW_LV_S2_AND_GAINED_S3_POINTS;
 	
 	@ClientString(id = 50504, message = "|Lv. 1-99| $s1 has gained $s2 points in the main event for all levels.")
 	public static NpcStringId LV_1_99_S1_HAS_GAINED_S2_POINTS_IN_THE_MAIN_EVENT_FOR_ALL_LEVELS;
@@ -7591,8 +7591,8 @@ public class NpcStringId
 	@ClientString(id = 50851, message = "You've successfully completed a clan quest. $s1 points have been added to your clan's reputation score.")
 	public static NpcStringId YOU_VE_SUCCESSFULLY_COMPLETED_A_CLAN_QUEST_S1_POINTS_HAVE_BEEN_ADDED_TO_YOUR_CLAN_S_REPUTATION_SCORE;
 	
-	@ClientString(id = 50853, message = "Gah... Shillien... Why must you make us suffer...")
-	public static NpcStringId GAH_SHILLIEN_WHY_MUST_YOU_MAKE_US_SUFFER;
+	@ClientString(id = 50853, message = "Shillien... Why must you make us suffer...")
+	public static NpcStringId SHILLIEN_WHY_MUST_YOU_MAKE_US_SUFFER;
 	
 	@ClientString(id = 50854, message = "Shillien... abandoned us. It is our time... to die.")
 	public static NpcStringId SHILLIEN_ABANDONED_US_IT_IS_OUR_TIME_TO_DIE;
@@ -7615,7 +7615,7 @@ public class NpcStringId
 	@ClientString(id = 50860, message = "Unbelievers run... death will follow you.")
 	public static NpcStringId UNBELIEVERS_RUN_DEATH_WILL_FOLLOW_YOU;
 	
-	@ClientString(id = 50861, message = "I curse our blood.. I despise what we are... Shillien")
+	@ClientString(id = 50861, message = "I curse our blood.. I despise what we are... Shillien...")
 	public static NpcStringId I_CURSE_OUR_BLOOD_I_DESPISE_WHAT_WE_ARE_SHILLIEN;
 	
 	@ClientString(id = 50901, message = "|Lv. 1-99| Clan's Fame")
@@ -8212,11 +8212,11 @@ public class NpcStringId
 	@ClientString(id = 63304, message = "In the Forgotten Village")
 	public static NpcStringId IN_THE_FORGOTTEN_VILLAGE_2;
 	
-	@ClientString(id = 63401, message = "In Search of Fragments of Dimension")
-	public static NpcStringId IN_SEARCH_OF_FRAGMENTS_OF_DIMENSION;
+	@ClientString(id = 63401, message = "Dimensional Fragments")
+	public static NpcStringId DIMENSIONAL_FRAGMENTS;
 	
-	@ClientString(id = 63402, message = "In Search of Fragments of Dimension (In progress)")
-	public static NpcStringId IN_SEARCH_OF_FRAGMENTS_OF_DIMENSION_IN_PROGRESS;
+	@ClientString(id = 63402, message = "Dimensional Fragments (In progress)")
+	public static NpcStringId DIMENSIONAL_FRAGMENTS_IN_PROGRESS;
 	
 	@ClientString(id = 63501, message = "Interworld Rift")
 	public static NpcStringId INTERWORLD_RIFT;
@@ -8341,14 +8341,14 @@ public class NpcStringId
 	@ClientString(id = 64804, message = "|Lv. 53-63| An Ice Merchant's Dream")
 	public static NpcStringId LV_53_63_AN_ICE_MERCHANT_S_DREAM_2;
 	
-	@ClientString(id = 64901, message = "A Looter and a Railroad Man")
-	public static NpcStringId A_LOOTER_AND_A_RAILROAD_MAN;
+	@ClientString(id = 64901, message = "A Looter and a Rogue")
+	public static NpcStringId A_LOOTER_AND_A_ROGUE;
 	
-	@ClientString(id = 64902, message = "A Looter and a Railroad Man (In progress)")
-	public static NpcStringId A_LOOTER_AND_A_RAILROAD_MAN_IN_PROGRESS;
+	@ClientString(id = 64902, message = "A Looter and a Rogue (In progress)")
+	public static NpcStringId A_LOOTER_AND_A_ROGUE_IN_PROGRESS;
 	
-	@ClientString(id = 64904, message = "A Looter and a Railroad Man")
-	public static NpcStringId A_LOOTER_AND_A_RAILROAD_MAN_2;
+	@ClientString(id = 64904, message = "A Looter and a Rogue")
+	public static NpcStringId A_LOOTER_AND_A_ROGUE_2;
 	
 	@ClientString(id = 65001, message = "|Lv. 39-99| A Broken Dream")
 	public static NpcStringId LV_39_99_A_BROKEN_DREAM;
@@ -10030,6 +10030,18 @@ public class NpcStringId
 	@ClientString(id = 84913, message = "500")
 	public static NpcStringId FIVE_HUNDRED_3;
 	
+	@ClientString(id = 84914, message = "The Death Knight has appeared somewhere in the Tower of Insolence.")
+	public static NpcStringId THE_DEATH_KNIGHT_HAS_APPEARED_SOMEWHERE_IN_THE_TOWER_OF_INSOLENCE;
+	
+	@ClientString(id = 84915, message = "The Death Knight is defeated.")
+	public static NpcStringId THE_DEATH_KNIGHT_IS_DEFEATED;
+	
+	@ClientString(id = 84916, message = "$s1 has obtained Elixir Powder!")
+	public static NpcStringId S1_HAS_OBTAINED_ELIXIR_POWDER;
+	
+	@ClientString(id = 84917, message = "$s1 has obtained Hidden Power Booster!")
+	public static NpcStringId S1_HAS_OBTAINED_HIDDEN_POWER_BOOSTER;
+	
 	@ClientString(id = 85001, message = "The Times Call for a New Hero - Aden")
 	public static NpcStringId THE_TIMES_CALL_FOR_A_NEW_HERO_ADEN;
 	
@@ -10216,20 +10228,20 @@ public class NpcStringId
 	@ClientString(id = 85714, message = "No no, no pictures! I look horrible today!")
 	public static NpcStringId NO_NO_NO_PICTURES_I_LOOK_HORRIBLE_TODAY;
 	
-	@ClientString(id = 85715, message = "You scared me! Geez. Oh hey, if anyone asksyou didn't see me taking a break from the fashion show, ok?")
-	public static NpcStringId YOU_SCARED_ME_GEEZ_OH_HEY_IF_ANYONE_ASKSYOU_DIDN_T_SEE_ME_TAKING_A_BREAK_FROM_THE_FASHION_SHOW_OK;
+	@ClientString(id = 85715, message = "You scared me! Geez. Oh hey, if anyone asks...you didn't see me taking a break from the fashion show, ok?")
+	public static NpcStringId YOU_SCARED_ME_GEEZ_OH_HEY_IF_ANYONE_ASKS_YOU_DIDN_T_SEE_ME_TAKING_A_BREAK_FROM_THE_FASHION_SHOW_OK;
 	
 	@ClientString(id = 85716, message = "Ta-da! What do you think? Like, totally trendy, right?")
 	public static NpcStringId TA_DA_WHAT_DO_YOU_THINK_LIKE_TOTALLY_TRENDY_RIGHT;
 	
-	@ClientString(id = 85717, message = "I seea future lying ahead of you. Don't speak! I seeI seeyes, a trendsetter. You shall be the trendiest trendsetter! Muahaha!")
-	public static NpcStringId I_SEEA_FUTURE_LYING_AHEAD_OF_YOU_DON_T_SPEAK_I_SEEI_SEEYES_A_TRENDSETTER_YOU_SHALL_BE_THE_TRENDIEST_TRENDSETTER_MUAHAHA;
+	@ClientString(id = 85717, message = "I see...a future lying ahead of you. Don't speak! I see...I see...yes, a trendsetter. You shall be the trendiest trendsetter! Muahaha!")
+	public static NpcStringId I_SEE_A_FUTURE_LYING_AHEAD_OF_YOU_DON_T_SPEAK_I_SEE_I_SEE_YES_A_TRENDSETTER_YOU_SHALL_BE_THE_TRENDIEST_TRENDSETTER_MUAHAHA;
 	
 	@ClientString(id = 85718, message = "You are cordially invited to this year's special fashion show featuring Sir Adenia Andron.")
 	public static NpcStringId YOU_ARE_CORDIALLY_INVITED_TO_THIS_YEAR_S_SPECIAL_FASHION_SHOW_FEATURING_SIR_ADENIA_ANDRON;
 	
-	@ClientString(id = 85719, message = "Whewwalking practices all day, like a newbie! It's humiliating!")
-	public static NpcStringId WHEWWALKING_PRACTICES_ALL_DAY_LIKE_A_NEWBIE_IT_S_HUMILIATING;
+	@ClientString(id = 85719, message = "Whew...walking practices all day, like a newbie! It's humiliating!")
+	public static NpcStringId WHEW_WALKING_PRACTICES_ALL_DAY_LIKE_A_NEWBIE_IT_S_HUMILIATING;
 	
 	@ClientString(id = 85720, message = "Be sure to watch the fashion show! Take this little gift from me.")
 	public static NpcStringId BE_SURE_TO_WATCH_THE_FASHION_SHOW_TAKE_THIS_LITTLE_GIFT_FROM_ME;
@@ -10240,7 +10252,7 @@ public class NpcStringId
 	@ClientString(id = 85722, message = "Eye-catching fashion is a must in a festival! Try on Sir Adenia Andron's high-end styles!")
 	public static NpcStringId EYE_CATCHING_FASHION_IS_A_MUST_IN_A_FESTIVAL_TRY_ON_SIR_ADENIA_ANDRON_S_HIGH_END_STYLES;
 	
-	@ClientString(id = 85723, message = "Haha, ha um, I'll be going now. See you at the fashion show!")
+	@ClientString(id = 85723, message = "Haha, ha... um, I'll be going now. See you at the fashion show!")
 	public static NpcStringId HAHA_HA_UM_I_LL_BE_GOING_NOW_SEE_YOU_AT_THE_FASHION_SHOW;
 	
 	@ClientString(id = 85724, message = "Here is a Contender's Mark! Please be sure to attend the Fantasy Isle Festival!")
@@ -10255,13 +10267,13 @@ public class NpcStringId
 	@ClientString(id = 85727, message = "These contenders are bloodthirsty nothings. No wonder I can't win!")
 	public static NpcStringId THESE_CONTENDERS_ARE_BLOODTHIRSTY_NOTHINGS_NO_WONDER_I_CAN_T_WIN;
 	
-	@ClientString(id = 85728, message = "Hey, this match is a lot like a wait, no. It can't beit can't be.")
-	public static NpcStringId HEY_THIS_MATCH_IS_A_LOT_LIKE_A_WAIT_NO_IT_CAN_T_BEIT_CAN_T_BE;
+	@ClientString(id = 85728, message = "Hey, this match is a lot like a... wait, no. It can't be...it can't be.")
+	public static NpcStringId HEY_THIS_MATCH_IS_A_LOT_LIKE_A_WAIT_NO_IT_CAN_T_BE_IT_CAN_T_BE;
 	
 	@ClientString(id = 85729, message = "So you can use the Monster Arena if you have a Contender's Mark, huh?")
 	public static NpcStringId SO_YOU_CAN_USE_THE_MONSTER_ARENA_IF_YOU_HAVE_A_CONTENDER_S_MARK_HUH;
 	
-	@ClientString(id = 85730, message = "Aren't there any cute monsters to look at? These are really not aesthetically appealing")
+	@ClientString(id = 85730, message = "Aren't there any cute monsters to look at? These are really not aesthetically appealing...")
 	public static NpcStringId AREN_T_THERE_ANY_CUTE_MONSTERS_TO_LOOK_AT_THESE_ARE_REALLY_NOT_AESTHETICALLY_APPEALING;
 	
 	@ClientString(id = 85780, message = "Ahh, how long since I last visited Fantasy Isle again?")
@@ -10276,8 +10288,8 @@ public class NpcStringId
 	@ClientString(id = 85783, message = "New facilities are great and all, but nothing beats the good ol' Block Checkers or Kratei's Cube.")
 	public static NpcStringId NEW_FACILITIES_ARE_GREAT_AND_ALL_BUT_NOTHING_BEATS_THE_GOOD_OL_BLOCK_CHECKERS_OR_KRATEI_S_CUBE;
 	
-	@ClientString(id = 85784, message = "Let's seewhere should I start?")
-	public static NpcStringId LET_S_SEEWHERE_SHOULD_I_START;
+	@ClientString(id = 85784, message = "Let's see...where should I start?")
+	public static NpcStringId LET_S_SEE_WHERE_SHOULD_I_START;
 	
 	@ClientString(id = 85785, message = "Pst. Hey, rumor going around. Is it true that Fantasy Isle is falling on hard times?")
 	public static NpcStringId PST_HEY_RUMOR_GOING_AROUND_IS_IT_TRUE_THAT_FANTASY_ISLE_IS_FALLING_ON_HARD_TIMES;
@@ -10432,7 +10444,7 @@ public class NpcStringId
 	@ClientString(id = 90818, message = "A pumpkin ghost?")
 	public static NpcStringId A_PUMPKIN_GHOST;
 	
-	@ClientString(id = 90819, message = "I'm disappearing I'll turn into a ghost!")
+	@ClientString(id = 90819, message = "I'm disappearing... I'll turn into a ghost!")
 	public static NpcStringId I_M_DISAPPEARING_I_LL_TURN_INTO_A_GHOST;
 	
 	@ClientString(id = 90820, message = "Not my fault if it comes out all in pieces!")
@@ -10459,8 +10471,8 @@ public class NpcStringId
 	@ClientString(id = 90827, message = "20 seconds left! Hurry!")
 	public static NpcStringId TWENTY_SECONDS_LEFT_HURRY;
 	
-	@ClientString(id = 90828, message = "10 seconds left! 987")
-	public static NpcStringId TEN_SECONDS_LEFT_987;
+	@ClientString(id = 90828, message = "10 seconds left! 9...8...7...")
+	public static NpcStringId TEN_SECONDS_LEFT_9_8_7;
 	
 	@ClientString(id = 90829, message = "If you don't give me Monster Energy, I'll go back in 2 minutes!")
 	public static NpcStringId IF_YOU_DON_T_GIVE_ME_MONSTER_ENERGY_I_LL_GO_BACK_IN_2_MINUTES;
@@ -11080,8 +11092,8 @@ public class NpcStringId
 	@ClientString(id = 94312, message = "Dragon Valley, Sel Mahum Base, Giant's Cave, Turek Orc Barracks, Gorde Canyon, Morgos' Military Base, Xilenos Fortress")
 	public static NpcStringId DRAGON_VALLEY_SEL_MAHUM_BASE_GIANT_S_CAVE_TUREK_ORC_BARRACKS_GORDE_CANYON_MORGOS_MILITARY_BASE_XILENOS_FORTRESS;
 	
-	@ClientString(id = 94313, message = "<font color='LEVEL'>Dragon Valley (east)</font>: Elite Dragon Mage<br1><font color='LEVEL'>Sel Mahum Base</font>: Sel Mahum Footman, Sel Mahum Escort Captain<br1><font color='LEVEL'>Giant's Cave</font>: Mutated Tracker, Giant Aggregation, Lesser Hunter, Evolved Lesser Giant Elder, Baron's Ranger<br1><font color='LEVEL'>Turek Orc Barracks</font>: Turek Orc Marksman, Turek Orc Shaman, Turek Orc Sniper, Turek Orc Elder<br1><font color='LEVEL'>Gorde Canyon</font>: Gorde Grendel, Gorde Buffalo, Gorde Warrior, Eye of Watchman<br1><font color='LEVEL'>Morgos' Military Base</font>: Morgos' Shaman, Morgos' Officer, Morgos' Wizard, Morgos' Sergeant, Bloodhound, Central Barracks Soldier<br1><font color='LEVEL'>Xilenos Fortress</font>: Xilenos Warlord, Xilenos Shooter, Xilenos Elder, Morgos' Commando Captain Jakal, Jakal's Guard, Jakal's Chief Assassin Varka")
-	public static NpcStringId FONT_COLOR_LEVEL_DRAGON_VALLEY_EAST_FONT_ELITE_DRAGON_MAGE_BR1_FONT_COLOR_LEVEL_SEL_MAHUM_BASE_FONT_SEL_MAHUM_FOOTMAN_SEL_MAHUM_ESCORT_CAPTAIN_BR1_FONT_COLOR_LEVEL_GIANT_S_CAVE_FONT_MUTATED_TRACKER_GIANT_AGGREGATION_LESSER_HUNTER_EVOLVED_LESSER_GIANT_ELDER_BARON_S_RANGER_BR1_FONT_COLOR_LEVEL_TUREK_ORC_BARRACKS_FONT_TUREK_ORC_MARKSMAN_TUREK_ORC_SHAMAN_TUREK_ORC_SNIPER_TUREK_ORC_ELDER_BR1_FONT_COLOR_LEVEL_GORDE_CANYON_FONT_GORDE_GRENDEL_GORDE_BUFFALO_GORDE_WARRIOR_EYE_OF_WATCHMAN_BR1_FONT_COLOR_LEVEL_MORGOS_MILITARY_BASE_FONT_MORGOS_SHAMAN_MORGOS_OFFICER_MORGOS_WIZARD_MORGOS_SERGEANT_BLOODHOUND_CENTRAL_BARRACKS_SOLDIER_BR1_FONT_COLOR_LEVEL_XILENOS_FORTRESS_FONT_XILENOS_WARLORD_XILENOS_SHOOTER_XILENOS_ELDER_MORGOS_COMMANDO_CAPTAIN_JAKAL_JAKAL_S_GUARD_JAKAL_S_CHIEF_ASSASSIN_VARKA;
+	@ClientString(id = 94313, message = "<font color='LEVEL'>Dragon Valley (east)</font>: Elite Dragon Mage<br1><font color='LEVEL'>Sel Mahum Base</font>: Sel Mahum Footman, Sel Mahum Footman Captain<br1><font color='LEVEL'>Giant's Cave</font>: Mutated Tracker, Giant Aggregation, Lesser Hunter, Evolved Lesser Giant Elder, Baron's Ranger<br1><font color='LEVEL'>Turek Orc Barracks</font>: Turek Orc Marksman, Turek Orc Shaman, Turek Orc Sniper, Turek Orc Elder<br1><font color='LEVEL'>Gorde Canyon</font>: Gorde Grendel, Gorde Buffalo, Gorde Warrior, Eye of Watchman<br1><font color='LEVEL'>Morgos' Military Base</font>: Morgos' Shaman, Morgos' Officer, Morgos' Wizard, Morgos' Sergeant, Bloodhound, Central Barracks Soldier<br1><font color='LEVEL'>Xilenos Fortress</font>: Xilenos Warlord, Xilenos Shooter, Xilenos Elder, Morgos' Commando Captain Jakal, Jakal's Guard, Jakal's Chief Assassin Varka")
+	public static NpcStringId FONT_COLOR_LEVEL_DRAGON_VALLEY_EAST_FONT_ELITE_DRAGON_MAGE_BR1_FONT_COLOR_LEVEL_SEL_MAHUM_BASE_FONT_SEL_MAHUM_FOOTMAN_SEL_MAHUM_FOOTMAN_CAPTAIN_BR1_FONT_COLOR_LEVEL_GIANT_S_CAVE_FONT_MUTATED_TRACKER_GIANT_AGGREGATION_LESSER_HUNTER_EVOLVED_LESSER_GIANT_ELDER_BARON_S_RANGER_BR1_FONT_COLOR_LEVEL_TUREK_ORC_BARRACKS_FONT_TUREK_ORC_MARKSMAN_TUREK_ORC_SHAMAN_TUREK_ORC_SNIPER_TUREK_ORC_ELDER_BR1_FONT_COLOR_LEVEL_GORDE_CANYON_FONT_GORDE_GRENDEL_GORDE_BUFFALO_GORDE_WARRIOR_EYE_OF_WATCHMAN_BR1_FONT_COLOR_LEVEL_MORGOS_MILITARY_BASE_FONT_MORGOS_SHAMAN_MORGOS_OFFICER_MORGOS_WIZARD_MORGOS_SERGEANT_BLOODHOUND_CENTRAL_BARRACKS_SOLDIER_BR1_FONT_COLOR_LEVEL_XILENOS_FORTRESS_FONT_XILENOS_WARLORD_XILENOS_SHOOTER_XILENOS_ELDER_MORGOS_COMMANDO_CAPTAIN_JAKAL_JAKAL_S_GUARD_JAKAL_S_CHIEF_ASSASSIN_VARKA;
 	
 	@ClientString(id = 94314, message = "1000")
 	public static NpcStringId A_THOUSAND_5;
@@ -11266,8 +11278,8 @@ public class NpcStringId
 	@ClientString(id = 99726, message = "You DO understand!")
 	public static NpcStringId YOU_DO_UNDERSTAND;
 	
-	@ClientString(id = 99727, message = "Yuck! What is this? Ha Ha just kidding!")
-	public static NpcStringId YUCK_WHAT_IS_THIS_HA_HA_JUST_KIDDING;
+	@ClientString(id = 99727, message = "Yuck! What is this?")
+	public static NpcStringId YUCK_WHAT_IS_THIS;
 	
 	@ClientString(id = 99728, message = "A total of five and I'll be twice as alive!")
 	public static NpcStringId A_TOTAL_OF_FIVE_AND_I_LL_BE_TWICE_AS_ALIVE;
@@ -11305,14 +11317,14 @@ public class NpcStringId
 	@ClientString(id = 99739, message = "If I die without nectar, you'll get nothing.")
 	public static NpcStringId IF_I_DIE_WITHOUT_NECTAR_YOU_LL_GET_NOTHING;
 	
-	@ClientString(id = 99740, message = "I'm feeling better! Another thirty seconds and I'll be out of here!")
-	public static NpcStringId I_M_FEELING_BETTER_ANOTHER_THIRTY_SECONDS_AND_I_LL_BE_OUT_OF_HERE;
+	@ClientString(id = 99740, message = "I'm feeling better! Another 30 seconds, and I'll be out of here!")
+	public static NpcStringId I_M_FEELING_BETTER_ANOTHER_30_SECONDS_AND_I_LL_BE_OUT_OF_HERE;
 	
-	@ClientString(id = 99741, message = "Twenty seconds and it's ciao, baby!")
-	public static NpcStringId TWENTY_SECONDS_AND_IT_S_CIAO_BABY;
+	@ClientString(id = 99741, message = "12 seconds, and it's ciao, baby!")
+	public static NpcStringId TWELVE_SECONDS_AND_IT_S_CIAO_BABY;
 	
-	@ClientString(id = 99742, message = "Woohoo, just ten seconds left! nine... eight... seven!")
-	public static NpcStringId WOOHOO_JUST_TEN_SECONDS_LEFT_NINE_EIGHT_SEVEN;
+	@ClientString(id = 99742, message = "Woohoo, just 10 seconds left! 9... 8... 7...")
+	public static NpcStringId WOOHOO_JUST_10_SECONDS_LEFT_9_8_7;
 	
 	@ClientString(id = 99743, message = "Give me the nectar, or I'll be gone in 2 minutes!")
 	public static NpcStringId GIVE_ME_THE_NECTAR_OR_I_LL_BE_GONE_IN_2_MINUTES;
@@ -11632,8 +11644,8 @@ public class NpcStringId
 	@ClientString(id = 103911, message = "Kill Wolves and Bearded Keltirs.")
 	public static NpcStringId KILL_WOLVES_AND_BEARDED_KELTIRS_2;
 	
-	@ClientString(id = 103912, message = "Talk to Head Priest of the Earth Gerald")
-	public static NpcStringId TALK_TO_HEAD_PRIEST_OF_THE_EARTH_GERALD;
+	@ClientString(id = 103912, message = "Talk to Priest of the Earth Gerald")
+	public static NpcStringId TALK_TO_PRIEST_OF_THE_EARTH_GERALD;
 	
 	@ClientString(id = 104001, message = "|Lv. 15-20| Poison Extraction")
 	public static NpcStringId LV_15_20_POISON_EXTRACTION;
@@ -11677,8 +11689,8 @@ public class NpcStringId
 	@ClientString(id = 104604, message = "|Lv. 50+| The Blue Hawk's Quest")
 	public static NpcStringId LV_50_THE_BLUE_HAWK_S_QUEST_2;
 	
-	@ClientString(id = 104605, message = "Explore Primeval Isle")
-	public static NpcStringId EXPLORE_PRIMEVAL_ISLE;
+	@ClientString(id = 104605, message = "Exploring the Primeval Isle")
+	public static NpcStringId EXPLORING_THE_PRIMEVAL_ISLE;
 	
 	@ClientString(id = 104606, message = "Go to Kairen")
 	public static NpcStringId GO_TO_KAIREN;
@@ -12307,17 +12319,17 @@ public class NpcStringId
 	@ClientString(id = 530712, message = "Aden, Orven")
 	public static NpcStringId ADEN_ORVEN_13;
 	
-	@ClientString(id = 530801, message = "|Lv. 76+| Training for the futures sake")
-	public static NpcStringId LV_76_TRAINING_FOR_THE_FUTURES_SAKE;
+	@ClientString(id = 530801, message = "|Lv. 76+| Training for the future's sake")
+	public static NpcStringId LV_76_TRAINING_FOR_THE_FUTURE_S_SAKE;
 	
-	@ClientString(id = 530802, message = "|Lv. 76+| Training for the futures sake (In progress)")
-	public static NpcStringId LV_76_TRAINING_FOR_THE_FUTURES_SAKE_IN_PROGRESS;
+	@ClientString(id = 530802, message = "|Lv. 76+| Training for the future's sake (In progress)")
+	public static NpcStringId LV_76_TRAINING_FOR_THE_FUTURE_S_SAKE_IN_PROGRESS;
 	
-	@ClientString(id = 530803, message = "|Lv. 76+| Training for the futures sake (Completed)")
-	public static NpcStringId LV_76_TRAINING_FOR_THE_FUTURES_SAKE_COMPLETED;
+	@ClientString(id = 530803, message = "|Lv. 76+| Training for the future's sake (Completed)")
+	public static NpcStringId LV_76_TRAINING_FOR_THE_FUTURE_S_SAKE_COMPLETED;
 	
-	@ClientString(id = 530804, message = "|Lv. 76+| Training for the futures sake")
-	public static NpcStringId LV_76_TRAINING_FOR_THE_FUTURES_SAKE_2;
+	@ClientString(id = 530804, message = "|Lv. 76+| Training for the future's sake")
+	public static NpcStringId LV_76_TRAINING_FOR_THE_FUTURE_S_SAKE_2;
 	
 	@ClientString(id = 530810, message = "Talk to Training Mentor Grown")
 	public static NpcStringId TALK_TO_TRAINING_MENTOR_GROWN;
@@ -13696,11 +13708,11 @@ public class NpcStringId
 	@ClientString(id = 540304, message = "|Lv. 58-61| The Guardian Giant")
 	public static NpcStringId LV_58_61_THE_GUARDIAN_GIANT_2;
 	
-	@ClientString(id = 540351, message = "Who is itthat threatens us? You, with the power of the gods why do you covet our powers?")
-	public static NpcStringId WHO_IS_ITTHAT_THREATENS_US_YOU_WITH_THE_POWER_OF_THE_GODS_WHY_DO_YOU_COVET_OUR_POWERS;
+	@ClientString(id = 540351, message = "Who is it...that threatens us...? You, with the power of the gods... why do you covet our powers?")
+	public static NpcStringId WHO_IS_IT_THAT_THREATENS_US_YOU_WITH_THE_POWER_OF_THE_GODS_WHY_DO_YOU_COVET_OUR_POWERS;
 	
-	@ClientString(id = 540352, message = "Youwith the power of the godscease your masquerading as our masters. Or else")
-	public static NpcStringId YOUWITH_THE_POWER_OF_THE_GODSCEASE_YOUR_MASQUERADING_AS_OUR_MASTERS_OR_ELSE;
+	@ClientString(id = 540352, message = "You have divine power... Please stop our fake master... Or else...")
+	public static NpcStringId YOU_HAVE_DIVINE_POWER_PLEASE_STOP_OUR_FAKE_MASTER_OR_ELSE;
 	
 	@ClientString(id = 540401, message = "|Lv. 61-64| Kekropus' Letter: A Hidden Meaning")
 	public static NpcStringId LV_61_64_KEKROPUS_LETTER_A_HIDDEN_MEANING;
@@ -14053,17 +14065,17 @@ public class NpcStringId
 	@ClientString(id = 543051, message = "You have a letter from Kekropus. Click the question-mark icon to read it.")
 	public static NpcStringId YOU_HAVE_A_LETTER_FROM_KEKROPUS_CLICK_THE_QUESTION_MARK_ICON_TO_READ_IT_12;
 	
-	@ClientString(id = 543101, message = "|Lv. 81-84| The Seal of Punishment: Den of Evil")
-	public static NpcStringId LV_81_84_THE_SEAL_OF_PUNISHMENT_DEN_OF_EVIL;
+	@ClientString(id = 543101, message = "|Lv. 81-84| Seal of Scourge - Den of Evil")
+	public static NpcStringId LV_81_84_SEAL_OF_SCOURGE_DEN_OF_EVIL;
 	
-	@ClientString(id = 543102, message = "|Lv. 81-84| The Seal of Punishment: Den of Evil (In progress)")
-	public static NpcStringId LV_81_84_THE_SEAL_OF_PUNISHMENT_DEN_OF_EVIL_IN_PROGRESS;
+	@ClientString(id = 543102, message = "|Lv. 81-84| Seal of Scourge - Den of Evil (In progress)")
+	public static NpcStringId LV_81_84_SEAL_OF_SCOURGE_DEN_OF_EVIL_IN_PROGRESS;
 	
-	@ClientString(id = 543103, message = "|Lv. 81-84| The Seal of Punishment: Den of Evil (Completed)")
-	public static NpcStringId LV_81_84_THE_SEAL_OF_PUNISHMENT_DEN_OF_EVIL_COMPLETED;
+	@ClientString(id = 543103, message = "|Lv. 81-84| Seal of Scourge - Den of Evil (Completed)")
+	public static NpcStringId LV_81_84_SEAL_OF_SCOURGE_DEN_OF_EVIL_COMPLETED;
 	
-	@ClientString(id = 543104, message = "|Lv. 81-84| The Seal of Punishment: Den of Evil")
-	public static NpcStringId LV_81_84_THE_SEAL_OF_PUNISHMENT_DEN_OF_EVIL_2;
+	@ClientString(id = 543104, message = "|Lv. 81-84| Seal of Scourge - Den of Evil")
+	public static NpcStringId LV_81_84_SEAL_OF_SCOURGE_DEN_OF_EVIL_2;
 	
 	@ClientString(id = 543201, message = "|Lv. 81-84| Chasing Varangka")
 	public static NpcStringId LV_81_84_CHASING_VARANGKA;
@@ -14098,17 +14110,17 @@ public class NpcStringId
 	@ClientString(id = 543351, message = "You have a letter from Kekropus. Click the question-mark icon to read it.")
 	public static NpcStringId YOU_HAVE_A_LETTER_FROM_KEKROPUS_CLICK_THE_QUESTION_MARK_ICON_TO_READ_IT_13;
 	
-	@ClientString(id = 543401, message = "|Lv. 81-84| The Seal of Punishment: Sel Mahum Training Grounds")
-	public static NpcStringId LV_81_84_THE_SEAL_OF_PUNISHMENT_SEL_MAHUM_TRAINING_GROUNDS;
+	@ClientString(id = 543401, message = "|Lv. 81-84| Seal of Scourge - Sel Mahum Training Grounds")
+	public static NpcStringId LV_81_84_SEAL_OF_SCOURGE_SEL_MAHUM_TRAINING_GROUNDS;
 	
-	@ClientString(id = 543402, message = "|Lv. 81-84| The Seal of Punishment: Sel Mahum Training Grounds (In progress)")
-	public static NpcStringId LV_81_84_THE_SEAL_OF_PUNISHMENT_SEL_MAHUM_TRAINING_GROUNDS_IN_PROGRESS;
+	@ClientString(id = 543402, message = "|Lv. 81-84| Seal of Scourge - Sel Mahum Training Grounds (In progress)")
+	public static NpcStringId LV_81_84_SEAL_OF_SCOURGE_SEL_MAHUM_TRAINING_GROUNDS_IN_PROGRESS;
 	
-	@ClientString(id = 543403, message = "|Lv. 81-84| The Seal of Punishment: Sel Mahum Training Grounds (Completed)")
-	public static NpcStringId LV_81_84_THE_SEAL_OF_PUNISHMENT_SEL_MAHUM_TRAINING_GROUNDS_COMPLETED;
+	@ClientString(id = 543403, message = "|Lv. 81-84| Seal of Scourge - Sel Mahum Training Grounds (Completed)")
+	public static NpcStringId LV_81_84_SEAL_OF_SCOURGE_SEL_MAHUM_TRAINING_GROUNDS_COMPLETED;
 	
-	@ClientString(id = 543404, message = "|Lv. 81-84| The Seal of Punishment: Sel Mahum Training Grounds")
-	public static NpcStringId LV_81_84_THE_SEAL_OF_PUNISHMENT_SEL_MAHUM_TRAINING_GROUNDS_2;
+	@ClientString(id = 543404, message = "|Lv. 81-84| Seal of Scourge - Sel Mahum Training Grounds")
+	public static NpcStringId LV_81_84_SEAL_OF_SCOURGE_SEL_MAHUM_TRAINING_GROUNDS_2;
 	
 	@ClientString(id = 543501, message = "|Lv. 81-84| Chasing Keltron")
 	public static NpcStringId LV_81_84_CHASING_KELTRON;
@@ -14122,17 +14134,17 @@ public class NpcStringId
 	@ClientString(id = 543504, message = "|Lv. 81-84| Chasing Keltron")
 	public static NpcStringId LV_81_84_CHASING_KELTRON_2;
 	
-	@ClientString(id = 543601, message = "|Lv. 81-84| Kekropus' Letter: The Seal of Punishment")
-	public static NpcStringId LV_81_84_KEKROPUS_LETTER_THE_SEAL_OF_PUNISHMENT;
+	@ClientString(id = 543601, message = "|Lv. 81-84| Kekropus' Letter: Seal of Scourge")
+	public static NpcStringId LV_81_84_KEKROPUS_LETTER_SEAL_OF_SCOURGE;
 	
-	@ClientString(id = 543602, message = "|Lv. 81-84| Kekropus' Letter: The Seal of Punishment (In progress)")
-	public static NpcStringId LV_81_84_KEKROPUS_LETTER_THE_SEAL_OF_PUNISHMENT_IN_PROGRESS;
+	@ClientString(id = 543602, message = "|Lv. 81-84| Kekropus' Letter: Seal of Scourge (In progress)")
+	public static NpcStringId LV_81_84_KEKROPUS_LETTER_SEAL_OF_SCOURGE_IN_PROGRESS;
 	
-	@ClientString(id = 543603, message = "|Lv. 81-84| Kekropus' Letter: The Seal of Punishment (Completed)")
-	public static NpcStringId LV_81_84_KEKROPUS_LETTER_THE_SEAL_OF_PUNISHMENT_COMPLETED;
+	@ClientString(id = 543603, message = "|Lv. 81-84| Kekropus' Letter: Seal of Scourge (Completed)")
+	public static NpcStringId LV_81_84_KEKROPUS_LETTER_SEAL_OF_SCOURGE_COMPLETED;
 	
-	@ClientString(id = 543604, message = "|Lv. 81-84| Kekropus' Letter: The Seal of Punishment")
-	public static NpcStringId LV_81_84_KEKROPUS_LETTER_THE_SEAL_OF_PUNISHMENT_2;
+	@ClientString(id = 543604, message = "|Lv. 81-84| Kekropus' Letter: Seal of Scourge")
+	public static NpcStringId LV_81_84_KEKROPUS_LETTER_SEAL_OF_SCOURGE_2;
 	
 	@ClientString(id = 543631, message = "Talk to Mouen")
 	public static NpcStringId TALK_TO_MOUEN_3;
@@ -14143,17 +14155,17 @@ public class NpcStringId
 	@ClientString(id = 543651, message = "You have a letter from Kekropus. Click the question-mark icon to read it.")
 	public static NpcStringId YOU_HAVE_A_LETTER_FROM_KEKROPUS_CLICK_THE_QUESTION_MARK_ICON_TO_READ_IT_14;
 	
-	@ClientString(id = 543701, message = "|Lv. 81-84| The Seal of Punishment: Plains of the Lizardmen")
-	public static NpcStringId LV_81_84_THE_SEAL_OF_PUNISHMENT_PLAINS_OF_THE_LIZARDMEN;
+	@ClientString(id = 543701, message = "|Lv. 81-84| Seal of Scourge - Plains of the Lizardmen")
+	public static NpcStringId LV_81_84_SEAL_OF_SCOURGE_PLAINS_OF_THE_LIZARDMEN;
 	
-	@ClientString(id = 543702, message = "|Lv. 81-84| The Seal of Punishment: Plains of the Lizardmen (In progress)")
-	public static NpcStringId LV_81_84_THE_SEAL_OF_PUNISHMENT_PLAINS_OF_THE_LIZARDMEN_IN_PROGRESS;
+	@ClientString(id = 543702, message = "|Lv. 81-84| Seal of Scourge - Plains of the Lizardmen (In progress)")
+	public static NpcStringId LV_81_84_SEAL_OF_SCOURGE_PLAINS_OF_THE_LIZARDMEN_IN_PROGRESS;
 	
-	@ClientString(id = 543703, message = "|Lv. 81-84| The Seal of Punishment: Plains of the Lizardmen (Completed)")
-	public static NpcStringId LV_81_84_THE_SEAL_OF_PUNISHMENT_PLAINS_OF_THE_LIZARDMEN_COMPLETED;
+	@ClientString(id = 543703, message = "|Lv. 81-84| Seal of Scourge - Plains of the Lizardmen (Completed)")
+	public static NpcStringId LV_81_84_SEAL_OF_SCOURGE_PLAINS_OF_THE_LIZARDMEN_COMPLETED;
 	
-	@ClientString(id = 543704, message = "|Lv. 81-84| The Seal of Punishment: Plains of the Lizardmen")
-	public static NpcStringId LV_81_84_THE_SEAL_OF_PUNISHMENT_PLAINS_OF_THE_LIZARDMEN_2;
+	@ClientString(id = 543704, message = "|Lv. 81-84| Seal of Scourge - Plains of the Lizardmen")
+	public static NpcStringId LV_81_84_SEAL_OF_SCOURGE_PLAINS_OF_THE_LIZARDMEN_2;
 	
 	@ClientString(id = 543801, message = "|Lv. 81-84| Chasing Loygen")
 	public static NpcStringId LV_81_84_CHASING_LOYGEN;
@@ -14191,17 +14203,17 @@ public class NpcStringId
 	@ClientString(id = 543951, message = "You have a letter from Kekropus. Click the question-mark icon to read it.")
 	public static NpcStringId YOU_HAVE_A_LETTER_FROM_KEKROPUS_CLICK_THE_QUESTION_MARK_ICON_TO_READ_IT_15;
 	
-	@ClientString(id = 544001, message = "|Lv. 81-84| The Seal of Punishment: The Fields")
-	public static NpcStringId LV_81_84_THE_SEAL_OF_PUNISHMENT_THE_FIELDS;
+	@ClientString(id = 544001, message = "|Lv. 81-84| Seal of Scourge - Fields")
+	public static NpcStringId LV_81_84_SEAL_OF_SCOURGE_FIELDS;
 	
-	@ClientString(id = 544002, message = "|Lv. 81-84| The Seal of Punishment: The Fields (In progress)")
-	public static NpcStringId LV_81_84_THE_SEAL_OF_PUNISHMENT_THE_FIELDS_IN_PROGRESS;
+	@ClientString(id = 544002, message = "|Lv. 81-84| Seal of Scourge - Fields (In progress)")
+	public static NpcStringId LV_81_84_SEAL_OF_SCOURGE_FIELDS_IN_PROGRESS;
 	
-	@ClientString(id = 544003, message = "|Lv. 81-84| The Seal of Punishment: The Fields (Completed)")
-	public static NpcStringId LV_81_84_THE_SEAL_OF_PUNISHMENT_THE_FIELDS_COMPLETED;
+	@ClientString(id = 544003, message = "|Lv. 81-84| Seal of Scourge - Fields (Completed)")
+	public static NpcStringId LV_81_84_SEAL_OF_SCOURGE_FIELDS_COMPLETED;
 	
-	@ClientString(id = 544004, message = "|Lv. 81-84| The Seal of Punishment: The Fields")
-	public static NpcStringId LV_81_84_THE_SEAL_OF_PUNISHMENT_THE_FIELDS_2;
+	@ClientString(id = 544004, message = "|Lv. 81-84| Seal of Scourge - Fields")
+	public static NpcStringId LV_81_84_SEAL_OF_SCOURGE_FIELDS_2;
 	
 	@ClientString(id = 544051, message = "Eliminating the Mucrokians")
 	public static NpcStringId ELIMINATING_THE_MUCROKIANS;
@@ -14218,11 +14230,11 @@ public class NpcStringId
 	@ClientString(id = 544104, message = "|Lv. 81-84| Chasing Meccadan")
 	public static NpcStringId LV_81_84_CHASING_MECCADAN_2;
 	
-	@ClientString(id = 544151, message = "Coveting the power of the Seal, huh? Such courage should be rewarded withdeath!")
-	public static NpcStringId COVETING_THE_POWER_OF_THE_SEAL_HUH_SUCH_COURAGE_SHOULD_BE_REWARDED_WITHDEATH;
+	@ClientString(id = 544151, message = "Coveting the power of the Seal, huh? Such courage should be rewarded with...death!")
+	public static NpcStringId COVETING_THE_POWER_OF_THE_SEAL_HUH_SUCH_COURAGE_SHOULD_BE_REWARDED_WITH_DEATH;
 	
-	@ClientString(id = 544152, message = "Fools You have also been used by Shillien Argh Even if I die, the Seal of Punishment will be broken")
-	public static NpcStringId FOOLS_YOU_HAVE_ALSO_BEEN_USED_BY_SHILLIEN_ARGH_EVEN_IF_I_DIE_THE_SEAL_OF_PUNISHMENT_WILL_BE_BROKEN;
+	@ClientString(id = 544152, message = "Fools... You have also been used by Shillien... Argh... Even if I die, the Seal of Scourge will be broken...")
+	public static NpcStringId FOOLS_YOU_HAVE_ALSO_BEEN_USED_BY_SHILLIEN_ARGH_EVEN_IF_I_DIE_THE_SEAL_OF_SCOURGE_WILL_BE_BROKEN;
 	
 	@ClientString(id = 544201, message = "|Lv. 99-99| The Annihilated Plains - 1")
 	public static NpcStringId LV_99_99_THE_ANNIHILATED_PLAINS_1;
@@ -15589,8 +15601,8 @@ public class NpcStringId
 	@ClientString(id = 575704, message = "|Lv. 24-99| Quieting the Storm")
 	public static NpcStringId LV_24_99_QUIETING_THE_STORM_2;
 	
-	@ClientString(id = 575711, message = "Immense Windima or Giant Windima")
-	public static NpcStringId IMMENSE_WINDIMA_OR_GIANT_WINDIMA;
+	@ClientString(id = 575711, message = "Freed Windima or Giant Windima")
+	public static NpcStringId FREED_WINDIMA_OR_GIANT_WINDIMA;
 	
 	@ClientString(id = 575801, message = "|Lv. 28-99| The Oath of the Wind")
 	public static NpcStringId LV_28_99_THE_OATH_OF_THE_WIND;
@@ -16963,8 +16975,8 @@ public class NpcStringId
 	@ClientString(id = 1000010, message = "Tactical retreat!")
 	public static NpcStringId TACTICAL_RETREAT;
 	
-	@ClientString(id = 1000011, message = "Mass fleeing!")
-	public static NpcStringId MASS_FLEEING;
+	@ClientString(id = 1000011, message = "Retreat!")
+	public static NpcStringId RETREAT_2;
 	
 	@ClientString(id = 1000012, message = "It's stronger than expected!")
 	public static NpcStringId IT_S_STRONGER_THAN_EXPECTED;
@@ -17446,8 +17458,8 @@ public class NpcStringId
 	@ClientString(id = 1000171, message = "Adena has been transferred.")
 	public static NpcStringId ADENA_HAS_BEEN_TRANSFERRED;
 	
-	@ClientString(id = 1000172, message = "Attempt")
-	public static NpcStringId ATTEMPT;
+	@ClientString(id = 1000172, message = "Event Number")
+	public static NpcStringId EVENT_NUMBER;
 	
 	@ClientString(id = 1000173, message = "1st")
 	public static NpcStringId FIRST;
@@ -17866,17 +17878,17 @@ public class NpcStringId
 	@ClientString(id = 1000311, message = "Dawn")
 	public static NpcStringId DAWN_2;
 	
-	@ClientString(id = 1000312, message = "Lv. 31 or lower")
-	public static NpcStringId LV_31_OR_LOWER;
+	@ClientString(id = 1000312, message = "Lower than Lv. 32")
+	public static NpcStringId LOWER_THAN_LV_32;
 	
-	@ClientString(id = 1000313, message = "Lv. 42 or lower")
-	public static NpcStringId LV_42_OR_LOWER;
+	@ClientString(id = 1000313, message = "Lower than Lv. 43")
+	public static NpcStringId LOWER_THAN_LV_43;
 	
-	@ClientString(id = 1000314, message = "Lv. 53 or lower")
-	public static NpcStringId LV_53_OR_LOWER;
+	@ClientString(id = 1000314, message = "Lower than Lv. 54")
+	public static NpcStringId LOWER_THAN_LV_54;
 	
-	@ClientString(id = 1000315, message = "Lv. 64 or lower")
-	public static NpcStringId LV_64_OR_LOWER;
+	@ClientString(id = 1000315, message = "Lower than Lv. 65")
+	public static NpcStringId LOWER_THAN_LV_65;
 	
 	@ClientString(id = 1000316, message = "No Level Limit")
 	public static NpcStringId NO_LEVEL_LIMIT;
@@ -18211,8 +18223,8 @@ public class NpcStringId
 	@ClientString(id = 1000452, message = "It's a good day to die! Welcome to hell, maggot!")
 	public static NpcStringId IT_S_A_GOOD_DAY_TO_DIE_WELCOME_TO_HELL_MAGGOT;
 	
-	@ClientString(id = 1000453, message = "The Festival of Darkness will end in 2 min.")
-	public static NpcStringId THE_FESTIVAL_OF_DARKNESS_WILL_END_IN_2_MIN;
+	@ClientString(id = 1000453, message = "The Festival of Darkness will end in two minutes.")
+	public static NpcStringId THE_FESTIVAL_OF_DARKNESS_WILL_END_IN_TWO_MINUTES;
 	
 	@ClientString(id = 1000454, message = "Noblesse Gate Pass")
 	public static NpcStringId NOBLESSE_GATE_PASS;
@@ -18226,8 +18238,8 @@ public class NpcStringId
 	@ClientString(id = 1000457, message = "Game over. The teleport will appear momentarily.")
 	public static NpcStringId GAME_OVER_THE_TELEPORT_WILL_APPEAR_MOMENTARILY;
 	
-	@ClientString(id = 1000458, message = "You, who are like the slugs crawling on the ground. The generosity and greatness of me, Daimon the White-eyed is endless! Ha Ha Ha!")
-	public static NpcStringId YOU_WHO_ARE_LIKE_THE_SLUGS_CRAWLING_ON_THE_GROUND_THE_GENEROSITY_AND_GREATNESS_OF_ME_DAIMON_THE_WHITE_EYED_IS_ENDLESS_HA_HA_HA;
+	@ClientString(id = 1000458, message = "You are like slugs crawling in the ground. The generosity and greatness of me, Daimon the White-eyed, is endless!")
+	public static NpcStringId YOU_ARE_LIKE_SLUGS_CRAWLING_IN_THE_GROUND_THE_GENEROSITY_AND_GREATNESS_OF_ME_DAIMON_THE_WHITE_EYED_IS_ENDLESS;
 	
 	@ClientString(id = 1000459, message = "If you want to be the opponent of me, Daimon the White-eyed, you should at least have the basic skills~!")
 	public static NpcStringId IF_YOU_WANT_TO_BE_THE_OPPONENT_OF_ME_DAIMON_THE_WHITE_EYED_YOU_SHOULD_AT_LEAST_HAVE_THE_BASIC_SKILLS;
@@ -18235,14 +18247,14 @@ public class NpcStringId
 	@ClientString(id = 1000460, message = "You stupid creatures that are bound to the earth. You are suffering too much while dragging your fat, heavy bodies. I, Daimon, will lighten your burden.")
 	public static NpcStringId YOU_STUPID_CREATURES_THAT_ARE_BOUND_TO_THE_EARTH_YOU_ARE_SUFFERING_TOO_MUCH_WHILE_DRAGGING_YOUR_FAT_HEAVY_BODIES_I_DAIMON_WILL_LIGHTEN_YOUR_BURDEN;
 	
-	@ClientString(id = 1000461, message = "A weak and stupid tribe like yours doesn't deserve to be my enemy! Bwa ha ha ha!")
-	public static NpcStringId A_WEAK_AND_STUPID_TRIBE_LIKE_YOURS_DOESN_T_DESERVE_TO_BE_MY_ENEMY_BWA_HA_HA_HA;
+	@ClientString(id = 1000461, message = "A weak and stupid race like yours doesn't deserve to be my enemy!")
+	public static NpcStringId A_WEAK_AND_STUPID_RACE_LIKE_YOURS_DOESN_T_DESERVE_TO_BE_MY_ENEMY;
 	
 	@ClientString(id = 1000462, message = "You dare to invade the territory of Daimon the White-eyed! Now you will pay for your actions!")
 	public static NpcStringId YOU_DARE_TO_INVADE_THE_TERRITORY_OF_DAIMON_THE_WHITE_EYED_NOW_YOU_WILL_PAY_FOR_YOUR_ACTIONS;
 	
-	@ClientString(id = 1000463, message = "This is the grace of Daimon the White-eyed, the great Monster Eye Lord! Ha Ha Ha!")
-	public static NpcStringId THIS_IS_THE_GRACE_OF_DAIMON_THE_WHITE_EYED_THE_GREAT_MONSTER_EYE_LORD_HA_HA_HA;
+	@ClientString(id = 1000463, message = "This is the grace of Daimon the White-eyed! Ha ha ha!")
+	public static NpcStringId THIS_IS_THE_GRACE_OF_DAIMON_THE_WHITE_EYED_HA_HA_HA;
 	
 	@ClientString(id = 1000464, message = "Congratulations, $s1! You have become the Hero of Sigel Knights.")
 	public static NpcStringId CONGRATULATIONS_S1_YOU_HAVE_BECOME_THE_HERO_OF_SIGEL_KNIGHTS;
@@ -18556,8 +18568,8 @@ public class NpcStringId
 	@ClientString(id = 1010028, message = "South Gate Entrance")
 	public static NpcStringId SOUTH_GATE_ENTRANCE;
 	
-	@ClientString(id = 1010029, message = "Entrance to Orc Barracks")
-	public static NpcStringId ENTRANCE_TO_ORC_BARRACKS;
+	@ClientString(id = 1010029, message = "Entrance to the Orc Barracks")
+	public static NpcStringId ENTRANCE_TO_THE_ORC_BARRACKS;
 	
 	@ClientString(id = 1010030, message = "Entrance to the Forgotten Temple")
 	public static NpcStringId ENTRANCE_TO_THE_FORGOTTEN_TEMPLE;
@@ -19309,7 +19321,7 @@ public class NpcStringId
 	@ClientString(id = 1010444, message = "Cough... But, I won't be eaten up by you...!")
 	public static NpcStringId COUGH_BUT_I_WON_T_BE_EATEN_UP_BY_YOU;
 	
-	@ClientString(id = 1010445, message = "....? $s1... I will kill you...")
+	@ClientString(id = 1010445, message = "...? $s1... I will kill you...")
 	public static NpcStringId S1_I_WILL_KILL_YOU;
 	
 	@ClientString(id = 1010446, message = "$s1... How could you catch me from the deep sea...")
@@ -19387,7 +19399,7 @@ public class NpcStringId
 	@ClientString(id = 1010470, message = "Aren't you afraid of Fafurion?!")
 	public static NpcStringId AREN_T_YOU_AFRAID_OF_FAFURION;
 	
-	@ClientString(id = 1010471, message = "You are excellent....")
+	@ClientString(id = 1010471, message = "You are excellent...")
 	public static NpcStringId YOU_ARE_EXCELLENT;
 	
 	@ClientString(id = 1010472, message = "The Poison device has been activated.")
@@ -19510,8 +19522,8 @@ public class NpcStringId
 	@ClientString(id = 1010511, message = "Antharas' Lair - Border Bridge")
 	public static NpcStringId ANTHARAS_LAIR_BORDER_BRIDGE;
 	
-	@ClientString(id = 1010512, message = "The Heart of Antharas' Lair")
-	public static NpcStringId THE_HEART_OF_ANTHARAS_LAIR;
+	@ClientString(id = 1010512, message = "Heart of Antharas' Lair")
+	public static NpcStringId HEART_OF_ANTHARAS_LAIR;
 	
 	@ClientString(id = 1010513, message = "Eastern Field of Silence")
 	public static NpcStringId EASTERN_FIELD_OF_SILENCE;
@@ -19882,14 +19894,14 @@ public class NpcStringId
 	@ClientString(id = 1010635, message = "Undecided")
 	public static NpcStringId UNDECIDED;
 	
-	@ClientString(id = 1010636, message = "Heh Heh... I see that the feast has begun! Be wary! The curse of the Hellmann family has poisoned this land!")
+	@ClientString(id = 1010636, message = "Heh heh... I see that the feast has begun! Be wary! The curse of the Hellmann family has poisoned this land!")
 	public static NpcStringId HEH_HEH_I_SEE_THAT_THE_FEAST_HAS_BEGUN_BE_WARY_THE_CURSE_OF_THE_HELLMANN_FAMILY_HAS_POISONED_THIS_LAND;
 	
 	@ClientString(id = 1010637, message = "Arise, my faithful servants! You, my people who have inherited the blood. It is the calling of my daughter. The feast of blood will now begin!")
 	public static NpcStringId ARISE_MY_FAITHFUL_SERVANTS_YOU_MY_PEOPLE_WHO_HAVE_INHERITED_THE_BLOOD_IT_IS_THE_CALLING_OF_MY_DAUGHTER_THE_FEAST_OF_BLOOD_WILL_NOW_BEGIN;
 	
-	@ClientString(id = 1010638, message = "You may have lordship over the forest for nowbut remember! The true lord will return Enjoy your power while it lasts, if you can manage to sleep at night! Hahaha!")
-	public static NpcStringId YOU_MAY_HAVE_LORDSHIP_OVER_THE_FOREST_FOR_NOWBUT_REMEMBER_THE_TRUE_LORD_WILL_RETURN_ENJOY_YOUR_POWER_WHILE_IT_LASTS_IF_YOU_CAN_MANAGE_TO_SLEEP_AT_NIGHT_HAHAHA;
+	@ClientString(id = 1010638, message = "You may have lordship over the forest for now...but remember! The true lord will return... Enjoy your power while it lasts, if you can manage to sleep at night! Hahaha!")
+	public static NpcStringId YOU_MAY_HAVE_LORDSHIP_OVER_THE_FOREST_FOR_NOW_BUT_REMEMBER_THE_TRUE_LORD_WILL_RETURN_ENJOY_YOUR_POWER_WHILE_IT_LASTS_IF_YOU_CAN_MANAGE_TO_SLEEP_AT_NIGHT_HAHAHA;
 	
 	@ClientString(id = 1010639, message = "In 2 min. the game arena will be cleaned. Throw any items you don't need on the floor.")
 	public static NpcStringId IN_2_MIN_THE_GAME_ARENA_WILL_BE_CLEANED_THROW_ANY_ITEMS_YOU_DON_T_NEED_ON_THE_FLOOR;
@@ -20302,7 +20314,7 @@ public class NpcStringId
 	@ClientString(id = 1032312, message = "Using the soulshot, defeat them faster!")
 	public static NpcStringId USING_THE_SOULSHOT_DEFEAT_THEM_FASTER;
 	
-	@ClientString(id = 1032313, message = "It's quite a walk to Ruins of Ye Sagira")
+	@ClientString(id = 1032313, message = "It's quite a walk to Ruins of Ye Sagira...")
 	public static NpcStringId IT_S_QUITE_A_WALK_TO_RUINS_OF_YE_SAGIRA;
 	
 	@ClientString(id = 1032314, message = "Isn't there an easier way to get there?")
@@ -20347,7 +20359,7 @@ public class NpcStringId
 	@ClientString(id = 1032327, message = "Use your skill attacks against them!")
 	public static NpcStringId USE_YOUR_SKILL_ATTACKS_AGAINST_THEM;
 	
-	@ClientString(id = 1032328, message = "Enough of this come at me!")
+	@ClientString(id = 1032328, message = "Enough of this... come at me!")
 	public static NpcStringId ENOUGH_OF_THIS_COME_AT_ME;
 	
 	@ClientString(id = 1032329, message = "Hunting at the beach is a bad idea.")
@@ -20701,8 +20713,8 @@ public class NpcStringId
 	@ClientString(id = 1110038, message = "<Button ALIGN=LEFT ICON='NORMAL' action='bypass -h menu_select?ask=419&reply=0'>A baby that was born last year</button>")
 	public static NpcStringId BUTTON_ALIGN_LEFT_ICON_NORMAL_ACTION_BYPASS_H_MENU_SELECT_ASK_419_REPLY_0_A_BABY_THAT_WAS_BORN_LAST_YEAR_BUTTON;
 	
-	@ClientString(id = 1110039, message = "<Button ALIGN=LEFT ICON='NORMAL' action='bypass -h menu_select?ask=419&reply=0'>A baby that was born two years ago</button>")
-	public static NpcStringId BUTTON_ALIGN_LEFT_ICON_NORMAL_ACTION_BYPASS_H_MENU_SELECT_ASK_419_REPLY_0_A_BABY_THAT_WAS_BORN_TWO_YEARS_AGO_BUTTON;
+	@ClientString(id = 1110039, message = "<Button ALIGN=LEFT ICON='NORMAL' action='bypass -h menu_select?ask=419&reply=0'>A baby that was born 2 years ago.</button>")
+	public static NpcStringId BUTTON_ALIGN_LEFT_ICON_NORMAL_ACTION_BYPASS_H_MENU_SELECT_ASK_419_REPLY_0_A_BABY_THAT_WAS_BORN_2_YEARS_AGO_BUTTON;
 	
 	@ClientString(id = 1110040, message = "<Button ALIGN=LEFT ICON='NORMAL' action='bypass -h menu_select?ask=419&reply=0'>None of the above.</button>")
 	public static NpcStringId BUTTON_ALIGN_LEFT_ICON_NORMAL_ACTION_BYPASS_H_MENU_SELECT_ASK_419_REPLY_0_NONE_OF_THE_ABOVE_BUTTON_7;
@@ -20725,14 +20737,14 @@ public class NpcStringId
 	@ClientString(id = 1110046, message = "<Button ALIGN=LEFT ICON='NORMAL' action='bypass -h menu_select?ask=419&reply=0'>Breeding season is January-February.</button>")
 	public static NpcStringId BUTTON_ALIGN_LEFT_ICON_NORMAL_ACTION_BYPASS_H_MENU_SELECT_ASK_419_REPLY_0_BREEDING_SEASON_IS_JANUARY_FEBRUARY_BUTTON;
 	
-	@ClientString(id = 1110047, message = "<Button ALIGN=LEFT ICON='NORMAL' action='bypass -h menu_select?ask=419&reply=1'>Pregnancy is nine months.</button>")
-	public static NpcStringId BUTTON_ALIGN_LEFT_ICON_NORMAL_ACTION_BYPASS_H_MENU_SELECT_ASK_419_REPLY_1_PREGNANCY_IS_NINE_MONTHS_BUTTON;
+	@ClientString(id = 1110047, message = "<Button ALIGN=LEFT ICON='NORMAL' action='bypass -h menu_select?ask=419&reply=1'>Pregnancy is 9 months.</button>")
+	public static NpcStringId BUTTON_ALIGN_LEFT_ICON_NORMAL_ACTION_BYPASS_H_MENU_SELECT_ASK_419_REPLY_1_PREGNANCY_IS_9_MONTHS_BUTTON;
 	
 	@ClientString(id = 1110048, message = "<Button ALIGN=LEFT ICON='NORMAL' action='bypass -h menu_select?ask=419&reply=0'>Babies are born in April-June.</button>")
 	public static NpcStringId BUTTON_ALIGN_LEFT_ICON_NORMAL_ACTION_BYPASS_H_MENU_SELECT_ASK_419_REPLY_0_BABIES_ARE_BORN_IN_APRIL_JUNE_BUTTON;
 	
-	@ClientString(id = 1110049, message = "<Button ALIGN=LEFT ICON='NORMAL' action='bypass -h menu_select?ask=419&reply=0'>Has up to ten offspring at one time.</button>")
-	public static NpcStringId BUTTON_ALIGN_LEFT_ICON_NORMAL_ACTION_BYPASS_H_MENU_SELECT_ASK_419_REPLY_0_HAS_UP_TO_TEN_OFFSPRING_AT_ONE_TIME_BUTTON;
+	@ClientString(id = 1110049, message = "<Button ALIGN=LEFT ICON='NORMAL' action='bypass -h menu_select?ask=419&reply=0'>Has up to 10 babies at one time.</button>")
+	public static NpcStringId BUTTON_ALIGN_LEFT_ICON_NORMAL_ACTION_BYPASS_H_MENU_SELECT_ASK_419_REPLY_0_HAS_UP_TO_10_BABIES_AT_ONE_TIME_BUTTON;
 	
 	@ClientString(id = 1110050, message = "<Button ALIGN=LEFT ICON='NORMAL' action='bypass -h menu_select?ask=419&reply=0'>None of the above.</button>")
 	public static NpcStringId BUTTON_ALIGN_LEFT_ICON_NORMAL_ACTION_BYPASS_H_MENU_SELECT_ASK_419_REPLY_0_NONE_OF_THE_ABOVE_BUTTON_8;
@@ -20809,8 +20821,8 @@ public class NpcStringId
 	@ClientString(id = 1110074, message = "...is out of range.")
 	public static NpcStringId IS_OUT_OF_RANGE;
 	
-	@ClientString(id = 1110075, message = "<Button ALIGN=LEFT ICON='NORMAL' action='bypass -h menu_select?ask=255&reply=3' msg='811;???????? ????????'>Teleport to Monster Race Track (free)</button>")
-	public static NpcStringId BUTTON_ALIGN_LEFT_ICON_NORMAL_ACTION_BYPASS_H_MENU_SELECT_ASK_255_REPLY_3_MSG_811_TELEPORT_TO_MONSTER_RACE_TRACK_FREE_BUTTON;
+	@ClientString(id = 1110075, message = "<Button ALIGN=LEFT ICON='NORMAL' action='bypass -h menu_select?ask=255&reply=3' msg='811;???????? ???c????'>Teleport to Monster Race Track (free)</button>")
+	public static NpcStringId BUTTON_ALIGN_LEFT_ICON_NORMAL_ACTION_BYPASS_H_MENU_SELECT_ASK_255_REPLY_3_MSG_811_C_TELEPORT_TO_MONSTER_RACE_TRACK_FREE_BUTTON;
 	
 	@ClientString(id = 1111002, message = "<Button ALIGN=LEFT ICON='NORMAL' action='bypass -h menu_select?ask=-2&reply=41&state=1'>Gladiator</button>")
 	public static NpcStringId BUTTON_ALIGN_LEFT_ICON_NORMAL_ACTION_BYPASS_H_MENU_SELECT_ASK_2_REPLY_41_STATE_1_GLADIATOR_BUTTON;
@@ -21634,8 +21646,8 @@ public class NpcStringId
 	@ClientString(id = 1120038, message = "Shacram (Lv. 45)")
 	public static NpcStringId SHACRAM_LV_45;
 	
-	@ClientString(id = 1120039, message = "Wizard Isirr (lv55)")
-	public static NpcStringId WIZARD_ISIRR_LV55;
+	@ClientString(id = 1120039, message = "Shaman Isirr (Lv. 55)")
+	public static NpcStringId SHAMAN_ISIRR_LV_55;
 	
 	@ClientString(id = 1120040, message = "Lidia, Ghost of the Well (lv60)")
 	public static NpcStringId LIDIA_GHOST_OF_THE_WELL_LV60;
@@ -21676,8 +21688,8 @@ public class NpcStringId
 	@ClientString(id = 1120052, message = "Leto Chief Talkin (lv40)")
 	public static NpcStringId LETO_CHIEF_TALKIN_LV40;
 	
-	@ClientString(id = 1120053, message = "Sephia, Seer of Bereth (lv55)")
-	public static NpcStringId SEPHIA_SEER_OF_BERETH_LV55;
+	@ClientString(id = 1120053, message = "Beleth's Prophetess Sephia (Lv. 55)")
+	public static NpcStringId BELETH_S_PROPHETESS_SEPHIA_LV_55;
 	
 	@ClientString(id = 1120054, message = "Hekaton Prime (lv65)")
 	public static NpcStringId HEKATON_PRIME_LV65;
@@ -21730,8 +21742,8 @@ public class NpcStringId
 	@ClientString(id = 1120070, message = "Demon Kuri (lv59)")
 	public static NpcStringId DEMON_KURI_LV59;
 	
-	@ClientString(id = 1120071, message = "Tasaba Patriarch Hellena (lv35)")
-	public static NpcStringId TASABA_PATRIARCH_HELLENA_LV35;
+	@ClientString(id = 1120071, message = "Tasaba Patriarch Hellena (Lv. 35)")
+	public static NpcStringId TASABA_PATRIARCH_HELLENA_LV_35;
 	
 	@ClientString(id = 1120072, message = "Apepi (lv30)")
 	public static NpcStringId APEPI_LV30;
@@ -21772,8 +21784,8 @@ public class NpcStringId
 	@ClientString(id = 1120084, message = "Soul Reaper Acheron (Lv. 35)")
 	public static NpcStringId SOUL_REAPER_ACHERON_LV_35;
 	
-	@ClientString(id = 1120085, message = "Roaring Lord Kastor (lv62)")
-	public static NpcStringId ROARING_LORD_KASTOR_LV62;
+	@ClientString(id = 1120085, message = "Roaring Lord Kastor (Lv. 62)")
+	public static NpcStringId ROARING_LORD_KASTOR_LV_62;
 	
 	@ClientString(id = 1120086, message = "Storm Winged Naga (lv75)")
 	public static NpcStringId STORM_WINGED_NAGA_LV75;
@@ -21793,8 +21805,8 @@ public class NpcStringId
 	@ClientString(id = 1120091, message = "Abyss Brukunt (lv59)")
 	public static NpcStringId ABYSS_BRUKUNT_LV59;
 	
-	@ClientString(id = 1120092, message = "Harit Hero Tamash (lv55)")
-	public static NpcStringId HARIT_HERO_TAMASH_LV55;
+	@ClientString(id = 1120092, message = "Harit Hero Tamash (Lv. 55)")
+	public static NpcStringId HARIT_HERO_TAMASH_LV_55;
 	
 	@ClientString(id = 1120093, message = "Last Lesser Giant Olkuth (lv75)")
 	public static NpcStringId LAST_LESSER_GIANT_OLKUTH_LV75;
@@ -21838,8 +21850,8 @@ public class NpcStringId
 	@ClientString(id = 1120106, message = "Carnamakos (lv50)")
 	public static NpcStringId CARNAMAKOS_LV50;
 	
-	@ClientString(id = 1120107, message = "Death Lord Ipos (lv75)")
-	public static NpcStringId DEATH_LORD_IPOS_LV75;
+	@ClientString(id = 1120107, message = "Death Lord Ipos (Lv. 75)")
+	public static NpcStringId DEATH_LORD_IPOS_LV_75;
 	
 	@ClientString(id = 1120108, message = "Lilith' Witch Marilion (Lv. 50)")
 	public static NpcStringId LILITH_WITCH_MARILION_LV_50;
@@ -21850,8 +21862,8 @@ public class NpcStringId
 	@ClientString(id = 1120110, message = "Anakim's Nemesis Zakaron(lv70)")
 	public static NpcStringId ANAKIM_S_NEMESIS_ZAKARON_LV70;
 	
-	@ClientString(id = 1120111, message = "Death Lord Shax (lv75)")
-	public static NpcStringId DEATH_LORD_SHAX_LV75;
+	@ClientString(id = 1120111, message = "Death Lord Shax (Lv. 75)")
+	public static NpcStringId DEATH_LORD_SHAX_LV_75;
 	
 	@ClientString(id = 1120112, message = "Hot Springs' Divine Guardian Hestia (Lv. 78)")
 	public static NpcStringId HOT_SPRINGS_DIVINE_GUARDIAN_HESTIA_LV_78;
@@ -21865,8 +21877,8 @@ public class NpcStringId
 	@ClientString(id = 1120115, message = "Ketra's Chief Brakki (Lv. 80)")
 	public static NpcStringId KETRA_S_CHIEF_BRAKKI_LV_80;
 	
-	@ClientString(id = 1120116, message = "Varka's Hero Shadith (lv80)")
-	public static NpcStringId VARKA_S_HERO_SHADITH_LV80;
+	@ClientString(id = 1120116, message = "Varka's Hero Shadith (Lv. 80)")
+	public static NpcStringId VARKA_S_HERO_SHADITH_LV_80;
 	
 	@ClientString(id = 1120117, message = "Varka's Commander Mos (Lv. 80)")
 	public static NpcStringId VARKA_S_COMMANDER_MOS_LV_80;
@@ -21943,14 +21955,14 @@ public class NpcStringId
 	@ClientString(id = 1120141, message = "Premo Prime (lv38)")
 	public static NpcStringId PREMO_PRIME_LV38;
 	
-	@ClientString(id = 1120142, message = "Archon Susceptor (lv45)")
-	public static NpcStringId ARCHON_SUSCEPTOR_LV45;
+	@ClientString(id = 1120142, message = "Susceptor Archon (Lv. 45)")
+	public static NpcStringId SUSCEPTOR_ARCHON_LV_45;
 	
 	@ClientString(id = 1120143, message = "Beleth' Eye (Lv. 35)")
 	public static NpcStringId BELETH_EYE_LV_35;
 	
-	@ClientString(id = 1120144, message = "Skyla (lv32)")
-	public static NpcStringId SKYLA_LV32;
+	@ClientString(id = 1120144, message = "Skyla (Lv. 32)")
+	public static NpcStringId SKYLA_LV_32;
 	
 	@ClientString(id = 1120145, message = "Corsair Captain Kylon (lv33)")
 	public static NpcStringId CORSAIR_CAPTAIN_KYLON_LV33;
@@ -21985,8 +21997,8 @@ public class NpcStringId
 	@ClientString(id = 1120155, message = "Flame Stone Golem (Lv. 44)")
 	public static NpcStringId FLAME_STONE_GOLEM_LV_44;
 	
-	@ClientString(id = 1120156, message = "Bandit Leader Barda (lv55)")
-	public static NpcStringId BANDIT_LEADER_BARDA_LV55;
+	@ClientString(id = 1120156, message = "Raider Captain Barda (Lv. 55)")
+	public static NpcStringId RAIDER_CAPTAIN_BARDA_LV_55;
 	
 	@ClientString(id = 1120157, message = "Timak Orc Gosmos (lv45)")
 	public static NpcStringId TIMAK_ORC_GOSMOS_LV45;
@@ -22060,8 +22072,8 @@ public class NpcStringId
 	@ClientString(id = 1120180, message = "Nellis' Vengeful Spirit (Lv. 39)")
 	public static NpcStringId NELLIS_VENGEFUL_SPIRIT_LV_39;
 	
-	@ClientString(id = 1120181, message = "Rayito the Looter (lv37)")
-	public static NpcStringId RAYITO_THE_LOOTER_LV37;
+	@ClientString(id = 1120181, message = "Rayito the Rogue (Lv. 37)")
+	public static NpcStringId RAYITO_THE_ROGUE_LV_37;
 	
 	@ClientString(id = 1120182, message = "Dark Shaman Varangka (lv53)")
 	public static NpcStringId DARK_SHAMAN_VARANGKA_LV53;
@@ -22567,7 +22579,7 @@ public class NpcStringId
 	@ClientString(id = 1120351, message = "All your weapons are nothing but useless junk!")
 	public static NpcStringId ALL_YOUR_WEAPONS_ARE_NOTHING_BUT_USELESS_JUNK;
 	
-	@ClientString(id = 1120352, message = "Oh-ho So easy to break.")
+	@ClientString(id = 1120352, message = "Oh-ho... So easy to break.")
 	public static NpcStringId OH_HO_SO_EASY_TO_BREAK;
 	
 	@ClientString(id = 1120353, message = "Something must have gone wrong if you see me!")
@@ -23104,7 +23116,7 @@ public class NpcStringId
 	@ClientString(id = 1300196, message = "Congratulations! You are the lord of the Dimensional Castle. You will find the Dimensional Manager by the throne.")
 	public static NpcStringId CONGRATULATIONS_YOU_ARE_THE_LORD_OF_THE_DIMENSIONAL_CASTLE_YOU_WILL_FIND_THE_DIMENSIONAL_MANAGER_BY_THE_THRONE;
 	
-	@ClientString(id = 1300197, message = "You have obtained the Dimensional Castle! Well then, my lord, I have something for you.")
+	@ClientString(id = 1300197, message = "You have obtained the Dimensional Castle...! Well then, my lord, I have something for you.")
 	public static NpcStringId YOU_HAVE_OBTAINED_THE_DIMENSIONAL_CASTLE_WELL_THEN_MY_LORD_I_HAVE_SOMETHING_FOR_YOU;
 	
 	@ClientString(id = 1300198, message = "I wish you luck on your next endeavors, heroes of the dimensions.")
@@ -23170,7 +23182,7 @@ public class NpcStringId
 	@ClientString(id = 1600006, message = "You've made a great choice.")
 	public static NpcStringId YOU_VE_MADE_A_GREAT_CHOICE;
 	
-	@ClientString(id = 1600007, message = "Thanks! I feel more relaxed")
+	@ClientString(id = 1600007, message = "Thanks! I feel more relaxed...")
 	public static NpcStringId THANKS_I_FEEL_MORE_RELAXED;
 	
 	@ClientString(id = 1600008, message = "Did you see that Firecracker explode?")
@@ -23188,8 +23200,8 @@ public class NpcStringId
 	@ClientString(id = 1600012, message = "It's free to go back to the village you teleported from.")
 	public static NpcStringId IT_S_FREE_TO_GO_BACK_TO_THE_VILLAGE_YOU_TELEPORTED_FROM;
 	
-	@ClientString(id = 1600013, message = "If you collect 50 individual Treasure Sack Pieces, you can exchange them for a Treasure Sack.")
-	public static NpcStringId IF_YOU_COLLECT_50_INDIVIDUAL_TREASURE_SACK_PIECES_YOU_CAN_EXCHANGE_THEM_FOR_A_TREASURE_SACK;
+	@ClientString(id = 1600013, message = "You have collected 50 Treasure Sack Pieces and can exchange them for Treasure Sack.")
+	public static NpcStringId YOU_HAVE_COLLECTED_50_TREASURE_SACK_PIECES_AND_CAN_EXCHANGE_THEM_FOR_TREASURE_SACK;
 	
 	@ClientString(id = 1600014, message = "You must be transformed into a Treasure Hunter to find a chest.")
 	public static NpcStringId YOU_MUST_BE_TRANSFORMED_INTO_A_TREASURE_HUNTER_TO_FIND_A_CHEST;
@@ -23335,8 +23347,8 @@ public class NpcStringId
 	@ClientString(id = 1600061, message = "Come on, you beauty lovers! I'll show you the way!")
 	public static NpcStringId COME_ON_YOU_BEAUTY_LOVERS_I_LL_SHOW_YOU_THE_WAY;
 	
-	@ClientString(id = 1600062, message = "Everyone come on, let's go Gangnam Style~")
-	public static NpcStringId EVERYONE_COME_ON_LET_S_GO_GANGNAM_STYLE;
+	@ClientString(id = 1600062, message = "Let's dance!")
+	public static NpcStringId LET_S_DANCE;
 	
 	@ClientString(id = 1600063, message = "Gainak in War")
 	public static NpcStringId GAINAK_IN_WAR;
@@ -23380,8 +23392,8 @@ public class NpcStringId
 	@ClientString(id = 1600076, message = "45 seconds left!")
 	public static NpcStringId FOURTY_FIVE_SECONDS_LEFT;
 	
-	@ClientString(id = 1600077, message = "In case of failure while enchanting to +2, you can get the following items: Ring of Core Queen Ant's Ring Orfen's Earring In case of failure while enchanting to +1, you can get the following items: Zaken's Earring Baium's Ring Frintezza's Necklace Antharas' Earring Beleth' Ring Aztacan's Earring")
-	public static NpcStringId IN_CASE_OF_FAILURE_WHILE_ENCHANTING_TO_2_YOU_CAN_GET_THE_FOLLOWING_ITEMS_RING_OF_CORE_QUEEN_ANT_S_RING_ORFEN_S_EARRING_IN_CASE_OF_FAILURE_WHILE_ENCHANTING_TO_1_YOU_CAN_GET_THE_FOLLOWING_ITEMS_ZAKEN_S_EARRING_BAIUM_S_RING_FRINTEZZA_S_NECKLACE_ANTHARAS_EARRING_BELETH_RING_AZTACAN_S_EARRING;
+	@ClientString(id = 1600077, message = "In case of failure while enchanting to +2, you can get the following items: Ring of Core Queen Ant's Ring Orfen's Earring In case of failure while enchanting to +1, you can get the following items: Zaken's Earring Baium's Ring Frintezza's Necklace Antharas' Earring Beleth' Ring Aztacan's Earring Ferion's Necklace")
+	public static NpcStringId IN_CASE_OF_FAILURE_WHILE_ENCHANTING_TO_2_YOU_CAN_GET_THE_FOLLOWING_ITEMS_RING_OF_CORE_QUEEN_ANT_S_RING_ORFEN_S_EARRING_IN_CASE_OF_FAILURE_WHILE_ENCHANTING_TO_1_YOU_CAN_GET_THE_FOLLOWING_ITEMS_ZAKEN_S_EARRING_BAIUM_S_RING_FRINTEZZA_S_NECKLACE_ANTHARAS_EARRING_BELETH_RING_AZTACAN_S_EARRING_FERION_S_NECKLACE;
 	
 	@ClientString(id = 1600078, message = "In case of failure while enchanting to +6, you can get the following items: Talisman of Aden Blessed Talisman of Aden In case of failure while enchanting to +5, you can get the following items: Talisman of Authority Blessed Talisman of Authority Talisman of Eva Blessed Talisman of Eva Talisman of Speed Blessed Talisman of Speed")
 	public static NpcStringId IN_CASE_OF_FAILURE_WHILE_ENCHANTING_TO_6_YOU_CAN_GET_THE_FOLLOWING_ITEMS_TALISMAN_OF_ADEN_BLESSED_TALISMAN_OF_ADEN_IN_CASE_OF_FAILURE_WHILE_ENCHANTING_TO_5_YOU_CAN_GET_THE_FOLLOWING_ITEMS_TALISMAN_OF_AUTHORITY_BLESSED_TALISMAN_OF_AUTHORITY_TALISMAN_OF_EVA_BLESSED_TALISMAN_OF_EVA_TALISMAN_OF_SPEED_BLESSED_TALISMAN_OF_SPEED;
@@ -23392,8 +23404,8 @@ public class NpcStringId
 	@ClientString(id = 1600080, message = "Challenge points are acquired when failing to enchant the following items to +6 and higher: Talisman of Aden Challenge points are acquired when failing to enchant the following items to +5 and higher: Talisman of Eva Talisman of Speed")
 	public static NpcStringId CHALLENGE_POINTS_ARE_ACQUIRED_WHEN_FAILING_TO_ENCHANT_THE_FOLLOWING_ITEMS_TO_6_AND_HIGHER_TALISMAN_OF_ADEN_CHALLENGE_POINTS_ARE_ACQUIRED_WHEN_FAILING_TO_ENCHANT_THE_FOLLOWING_ITEMS_TO_5_AND_HIGHER_TALISMAN_OF_EVA_TALISMAN_OF_SPEED;
 	
-	@ClientString(id = 1600081, message = "Challenge points are acquired when failing to enchant the following items to +7 and higher: Dragon Belt Challenge points are acquired when failing to enchant the following items to +5 and higher: Circlet of Hero Challenge points are acquired when failing to enchant the following items to +4 and higher: Blessed Dragon Belt")
-	public static NpcStringId CHALLENGE_POINTS_ARE_ACQUIRED_WHEN_FAILING_TO_ENCHANT_THE_FOLLOWING_ITEMS_TO_7_AND_HIGHER_DRAGON_BELT_CHALLENGE_POINTS_ARE_ACQUIRED_WHEN_FAILING_TO_ENCHANT_THE_FOLLOWING_ITEMS_TO_5_AND_HIGHER_CIRCLET_OF_HERO_CHALLENGE_POINTS_ARE_ACQUIRED_WHEN_FAILING_TO_ENCHANT_THE_FOLLOWING_ITEMS_TO_4_AND_HIGHER_BLESSED_DRAGON_BELT;
+	@ClientString(id = 1600081, message = "Challenge points are acquired when failing to enchant the following items to +7 and higher: Dragon Belt Challenge points are acquired when failing to enchant the following items to +5 and higher: Circlet of Hero Impaling Mask Challenge points are acquired when failing to enchant the following items to +4 and higher: Blessed Dragon Belt")
+	public static NpcStringId CHALLENGE_POINTS_ARE_ACQUIRED_WHEN_FAILING_TO_ENCHANT_THE_FOLLOWING_ITEMS_TO_7_AND_HIGHER_DRAGON_BELT_CHALLENGE_POINTS_ARE_ACQUIRED_WHEN_FAILING_TO_ENCHANT_THE_FOLLOWING_ITEMS_TO_5_AND_HIGHER_CIRCLET_OF_HERO_IMPALING_MASK_CHALLENGE_POINTS_ARE_ACQUIRED_WHEN_FAILING_TO_ENCHANT_THE_FOLLOWING_ITEMS_TO_4_AND_HIGHER_BLESSED_DRAGON_BELT;
 	
 	@ClientString(id = 1620000, message = "Entered inside the Earth Wyrm.")
 	public static NpcStringId ENTERED_INSIDE_THE_EARTH_WYRM;
@@ -23566,7 +23578,7 @@ public class NpcStringId
 	@ClientString(id = 1620056, message = "I'm proud of every one of---")
 	public static NpcStringId I_M_PROUD_OF_EVERY_ONE_OF;
 	
-	@ClientString(id = 1620057, message = "Ugh!! If I see you in the spirit world first round is on me.")
+	@ClientString(id = 1620057, message = "Ugh!! If I see you in the spirit world... first round is on me.")
 	public static NpcStringId UGH_IF_I_SEE_YOU_IN_THE_SPIRIT_WORLD_FIRST_ROUND_IS_ON_ME;
 	
 	@ClientString(id = 1620058, message = "Rogin! I'm here!")
@@ -23668,7 +23680,7 @@ public class NpcStringId
 	@ClientString(id = 1620090, message = "Master!")
 	public static NpcStringId MASTER;
 	
-	@ClientString(id = 1620091, message = "")
+	@ClientString(id = 1620091, message = "...")
 	public static NpcStringId EMPTY_6;
 	
 	@ClientString(id = 1620092, message = "This is a hideout made with 'Shine Stone' used in Giant's Dimensional technique. Supposedly the capital of the Giants that have not been found is still in the dimensional gap somewhere...")
@@ -23839,13 +23851,13 @@ public class NpcStringId
 	@ClientString(id = 1717813, message = "Found you! Consider it an honor to be offered up to Lord Triol.")
 	public static NpcStringId FOUND_YOU_CONSIDER_IT_AN_HONOR_TO_BE_OFFERED_UP_TO_LORD_TRIOL;
 	
-	@ClientString(id = 1717814, message = "So weak-looking must be easy to snatch away.")
+	@ClientString(id = 1717814, message = "So weak-looking... must be easy to snatch away.")
 	public static NpcStringId SO_WEAK_LOOKING_MUST_BE_EASY_TO_SNATCH_AWAY;
 	
-	@ClientString(id = 1717815, message = "Where did they go? Hmm we'll withdraw for now. Can't find anything to serve as offerings here.")
+	@ClientString(id = 1717815, message = "Where did they go? Hmm... we'll withdraw for now. Can't find anything to serve as offerings here.")
 	public static NpcStringId WHERE_DID_THEY_GO_HMM_WE_LL_WITHDRAW_FOR_NOW_CAN_T_FIND_ANYTHING_TO_SERVE_AS_OFFERINGS_HERE;
 	
-	@ClientString(id = 1717816, message = "I heard this is where I could find them I guess I'll have to look elsewhere.")
+	@ClientString(id = 1717816, message = "I heard this is where I could find them... I guess I'll have to look elsewhere.")
 	public static NpcStringId I_HEARD_THIS_IS_WHERE_I_COULD_FIND_THEM_I_GUESS_I_LL_HAVE_TO_LOOK_ELSEWHERE;
 	
 	@ClientString(id = 1717817, message = "Come out, Triol's Troopers! Let's bring this creature to Lord Triol!")
@@ -23890,10 +23902,10 @@ public class NpcStringId
 	@ClientString(id = 1800013, message = "Death to those who challenge the Lord!")
 	public static NpcStringId DEATH_TO_THOSE_WHO_CHALLENGE_THE_LORD;
 	
-	@ClientString(id = 1800014, message = "Oink oink! Pigs can do it too! Antharas-Surpassing Super Powered Pig Stun! How do like them apples?")
-	public static NpcStringId OINK_OINK_PIGS_CAN_DO_IT_TOO_ANTHARAS_SURPASSING_SUPER_POWERED_PIG_STUN_HOW_DO_LIKE_THEM_APPLES;
+	@ClientString(id = 1800014, message = "Oink oink! Pigs can do it too! Antharas-surpassing Super-powered Pig Stun! How do you like it?")
+	public static NpcStringId OINK_OINK_PIGS_CAN_DO_IT_TOO_ANTHARAS_SURPASSING_SUPER_POWERED_PIG_STUN_HOW_DO_YOU_LIKE_IT;
 	
-	@ClientString(id = 1800015, message = "Oink oink! Take that! Valakas-Terrorizing Ultra Pig Fear! Ha ha!")
+	@ClientString(id = 1800015, message = "Oink oink! Take that! Valakas-terrorizing Ultra Pig Fear! Ha ha!")
 	public static NpcStringId OINK_OINK_TAKE_THAT_VALAKAS_TERRORIZING_ULTRA_PIG_FEAR_HA_HA;
 	
 	@ClientString(id = 1800016, message = "Oink oink! Go away! Stop bothering me!")
@@ -24550,14 +24562,14 @@ public class NpcStringId
 	@ClientString(id = 1800233, message = "C'mon, c'mon! Show your face, you little rats! Let me see what the doomed weaklings are scheming!")
 	public static NpcStringId C_MON_C_MON_SHOW_YOUR_FACE_YOU_LITTLE_RATS_LET_ME_SEE_WHAT_THE_DOOMED_WEAKLINGS_ARE_SCHEMING;
 	
-	@ClientString(id = 1800234, message = "Impressive.... Hahaha it's so much fun, but I need to chill a little while. Argekunte, clear the way!")
-	public static NpcStringId IMPRESSIVE_HAHAHA_IT_S_SO_MUCH_FUN_BUT_I_NEED_TO_CHILL_A_LITTLE_WHILE_ARGEKUNTE_CLEAR_THE_WAY;
+	@ClientString(id = 1800234, message = "Impressive... It's so much fun, but I need to chill a little while. Clear the way!")
+	public static NpcStringId IMPRESSIVE_IT_S_SO_MUCH_FUN_BUT_I_NEED_TO_CHILL_A_LITTLE_WHILE_CLEAR_THE_WAY;
 	
 	@ClientString(id = 1800235, message = "Kyahaha! Since the tumor has been resurrected, I no longer need to waste my time on you!")
 	public static NpcStringId KYAHAHA_SINCE_THE_TUMOR_HAS_BEEN_RESURRECTED_I_NO_LONGER_NEED_TO_WASTE_MY_TIME_ON_YOU;
 	
-	@ClientString(id = 1800236, message = "Keu... I will leave for now... But don't think this is over... The Seed of Infinity can never die...")
-	public static NpcStringId KEU_I_WILL_LEAVE_FOR_NOW_BUT_DON_T_THINK_THIS_IS_OVER_THE_SEED_OF_INFINITY_CAN_NEVER_DIE;
+	@ClientString(id = 1800236, message = "I will leave for now... But don't think this is over... The Seed of Infinity will never die!")
+	public static NpcStringId I_WILL_LEAVE_FOR_NOW_BUT_DON_T_THINK_THIS_IS_OVER_THE_SEED_OF_INFINITY_WILL_NEVER_DIE;
 	
 	@ClientString(id = 1800237, message = "Kahahaha! That guy's nothing! He can't even kill without my permission! See here! Ultimate forgotten magic! Deathless Guardian!")
 	public static NpcStringId KAHAHAHA_THAT_GUY_S_NOTHING_HE_CAN_T_EVEN_KILL_WITHOUT_MY_PERMISSION_SEE_HERE_ULTIMATE_FORGOTTEN_MAGIC_DEATHLESS_GUARDIAN;
@@ -25507,8 +25519,8 @@ public class NpcStringId
 	@ClientString(id = 1800552, message = "Pay special attention to advice from a close friend.")
 	public static NpcStringId PAY_SPECIAL_ATTENTION_TO_ADVICE_FROM_A_CLOSE_FRIEND;
 	
-	@ClientString(id = 1800553, message = "There may be moderate solutions to every problem when they're viewed from a 3rd party's point of view.")
-	public static NpcStringId THERE_MAY_BE_MODERATE_SOLUTIONS_TO_EVERY_PROBLEM_WHEN_THEY_RE_VIEWED_FROM_A_3RD_PARTY_S_POINT_OF_VIEW;
+	@ClientString(id = 1800553, message = "There may be moderate solutions to every problem when they're viewed from a third party's point of view.")
+	public static NpcStringId THERE_MAY_BE_MODERATE_SOLUTIONS_TO_EVERY_PROBLEM_WHEN_THEY_RE_VIEWED_FROM_A_THIRD_PARTY_S_POINT_OF_VIEW;
 	
 	@ClientString(id = 1800554, message = "Dealings with close friends only bring frustration and headache, politely decline and mention another chance.")
 	public static NpcStringId DEALINGS_WITH_CLOSE_FRIENDS_ONLY_BRING_FRUSTRATION_AND_HEADACHE_POLITELY_DECLINE_AND_MENTION_ANOTHER_CHANCE;
@@ -26047,8 +26059,8 @@ public class NpcStringId
 	@ClientString(id = 1800732, message = "I have to release Santa... How infuriating!!!")
 	public static NpcStringId I_HAVE_TO_RELEASE_SANTA_HOW_INFURIATING;
 	
-	@ClientString(id = 1800733, message = "I hate happy Happy Holidays!!!")
-	public static NpcStringId I_HATE_HAPPY_HAPPY_HOLIDAYS;
+	@ClientString(id = 1800733, message = "I hate Happy Holidays!!!")
+	public static NpcStringId I_HATE_HAPPY_HOLIDAYS;
 	
 	@ClientString(id = 1800734, message = "Oh. I'm bored.")
 	public static NpcStringId OH_I_M_BORED;
@@ -26074,8 +26086,8 @@ public class NpcStringId
 	@ClientString(id = 1800741, message = "I've prepared a gift for you, $s1.")
 	public static NpcStringId I_VE_PREPARED_A_GIFT_FOR_YOU_S1;
 	
-	@ClientString(id = 1800742, message = "I have a gift for $s1.")
-	public static NpcStringId I_HAVE_A_GIFT_FOR_S1;
+	@ClientString(id = 1800742, message = "I have a gift for you, $s1.")
+	public static NpcStringId I_HAVE_A_GIFT_FOR_YOU_S1;
 	
 	@ClientString(id = 1800743, message = "Take a look at the inventory. I hope you like the gift I gave you.")
 	public static NpcStringId TAKE_A_LOOK_AT_THE_INVENTORY_I_HOPE_YOU_LIKE_THE_GIFT_I_GAVE_YOU;
@@ -26476,8 +26488,8 @@ public class NpcStringId
 	@ClientString(id = 1800875, message = "You guys are detected!")
 	public static NpcStringId YOU_GUYS_ARE_DETECTED;
 	
-	@ClientString(id = 1800876, message = "Are you the one who was looking for me?")
-	public static NpcStringId ARE_YOU_THE_ONE_WHO_WAS_LOOKING_FOR_ME;
+	@ClientString(id = 1800876, message = "Are you the one who's been looking for me?")
+	public static NpcStringId ARE_YOU_THE_ONE_WHO_S_BEEN_LOOKING_FOR_ME;
 	
 	@ClientString(id = 1800877, message = "You've obtained $s1 Lv. $s2.")
 	public static NpcStringId YOU_VE_OBTAINED_S1_LV_S2;
@@ -26860,8 +26872,8 @@ public class NpcStringId
 	@ClientString(id = 1801003, message = "I see. Beleth has recovered all of its magic power. What remains here is just its trace.")
 	public static NpcStringId I_SEE_BELETH_HAS_RECOVERED_ALL_OF_ITS_MAGIC_POWER_WHAT_REMAINS_HERE_IS_JUST_ITS_TRACE;
 	
-	@ClientString(id = 1801004, message = "Command Channel Leader $s1, Beleth' Ring has been acquired.")
-	public static NpcStringId COMMAND_CHANNEL_LEADER_S1_BELETH_RING_HAS_BEEN_ACQUIRED;
+	@ClientString(id = 1801004, message = "Command channel leader $s1 has obtained Beleth' Ring!")
+	public static NpcStringId COMMAND_CHANNEL_LEADER_S1_HAS_OBTAINED_BELETH_RING;
 	
 	@ClientString(id = 1801005, message = "You summoned me, so you must be confident, huh? Here I come! Jack game!")
 	public static NpcStringId YOU_SUMMONED_ME_SO_YOU_MUST_BE_CONFIDENT_HUH_HERE_I_COME_JACK_GAME;
@@ -27298,14 +27310,14 @@ public class NpcStringId
 	@ClientString(id = 1801149, message = "Maguen!")
 	public static NpcStringId MAGUEN;
 	
-	@ClientString(id = 1801150, message = "Enough Maguen Plasma - Bistakon have gathered.")
-	public static NpcStringId ENOUGH_MAGUEN_PLASMA_BISTAKON_HAVE_GATHERED;
+	@ClientString(id = 1801150, message = "Maguen's Plasma - Bistakon has been collected.")
+	public static NpcStringId MAGUEN_S_PLASMA_BISTAKON_HAS_BEEN_COLLECTED;
 	
-	@ClientString(id = 1801151, message = "Enough Maguen Plasma - Kokracon have gathered.")
-	public static NpcStringId ENOUGH_MAGUEN_PLASMA_KOKRACON_HAVE_GATHERED;
+	@ClientString(id = 1801151, message = "Maguen's Plasma - Kokracon has been collected.")
+	public static NpcStringId MAGUEN_S_PLASMA_KOKRACON_HAS_BEEN_COLLECTED;
 	
-	@ClientString(id = 1801152, message = "Enough Maguen Plasma - Leptilikon have gathered.")
-	public static NpcStringId ENOUGH_MAGUEN_PLASMA_LEPTILIKON_HAVE_GATHERED;
+	@ClientString(id = 1801152, message = "Maguen's Plasma - Reptilikon has been collected.")
+	public static NpcStringId MAGUEN_S_PLASMA_REPTILIKON_HAS_BEEN_COLLECTED;
 	
 	@ClientString(id = 1801153, message = "The plasmas have filled the aeroscope and are harmonized.")
 	public static NpcStringId THE_PLASMAS_HAVE_FILLED_THE_AEROSCOPE_AND_ARE_HARMONIZED;
@@ -27562,7 +27574,7 @@ public class NpcStringId
 	@ClientString(id = 1801237, message = "I cannot let you stop the wraith of Shillien!")
 	public static NpcStringId I_CANNOT_LET_YOU_STOP_THE_WRAITH_OF_SHILLIEN;
 	
-	@ClientString(id = 1801238, message = "Ah")
+	@ClientString(id = 1801238, message = "Ah...")
 	public static NpcStringId AH_2;
 	
 	@ClientString(id = 1801239, message = "Halt! Your nightmares will fill you with dread!")
@@ -27577,7 +27589,7 @@ public class NpcStringId
 	@ClientString(id = 1801242, message = "Shillien... I have failed...")
 	public static NpcStringId SHILLIEN_I_HAVE_FAILED;
 	
-	@ClientString(id = 1801243, message = "To think that I could fail impossible.")
+	@ClientString(id = 1801243, message = "To think that I could fail... impossible.")
 	public static NpcStringId TO_THINK_THAT_I_COULD_FAIL_IMPOSSIBLE;
 	
 	@ClientString(id = 1801244, message = "Who dares to bother us?")
@@ -28072,8 +28084,8 @@ public class NpcStringId
 	@ClientString(id = 1801409, message = "Hazkal, I will accept the orders of the Guillotine and remove these purities.")
 	public static NpcStringId HAZKAL_I_WILL_ACCEPT_THE_ORDERS_OF_THE_GUILLOTINE_AND_REMOVE_THESE_PURITIES;
 	
-	@ClientString(id = 1801410, message = "I will offer them as a sacrifice to the guillotine.")
-	public static NpcStringId I_WILL_OFFER_THEM_AS_A_SACRIFICE_TO_THE_GUILLOTINE;
+	@ClientString(id = 1801410, message = "I will offer them as a sacrifice to Guillotine.")
+	public static NpcStringId I_WILL_OFFER_THEM_AS_A_SACRIFICE_TO_GUILLOTINE;
 	
 	@ClientString(id = 1801411, message = "Those who enter the fortress without permission have nothing to say!")
 	public static NpcStringId THOSE_WHO_ENTER_THE_FORTRESS_WITHOUT_PERMISSION_HAVE_NOTHING_TO_SAY;
@@ -29317,8 +29329,8 @@ public class NpcStringId
 	@ClientString(id = 1802009, message = "Shame. You are awaited by many, it seems.")
 	public static NpcStringId SHAME_YOU_ARE_AWAITED_BY_MANY_IT_SEEMS;
 	
-	@ClientString(id = 1802010, message = "You unfortunate soulsI can sense your hearts growing heavier as you head her way.")
-	public static NpcStringId YOU_UNFORTUNATE_SOULSI_CAN_SENSE_YOUR_HEARTS_GROWING_HEAVIER_AS_YOU_HEAD_HER_WAY;
+	@ClientString(id = 1802010, message = "You unfortunate souls...I can sense your hearts growing heavier as you head her way.")
+	public static NpcStringId YOU_UNFORTUNATE_SOULS_I_CAN_SENSE_YOUR_HEARTS_GROWING_HEAVIER_AS_YOU_HEAD_HER_WAY;
 	
 	@ClientString(id = 1802011, message = "The Vampire Adepts outside the Outer Castle Gates have all fallen.")
 	public static NpcStringId THE_VAMPIRE_ADEPTS_OUTSIDE_THE_OUTER_CASTLE_GATES_HAVE_ALL_FALLEN;
@@ -29356,11 +29368,11 @@ public class NpcStringId
 	@ClientString(id = 1802022, message = "Repair Robot eliminated! Protect the Repair Robots!")
 	public static NpcStringId REPAIR_ROBOT_ELIMINATED_PROTECT_THE_REPAIR_ROBOTS;
 	
-	@ClientString(id = 1802023, message = "The sandstorm is attacking the Stone Gathering Robots.")
-	public static NpcStringId THE_SANDSTORM_IS_ATTACKING_THE_STONE_GATHERING_ROBOTS;
+	@ClientString(id = 1802023, message = "The sandstorm is attacking Stone-gathering Robots.")
+	public static NpcStringId THE_SANDSTORM_IS_ATTACKING_STONE_GATHERING_ROBOTS;
 	
-	@ClientString(id = 1802024, message = "Focus on repairing the Stone Gathering Robot(s)!")
-	public static NpcStringId FOCUS_ON_REPAIRING_THE_STONE_GATHERING_ROBOT_S;
+	@ClientString(id = 1802024, message = "Focus on repairing the Stone-gathering Robots!")
+	public static NpcStringId FOCUS_ON_REPAIRING_THE_STONE_GATHERING_ROBOTS;
 	
 	@ClientString(id = 1802025, message = "The Destroyer Robots are attacking the Stone Gathering Robots!")
 	public static NpcStringId THE_DESTROYER_ROBOTS_ARE_ATTACKING_THE_STONE_GATHERING_ROBOTS;
@@ -29392,14 +29404,14 @@ public class NpcStringId
 	@ClientString(id = 1802034, message = "You have failed.")
 	public static NpcStringId YOU_HAVE_FAILED;
 	
-	@ClientString(id = 1802035, message = "The Dark Raider is attacking the Stone Gathering Robot(s)!")
-	public static NpcStringId THE_DARK_RAIDER_IS_ATTACKING_THE_STONE_GATHERING_ROBOT_S;
+	@ClientString(id = 1802035, message = "The Dark Rogue is attacking the Stone Gathering Robot(s)!")
+	public static NpcStringId THE_DARK_ROGUE_IS_ATTACKING_THE_STONE_GATHERING_ROBOT_S;
 	
 	@ClientString(id = 1802036, message = "Use the Multi Hammer Skill to repair the Stone Gathering Robot(s)!")
 	public static NpcStringId USE_THE_MULTI_HAMMER_SKILL_TO_REPAIR_THE_STONE_GATHERING_ROBOT_S_2;
 	
-	@ClientString(id = 1802037, message = "Use the Multi Hammer Skill to attack the Dark Raider!")
-	public static NpcStringId USE_THE_MULTI_HAMMER_SKILL_TO_ATTACK_THE_DARK_RAIDER;
+	@ClientString(id = 1802037, message = "Use the Multi Hammer Skill to attack the Dark Rogue!")
+	public static NpcStringId USE_THE_MULTI_HAMMER_SKILL_TO_ATTACK_THE_DARK_ROGUE;
 	
 	@ClientString(id = 1802038, message = "The Repair Robot breaks down when its HP drops to below a certain level.")
 	public static NpcStringId THE_REPAIR_ROBOT_BREAKS_DOWN_WHEN_ITS_HP_DROPS_TO_BELOW_A_CERTAIN_LEVEL;
@@ -29455,10 +29467,10 @@ public class NpcStringId
 	@ClientString(id = 1802055, message = "<Clan Hall Siege Alert> A clan has defeated Gustav for the first time!")
 	public static NpcStringId CLAN_HALL_SIEGE_ALERT_A_CLAN_HAS_DEFEATED_GUSTAV_FOR_THE_FIRST_TIME;
 	
-	@ClientString(id = 1802056, message = "Youour house is already fallen to wretchedness, and you dare add insult to injury!")
-	public static NpcStringId YOUOUR_HOUSE_IS_ALREADY_FALLEN_TO_WRETCHEDNESS_AND_YOU_DARE_ADD_INSULT_TO_INJURY;
+	@ClientString(id = 1802056, message = "You...our house is already fallen to wretchedness, and you dare add insult to injury!")
+	public static NpcStringId YOU_OUR_HOUSE_IS_ALREADY_FALLEN_TO_WRETCHEDNESS_AND_YOU_DARE_ADD_INSULT_TO_INJURY;
 	
-	@ClientString(id = 1802057, message = "You don't deserve such luck")
+	@ClientString(id = 1802057, message = "You don't deserve such luck...")
 	public static NpcStringId YOU_DON_T_DESERVE_SUCH_LUCK;
 	
 	@ClientString(id = 1802058, message = "You don't deserve to even take such form!")
@@ -29500,11 +29512,11 @@ public class NpcStringId
 	@ClientString(id = 1802070, message = "You gave me the strength to escape. I will give you the strength to rise again!")
 	public static NpcStringId YOU_GAVE_ME_THE_STRENGTH_TO_ESCAPE_I_WILL_GIVE_YOU_THE_STRENGTH_TO_RISE_AGAIN;
 	
-	@ClientString(id = 1802071, message = "Thisthis is my last gift to you before I make my escape. Lidia!")
-	public static NpcStringId THISTHIS_IS_MY_LAST_GIFT_TO_YOU_BEFORE_I_MAKE_MY_ESCAPE_LIDIA;
+	@ClientString(id = 1802071, message = "This...this is my last gift to you before I make my escape. Lidia!")
+	public static NpcStringId THIS_THIS_IS_MY_LAST_GIFT_TO_YOU_BEFORE_I_MAKE_MY_ESCAPE_LIDIA;
 	
-	@ClientString(id = 1802072, message = "Ohmistake. Sorry about that.")
-	public static NpcStringId OHMISTAKE_SORRY_ABOUT_THAT;
+	@ClientString(id = 1802072, message = "Oh...mistake. Sorry about that.")
+	public static NpcStringId OH_MISTAKE_SORRY_ABOUT_THAT;
 	
 	@ClientString(id = 1802073, message = "You cold-blooded monsters! Curse be upon you all! You will not live to escape this place!")
 	public static NpcStringId YOU_COLD_BLOODED_MONSTERS_CURSE_BE_UPON_YOU_ALL_YOU_WILL_NOT_LIVE_TO_ESCAPE_THIS_PLACE;
@@ -29530,7 +29542,7 @@ public class NpcStringId
 	@ClientString(id = 1802080, message = "Demolished Throne Stronghold will become conquerable again in $s1 min.")
 	public static NpcStringId DEMOLISHED_THRONE_STRONGHOLD_WILL_BECOME_CONQUERABLE_AGAIN_IN_S1_MIN;
 	
-	@ClientString(id = 1802081, message = "I will make my leave, Master")
+	@ClientString(id = 1802081, message = "I will make my leave, Master...")
 	public static NpcStringId I_WILL_MAKE_MY_LEAVE_MASTER;
 	
 	@ClientString(id = 1802082, message = "You can only hit me with a Multi Hammer!")
@@ -29560,8 +29572,8 @@ public class NpcStringId
 	@ClientString(id = 1802090, message = "Broken Guardian Robot has appeared. Hit it 27 times within 10 seconds to repair it!")
 	public static NpcStringId BROKEN_GUARDIAN_ROBOT_HAS_APPEARED_HIT_IT_27_TIMES_WITHIN_10_SECONDS_TO_REPAIR_IT;
 	
-	@ClientString(id = 1802091, message = "Silvermane White Tiger has appeared. Hit it a certain number of times with the Multi Hammer to make it go away!")
-	public static NpcStringId SILVERMANE_WHITE_TIGER_HAS_APPEARED_HIT_IT_A_CERTAIN_NUMBER_OF_TIMES_WITH_THE_MULTI_HAMMER_TO_MAKE_IT_GO_AWAY;
+	@ClientString(id = 1802091, message = "Silvermane Tiger has appeared. Hit it a certain number of times with the Multi Hammer to make it go away!")
+	public static NpcStringId SILVERMANE_TIGER_HAS_APPEARED_HIT_IT_A_CERTAIN_NUMBER_OF_TIMES_WITH_THE_MULTI_HAMMER_TO_MAKE_IT_GO_AWAY;
 	
 	@ClientString(id = 1802092, message = "Protect the Buffalo from the Silvermane White Tiger!")
 	public static NpcStringId PROTECT_THE_BUFFALO_FROM_THE_SILVERMANE_WHITE_TIGER;
@@ -29713,13 +29725,13 @@ public class NpcStringId
 	@ClientString(id = 1802141, message = "You can obtain the Multi Hammer through the Clan Request Assistant.")
 	public static NpcStringId YOU_CAN_OBTAIN_THE_MULTI_HAMMER_THROUGH_THE_CLAN_REQUEST_ASSISTANT;
 	
-	@ClientString(id = 1802142, message = "Zzz Zzz")
+	@ClientString(id = 1802142, message = "Zzz... Zzz...")
 	public static NpcStringId ZZZ_ZZZ;
 	
 	@ClientString(id = 1802143, message = "Tiger! Tiger!!!")
 	public static NpcStringId TIGER_TIGER;
 	
-	@ClientString(id = 1802144, message = "Hmm Do you think you can break through Lord Nurka's formation? Have fun! Hahaha!")
+	@ClientString(id = 1802144, message = "Hmm... Do you think you can break through Lord Nurka's formation? Have fun! Hahaha!")
 	public static NpcStringId HMM_DO_YOU_THINK_YOU_CAN_BREAK_THROUGH_LORD_NURKA_S_FORMATION_HAVE_FUN_HAHAHA;
 	
 	@ClientString(id = 1802145, message = "Man, just that time when everyone's resting. Consider yourself lucky!")
@@ -29845,8 +29857,8 @@ public class NpcStringId
 	@ClientString(id = 1802185, message = "Charlotte appears while looking around fretfully.")
 	public static NpcStringId CHARLOTTE_APPEARS_WHILE_LOOKING_AROUND_FRETFULLY;
 	
-	@ClientString(id = 1802186, message = "Whewjust watching from the shadows scared me out of my wits!")
-	public static NpcStringId WHEWJUST_WATCHING_FROM_THE_SHADOWS_SCARED_ME_OUT_OF_MY_WITS;
+	@ClientString(id = 1802186, message = "Whew...just watching from the shadows scared me out of my wits!")
+	public static NpcStringId WHEW_JUST_WATCHING_FROM_THE_SHADOWS_SCARED_ME_OUT_OF_MY_WITS;
 	
 	@ClientString(id = 1802187, message = "Breaking news! Boss monsters have appeared in the Elven Village!")
 	public static NpcStringId BREAKING_NEWS_BOSS_MONSTERS_HAVE_APPEARED_IN_THE_ELVEN_VILLAGE;
@@ -29854,7 +29866,7 @@ public class NpcStringId
 	@ClientString(id = 1802188, message = "Lyn Draco appears due to $s1.")
 	public static NpcStringId LYN_DRACO_APPEARS_DUE_TO_S1;
 	
-	@ClientString(id = 1802189, message = "I'll be back")
+	@ClientString(id = 1802189, message = "I'll be back...")
 	public static NpcStringId I_LL_BE_BACK_2;
 	
 	@ClientString(id = 1802190, message = "Who called me? I'm gonna tell Mom!")
@@ -29875,55 +29887,55 @@ public class NpcStringId
 	@ClientString(id = 1802195, message = "You won't lay a finger on His Majesty Travis!")
 	public static NpcStringId YOU_WON_T_LAY_A_FINGER_ON_HIS_MAJESTY_TRAVIS;
 	
-	@ClientString(id = 1802196, message = "What is this sickening aura?")
+	@ClientString(id = 1802196, message = "What is this sickening aura...?")
 	public static NpcStringId WHAT_IS_THIS_SICKENING_AURA;
 	
 	@ClientString(id = 1802197, message = "His Majesty Travis has charged me with the duty to protect. And protect I shall!")
 	public static NpcStringId HIS_MAJESTY_TRAVIS_HAS_CHARGED_ME_WITH_THE_DUTY_TO_PROTECT_AND_PROTECT_I_SHALL;
 	
-	@ClientString(id = 1802198, message = "I hear His Majesty's voiceI hear it every waking moment")
-	public static NpcStringId I_HEAR_HIS_MAJESTY_S_VOICEI_HEAR_IT_EVERY_WAKING_MOMENT;
+	@ClientString(id = 1802198, message = "I hear His Majesty's voice...I hear it every waking moment...")
+	public static NpcStringId I_HEAR_HIS_MAJESTY_S_VOICE_I_HEAR_IT_EVERY_WAKING_MOMENT;
 	
 	@ClientString(id = 1802199, message = "Hah! My body is hale yet!")
 	public static NpcStringId HAH_MY_BODY_IS_HALE_YET;
 	
-	@ClientString(id = 1802200, message = "Beholdmy power!")
-	public static NpcStringId BEHOLDMY_POWER;
+	@ClientString(id = 1802200, message = "Behold...my power!")
+	public static NpcStringId BEHOLD_MY_POWER;
 	
-	@ClientString(id = 1802201, message = "A long slumber has come to an end")
+	@ClientString(id = 1802201, message = "A long slumber has come to an end...")
 	public static NpcStringId A_LONG_SLUMBER_HAS_COME_TO_AN_END;
 	
-	@ClientString(id = 1802202, message = "Long have I waited for His Majesty's call")
+	@ClientString(id = 1802202, message = "Long have I waited for His Majesty's call...")
 	public static NpcStringId LONG_HAVE_I_WAITED_FOR_HIS_MAJESTY_S_CALL;
 	
 	@ClientString(id = 1802203, message = "I will destroy you, just as I have destroyed the enemy forces!")
 	public static NpcStringId I_WILL_DESTROY_YOU_JUST_AS_I_HAVE_DESTROYED_THE_ENEMY_FORCES;
 	
-	@ClientString(id = 1802204, message = "You!")
+	@ClientString(id = 1802204, message = "You...!")
 	public static NpcStringId YOU;
 	
-	@ClientString(id = 1802205, message = "What...what is this power?")
+	@ClientString(id = 1802205, message = "What...what is this power...?")
 	public static NpcStringId WHAT_WHAT_IS_THIS_POWER;
 	
-	@ClientString(id = 1802206, message = "My strength has not yet fully returned")
+	@ClientString(id = 1802206, message = "My strength has not yet fully returned...")
 	public static NpcStringId MY_STRENGTH_HAS_NOT_YET_FULLY_RETURNED;
 	
 	@ClientString(id = 1802207, message = "I will not lose!")
 	public static NpcStringId I_WILL_NOT_LOSE;
 	
-	@ClientString(id = 1802208, message = "I will remember you")
+	@ClientString(id = 1802208, message = "I will remember you...")
 	public static NpcStringId I_WILL_REMEMBER_YOU;
 	
 	@ClientString(id = 1802209, message = "Do you want to kill me?")
 	public static NpcStringId DO_YOU_WANT_TO_KILL_ME;
 	
-	@ClientString(id = 1802210, message = "Feel for yourselfthe strength of my will!")
-	public static NpcStringId FEEL_FOR_YOURSELFTHE_STRENGTH_OF_MY_WILL;
+	@ClientString(id = 1802210, message = "Feel for yourself...the strength of my will!")
+	public static NpcStringId FEEL_FOR_YOURSELF_THE_STRENGTH_OF_MY_WILL;
 	
-	@ClientString(id = 1802211, message = "I don't have much time left")
+	@ClientString(id = 1802211, message = "I don't have much time left...")
 	public static NpcStringId I_DON_T_HAVE_MUCH_TIME_LEFT;
 	
-	@ClientString(id = 1802212, message = "Such deadly aura haven't felt the likes of this in years!")
+	@ClientString(id = 1802212, message = "Such deadly aura... haven't felt the likes of this in years!")
 	public static NpcStringId SUCH_DEADLY_AURA_HAVEN_T_FELT_THE_LIKES_OF_THIS_IN_YEARS;
 	
 	@ClientString(id = 1802213, message = "Do you want to kill me?")
@@ -29944,11 +29956,11 @@ public class NpcStringId
 	@ClientString(id = 1802218, message = "What would you know of loyalty?!")
 	public static NpcStringId WHAT_WOULD_YOU_KNOW_OF_LOYALTY;
 	
-	@ClientString(id = 1802219, message = "A mysterious power has taken residence in me")
+	@ClientString(id = 1802219, message = "A mysterious power has taken residence in me...")
 	public static NpcStringId A_MYSTERIOUS_POWER_HAS_TAKEN_RESIDENCE_IN_ME;
 	
-	@ClientString(id = 1802220, message = "My earsthey keep ringing!")
-	public static NpcStringId MY_EARSTHEY_KEEP_RINGING;
+	@ClientString(id = 1802220, message = "My ears...they keep ringing!")
+	public static NpcStringId MY_EARS_THEY_KEEP_RINGING;
 	
 	@ClientString(id = 1802221, message = "What is this! So disorienting!")
 	public static NpcStringId WHAT_IS_THIS_SO_DISORIENTING;
@@ -29956,22 +29968,22 @@ public class NpcStringId
 	@ClientString(id = 1802222, message = "So you killed my comrades, did you?!")
 	public static NpcStringId SO_YOU_KILLED_MY_COMRADES_DID_YOU;
 	
-	@ClientString(id = 1802223, message = "I will avenge my fallen comrades")
+	@ClientString(id = 1802223, message = "I will avenge my fallen comrades...")
 	public static NpcStringId I_WILL_AVENGE_MY_FALLEN_COMRADES;
 	
-	@ClientString(id = 1802224, message = "Let me be blindlet me be deaf but I will not stop!!")
-	public static NpcStringId LET_ME_BE_BLINDLET_ME_BE_DEAF_BUT_I_WILL_NOT_STOP;
+	@ClientString(id = 1802224, message = "Let me be blind...let me be deaf... but I will not stop!!")
+	public static NpcStringId LET_ME_BE_BLIND_LET_ME_BE_DEAF_BUT_I_WILL_NOT_STOP;
 	
-	@ClientString(id = 1802225, message = "Remember our historyour glorious history!")
-	public static NpcStringId REMEMBER_OUR_HISTORYOUR_GLORIOUS_HISTORY;
+	@ClientString(id = 1802225, message = "Remember our history...our glorious history!")
+	public static NpcStringId REMEMBER_OUR_HISTORY_OUR_GLORIOUS_HISTORY;
 	
-	@ClientString(id = 1802226, message = "I cannotI will notback down!")
-	public static NpcStringId I_CANNOTI_WILL_NOTBACK_DOWN;
+	@ClientString(id = 1802226, message = "I cannot...I will not...back down!")
+	public static NpcStringId I_CANNOT_I_WILL_NOT_BACK_DOWN;
 	
-	@ClientString(id = 1802227, message = "A mountain of corpses")
+	@ClientString(id = 1802227, message = "A mountain of corpses...")
 	public static NpcStringId A_MOUNTAIN_OF_CORPSES;
 	
-	@ClientString(id = 1802228, message = "My slumbering muscles begin to wake")
+	@ClientString(id = 1802228, message = "My slumbering muscles begin to wake...")
 	public static NpcStringId MY_SLUMBERING_MUSCLES_BEGIN_TO_WAKE;
 	
 	@ClientString(id = 1802229, message = "No use trying your petty tricks!")
@@ -29983,7 +29995,7 @@ public class NpcStringId
 	@ClientString(id = 1802231, message = "We haven't even begun yet.")
 	public static NpcStringId WE_HAVEN_T_EVEN_BEGUN_YET;
 	
-	@ClientString(id = 1802232, message = "Are you watching? Watch and feel what true fear is!")
+	@ClientString(id = 1802232, message = "Are you watching? Watch... and feel what true fear is!")
 	public static NpcStringId ARE_YOU_WATCHING_WATCH_AND_FEEL_WHAT_TRUE_FEAR_IS;
 	
 	@ClientString(id = 1802233, message = "Who are you? You weren't here before..")
@@ -30004,7 +30016,7 @@ public class NpcStringId
 	@ClientString(id = 1802238, message = "Today's your judgment day!")
 	public static NpcStringId TODAY_S_YOUR_JUDGMENT_DAY;
 	
-	@ClientString(id = 1802239, message = "Fool")
+	@ClientString(id = 1802239, message = "Fool...")
 	public static NpcStringId FOOL;
 	
 	@ClientString(id = 1802240, message = "You idiot!")
@@ -30013,10 +30025,10 @@ public class NpcStringId
 	@ClientString(id = 1802241, message = "I will end that sorry life.")
 	public static NpcStringId I_WILL_END_THAT_SORRY_LIFE;
 	
-	@ClientString(id = 1802242, message = "Well, what do you know you're gutsier than you look.")
+	@ClientString(id = 1802242, message = "Well, what do you know... you're gutsier than you look.")
 	public static NpcStringId WELL_WHAT_DO_YOU_KNOW_YOU_RE_GUTSIER_THAN_YOU_LOOK;
 	
-	@ClientString(id = 1802243, message = "So this is the end")
+	@ClientString(id = 1802243, message = "So this is the end...")
 	public static NpcStringId SO_THIS_IS_THE_END;
 	
 	@ClientString(id = 1802244, message = "May Aden live on forever!")
@@ -30034,16 +30046,16 @@ public class NpcStringId
 	@ClientString(id = 1802248, message = "Do you have any idea who I am?!")
 	public static NpcStringId DO_YOU_HAVE_ANY_IDEA_WHO_I_AM;
 	
-	@ClientString(id = 1802249, message = "Coughwheeze")
-	public static NpcStringId COUGHWHEEZE;
+	@ClientString(id = 1802249, message = "Cough...wheeze...")
+	public static NpcStringId COUGH_WHEEZE;
 	
-	@ClientString(id = 1802250, message = "My strength has not yet fully returned")
+	@ClientString(id = 1802250, message = "My strength has not yet fully returned...")
 	public static NpcStringId MY_STRENGTH_HAS_NOT_YET_FULLY_RETURNED_2;
 	
 	@ClientString(id = 1802251, message = "Be gone, I say!")
 	public static NpcStringId BE_GONE_I_SAY;
 	
-	@ClientString(id = 1802252, message = "Imbecile")
+	@ClientString(id = 1802252, message = "Imbecile...")
 	public static NpcStringId IMBECILE;
 	
 	@ClientString(id = 1802253, message = "Shame on you!")
@@ -30052,22 +30064,22 @@ public class NpcStringId
 	@ClientString(id = 1802254, message = "Are you not ashamed before the gods?!")
 	public static NpcStringId ARE_YOU_NOT_ASHAMED_BEFORE_THE_GODS;
 	
-	@ClientString(id = 1802255, message = "Shillien Shillien. Such is the name imprinted in my memory")
+	@ClientString(id = 1802255, message = "Shillien... Shillien. Such is the name imprinted in my memory...")
 	public static NpcStringId SHILLIEN_SHILLIEN_SUCH_IS_THE_NAME_IMPRINTED_IN_MY_MEMORY;
 	
 	@ClientString(id = 1802256, message = "I am Travis! I shall not bow down to you!")
 	public static NpcStringId I_AM_TRAVIS_I_SHALL_NOT_BOW_DOWN_TO_YOU;
 	
-	@ClientString(id = 1802257, message = "Not enough timenot enough time at all.")
-	public static NpcStringId NOT_ENOUGH_TIMENOT_ENOUGH_TIME_AT_ALL;
+	@ClientString(id = 1802257, message = "Not enough time...not enough time at all.")
+	public static NpcStringId NOT_ENOUGH_TIME_NOT_ENOUGH_TIME_AT_ALL;
 	
-	@ClientString(id = 1802258, message = "Noargh")
-	public static NpcStringId NOARGH;
+	@ClientString(id = 1802258, message = "No...argh...")
+	public static NpcStringId NO_ARGH;
 	
-	@ClientString(id = 1802259, message = "Howhow dare you do such a foul thing!")
-	public static NpcStringId HOWHOW_DARE_YOU_DO_SUCH_A_FOUL_THING;
+	@ClientString(id = 1802259, message = "How...how dare you do such a foul thing!")
+	public static NpcStringId HOW_HOW_DARE_YOU_DO_SUCH_A_FOUL_THING;
 	
-	@ClientString(id = 1802260, message = "You will pay upon my word you will pay!!")
+	@ClientString(id = 1802260, message = "You will pay... upon my word you will pay!!")
 	public static NpcStringId YOU_WILL_PAY_UPON_MY_WORD_YOU_WILL_PAY;
 	
 	@ClientString(id = 1802261, message = "A powerful wind begins to blow.")
@@ -30085,8 +30097,8 @@ public class NpcStringId
 	@ClientString(id = 1802265, message = "A dragon is attacking the south of Aden!")
 	public static NpcStringId A_DRAGON_IS_ATTACKING_THE_SOUTH_OF_ADEN;
 	
-	@ClientString(id = 1802266, message = "Pleasestop the dragon")
-	public static NpcStringId PLEASESTOP_THE_DRAGON;
+	@ClientString(id = 1802266, message = "Please...stop the dragon...")
+	public static NpcStringId PLEASE_STOP_THE_DRAGON;
 	
 	@ClientString(id = 1802267, message = "Thank you! I'll be going to protect the village now that you're here!")
 	public static NpcStringId THANK_YOU_I_LL_BE_GOING_TO_PROTECT_THE_VILLAGE_NOW_THAT_YOU_RE_HERE;
@@ -30100,8 +30112,8 @@ public class NpcStringId
 	@ClientString(id = 1802270, message = "We did it! All right, I'll be on my way to protecting the village!")
 	public static NpcStringId WE_DID_IT_ALL_RIGHT_I_LL_BE_ON_MY_WAY_TO_PROTECTING_THE_VILLAGE;
 	
-	@ClientString(id = 1802271, message = "We did it! Wedefeated")
-	public static NpcStringId WE_DID_IT_WEDEFEATED;
+	@ClientString(id = 1802271, message = "We did it! We...defeated...")
+	public static NpcStringId WE_DID_IT_WE_DEFEATED;
 	
 	@ClientString(id = 1802272, message = "Nornil Error. Nornil Error.")
 	public static NpcStringId NORNIL_ERROR_NORNIL_ERROR;
@@ -30142,8 +30154,8 @@ public class NpcStringId
 	@ClientString(id = 1802284, message = "A lot of MP are recovered.")
 	public static NpcStringId A_LOT_OF_MP_ARE_RECOVERED;
 	
-	@ClientString(id = 1802285, message = "P. Atk. increases for some time.")
-	public static NpcStringId P_ATK_INCREASES_FOR_SOME_TIME;
+	@ClientString(id = 1802285, message = "P. Atk. is temporarily increased.")
+	public static NpcStringId P_ATK_IS_TEMPORARILY_INCREASED;
 	
 	@ClientString(id = 1802286, message = "M. Atk. increases for some time.")
 	public static NpcStringId M_ATK_INCREASES_FOR_SOME_TIME;
@@ -30190,7 +30202,7 @@ public class NpcStringId
 	@ClientString(id = 1802300, message = "Find the prison key carried by the Nerva Orcs, and get me out of here! I'll make it worth your while, I promise.")
 	public static NpcStringId FIND_THE_PRISON_KEY_CARRIED_BY_THE_NERVA_ORCS_AND_GET_ME_OUT_OF_HERE_I_LL_MAKE_IT_WORTH_YOUR_WHILE_I_PROMISE;
 	
-	@ClientString(id = 1802301, message = "What what's happening to my body? Argh..!")
+	@ClientString(id = 1802301, message = "What... what's happening to my body? Argh..!")
 	public static NpcStringId WHAT_WHAT_S_HAPPENING_TO_MY_BODY_ARGH;
 	
 	@ClientString(id = 1802302, message = "Help me, my comrades! Come out of your hiding and help me!")
@@ -30259,8 +30271,8 @@ public class NpcStringId
 	@ClientString(id = 1802323, message = "So who's gonna take me on?!")
 	public static NpcStringId SO_WHO_S_GONNA_TAKE_ME_ON;
 	
-	@ClientString(id = 1802324, message = "Ye who covet the power of Chaoscome to me.")
-	public static NpcStringId YE_WHO_COVET_THE_POWER_OF_CHAOSCOME_TO_ME;
+	@ClientString(id = 1802324, message = "Ye who covet the power of Chaos...come to me.")
+	public static NpcStringId YE_WHO_COVET_THE_POWER_OF_CHAOS_COME_TO_ME;
 	
 	@ClientString(id = 1802325, message = "Speak with the Agent of Chaos if you desire power.")
 	public static NpcStringId SPEAK_WITH_THE_AGENT_OF_CHAOS_IF_YOU_DESIRE_POWER;
@@ -30295,14 +30307,14 @@ public class NpcStringId
 	@ClientString(id = 1802336, message = "Ready? Let me know.")
 	public static NpcStringId READY_LET_ME_KNOW;
 	
-	@ClientString(id = 1802337, message = "Something ominous in there I hope you're really ready for this. Let me know.")
+	@ClientString(id = 1802337, message = "Something ominous in there... I hope you're really ready for this. Let me know.")
 	public static NpcStringId SOMETHING_OMINOUS_IN_THERE_I_HOPE_YOU_RE_REALLY_READY_FOR_THIS_LET_ME_KNOW;
 	
 	@ClientString(id = 1802338, message = "Good work! You're really something!")
 	public static NpcStringId GOOD_WORK_YOU_RE_REALLY_SOMETHING;
 	
-	@ClientString(id = 1802339, message = "I can'tlet it end like this")
-	public static NpcStringId I_CAN_TLET_IT_END_LIKE_THIS;
+	@ClientString(id = 1802339, message = "I can't...let it end like this...")
+	public static NpcStringId I_CAN_T_LET_IT_END_LIKE_THIS;
 	
 	@ClientString(id = 1802340, message = "Whew, that's more than I thought I could handle! I need to take cover for a bit,.")
 	public static NpcStringId WHEW_THAT_S_MORE_THAN_I_THOUGHT_I_COULD_HANDLE_I_NEED_TO_TAKE_COVER_FOR_A_BIT;
@@ -30319,8 +30331,8 @@ public class NpcStringId
 	@ClientString(id = 1802344, message = "Aak, there goes the Hide!")
 	public static NpcStringId AAK_THERE_GOES_THE_HIDE;
 	
-	@ClientString(id = 1802345, message = "Noooavenge me!")
-	public static NpcStringId NOOOAVENGE_ME;
+	@ClientString(id = 1802345, message = "Nooo...avenge me!")
+	public static NpcStringId NOOO_AVENGE_ME;
 	
 	@ClientString(id = 1802346, message = "I come to help a comrade in need!")
 	public static NpcStringId I_COME_TO_HELP_A_COMRADE_IN_NEED;
@@ -30346,8 +30358,8 @@ public class NpcStringId
 	@ClientString(id = 1802353, message = "It sure seems sturdy, but would this really be able to stop the sacrifices? Hm.")
 	public static NpcStringId IT_SURE_SEEMS_STURDY_BUT_WOULD_THIS_REALLY_BE_ABLE_TO_STOP_THE_SACRIFICES_HM;
 	
-	@ClientString(id = 1802354, message = "We did make this Generator at Lady Jenna's suggestion, butI'm still nervous.")
-	public static NpcStringId WE_DID_MAKE_THIS_GENERATOR_AT_LADY_JENNA_S_SUGGESTION_BUTI_M_STILL_NERVOUS;
+	@ClientString(id = 1802354, message = "We did make this Generator at Lady Jenna's suggestion, but...I'm still nervous.")
+	public static NpcStringId WE_DID_MAKE_THIS_GENERATOR_AT_LADY_JENNA_S_SUGGESTION_BUT_I_M_STILL_NERVOUS;
 	
 	@ClientString(id = 1802355, message = "Rumors have it that Lindvior is headed this way.")
 	public static NpcStringId RUMORS_HAVE_IT_THAT_LINDVIOR_IS_HEADED_THIS_WAY;
@@ -30421,8 +30433,8 @@ public class NpcStringId
 	@ClientString(id = 1802378, message = "We just located Lindvior. Those who are willing to fight can do so at any time now.")
 	public static NpcStringId WE_JUST_LOCATED_LINDVIOR_THOSE_WHO_ARE_WILLING_TO_FIGHT_CAN_DO_SO_AT_ANY_TIME_NOW;
 	
-	@ClientString(id = 1802379, message = "You need to use a skill just right on the Generator to obtain a scale. Talk to Jenna about it.")
-	public static NpcStringId YOU_NEED_TO_USE_A_SKILL_JUST_RIGHT_ON_THE_GENERATOR_TO_OBTAIN_A_SCALE_TALK_TO_JENNA_ABOUT_IT;
+	@ClientString(id = 1802379, message = "You have to use the skill right on the generator to obtain a scale. Talk to Jenain about it.")
+	public static NpcStringId YOU_HAVE_TO_USE_THE_SKILL_RIGHT_ON_THE_GENERATOR_TO_OBTAIN_A_SCALE_TALK_TO_JENAIN_ABOUT_IT;
 	
 	@ClientString(id = 1802380, message = "Write your wish for Lineage II in 2013 onto the Wish Tree!")
 	public static NpcStringId WRITE_YOUR_WISH_FOR_LINEAGE_II_IN_2013_ONTO_THE_WISH_TREE;
@@ -30463,7 +30475,7 @@ public class NpcStringId
 	@ClientString(id = 1802392, message = "Hope your new year is a happy one, everyone! Ho ho ho!")
 	public static NpcStringId HOPE_YOUR_NEW_YEAR_IS_A_HAPPY_ONE_EVERYONE_HO_HO_HO;
 	
-	@ClientString(id = 1802393, message = "Is there no Mrs. Claus around here? I hate being lonely on Christmas")
+	@ClientString(id = 1802393, message = "Is there no Mrs. Claus around here? I hate being lonely on Christmas...")
 	public static NpcStringId IS_THERE_NO_MRS_CLAUS_AROUND_HERE_I_HATE_BEING_LONELY_ON_CHRISTMAS;
 	
 	@ClientString(id = 1802394, message = "You cannot teleport from the GM Consultation Service.")
@@ -30514,14 +30526,14 @@ public class NpcStringId
 	@ClientString(id = 1802409, message = "The magic circle has become abnormal.")
 	public static NpcStringId THE_MAGIC_CIRCLE_HAS_BECOME_ABNORMAL;
 	
-	@ClientString(id = 1802410, message = "Kefensis' Hallucination appeared.")
-	public static NpcStringId KEFENSIS_HALLUCINATION_APPEARED;
+	@ClientString(id = 1802410, message = "Kefensis' illusion appears.")
+	public static NpcStringId KEFENSIS_ILLUSION_APPEARS;
 	
-	@ClientString(id = 1802411, message = "The Oasis Mirage appeared.")
-	public static NpcStringId THE_OASIS_MIRAGE_APPEARED;
+	@ClientString(id = 1802411, message = "Oasis Mirage appears.")
+	public static NpcStringId OASIS_MIRAGE_APPEARS;
 	
 	@ClientString(id = 1802412, message = "The Oasis Mirage appeared.")
-	public static NpcStringId THE_OASIS_MIRAGE_APPEARED_2;
+	public static NpcStringId THE_OASIS_MIRAGE_APPEARED;
 	
 	@ClientString(id = 1802413, message = "A powerful and dangerous energy can be felt.")
 	public static NpcStringId A_POWERFUL_AND_DANGEROUS_ENERGY_CAN_BE_FELT;
@@ -30550,7 +30562,7 @@ public class NpcStringId
 	@ClientString(id = 1802421, message = "My body... what happened?")
 	public static NpcStringId MY_BODY_WHAT_HAPPENED;
 	
-	@ClientString(id = 1802422, message = "Please, take my power. It is not much, but")
+	@ClientString(id = 1802422, message = "Please, take my power. It is not much, but...")
 	public static NpcStringId PLEASE_TAKE_MY_POWER_IT_IS_NOT_MUCH_BUT;
 	
 	@ClientString(id = 1802423, message = "$s1! I will not forget this, you nasty little grunt!")
@@ -30628,11 +30640,11 @@ public class NpcStringId
 	@ClientString(id = 1802448, message = "The highest evolved stage 4 monster appears.")
 	public static NpcStringId THE_HIGHEST_EVOLVED_STAGE_4_MONSTER_APPEARS;
 	
-	@ClientString(id = 1802449, message = "The device activator was received from $s1.")
-	public static NpcStringId THE_DEVICE_ACTIVATOR_WAS_RECEIVED_FROM_S1;
+	@ClientString(id = 1802449, message = "$s1 has obtained Crane Activator.")
+	public static NpcStringId S1_HAS_OBTAINED_CRANE_ACTIVATOR;
 	
-	@ClientString(id = 1802450, message = "One of the party members received the device activator.")
-	public static NpcStringId ONE_OF_THE_PARTY_MEMBERS_RECEIVED_THE_DEVICE_ACTIVATOR;
+	@ClientString(id = 1802450, message = "One of the party members has obtained Crane Activator.")
+	public static NpcStringId ONE_OF_THE_PARTY_MEMBERS_HAS_OBTAINED_CRANE_ACTIVATOR;
 	
 	@ClientString(id = 1802451, message = "Leona Blackbird gave Beleth's Ring as a gift to $s1.")
 	public static NpcStringId LEONA_BLACKBIRD_GAVE_BELETH_S_RING_AS_A_GIFT_TO_S1;
@@ -30649,8 +30661,8 @@ public class NpcStringId
 	@ClientString(id = 1802455, message = "You have acquired SP x 16.")
 	public static NpcStringId YOU_HAVE_ACQUIRED_SP_X_16;
 	
-	@ClientString(id = 1802456, message = "$s1 acquired 32 times the skill points as a reward.")
-	public static NpcStringId S1_ACQUIRED_32_TIMES_THE_SKILL_POINTS_AS_A_REWARD;
+	@ClientString(id = 1802456, message = "$s1 has acquired skill points x32.")
+	public static NpcStringId S1_HAS_ACQUIRED_SKILL_POINTS_X32;
 	
 	@ClientString(id = 1802457, message = "Captured Caravan")
 	public static NpcStringId CAPTURED_CARAVAN;
@@ -30721,7 +30733,7 @@ public class NpcStringId
 	@ClientString(id = 1802479, message = "Mayday! Mayday! We need backup! We need backup!")
 	public static NpcStringId MAYDAY_MAYDAY_WE_NEED_BACKUP_WE_NEED_BACKUP;
 	
-	@ClientString(id = 1802480, message = "Whoa, this is actualy kinda scary I'll need to retreat after a few token blows!")
+	@ClientString(id = 1802480, message = "Whoa, this is actualy kinda scary... I'll need to retreat after a few token blows!")
 	public static NpcStringId WHOA_THIS_IS_ACTUALY_KINDA_SCARY_I_LL_NEED_TO_RETREAT_AFTER_A_FEW_TOKEN_BLOWS;
 	
 	@ClientString(id = 1802481, message = "You have gained 5 extra minutes for defeating the Hiding Tracker.")
@@ -30772,8 +30784,8 @@ public class NpcStringId
 	@ClientString(id = 1802496, message = "The Repository is attacked! Fight! Fight!")
 	public static NpcStringId THE_REPOSITORY_IS_ATTACKED_FIGHT_FIGHT;
 	
-	@ClientString(id = 1802497, message = "Argh! Who ishiding there?")
-	public static NpcStringId ARGH_WHO_ISHIDING_THERE;
+	@ClientString(id = 1802497, message = "Argh! Who is...hiding there...?")
+	public static NpcStringId ARGH_WHO_IS_HIDING_THERE;
 	
 	@ClientString(id = 1802498, message = "A smart Giant, huh? Well, hand it over! The Kartia's Seed is ours!")
 	public static NpcStringId A_SMART_GIANT_HUH_WELL_HAND_IT_OVER_THE_KARTIA_S_SEED_IS_OURS;
@@ -30781,11 +30793,11 @@ public class NpcStringId
 	@ClientString(id = 1802499, message = "Kartia's Seed! Got it!")
 	public static NpcStringId KARTIA_S_SEED_GOT_IT;
 	
-	@ClientString(id = 1802500, message = "You worthless Giantcurse you for eternity!")
-	public static NpcStringId YOU_WORTHLESS_GIANTCURSE_YOU_FOR_ETERNITY;
+	@ClientString(id = 1802500, message = "You worthless Giant...curse you for eternity!")
+	public static NpcStringId YOU_WORTHLESS_GIANT_CURSE_YOU_FOR_ETERNITY;
 	
-	@ClientString(id = 1802501, message = "Thank youthank you for helping!")
-	public static NpcStringId THANK_YOUTHANK_YOU_FOR_HELPING;
+	@ClientString(id = 1802501, message = "Thank you...thank you for helping!")
+	public static NpcStringId THANK_YOU_THANK_YOU_FOR_HELPING;
 	
 	@ClientString(id = 1802502, message = "Thank you. You are kind.")
 	public static NpcStringId THANK_YOU_YOU_ARE_KIND;
@@ -30880,8 +30892,8 @@ public class NpcStringId
 	@ClientString(id = 1802532, message = "You will kneel to me!")
 	public static NpcStringId YOU_WILL_KNEEL_TO_ME;
 	
-	@ClientString(id = 1802533, message = "The dead are callingand I answer!")
-	public static NpcStringId THE_DEAD_ARE_CALLINGAND_I_ANSWER;
+	@ClientString(id = 1802533, message = "The dead are calling...and I answer!")
+	public static NpcStringId THE_DEAD_ARE_CALLING_AND_I_ANSWER;
 	
 	@ClientString(id = 1802534, message = "Kill, all you cursed soldiers! Kill everything!")
 	public static NpcStringId KILL_ALL_YOU_CURSED_SOLDIERS_KILL_EVERYTHING;
@@ -31117,7 +31129,7 @@ public class NpcStringId
 	@ClientString(id = 1802611, message = "Magister Ayanthe has sent a letter. Click the question-mark icon to read.")
 	public static NpcStringId MAGISTER_AYANTHE_HAS_SENT_A_LETTER_CLICK_THE_QUESTION_MARK_ICON_TO_READ;
 	
-	@ClientString(id = 1802612, message = "Such monsters in a place like this! Unbelievable!")
+	@ClientString(id = 1802612, message = "Such monsters in a place like this...! Unbelievable!")
 	public static NpcStringId SUCH_MONSTERS_IN_A_PLACE_LIKE_THIS_UNBELIEVABLE;
 	
 	@ClientString(id = 1802613, message = "Be on your toes!")
@@ -31168,8 +31180,8 @@ public class NpcStringId
 	@ClientString(id = 1802628, message = "You didn't forget your escape scrolls, did you? Because I'm about to use this key to use my ultimate skill!")
 	public static NpcStringId YOU_DIDN_T_FORGET_YOUR_ESCAPE_SCROLLS_DID_YOU_BECAUSE_I_M_ABOUT_TO_USE_THIS_KEY_TO_USE_MY_ULTIMATE_SKILL;
 	
-	@ClientString(id = 1802629, message = "My ultimate skill isLv. 36 Retreat!")
-	public static NpcStringId MY_ULTIMATE_SKILL_ISLV_36_RETREAT;
+	@ClientString(id = 1802629, message = "My ultimate skill is...Lv. 36 Retreat!")
+	public static NpcStringId MY_ULTIMATE_SKILL_IS_LV_36_RETREAT;
 	
 	@ClientString(id = 1802630, message = "I'm not helping you cuz I feel sorry or anything!")
 	public static NpcStringId I_M_NOT_HELPING_YOU_CUZ_I_FEEL_SORRY_OR_ANYTHING;
@@ -31324,8 +31336,8 @@ public class NpcStringId
 	@ClientString(id = 1802680, message = "Thank you! What a delicious carrot.")
 	public static NpcStringId THANK_YOU_WHAT_A_DELICIOUS_CARROT;
 	
-	@ClientString(id = 1802681, message = "So goodso good.")
-	public static NpcStringId SO_GOODSO_GOOD;
+	@ClientString(id = 1802681, message = "So good...so good.")
+	public static NpcStringId SO_GOOD_SO_GOOD;
 	
 	@ClientString(id = 1802682, message = "This is a true carrot! A true carrot!")
 	public static NpcStringId THIS_IS_A_TRUE_CARROT_A_TRUE_CARROT;
@@ -31336,7 +31348,7 @@ public class NpcStringId
 	@ClientString(id = 1802684, message = "You just don't understand.")
 	public static NpcStringId YOU_JUST_DON_T_UNDERSTAND;
 	
-	@ClientString(id = 1802685, message = "A carrot is much better than sticks. But some horses do like sticks better")
+	@ClientString(id = 1802685, message = "A carrot is much better than sticks. But some horses do like sticks better...")
 	public static NpcStringId A_CARROT_IS_MUCH_BETTER_THAN_STICKS_BUT_SOME_HORSES_DO_LIKE_STICKS_BETTER;
 	
 	@ClientString(id = 1802686, message = "Carrot! Carroticious! Carrogant!")
@@ -31396,16 +31408,16 @@ public class NpcStringId
 	@ClientString(id = 1802704, message = "The instanced zone will close soon!")
 	public static NpcStringId THE_INSTANCED_ZONE_WILL_CLOSE_SOON;
 	
-	@ClientString(id = 1802705, message = "Nooonot enough Vitality yet!")
-	public static NpcStringId NOOONOT_ENOUGH_VITALITY_YET;
+	@ClientString(id = 1802705, message = "Nooo...not enough Vitality yet!")
+	public static NpcStringId NOOO_NOT_ENOUGH_VITALITY_YET;
 	
-	@ClientString(id = 1802706, message = "Ow, ow! It hurts")
+	@ClientString(id = 1802706, message = "Ow, ow! It hurts...")
 	public static NpcStringId OW_OW_IT_HURTS;
 	
-	@ClientString(id = 1802707, message = "It tizzes and bungles! Tingles andow!")
-	public static NpcStringId IT_TIZZES_AND_BUNGLES_TINGLES_ANDOW;
+	@ClientString(id = 1802707, message = "It tizzes and bungles! Tingles and...ow!")
+	public static NpcStringId IT_TIZZES_AND_BUNGLES_TINGLES_AND_OW;
 	
-	@ClientString(id = 1802708, message = "Ergh, stop, stop")
+	@ClientString(id = 1802708, message = "Ergh, stop, stop...")
 	public static NpcStringId ERGH_STOP_STOP;
 	
 	@ClientString(id = 1802709, message = "You think you can stop me from getting ow!")
@@ -31420,7 +31432,7 @@ public class NpcStringId
 	@ClientString(id = 1802712, message = "Argh, you got me with your laser gun - or not! Haha, sucker!")
 	public static NpcStringId ARGH_YOU_GOT_ME_WITH_YOUR_LASER_GUN_OR_NOT_HAHA_SUCKER;
 	
-	@ClientString(id = 1802713, message = "Stabilize Blazing Swamp.")
+	@ClientString(id = 1802713, message = "Stabilize Blazing Swamp")
 	public static NpcStringId STABILIZE_BLAZING_SWAMP;
 	
 	@ClientString(id = 1802714, message = "Decreased Defense")
@@ -31600,8 +31612,8 @@ public class NpcStringId
 	@ClientString(id = 1802772, message = "Don't get too far away from Piero!")
 	public static NpcStringId DON_T_GET_TOO_FAR_AWAY_FROM_PIERO;
 	
-	@ClientString(id = 1802773, message = "Its beginning! Do your best!")
-	public static NpcStringId ITS_BEGINNING_DO_YOUR_BEST;
+	@ClientString(id = 1802773, message = "It's beginning! Do your best!")
+	public static NpcStringId IT_S_BEGINNING_DO_YOUR_BEST;
 	
 	@ClientString(id = 1802774, message = "Woah! It's $s1!")
 	public static NpcStringId WOAH_IT_S_S1;
@@ -31672,8 +31684,8 @@ public class NpcStringId
 	@ClientString(id = 1803282, message = "The Dark Energy is going to disappear soon.")
 	public static NpcStringId THE_DARK_ENERGY_IS_GOING_TO_DISAPPEAR_SOON;
 	
-	@ClientString(id = 1803283, message = "$s1 gets an Unidentified Rock.")
-	public static NpcStringId S1_GETS_AN_UNIDENTIFIED_ROCK;
+	@ClientString(id = 1803283, message = "$s1 has obtained Unidentified Rock.")
+	public static NpcStringId S1_HAS_OBTAINED_UNIDENTIFIED_ROCK;
 	
 	@ClientString(id = 1803284, message = "You will leave the Heavenly Rift in 5 min.")
 	public static NpcStringId YOU_WILL_LEAVE_THE_HEAVENLY_RIFT_IN_5_MIN;
@@ -31784,7 +31796,7 @@ public class NpcStringId
 	public static NpcStringId I_SMELL_BLOOD;
 	
 	@ClientString(id = 1803320, message = "Let's dance!")
-	public static NpcStringId LET_S_DANCE;
+	public static NpcStringId LET_S_DANCE_2;
 	
 	@ClientString(id = 1803321, message = "Love the smell of blood!")
 	public static NpcStringId LOVE_THE_SMELL_OF_BLOOD;
@@ -31885,41 +31897,41 @@ public class NpcStringId
 	@ClientString(id = 1803353, message = "The lord of Gludio is dead. The seal is available now.")
 	public static NpcStringId THE_LORD_OF_GLUDIO_IS_DEAD_THE_SEAL_IS_AVAILABLE_NOW;
 	
-	@ClientString(id = 1803354, message = "$s1 receives C-grade Weapon Pack after fighting Dragonbloods.")
-	public static NpcStringId S1_RECEIVES_C_GRADE_WEAPON_PACK_AFTER_FIGHTING_DRAGONBLOODS;
+	@ClientString(id = 1803354, message = "$s1 has obtained C-grade Weapon Pack from fighting the Condemned.")
+	public static NpcStringId S1_HAS_OBTAINED_C_GRADE_WEAPON_PACK_FROM_FIGHTING_THE_CONDEMNED;
 	
-	@ClientString(id = 1803355, message = "$s1 receives C-grade Weapon Pack and other rewards after fighting Dragonbloods.")
-	public static NpcStringId S1_RECEIVES_C_GRADE_WEAPON_PACK_AND_OTHER_REWARDS_AFTER_FIGHTING_DRAGONBLOODS;
+	@ClientString(id = 1803355, message = "$s1 has obtained C-grade Weapon Pack and other rewards from fighting the Condemned.")
+	public static NpcStringId S1_HAS_OBTAINED_C_GRADE_WEAPON_PACK_AND_OTHER_REWARDS_FROM_FIGHTING_THE_CONDEMNED;
 	
-	@ClientString(id = 1803356, message = "$s1 receives C-grade Armor Pack after fighting Dragonbloods.")
-	public static NpcStringId S1_RECEIVES_C_GRADE_ARMOR_PACK_AFTER_FIGHTING_DRAGONBLOODS;
+	@ClientString(id = 1803356, message = "$s1 has obtained C-grade Armor Pack from fighting the Condemned.")
+	public static NpcStringId S1_HAS_OBTAINED_C_GRADE_ARMOR_PACK_FROM_FIGHTING_THE_CONDEMNED;
 	
-	@ClientString(id = 1803357, message = "$s1 gets C-grade Armor Pack and other rewards after fighting Dragonbloods.")
-	public static NpcStringId S1_GETS_C_GRADE_ARMOR_PACK_AND_OTHER_REWARDS_AFTER_FIGHTING_DRAGONBLOODS;
+	@ClientString(id = 1803357, message = "$s1 has obtained C-grade Armor Pack and other rewards from fighting the Condemned.")
+	public static NpcStringId S1_HAS_OBTAINED_C_GRADE_ARMOR_PACK_AND_OTHER_REWARDS_FROM_FIGHTING_THE_CONDEMNED;
 	
-	@ClientString(id = 1803358, message = "$s1 receives a C-grade Accessories Supply Box after fighting Dragonbloods")
-	public static NpcStringId S1_RECEIVES_A_C_GRADE_ACCESSORIES_SUPPLY_BOX_AFTER_FIGHTING_DRAGONBLOODS;
+	@ClientString(id = 1803358, message = "$s1 has obtained C-grade Accessory Pack for fighting the Condemned.")
+	public static NpcStringId S1_HAS_OBTAINED_C_GRADE_ACCESSORY_PACK_FOR_FIGHTING_THE_CONDEMNED;
 	
-	@ClientString(id = 1803359, message = "$s1 receives a C-grade Accessories Supply Box and other rewards after fighting Dragonbloods")
-	public static NpcStringId S1_RECEIVES_A_C_GRADE_ACCESSORIES_SUPPLY_BOX_AND_OTHER_REWARDS_AFTER_FIGHTING_DRAGONBLOODS;
+	@ClientString(id = 1803359, message = "$s1 has obtained C-grade Accessory Pack and other rewards from fighting the Condemned.")
+	public static NpcStringId S1_HAS_OBTAINED_C_GRADE_ACCESSORY_PACK_AND_OTHER_REWARDS_FROM_FIGHTING_THE_CONDEMNED;
 	
-	@ClientString(id = 1803360, message = "$s1 has obtained Mid-grade Life Stone after fighting Dragonbloods.")
-	public static NpcStringId S1_HAS_OBTAINED_MID_GRADE_LIFE_STONE_AFTER_FIGHTING_DRAGONBLOODS;
+	@ClientString(id = 1803360, message = "$s1 has obtained Mid-grade Life Stone from fighting the Condemned.")
+	public static NpcStringId S1_HAS_OBTAINED_MID_GRADE_LIFE_STONE_FROM_FIGHTING_THE_CONDEMNED;
 	
-	@ClientString(id = 1803361, message = "$s1 has obtained Mid-grade Life Stone and other rewards after fighting Dragonbloods.")
-	public static NpcStringId S1_HAS_OBTAINED_MID_GRADE_LIFE_STONE_AND_OTHER_REWARDS_AFTER_FIGHTING_DRAGONBLOODS;
+	@ClientString(id = 1803361, message = "$s1 has obtained Mid-grade Life Stone and other rewards from fighting the Condemned.")
+	public static NpcStringId S1_HAS_OBTAINED_MID_GRADE_LIFE_STONE_AND_OTHER_REWARDS_FROM_FIGHTING_THE_CONDEMNED;
 	
-	@ClientString(id = 1803362, message = "$s1 receives a Low-grade Life Stone after fighting Dragonbloods.")
-	public static NpcStringId S1_RECEIVES_A_LOW_GRADE_LIFE_STONE_AFTER_FIGHTING_DRAGONBLOODS;
+	@ClientString(id = 1803362, message = "$s1 has obtained Low-grade Life Stone from fighting the Condemned.")
+	public static NpcStringId S1_HAS_OBTAINED_LOW_GRADE_LIFE_STONE_FROM_FIGHTING_THE_CONDEMNED;
 	
-	@ClientString(id = 1803363, message = "$s1 receives a High-grade Life Stone after fighting Dragonbloods")
-	public static NpcStringId S1_RECEIVES_A_HIGH_GRADE_LIFE_STONE_AFTER_FIGHTING_DRAGONBLOODS;
+	@ClientString(id = 1803363, message = "$s1 has obtained High-grade Life Stone from fighting the Condemned.")
+	public static NpcStringId S1_HAS_OBTAINED_HIGH_GRADE_LIFE_STONE_FROM_FIGHTING_THE_CONDEMNED;
 	
-	@ClientString(id = 1803364, message = "$s1 receives a High-grade Life Stone and other rewards after fighting Dragonbloods")
-	public static NpcStringId S1_RECEIVES_A_HIGH_GRADE_LIFE_STONE_AND_OTHER_REWARDS_AFTER_FIGHTING_DRAGONBLOODS;
+	@ClientString(id = 1803364, message = "$s1 has obtained High-grade Life Stone and other rewards from fighting the Condemned.")
+	public static NpcStringId S1_HAS_OBTAINED_HIGH_GRADE_LIFE_STONE_AND_OTHER_REWARDS_FROM_FIGHTING_THE_CONDEMNED;
 	
-	@ClientString(id = 1803365, message = "Unworldly Overseer has been destroyed, and $s1 receives the Key from the Depths of the Dungeon of Abyss.")
-	public static NpcStringId UNWORLDLY_OVERSEER_HAS_BEEN_DESTROYED_AND_S1_RECEIVES_THE_KEY_FROM_THE_DEPTHS_OF_THE_DUNGEON_OF_ABYSS;
+	@ClientString(id = 1803365, message = "Unworldly Overseer has been destroyed, and $s1 has obtained the Key from the Depths of the Dungeon of Abyss.")
+	public static NpcStringId UNWORLDLY_OVERSEER_HAS_BEEN_DESTROYED_AND_S1_HAS_OBTAINED_THE_KEY_FROM_THE_DEPTHS_OF_THE_DUNGEON_OF_ABYSS;
 	
 	@ClientString(id = 1803366, message = "Battle time limit")
 	public static NpcStringId BATTLE_TIME_LIMIT;
@@ -31936,8 +31948,8 @@ public class NpcStringId
 	@ClientString(id = 1803370, message = "The Abyss Warder has been destroyed, and $s1 and $s2 receive the Key from the Depths of the Dungeon of Abyss.")
 	public static NpcStringId THE_ABYSS_WARDER_HAS_BEEN_DESTROYED_AND_S1_AND_S2_RECEIVE_THE_KEY_FROM_THE_DEPTHS_OF_THE_DUNGEON_OF_ABYSS;
 	
-	@ClientString(id = 1803371, message = "The Abyss Warder has been destroyed, and $s1 receives the Key from the Depths of the Dungeon of Abyss.")
-	public static NpcStringId THE_ABYSS_WARDER_HAS_BEEN_DESTROYED_AND_S1_RECEIVES_THE_KEY_FROM_THE_DEPTHS_OF_THE_DUNGEON_OF_ABYSS;
+	@ClientString(id = 1803371, message = "Abyss Warder has been destroyed, and $s1 has obtained the Key from the Depths of the Dungeon of Abyss.")
+	public static NpcStringId ABYSS_WARDER_HAS_BEEN_DESTROYED_AND_S1_HAS_OBTAINED_THE_KEY_FROM_THE_DEPTHS_OF_THE_DUNGEON_OF_ABYSS;
 	
 	@ClientString(id = 1803372, message = "I offer teleportation services. I can you take anywhere for a right fee.")
 	public static NpcStringId I_OFFER_TELEPORTATION_SERVICES_I_CAN_YOU_TAKE_ANYWHERE_FOR_A_RIGHT_FEE;
@@ -32377,8 +32389,8 @@ public class NpcStringId
 	@ClientString(id = 1803642, message = "Time extension error!")
 	public static NpcStringId TIME_EXTENSION_ERROR;
 	
-	@ClientString(id = 1803643, message = "Be careful! You are about to face the last Ol Mahum!")
-	public static NpcStringId BE_CAREFUL_YOU_ARE_ABOUT_TO_FACE_THE_LAST_OL_MAHUM;
+	@ClientString(id = 1803643, message = "Be careful! You are about to face His Majesty Ol Mahum the Last!")
+	public static NpcStringId BE_CAREFUL_YOU_ARE_ABOUT_TO_FACE_HIS_MAJESTY_OL_MAHUM_THE_LAST;
 	
 	@ClientString(id = 1803644, message = "Come what may - it is not your fault.")
 	public static NpcStringId COME_WHAT_MAY_IT_IS_NOT_YOUR_FAULT;
@@ -32386,7 +32398,7 @@ public class NpcStringId
 	@ClientString(id = 1803645, message = "Bring over and surrender your precious gold treasure to me!")
 	public static NpcStringId BRING_OVER_AND_SURRENDER_YOUR_PRECIOUS_GOLD_TREASURE_TO_ME_2;
 	
-	@ClientString(id = 1803646, message = "I'm covered in Kraven's blood You will be punished!")
+	@ClientString(id = 1803646, message = "I'm covered in Kraven's blood... You will be punished!")
 	public static NpcStringId I_M_COVERED_IN_KRAVEN_S_BLOOD_YOU_WILL_BE_PUNISHED;
 	
 	@ClientString(id = 1803647, message = "Who is real? It is not easy to tell!")
@@ -32404,7 +32416,7 @@ public class NpcStringId
 	@ClientString(id = 1803651, message = "Where is Leo? Where have you hidden him?")
 	public static NpcStringId WHERE_IS_LEO_WHERE_HAVE_YOU_HIDDEN_HIM;
 	
-	@ClientString(id = 1803652, message = "It is just the beginning You will fail!")
+	@ClientString(id = 1803652, message = "It is just the beginning... You will fail!")
 	public static NpcStringId IT_IS_JUST_THE_BEGINNING_YOU_WILL_FAIL;
 	
 	@ClientString(id = 1803653, message = "We are nothing like these Varka weaklings!")
@@ -32425,7 +32437,7 @@ public class NpcStringId
 	@ClientString(id = 1803658, message = "I'll make everyone feel this pain!")
 	public static NpcStringId I_LL_MAKE_EVERYONE_FEEL_THIS_PAIN;
 	
-	@ClientString(id = 1803659, message = "You worthless scum I will break you!")
+	@ClientString(id = 1803659, message = "You worthless scum... I will break you!")
 	public static NpcStringId YOU_WORTHLESS_SCUM_I_WILL_BREAK_YOU;
 	
 	@ClientString(id = 1803660, message = "There is nothing you can do!")
@@ -32461,7 +32473,7 @@ public class NpcStringId
 	@ClientString(id = 1803670, message = "The treasure chest is over there! Come, quickly!")
 	public static NpcStringId THE_TREASURE_CHEST_IS_OVER_THERE_COME_QUICKLY;
 	
-	@ClientString(id = 1803671, message = "There, that's the treasure chest! Let's see")
+	@ClientString(id = 1803671, message = "There, that's the treasure chest! Let's see...")
 	public static NpcStringId THERE_THAT_S_THE_TREASURE_CHEST_LET_S_SEE;
 	
 	@ClientString(id = 1803672, message = "The treasure is ours! We will rule the world!")
@@ -32470,13 +32482,13 @@ public class NpcStringId
 	@ClientString(id = 1803673, message = "I see the treasure chest! Come on, let's go!")
 	public static NpcStringId I_SEE_THE_TREASURE_CHEST_COME_ON_LET_S_GO;
 	
-	@ClientString(id = 1803674, message = "$s1, that's the treasure It's our lucky day!")
+	@ClientString(id = 1803674, message = "$s1, that's the treasure... It's our lucky day!")
 	public static NpcStringId S1_THAT_S_THE_TREASURE_IT_S_OUR_LUCKY_DAY;
 	
 	@ClientString(id = 1803675, message = "Those guys with $s1 got lucky!")
 	public static NpcStringId THOSE_GUYS_WITH_S1_GOT_LUCKY;
 	
-	@ClientString(id = 1803676, message = "If only you knew how much effort it took us to find this treasure Thank you.")
+	@ClientString(id = 1803676, message = "If only you knew how much effort it took us to find this treasure... Thank you.")
 	public static NpcStringId IF_ONLY_YOU_KNEW_HOW_MUCH_EFFORT_IT_TOOK_US_TO_FIND_THIS_TREASURE_THANK_YOU;
 	
 	@ClientString(id = 1803677, message = "The countdown is on! The last raid has begun!")
@@ -32488,7 +32500,7 @@ public class NpcStringId
 	@ClientString(id = 1803679, message = "The chest is empty!")
 	public static NpcStringId THE_CHEST_IS_EMPTY;
 	
-	@ClientString(id = 1803680, message = "Don't think that treasure hunting is going to be easy")
+	@ClientString(id = 1803680, message = "Don't think that treasure hunting is going to be easy...")
 	public static NpcStringId DON_T_THINK_THAT_TREASURE_HUNTING_IS_GOING_TO_BE_EASY;
 	
 	@ClientString(id = 1803681, message = "Oh! This is a treasure chest!")
@@ -32578,7 +32590,7 @@ public class NpcStringId
 	@ClientString(id = 1803709, message = "I will sacrifice you for the sake of Shillien's return!")
 	public static NpcStringId I_WILL_SACRIFICE_YOU_FOR_THE_SAKE_OF_SHILLIEN_S_RETURN;
 	
-	@ClientString(id = 1803710, message = "So, here are the ones who have woken me up Prepare to die!")
+	@ClientString(id = 1803710, message = "So, here are the ones who have woken me up... Prepare to die!")
 	public static NpcStringId SO_HERE_ARE_THE_ONES_WHO_HAVE_WOKEN_ME_UP_PREPARE_TO_DIE;
 	
 	@ClientString(id = 1803711, message = "I will show you the power of Einhasad's envoy!")
@@ -32614,13 +32626,13 @@ public class NpcStringId
 	@ClientString(id = 1803721, message = "You are strong, aren't you?")
 	public static NpcStringId YOU_ARE_STRONG_AREN_T_YOU;
 	
-	@ClientString(id = 1803722, message = "Ugh, is it possible")
+	@ClientString(id = 1803722, message = "Ugh, is it possible...")
 	public static NpcStringId UGH_IS_IT_POSSIBLE;
 	
 	@ClientString(id = 1803723, message = "No! I will not perish!")
 	public static NpcStringId NO_I_WILL_NOT_PERISH;
 	
-	@ClientString(id = 1803724, message = "Oh, no I am really sorry")
+	@ClientString(id = 1803724, message = "Oh, no... I am really... sorry...")
 	public static NpcStringId OH_NO_I_AM_REALLY_SORRY;
 	
 	@ClientString(id = 1803725, message = "It wasn't easy to get there.")
@@ -32638,23 +32650,23 @@ public class NpcStringId
 	@ClientString(id = 1803729, message = "Blue has ruined everything.")
 	public static NpcStringId BLUE_HAS_RUINED_EVERYTHING;
 	
-	@ClientString(id = 1803730, message = "You've killed all the monsters. Use the Scroll of Escape in your inventory to return to Armor Merchant Jackson.")
-	public static NpcStringId YOU_VE_KILLED_ALL_THE_MONSTERS_USE_THE_SCROLL_OF_ESCAPE_IN_YOUR_INVENTORY_TO_RETURN_TO_ARMOR_MERCHANT_JACKSON;
+	@ClientString(id = 1803730, message = "You have killed all the monsters. Use the Scroll of Escape in your inventory to return to Armor Merchant Jackson.")
+	public static NpcStringId YOU_HAVE_KILLED_ALL_THE_MONSTERS_USE_THE_SCROLL_OF_ESCAPE_IN_YOUR_INVENTORY_TO_RETURN_TO_ARMOR_MERCHANT_JACKSON;
 	
-	@ClientString(id = 1803731, message = "You've killed all the monsters. Use the Scroll of Escape in your inventory to return to Grocer Herbiel.")
-	public static NpcStringId YOU_VE_KILLED_ALL_THE_MONSTERS_USE_THE_SCROLL_OF_ESCAPE_IN_YOUR_INVENTORY_TO_RETURN_TO_GROCER_HERBIEL;
+	@ClientString(id = 1803731, message = "You have killed all the monsters. Use the Scroll of Escape in your inventory to return to Grocer Herbiel.")
+	public static NpcStringId YOU_HAVE_KILLED_ALL_THE_MONSTERS_USE_THE_SCROLL_OF_ESCAPE_IN_YOUR_INVENTORY_TO_RETURN_TO_GROCER_HERBIEL;
 	
-	@ClientString(id = 1803732, message = "You've killed all the monsters. Use the Scroll of Escape in your inventory to return to Grocer Vollodos.")
-	public static NpcStringId YOU_VE_KILLED_ALL_THE_MONSTERS_USE_THE_SCROLL_OF_ESCAPE_IN_YOUR_INVENTORY_TO_RETURN_TO_GROCER_VOLLODOS;
+	@ClientString(id = 1803732, message = "You have killed all the monsters. Use the Scroll of Escape in your inventory to return to Grocer Vollodos.")
+	public static NpcStringId YOU_HAVE_KILLED_ALL_THE_MONSTERS_USE_THE_SCROLL_OF_ESCAPE_IN_YOUR_INVENTORY_TO_RETURN_TO_GROCER_VOLLODOS;
 	
-	@ClientString(id = 1803733, message = "You've killed all the monsters. Use the Scroll of Escape in your inventory to return to Accessory Merchant Uska.")
-	public static NpcStringId YOU_VE_KILLED_ALL_THE_MONSTERS_USE_THE_SCROLL_OF_ESCAPE_IN_YOUR_INVENTORY_TO_RETURN_TO_ACCESSORY_MERCHANT_USKA;
+	@ClientString(id = 1803733, message = "You have killed all the monsters. Use the Scroll of Escape in your inventory to return to Accessory Merchant Uska.")
+	public static NpcStringId YOU_HAVE_KILLED_ALL_THE_MONSTERS_USE_THE_SCROLL_OF_ESCAPE_IN_YOUR_INVENTORY_TO_RETURN_TO_ACCESSORY_MERCHANT_USKA;
 	
-	@ClientString(id = 1803734, message = "You've killed all the monsters. Use the Scroll of Escape in your inventory to return to Head Priest of the Earth Gerald.")
-	public static NpcStringId YOU_VE_KILLED_ALL_THE_MONSTERS_USE_THE_SCROLL_OF_ESCAPE_IN_YOUR_INVENTORY_TO_RETURN_TO_HEAD_PRIEST_OF_THE_EARTH_GERALD;
+	@ClientString(id = 1803734, message = "You have killed all the monsters. Use the Scroll of Escape in your inventory to return to Priest of the Earth Gerald.")
+	public static NpcStringId YOU_HAVE_KILLED_ALL_THE_MONSTERS_USE_THE_SCROLL_OF_ESCAPE_IN_YOUR_INVENTORY_TO_RETURN_TO_PRIEST_OF_THE_EARTH_GERALD;
 	
-	@ClientString(id = 1803735, message = "You've killed all the monsters. Use the Scroll of Escape in your inventory to return to Captain Bathis in Gludio.")
-	public static NpcStringId YOU_VE_KILLED_ALL_THE_MONSTERS_USE_THE_SCROLL_OF_ESCAPE_IN_YOUR_INVENTORY_TO_RETURN_TO_CAPTAIN_BATHIS_IN_GLUDIO;
+	@ClientString(id = 1803735, message = "You have killed all the monsters. Use the Scroll of Escape in your inventory to return to Guard Captain Bathis in Gludio.")
+	public static NpcStringId YOU_HAVE_KILLED_ALL_THE_MONSTERS_USE_THE_SCROLL_OF_ESCAPE_IN_YOUR_INVENTORY_TO_RETURN_TO_GUARD_CAPTAIN_BATHIS_IN_GLUDIO;
 	
 	@ClientString(id = 1803736, message = "Do you think a talking cake is a miracle? It's only the beginning!")
 	public static NpcStringId DO_YOU_THINK_A_TALKING_CAKE_IS_A_MIRACLE_IT_S_ONLY_THE_BEGINNING;
@@ -32773,8 +32785,8 @@ public class NpcStringId
 	@ClientString(id = 1803777, message = "Lord Ishka, the Guardian of Dragon Valley, is near.")
 	public static NpcStringId LORD_ISHKA_THE_GUARDIAN_OF_DRAGON_VALLEY_IS_NEAR;
 	
-	@ClientString(id = 1803778, message = "You've killed all the monsters. Use the Scroll of Escape in your inventory to return to Trader Reahen.")
-	public static NpcStringId YOU_VE_KILLED_ALL_THE_MONSTERS_USE_THE_SCROLL_OF_ESCAPE_IN_YOUR_INVENTORY_TO_RETURN_TO_TRADER_REAHEN;
+	@ClientString(id = 1803778, message = "You have killed all the monsters. Use the Scroll of Escape in your inventory to return to Trader Reahen.")
+	public static NpcStringId YOU_HAVE_KILLED_ALL_THE_MONSTERS_USE_THE_SCROLL_OF_ESCAPE_IN_YOUR_INVENTORY_TO_RETURN_TO_TRADER_REAHEN;
 	
 	@ClientString(id = 1803779, message = "Reinforced")
 	public static NpcStringId REINFORCED;
@@ -32800,8 +32812,8 @@ public class NpcStringId
 	@ClientString(id = 1803786, message = "You've got Adventurer's Brooch and Adventurer's Rough Jewel. Complete the tutorial and try to enchase the jewel.")
 	public static NpcStringId YOU_VE_GOT_ADVENTURER_S_BROOCH_AND_ADVENTURER_S_ROUGH_JEWEL_COMPLETE_THE_TUTORIAL_AND_TRY_TO_ENCHASE_THE_JEWEL;
 	
-	@ClientString(id = 1803787, message = "You've got Adventurer's Agathion Bracelet and Adventurer's Agathion Griffin. Complete the tutorial and try to use the agathion.")
-	public static NpcStringId YOU_VE_GOT_ADVENTURER_S_AGATHION_BRACELET_AND_ADVENTURER_S_AGATHION_GRIFFIN_COMPLETE_THE_TUTORIAL_AND_TRY_TO_USE_THE_AGATHION;
+	@ClientString(id = 1803787, message = "You have received Adventurer's Agathion Bracelet and Adventurer's Agathion Griffin. Complete the tutorial and try to use the agathion.")
+	public static NpcStringId YOU_HAVE_RECEIVED_ADVENTURER_S_AGATHION_BRACELET_AND_ADVENTURER_S_AGATHION_GRIFFIN_COMPLETE_THE_TUTORIAL_AND_TRY_TO_USE_THE_AGATHION;
 	
 	@ClientString(id = 1803788, message = "Berserker")
 	public static NpcStringId BERSERKER;
@@ -33367,23 +33379,23 @@ public class NpcStringId
 	@ClientString(id = 1803976, message = "Level: $s1")
 	public static NpcStringId LEVEL_S1;
 	
-	@ClientString(id = 1803977, message = "Its the first time for a long while when Im leaving mountains and coming down... oh, my poor bones, oh, my poor muscles. My back hurts... So, kids, are you really not interested to find out who I am?")
-	public static NpcStringId ITS_THE_FIRST_TIME_FOR_A_LONG_WHILE_WHEN_IM_LEAVING_MOUNTAINS_AND_COMING_DOWN_OH_MY_POOR_BONES_OH_MY_POOR_MUSCLES_MY_BACK_HURTS_SO_KIDS_ARE_YOU_REALLY_NOT_INTERESTED_TO_FIND_OUT_WHO_I_AM;
+	@ClientString(id = 1803977, message = "It's the first time for a long while when I'm leaving mountains and coming down... oh, my poor bones, oh, my poor muscles. My back hurts... So, kids, are you really not interested to find out who I am?")
+	public static NpcStringId IT_S_THE_FIRST_TIME_FOR_A_LONG_WHILE_WHEN_I_M_LEAVING_MOUNTAINS_AND_COMING_DOWN_OH_MY_POOR_BONES_OH_MY_POOR_MUSCLES_MY_BACK_HURTS_SO_KIDS_ARE_YOU_REALLY_NOT_INTERESTED_TO_FIND_OUT_WHO_I_AM;
 	
 	@ClientString(id = 1803978, message = "Now you are full of energy and all is going perfect, am I right? Well, come closer then.")
 	public static NpcStringId NOW_YOU_ARE_FULL_OF_ENERGY_AND_ALL_IS_GOING_PERFECT_AM_I_RIGHT_WELL_COME_CLOSER_THEN;
 	
-	@ClientString(id = 1803979, message = "Thats what Im going to tell you. Look at yourself! You can do everything! Go ahead, do not afraid hardships and troubles, you can deal with them because you are so young and strong! All challenges you encounter are going to be for your good.")
-	public static NpcStringId THATS_WHAT_IM_GOING_TO_TELL_YOU_LOOK_AT_YOURSELF_YOU_CAN_DO_EVERYTHING_GO_AHEAD_DO_NOT_AFRAID_HARDSHIPS_AND_TROUBLES_YOU_CAN_DEAL_WITH_THEM_BECAUSE_YOU_ARE_SO_YOUNG_AND_STRONG_ALL_CHALLENGES_YOU_ENCOUNTER_ARE_GOING_TO_BE_FOR_YOUR_GOOD;
+	@ClientString(id = 1803979, message = "That's what I'm going to tell you. Look at yourself! You can do everything! Go ahead, do not afraid hardships and troubles, you can deal with them because you are so young and strong! All challenges you encounter are going to be for your good.")
+	public static NpcStringId THAT_S_WHAT_I_M_GOING_TO_TELL_YOU_LOOK_AT_YOURSELF_YOU_CAN_DO_EVERYTHING_GO_AHEAD_DO_NOT_AFRAID_HARDSHIPS_AND_TROUBLES_YOU_CAN_DEAL_WITH_THEM_BECAUSE_YOU_ARE_SO_YOUNG_AND_STRONG_ALL_CHALLENGES_YOU_ENCOUNTER_ARE_GOING_TO_BE_FOR_YOUR_GOOD;
 	
 	@ClientString(id = 1803980, message = "Use the energy I gave you to enhance your equipment. All is going to be good if you are lucky enough.")
 	public static NpcStringId USE_THE_ENERGY_I_GAVE_YOU_TO_ENHANCE_YOUR_EQUIPMENT_ALL_IS_GOING_TO_BE_GOOD_IF_YOU_ARE_LUCKY_ENOUGH;
 	
-	@ClientString(id = 1803981, message = "Im sorry... I dont know how this energy works. I could use it after I had a prophetic dream.")
-	public static NpcStringId IM_SORRY_I_DONT_KNOW_HOW_THIS_ENERGY_WORKS_I_COULD_USE_IT_AFTER_I_HAD_A_PROPHETIC_DREAM;
+	@ClientString(id = 1803981, message = "I'm sorry... I don't know how this energy works. I could use it after I had a prophetic dream.")
+	public static NpcStringId I_M_SORRY_I_DON_T_KNOW_HOW_THIS_ENERGY_WORKS_I_COULD_USE_IT_AFTER_I_HAD_A_PROPHETIC_DREAM;
 	
-	@ClientString(id = 1803982, message = "Now, dont be shy, use the energy on your equipment. Believe me, you can enhance your equipment only if you use my energy.")
-	public static NpcStringId NOW_DONT_BE_SHY_USE_THE_ENERGY_ON_YOUR_EQUIPMENT_BELIEVE_ME_YOU_CAN_ENHANCE_YOUR_EQUIPMENT_ONLY_IF_YOU_USE_MY_ENERGY;
+	@ClientString(id = 1803982, message = "Now, don't be shy, use the energy on your equipment. Believe me, you can enhance your equipment only if you use my energy.")
+	public static NpcStringId NOW_DON_T_BE_SHY_USE_THE_ENERGY_ON_YOUR_EQUIPMENT_BELIEVE_ME_YOU_CAN_ENHANCE_YOUR_EQUIPMENT_ONLY_IF_YOU_USE_MY_ENERGY;
 	
 	@ClientString(id = 1803983, message = "Eh? What? Hey, you have a talking equipment! What a magic! It cries aloud begging for enhancement... Or maybe not...")
 	public static NpcStringId EH_WHAT_HEY_YOU_HAVE_A_TALKING_EQUIPMENT_WHAT_A_MAGIC_IT_CRIES_ALOUD_BEGGING_FOR_ENHANCEMENT_OR_MAYBE_NOT;
@@ -33391,7 +33403,7 @@ public class NpcStringId
 	@ClientString(id = 1803984, message = "You cannot teleport outside of the Arena.")
 	public static NpcStringId YOU_CANNOT_TELEPORT_OUTSIDE_OF_THE_ARENA;
 	
-	@ClientString(id = 1803985, message = "Press Ctrl+T to change the next target to Any target.")
+	@ClientString(id = 1803985, message = "Press Ctrl+T to change the next target to 'Any target'.")
 	public static NpcStringId PRESS_CTRL_T_TO_CHANGE_THE_NEXT_TARGET_TO_ANY_TARGET;
 	
 	@ClientString(id = 1803986, message = "Participants, come here to get a blessing.")
@@ -33421,11 +33433,11 @@ public class NpcStringId
 	@ClientString(id = 1803994, message = "Talk to Head Trainer Kilremange.")
 	public static NpcStringId TALK_TO_HEAD_TRAINER_KILREMANGE;
 	
-	@ClientString(id = 1803995, message = "$s1 obtains an Improved Scroll: Enchant Weapon!")
-	public static NpcStringId S1_OBTAINS_AN_IMPROVED_SCROLL_ENCHANT_WEAPON;
+	@ClientString(id = 1803995, message = "$s1 has obtained Improved Scroll: Enchant Weapon!")
+	public static NpcStringId S1_HAS_OBTAINED_IMPROVED_SCROLL_ENCHANT_WEAPON;
 	
-	@ClientString(id = 1803996, message = "$s1 obtains an Improved Scroll: Enchant Armor!")
-	public static NpcStringId S1_OBTAINS_AN_IMPROVED_SCROLL_ENCHANT_ARMOR;
+	@ClientString(id = 1803996, message = "$s1 has obtained Improved Scroll: Enchant Armor!")
+	public static NpcStringId S1_HAS_OBTAINED_IMPROVED_SCROLL_ENCHANT_ARMOR;
 	
 	@ClientString(id = 1803997, message = "Golden Pig has disappeared from the Forest of the Ancients.")
 	public static NpcStringId GOLDEN_PIG_HAS_DISAPPEARED_FROM_THE_FOREST_OF_THE_ANCIENTS;
@@ -33433,23 +33445,23 @@ public class NpcStringId
 	@ClientString(id = 1803998, message = "You have no time. Run!")
 	public static NpcStringId YOU_HAVE_NO_TIME_RUN;
 	
-	@ClientString(id = 1803999, message = "If you run, Ill spare your life!")
-	public static NpcStringId IF_YOU_RUN_ILL_SPARE_YOUR_LIFE;
+	@ClientString(id = 1803999, message = "If you run, I'll spare your life!")
+	public static NpcStringId IF_YOU_RUN_I_LL_SPARE_YOUR_LIFE;
 	
 	@ClientString(id = 1804000, message = "If you want to lead a dog's life, just say it.")
 	public static NpcStringId IF_YOU_WANT_TO_LEAD_A_DOG_S_LIFE_JUST_SAY_IT;
 	
-	@ClientString(id = 1804001, message = "Soon Aden will fall under the heel of orcs. If you dont capitulate now, youll be enslaved!")
-	public static NpcStringId SOON_ADEN_WILL_FALL_UNDER_THE_HEEL_OF_ORCS_IF_YOU_DONT_CAPITULATE_NOW_YOULL_BE_ENSLAVED;
+	@ClientString(id = 1804001, message = "Soon Aden will fall under the heel of orcs. If you don't capitulate now, you'll be enslaved!")
+	public static NpcStringId SOON_ADEN_WILL_FALL_UNDER_THE_HEEL_OF_ORCS_IF_YOU_DON_T_CAPITULATE_NOW_YOU_LL_BE_ENSLAVED;
 	
-	@ClientString(id = 1804002, message = "Surrender now and Ill grant you a swift death!")
-	public static NpcStringId SURRENDER_NOW_AND_ILL_GRANT_YOU_A_SWIFT_DEATH;
+	@ClientString(id = 1804002, message = "Surrender now and I'll grant you a swift death!")
+	public static NpcStringId SURRENDER_NOW_AND_I_LL_GRANT_YOU_A_SWIFT_DEATH;
 	
-	@ClientString(id = 1804003, message = "Theres no shame to bend the knee to the strongest orc. On your knees!")
-	public static NpcStringId THERES_NO_SHAME_TO_BEND_THE_KNEE_TO_THE_STRONGEST_ORC_ON_YOUR_KNEES;
+	@ClientString(id = 1804003, message = "There's no shame to bend the knee to the strongest orc. On your knees!")
+	public static NpcStringId THERE_S_NO_SHAME_TO_BEND_THE_KNEE_TO_THE_STRONGEST_ORC_ON_YOUR_KNEES;
 	
-	@ClientString(id = 1804004, message = "Cant you see the mighty army of orcs? You are weak and helpless.")
-	public static NpcStringId CANT_YOU_SEE_THE_MIGHTY_ARMY_OF_ORCS_YOU_ARE_WEAK_AND_HELPLESS;
+	@ClientString(id = 1804004, message = "Can't you see the mighty army of orcs? You are weak and helpless.")
+	public static NpcStringId CAN_T_YOU_SEE_THE_MIGHTY_ARMY_OF_ORCS_YOU_ARE_WEAK_AND_HELPLESS;
 	
 	@ClientString(id = 1804005, message = "Go away. Soon this place will be filled with blood.")
 	public static NpcStringId GO_AWAY_SOON_THIS_PLACE_WILL_BE_FILLED_WITH_BLOOD;
@@ -33466,8 +33478,8 @@ public class NpcStringId
 	@ClientString(id = 1804009, message = "Death Knight")
 	public static NpcStringId DEATH_KNIGHT;
 	
-	@ClientString(id = 1804010, message = "You shouldnt say it! All forces, attack!")
-	public static NpcStringId YOU_SHOULDNT_SAY_IT_ALL_FORCES_ATTACK;
+	@ClientString(id = 1804010, message = "You shouldn't say it! All forces, attack!")
+	public static NpcStringId YOU_SHOULDN_T_SAY_IT_ALL_FORCES_ATTACK;
 	
 	@ClientString(id = 1804011, message = "Flag Sentry Greg has appeared!")
 	public static NpcStringId FLAG_SENTRY_GREG_HAS_APPEARED;
@@ -33526,17 +33538,17 @@ public class NpcStringId
 	@ClientString(id = 1804029, message = "Show me the way to the vegetable patch! May be, I will spare your life then.")
 	public static NpcStringId SHOW_ME_THE_WAY_TO_THE_VEGETABLE_PATCH_MAY_BE_I_WILL_SPARE_YOUR_LIFE_THEN;
 	
-	@ClientString(id = 1804030, message = "Dont underestimate Squash King and my army.")
-	public static NpcStringId DONT_UNDERESTIMATE_SQUASH_KING_AND_MY_ARMY;
+	@ClientString(id = 1804030, message = "Do not underestimate Pumpkin King and my army.")
+	public static NpcStringId DO_NOT_UNDERESTIMATE_PUMPKIN_KING_AND_MY_ARMY;
 	
-	@ClientString(id = 1804031, message = "Its time to take revenge on the wretches who have been intimidating me for so long. Charge, my soldiers!")
-	public static NpcStringId ITS_TIME_TO_TAKE_REVENGE_ON_THE_WRETCHES_WHO_HAVE_BEEN_INTIMIDATING_ME_FOR_SO_LONG_CHARGE_MY_SOLDIERS;
+	@ClientString(id = 1804031, message = "It's time to take revenge on the wretches who have been intimidating me for so long. Charge, my soldiers!")
+	public static NpcStringId IT_S_TIME_TO_TAKE_REVENGE_ON_THE_WRETCHES_WHO_HAVE_BEEN_INTIMIDATING_ME_FOR_SO_LONG_CHARGE_MY_SOLDIERS;
 	
-	@ClientString(id = 1804032, message = "Its time to show ourselves! Stay strong, my soldiers!")
-	public static NpcStringId ITS_TIME_TO_SHOW_OURSELVES_STAY_STRONG_MY_SOLDIERS;
+	@ClientString(id = 1804032, message = "It's time to show ourselves! Stay strong, my soldiers!")
+	public static NpcStringId IT_S_TIME_TO_SHOW_OURSELVES_STAY_STRONG_MY_SOLDIERS;
 	
-	@ClientString(id = 1804033, message = "Oh, no... I cant use my powers anymore. I will prepare my army.")
-	public static NpcStringId OH_NO_I_CANT_USE_MY_POWERS_ANYMORE_I_WILL_PREPARE_MY_ARMY;
+	@ClientString(id = 1804033, message = "Oh, no... I can't use my powers anymore. I will prepare my army.")
+	public static NpcStringId OH_NO_I_CAN_T_USE_MY_POWERS_ANYMORE_I_WILL_PREPARE_MY_ARMY;
 	
 	@ClientString(id = 1804034, message = "The Clan Stronghold Device can be captured.")
 	public static NpcStringId THE_CLAN_STRONGHOLD_DEVICE_CAN_BE_CAPTURED;
@@ -33544,7 +33556,7 @@ public class NpcStringId
 	@ClientString(id = 1804035, message = "At-tack sig-nal de-tec-ted $s1")
 	public static NpcStringId AT_TACK_SIG_NAL_DE_TEC_TED_S1;
 	
-	@ClientString(id = 1804036, message = "Antharas Follower Karim appeared")
+	@ClientString(id = 1804036, message = "Antharas' Follower Karim appeared")
 	public static NpcStringId ANTHARAS_FOLLOWER_KARIM_APPEARED;
 	
 	@ClientString(id = 1804037, message = "Antharas' Avatar Behemoth appeared")
@@ -33565,38 +33577,38 @@ public class NpcStringId
 	@ClientString(id = 1804042, message = "$s1! I will not forgive your attempt to disrupt the Festival of Baium!")
 	public static NpcStringId S1_I_WILL_NOT_FORGIVE_YOUR_ATTEMPT_TO_DISRUPT_THE_FESTIVAL_OF_BAIUM;
 	
-	@ClientString(id = 1804043, message = "$s1! I cant believe you have defeated Baium... The festival is ruined for today.")
-	public static NpcStringId S1_I_CANT_BELIEVE_YOU_HAVE_DEFEATED_BAIUM_THE_FESTIVAL_IS_RUINED_FOR_TODAY;
+	@ClientString(id = 1804043, message = "$s1! I can't believe you have defeated Baium... The festival is ruined for today.")
+	public static NpcStringId S1_I_CAN_T_BELIEVE_YOU_HAVE_DEFEATED_BAIUM_THE_FESTIVAL_IS_RUINED_FOR_TODAY;
 	
 	@ClientString(id = 1804044, message = "Ownerless pet")
 	public static NpcStringId OWNERLESS_PET;
 	
-	@ClientString(id = 1804045, message = "Its time for the secret weapon. Wolf, I choose you!")
-	public static NpcStringId ITS_TIME_FOR_THE_SECRET_WEAPON_WOLF_I_CHOOSE_YOU;
+	@ClientString(id = 1804045, message = "It's time for the secret weapon. Wolf, I choose you!")
+	public static NpcStringId IT_S_TIME_FOR_THE_SECRET_WEAPON_WOLF_I_CHOOSE_YOU;
 	
-	@ClientString(id = 1804046, message = "Its time for the secret weapon. Buffalo, I choose you!")
-	public static NpcStringId ITS_TIME_FOR_THE_SECRET_WEAPON_BUFFALO_I_CHOOSE_YOU;
+	@ClientString(id = 1804046, message = "It's time for the secret weapon. Buffalo, I choose you!")
+	public static NpcStringId IT_S_TIME_FOR_THE_SECRET_WEAPON_BUFFALO_I_CHOOSE_YOU;
 	
-	@ClientString(id = 1804047, message = "Its time for the secret weapon. Tiger, I choose you!")
-	public static NpcStringId ITS_TIME_FOR_THE_SECRET_WEAPON_TIGER_I_CHOOSE_YOU;
+	@ClientString(id = 1804047, message = "It's time for the secret weapon. Tiger, I choose you!")
+	public static NpcStringId IT_S_TIME_FOR_THE_SECRET_WEAPON_TIGER_I_CHOOSE_YOU;
 	
-	@ClientString(id = 1804048, message = "Its time for the secret weapon. Kookaburra, I choose you!")
-	public static NpcStringId ITS_TIME_FOR_THE_SECRET_WEAPON_KOOKABURRA_I_CHOOSE_YOU;
+	@ClientString(id = 1804048, message = "It's time for the secret weapon. Kookaburra, I choose you!")
+	public static NpcStringId IT_S_TIME_FOR_THE_SECRET_WEAPON_KOOKABURRA_I_CHOOSE_YOU;
 	
-	@ClientString(id = 1804049, message = "Its time for the secret weapon. Strider, I choose you!")
-	public static NpcStringId ITS_TIME_FOR_THE_SECRET_WEAPON_STRIDER_I_CHOOSE_YOU;
+	@ClientString(id = 1804049, message = "It's time for the secret weapon. Strider, I choose you!")
+	public static NpcStringId IT_S_TIME_FOR_THE_SECRET_WEAPON_STRIDER_I_CHOOSE_YOU;
 	
-	@ClientString(id = 1804050, message = "Its time for the secret weapon. Hawk, I choose you!")
-	public static NpcStringId ITS_TIME_FOR_THE_SECRET_WEAPON_HAWK_I_CHOOSE_YOU;
+	@ClientString(id = 1804050, message = "It's time for the secret weapon. Hawk, I choose you!")
+	public static NpcStringId IT_S_TIME_FOR_THE_SECRET_WEAPON_HAWK_I_CHOOSE_YOU;
 	
-	@ClientString(id = 1804051, message = "Its pathetic! No need to summon an elite pet. Sin Eater, come out!")
-	public static NpcStringId ITS_PATHETIC_NO_NEED_TO_SUMMON_AN_ELITE_PET_SIN_EATER_COME_OUT;
+	@ClientString(id = 1804051, message = "It's pathetic! No need to summon an elite pet. Sin Eater, come out!")
+	public static NpcStringId IT_S_PATHETIC_NO_NEED_TO_SUMMON_AN_ELITE_PET_SIN_EATER_COME_OUT;
 	
 	@ClientString(id = 1804052, message = "Festival of Baium has been successfully disrupted. You collect your reward from Karia on each floor.")
 	public static NpcStringId FESTIVAL_OF_BAIUM_HAS_BEEN_SUCCESSFULLY_DISRUPTED_YOU_COLLECT_YOUR_REWARD_FROM_KARIA_ON_EACH_FLOOR;
 	
-	@ClientString(id = 1804053, message = "You dont have the right to be at the festival! Go back to the 1st floor!")
-	public static NpcStringId YOU_DONT_HAVE_THE_RIGHT_TO_BE_AT_THE_FESTIVAL_GO_BACK_TO_THE_1ST_FLOOR;
+	@ClientString(id = 1804053, message = "You don't have the right to be at the festival! Go back to the 1st floor!")
+	public static NpcStringId YOU_DON_T_HAVE_THE_RIGHT_TO_BE_AT_THE_FESTIVAL_GO_BACK_TO_THE_1ST_FLOOR;
 	
 	@ClientString(id = 1804054, message = "Congratulations, $s1! Not bad, not bad al all, squeak!")
 	public static NpcStringId CONGRATULATIONS_S1_NOT_BAD_NOT_BAD_AL_ALL_SQUEAK;
@@ -33649,8 +33661,8 @@ public class NpcStringId
 	@ClientString(id = 1804070, message = "$s1! Only you can challenge Jisra!")
 	public static NpcStringId S1_ONLY_YOU_CAN_CHALLENGE_JISRA;
 	
-	@ClientString(id = 1804071, message = "Garden's Emperor Kadin appears")
-	public static NpcStringId GARDEN_S_EMPEROR_KADIN_APPEARS;
+	@ClientString(id = 1804071, message = "Garden Ruler Kadin appears.")
+	public static NpcStringId GARDEN_RULER_KADIN_APPEARS;
 	
 	@ClientString(id = 1804072, message = "Dimensional Door to the Spirit of Fire is open.")
 	public static NpcStringId DIMENSIONAL_DOOR_TO_THE_SPIRIT_OF_FIRE_IS_OPEN;
@@ -33670,7 +33682,7 @@ public class NpcStringId
 	@ClientString(id = 1804077, message = "Seal Stone disappears after resonating with the statue.")
 	public static NpcStringId SEAL_STONE_DISAPPEARS_AFTER_RESONATING_WITH_THE_STATUE;
 	
-	@ClientString(id = 1804078, message = "So, here are the ones who have woken me up Prepare to die!")
+	@ClientString(id = 1804078, message = "So, here are the ones who have woken me up... Prepare to die!")
 	public static NpcStringId SO_HERE_ARE_THE_ONES_WHO_HAVE_WOKEN_ME_UP_PREPARE_TO_DIE_2;
 	
 	@ClientString(id = 1804079, message = "Baium has left.")
@@ -33682,8 +33694,8 @@ public class NpcStringId
 	@ClientString(id = 1804081, message = "$s1! To defeat Baium... it's necessary to retreat for now.")
 	public static NpcStringId S1_TO_DEFEAT_BAIUM_IT_S_NECESSARY_TO_RETREAT_FOR_NOW;
 	
-	@ClientString(id = 1804082, message = "Baium's trial has finished. You can collect your reward from Karia on each floor.")
-	public static NpcStringId BAIUM_S_TRIAL_HAS_FINISHED_YOU_CAN_COLLECT_YOUR_REWARD_FROM_KARIA_ON_EACH_FLOOR;
+	@ClientString(id = 1804082, message = "Baium's Trial is over. You can collect your reward from Karia on each floor.")
+	public static NpcStringId BAIUM_S_TRIAL_IS_OVER_YOU_CAN_COLLECT_YOUR_REWARD_FROM_KARIA_ON_EACH_FLOOR;
 	
 	@ClientString(id = 1804083, message = "You are not worthy of this trial! Go to the 1st floor!")
 	public static NpcStringId YOU_ARE_NOT_WORTHY_OF_THIS_TRIAL_GO_TO_THE_1ST_FLOOR;
@@ -33826,8 +33838,8 @@ public class NpcStringId
 	@ClientString(id = 1804129, message = "Baium's Lair")
 	public static NpcStringId BAIUM_S_LAIR;
 	
-	@ClientString(id = 1804130, message = "Baium's Challenge has finished! Receive your reward from Beiron.")
-	public static NpcStringId BAIUM_S_CHALLENGE_HAS_FINISHED_RECEIVE_YOUR_REWARD_FROM_BEIRON;
+	@ClientString(id = 1804130, message = "Baium's Trial is over! Get your reward from Beiron.")
+	public static NpcStringId BAIUM_S_TRIAL_IS_OVER_GET_YOUR_REWARD_FROM_BEIRON;
 	
 	@ClientString(id = 1804131, message = "You challenge Baium, you will be shown no mercy!")
 	public static NpcStringId YOU_CHALLENGE_BAIUM_YOU_WILL_BE_SHOWN_NO_MERCY;
@@ -33853,8 +33865,8 @@ public class NpcStringId
 	@ClientString(id = 1804138, message = "This is just the beginning. I will show you even greater power!")
 	public static NpcStringId THIS_IS_JUST_THE_BEGINNING_I_WILL_SHOW_YOU_EVEN_GREATER_POWER;
 	
-	@ClientString(id = 1804139, message = "$s1 obtains an Improved Scroll: Enchant Weapon/ Armor!")
-	public static NpcStringId S1_OBTAINS_AN_IMPROVED_SCROLL_ENCHANT_WEAPON_ARMOR;
+	@ClientString(id = 1804139, message = "$s1 has obtained Improved Scroll: Enchant Weapon/ Armor!")
+	public static NpcStringId S1_HAS_OBTAINED_IMPROVED_SCROLL_ENCHANT_WEAPON_ARMOR;
 	
 	@ClientString(id = 1804140, message = "Antharas' Avatar Ultimate Behemoth appeared")
 	public static NpcStringId ANTHARAS_AVATAR_ULTIMATE_BEHEMOTH_APPEARED;
@@ -33967,11 +33979,11 @@ public class NpcStringId
 	@ClientString(id = 1804176, message = "Doll")
 	public static NpcStringId DOLL;
 	
-	@ClientString(id = 1804177, message = "Sayha's Heritage")
-	public static NpcStringId SAYHA_S_HERITAGE;
+	@ClientString(id = 1804177, message = "Talking Island_temporary")
+	public static NpcStringId TALKING_ISLAND_TEMPORARY;
 	
 	@ClientString(id = 1804178, message = "Talking Island_temporary")
-	public static NpcStringId TALKING_ISLAND_TEMPORARY;
+	public static NpcStringId TALKING_ISLAND_TEMPORARY_2;
 	
 	@ClientString(id = 1804179, message = "Make the sacred blood sacrifice to Keber. Attack!")
 	public static NpcStringId MAKE_THE_SACRED_BLOOD_SACRIFICE_TO_KEBER_ATTACK;
@@ -34159,8 +34171,8 @@ public class NpcStringId
 	@ClientString(id = 1804240, message = "(***)")
 	public static NpcStringId EMPTY_17;
 	
-	@ClientString(id = 1804241, message = "Time-limited_accessory")
-	public static NpcStringId TIME_LIMITED_ACCESSORY;
+	@ClientString(id = 1804241, message = "Armor")
+	public static NpcStringId ARMOR;
 	
 	@ClientString(id = 1804242, message = "Accessories")
 	public static NpcStringId ACCESSORIES;
@@ -34180,26 +34192,26 @@ public class NpcStringId
 	@ClientString(id = 1804247, message = "Misc.")
 	public static NpcStringId MISC_5;
 	
-	@ClientString(id = 1804248, message = "Time-limited_accessory")
-	public static NpcStringId TIME_LIMITED_ACCESSORY_2;
+	@ClientString(id = 1804248, message = "Elite Mileage")
+	public static NpcStringId ELITE_MILEAGE;
 	
-	@ClientString(id = 1804249, message = "Time-limited_accessory")
-	public static NpcStringId TIME_LIMITED_ACCESSORY_3;
+	@ClientString(id = 1804249, message = "Golden Key")
+	public static NpcStringId GOLDEN_KEY;
 	
 	@ClientString(id = 1804250, message = "Time-limited_accessory")
-	public static NpcStringId TIME_LIMITED_ACCESSORY_4;
+	public static NpcStringId TIME_LIMITED_ACCESSORY;
 	
-	@ClientString(id = 1804251, message = "Time-limited_misc.")
-	public static NpcStringId TIME_LIMITED_MISC;
+	@ClientString(id = 1804251, message = "Shining Jewel Pouch")
+	public static NpcStringId SHINING_JEWEL_POUCH;
 	
-	@ClientString(id = 1804252, message = "Time-limited_misc.")
-	public static NpcStringId TIME_LIMITED_MISC_2;
+	@ClientString(id = 1804252, message = "Mammon's Shard")
+	public static NpcStringId MAMMON_S_SHARD;
 	
 	@ClientString(id = 1804253, message = "Time-limited_misc.")
-	public static NpcStringId TIME_LIMITED_MISC_3;
+	public static NpcStringId TIME_LIMITED_MISC;
 	
-	@ClientString(id = 1804254, message = "Time-limited_misc.")
-	public static NpcStringId TIME_LIMITED_MISC_4;
+	@ClientString(id = 1804254, message = "Soul Crystals")
+	public static NpcStringId SOUL_CRYSTALS;
 	
 	@ClientString(id = 1804255, message = "Raid Reward")
 	public static NpcStringId RAID_REWARD;
@@ -34210,56 +34222,56 @@ public class NpcStringId
 	@ClientString(id = 1804257, message = "Augmenting Stones")
 	public static NpcStringId AUGMENTING_STONES;
 	
-	@ClientString(id = 1804258, message = "Pet items")
-	public static NpcStringId PET_ITEMS;
+	@ClientString(id = 1804258, message = "For pets")
+	public static NpcStringId FOR_PETS;
 	
 	@ClientString(id = 1804259, message = "Scrolls, etc.")
 	public static NpcStringId SCROLLS_ETC;
 	
-	@ClientString(id = 1804260, message = "Time-limited_misc.")
-	public static NpcStringId TIME_LIMITED_MISC_5;
+	@ClientString(id = 1804260, message = "Dragon's Treasures")
+	public static NpcStringId DRAGON_S_TREASURES;
 	
 	@ClientString(id = 1804261, message = "Limited craft")
 	public static NpcStringId LIMITED_CRAFT;
 	
-	@ClientString(id = 1804262, message = "Giran Seal")
-	public static NpcStringId GIRAN_SEAL;
+	@ClientString(id = 1804262, message = "Armor of Protection (Unsealed)")
+	public static NpcStringId ARMOR_OF_PROTECTION_UNSEALED;
 	
-	@ClientString(id = 1804263, message = "Create Rare Accessories")
-	public static NpcStringId CREATE_RARE_ACCESSORIES;
+	@ClientString(id = 1804263, message = "Armor of Protection (Sealed)")
+	public static NpcStringId ARMOR_OF_PROTECTION_SEALED;
 	
-	@ClientString(id = 1804264, message = "Craft Coupons")
-	public static NpcStringId CRAFT_COUPONS;
+	@ClientString(id = 1804264, message = "Einhasad's Pendant")
+	public static NpcStringId EINHASAD_S_PENDANT;
 	
-	@ClientString(id = 1804265, message = "Growth Rune")
-	public static NpcStringId GROWTH_RUNE;
+	@ClientString(id = 1804265, message = "Soul Crystal Coupon")
+	public static NpcStringId SOUL_CRYSTAL_COUPON;
 	
-	@ClientString(id = 1804266, message = "Create Circlet of Hero")
-	public static NpcStringId CREATE_CIRCLET_OF_HERO;
+	@ClientString(id = 1804266, message = "Angel Doll")
+	public static NpcStringId ANGEL_DOLL;
 	
-	@ClientString(id = 1804267, message = "Garden of Genesis")
-	public static NpcStringId GARDEN_OF_GENESIS;
+	@ClientString(id = 1804267, message = "Craft Spellbooks")
+	public static NpcStringId CRAFT_SPELLBOOKS_2;
 	
-	@ClientString(id = 1804268, message = "Red Libra Guild")
-	public static NpcStringId RED_LIBRA_GUILD;
+	@ClientString(id = 1804268, message = "Doll Package")
+	public static NpcStringId DOLL_PACKAGE;
 	
-	@ClientString(id = 1804269, message = "Watermelon event")
-	public static NpcStringId WATERMELON_EVENT;
+	@ClientString(id = 1804269, message = "Craft Doll Lv. 2")
+	public static NpcStringId CRAFT_DOLL_LV_2;
 	
-	@ClientString(id = 1804270, message = "Collector's Adventure")
-	public static NpcStringId COLLECTOR_S_ADVENTURE;
+	@ClientString(id = 1804270, message = "Craft Doll Pack Lv. 2")
+	public static NpcStringId CRAFT_DOLL_PACK_LV_2;
 	
-	@ClientString(id = 1804271, message = "Mysterious packs")
-	public static NpcStringId MYSTERIOUS_PACKS;
+	@ClientString(id = 1804271, message = "Secret Shop")
+	public static NpcStringId SECRET_SHOP;
 	
-	@ClientString(id = 1804272, message = "Time-limited_weapon")
-	public static NpcStringId TIME_LIMITED_WEAPON_4;
+	@ClientString(id = 1804272, message = "Doll Pack")
+	public static NpcStringId DOLL_PACK;
 	
-	@ClientString(id = 1804273, message = "Time-limited_weapon")
-	public static NpcStringId TIME_LIMITED_WEAPON_5;
+	@ClientString(id = 1804273, message = "Armor of Protection Fragment")
+	public static NpcStringId ARMOR_OF_PROTECTION_FRAGMENT;
 	
 	@ClientString(id = 1804274, message = "Time-limited_weapon")
-	public static NpcStringId TIME_LIMITED_WEAPON_6;
+	public static NpcStringId TIME_LIMITED_WEAPON_4;
 	
 	@ClientString(id = 1804275, message = "Purge Weapon")
 	public static NpcStringId PURGE_WEAPON_3;
@@ -34267,17 +34279,17 @@ public class NpcStringId
 	@ClientString(id = 1804276, message = "Frost Lord's Weapon")
 	public static NpcStringId FROST_LORD_S_WEAPON_3;
 	
-	@ClientString(id = 1804277, message = "Time-limited_weapon")
-	public static NpcStringId TIME_LIMITED_WEAPON_7;
+	@ClientString(id = 1804277, message = "Leona's Dungeon")
+	public static NpcStringId LEONA_S_DUNGEON;
 	
 	@ClientString(id = 1804278, message = "Time-limited_weapon")
-	public static NpcStringId TIME_LIMITED_WEAPON_8;
+	public static NpcStringId TIME_LIMITED_WEAPON_5;
 	
 	@ClientString(id = 1804279, message = "Time-limited_weapon")
-	public static NpcStringId TIME_LIMITED_WEAPON_9;
+	public static NpcStringId TIME_LIMITED_WEAPON_6;
 	
 	@ClientString(id = 1804280, message = "Time-limited_weapon")
-	public static NpcStringId TIME_LIMITED_WEAPON_10;
+	public static NpcStringId TIME_LIMITED_WEAPON_7;
 	
 	@ClientString(id = 1804281, message = "Time-limited_armor")
 	public static NpcStringId TIME_LIMITED_ARMOR_6;
@@ -34340,73 +34352,73 @@ public class NpcStringId
 	public static NpcStringId TIME_LIMITED_SPELLBOOK_13;
 	
 	@ClientString(id = 1804301, message = "Time-limited_accessory")
-	public static NpcStringId TIME_LIMITED_ACCESSORY_5;
+	public static NpcStringId TIME_LIMITED_ACCESSORY_2;
 	
 	@ClientString(id = 1804302, message = "Time-limited_accessory")
-	public static NpcStringId TIME_LIMITED_ACCESSORY_6;
+	public static NpcStringId TIME_LIMITED_ACCESSORY_3;
 	
 	@ClientString(id = 1804303, message = "Time-limited_accessory")
-	public static NpcStringId TIME_LIMITED_ACCESSORY_7;
+	public static NpcStringId TIME_LIMITED_ACCESSORY_4;
 	
 	@ClientString(id = 1804304, message = "Time-limited_accessory")
-	public static NpcStringId TIME_LIMITED_ACCESSORY_8;
+	public static NpcStringId TIME_LIMITED_ACCESSORY_5;
 	
 	@ClientString(id = 1804305, message = "Rare accessories")
 	public static NpcStringId RARE_ACCESSORIES_2;
 	
 	@ClientString(id = 1804306, message = "Time-limited_accessory")
-	public static NpcStringId TIME_LIMITED_ACCESSORY_9;
+	public static NpcStringId TIME_LIMITED_ACCESSORY_6;
 	
 	@ClientString(id = 1804307, message = "Time-limited_accessory")
-	public static NpcStringId TIME_LIMITED_ACCESSORY_10;
+	public static NpcStringId TIME_LIMITED_ACCESSORY_7;
 	
 	@ClientString(id = 1804308, message = "Time-limited_accessory")
-	public static NpcStringId TIME_LIMITED_ACCESSORY_11;
+	public static NpcStringId TIME_LIMITED_ACCESSORY_8;
 	
 	@ClientString(id = 1804309, message = "Time-limited_accessory")
-	public static NpcStringId TIME_LIMITED_ACCESSORY_12;
+	public static NpcStringId TIME_LIMITED_ACCESSORY_9;
 	
 	@ClientString(id = 1804310, message = "Time-limited_accessory")
-	public static NpcStringId TIME_LIMITED_ACCESSORY_13;
+	public static NpcStringId TIME_LIMITED_ACCESSORY_10;
 	
 	@ClientString(id = 1804311, message = "Time-limited_misc.")
-	public static NpcStringId TIME_LIMITED_MISC_6;
+	public static NpcStringId TIME_LIMITED_MISC_2;
 	
 	@ClientString(id = 1804312, message = "Time-limited_misc.")
-	public static NpcStringId TIME_LIMITED_MISC_7;
+	public static NpcStringId TIME_LIMITED_MISC_3;
 	
 	@ClientString(id = 1804313, message = "$s1 has obtained Boss Expedition Mark!")
 	public static NpcStringId S1_HAS_OBTAINED_BOSS_EXPEDITION_MARK;
 	
 	@ClientString(id = 1804314, message = "Time-limited_misc.")
-	public static NpcStringId TIME_LIMITED_MISC_8;
+	public static NpcStringId TIME_LIMITED_MISC_4;
 	
 	@ClientString(id = 1804315, message = "Elixirs and dyes")
 	public static NpcStringId ELIXIRS_AND_DYES;
 	
 	@ClientString(id = 1804316, message = "Time-limited_misc.")
-	public static NpcStringId TIME_LIMITED_MISC_9;
+	public static NpcStringId TIME_LIMITED_MISC_5;
 	
-	@ClientString(id = 1804317, message = "Time-limited_misc.")
-	public static NpcStringId TIME_LIMITED_MISC_10;
+	@ClientString(id = 1804317, message = "Exploration Log")
+	public static NpcStringId EXPLORATION_LOG;
 	
 	@ClientString(id = 1804318, message = "Time-limited_misc.")
-	public static NpcStringId TIME_LIMITED_MISC_11;
+	public static NpcStringId TIME_LIMITED_MISC_6;
 	
 	@ClientString(id = 1804319, message = "Time-limited_misc.")
-	public static NpcStringId TIME_LIMITED_MISC_12;
+	public static NpcStringId TIME_LIMITED_MISC_7;
 	
 	@ClientString(id = 1804320, message = "Event")
 	public static NpcStringId EVENT;
 	
-	@ClientString(id = 1804321, message = "Balthus Knight")
-	public static NpcStringId BALTHUS_KNIGHT;
+	@ClientString(id = 1804321, message = "Giran Seal")
+	public static NpcStringId GIRAN_SEAL;
 	
-	@ClientString(id = 1804322, message = "Winemaking")
-	public static NpcStringId WINEMAKING;
+	@ClientString(id = 1804322, message = "Talking Island Pack")
+	public static NpcStringId TALKING_ISLAND_PACK;
 	
-	@ClientString(id = 1804323, message = "Dragon's Treasure Chest")
-	public static NpcStringId DRAGON_S_TREASURE_CHEST;
+	@ClientString(id = 1804323, message = "Berserker's Scroll")
+	public static NpcStringId BERSERKER_S_SCROLL;
 	
 	@ClientString(id = 1804324, message = "Rare Accessories Lv. 1")
 	public static NpcStringId RARE_ACCESSORIES_LV_1;
@@ -34414,17 +34426,17 @@ public class NpcStringId
 	@ClientString(id = 1804325, message = "Rare Accessories Lv. 5")
 	public static NpcStringId RARE_ACCESSORIES_LV_5_2;
 	
-	@ClientString(id = 1804326, message = "Time-limited_event")
-	public static NpcStringId TIME_LIMITED_EVENT;
+	@ClientString(id = 1804326, message = "Pagan's Badge")
+	public static NpcStringId PAGAN_S_BADGE;
 	
-	@ClientString(id = 1804327, message = "Time-limited_event")
-	public static NpcStringId TIME_LIMITED_EVENT_2;
+	@ClientString(id = 1804327, message = "Attendance Mileage")
+	public static NpcStringId ATTENDANCE_MILEAGE;
 	
 	@ClientString(id = 1804328, message = "Time-limited_event")
-	public static NpcStringId TIME_LIMITED_EVENT_3;
+	public static NpcStringId TIME_LIMITED_EVENT;
 	
-	@ClientString(id = 1804329, message = "Time-limited_event")
-	public static NpcStringId TIME_LIMITED_EVENT_4;
+	@ClientString(id = 1804329, message = "Baium's Trial")
+	public static NpcStringId BAIUM_S_TRIAL;
 	
 	@ClientString(id = 1804330, message = "Surprise Gift")
 	public static NpcStringId SURPRISE_GIFT;
@@ -34561,11 +34573,11 @@ public class NpcStringId
 	@ClientString(id = 1804374, message = "Deal with my guards first!")
 	public static NpcStringId DEAL_WITH_MY_GUARDS_FIRST;
 	
-	@ClientString(id = 1804375, message = "$s1 gets Scroll: Enchant Aden Cloak. Congratulations!")
-	public static NpcStringId S1_GETS_SCROLL_ENCHANT_ADEN_CLOAK_CONGRATULATIONS;
+	@ClientString(id = 1804375, message = "$s1 has obtained Scroll: Enchant Aden Cloak. Congratulations!")
+	public static NpcStringId S1_HAS_OBTAINED_SCROLL_ENCHANT_ADEN_CLOAK_CONGRATULATIONS;
 	
-	@ClientString(id = 1804376, message = "$s1 gets Aden Cloak. Congratulations!")
-	public static NpcStringId S1_GETS_ADEN_CLOAK_CONGRATULATIONS;
+	@ClientString(id = 1804376, message = "$s1 has obtained Aden Cloak. Congratulations!")
+	public static NpcStringId S1_HAS_OBTAINED_ADEN_CLOAK_CONGRATULATIONS;
 	
 	@ClientString(id = 1804377, message = "The treasure chest in the Aden Castle will disappear in $s1 min. To claim it, talk to Lionel Hunter in the Resurrection area.")
 	public static NpcStringId THE_TREASURE_CHEST_IN_THE_ADEN_CASTLE_WILL_DISAPPEAR_IN_S1_MIN_TO_CLAIM_IT_TALK_TO_LIONEL_HUNTER_IN_THE_RESURRECTION_AREA;
@@ -34630,17 +34642,17 @@ public class NpcStringId
 	@ClientString(id = 1804397, message = "Master Gustav took my horsie.")
 	public static NpcStringId MASTER_GUSTAV_TOOK_MY_HORSIE;
 	
-	@ClientString(id = 1804398, message = "The horsie is in the manor. I will open the doors and well go in and play.")
-	public static NpcStringId THE_HORSIE_IS_IN_THE_MANOR_I_WILL_OPEN_THE_DOORS_AND_WELL_GO_IN_AND_PLAY;
+	@ClientString(id = 1804398, message = "The horsie is in the manor. I will open the doors and we'll go in and play.")
+	public static NpcStringId THE_HORSIE_IS_IN_THE_MANOR_I_WILL_OPEN_THE_DOORS_AND_WE_LL_GO_IN_AND_PLAY;
 	
-	@ClientString(id = 1804399, message = "Dream Watchers Death (1/4)")
-	public static NpcStringId DREAM_WATCHERS_DEATH_1_4;
+	@ClientString(id = 1804399, message = "Dream Watcher's Death (1/4)")
+	public static NpcStringId DREAM_WATCHER_S_DEATH_1_4;
 	
-	@ClientString(id = 1804400, message = "Dream Watchers Death (2/4)")
-	public static NpcStringId DREAM_WATCHERS_DEATH_2_4;
+	@ClientString(id = 1804400, message = "Dream Watcher's Death (2/4)")
+	public static NpcStringId DREAM_WATCHER_S_DEATH_2_4;
 	
-	@ClientString(id = 1804401, message = "Dream Watchers Death (3/4)")
-	public static NpcStringId DREAM_WATCHERS_DEATH_3_4;
+	@ClientString(id = 1804401, message = "Dream Watcher's Death (3/4)")
+	public static NpcStringId DREAM_WATCHER_S_DEATH_3_4;
 	
 	@ClientString(id = 1804402, message = "Here is my horsie! Let's take a break.")
 	public static NpcStringId HERE_IS_MY_HORSIE_LET_S_TAKE_A_BREAK;
@@ -34657,14 +34669,14 @@ public class NpcStringId
 	@ClientString(id = 1804406, message = "Human... Find the Holy Grail... It has answers to your questions...")
 	public static NpcStringId HUMAN_FIND_THE_HOLY_GRAIL_IT_HAS_ANSWERS_TO_YOUR_QUESTIONS;
 	
-	@ClientString(id = 1804407, message = "Dream Watchers Death (1/4)")
-	public static NpcStringId DREAM_WATCHERS_DEATH_1_4_2;
+	@ClientString(id = 1804407, message = "Dream Watcher's Death (1/4)")
+	public static NpcStringId DREAM_WATCHER_S_DEATH_1_4_2;
 	
-	@ClientString(id = 1804408, message = "Dream Watchers Death (2/4)")
-	public static NpcStringId DREAM_WATCHERS_DEATH_2_4_2;
+	@ClientString(id = 1804408, message = "Dream Watcher's Death (2/4)")
+	public static NpcStringId DREAM_WATCHER_S_DEATH_2_4_2;
 	
-	@ClientString(id = 1804409, message = "Dream Watchers Death (3/4)")
-	public static NpcStringId DREAM_WATCHERS_DEATH_3_4_2;
+	@ClientString(id = 1804409, message = "Dream Watcher's Death (3/4)")
+	public static NpcStringId DREAM_WATCHER_S_DEATH_3_4_2;
 	
 	@ClientString(id = 1804410, message = "Go to the last room... The Holy Grail is inside.")
 	public static NpcStringId GO_TO_THE_LAST_ROOM_THE_HOLY_GRAIL_IS_INSIDE;
@@ -34678,25 +34690,25 @@ public class NpcStringId
 	@ClientString(id = 1804413, message = "Gabrielle is not needed. I'll deal with it myself.")
 	public static NpcStringId GABRIELLE_IS_NOT_NEEDED_I_LL_DEAL_WITH_IT_MYSELF;
 	
-	@ClientString(id = 1804414, message = "Hehehe... Gabrielle... Isnt this stupid... But where is the Holy Grail?")
-	public static NpcStringId HEHEHE_GABRIELLE_ISNT_THIS_STUPID_BUT_WHERE_IS_THE_HOLY_GRAIL;
+	@ClientString(id = 1804414, message = "Hehehe... Gabrielle... Isn't this stupid... But where is the Holy Grail?")
+	public static NpcStringId HEHEHE_GABRIELLE_ISN_T_THIS_STUPID_BUT_WHERE_IS_THE_HOLY_GRAIL;
 	
 	@ClientString(id = 1804415, message = "I hate that cursed arrogant Ventus! You go ahead and get to the Temple of Ventus.")
 	public static NpcStringId I_HATE_THAT_CURSED_ARROGANT_VENTUS_YOU_GO_AHEAD_AND_GET_TO_THE_TEMPLE_OF_VENTUS;
 	
-	@ClientString(id = 1804416, message = "Dream Watchers Death (1/4)")
-	public static NpcStringId DREAM_WATCHERS_DEATH_1_4_3;
+	@ClientString(id = 1804416, message = "Dream Watcher's Death (1/4)")
+	public static NpcStringId DREAM_WATCHER_S_DEATH_1_4_3;
 	
-	@ClientString(id = 1804417, message = "Dream Watchers Death (2/4)")
-	public static NpcStringId DREAM_WATCHERS_DEATH_2_4_3;
+	@ClientString(id = 1804417, message = "Dream Watcher's Death (2/4)")
+	public static NpcStringId DREAM_WATCHER_S_DEATH_2_4_3;
 	
-	@ClientString(id = 1804418, message = "Dream Watchers Death (3/4)")
-	public static NpcStringId DREAM_WATCHERS_DEATH_3_4_3;
+	@ClientString(id = 1804418, message = "Dream Watcher's Death (3/4)")
+	public static NpcStringId DREAM_WATCHER_S_DEATH_3_4_3;
 	
 	@ClientString(id = 1804419, message = "First deal with those enslaved by Ventus.")
 	public static NpcStringId FIRST_DEAL_WITH_THOSE_ENSLAVED_BY_VENTUS;
 	
-	@ClientString(id = 1804420, message = "This scoundrel is going to subjugate the others will using dark magic tricks.")
+	@ClientString(id = 1804420, message = "This scoundrel is going to subjugate the others' will using dark magic tricks.")
 	public static NpcStringId THIS_SCOUNDREL_IS_GOING_TO_SUBJUGATE_THE_OTHERS_WILL_USING_DARK_MAGIC_TRICKS;
 	
 	@ClientString(id = 1804421, message = "Use the ballista to destroy Ventus' statue.")
@@ -34723,17 +34735,17 @@ public class NpcStringId
 	@ClientString(id = 1804428, message = "Where am I...? Eternal loaylty to pirates... How foolish!")
 	public static NpcStringId WHERE_AM_I_ETERNAL_LOAYLTY_TO_PIRATES_HOW_FOOLISH;
 	
-	@ClientString(id = 1804429, message = "He-he! You wouldnt be scared by a devil, it seems, since you dare to set your foot in here. He-he!")
-	public static NpcStringId HE_HE_YOU_WOULDNT_BE_SCARED_BY_A_DEVIL_IT_SEEMS_SINCE_YOU_DARE_TO_SET_YOUR_FOOT_IN_HERE_HE_HE;
+	@ClientString(id = 1804429, message = "He-he! You wouldn't be scared by a devil, it seems, since you dare to set your foot in here. He-he!")
+	public static NpcStringId HE_HE_YOU_WOULDN_T_BE_SCARED_BY_A_DEVIL_IT_SEEMS_SINCE_YOU_DARE_TO_SET_YOUR_FOOT_IN_HERE_HE_HE;
 	
-	@ClientString(id = 1804430, message = "Dream Watchers Death (1/4)")
-	public static NpcStringId DREAM_WATCHERS_DEATH_1_4_4;
+	@ClientString(id = 1804430, message = "Dream Watcher's Death (1/4)")
+	public static NpcStringId DREAM_WATCHER_S_DEATH_1_4_4;
 	
-	@ClientString(id = 1804431, message = "Dream Watchers Death (2/4)")
-	public static NpcStringId DREAM_WATCHERS_DEATH_2_4_4;
+	@ClientString(id = 1804431, message = "Dream Watcher's Death (2/4)")
+	public static NpcStringId DREAM_WATCHER_S_DEATH_2_4_4;
 	
-	@ClientString(id = 1804432, message = "Dream Watchers Death (3/4)")
-	public static NpcStringId DREAM_WATCHERS_DEATH_3_4_4;
+	@ClientString(id = 1804432, message = "Dream Watcher's Death (3/4)")
+	public static NpcStringId DREAM_WATCHER_S_DEATH_3_4_4;
 	
 	@ClientString(id = 1804433, message = "Oh mighty Tiat, our enemies are weakened, it's time to defeat them once and for all!")
 	public static NpcStringId OH_MIGHTY_TIAT_OUR_ENEMIES_ARE_WEAKENED_IT_S_TIME_TO_DEFEAT_THEM_ONCE_AND_FOR_ALL;
@@ -34741,8 +34753,8 @@ public class NpcStringId
 	@ClientString(id = 1804434, message = "Will you turn back? Or move further? He-he!")
 	public static NpcStringId WILL_YOU_TURN_BACK_OR_MOVE_FURTHER_HE_HE;
 	
-	@ClientString(id = 1804435, message = "Well, I was bored before, but now the things have taken a completely different turn. Please, come in, dont be shy.")
-	public static NpcStringId WELL_I_WAS_BORED_BEFORE_BUT_NOW_THE_THINGS_HAVE_TAKEN_A_COMPLETELY_DIFFERENT_TURN_PLEASE_COME_IN_DONT_BE_SHY;
+	@ClientString(id = 1804435, message = "Well, I was bored before, but now the things have taken a completely different turn. Please, come in, don't be shy.")
+	public static NpcStringId WELL_I_WAS_BORED_BEFORE_BUT_NOW_THE_THINGS_HAVE_TAKEN_A_COMPLETELY_DIFFERENT_TURN_PLEASE_COME_IN_DON_T_BE_SHY;
 	
 	@ClientString(id = 1804436, message = "Oh, those? Powerless Aden warriors? Let's finish them now and move on the Aden Castle!")
 	public static NpcStringId OH_THOSE_POWERLESS_ADEN_WARRIORS_LET_S_FINISH_THEM_NOW_AND_MOVE_ON_THE_ADEN_CASTLE;
@@ -34750,26 +34762,26 @@ public class NpcStringId
 	@ClientString(id = 1804437, message = "I'm going to Aden. Commander Assistant, follow me!")
 	public static NpcStringId I_M_GOING_TO_ADEN_COMMANDER_ASSISTANT_FOLLOW_ME;
 	
-	@ClientString(id = 1804438, message = "He-he! Excellent! But are you sure youve won? Maybe, all of this is nothing but a dream.")
-	public static NpcStringId HE_HE_EXCELLENT_BUT_ARE_YOU_SURE_YOUVE_WON_MAYBE_ALL_OF_THIS_IS_NOTHING_BUT_A_DREAM;
+	@ClientString(id = 1804438, message = "He-he! Excellent! But are you sure you've won? Maybe, all of this is nothing but a dream.")
+	public static NpcStringId HE_HE_EXCELLENT_BUT_ARE_YOU_SURE_YOU_VE_WON_MAYBE_ALL_OF_THIS_IS_NOTHING_BUT_A_DREAM;
 	
 	@ClientString(id = 1804439, message = "The Cat Guild's king is in trouble. Please help him.")
 	public static NpcStringId THE_CAT_GUILD_S_KING_IS_IN_TROUBLE_PLEASE_HELP_HIM;
 	
-	@ClientString(id = 1804440, message = "Dream Watchers Death (1/4)")
-	public static NpcStringId DREAM_WATCHERS_DEATH_1_4_5;
+	@ClientString(id = 1804440, message = "Dream Watcher's Death (1/4)")
+	public static NpcStringId DREAM_WATCHER_S_DEATH_1_4_5;
 	
-	@ClientString(id = 1804441, message = "Dream Watchers Death (2/4)")
-	public static NpcStringId DREAM_WATCHERS_DEATH_2_4_5;
+	@ClientString(id = 1804441, message = "Dream Watcher's Death (2/4)")
+	public static NpcStringId DREAM_WATCHER_S_DEATH_2_4_5;
 	
-	@ClientString(id = 1804442, message = "Dream Watchers Death (3/4)")
-	public static NpcStringId DREAM_WATCHERS_DEATH_3_4_5;
+	@ClientString(id = 1804442, message = "Dream Watcher's Death (3/4)")
+	public static NpcStringId DREAM_WATCHER_S_DEATH_3_4_5;
 	
 	@ClientString(id = 1804443, message = "What's the fuss? Those willing to address the king, come to me!")
 	public static NpcStringId WHAT_S_THE_FUSS_THOSE_WILLING_TO_ADDRESS_THE_KING_COME_TO_ME;
 	
-	@ClientString(id = 1804444, message = "What? You are going to give advices to our King? Hell be so mad!")
-	public static NpcStringId WHAT_YOU_ARE_GOING_TO_GIVE_ADVICES_TO_OUR_KING_HELL_BE_SO_MAD;
+	@ClientString(id = 1804444, message = "What? You are going to give advices to our King? He'll be so mad!")
+	public static NpcStringId WHAT_YOU_ARE_GOING_TO_GIVE_ADVICES_TO_OUR_KING_HE_LL_BE_SO_MAD;
 	
 	@ClientString(id = 1804445, message = "Is something wrong with me? Then advise me!")
 	public static NpcStringId IS_SOMETHING_WRONG_WITH_ME_THEN_ADVISE_ME;
@@ -34789,8 +34801,8 @@ public class NpcStringId
 	@ClientString(id = 1804450, message = "You cannot leave the Dreamland.")
 	public static NpcStringId YOU_CANNOT_LEAVE_THE_DREAMLAND;
 	
-	@ClientString(id = 1804451, message = "Help our guild, please! I will tell you whats going on.")
-	public static NpcStringId HELP_OUR_GUILD_PLEASE_I_WILL_TELL_YOU_WHATS_GOING_ON;
+	@ClientString(id = 1804451, message = "Help our guild, please! I will tell you what's going on.")
+	public static NpcStringId HELP_OUR_GUILD_PLEASE_I_WILL_TELL_YOU_WHAT_S_GOING_ON;
 	
 	@ClientString(id = 1804452, message = "Do not forget about basics!")
 	public static NpcStringId DO_NOT_FORGET_ABOUT_BASICS;
@@ -34825,41 +34837,41 @@ public class NpcStringId
 	@ClientString(id = 1804462, message = "I can summon the monsters for the training.")
 	public static NpcStringId I_CAN_SUMMON_THE_MONSTERS_FOR_THE_TRAINING;
 	
-	@ClientString(id = 1804463, message = "So sweet! Youll love this taste!")
-	public static NpcStringId SO_SWEET_YOULL_LOVE_THIS_TASTE;
+	@ClientString(id = 1804463, message = "So sweet! You'll love this taste!")
+	public static NpcStringId SO_SWEET_YOU_LL_LOVE_THIS_TASTE;
 	
-	@ClientString(id = 1804464, message = "Refreshing, huh? Its like the first time you cut a ripe watermelon, and it cracks!")
-	public static NpcStringId REFRESHING_HUH_ITS_LIKE_THE_FIRST_TIME_YOU_CUT_A_RIPE_WATERMELON_AND_IT_CRACKS;
+	@ClientString(id = 1804464, message = "Refreshing, huh? It's like the first time you cut a ripe watermelon, and it cracks!")
+	public static NpcStringId REFRESHING_HUH_IT_S_LIKE_THE_FIRST_TIME_YOU_CUT_A_RIPE_WATERMELON_AND_IT_CRACKS;
 	
 	@ClientString(id = 1804465, message = "You think, it will crack like this?")
 	public static NpcStringId YOU_THINK_IT_WILL_CRACK_LIKE_THIS;
 	
-	@ClientString(id = 1804466, message = "Just hit it! Dont think!")
-	public static NpcStringId JUST_HIT_IT_DONT_THINK;
+	@ClientString(id = 1804466, message = "Just hit it! Don't think!")
+	public static NpcStringId JUST_HIT_IT_DON_T_THINK;
 	
-	@ClientString(id = 1804467, message = "Wow! Thats a good blow.")
-	public static NpcStringId WOW_THATS_A_GOOD_BLOW;
+	@ClientString(id = 1804467, message = "Wow! That's a good blow.")
+	public static NpcStringId WOW_THAT_S_A_GOOD_BLOW;
 	
-	@ClientString(id = 1804468, message = "Rat-tat, so, is the sound clear? Nah, its too dull!")
-	public static NpcStringId RAT_TAT_SO_IS_THE_SOUND_CLEAR_NAH_ITS_TOO_DULL;
+	@ClientString(id = 1804468, message = "Rat-tat, so, is the sound clear? Nah, it's too dull!")
+	public static NpcStringId RAT_TAT_SO_IS_THE_SOUND_CLEAR_NAH_IT_S_TOO_DULL;
 	
-	@ClientString(id = 1804469, message = "Rat-tat! Looks like it isnt ripe yet.")
-	public static NpcStringId RAT_TAT_LOOKS_LIKE_IT_ISNT_RIPE_YET;
+	@ClientString(id = 1804469, message = "Rat-tat! Looks like it isn't ripe yet.")
+	public static NpcStringId RAT_TAT_LOOKS_LIKE_IT_ISN_T_RIPE_YET;
 	
 	@ClientString(id = 1804470, message = "Rat-tat! Oh! It cracked!")
 	public static NpcStringId RAT_TAT_OH_IT_CRACKED;
 	
-	@ClientString(id = 1804471, message = "Youll have more fun if you have a watermelon.")
-	public static NpcStringId YOULL_HAVE_MORE_FUN_IF_YOU_HAVE_A_WATERMELON;
+	@ClientString(id = 1804471, message = "You'll have more fun if you have a watermelon.")
+	public static NpcStringId YOU_LL_HAVE_MORE_FUN_IF_YOU_HAVE_A_WATERMELON;
 	
-	@ClientString(id = 1804472, message = "Oh, thats a true watermelon taste!")
-	public static NpcStringId OH_THATS_A_TRUE_WATERMELON_TASTE;
+	@ClientString(id = 1804472, message = "Oh, that's a true watermelon taste!")
+	public static NpcStringId OH_THAT_S_A_TRUE_WATERMELON_TASTE;
 	
 	@ClientString(id = 1804473, message = "Rat-tat! So ripe! So delicious!")
 	public static NpcStringId RAT_TAT_SO_RIPE_SO_DELICIOUS;
 	
-	@ClientString(id = 1804474, message = "The watermelon cracked? Well, thats the point, isnt it?")
-	public static NpcStringId THE_WATERMELON_CRACKED_WELL_THATS_THE_POINT_ISNT_IT;
+	@ClientString(id = 1804474, message = "The watermelon cracked? Well, that's the point, isn't it?")
+	public static NpcStringId THE_WATERMELON_CRACKED_WELL_THAT_S_THE_POINT_ISN_T_IT;
 	
 	@ClientString(id = 1804475, message = "Watermelons are green on outside and red inside!")
 	public static NpcStringId WATERMELONS_ARE_GREEN_ON_OUTSIDE_AND_RED_INSIDE;
@@ -34891,8 +34903,8 @@ public class NpcStringId
 	@ClientString(id = 1804484, message = "Wake up! My servants! Show the true power of roaring flame!")
 	public static NpcStringId WAKE_UP_MY_SERVANTS_SHOW_THE_TRUE_POWER_OF_ROARING_FLAME;
 	
-	@ClientString(id = 1804485, message = "Its my order! Let terror be entrenched in you before roaring flame!")
-	public static NpcStringId ITS_MY_ORDER_LET_TERROR_BE_ENTRENCHED_IN_YOU_BEFORE_ROARING_FLAME;
+	@ClientString(id = 1804485, message = "It's my order! Let terror be entrenched in you before roaring flame!")
+	public static NpcStringId IT_S_MY_ORDER_LET_TERROR_BE_ENTRENCHED_IN_YOU_BEFORE_ROARING_FLAME;
 	
 	@ClientString(id = 1804486, message = "Let out enemies to feel incredible depths of pain!")
 	public static NpcStringId LET_OUT_ENEMIES_TO_FEEL_INCREDIBLE_DEPTHS_OF_PAIN;
@@ -34903,11 +34915,11 @@ public class NpcStringId
 	@ClientString(id = 1804488, message = "$s1, you are a real star! Congratulations!")
 	public static NpcStringId S1_YOU_ARE_A_REAL_STAR_CONGRATULATIONS;
 	
-	@ClientString(id = 1804489, message = "$s1 receives Scroll: Enchant Weapon!")
-	public static NpcStringId S1_RECEIVES_SCROLL_ENCHANT_WEAPON;
+	@ClientString(id = 1804489, message = "$s1 has obtained Scroll: Enchant Weapon!")
+	public static NpcStringId S1_HAS_OBTAINED_SCROLL_ENCHANT_WEAPON;
 	
-	@ClientString(id = 1804490, message = "$s1 receives Scroll: Enchant Armor!")
-	public static NpcStringId S1_RECEIVES_SCROLL_ENCHANT_ARMOR;
+	@ClientString(id = 1804490, message = "$s1 has obtained Scroll: Enchant Armor!")
+	public static NpcStringId S1_HAS_OBTAINED_SCROLL_ENCHANT_ARMOR;
 	
 	@ClientString(id = 1804491, message = "Black Box to celebrate Lineage 2 Birthday! Fell like a real star!")
 	public static NpcStringId BLACK_BOX_TO_CELEBRATE_LINEAGE_2_BIRTHDAY_FELL_LIKE_A_REAL_STAR;
@@ -34915,11 +34927,11 @@ public class NpcStringId
 	@ClientString(id = 1804492, message = "The last Black Box! Go get it!")
 	public static NpcStringId THE_LAST_BLACK_BOX_GO_GET_IT;
 	
-	@ClientString(id = 1804493, message = "$s1 receives High-grade Black Box!")
-	public static NpcStringId S1_RECEIVES_HIGH_GRADE_BLACK_BOX;
+	@ClientString(id = 1804493, message = "$s1 has obtained High-grade Black Box!")
+	public static NpcStringId S1_HAS_OBTAINED_HIGH_GRADE_BLACK_BOX;
 	
-	@ClientString(id = 1804494, message = "$s1 receives Top-grade Black Box!")
-	public static NpcStringId S1_RECEIVES_TOP_GRADE_BLACK_BOX;
+	@ClientString(id = 1804494, message = "$s1 has obtained Top-grade Black Box!")
+	public static NpcStringId S1_HAS_OBTAINED_TOP_GRADE_BLACK_BOX;
 	
 	@ClientString(id = 1804495, message = "Hot Springs Searcher")
 	public static NpcStringId HOT_SPRINGS_SEARCHER;
@@ -34987,11 +34999,11 @@ public class NpcStringId
 	@ClientString(id = 1804516, message = "So, am I a good match, huh?")
 	public static NpcStringId SO_AM_I_A_GOOD_MATCH_HUH;
 	
-	@ClientString(id = 1804517, message = "Master! Its time to attack!")
-	public static NpcStringId MASTER_ITS_TIME_TO_ATTACK;
+	@ClientString(id = 1804517, message = "Master! It's time to attack!")
+	public static NpcStringId MASTER_IT_S_TIME_TO_ATTACK;
 	
-	@ClientString(id = 1804518, message = "Hes going to start with a concentrated attack!")
-	public static NpcStringId HES_GOING_TO_START_WITH_A_CONCENTRATED_ATTACK;
+	@ClientString(id = 1804518, message = "He's going to start with a concentrated attack!")
+	public static NpcStringId HE_S_GOING_TO_START_WITH_A_CONCENTRATED_ATTACK;
 	
 	@ClientString(id = 1804519, message = "I will kill each and every one of you!")
 	public static NpcStringId I_WILL_KILL_EACH_AND_EVERY_ONE_OF_YOU;
@@ -35026,8 +35038,8 @@ public class NpcStringId
 	@ClientString(id = 1804529, message = "Lucky Box appears! Round 9")
 	public static NpcStringId LUCKY_BOX_APPEARS_ROUND_9;
 	
-	@ClientString(id = 1804530, message = "You will still get a present, even if it doesnt work out with the box! Lucky Box appears! Round 10")
-	public static NpcStringId YOU_WILL_STILL_GET_A_PRESENT_EVEN_IF_IT_DOESNT_WORK_OUT_WITH_THE_BOX_LUCKY_BOX_APPEARS_ROUND_10;
+	@ClientString(id = 1804530, message = "You will still get a present, even if it doesn't work out with the box! Lucky Box appears! Round 10")
+	public static NpcStringId YOU_WILL_STILL_GET_A_PRESENT_EVEN_IF_IT_DOESN_T_WORK_OUT_WITH_THE_BOX_LUCKY_BOX_APPEARS_ROUND_10;
 	
 	@ClientString(id = 1804531, message = "Lucky Box appears! Round 11")
 	public static NpcStringId LUCKY_BOX_APPEARS_ROUND_11;
@@ -35083,8 +35095,8 @@ public class NpcStringId
 	@ClientString(id = 1804548, message = "$s1 collected 15 stars.")
 	public static NpcStringId S1_COLLECTED_15_STARS;
 	
-	@ClientString(id = 1804549, message = "All Lucky Box appeared. Dont miss your chance!")
-	public static NpcStringId ALL_LUCKY_BOX_APPEARED_DONT_MISS_YOUR_CHANCE;
+	@ClientString(id = 1804549, message = "All Lucky Box appeared. Don't miss your chance!")
+	public static NpcStringId ALL_LUCKY_BOX_APPEARED_DON_T_MISS_YOUR_CHANCE;
 	
 	@ClientString(id = 1804550, message = "$s1")
 	public static NpcStringId S1_4;
@@ -35743,8 +35755,8 @@ public class NpcStringId
 	@ClientString(id = 1804770, message = "Solasol: I'm close to where the river to the west of Cruma Tower meets the Misty Mountains.")
 	public static NpcStringId SOLASOL_I_M_CLOSE_TO_WHERE_THE_RIVER_TO_THE_WEST_OF_CRUMA_TOWER_MEETS_THE_MISTY_MOUNTAINS;
 	
-	@ClientString(id = 1804771, message = "Solasol: I'm on the flats to the north-west of Gludio Castle.")
-	public static NpcStringId SOLASOL_I_M_ON_THE_FLATS_TO_THE_NORTH_WEST_OF_GLUDIO_CASTLE;
+	@ClientString(id = 1804771, message = "Solasol: I'm on the flats to the north-east of Gludio Castle.")
+	public static NpcStringId SOLASOL_I_M_ON_THE_FLATS_TO_THE_NORTH_EAST_OF_GLUDIO_CASTLE;
 	
 	@ClientString(id = 1804772, message = "Solasol: I'm in front of a house with a well at the foot of a hill, close to a road.")
 	public static NpcStringId SOLASOL_I_M_IN_FRONT_OF_A_HOUSE_WITH_A_WELL_AT_THE_FOOT_OF_A_HILL_CLOSE_TO_A_ROAD;
@@ -36097,281 +36109,281 @@ public class NpcStringId
 	@ClientString(id = 1804888, message = "Remember that in the end the truth will always prevail, so don't lose your emotional warmth.")
 	public static NpcStringId REMEMBER_THAT_IN_THE_END_THE_TRUTH_WILL_ALWAYS_PREVAIL_SO_DON_T_LOSE_YOUR_EMOTIONAL_WARMTH;
 	
-	@ClientString(id = 1804889, message = "$s1 gets Queen Ant Doll Lv. 1! Congratulations!")
-	public static NpcStringId S1_GETS_QUEEN_ANT_DOLL_LV_1_CONGRATULATIONS;
+	@ClientString(id = 1804889, message = "$s1 has obtained Queen Ant Doll Lv. 1! Congratulations!")
+	public static NpcStringId S1_HAS_OBTAINED_QUEEN_ANT_DOLL_LV_1_CONGRATULATIONS;
 	
-	@ClientString(id = 1804890, message = "$s1 gets Orfen Doll Lv. 1! Congratulations!")
-	public static NpcStringId S1_GETS_ORFEN_DOLL_LV_1_CONGRATULATIONS;
+	@ClientString(id = 1804890, message = "$s1 has obtained Orfen Doll Lv. 1! Congratulations!")
+	public static NpcStringId S1_HAS_OBTAINED_ORFEN_DOLL_LV_1_CONGRATULATIONS;
 	
-	@ClientString(id = 1804891, message = "$s1 gets Baium Doll Lv. 1! Congratulations!")
-	public static NpcStringId S1_GETS_BAIUM_DOLL_LV_1_CONGRATULATIONS;
+	@ClientString(id = 1804891, message = "$s1 has obtained Baium Doll Lv. 1! Congratulations!")
+	public static NpcStringId S1_HAS_OBTAINED_BAIUM_DOLL_LV_1_CONGRATULATIONS;
 	
-	@ClientString(id = 1804892, message = "$s1 gets Frintezza Doll Lv. 1! Congratulations!")
-	public static NpcStringId S1_GETS_FRINTEZZA_DOLL_LV_1_CONGRATULATIONS;
+	@ClientString(id = 1804892, message = "$s1 has obtained Frintezza Doll Lv. 1! Congratulations!")
+	public static NpcStringId S1_HAS_OBTAINED_FRINTEZZA_DOLL_LV_1_CONGRATULATIONS;
 	
-	@ClientString(id = 1804893, message = "$s1 gets Zaken Doll Lv. 1! Congratulations!")
-	public static NpcStringId S1_GETS_ZAKEN_DOLL_LV_1_CONGRATULATIONS;
+	@ClientString(id = 1804893, message = "$s1 has obtained Zaken Doll Lv. 1! Congratulations!")
+	public static NpcStringId S1_HAS_OBTAINED_ZAKEN_DOLL_LV_1_CONGRATULATIONS;
 	
-	@ClientString(id = 1804894, message = "$s1 gets Core Doll Lv. 1! Congratulations!")
-	public static NpcStringId S1_GETS_CORE_DOLL_LV_1_CONGRATULATIONS;
+	@ClientString(id = 1804894, message = "$s1 has obtained Core Doll Lv. 1! Congratulations!")
+	public static NpcStringId S1_HAS_OBTAINED_CORE_DOLL_LV_1_CONGRATULATIONS;
 	
-	@ClientString(id = 1804895, message = "$s1 gets Queen Ant Doll Lv. 2! Congratulations!")
-	public static NpcStringId S1_GETS_QUEEN_ANT_DOLL_LV_2_CONGRATULATIONS;
+	@ClientString(id = 1804895, message = "$s1 has obtained Queen Ant Doll Lv. 2! Congratulations!")
+	public static NpcStringId S1_HAS_OBTAINED_QUEEN_ANT_DOLL_LV_2_CONGRATULATIONS;
 	
-	@ClientString(id = 1804896, message = "$s1 gets Baium Doll Lv. 2! Congratulations!")
-	public static NpcStringId S1_GETS_BAIUM_DOLL_LV_2_CONGRATULATIONS;
+	@ClientString(id = 1804896, message = "$s1 has obtained Baium Doll Lv. 2! Congratulations!")
+	public static NpcStringId S1_HAS_OBTAINED_BAIUM_DOLL_LV_2_CONGRATULATIONS;
 	
-	@ClientString(id = 1804897, message = "$s1 gets Orfen Doll Lv. 2! Congratulations!")
-	public static NpcStringId S1_GETS_ORFEN_DOLL_LV_2_CONGRATULATIONS;
+	@ClientString(id = 1804897, message = "$s1 has obtained Orfen Doll Lv. 2! Congratulations!")
+	public static NpcStringId S1_HAS_OBTAINED_ORFEN_DOLL_LV_2_CONGRATULATIONS;
 	
-	@ClientString(id = 1804898, message = "$s1 gets Frintezza Doll Lv. 2! Congratulations!")
-	public static NpcStringId S1_GETS_FRINTEZZA_DOLL_LV_2_CONGRATULATIONS;
+	@ClientString(id = 1804898, message = "$s1 has obtained Frintezza Doll Lv. 2! Congratulations!")
+	public static NpcStringId S1_HAS_OBTAINED_FRINTEZZA_DOLL_LV_2_CONGRATULATIONS;
 	
-	@ClientString(id = 1804899, message = "$s1 gets Zaken Doll Lv. 2! Congratulations!")
-	public static NpcStringId S1_GETS_ZAKEN_DOLL_LV_2_CONGRATULATIONS;
+	@ClientString(id = 1804899, message = "$s1 has obtained Zaken Doll Lv. 2! Congratulations!")
+	public static NpcStringId S1_HAS_OBTAINED_ZAKEN_DOLL_LV_2_CONGRATULATIONS;
 	
-	@ClientString(id = 1804900, message = "$s1 gets Core Doll Lv. 2! Congratulations!")
-	public static NpcStringId S1_GETS_CORE_DOLL_LV_2_CONGRATULATIONS;
+	@ClientString(id = 1804900, message = "$s1 has obtained Core Doll Lv. 2! Congratulations!")
+	public static NpcStringId S1_HAS_OBTAINED_CORE_DOLL_LV_2_CONGRATULATIONS;
 	
-	@ClientString(id = 1804901, message = "$s1 gets Improved Scroll: Enchant A-grade Weapon! Congratulations!")
-	public static NpcStringId S1_GETS_IMPROVED_SCROLL_ENCHANT_A_GRADE_WEAPON_CONGRATULATIONS;
+	@ClientString(id = 1804901, message = "$s1 has obtained Improved Scroll: Enchant A-grade Weapon! Congratulations!")
+	public static NpcStringId S1_HAS_OBTAINED_IMPROVED_SCROLL_ENCHANT_A_GRADE_WEAPON_CONGRATULATIONS;
 	
-	@ClientString(id = 1804902, message = "$s1 gets Improved Scroll: Enchant A-grade Armor! Congratulations!")
-	public static NpcStringId S1_GETS_IMPROVED_SCROLL_ENCHANT_A_GRADE_ARMOR_CONGRATULATIONS;
+	@ClientString(id = 1804902, message = "$s1 has obtained Improved Scroll: Enchant A-grade Armor! Congratulations!")
+	public static NpcStringId S1_HAS_OBTAINED_IMPROVED_SCROLL_ENCHANT_A_GRADE_ARMOR_CONGRATULATIONS;
 	
-	@ClientString(id = 1804903, message = "$s1 gets Cursed Scroll: Enchant A-grade Weapon! Congratulations!")
-	public static NpcStringId S1_GETS_CURSED_SCROLL_ENCHANT_A_GRADE_WEAPON_CONGRATULATIONS;
+	@ClientString(id = 1804903, message = "$s1 has obtained Cursed Scroll: Enchant A-grade Weapon! Congratulations!")
+	public static NpcStringId S1_HAS_OBTAINED_CURSED_SCROLL_ENCHANT_A_GRADE_WEAPON_CONGRATULATIONS;
 	
-	@ClientString(id = 1804904, message = "$s1 gets Cursed Scroll: Enchant A-grade Armor! Congratulations!")
-	public static NpcStringId S1_GETS_CURSED_SCROLL_ENCHANT_A_GRADE_ARMOR_CONGRATULATIONS;
+	@ClientString(id = 1804904, message = "$s1 has obtained Cursed Scroll: Enchant A-grade Armor! Congratulations!")
+	public static NpcStringId S1_HAS_OBTAINED_CURSED_SCROLL_ENCHANT_A_GRADE_ARMOR_CONGRATULATIONS;
 	
-	@ClientString(id = 1804905, message = "$s1 gets Spellbook: Burning Field! Congratulations!")
-	public static NpcStringId S1_GETS_SPELLBOOK_BURNING_FIELD_CONGRATULATIONS;
+	@ClientString(id = 1804905, message = "$s1 has obtained Spellbook: Burning Field! Congratulations!")
+	public static NpcStringId S1_HAS_OBTAINED_SPELLBOOK_BURNING_FIELD_CONGRATULATIONS;
 	
-	@ClientString(id = 1804906, message = "$s1 gets Spellbook: Frozen Field! Congratulations!")
-	public static NpcStringId S1_GETS_SPELLBOOK_FROZEN_FIELD_CONGRATULATIONS;
+	@ClientString(id = 1804906, message = "$s1 has obtained Spellbook: Frozen Field! Congratulations!")
+	public static NpcStringId S1_HAS_OBTAINED_SPELLBOOK_FROZEN_FIELD_CONGRATULATIONS;
 	
-	@ClientString(id = 1804907, message = "$s1 gets Spellbook: Lightning Storm! Congratulations!")
-	public static NpcStringId S1_GETS_SPELLBOOK_LIGHTNING_STORM_CONGRATULATIONS;
+	@ClientString(id = 1804907, message = "$s1 has obtained Spellbook: Lightning Storm! Congratulations!")
+	public static NpcStringId S1_HAS_OBTAINED_SPELLBOOK_LIGHTNING_STORM_CONGRATULATIONS;
 	
-	@ClientString(id = 1804908, message = "$s1 gets Spellbook: Hellfire! Congratulations!")
-	public static NpcStringId S1_GETS_SPELLBOOK_HELLFIRE_CONGRATULATIONS;
+	@ClientString(id = 1804908, message = "$s1 has obtained Spellbook: Hellfire! Congratulations!")
+	public static NpcStringId S1_HAS_OBTAINED_SPELLBOOK_HELLFIRE_CONGRATULATIONS;
 	
-	@ClientString(id = 1804909, message = "$s1 gets Spellbook: Elemental Burst! Congratulations!")
-	public static NpcStringId S1_GETS_SPELLBOOK_ELEMENTAL_BURST_CONGRATULATIONS;
+	@ClientString(id = 1804909, message = "$s1 has obtained Spellbook: Elemental Burst! Congratulations!")
+	public static NpcStringId S1_HAS_OBTAINED_SPELLBOOK_ELEMENTAL_BURST_CONGRATULATIONS;
 	
-	@ClientString(id = 1804910, message = "$s1 gets Spellbook: Ethereal Strike! Congratulations!")
-	public static NpcStringId S1_GETS_SPELLBOOK_ETHEREAL_STRIKE_CONGRATULATIONS;
+	@ClientString(id = 1804910, message = "$s1 has obtained Spellbook: Ethereal Strike! Congratulations!")
+	public static NpcStringId S1_HAS_OBTAINED_SPELLBOOK_ETHEREAL_STRIKE_CONGRATULATIONS;
 	
-	@ClientString(id = 1804911, message = "$s1 gets Spellbook: Devour! Congratulations!")
-	public static NpcStringId S1_GETS_SPELLBOOK_DEVOUR_CONGRATULATIONS;
+	@ClientString(id = 1804911, message = "$s1 has obtained Spellbook: Devour! Congratulations!")
+	public static NpcStringId S1_HAS_OBTAINED_SPELLBOOK_DEVOUR_CONGRATULATIONS;
 	
-	@ClientString(id = 1804912, message = "$s1 gets Spellbook: Life Force Harmony! Congratulations!")
-	public static NpcStringId S1_GETS_SPELLBOOK_LIFE_FORCE_HARMONY_CONGRATULATIONS;
+	@ClientString(id = 1804912, message = "$s1 has obtained Spellbook: Life Force Harmony! Congratulations!")
+	public static NpcStringId S1_HAS_OBTAINED_SPELLBOOK_LIFE_FORCE_HARMONY_CONGRATULATIONS;
 	
-	@ClientString(id = 1804913, message = "$s1 gets Spellbook: Titanic Sweep! Congratulations!")
-	public static NpcStringId S1_GETS_SPELLBOOK_TITANIC_SWEEP_CONGRATULATIONS;
+	@ClientString(id = 1804913, message = "$s1 has obtained Spellbook: Titanic Sweep! Congratulations!")
+	public static NpcStringId S1_HAS_OBTAINED_SPELLBOOK_TITANIC_SWEEP_CONGRATULATIONS;
 	
-	@ClientString(id = 1804914, message = "$s1 gets Spellbook: Titanic Break! Congratulations!")
-	public static NpcStringId S1_GETS_SPELLBOOK_TITANIC_BREAK_CONGRATULATIONS;
+	@ClientString(id = 1804914, message = "$s1 has obtained Spellbook: Titanic Break! Congratulations!")
+	public static NpcStringId S1_HAS_OBTAINED_SPELLBOOK_TITANIC_BREAK_CONGRATULATIONS;
 	
-	@ClientString(id = 1804915, message = "$s1 gets Spellbook: Ogre Spirit Totem! Congratulations!")
-	public static NpcStringId S1_GETS_SPELLBOOK_OGRE_SPIRIT_TOTEM_CONGRATULATIONS;
+	@ClientString(id = 1804915, message = "$s1 has obtained Spellbook: Ogre Spirit Totem! Congratulations!")
+	public static NpcStringId S1_HAS_OBTAINED_SPELLBOOK_OGRE_SPIRIT_TOTEM_CONGRATULATIONS;
 	
-	@ClientString(id = 1804916, message = "$s1 gets Spellbook: Rabbit Spirit Totem! Congratulations!")
-	public static NpcStringId S1_GETS_SPELLBOOK_RABBIT_SPIRIT_TOTEM_CONGRATULATIONS;
+	@ClientString(id = 1804916, message = "$s1 has obtained Spellbook: Rabbit Spirit Totem! Congratulations!")
+	public static NpcStringId S1_HAS_OBTAINED_SPELLBOOK_RABBIT_SPIRIT_TOTEM_CONGRATULATIONS;
 	
-	@ClientString(id = 1804917, message = "$s1 gets Spellbook: Puma Spirit Totem! Congratulations!")
-	public static NpcStringId S1_GETS_SPELLBOOK_PUMA_SPIRIT_TOTEM_CONGRATULATIONS;
+	@ClientString(id = 1804917, message = "$s1 has obtained Spellbook: Puma Spirit Totem! Congratulations!")
+	public static NpcStringId S1_HAS_OBTAINED_SPELLBOOK_PUMA_SPIRIT_TOTEM_CONGRATULATIONS;
 	
-	@ClientString(id = 1804918, message = "$s1 gets Spellbook: Burning Strike! Congratulations!")
-	public static NpcStringId S1_GETS_SPELLBOOK_BURNING_STRIKE_CONGRATULATIONS;
+	@ClientString(id = 1804918, message = "$s1 has obtained Spellbook: Burning Strike! Congratulations!")
+	public static NpcStringId S1_HAS_OBTAINED_SPELLBOOK_BURNING_STRIKE_CONGRATULATIONS;
 	
-	@ClientString(id = 1804919, message = "$s1 gets Spellbook: Armor Break! Congratulations!")
-	public static NpcStringId S1_GETS_SPELLBOOK_ARMOR_BREAK_CONGRATULATIONS;
+	@ClientString(id = 1804919, message = "$s1 has obtained Spellbook: Armor Break! Congratulations!")
+	public static NpcStringId S1_HAS_OBTAINED_SPELLBOOK_ARMOR_BREAK_CONGRATULATIONS;
 	
-	@ClientString(id = 1804920, message = "$s1 gets Spellbook: Debuff Master! Congratulations!")
-	public static NpcStringId S1_GETS_SPELLBOOK_DEBUFF_MASTER_CONGRATULATIONS;
+	@ClientString(id = 1804920, message = "$s1 has obtained Spellbook: Debuff Master! Congratulations!")
+	public static NpcStringId S1_HAS_OBTAINED_SPELLBOOK_DEBUFF_MASTER_CONGRATULATIONS;
 	
-	@ClientString(id = 1804921, message = "$s1 gets Spellbook: Flame Burst! Congratulations!")
-	public static NpcStringId S1_GETS_SPELLBOOK_FLAME_BURST_CONGRATULATIONS;
+	@ClientString(id = 1804921, message = "$s1 has obtained Spellbook: Flame Burst! Congratulations!")
+	public static NpcStringId S1_HAS_OBTAINED_SPELLBOOK_FLAME_BURST_CONGRATULATIONS;
 	
-	@ClientString(id = 1804922, message = "$s1 gets Spellbook: Blood Bond! Congratulations!")
-	public static NpcStringId S1_GETS_SPELLBOOK_BLOOD_BOND_CONGRATULATIONS;
+	@ClientString(id = 1804922, message = "$s1 has obtained Spellbook: Blood Bond! Congratulations!")
+	public static NpcStringId S1_HAS_OBTAINED_SPELLBOOK_BLOOD_BOND_CONGRATULATIONS;
 	
-	@ClientString(id = 1804923, message = "$s1 gets Spellbook: Elemental Change! Congratulations!")
-	public static NpcStringId S1_GETS_SPELLBOOK_ELEMENTAL_CHANGE_CONGRATULATIONS;
+	@ClientString(id = 1804923, message = "$s1 has obtained Spellbook: Elemental Change! Congratulations!")
+	public static NpcStringId S1_HAS_OBTAINED_SPELLBOOK_ELEMENTAL_CHANGE_CONGRATULATIONS;
 	
-	@ClientString(id = 1804924, message = "$s1 gets Spellbook: Extra Hit! Congratulations!")
-	public static NpcStringId S1_GETS_SPELLBOOK_EXTRA_HIT_CONGRATULATIONS;
+	@ClientString(id = 1804924, message = "$s1 has obtained Spellbook: Extra Hit! Congratulations!")
+	public static NpcStringId S1_HAS_OBTAINED_SPELLBOOK_EXTRA_HIT_CONGRATULATIONS;
 	
-	@ClientString(id = 1804925, message = "$s1 gets Spellbook: Elemental Spirit Lv. 4! Congratulations!")
-	public static NpcStringId S1_GETS_SPELLBOOK_ELEMENTAL_SPIRIT_LV_4_CONGRATULATIONS;
+	@ClientString(id = 1804925, message = "$s1 has obtained Spellbook: Elemental Spirit Lv. 4! Congratulations!")
+	public static NpcStringId S1_HAS_OBTAINED_SPELLBOOK_ELEMENTAL_SPIRIT_LV_4_CONGRATULATIONS;
 	
-	@ClientString(id = 1804926, message = "$s1 gets Spellbook: Fortune Time! Congratulations!")
-	public static NpcStringId S1_GETS_SPELLBOOK_FORTUNE_TIME_CONGRATULATIONS;
+	@ClientString(id = 1804926, message = "$s1 has obtained Spellbook: Fortune Time! Congratulations!")
+	public static NpcStringId S1_HAS_OBTAINED_SPELLBOOK_FORTUNE_TIME_CONGRATULATIONS;
 	
-	@ClientString(id = 1804927, message = "$s1 gets Spellbook: Mechanical Masterpiece! Congratulations!")
-	public static NpcStringId S1_GETS_SPELLBOOK_MECHANICAL_MASTERPIECE_CONGRATULATIONS;
+	@ClientString(id = 1804927, message = "$s1 has obtained Spellbook: Mechanical Masterpiece! Congratulations!")
+	public static NpcStringId S1_HAS_OBTAINED_SPELLBOOK_MECHANICAL_MASTERPIECE_CONGRATULATIONS;
 	
-	@ClientString(id = 1804928, message = "$s1 gets Spellbook: Blacksmith' Attack! Congratulations!")
-	public static NpcStringId S1_GETS_SPELLBOOK_BLACKSMITH_ATTACK_CONGRATULATIONS;
+	@ClientString(id = 1804928, message = "$s1 has obtained Spellbook: Blacksmith' Attack! Congratulations!")
+	public static NpcStringId S1_HAS_OBTAINED_SPELLBOOK_BLACKSMITH_ATTACK_CONGRATULATIONS;
 	
-	@ClientString(id = 1804929, message = "$s1 gets Spellbook: Balanced Body! Congratulations!")
-	public static NpcStringId S1_GETS_SPELLBOOK_BALANCED_BODY_CONGRATULATIONS;
+	@ClientString(id = 1804929, message = "$s1 has obtained Spellbook: Balanced Body! Congratulations!")
+	public static NpcStringId S1_HAS_OBTAINED_SPELLBOOK_BALANCED_BODY_CONGRATULATIONS;
 	
-	@ClientString(id = 1804930, message = "$s1 gets Spellbook: Eva's Nocturne! Congratulations!")
-	public static NpcStringId S1_GETS_SPELLBOOK_EVA_S_NOCTURNE_CONGRATULATIONS;
+	@ClientString(id = 1804930, message = "$s1 has obtained Spellbook: Eva's Nocturne! Congratulations!")
+	public static NpcStringId S1_HAS_OBTAINED_SPELLBOOK_EVA_S_NOCTURNE_CONGRATULATIONS;
 	
-	@ClientString(id = 1804931, message = "$s1 gets Spellbook: Nemesis! Congratulations!")
-	public static NpcStringId S1_GETS_SPELLBOOK_NEMESIS_CONGRATULATIONS;
+	@ClientString(id = 1804931, message = "$s1 has obtained Spellbook: Nemesis! Congratulations!")
+	public static NpcStringId S1_HAS_OBTAINED_SPELLBOOK_NEMESIS_CONGRATULATIONS;
 	
-	@ClientString(id = 1804932, message = "$s1 gets Spellbook: Ultimate Defense Lv. 3! Congratulations!")
-	public static NpcStringId S1_GETS_SPELLBOOK_ULTIMATE_DEFENSE_LV_3_CONGRATULATIONS;
+	@ClientString(id = 1804932, message = "$s1 has obtained Spellbook: Ultimate Defense Lv. 3! Congratulations!")
+	public static NpcStringId S1_HAS_OBTAINED_SPELLBOOK_ULTIMATE_DEFENSE_LV_3_CONGRATULATIONS;
 	
-	@ClientString(id = 1804933, message = "$s1 gets Spellbook: Dragon Slayer! Congratulations!")
-	public static NpcStringId S1_GETS_SPELLBOOK_DRAGON_SLAYER_CONGRATULATIONS;
+	@ClientString(id = 1804933, message = "$s1 has obtained Spellbook: Dragon Slayer! Congratulations!")
+	public static NpcStringId S1_HAS_OBTAINED_SPELLBOOK_DRAGON_SLAYER_CONGRATULATIONS;
 	
-	@ClientString(id = 1804934, message = "$s1 gets Spellbook: Shield of Security! Congratulations!")
-	public static NpcStringId S1_GETS_SPELLBOOK_SHIELD_OF_SECURITY_CONGRATULATIONS;
+	@ClientString(id = 1804934, message = "$s1 has obtained Spellbook: Shield of Security! Congratulations!")
+	public static NpcStringId S1_HAS_OBTAINED_SPELLBOOK_SHIELD_OF_SECURITY_CONGRATULATIONS;
 	
-	@ClientString(id = 1804935, message = "$s1 gets Spellbook: Lunatic Crusher! Congratulations!")
-	public static NpcStringId S1_GETS_SPELLBOOK_LUNATIC_CRUSHER_CONGRATULATIONS;
+	@ClientString(id = 1804935, message = "$s1 has obtained Spellbook: Lunatic Crusher! Congratulations!")
+	public static NpcStringId S1_HAS_OBTAINED_SPELLBOOK_LUNATIC_CRUSHER_CONGRATULATIONS;
 	
-	@ClientString(id = 1804936, message = "$s1 gets Spellbook: Eva's Care! Congratulations!")
-	public static NpcStringId S1_GETS_SPELLBOOK_EVA_S_CARE_CONGRATULATIONS;
+	@ClientString(id = 1804936, message = "$s1 has obtained Spellbook: Eva's Care! Congratulations!")
+	public static NpcStringId S1_HAS_OBTAINED_SPELLBOOK_EVA_S_CARE_CONGRATULATIONS;
 	
-	@ClientString(id = 1804937, message = "$s1 gets Spellbook: Shillien's Curse! Congratulations!")
-	public static NpcStringId S1_GETS_SPELLBOOK_SHILLIEN_S_CURSE_CONGRATULATIONS;
+	@ClientString(id = 1804937, message = "$s1 has obtained Spellbook: Shillien's Curse! Congratulations!")
+	public static NpcStringId S1_HAS_OBTAINED_SPELLBOOK_SHILLIEN_S_CURSE_CONGRATULATIONS;
 	
-	@ClientString(id = 1804938, message = "$s1 gets Spellbook: Dark Blow! Congratulations!")
-	public static NpcStringId S1_GETS_SPELLBOOK_DARK_BLOW_CONGRATULATIONS;
+	@ClientString(id = 1804938, message = "$s1 has obtained Spellbook: Dark Blow! Congratulations!")
+	public static NpcStringId S1_HAS_OBTAINED_SPELLBOOK_DARK_BLOW_CONGRATULATIONS;
 	
-	@ClientString(id = 1804939, message = "$s1 gets Spellbook: Reversed Pull! Congratulations!")
-	public static NpcStringId S1_GETS_SPELLBOOK_REVERSED_PULL_CONGRATULATIONS;
+	@ClientString(id = 1804939, message = "$s1 has obtained Spellbook: Reversed Pull! Congratulations!")
+	public static NpcStringId S1_HAS_OBTAINED_SPELLBOOK_REVERSED_PULL_CONGRATULATIONS;
 	
-	@ClientString(id = 1804940, message = "$s1 gets Spellbook: Synchro Freedom! Congratulations!")
-	public static NpcStringId S1_GETS_SPELLBOOK_SYNCHRO_FREEDOM_CONGRATULATIONS;
+	@ClientString(id = 1804940, message = "$s1 has obtained Spellbook: Synchro Freedom! Congratulations!")
+	public static NpcStringId S1_HAS_OBTAINED_SPELLBOOK_SYNCHRO_FREEDOM_CONGRATULATIONS;
 	
-	@ClientString(id = 1804941, message = "$s1 gets Spellbook: Ethereal Blood! Congratulations!")
-	public static NpcStringId S1_GETS_SPELLBOOK_ETHEREAL_BLOOD_CONGRATULATIONS;
+	@ClientString(id = 1804941, message = "$s1 has obtained Spellbook: Ethereal Blood! Congratulations!")
+	public static NpcStringId S1_HAS_OBTAINED_SPELLBOOK_ETHEREAL_BLOOD_CONGRATULATIONS;
 	
-	@ClientString(id = 1804942, message = "$s1 gets Spellbook: Chain Arrest! Congratulations!")
-	public static NpcStringId S1_GETS_SPELLBOOK_CHAIN_ARREST_CONGRATULATIONS;
+	@ClientString(id = 1804942, message = "$s1 has obtained Spellbook: Chain Arrest! Congratulations!")
+	public static NpcStringId S1_HAS_OBTAINED_SPELLBOOK_CHAIN_ARREST_CONGRATULATIONS;
 	
-	@ClientString(id = 1804943, message = "$s1 gets Spellbook: Flame Arrow! Congratulations!")
-	public static NpcStringId S1_GETS_SPELLBOOK_FLAME_ARROW_CONGRATULATIONS;
+	@ClientString(id = 1804943, message = "$s1 has obtained Spellbook: Flame Arrow! Congratulations!")
+	public static NpcStringId S1_HAS_OBTAINED_SPELLBOOK_FLAME_ARROW_CONGRATULATIONS;
 	
-	@ClientString(id = 1804944, message = "$s1 gets Spellbook: Arrow Shower! Congratulations!")
-	public static NpcStringId S1_GETS_SPELLBOOK_ARROW_SHOWER_CONGRATULATIONS;
+	@ClientString(id = 1804944, message = "$s1 has obtained Spellbook: Arrow Shower! Congratulations!")
+	public static NpcStringId S1_HAS_OBTAINED_SPELLBOOK_ARROW_SHOWER_CONGRATULATIONS;
 	
-	@ClientString(id = 1804945, message = "$s1 gets Spellbook: Piercing Arrow! Congratulations!")
-	public static NpcStringId S1_GETS_SPELLBOOK_PIERCING_ARROW_CONGRATULATIONS;
+	@ClientString(id = 1804945, message = "$s1 has obtained Spellbook: Piercing Arrow! Congratulations!")
+	public static NpcStringId S1_HAS_OBTAINED_SPELLBOOK_PIERCING_ARROW_CONGRATULATIONS;
 	
-	@ClientString(id = 1804946, message = "$s1 gets Spellbook: Divine Beam! Congratulations!")
-	public static NpcStringId S1_GETS_SPELLBOOK_DIVINE_BEAM_CONGRATULATIONS;
+	@ClientString(id = 1804946, message = "$s1 has obtained Spellbook: Divine Beam! Congratulations!")
+	public static NpcStringId S1_HAS_OBTAINED_SPELLBOOK_DIVINE_BEAM_CONGRATULATIONS;
 	
-	@ClientString(id = 1804947, message = "$s1 gets Spellbook: Song of Earth! Congratulations!")
-	public static NpcStringId S1_GETS_SPELLBOOK_SONG_OF_EARTH_CONGRATULATIONS;
+	@ClientString(id = 1804947, message = "$s1 has obtained Spellbook: Song of Earth! Congratulations!")
+	public static NpcStringId S1_HAS_OBTAINED_SPELLBOOK_SONG_OF_EARTH_CONGRATULATIONS;
 	
-	@ClientString(id = 1804948, message = "$s1 gets Spellbook: Song of Hunter! Congratulations!")
-	public static NpcStringId S1_GETS_SPELLBOOK_SONG_OF_HUNTER_CONGRATULATIONS;
+	@ClientString(id = 1804948, message = "$s1 has obtained Spellbook: Song of Hunter! Congratulations!")
+	public static NpcStringId S1_HAS_OBTAINED_SPELLBOOK_SONG_OF_HUNTER_CONGRATULATIONS;
 	
-	@ClientString(id = 1804949, message = "$s1 gets Spellbook: Dance of Warrior! Congratulations!")
-	public static NpcStringId S1_GETS_SPELLBOOK_DANCE_OF_WARRIOR_CONGRATULATIONS;
+	@ClientString(id = 1804949, message = "$s1 has obtained Spellbook: Dance of Warrior! Congratulations!")
+	public static NpcStringId S1_HAS_OBTAINED_SPELLBOOK_DANCE_OF_WARRIOR_CONGRATULATIONS;
 	
-	@ClientString(id = 1804950, message = "$s1 gets Spellbook: Dance of Fire! Congratulations!")
-	public static NpcStringId S1_GETS_SPELLBOOK_DANCE_OF_FIRE_CONGRATULATIONS;
+	@ClientString(id = 1804950, message = "$s1 has obtained Spellbook: Dance of Fire! Congratulations!")
+	public static NpcStringId S1_HAS_OBTAINED_SPELLBOOK_DANCE_OF_FIRE_CONGRATULATIONS;
 	
-	@ClientString(id = 1804951, message = "$s1 gets Spellbook: Titanic Weapon! Congratulations!")
-	public static NpcStringId S1_GETS_SPELLBOOK_TITANIC_WEAPON_CONGRATULATIONS;
+	@ClientString(id = 1804951, message = "$s1 has obtained Spellbook: Titanic Weapon! Congratulations!")
+	public static NpcStringId S1_HAS_OBTAINED_SPELLBOOK_TITANIC_WEAPON_CONGRATULATIONS;
 	
-	@ClientString(id = 1804952, message = "$s1 gets Spellbook: Song of Wind! Congratulations!")
-	public static NpcStringId S1_GETS_SPELLBOOK_SONG_OF_WIND_CONGRATULATIONS;
+	@ClientString(id = 1804952, message = "$s1 has obtained Spellbook: Song of Wind! Congratulations!")
+	public static NpcStringId S1_HAS_OBTAINED_SPELLBOOK_SONG_OF_WIND_CONGRATULATIONS;
 	
-	@ClientString(id = 1804953, message = "$s1 gets Spellbook: Dance of Fury! Congratulations!")
-	public static NpcStringId S1_GETS_SPELLBOOK_DANCE_OF_FURY_CONGRATULATIONS;
+	@ClientString(id = 1804953, message = "$s1 has obtained Spellbook: Dance of Fury! Congratulations!")
+	public static NpcStringId S1_HAS_OBTAINED_SPELLBOOK_DANCE_OF_FURY_CONGRATULATIONS;
 	
-	@ClientString(id = 1804954, message = "$s1 gets Spellbook: Goring Charge! Congratulations!")
-	public static NpcStringId S1_GETS_SPELLBOOK_GORING_CHARGE_CONGRATULATIONS;
+	@ClientString(id = 1804954, message = "$s1 has obtained Spellbook: Goring Charge! Congratulations!")
+	public static NpcStringId S1_HAS_OBTAINED_SPELLBOOK_GORING_CHARGE_CONGRATULATIONS;
 	
-	@ClientString(id = 1804955, message = "$s1 gets Spellbook: Sensation! Congratulations!")
-	public static NpcStringId S1_GETS_SPELLBOOK_SENSATION_CONGRATULATIONS;
+	@ClientString(id = 1804955, message = "$s1 has obtained Spellbook: Sensation! Congratulations!")
+	public static NpcStringId S1_HAS_OBTAINED_SPELLBOOK_SENSATION_CONGRATULATIONS;
 	
-	@ClientString(id = 1804956, message = "$s1 gets Spellbook: Treatment! Congratulations!")
-	public static NpcStringId S1_GETS_SPELLBOOK_TREATMENT_CONGRATULATIONS;
+	@ClientString(id = 1804956, message = "$s1 has obtained Spellbook: Treatment! Congratulations!")
+	public static NpcStringId S1_HAS_OBTAINED_SPELLBOOK_TREATMENT_CONGRATULATIONS;
 	
-	@ClientString(id = 1804957, message = "$s1 gets Spellbook: Duress! Congratulations!")
-	public static NpcStringId S1_GETS_SPELLBOOK_DURESS_CONGRATULATIONS;
+	@ClientString(id = 1804957, message = "$s1 has obtained Spellbook: Duress! Congratulations!")
+	public static NpcStringId S1_HAS_OBTAINED_SPELLBOOK_DURESS_CONGRATULATIONS;
 	
-	@ClientString(id = 1804958, message = "$s1 gets Spellbook: Power of Life! Congratulations!")
-	public static NpcStringId S1_GETS_SPELLBOOK_POWER_OF_LIFE_CONGRATULATIONS;
+	@ClientString(id = 1804958, message = "$s1 has obtained Spellbook: Power of Life! Congratulations!")
+	public static NpcStringId S1_HAS_OBTAINED_SPELLBOOK_POWER_OF_LIFE_CONGRATULATIONS;
 	
-	@ClientString(id = 1804959, message = "$s1 gets Spellbook: Toughness! Congratulations!")
-	public static NpcStringId S1_GETS_SPELLBOOK_TOUGHNESS_CONGRATULATIONS;
+	@ClientString(id = 1804959, message = "$s1 has obtained Spellbook: Toughness! Congratulations!")
+	public static NpcStringId S1_HAS_OBTAINED_SPELLBOOK_TOUGHNESS_CONGRATULATIONS;
 	
-	@ClientString(id = 1804960, message = "$s1 gets Spellbook: Seclusion! Congratulations!")
-	public static NpcStringId S1_GETS_SPELLBOOK_SECLUSION_CONGRATULATIONS;
+	@ClientString(id = 1804960, message = "$s1 has obtained Spellbook: Seclusion! Congratulations!")
+	public static NpcStringId S1_HAS_OBTAINED_SPELLBOOK_SECLUSION_CONGRATULATIONS;
 	
-	@ClientString(id = 1804961, message = "$s1 gets Spellbook: True Aim! Congratulations!")
-	public static NpcStringId S1_GETS_SPELLBOOK_TRUE_AIM_CONGRATULATIONS;
+	@ClientString(id = 1804961, message = "$s1 has obtained Spellbook: True Aim! Congratulations!")
+	public static NpcStringId S1_HAS_OBTAINED_SPELLBOOK_TRUE_AIM_CONGRATULATIONS;
 	
-	@ClientString(id = 1804962, message = "$s1 gets Spellbook: Deadly Shooter! Congratulations!")
-	public static NpcStringId S1_GETS_SPELLBOOK_DEADLY_SHOOTER_CONGRATULATIONS;
+	@ClientString(id = 1804962, message = "$s1 has obtained Spellbook: Deadly Shooter! Congratulations!")
+	public static NpcStringId S1_HAS_OBTAINED_SPELLBOOK_DEADLY_SHOOTER_CONGRATULATIONS;
 	
-	@ClientString(id = 1804963, message = "$s1 gets +6 S-grade Armor Pack! Congratulations!")
-	public static NpcStringId S1_GETS_6_S_GRADE_ARMOR_PACK_CONGRATULATIONS;
+	@ClientString(id = 1804963, message = "$s1 has obtained +6 S-grade Armor Pack! Congratulations!")
+	public static NpcStringId S1_HAS_OBTAINED_6_S_GRADE_ARMOR_PACK_CONGRATULATIONS;
 	
-	@ClientString(id = 1804964, message = "$s1 gets Aden's Soul Crystal Lv. 18 - Weapon! Congratulations!")
-	public static NpcStringId S1_GETS_ADEN_S_SOUL_CRYSTAL_LV_18_WEAPON_CONGRATULATIONS;
+	@ClientString(id = 1804964, message = "$s1 has obtained Aden's Soul Crystal Lv. 18 - Weapon! Congratulations!")
+	public static NpcStringId S1_HAS_OBTAINED_ADEN_S_SOUL_CRYSTAL_LV_18_WEAPON_CONGRATULATIONS;
 	
-	@ClientString(id = 1804965, message = "$s1 gets Hardin's Soul Crystal Lv. 8! Congratulations!")
-	public static NpcStringId S1_GETS_HARDIN_S_SOUL_CRYSTAL_LV_8_CONGRATULATIONS;
+	@ClientString(id = 1804965, message = "$s1 has obtained Hardin's Soul Crystal Lv. 8! Congratulations!")
+	public static NpcStringId S1_HAS_OBTAINED_HARDIN_S_SOUL_CRYSTAL_LV_8_CONGRATULATIONS;
 	
-	@ClientString(id = 1804966, message = "$s1 gets Antharas' Earring Lv. 2! Congratulations!")
-	public static NpcStringId S1_GETS_ANTHARAS_EARRING_LV_2_CONGRATULATIONS;
+	@ClientString(id = 1804966, message = "$s1 has obtained Antharas' Earring Lv. 2! Congratulations!")
+	public static NpcStringId S1_HAS_OBTAINED_ANTHARAS_EARRING_LV_2_CONGRATULATIONS;
 	
-	@ClientString(id = 1804967, message = "$s1 gets Frintezza's Necklace! Congratulations!")
-	public static NpcStringId S1_GETS_FRINTEZZA_S_NECKLACE_CONGRATULATIONS;
+	@ClientString(id = 1804967, message = "$s1 has obtained Frintezza's Necklace! Congratulations!")
+	public static NpcStringId S1_HAS_OBTAINED_FRINTEZZA_S_NECKLACE_CONGRATULATIONS;
 	
-	@ClientString(id = 1804968, message = "$s1 gets Zaken's Earring Lv. 3! Congratulations!")
-	public static NpcStringId S1_GETS_ZAKEN_S_EARRING_LV_3_CONGRATULATIONS;
+	@ClientString(id = 1804968, message = "$s1 has obtained Zaken's Earring Lv. 3! Congratulations!")
+	public static NpcStringId S1_HAS_OBTAINED_ZAKEN_S_EARRING_LV_3_CONGRATULATIONS;
 	
-	@ClientString(id = 1804969, message = "$s1 gets Baium's Ring Lv. 3! Congratulations!")
-	public static NpcStringId S1_GETS_BAIUM_S_RING_LV_3_CONGRATULATIONS;
+	@ClientString(id = 1804969, message = "$s1 has obtained Baium's Ring Lv. 3! Congratulations!")
+	public static NpcStringId S1_HAS_OBTAINED_BAIUM_S_RING_LV_3_CONGRATULATIONS;
 	
-	@ClientString(id = 1804970, message = "$s1 gets Orfen's Earring Lv. 3! Congratulations!")
-	public static NpcStringId S1_GETS_ORFEN_S_EARRING_LV_3_CONGRATULATIONS;
+	@ClientString(id = 1804970, message = "$s1 has obtained Orfen's Earring Lv. 3! Congratulations!")
+	public static NpcStringId S1_HAS_OBTAINED_ORFEN_S_EARRING_LV_3_CONGRATULATIONS;
 	
-	@ClientString(id = 1804971, message = "$s1 gets +10 S-grade Weapon Pack! Congratulations!")
-	public static NpcStringId S1_GETS_10_S_GRADE_WEAPON_PACK_CONGRATULATIONS;
+	@ClientString(id = 1804971, message = "$s1 has obtained +10 S-grade Weapon Pack! Congratulations!")
+	public static NpcStringId S1_HAS_OBTAINED_10_S_GRADE_WEAPON_PACK_CONGRATULATIONS;
 	
-	@ClientString(id = 1804972, message = "$s1 gets Talisman of Baium! Congratulations!")
-	public static NpcStringId S1_GETS_TALISMAN_OF_BAIUM_CONGRATULATIONS;
+	@ClientString(id = 1804972, message = "$s1 has obtained Talisman of Baium! Congratulations!")
+	public static NpcStringId S1_HAS_OBTAINED_TALISMAN_OF_BAIUM_CONGRATULATIONS;
 	
-	@ClientString(id = 1804973, message = "$s1 gets Queen Ant Doll Lv. 2! Congratulations!")
-	public static NpcStringId S1_GETS_QUEEN_ANT_DOLL_LV_2_CONGRATULATIONS_2;
+	@ClientString(id = 1804973, message = "$s1 has obtained Queen Ant Doll Lv. 2! Congratulations!")
+	public static NpcStringId S1_HAS_OBTAINED_QUEEN_ANT_DOLL_LV_2_CONGRATULATIONS_2;
 	
-	@ClientString(id = 1804974, message = "$s1 gets Baium Doll Lv. 2! Congratulations!")
-	public static NpcStringId S1_GETS_BAIUM_DOLL_LV_2_CONGRATULATIONS_2;
+	@ClientString(id = 1804974, message = "$s1 has obtained Baium Doll Lv. 2! Congratulations!")
+	public static NpcStringId S1_HAS_OBTAINED_BAIUM_DOLL_LV_2_CONGRATULATIONS_2;
 	
-	@ClientString(id = 1804975, message = "$s1 gets Zaken Doll Lv. 2! Congratulations!")
-	public static NpcStringId S1_GETS_ZAKEN_DOLL_LV_2_CONGRATULATIONS_2;
+	@ClientString(id = 1804975, message = "$s1 has obtained Zaken Doll Lv. 2! Congratulations!")
+	public static NpcStringId S1_HAS_OBTAINED_ZAKEN_DOLL_LV_2_CONGRATULATIONS_2;
 	
-	@ClientString(id = 1804976, message = "$s1 gets Frintezza Doll Lv. 2! Congratulations!")
-	public static NpcStringId S1_GETS_FRINTEZZA_DOLL_LV_2_CONGRATULATIONS_2;
+	@ClientString(id = 1804976, message = "$s1 has obtained Frintezza Doll Lv. 2! Congratulations!")
+	public static NpcStringId S1_HAS_OBTAINED_FRINTEZZA_DOLL_LV_2_CONGRATULATIONS_2;
 	
-	@ClientString(id = 1804977, message = "$s1 gets Core Doll Lv. 2! Congratulations!")
-	public static NpcStringId S1_GETS_CORE_DOLL_LV_2_CONGRATULATIONS_2;
+	@ClientString(id = 1804977, message = "$s1 has obtained Core Doll Lv. 2! Congratulations!")
+	public static NpcStringId S1_HAS_OBTAINED_CORE_DOLL_LV_2_CONGRATULATIONS_2;
 	
-	@ClientString(id = 1804978, message = "$s1 gets Orfen Doll Lv. 2! Congratulations!")
-	public static NpcStringId S1_GETS_ORFEN_DOLL_LV_2_CONGRATULATIONS_2;
+	@ClientString(id = 1804978, message = "$s1 has obtained Orfen Doll Lv. 2! Congratulations!")
+	public static NpcStringId S1_HAS_OBTAINED_ORFEN_DOLL_LV_2_CONGRATULATIONS_2;
 	
-	@ClientString(id = 1804979, message = "$s1 gets Antharas Doll Lv. 1! Congratulations!")
-	public static NpcStringId S1_GETS_ANTHARAS_DOLL_LV_1_CONGRATULATIONS;
+	@ClientString(id = 1804979, message = "$s1 has obtained Antharas Doll Lv. 1! Congratulations!")
+	public static NpcStringId S1_HAS_OBTAINED_ANTHARAS_DOLL_LV_1_CONGRATULATIONS;
 	
-	@ClientString(id = 1804980, message = "$s1 gets Spellbook Coupon - 3 Stars! Congratulations!")
-	public static NpcStringId S1_GETS_SPELLBOOK_COUPON_3_STARS_CONGRATULATIONS;
+	@ClientString(id = 1804980, message = "$s1 has obtained Spellbook Coupon - 3 Stars! Congratulations!")
+	public static NpcStringId S1_HAS_OBTAINED_SPELLBOOK_COUPON_3_STARS_CONGRATULATIONS;
 	
 	@ClientString(id = 1804981, message = "The Giant Watermelon Event starts on the Fantasy Isle!")
 	public static NpcStringId THE_GIANT_WATERMELON_EVENT_STARTS_ON_THE_FANTASY_ISLE;
@@ -36523,11 +36535,11 @@ public class NpcStringId
 	@ClientString(id = 1805030, message = "$s1 has released a lantern and gets Sealed Spellbook Coupon - 1 Star!")
 	public static NpcStringId S1_HAS_RELEASED_A_LANTERN_AND_GETS_SEALED_SPELLBOOK_COUPON_1_STAR;
 	
-	@ClientString(id = 1805031, message = "$s1 gets Large Yellow Sky Lantern and Enchanted Lamp!")
-	public static NpcStringId S1_GETS_LARGE_YELLOW_SKY_LANTERN_AND_ENCHANTED_LAMP;
+	@ClientString(id = 1805031, message = "$s1 has obtained Large Yellow Sky Lantern and Enchanted Lamp!")
+	public static NpcStringId S1_HAS_OBTAINED_LARGE_YELLOW_SKY_LANTERN_AND_ENCHANTED_LAMP;
 	
-	@ClientString(id = 1805032, message = "$s1 gets GM Lucky Box!")
-	public static NpcStringId S1_GETS_GM_LUCKY_BOX;
+	@ClientString(id = 1805032, message = "$s1 has obtained GM Lucky Pack!")
+	public static NpcStringId S1_HAS_OBTAINED_GM_LUCKY_PACK;
 	
 	@ClientString(id = 1805033, message = "Temple Catacomb's time left:")
 	public static NpcStringId TEMPLE_CATACOMB_S_TIME_LEFT;
@@ -36913,8 +36925,8 @@ public class NpcStringId
 	@ClientString(id = 1805160, message = "Time till the game end")
 	public static NpcStringId TIME_TILL_THE_GAME_END;
 	
-	@ClientString(id = 1805161, message = "$s1 has received the Splendid Spring Wind buff. Congratulations!")
-	public static NpcStringId S1_HAS_RECEIVED_THE_SPLENDID_SPRING_WIND_BUFF_CONGRATULATIONS;
+	@ClientString(id = 1805161, message = "$s1 has obtained the Splendid Spring Wind buff. Congratulations!")
+	public static NpcStringId S1_HAS_OBTAINED_THE_SPLENDID_SPRING_WIND_BUFF_CONGRATULATIONS;
 	
 	@ClientString(id = 1805162, message = "Your location corresponds with the current server group. Please move to another location.")
 	public static NpcStringId YOUR_LOCATION_CORRESPONDS_WITH_THE_CURRENT_SERVER_GROUP_PLEASE_MOVE_TO_ANOTHER_LOCATION;
@@ -36960,6 +36972,420 @@ public class NpcStringId
 	
 	@ClientString(id = 1805176, message = "Target a mole and use Tricker's Rope!")
 	public static NpcStringId TARGET_A_MOLE_AND_USE_TRICKER_S_ROPE;
+	
+	@ClientString(id = 1805177, message = "Death Knight (Human)")
+	public static NpcStringId DEATH_KNIGHT_HUMAN;
+	
+	@ClientString(id = 1805178, message = "Death Knight (Elf)")
+	public static NpcStringId DEATH_KNIGHT_ELF;
+	
+	@ClientString(id = 1805179, message = "Death Knight (Dark Elf)")
+	public static NpcStringId DEATH_KNIGHT_DARK_ELF;
+	
+	@ClientString(id = 1805180, message = "In 5 minutes monsters will appear in a Seven Signs dungeon. You have 30 minutes to kill them.")
+	public static NpcStringId IN_5_MINUTES_MONSTERS_WILL_APPEAR_IN_A_SEVEN_SIGNS_DUNGEON_YOU_HAVE_30_MINUTES_TO_KILL_THEM;
+	
+	@ClientString(id = 1805181, message = "Use teleport to go to a Seven Signs dungeon.")
+	public static NpcStringId USE_TELEPORT_TO_GO_TO_A_SEVEN_SIGNS_DUNGEON;
+	
+	@ClientString(id = 1805182, message = "Soon Behemoth will return to Antharas.")
+	public static NpcStringId SOON_BEHEMOTH_WILL_RETURN_TO_ANTHARAS;
+	
+	@ClientString(id = 1805183, message = "Soon Ultimate Behemoth will return to Antharas.")
+	public static NpcStringId SOON_ULTIMATE_BEHEMOTH_WILL_RETURN_TO_ANTHARAS;
+	
+	@ClientString(id = 1805184, message = "Enhanced with Fire Energy")
+	public static NpcStringId ENHANCED_WITH_FIRE_ENERGY;
+	
+	@ClientString(id = 1805185, message = "Imbued with Fire Energy")
+	public static NpcStringId IMBUED_WITH_FIRE_ENERGY;
+	
+	@ClientString(id = 1805186, message = "Imbued with Water Energy")
+	public static NpcStringId IMBUED_WITH_WATER_ENERGY;
+	
+	@ClientString(id = 1805187, message = "Pleased")
+	public static NpcStringId PLEASED;
+	
+	@ClientString(id = 1805188, message = "Sold Soul for Food")
+	public static NpcStringId SOLD_SOUL_FOR_FOOD;
+	
+	@ClientString(id = 1805189, message = "Mutually Enhanced by Magic")
+	public static NpcStringId MUTUALLY_ENHANCED_BY_MAGIC;
+	
+	@ClientString(id = 1805190, message = "Possessed Berserker")
+	public static NpcStringId POSSESSED_BERSERKER;
+	
+	@ClientString(id = 1805191, message = "Hey, I will kill you!")
+	public static NpcStringId HEY_I_WILL_KILL_YOU;
+	
+	@ClientString(id = 1805192, message = "Show me your worth on the battlefield. Get ready!")
+	public static NpcStringId SHOW_ME_YOUR_WORTH_ON_THE_BATTLEFIELD_GET_READY;
+	
+	@ClientString(id = 1805193, message = "Is death not an eternal rest and beautiful art?")
+	public static NpcStringId IS_DEATH_NOT_AN_ETERNAL_REST_AND_BEAUTIFUL_ART;
+	
+	@ClientString(id = 1805194, message = "Xilenos' bravery is unrivaled.")
+	public static NpcStringId XILENOS_BRAVERY_IS_UNRIVALED;
+	
+	@ClientString(id = 1805195, message = "Aztacan is great!")
+	public static NpcStringId AZTACAN_IS_GREAT;
+	
+	@ClientString(id = 1805196, message = "Corpses don't tell tales, har har.")
+	public static NpcStringId CORPSES_DON_T_TELL_TALES_HAR_HAR;
+	
+	@ClientString(id = 1805197, message = "You won't leave here alive!")
+	public static NpcStringId YOU_WON_T_LEAVE_HERE_ALIVE;
+	
+	@ClientString(id = 1805198, message = "We're warriors of the Gray Hammer tribe. We accept this challenge.")
+	public static NpcStringId WE_RE_WARRIORS_OF_THE_GRAY_HAMMER_TRIBE_WE_ACCEPT_THIS_CHALLENGE;
+	
+	@ClientString(id = 1805199, message = "Let the bloodbath begin!")
+	public static NpcStringId LET_THE_BLOODBATH_BEGIN;
+	
+	@ClientString(id = 1805200, message = "My arrows won't stop until my enemy is defeated!")
+	public static NpcStringId MY_ARROWS_WON_T_STOP_UNTIL_MY_ENEMY_IS_DEFEATED;
+	
+	@ClientString(id = 1805201, message = "Bee Hive's Keeper Royal Bee appears.")
+	public static NpcStringId BEE_HIVE_S_KEEPER_ROYAL_BEE_APPEARS;
+	
+	@ClientString(id = 1805202, message = "Bee Hive's Manager Fier appears.")
+	public static NpcStringId BEE_HIVE_S_MANAGER_FIER_APPEARS;
+	
+	@ClientString(id = 1805203, message = "Due to the Rift's influence, monsters will soon appear in the Tower of Insolence. You have 1 hour to get rid of them.")
+	public static NpcStringId DUE_TO_THE_RIFT_S_INFLUENCE_MONSTERS_WILL_SOON_APPEAR_IN_THE_TOWER_OF_INSOLENCE_YOU_HAVE_1_HOUR_TO_GET_RID_OF_THEM;
+	
+	@ClientString(id = 1805204, message = "You feel a strange energy at the top of the Tower of Insolence.")
+	public static NpcStringId YOU_FEEL_A_STRANGE_ENERGY_AT_THE_TOP_OF_THE_TOWER_OF_INSOLENCE;
+	
+	@ClientString(id = 1805205, message = "Talk to researchers that have been freed from Baium.")
+	public static NpcStringId TALK_TO_RESEARCHERS_THAT_HAVE_BEEN_FREED_FROM_BAIUM;
+	
+	@ClientString(id = 1805206, message = "The Rift is unstable, Baium will disappear soon.")
+	public static NpcStringId THE_RIFT_IS_UNSTABLE_BAIUM_WILL_DISAPPEAR_SOON;
+	
+	@ClientString(id = 1805207, message = "Special weapon")
+	public static NpcStringId SPECIAL_WEAPON;
+	
+	@ClientString(id = 1805208, message = "Spellbook")
+	public static NpcStringId SPELLBOOK;
+	
+	@ClientString(id = 1805209, message = "Armor and accessories")
+	public static NpcStringId ARMOR_AND_ACCESSORIES;
+	
+	@ClientString(id = 1805210, message = "Misc.")
+	public static NpcStringId MISC_7;
+	
+	@ClientString(id = 1805211, message = "Blessing")
+	public static NpcStringId BLESSING;
+	
+	@ClientString(id = 1805212, message = "Event")
+	public static NpcStringId EVENT_2;
+	
+	@ClientString(id = 1805213, message = "Red Libra Guild")
+	public static NpcStringId RED_LIBRA_GUILD;
+	
+	@ClientString(id = 1805214, message = "Special weapon")
+	public static NpcStringId SPECIAL_WEAPON_2;
+	
+	@ClientString(id = 1805215, message = "Spellbook")
+	public static NpcStringId SPELLBOOK_2;
+	
+	@ClientString(id = 1805216, message = "Accessories")
+	public static NpcStringId ACCESSORIES_2;
+	
+	@ClientString(id = 1805217, message = "Misc.")
+	public static NpcStringId MISC_8;
+	
+	@ClientString(id = 1805218, message = "Blessing")
+	public static NpcStringId BLESSING_2;
+	
+	@ClientString(id = 1805219, message = "Event")
+	public static NpcStringId EVENT_3;
+	
+	@ClientString(id = 1805220, message = "The fairy magic has attracted Lycaria!")
+	public static NpcStringId THE_FAIRY_MAGIC_HAS_ATTRACTED_LYCARIA;
+	
+	@ClientString(id = 1805221, message = "The fairy magic has attracted Lyansus!")
+	public static NpcStringId THE_FAIRY_MAGIC_HAS_ATTRACTED_LYANSUS;
+	
+	@ClientString(id = 1805222, message = "$s1 defeats Guardian of the Invaded Lands!")
+	public static NpcStringId S1_DEFEATS_GUARDIAN_OF_THE_INVADED_LANDS;
+	
+	@ClientString(id = 1805223, message = "Orc Mystic")
+	public static NpcStringId ORC_MYSTIC;
+	
+	@ClientString(id = 1805224, message = "$s1's Follower")
+	public static NpcStringId S1_S_FOLLOWER;
+	
+	@ClientString(id = 1805225, message = "$s1 gets Immortal Baium's Treasure Chest! Congratulations!")
+	public static NpcStringId S1_GETS_IMMORTAL_BAIUM_S_TREASURE_CHEST_CONGRATULATIONS;
+	
+	@ClientString(id = 1805226, message = "$s1 awakens the pumpkin No. $s2!")
+	public static NpcStringId S1_AWAKENS_THE_PUMPKIN_NO_S2;
+	
+	@ClientString(id = 1805227, message = "You have managed to steal $s1!")
+	public static NpcStringId YOU_HAVE_MANAGED_TO_STEAL_S1;
+	
+	@ClientString(id = 1805228, message = "$s1 deals the finishing blow!")
+	public static NpcStringId S1_DEALS_THE_FINISHING_BLOW;
+	
+	@ClientString(id = 1805229, message = "Sel Mahum Base is invaded by horde of monsters.")
+	public static NpcStringId SEL_MAHUM_BASE_IS_INVADED_BY_HORDE_OF_MONSTERS;
+	
+	@ClientString(id = 1805230, message = "The east of the Dragon Valley is invaded by horde of monsters.")
+	public static NpcStringId THE_EAST_OF_THE_DRAGON_VALLEY_IS_INVADED_BY_HORDE_OF_MONSTERS;
+	
+	@ClientString(id = 1805231, message = "The north of the Plains of the Lizardmen is invaded by horde of monsters.")
+	public static NpcStringId THE_NORTH_OF_THE_PLAINS_OF_THE_LIZARDMEN_IS_INVADED_BY_HORDE_OF_MONSTERS;
+	
+	@ClientString(id = 1805232, message = "Monsters have left the hunting zone.")
+	public static NpcStringId MONSTERS_HAVE_LEFT_THE_HUNTING_ZONE;
+	
+	@ClientString(id = 1805233, message = "The monster leader appears.")
+	public static NpcStringId THE_MONSTER_LEADER_APPEARS;
+	
+	@ClientString(id = 1805234, message = "The monster leader is defeated.")
+	public static NpcStringId THE_MONSTER_LEADER_IS_DEFEATED;
+	
+	@ClientString(id = 1805235, message = "The monster leader is slowly disappearing.")
+	public static NpcStringId THE_MONSTER_LEADER_IS_SLOWLY_DISAPPEARING;
+	
+	@ClientString(id = 1805236, message = "The Elder monster appears.")
+	public static NpcStringId THE_ELDER_MONSTER_APPEARS;
+	
+	@ClientString(id = 1805237, message = "The Elder monster is defeated.")
+	public static NpcStringId THE_ELDER_MONSTER_IS_DEFEATED;
+	
+	@ClientString(id = 1805238, message = "The Elder monster is slowly disappearing.")
+	public static NpcStringId THE_ELDER_MONSTER_IS_SLOWLY_DISAPPEARING;
+	
+	@ClientString(id = 1805239, message = "Assault Commander Turin: Out of the way! Bow before His Majesty Ol Mahum the Last!")
+	public static NpcStringId ASSAULT_COMMANDER_TURIN_OUT_OF_THE_WAY_BOW_BEFORE_HIS_MAJESTY_OL_MAHUM_THE_LAST;
+	
+	@ClientString(id = 1805240, message = "Tactical Officer Kitys: Battlefield is like home for me. Follow me, and I'll guarantee our victory!")
+	public static NpcStringId TACTICAL_OFFICER_KITYS_BATTLEFIELD_IS_LIKE_HOME_FOR_ME_FOLLOW_ME_AND_I_LL_GUARANTEE_OUR_VICTORY;
+	
+	@ClientString(id = 1805241, message = "Quartermaster Kastor: We must hold out until reinforcements arrive. Then victory will be ours!")
+	public static NpcStringId QUARTERMASTER_KASTOR_WE_MUST_HOLD_OUT_UNTIL_REINFORCEMENTS_ARRIVE_THEN_VICTORY_WILL_BE_OURS;
+	
+	@ClientString(id = 1805242, message = "Commander Gaku: Human weaklings! I'll show you the power of Ol Mahum!")
+	public static NpcStringId COMMANDER_GAKU_HUMAN_WEAKLINGS_I_LL_SHOW_YOU_THE_POWER_OF_OL_MAHUM;
+	
+	@ClientString(id = 1805243, message = "Raider Captain Kuka: Feel our wrath! Charge!")
+	public static NpcStringId RAIDER_CAPTAIN_KUKA_FEEL_OUR_WRATH_CHARGE;
+	
+	@ClientString(id = 1805244, message = "Legate Jiku: This land belongs to us!")
+	public static NpcStringId LEGATE_JIKU_THIS_LAND_BELONGS_TO_US;
+	
+	@ClientString(id = 1805245, message = "Vanguard Commander Celestial Shadow: You don't belong here! Out!")
+	public static NpcStringId VANGUARD_COMMANDER_CELESTIAL_SHADOW_YOU_DON_T_BELONG_HERE_OUT;
+	
+	@ClientString(id = 1805246, message = "Senior Seeress Tetis: I'll crush you with the power of darkness!")
+	public static NpcStringId SENIOR_SEERESS_TETIS_I_LL_CRUSH_YOU_WITH_THE_POWER_OF_DARKNESS;
+	
+	@ClientString(id = 1805247, message = "Archbishop Vespera: This land must belong to our god.")
+	public static NpcStringId ARCHBISHOP_VESPERA_THIS_LAND_MUST_BELONG_TO_OUR_GOD;
+	
+	@ClientString(id = 1805248, message = "Soldier Black Mamba: Very soon I'll show you the true tactical mastery.")
+	public static NpcStringId SOLDIER_BLACK_MAMBA_VERY_SOON_I_LL_SHOW_YOU_THE_TRUE_TACTICAL_MASTERY;
+	
+	@ClientString(id = 1805249, message = "Raider Captain Knoriks: This place will be your grave!")
+	public static NpcStringId RAIDER_CAPTAIN_KNORIKS_THIS_PLACE_WILL_BE_YOUR_GRAVE;
+	
+	@ClientString(id = 1805250, message = "Commandant Shadow Grief: Take the fortress and charge!")
+	public static NpcStringId COMMANDANT_SHADOW_GRIEF_TAKE_THE_FORTRESS_AND_CHARGE;
+	
+	@ClientString(id = 1805251, message = "Vanguard Commander Skyla: Everybody wants to go to battle.")
+	public static NpcStringId VANGUARD_COMMANDER_SKYLA_EVERYBODY_WANTS_TO_GO_TO_BATTLE;
+	
+	@ClientString(id = 1805252, message = "Senior Seer Isirr: This valley has always been ours.")
+	public static NpcStringId SENIOR_SEER_ISIRR_THIS_VALLEY_HAS_ALWAYS_BEEN_OURS;
+	
+	@ClientString(id = 1805253, message = "Archbishop Ipos: This land must belong to our god. Kill everybody who stands in your way.")
+	public static NpcStringId ARCHBISHOP_IPOS_THIS_LAND_MUST_BELONG_TO_OUR_GOD_KILL_EVERYBODY_WHO_STANDS_IN_YOUR_WAY;
+	
+	@ClientString(id = 1805254, message = "Soldier Abaga: The key to victory lies in well-thought-out strategy and flexible tactics.")
+	public static NpcStringId SOLDIER_ABAGA_THE_KEY_TO_VICTORY_LIES_IN_WELL_THOUGHT_OUT_STRATEGY_AND_FLEXIBLE_TACTICS;
+	
+	@ClientString(id = 1805255, message = "Raider Captain Tamash: Who has the power to challenge me?")
+	public static NpcStringId RAIDER_CAPTAIN_TAMASH_WHO_HAS_THE_POWER_TO_CHALLENGE_ME;
+	
+	@ClientString(id = 1805256, message = "Commandant Gadzan: This is our land. You're not welcome here.")
+	public static NpcStringId COMMANDANT_GADZAN_THIS_IS_OUR_LAND_YOU_RE_NOT_WELCOME_HERE;
+	
+	@ClientString(id = 1805257, message = "Assault Commander Turin: One day I'll claim this land.")
+	public static NpcStringId ASSAULT_COMMANDER_TURIN_ONE_DAY_I_LL_CLAIM_THIS_LAND;
+	
+	@ClientString(id = 1805258, message = "Tactical Officer Kitys: Today we'll make a tactical retreat. But it's only for today!")
+	public static NpcStringId TACTICAL_OFFICER_KITYS_TODAY_WE_LL_MAKE_A_TACTICAL_RETREAT_BUT_IT_S_ONLY_FOR_TODAY;
+	
+	@ClientString(id = 1805259, message = "Quartermaster Kastor: Where are the reinforcements...?")
+	public static NpcStringId QUARTERMASTER_KASTOR_WHERE_ARE_THE_REINFORCEMENTS;
+	
+	@ClientString(id = 1805260, message = "Commander Gaku: We'll be back to show you your rightful place!")
+	public static NpcStringId COMMANDER_GAKU_WE_LL_BE_BACK_TO_SHOW_YOU_YOUR_RIGHTFUL_PLACE;
+	
+	@ClientString(id = 1805261, message = "Raider Captain Kuka: Nothing is more honorable than dying in battle.")
+	public static NpcStringId RAIDER_CAPTAIN_KUKA_NOTHING_IS_MORE_HONORABLE_THAN_DYING_IN_BATTLE;
+	
+	@ClientString(id = 1805262, message = "Legate Jiku: Don't think this is the end. We'll never give up.")
+	public static NpcStringId LEGATE_JIKU_DON_T_THINK_THIS_IS_THE_END_WE_LL_NEVER_GIVE_UP;
+	
+	@ClientString(id = 1805263, message = "Vanguard Commander Celestial Shadow: We'll return once we get stronger.")
+	public static NpcStringId VANGUARD_COMMANDER_CELESTIAL_SHADOW_WE_LL_RETURN_ONCE_WE_GET_STRONGER;
+	
+	@ClientString(id = 1805264, message = "Senior Seeress Tetis: We had to pray more!")
+	public static NpcStringId SENIOR_SEERESS_TETIS_WE_HAD_TO_PRAY_MORE;
+	
+	@ClientString(id = 1805265, message = "Archbishop Vespera: God of Darkness, protect us!")
+	public static NpcStringId ARCHBISHOP_VESPERA_GOD_OF_DARKNESS_PROTECT_US;
+	
+	@ClientString(id = 1805266, message = "Soldier Black Mamba: I can't wander the desert anymore.")
+	public static NpcStringId SOLDIER_BLACK_MAMBA_I_CAN_T_WANDER_THE_DESERT_ANYMORE;
+	
+	@ClientString(id = 1805267, message = "Raider Captain Knoriks: We'll never die.")
+	public static NpcStringId RAIDER_CAPTAIN_KNORIKS_WE_LL_NEVER_DIE;
+	
+	@ClientString(id = 1805268, message = "Commandant Shadow Grief: Don't think this is the end!")
+	public static NpcStringId COMMANDANT_SHADOW_GRIEF_DON_T_THINK_THIS_IS_THE_END;
+	
+	@ClientString(id = 1805269, message = "Vanguard Commander Skyla: Next time you won't leave here alive.")
+	public static NpcStringId VANGUARD_COMMANDER_SKYLA_NEXT_TIME_YOU_WON_T_LEAVE_HERE_ALIVE;
+	
+	@ClientString(id = 1805270, message = "Senior Seer Isirr: We'll be back to show you your rightful place!")
+	public static NpcStringId SENIOR_SEER_ISIRR_WE_LL_BE_BACK_TO_SHOW_YOU_YOUR_RIGHTFUL_PLACE;
+	
+	@ClientString(id = 1805271, message = "Archbishop Abaga: We had to pray more!")
+	public static NpcStringId ARCHBISHOP_ABAGA_WE_HAD_TO_PRAY_MORE;
+	
+	@ClientString(id = 1805272, message = "Soldier Ipos: We have to revise our tactics.")
+	public static NpcStringId SOLDIER_IPOS_WE_HAVE_TO_REVISE_OUR_TACTICS;
+	
+	@ClientString(id = 1805273, message = "Raider Captain Tamash: We'll be back.")
+	public static NpcStringId RAIDER_CAPTAIN_TAMASH_WE_LL_BE_BACK;
+	
+	@ClientString(id = 1805274, message = "Commandant Gadzan: We'll never give up.")
+	public static NpcStringId COMMANDANT_GADZAN_WE_LL_NEVER_GIVE_UP;
+	
+	@ClientString(id = 1805275, message = "Assault Commander Turin: You're weak. Don't come here ever again.")
+	public static NpcStringId ASSAULT_COMMANDER_TURIN_YOU_RE_WEAK_DON_T_COME_HERE_EVER_AGAIN;
+	
+	@ClientString(id = 1805276, message = "Tactical Officer Kitys: I wouldn't call you weak, but we're stronger still!")
+	public static NpcStringId TACTICAL_OFFICER_KITYS_I_WOULDN_T_CALL_YOU_WEAK_BUT_WE_RE_STRONGER_STILL;
+	
+	@ClientString(id = 1805277, message = "Quartermaster Kastor: Do you understand now just how stronger we are? Oh, this sweet taste of victory!")
+	public static NpcStringId QUARTERMASTER_KASTOR_DO_YOU_UNDERSTAND_NOW_JUST_HOW_STRONGER_WE_ARE_OH_THIS_SWEET_TASTE_OF_VICTORY;
+	
+	@ClientString(id = 1805278, message = "Commander Gaku: That's enough. Retreat.")
+	public static NpcStringId COMMANDER_GAKU_THAT_S_ENOUGH_RETREAT;
+	
+	@ClientString(id = 1805279, message = "Raider Captain Kuka: This is our true power! Weaklings!")
+	public static NpcStringId RAIDER_CAPTAIN_KUKA_THIS_IS_OUR_TRUE_POWER_WEAKLINGS;
+	
+	@ClientString(id = 1805280, message = "Legate Jiku: From now on, keep out of my way. Weaklings!")
+	public static NpcStringId LEGATE_JIKU_FROM_NOW_ON_KEEP_OUT_OF_MY_WAY_WEAKLINGS;
+	
+	@ClientString(id = 1805281, message = "Vanguard Commander Celestial Shadow: Pathetic weaklings, all of you!")
+	public static NpcStringId VANGUARD_COMMANDER_CELESTIAL_SHADOW_PATHETIC_WEAKLINGS_ALL_OF_YOU;
+	
+	@ClientString(id = 1805282, message = "Senior Seeress Tetis: They don't have the power to resist us. Let us return.")
+	public static NpcStringId SENIOR_SEERESS_TETIS_THEY_DON_T_HAVE_THE_POWER_TO_RESIST_US_LET_US_RETURN;
+	
+	@ClientString(id = 1805283, message = "Archbishop Vespera: See our power!")
+	public static NpcStringId ARCHBISHOP_VESPERA_SEE_OUR_POWER;
+	
+	@ClientString(id = 1805284, message = "Soldier Black Mamba: The difference in power seems evident now. Retreat.")
+	public static NpcStringId SOLDIER_BLACK_MAMBA_THE_DIFFERENCE_IN_POWER_SEEMS_EVIDENT_NOW_RETREAT;
+	
+	@ClientString(id = 1805285, message = "Raider Captain Knoriks: This is our true power! Weaklings!")
+	public static NpcStringId RAIDER_CAPTAIN_KNORIKS_THIS_IS_OUR_TRUE_POWER_WEAKLINGS;
+	
+	@ClientString(id = 1805286, message = "Commandant Shadow Grief: You're left with nothing but the taste of bitter defeat.")
+	public static NpcStringId COMMANDANT_SHADOW_GRIEF_YOU_RE_LEFT_WITH_NOTHING_BUT_THE_TASTE_OF_BITTER_DEFEAT;
+	
+	@ClientString(id = 1805287, message = "Vanguard Commander Skyla: You're worthless in battle. Despicable losers!")
+	public static NpcStringId VANGUARD_COMMANDER_SKYLA_YOU_RE_WORTHLESS_IN_BATTLE_DESPICABLE_LOSERS;
+	
+	@ClientString(id = 1805288, message = "Senior Seer Isirr: Let us celebrate our victory!")
+	public static NpcStringId SENIOR_SEER_ISIRR_LET_US_CELEBRATE_OUR_VICTORY;
+	
+	@ClientString(id = 1805289, message = "Archbishop Ipos: Our power is evident by now. Retreat.")
+	public static NpcStringId ARCHBISHOP_IPOS_OUR_POWER_IS_EVIDENT_BY_NOW_RETREAT;
+	
+	@ClientString(id = 1805290, message = "Soldier Abaga: It's a tactical victory.")
+	public static NpcStringId SOLDIER_ABAGA_IT_S_A_TACTICAL_VICTORY;
+	
+	@ClientString(id = 1805291, message = "Raider Captain Tamash: This is our true power! Weaklings!")
+	public static NpcStringId RAIDER_CAPTAIN_TAMASH_THIS_IS_OUR_TRUE_POWER_WEAKLINGS;
+	
+	@ClientString(id = 1805292, message = "Commandant Gadzan: Don't come here ever again.")
+	public static NpcStringId COMMANDANT_GADZAN_DON_T_COME_HERE_EVER_AGAIN;
+	
+	@ClientString(id = 1805293, message = "Hold the line!")
+	public static NpcStringId HOLD_THE_LINE;
+	
+	@ClientString(id = 1805294, message = "Charge!")
+	public static NpcStringId CHARGE_3;
+	
+	@ClientString(id = 1805295, message = "Come on!")
+	public static NpcStringId COME_ON_7;
+	
+	@ClientString(id = 1805296, message = "Emergency alert! A massive monster invasion is confirmed. We need help with protecting our lands!")
+	public static NpcStringId EMERGENCY_ALERT_A_MASSIVE_MONSTER_INVASION_IS_CONFIRMED_WE_NEED_HELP_WITH_PROTECTING_OUR_LANDS;
+	
+	@ClientString(id = 1805297, message = "Emergency! A large monster group is heading towards the hunting zone. We must respond immediately to this threat.")
+	public static NpcStringId EMERGENCY_A_LARGE_MONSTER_GROUP_IS_HEADING_TOWARDS_THE_HUNTING_ZONE_WE_MUST_RESPOND_IMMEDIATELY_TO_THIS_THREAT;
+	
+	@ClientString(id = 1805298, message = "This is an emergency! Monsters are threatening local people. Warriors must protect them without delay.")
+	public static NpcStringId THIS_IS_AN_EMERGENCY_MONSTERS_ARE_THREATENING_LOCAL_PEOPLE_WARRIORS_MUST_PROTECT_THEM_WITHOUT_DELAY;
+	
+	@ClientString(id = 1805299, message = "Invader's Supply Chest appears.")
+	public static NpcStringId INVADER_S_SUPPLY_CHEST_APPEARS;
+	
+	@ClientString(id = 1805300, message = "Monsters have occupied the local area. Talk to Observer Raven Claw in the town.")
+	public static NpcStringId MONSTERS_HAVE_OCCUPIED_THE_LOCAL_AREA_TALK_TO_OBSERVER_RAVEN_CLAW_IN_THE_TOWN;
+	
+	@ClientString(id = 1805301, message = "A group of dark-shadowed monsters has invaded the inner part of the eastern Dragon Valley.")
+	public static NpcStringId A_GROUP_OF_DARK_SHADOWED_MONSTERS_HAS_INVADED_THE_INNER_PART_OF_THE_EASTERN_DRAGON_VALLEY;
+	
+	@ClientString(id = 1805302, message = "Raven Claw: We must stand together against the darkness. I will wait for you in the town.")
+	public static NpcStringId RAVEN_CLAW_WE_MUST_STAND_TOGETHER_AGAINST_THE_DARKNESS_I_WILL_WAIT_FOR_YOU_IN_THE_TOWN;
+	
+	@ClientString(id = 1805303, message = "$s1 gets a trophy for defeating the Monster Commander!")
+	public static NpcStringId S1_GETS_A_TROPHY_FOR_DEFEATING_THE_MONSTER_COMMANDER;
+	
+	@ClientString(id = 1805304, message = "$s1 gets a trophy for defeating the Elder monster!")
+	public static NpcStringId S1_GETS_A_TROPHY_FOR_DEFEATING_THE_ELDER_MONSTER;
+	
+	@ClientString(id = 1805305, message = "A group of dark-shadowed monsters has invaded the Tayga Camp.")
+	public static NpcStringId A_GROUP_OF_DARK_SHADOWED_MONSTERS_HAS_INVADED_THE_TAYGA_CAMP;
+	
+	@ClientString(id = 1805306, message = "A group of dark-shadowed monsters has invaded the Tayga Camp.")
+	public static NpcStringId A_GROUP_OF_DARK_SHADOWED_MONSTERS_HAS_INVADED_THE_TAYGA_CAMP_2;
+	
+	@ClientString(id = 1805307, message = "Today there will be Celestial Emperor's Battle in the Celestial Tower.")
+	public static NpcStringId TODAY_THERE_WILL_BE_CELESTIAL_EMPEROR_S_BATTLE_IN_THE_CELESTIAL_TOWER;
+	
+	@ClientString(id = 1805308, message = "The battle for the Celestial Emperor's Agent title has begun in the Tower of Insolence.")
+	public static NpcStringId THE_BATTLE_FOR_THE_CELESTIAL_EMPEROR_S_AGENT_TITLE_HAS_BEGUN_IN_THE_TOWER_OF_INSOLENCE;
+	
+	@ClientString(id = 1805309, message = "Celestial Emperor's defender will receive a special reward. Talk to Mermoden.")
+	public static NpcStringId CELESTIAL_EMPEROR_S_DEFENDER_WILL_RECEIVE_A_SPECIAL_REWARD_TALK_TO_MERMODEN;
+	
+	@ClientString(id = 1805310, message = "Dimension Lord Toros appears.")
+	public static NpcStringId DIMENSION_LORD_TOROS_APPEARS;
+	
+	@ClientString(id = 1805311, message = "Celestial Emperor Ferion appears.")
+	public static NpcStringId CELESTIAL_EMPEROR_FERION_APPEARS;
+	
+	@ClientString(id = 1805312, message = "You who attacked during the celestial energy harvest! Punish the Dimensional Wanderer.")
+	public static NpcStringId YOU_WHO_ATTACKED_DURING_THE_CELESTIAL_ENERGY_HARVEST_PUNISH_THE_DIMENSIONAL_WANDERER;
+	
+	@ClientString(id = 1805313, message = "Who dares challenge me? Feel the power of outer dimensions.")
+	public static NpcStringId WHO_DARES_CHALLENGE_ME_FEEL_THE_POWER_OF_OUTER_DIMENSIONS;
+	
+	@ClientString(id = 1805314, message = "My enemies! The energy is concentrating in the center!")
+	public static NpcStringId MY_ENEMIES_THE_ENERGY_IS_CONCENTRATING_IN_THE_CENTER;
 	
 	@ClientString(id = 1810363, message = "You are too far from the corpse.")
 	public static NpcStringId YOU_ARE_TOO_FAR_FROM_THE_CORPSE;
@@ -37115,7 +37541,7 @@ public class NpcStringId
 	public static NpcStringId TYRANT_3;
 	
 	@ClientString(id = 1811049, message = "Orc Mystic")
-	public static NpcStringId ORC_MYSTIC;
+	public static NpcStringId ORC_MYSTIC_2;
 	
 	@ClientString(id = 1811050, message = "Orc Shaman")
 	public static NpcStringId ORC_SHAMAN;
@@ -37381,8 +37807,8 @@ public class NpcStringId
 	@ClientString(id = 1811171, message = "Release the residents in pain and eliminate the totem...!!")
 	public static NpcStringId RELEASE_THE_RESIDENTS_IN_PAIN_AND_ELIMINATE_THE_TOTEM;
 	
-	@ClientString(id = 1811172, message = "The Magical Ballista is charging.")
-	public static NpcStringId THE_MAGICAL_BALLISTA_IS_CHARGING;
+	@ClientString(id = 1811172, message = "The Magic Ballista is charging.")
+	public static NpcStringId THE_MAGIC_BALLISTA_IS_CHARGING;
 	
 	@ClientString(id = 1811173, message = "Taste the future of your class! And learn!")
 	public static NpcStringId TASTE_THE_FUTURE_OF_YOUR_CLASS_AND_LEARN;
@@ -37405,8 +37831,8 @@ public class NpcStringId
 	@ClientString(id = 1811179, message = "Received Regeneration Energy!")
 	public static NpcStringId RECEIVED_REGENERATION_ENERGY;
 	
-	@ClientString(id = 1811180, message = "Lesser Giant's Essence")
-	public static NpcStringId LESSER_GIANT_S_ESSENCE;
+	@ClientString(id = 1811180, message = "Giant's Essence")
+	public static NpcStringId GIANT_S_ESSENCE;
 	
 	@ClientString(id = 1811181, message = "Let's get this over with!")
 	public static NpcStringId LET_S_GET_THIS_OVER_WITH;
@@ -37606,7 +38032,7 @@ public class NpcStringId
 	@ClientString(id = 1811246, message = "Tell me about moving to Aden Continent.")
 	public static NpcStringId TELL_ME_ABOUT_MOVING_TO_ADEN_CONTINENT;
 	
-	@ClientString(id = 1811247, message = "Hmm is this still a decent weapon?")
+	@ClientString(id = 1811247, message = "Hmm... is this still a decent weapon?")
 	public static NpcStringId HMM_IS_THIS_STILL_A_DECENT_WEAPON;
 	
 	@ClientString(id = 1811248, message = "Spiritshots are mixed!")
@@ -37732,19 +38158,19 @@ public class NpcStringId
 	@ClientString(id = 1811288, message = "Stop them from approaching the town!!")
 	public static NpcStringId STOP_THEM_FROM_APPROACHING_THE_TOWN;
 	
-	@ClientString(id = 1811289, message = "The Seven Signs ended")
+	@ClientString(id = 1811289, message = "The Seven Signs ended...")
 	public static NpcStringId THE_SEVEN_SIGNS_ENDED;
 	
 	@ClientString(id = 1811290, message = "We need to find her weakness...")
 	public static NpcStringId WE_NEED_TO_FIND_HER_WEAKNESS;
 	
-	@ClientString(id = 1811291, message = "Is it better to end destiny or start destiny")
+	@ClientString(id = 1811291, message = "Is it better to end destiny or start destiny...")
 	public static NpcStringId IS_IT_BETTER_TO_END_DESTINY_OR_START_DESTINY;
 	
 	@ClientString(id = 1811292, message = "Look at all the newbies. Ha ha ha.")
 	public static NpcStringId LOOK_AT_ALL_THE_NEWBIES_HA_HA_HA;
 	
-	@ClientString(id = 1811293, message = "Tis a scratch")
+	@ClientString(id = 1811293, message = "Tis a scratch...")
 	public static NpcStringId TIS_A_SCRATCH;
 	
 	@ClientString(id = 1811294, message = "And now your journey begins.")
@@ -37765,7 +38191,7 @@ public class NpcStringId
 	@ClientString(id = 1811299, message = "$s1, your empathy is appreciated.")
 	public static NpcStringId S1_YOUR_EMPATHY_IS_APPRECIATED;
 	
-	@ClientString(id = 1811300, message = "Thank you for attending this mourning service. It is alright to show your sorrow")
+	@ClientString(id = 1811300, message = "Thank you for attending this mourning service. It is alright to show your sorrow...")
 	public static NpcStringId THANK_YOU_FOR_ATTENDING_THIS_MOURNING_SERVICE_IT_IS_ALRIGHT_TO_SHOW_YOUR_SORROW;
 	
 	@ClientString(id = 1811301, message = "The name is Janson... Bow your head and show some respect for the dead.")
@@ -37846,7 +38272,7 @@ public class NpcStringId
 	@ClientString(id = 1811326, message = "Thank you! And now you die!")
 	public static NpcStringId THANK_YOU_AND_NOW_YOU_DIE;
 	
-	@ClientString(id = 1811327, message = "It's time to turn that frown upside down it's party town!")
+	@ClientString(id = 1811327, message = "It's time to turn that frown upside down... it's party town!")
 	public static NpcStringId IT_S_TIME_TO_TURN_THAT_FROWN_UPSIDE_DOWN_IT_S_PARTY_TOWN;
 	
 	@ClientString(id = 1811328, message = "Enjoy the festivities!")
@@ -37966,8 +38392,8 @@ public class NpcStringId
 	@ClientString(id = 1900012, message = "I have to release Santa... How infuriating!!!")
 	public static NpcStringId I_HAVE_TO_RELEASE_SANTA_HOW_INFURIATING_2;
 	
-	@ClientString(id = 1900013, message = "I hate happy Happy Holidays!!!")
-	public static NpcStringId I_HATE_HAPPY_HAPPY_HOLIDAYS_2;
+	@ClientString(id = 1900013, message = "I hate Happy Holidays!!!")
+	public static NpcStringId I_HATE_HAPPY_HOLIDAYS_2;
 	
 	@ClientString(id = 1900014, message = "Oh. I'm bored.")
 	public static NpcStringId OH_I_M_BORED_2;
@@ -37994,7 +38420,7 @@ public class NpcStringId
 	public static NpcStringId I_VE_PREPARED_A_GIFT_FOR_YOU_S1_2;
 	
 	@ClientString(id = 1900022, message = "I have a gift for $s1.")
-	public static NpcStringId I_HAVE_A_GIFT_FOR_S1_2;
+	public static NpcStringId I_HAVE_A_GIFT_FOR_S1;
 	
 	@ClientString(id = 1900023, message = "Take a look at the inventory. I hope you like the gift I gave you.")
 	public static NpcStringId TAKE_A_LOOK_AT_THE_INVENTORY_I_HOPE_YOU_LIKE_THE_GIFT_I_GAVE_YOU_2;
@@ -38113,8 +38539,8 @@ public class NpcStringId
 	@ClientString(id = 1900061, message = "My pride can't handle you winning anymore!")
 	public static NpcStringId MY_PRIDE_CAN_T_HANDLE_YOU_WINNING_ANYMORE_2;
 	
-	@ClientString(id = 1900062, message = "I would be embarrassing to lose again here...")
-	public static NpcStringId I_WOULD_BE_EMBARRASSING_TO_LOSE_AGAIN_HERE_2;
+	@ClientString(id = 1900062, message = "It would be embarrassing to lose again...")
+	public static NpcStringId IT_WOULD_BE_EMBARRASSING_TO_LOSE_AGAIN;
 	
 	@ClientString(id = 1900063, message = "What's your name? I'm gonna remember you!")
 	public static NpcStringId WHAT_S_YOUR_NAME_I_M_GONNA_REMEMBER_YOU_2;
@@ -38389,8 +38815,8 @@ public class NpcStringId
 	@ClientString(id = 1900153, message = "Don't...come.. Go away! Ahh...ahhh!")
 	public static NpcStringId DON_T_COME_GO_AWAY_AHH_AHHH;
 	
-	@ClientString(id = 1900154, message = "Give you life to the Goddess of Death! Kahahaha!")
-	public static NpcStringId GIVE_YOU_LIFE_TO_THE_GODDESS_OF_DEATH_KAHAHAHA;
+	@ClientString(id = 1900154, message = "I give my life to the Goddess of Death!")
+	public static NpcStringId I_GIVE_MY_LIFE_TO_THE_GODDESS_OF_DEATH;
 	
 	@ClientString(id = 1900155, message = "It's not yet complete! Death! Is not yet complete!")
 	public static NpcStringId IT_S_NOT_YET_COMPLETE_DEATH_IS_NOT_YET_COMPLETE;
@@ -38674,8 +39100,8 @@ public class NpcStringId
 	@ClientString(id = 1900248, message = "First.. Calm down...")
 	public static NpcStringId FIRST_CALM_DOWN;
 	
-	@ClientString(id = 1900249, message = "Shillien... Shillien isnt going to be resurrected...")
-	public static NpcStringId SHILLIEN_SHILLIEN_ISNT_GOING_TO_BE_RESURRECTED;
+	@ClientString(id = 1900249, message = "Shillien... Shillien isn't going to be resurrected...")
+	public static NpcStringId SHILLIEN_SHILLIEN_ISN_T_GOING_TO_BE_RESURRECTED;
 	
 	@ClientString(id = 1900250, message = "Sigh.. First... I will start with purification process.")
 	public static NpcStringId SIGH_FIRST_I_WILL_START_WITH_PURIFICATION_PROCESS;
@@ -38935,7 +39361,7 @@ public class NpcStringId
 	@ClientString(id = 2000031, message = "It seems your fate ends here.")
 	public static NpcStringId IT_SEEMS_YOUR_FATE_ENDS_HERE;
 	
-	@ClientString(id = 2000032, message = "You're an interesting one I can feel the power of the giants from you, and you're not even a giant!")
+	@ClientString(id = 2000032, message = "You're an interesting one... I can feel the power of the giants from you, and you're not even a giant!")
 	public static NpcStringId YOU_RE_AN_INTERESTING_ONE_I_CAN_FEEL_THE_POWER_OF_THE_GIANTS_FROM_YOU_AND_YOU_RE_NOT_EVEN_A_GIANT;
 	
 	@ClientString(id = 2000033, message = "Display your dominance over either Kajin or Beryn,#and the other one will submit to you.")
@@ -38953,19 +39379,19 @@ public class NpcStringId
 	@ClientString(id = 2000037, message = "Back in those days, nobodies like you wouldn't have stood a chance against the likes of me.")
 	public static NpcStringId BACK_IN_THOSE_DAYS_NOBODIES_LIKE_YOU_WOULDN_T_HAVE_STOOD_A_CHANCE_AGAINST_THE_LIKES_OF_ME;
 	
-	@ClientString(id = 2000038, message = "Well, all that came to an end when Ye Sagira crashed onto the Talking Island because of Shillien's resurrection, so it's all done and past, I guess")
+	@ClientString(id = 2000038, message = "Well, all that came to an end when Ye Sagira crashed onto the Talking Island because of Shillien's resurrection, so it's all done and past, I guess...")
 	public static NpcStringId WELL_ALL_THAT_CAME_TO_AN_END_WHEN_YE_SAGIRA_CRASHED_ONTO_THE_TALKING_ISLAND_BECAUSE_OF_SHILLIEN_S_RESURRECTION_SO_IT_S_ALL_DONE_AND_PAST_I_GUESS;
 	
 	@ClientString(id = 2000039, message = "If it hadn't been for that, this island would have stayed under my great rule.")
 	public static NpcStringId IF_IT_HADN_T_BEEN_FOR_THAT_THIS_ISLAND_WOULD_HAVE_STAYED_UNDER_MY_GREAT_RULE;
 	
-	@ClientString(id = 2000040, message = "Ah, the good old days")
+	@ClientString(id = 2000040, message = "Ah, the good old days...")
 	public static NpcStringId AH_THE_GOOD_OLD_DAYS;
 	
 	@ClientString(id = 2000041, message = "What, still here? You were actually listening?")
 	public static NpcStringId WHAT_STILL_HERE_YOU_WERE_ACTUALLY_LISTENING;
 	
-	@ClientString(id = 2000042, message = "Ahem, eh, well, thanks")
+	@ClientString(id = 2000042, message = "Ahem, eh, well, thanks...")
 	public static NpcStringId AHEM_EH_WELL_THANKS;
 	
 	@ClientString(id = 2000043, message = "Well, since you stayed to hear my story, I can't let you leave empty-handed now, can I?")
@@ -38977,7 +39403,7 @@ public class NpcStringId
 	@ClientString(id = 2000045, message = "It's in your pouch, so use it well, you hear?")
 	public static NpcStringId IT_S_IN_YOUR_POUCH_SO_USE_IT_WELL_YOU_HEAR;
 	
-	@ClientString(id = 2000046, message = "Man, I'm tired I forgot how much talking can wear you out!")
+	@ClientString(id = 2000046, message = "Man, I'm tired... I forgot how much talking can wear you out!")
 	public static NpcStringId MAN_I_M_TIRED_I_FORGOT_HOW_MUCH_TALKING_CAN_WEAR_YOU_OUT;
 	
 	@ClientString(id = 2000047, message = "Only one ruler left! Let's finish this up!")
@@ -38986,7 +39412,7 @@ public class NpcStringId
 	@ClientString(id = 2000048, message = "Everyone watch out for ice shards when debuffing.")
 	public static NpcStringId EVERYONE_WATCH_OUT_FOR_ICE_SHARDS_WHEN_DEBUFFING;
 	
-	@ClientString(id = 2000049, message = "So sleepy better finish this fast so I can go sleep!")
+	@ClientString(id = 2000049, message = "So sleepy... better finish this fast so I can go sleep!")
 	public static NpcStringId SO_SLEEPY_BETTER_FINISH_THIS_FAST_SO_I_CAN_GO_SLEEP;
 	
 	@ClientString(id = 2000050, message = "Now, don't make yourself look stupid. Finish it clean.")
@@ -39064,8 +39490,8 @@ public class NpcStringId
 	@ClientString(id = 2000074, message = "I think this is as far as I can go in helping you, $s1. I will bow out now.")
 	public static NpcStringId I_THINK_THIS_IS_AS_FAR_AS_I_CAN_GO_IN_HELPING_YOU_S1_I_WILL_BOW_OUT_NOW;
 	
-	@ClientString(id = 2000075, message = "I want a slushieoh, if only I could have a slushiehey, if you bring me 10 of each ingredient, I'll make you a Summer Slushie!")
-	public static NpcStringId I_WANT_A_SLUSHIEOH_IF_ONLY_I_COULD_HAVE_A_SLUSHIEHEY_IF_YOU_BRING_ME_10_OF_EACH_INGREDIENT_I_LL_MAKE_YOU_A_SUMMER_SLUSHIE;
+	@ClientString(id = 2000075, message = "I want a slushie...oh, if only I could have a slushie...hey, if you bring me 10 of each ingredient, I'll make you a Summer Slushie!")
+	public static NpcStringId I_WANT_A_SLUSHIE_OH_IF_ONLY_I_COULD_HAVE_A_SLUSHIE_HEY_IF_YOU_BRING_ME_10_OF_EACH_INGREDIENT_I_LL_MAKE_YOU_A_SUMMER_SLUSHIE;
 	
 	@ClientString(id = 2000076, message = "I'll give you a Boss Accessory Pack if you bring me 15 Summer Slushies!")
 	public static NpcStringId I_LL_GIVE_YOU_A_BOSS_ACCESSORY_PACK_IF_YOU_BRING_ME_15_SUMMER_SLUSHIES;
@@ -39076,28 +39502,28 @@ public class NpcStringId
 	@ClientString(id = 2000078, message = "Thanks! I'll be counting on you next time too!")
 	public static NpcStringId THANKS_I_LL_BE_COUNTING_ON_YOU_NEXT_TIME_TOO;
 	
-	@ClientString(id = 2000079, message = "Oh come on you have to bring me the right materials!")
+	@ClientString(id = 2000079, message = "Oh come on... you have to bring me the right materials!")
 	public static NpcStringId OH_COME_ON_YOU_HAVE_TO_BRING_ME_THE_RIGHT_MATERIALS;
 	
 	@ClientString(id = 2000080, message = "Aghh! Zombies! Zombies!")
 	public static NpcStringId AGHH_ZOMBIES_ZOMBIES;
 	
-	@ClientString(id = 2000081, message = "Ughplease, someone get rid of these zombies")
-	public static NpcStringId UGHPLEASE_SOMEONE_GET_RID_OF_THESE_ZOMBIES;
+	@ClientString(id = 2000081, message = "Ugh...please, someone get rid of these zombies...")
+	public static NpcStringId UGH_PLEASE_SOMEONE_GET_RID_OF_THESE_ZOMBIES;
 	
-	@ClientString(id = 2000082, message = "I've been bitten by a zombiesomeone help me")
-	public static NpcStringId I_VE_BEEN_BITTEN_BY_A_ZOMBIESOMEONE_HELP_ME;
+	@ClientString(id = 2000082, message = "I've been bitten by a zombie...someone help me...")
+	public static NpcStringId I_VE_BEEN_BITTEN_BY_A_ZOMBIE_SOMEONE_HELP_ME;
 	
 	@ClientString(id = 2000083, message = "Is there no hero that can save us?")
 	public static NpcStringId IS_THERE_NO_HERO_THAT_CAN_SAVE_US;
 	
-	@ClientString(id = 2000084, message = "Einhasad, dear goddessplease save us")
-	public static NpcStringId EINHASAD_DEAR_GODDESSPLEASE_SAVE_US;
+	@ClientString(id = 2000084, message = "Einhasad, dear goddess...please save us...")
+	public static NpcStringId EINHASAD_DEAR_GODDESS_PLEASE_SAVE_US;
 	
 	@ClientString(id = 2000085, message = "We have to protect the Crystal of Protection if we want to stop these blasted zombies.")
 	public static NpcStringId WE_HAVE_TO_PROTECT_THE_CRYSTAL_OF_PROTECTION_IF_WE_WANT_TO_STOP_THESE_BLASTED_ZOMBIES;
 	
-	@ClientString(id = 2000086, message = "Filthy creatures of Shillien The town will fall into chaos if we don't stop the zombies.")
+	@ClientString(id = 2000086, message = "Filthy creatures of Shillien... The town will fall into chaos if we don't stop the zombies.")
 	public static NpcStringId FILTHY_CREATURES_OF_SHILLIEN_THE_TOWN_WILL_FALL_INTO_CHAOS_IF_WE_DON_T_STOP_THE_ZOMBIES;
 	
 	@ClientString(id = 2000087, message = "I can't partake in the battle because I have to defend the Crystal of Protection. Please, someone stop these zombies.")
@@ -39121,8 +39547,8 @@ public class NpcStringId
 	@ClientString(id = 2000093, message = "I will make you invincible with the power of this plague.")
 	public static NpcStringId I_WILL_MAKE_YOU_INVINCIBLE_WITH_THE_POWER_OF_THIS_PLAGUE;
 	
-	@ClientString(id = 2000094, message = "Humansso complacent and weak after years of peace. How about I let you spread the fear of pestilence unto them?")
-	public static NpcStringId HUMANSSO_COMPLACENT_AND_WEAK_AFTER_YEARS_OF_PEACE_HOW_ABOUT_I_LET_YOU_SPREAD_THE_FEAR_OF_PESTILENCE_UNTO_THEM;
+	@ClientString(id = 2000094, message = "Humans...so complacent and weak after years of peace. How about I let you spread the fear of pestilence unto them?")
+	public static NpcStringId HUMANS_SO_COMPLACENT_AND_WEAK_AFTER_YEARS_OF_PEACE_HOW_ABOUT_I_LET_YOU_SPREAD_THE_FEAR_OF_PESTILENCE_UNTO_THEM;
 	
 	@ClientString(id = 2000095, message = "For the prosperity of my people, I will use my power on Jermann and Jermann only. I cannot overpower my own people.")
 	public static NpcStringId FOR_THE_PROSPERITY_OF_MY_PEOPLE_I_WILL_USE_MY_POWER_ON_JERMANN_AND_JERMANN_ONLY_I_CANNOT_OVERPOWER_MY_OWN_PEOPLE;
@@ -39211,8 +39637,8 @@ public class NpcStringId
 	@ClientString(id = 2000123, message = "You know what kind of guests are coming to the show today, don't you? Get your acts together!")
 	public static NpcStringId YOU_KNOW_WHAT_KIND_OF_GUESTS_ARE_COMING_TO_THE_SHOW_TODAY_DON_T_YOU_GET_YOUR_ACTS_TOGETHER;
 	
-	@ClientString(id = 2000124, message = "II wanna go home")
-	public static NpcStringId II_WANNA_GO_HOME;
+	@ClientString(id = 2000124, message = "I...I wanna go home...")
+	public static NpcStringId I_I_WANNA_GO_HOME;
 	
 	@ClientString(id = 2000125, message = "Show start! Come on, snap snap!")
 	public static NpcStringId SHOW_START_COME_ON_SNAP_SNAP;
@@ -39241,13 +39667,13 @@ public class NpcStringId
 	@ClientString(id = 2000133, message = "This closes tonight's fashion show, ladies and gentlemen! Come again tomorrow!")
 	public static NpcStringId THIS_CLOSES_TONIGHT_S_FASHION_SHOW_LADIES_AND_GENTLEMEN_COME_AGAIN_TOMORROW;
 	
-	@ClientString(id = 2000134, message = "Umlike this?")
-	public static NpcStringId UMLIKE_THIS;
+	@ClientString(id = 2000134, message = "Um...like this?")
+	public static NpcStringId UM_LIKE_THIS;
 	
 	@ClientString(id = 2000135, message = "Ok, let me try that again.")
 	public static NpcStringId OK_LET_ME_TRY_THAT_AGAIN;
 	
-	@ClientString(id = 2000136, message = "I think I'm getting the hang of it")
+	@ClientString(id = 2000136, message = "I think I'm getting the hang of it...")
 	public static NpcStringId I_THINK_I_M_GETTING_THE_HANG_OF_IT;
 	
 	@ClientString(id = 2000137, message = "Drat, not again.")
@@ -39328,13 +39754,13 @@ public class NpcStringId
 	@ClientString(id = 2000162, message = "Get away from Master Uthanka, now!")
 	public static NpcStringId GET_AWAY_FROM_MASTER_UTHANKA_NOW;
 	
-	@ClientString(id = 2000163, message = "Master Uthanka")
-	public static NpcStringId MASTER_UTHANKA;
+	@ClientString(id = 2000163, message = "Mas...ter... Uthan...ka...")
+	public static NpcStringId MAS_TER_UTHAN_KA;
 	
-	@ClientString(id = 2000164, message = "$s1 is inflicted with the Blood Seal. Only $s1 can face Bloody Katura for the next 30 seconds.")
-	public static NpcStringId S1_IS_INFLICTED_WITH_THE_BLOOD_SEAL_ONLY_S1_CAN_FACE_BLOODY_KATURA_FOR_THE_NEXT_30_SECONDS;
+	@ClientString(id = 2000164, message = "$s1 is inflicted with the Blood Seal. Now $s1 have 30 seconds to face Bloody Katura.")
+	public static NpcStringId S1_IS_INFLICTED_WITH_THE_BLOOD_SEAL_NOW_S1_HAVE_30_SECONDS_TO_FACE_BLOODY_KATURA;
 	
-	@ClientString(id = 2000165, message = "Katura Queen is summoning minions")
+	@ClientString(id = 2000165, message = "Katura Queen is summoning minions...")
 	public static NpcStringId KATURA_QUEEN_IS_SUMMONING_MINIONS;
 	
 	@ClientString(id = 2000166, message = "Katura Queen is in defensive mode. Now is your chance to inflict additional damage!")
@@ -39355,7 +39781,7 @@ public class NpcStringId
 	@ClientString(id = 2000171, message = "Lunatic Lord is in defensive mode. Now is your chance to inflict additional damage!")
 	public static NpcStringId LUNATIC_LORD_IS_IN_DEFENSIVE_MODE_NOW_IS_YOUR_CHANCE_TO_INFLICT_ADDITIONAL_DAMAGE;
 	
-	@ClientString(id = 2000172, message = "Lunatic Lord is summoning minions")
+	@ClientString(id = 2000172, message = "Lunatic Lord is summoning minions...")
 	public static NpcStringId LUNATIC_LORD_IS_SUMMONING_MINIONS;
 	
 	@ClientString(id = 2000173, message = "Lunatic Lord is weakened by the simultaneous death of his minions.")
@@ -39433,8 +39859,8 @@ public class NpcStringId
 	@ClientString(id = 2000197, message = "You have failed to defeat Bloody Katura before it was absorbed by Katura Queen for HP.")
 	public static NpcStringId YOU_HAVE_FAILED_TO_DEFEAT_BLOODY_KATURA_BEFORE_IT_WAS_ABSORBED_BY_KATURA_QUEEN_FOR_HP;
 	
-	@ClientString(id = 2000198, message = "$s1 has won the main event for players under Lv. $s2, and earned $s3 points!")
-	public static NpcStringId S1_HAS_WON_THE_MAIN_EVENT_FOR_PLAYERS_UNDER_LV_S2_AND_EARNED_S3_POINTS;
+	@ClientString(id = 2000198, message = "$s1 has won in the Festival for players below Lv. $s2 and gained $s3 points.")
+	public static NpcStringId S1_HAS_WON_IN_THE_FESTIVAL_FOR_PLAYERS_BELOW_LV_S2_AND_GAINED_S3_POINTS;
 	
 	@ClientString(id = 2000199, message = "$s1 has earned $s2 points in the main event for unlimited levels.")
 	public static NpcStringId S1_HAS_EARNED_S2_POINTS_IN_THE_MAIN_EVENT_FOR_UNLIMITED_LEVELS;
@@ -39547,11 +39973,11 @@ public class NpcStringId
 	@ClientString(id = 2010031, message = "Go Advance!")
 	public static NpcStringId GO_ADVANCE;
 	
-	@ClientString(id = 2010032, message = "All Attack!")
-	public static NpcStringId ALL_ATTACK;
+	@ClientString(id = 2010032, message = "Charge!")
+	public static NpcStringId CHARGE_4;
 	
 	@ClientString(id = 2010033, message = "Come on!")
-	public static NpcStringId COME_ON_7;
+	public static NpcStringId COME_ON_8;
 	
 	@ClientString(id = 2010034, message = "For the Freedom!")
 	public static NpcStringId FOR_THE_FREEDOM;
@@ -39844,8 +40270,8 @@ public class NpcStringId
 	@ClientString(id = 3000103, message = "Only the Magic Fan skill will incite the flames.")
 	public static NpcStringId ONLY_THE_MAGIC_FAN_SKILL_WILL_INCITE_THE_FLAMES;
 	
-	@ClientString(id = 3000104, message = "Lets work together, friend!")
-	public static NpcStringId LETS_WORK_TOGETHER_FRIEND;
+	@ClientString(id = 3000104, message = "Let's work together, friend!")
+	public static NpcStringId LET_S_WORK_TOGETHER_FRIEND;
 	
 	@ClientString(id = 3000105, message = "The Magic Fan has 2 skills.")
 	public static NpcStringId THE_MAGIC_FAN_HAS_2_SKILLS;
@@ -39904,8 +40330,8 @@ public class NpcStringId
 	@ClientString(id = 3000123, message = "Oh, I see, you're grilled!")
 	public static NpcStringId OH_I_SEE_YOU_RE_GRILLED_2;
 	
-	@ClientString(id = 3000124, message = "Dont forget our bright flames!")
-	public static NpcStringId DONT_FORGET_OUR_BRIGHT_FLAMES;
+	@ClientString(id = 3000124, message = "Don't forget our bright flames!")
+	public static NpcStringId DON_T_FORGET_OUR_BRIGHT_FLAMES;
 	
 	@ClientString(id = 3000125, message = "The Flame Festival has begun!")
 	public static NpcStringId THE_FLAME_FESTIVAL_HAS_BEGUN;
@@ -40038,6 +40464,9 @@ public class NpcStringId
 	
 	@ClientString(id = 3000333, message = "LEGENDARYPLAY")
 	public static NpcStringId LEGENDARYPLAY;
+	
+	@ClientString(id = 4000000, message = "Thanks to $s1's luck, everybody gets Nana's Colorful Healing Heart Lv. 3 buff! Congratulations!")
+	public static NpcStringId THANKS_TO_S1_S_LUCK_EVERYBODY_GETS_NANA_S_COLORFUL_HEALING_HEART_LV_3_BUFF_CONGRATULATIONS;
 	
 	@ClientString(id = 8888001, message = "Intruder. The gate will soon be closed.")
 	public static NpcStringId INTRUDER_THE_GATE_WILL_SOON_BE_CLOSED;
@@ -40324,7 +40753,7 @@ public class NpcStringId
 	@ClientString(id = 10338006, message = "Free me from this binding of light!")
 	public static NpcStringId FREE_ME_FROM_THIS_BINDING_OF_LIGHT;
 	
-	@ClientString(id = 10338007, message = "Destroy the Ghost of Harnak this corrupted creature.")
+	@ClientString(id = 10338007, message = "Destroy the Ghost of Harnak... this corrupted creature.")
 	public static NpcStringId DESTROY_THE_GHOST_OF_HARNAK_THIS_CORRUPTED_CREATURE;
 	
 	@ClientString(id = 10338008, message = "Free me... And I promise you the power of Giants!")
@@ -40336,10 +40765,10 @@ public class NpcStringId
 	@ClientString(id = 10338010, message = "You may use Scroll of Afterlife from Hermuncus to Awaken.")
 	public static NpcStringId YOU_MAY_USE_SCROLL_OF_AFTERLIFE_FROM_HERMUNCUS_TO_AWAKEN;
 	
-	@ClientString(id = 10338011, message = "An intruder interesting.")
+	@ClientString(id = 10338011, message = "An intruder... interesting.")
 	public static NpcStringId AN_INTRUDER_INTERESTING;
 	
-	@ClientString(id = 10338012, message = "Prove your worth")
+	@ClientString(id = 10338012, message = "Prove your worth...")
 	public static NpcStringId PROVE_YOUR_WORTH;
 	
 	@ClientString(id = 10338013, message = "Only those strong enough shall proceed.")
@@ -40357,7 +40786,7 @@ public class NpcStringId
 	@ClientString(id = 10338017, message = "It's the end for you traitor!")
 	public static NpcStringId IT_S_THE_END_FOR_YOU_TRAITOR;
 	
-	@ClientString(id = 10338018, message = "Haha")
+	@ClientString(id = 10338018, message = "Haha...")
 	public static NpcStringId HAHA;
 	
 	@ClientString(id = 10338019, message = "I want to hear you cry.")
@@ -40375,7 +40804,7 @@ public class NpcStringId
 	@ClientString(id = 10338023, message = "You'll have to kill us first!")
 	public static NpcStringId YOU_LL_HAVE_TO_KILL_US_FIRST;
 	
-	@ClientString(id = 10338024, message = "Trying to free Hermuncus")
+	@ClientString(id = 10338024, message = "Trying to free Hermuncus...")
 	public static NpcStringId TRYING_TO_FREE_HERMUNCUS;
 	
 	@ClientString(id = 10338025, message = "Repent and your death will be quick!")
@@ -40393,10 +40822,10 @@ public class NpcStringId
 	@ClientString(id = 10338029, message = "You are not light. You may not pass.")
 	public static NpcStringId YOU_ARE_NOT_LIGHT_YOU_MAY_NOT_PASS;
 	
-	@ClientString(id = 10338030, message = "Prove your worth")
+	@ClientString(id = 10338030, message = "Prove your worth...")
 	public static NpcStringId PROVE_YOUR_WORTH_2;
 	
-	@ClientString(id = 10338031, message = "Are you strong or weak... Of the Light or darkness")
+	@ClientString(id = 10338031, message = "Are you strong or weak... Of the Light or darkness...")
 	public static NpcStringId ARE_YOU_STRONG_OR_WEAK_OF_THE_LIGHT_OR_DARKNESS;
 	
 	@ClientString(id = 10338032, message = "Only those of light may pass. Others must prove their strength.")
@@ -40423,7 +40852,7 @@ public class NpcStringId
 	@ClientString(id = 11021701, message = "I saw they use not only Hermuncus' Minion teleports but Sayune too.")
 	public static NpcStringId I_SAW_THEY_USE_NOT_ONLY_HERMUNCUS_MINION_TELEPORTS_BUT_SAYUNE_TOO;
 	
-	@ClientString(id = 11021702, message = "It's because they have become Awaken the power of the Giant's.")
+	@ClientString(id = 11021702, message = "It's because they have become Awaken... the power of the Giant's.")
 	public static NpcStringId IT_S_BECAUSE_THEY_HAVE_BECOME_AWAKEN_THE_POWER_OF_THE_GIANT_S;
 	
 	@ClientString(id = 11021703, message = "Duh, you can't use Sayune without powers of Giants in the first place.")
@@ -40820,7 +41249,7 @@ public class NpcStringId
 	public static NpcStringId DO_YOUR_BEST_FOR_THOSE_WHO_DIED_FOR_US;
 	
 	@ClientString(id = 17178324, message = "Charge!!!!")
-	public static NpcStringId CHARGE_3;
+	public static NpcStringId CHARGE_5;
 	
 	@ClientString(id = 17178325, message = "Damn it! Will we end up dead here...")
 	public static NpcStringId DAMN_IT_WILL_WE_END_UP_DEAD_HERE;
@@ -40897,7 +41326,7 @@ public class NpcStringId
 	@ClientString(id = 17178349, message = "Urgh...")
 	public static NpcStringId URGH_3;
 	
-	@ClientString(id = 17178350, message = "Ahhk")
+	@ClientString(id = 17178350, message = "Ahhk...")
 	public static NpcStringId AHHK_2;
 	
 	@ClientString(id = 17178351, message = "Darn it!! Dying here like this!!!!")
@@ -40954,7 +41383,7 @@ public class NpcStringId
 	@ClientString(id = 44440007, message = "I'm su.. suffering...")
 	public static NpcStringId I_M_SU_SUFFERING;
 	
-	@ClientString(id = 44440008, message = "No more.")
+	@ClientString(id = 44440008, message = "No more....")
 	public static NpcStringId NO_MORE;
 	
 	@ClientString(id = 44440009, message = "Attracted to $s1")
@@ -41071,13 +41500,13 @@ public class NpcStringId
 	@ClientString(id = 901900140, message = "Lukpie~! I want to eat Adena... Give me Adena!")
 	public static NpcStringId LUKPIE_I_WANT_TO_EAT_ADENA_GIVE_ME_ADENA;
 	
-	@ClientString(id = 901900141, message = "Lukpie~! If I eat too much Adena, my wings disappear")
+	@ClientString(id = 901900141, message = "Lukpie~! If I eat too much Adena, my wings disappear...")
 	public static NpcStringId LUKPIE_IF_I_EAT_TOO_MUCH_ADENA_MY_WINGS_DISAPPEAR;
 	
 	@ClientString(id = 901900142, message = "Yummy. Thanks! Lukpie~!")
 	public static NpcStringId YUMMY_THANKS_LUKPIE;
 	
-	@ClientString(id = 901900143, message = "Grrrr... Yuck")
+	@ClientString(id = 901900143, message = "Grrrr... Yuck...")
 	public static NpcStringId GRRRR_YUCK;
 	
 	@ClientString(id = 901900144, message = "Lukpie~! Adena is so good! My body is getting bigger!")
@@ -41110,7 +41539,7 @@ public class NpcStringId
 	@ClientString(id = 901900153, message = "Oh goddess of destruction, forgive us...")
 	public static NpcStringId OH_GODDESS_OF_DESTRUCTION_FORGIVE_US;
 	
-	@ClientString(id = 901900154, message = "When the sky turns blood red and the earth begins to crumble from the darkness she will return.")
+	@ClientString(id = 901900154, message = "When the sky turns blood red and the earth begins to crumble... from the darkness... she will return.")
 	public static NpcStringId WHEN_THE_SKY_TURNS_BLOOD_RED_AND_THE_EARTH_BEGINS_TO_CRUMBLE_FROM_THE_DARKNESS_SHE_WILL_RETURN;
 	
 	@ClientString(id = 901900155, message = "Energy of earth is gathering near Antharas' legs.")
@@ -41149,8 +41578,8 @@ public class NpcStringId
 	@ClientString(id = 901900166, message = "Valakas raises its tail.")
 	public static NpcStringId VALAKAS_RAISES_ITS_TAIL;
 	
-	@ClientString(id = 901900167, message = "Valakas starts to absorb the flame energy.")
-	public static NpcStringId VALAKAS_STARTS_TO_ABSORB_THE_FLAME_ENERGY;
+	@ClientString(id = 901900167, message = "Valakas starts to absorb the fire energy.")
+	public static NpcStringId VALAKAS_STARTS_TO_ABSORB_THE_FIRE_ENERGY;
 	
 	@ClientString(id = 901900168, message = "Valakas looks to its left.")
 	public static NpcStringId VALAKAS_LOOKS_TO_ITS_LEFT;
@@ -41173,7 +41602,7 @@ public class NpcStringId
 	@ClientString(id = 901900174, message = "Praise the achievement of the heroes and receive Tersi's blessing!")
 	public static NpcStringId PRAISE_THE_ACHIEVEMENT_OF_THE_HEROES_AND_RECEIVE_TERSI_S_BLESSING_2;
 	
-	@ClientString(id = 901900175, message = "Ugh I think this is it for me")
+	@ClientString(id = 901900175, message = "Ugh... I think this is it for me...")
 	public static NpcStringId UGH_I_THINK_THIS_IS_IT_FOR_ME;
 	
 	@ClientString(id = 901900176, message = "Valakas forcefully recalls the summoner or the summoned pet.")

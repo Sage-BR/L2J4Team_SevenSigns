@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,7 +19,9 @@ package org.l2j.gameserver.network.serverpackets.raidbossinfo;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.enums.RaidBossStatus;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 import org.l2j.gameserver.network.serverpackets.ServerPacket;
 
@@ -37,16 +39,16 @@ public class ExRaidBossSpawnInfo extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_RAID_BOSS_SPAWN_INFO.writeId(this);
-		writeInt(0); // BossRespawnFactor
-		writeInt(_statuses.size()); // count
+		ServerPackets.EX_RAID_BOSS_SPAWN_INFO.writeId(this, buffer);
+		buffer.writeInt(0); // BossRespawnFactor
+		buffer.writeInt(_statuses.size()); // count
 		for (Entry<Integer, RaidBossStatus> entry : _statuses.entrySet())
 		{
-			writeInt(entry.getKey());
-			writeInt(entry.getValue().ordinal());
-			writeInt(0); // DeadDateTime
+			buffer.writeInt(entry.getKey());
+			buffer.writeInt(entry.getValue().ordinal());
+			buffer.writeInt(0); // DeadDateTime
 		}
 	}
 }

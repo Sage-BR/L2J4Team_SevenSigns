@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,19 +22,15 @@ import java.util.logging.Logger;
 
 import javax.crypto.Cipher;
 
-import org.l2j.commons.network.WritablePacket;
+import org.l2j.commons.network.base.BaseWritablePacket;
 
 /**
  * @author -Wooden-
  */
-public class BlowFishKey extends WritablePacket
+public class BlowFishKey extends BaseWritablePacket
 {
 	private static final Logger LOGGER = Logger.getLogger(BlowFishKey.class.getName());
 	
-	/**
-	 * @param blowfishKey
-	 * @param publicKey
-	 */
 	public BlowFishKey(byte[] blowfishKey, RSAPublicKey publicKey)
 	{
 		writeByte(0x00);

@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,32 +16,30 @@
  */
 package org.l2j.gameserver.network.clientpackets.dailymission;
 
-import org.l2j.commons.network.ReadablePacket;
 import org.l2j.gameserver.model.actor.Player;
-import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.clientpackets.ClientPacket;
 import org.l2j.gameserver.network.serverpackets.dailymission.ExOneDayReceiveRewardList;
 
 /**
  * @author UnAfraid
  */
-public class RequestTodoList implements ClientPacket
+public class RequestTodoList extends ClientPacket
 {
 	private int _tab;
 	@SuppressWarnings("unused")
 	private boolean _showAllLevels;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_tab = packet.readByte(); // Daily Reward = 9, Event = 1, Instance Zone = 2
-		_showAllLevels = packet.readByte() == 1; // Disabled = 0, Enabled = 1
+		_tab = readByte(); // Daily Reward = 9, Event = 1, Instance Zone = 2
+		_showAllLevels = readByte() == 1; // Disabled = 0, Enabled = 1
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
-		final Player player = client.getPlayer();
+		final Player player = getPlayer();
 		if (player == null)
 		{
 			return;

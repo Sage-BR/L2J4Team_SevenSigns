@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -24,7 +24,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.l2j.Config;
-import org.l2j.commons.network.ReadablePacket;
 import org.l2j.gameserver.data.xml.ItemData;
 import org.l2j.gameserver.instancemanager.CastleManager;
 import org.l2j.gameserver.instancemanager.CastleManorManager;
@@ -35,7 +34,6 @@ import org.l2j.gameserver.model.actor.instance.Merchant;
 import org.l2j.gameserver.model.holders.ItemHolder;
 import org.l2j.gameserver.model.item.ItemTemplate;
 import org.l2j.gameserver.model.siege.Castle;
-import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.SystemMessageId;
 import org.l2j.gameserver.network.serverpackets.ActionFailed;
 import org.l2j.gameserver.network.serverpackets.SystemMessage;
@@ -44,18 +42,18 @@ import org.l2j.gameserver.util.Util;
 /**
  * @author l3x
  */
-public class RequestBuySeed implements ClientPacket
+public class RequestBuySeed extends ClientPacket
 {
 	private static final int BATCH_LENGTH = 12; // length of the one item
 	private int _manorId;
 	private List<ItemHolder> _items = null;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_manorId = packet.readInt();
-		final int count = packet.readInt();
-		if ((count <= 0) || (count > Config.MAX_ITEM_IN_PACKET) || ((count * BATCH_LENGTH) != packet.getRemainingLength()))
+		_manorId = readInt();
+		final int count = readInt();
+		if ((count <= 0) || (count > Config.MAX_ITEM_IN_PACKET) || ((count * BATCH_LENGTH) != remaining()))
 		{
 			return;
 		}
@@ -63,8 +61,8 @@ public class RequestBuySeed implements ClientPacket
 		_items = new ArrayList<>(count);
 		for (int i = 0; i < count; i++)
 		{
-			final int itemId = packet.readInt();
-			final long cnt = packet.readLong();
+			final int itemId = readInt();
+			final long cnt = readLong();
 			if ((cnt < 1) || (itemId < 1))
 			{
 				_items = null;
@@ -75,14 +73,14 @@ public class RequestBuySeed implements ClientPacket
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
-		final Player player = client.getPlayer();
+		final Player player = getPlayer();
 		if (player == null)
 		{
 			return;
 		}
-		else if (!client.getFloodProtectors().canPerformTransaction())
+		else if (!getClient().getFloodProtectors().canPerformTransaction())
 		{
 			player.sendMessage("You are buying seeds too fast!");
 			return;
@@ -192,7 +190,7 @@ public class RequestBuySeed implements ClientPacket
 		{
 			castle.addToTreasuryNoTax(totalPrice);
 			
-			final SystemMessage sm = new SystemMessage(SystemMessageId.S1_ADENA_DISAPPEARED);
+			final SystemMessage sm = new SystemMessage(SystemMessageId.YOU_HAVE_SPENT_S1_ADENA);
 			sm.addLong(totalPrice);
 			player.sendPacket(sm);
 			

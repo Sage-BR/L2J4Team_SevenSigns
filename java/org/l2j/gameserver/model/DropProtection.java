@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -54,7 +54,17 @@ public class DropProtection implements Runnable
 	
 	public synchronized boolean tryPickUp(Player actor)
 	{
-		if (!_isProtected || (_owner == actor) || ((_owner.getParty() != null) && (_owner.getParty() == actor.getParty())))
+		if (!_isProtected)
+		{
+			return true;
+		}
+		
+		if (_owner == actor)
+		{
+			return true;
+		}
+		
+		if ((_owner.getParty() != null) && (_owner.getParty() == actor.getParty()))
 		{
 			return true;
 		}

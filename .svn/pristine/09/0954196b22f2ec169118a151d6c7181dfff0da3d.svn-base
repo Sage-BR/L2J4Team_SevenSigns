@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/multisell.xsd">
+	<npcs>
+		<npc>-1</npc> <!-- Item Multisell -->
+	</npcs>
+	<!-- Augmenting Stone Coupon (Time-limited) - Sealed (98967) -->
+	<item>
+		<ingredient id="98967" count="1" /> <!-- Augmenting Stone Coupon (Time-limited) - Sealed -->
+		<production id="94210" count="1" /> <!-- Augmenting Stone: Weapon - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98967" count="1" /> <!-- Augmenting Stone Coupon (Time-limited) - Sealed -->
+		<production id="94212" count="2" /> <!-- Augmenting Stone: Armor - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98967" count="1" /> <!-- Augmenting Stone Coupon (Time-limited) - Sealed -->
+		<production id="94424" count="2" /> <!-- Augmenting Stone: Accessory - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98967" count="2" /> <!-- Augmenting Stone Coupon (Time-limited) - Sealed -->
+		<production id="97788" count="1" /> <!-- Augmenting Stone: Special Equipment - Sealed -->
+	</item>
+</list>

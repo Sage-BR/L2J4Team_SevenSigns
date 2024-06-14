@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -68,7 +68,7 @@ public class Speed extends AbstractEffect
 	@Override
 	public void pump(Creature effected, Skill skill)
 	{
-		if ((_condition == null) || _condition.test(effected, effected, skill))
+		if (_condition == null || _condition.test(effected, effected, skill))
 		{
 			switch (_mode)
 			{

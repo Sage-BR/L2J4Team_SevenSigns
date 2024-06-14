@@ -1,0 +1,6 @@
+<html><body>Additional Services' Advisor Juni:<br>
+It looks like you have an <font color="LEVEL">item equipped</font>!<br>
+To change class, you need to <font color="LEVEL">unequip all items</font>.<br>
+Tell me once you're ready. I'll send you to the Additional Services Lab. Talk to the Researcher Hermin there to change class.<br>
+<Button ALIGN="LEFT" ICON="NORMAL" action="bypass -h Quest AdditionalServicesAdvisor 34152-1.htm">Ask what is needed for changing class</button>
+</body></html>

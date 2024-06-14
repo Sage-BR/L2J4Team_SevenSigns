@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -52,7 +52,7 @@ public abstract class AbstractFunction
 	 */
 	private final Object _funcOwner;
 	/** Function may be disabled by attached condition. */
-	private final Condition _applayCond;
+	private final Condition _applyCond;
 	/** The value. */
 	private final double _value;
 	
@@ -62,24 +62,24 @@ public abstract class AbstractFunction
 	 * @param order the order
 	 * @param owner the owner
 	 * @param value the value
-	 * @param applayCond the apply condition
+	 * @param applyCond the apply condition
 	 */
-	public AbstractFunction(Stat stat, int order, Object owner, double value, Condition applayCond)
+	public AbstractFunction(Stat stat, int order, Object owner, double value, Condition applyCond)
 	{
 		_stat = stat;
 		_order = order;
 		_funcOwner = owner;
 		_value = value;
-		_applayCond = applayCond;
+		_applyCond = applyCond;
 	}
 	
 	/**
 	 * Gets the apply condition
 	 * @return the apply condition
 	 */
-	public Condition getApplayCond()
+	public Condition getApplyCond()
 	{
-		return _applayCond;
+		return _applyCond;
 	}
 	
 	/**

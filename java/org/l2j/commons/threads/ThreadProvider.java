@@ -21,7 +21,7 @@ public class ThreadProvider implements ThreadFactory
 	 */
 	public ThreadProvider(String prefix)
 	{
-		this(prefix, Thread.NORM_PRIORITY, false);
+		this(prefix, ThreadPriority.PRIORITY_5, false);
 	}
 	
 	/**
@@ -31,7 +31,7 @@ public class ThreadProvider implements ThreadFactory
 	 */
 	public ThreadProvider(String prefix, boolean daemon)
 	{
-		this(prefix, Thread.NORM_PRIORITY, daemon);
+		this(prefix, ThreadPriority.PRIORITY_5, daemon);
 	}
 	
 	/**
@@ -39,7 +39,7 @@ public class ThreadProvider implements ThreadFactory
 	 * @param prefix the prefix to be used for thread names
 	 * @param priority the priority of the threads
 	 */
-	public ThreadProvider(String prefix, int priority)
+	public ThreadProvider(String prefix, ThreadPriority priority)
 	{
 		this(prefix, priority, false);
 	}
@@ -50,10 +50,10 @@ public class ThreadProvider implements ThreadFactory
 	 * @param priority the priority of the threads
 	 * @param daemon whether the threads should be daemon threads
 	 */
-	public ThreadProvider(String prefix, int priority, boolean daemon)
+	public ThreadProvider(String prefix, ThreadPriority priority, boolean daemon)
 	{
 		_prefix = prefix + " ";
-		_priority = priority;
+		_priority = priority.getId();
 		_daemon = daemon;
 	}
 	

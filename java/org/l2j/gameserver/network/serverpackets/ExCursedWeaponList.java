@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,7 +18,9 @@ package org.l2j.gameserver.network.serverpackets;
 
 import java.util.Set;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.instancemanager.CursedWeaponsManager;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 
 /**
@@ -27,11 +29,11 @@ import org.l2j.gameserver.network.ServerPackets;
 public class ExCursedWeaponList extends ServerPacket
 {
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_CURSED_WEAPON_LIST.writeId(this);
+		ServerPackets.EX_CURSED_WEAPON_LIST.writeId(this, buffer);
 		final Set<Integer> ids = CursedWeaponsManager.getInstance().getCursedWeaponsIds();
-		writeInt(ids.size());
-		ids.forEach(this::writeInt);
+		buffer.writeInt(ids.size());
+		ids.forEach(buffer::writeInt);
 	}
 }

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- TODO: Remove "castle" attributes from here, it should be loaded from TaxZones -->
+<list enabled="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../xsd/MapRegion.xsd">
+	<region name="assassin_hideout" town="Assassin Hideout" castle="8" locId="13829" bbs="14">
+		<respawnPoint X="79026" Y="-82995" Z="-3649" />
+		<respawnPoint X="74639" Y="-85271" Z="-3479" isChaotic="true" />
+		<map X="22" Y="15" />
+	</region>
+</list>

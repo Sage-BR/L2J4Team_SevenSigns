@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,11 +16,9 @@
  */
 package org.l2j.gameserver.network.clientpackets;
 
-import org.l2j.commons.network.ReadablePacket;
 import org.l2j.gameserver.model.Party;
 import org.l2j.gameserver.model.World;
 import org.l2j.gameserver.model.actor.Player;
-import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.SystemMessageId;
 import org.l2j.gameserver.network.serverpackets.ExAskJoinMPCC;
 import org.l2j.gameserver.network.serverpackets.SystemMessage;
@@ -30,28 +28,32 @@ import org.l2j.gameserver.network.serverpackets.SystemMessage;
  * D0 0D 00 5A 00 77 00 65 00 72 00 67 00 00 00
  * @author chris_00
  */
-public class RequestExAskJoinMPCC implements ClientPacket
+public class RequestExAskJoinMPCC extends ClientPacket
 {
 	private String _name;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_name = packet.readString();
+		_name = readString();
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
-		final Player player = client.getPlayer();
+		final Player player = getPlayer();
 		if (player == null)
 		{
 			return;
 		}
 		
 		final Player target = World.getInstance().getPlayer(_name);
+		if (target == null)
+		{
+			return;
+		}
 		// invite yourself? ;)
-		if ((target == null) || (player.isInParty() && target.isInParty() && player.getParty().equals(target.getParty())))
+		if (player.isInParty() && target.isInParty() && player.getParty().equals(target.getParty()))
 		{
 			return;
 		}

@@ -1,0 +1,15 @@
+<html><body>Additional Services' Researcher Hermin:<br>
+Aha, a Man! So you want to be Human. Now choose <font color="LEVEL">class</font> for your character.<br>
+<Button ALIGN="LEFT" ICON="NORMAL" action="bypass -h Quest AdditionalServicesAdvisor choose_class 88"><font color="LEVEL">Duelist</font></button>
+<Button ALIGN="LEFT" ICON="NORMAL" action="bypass -h Quest AdditionalServicesAdvisor choose_class 89"><font color="LEVEL">Dreadnought</font></button>
+<Button ALIGN="LEFT" ICON="NORMAL" action="bypass -h Quest AdditionalServicesAdvisor choose_class 90"><font color="LEVEL">Phoenix Knight</font></button>
+<Button ALIGN="LEFT" ICON="NORMAL" action="bypass -h Quest AdditionalServicesAdvisor choose_class 91"><font color="LEVEL">Hell Knight</font></button>
+<Button ALIGN="LEFT" ICON="NORMAL" action="bypass -h Quest AdditionalServicesAdvisor choose_class 93"><font color="LEVEL">Adventurer</font></button>
+<Button ALIGN="LEFT" ICON="NORMAL" action="bypass -h Quest AdditionalServicesAdvisor choose_class 92"><font color="LEVEL">Sagittarius</font></button>
+<Button ALIGN="LEFT" ICON="NORMAL" action="bypass -h Quest AdditionalServicesAdvisor choose_class 94"><font color="LEVEL">Archmage</font></button>
+<Button ALIGN="LEFT" ICON="NORMAL" action="bypass -h Quest AdditionalServicesAdvisor choose_class 95"><font color="LEVEL">Soultaker</font></button>
+<Button ALIGN="LEFT" ICON="NORMAL" action="bypass -h Quest AdditionalServicesAdvisor choose_class 96"><font color="LEVEL">Arcana Lord</font></button>
+<Button ALIGN="LEFT" ICON="NORMAL" action="bypass -h Quest AdditionalServicesAdvisor choose_class 97"><font color="LEVEL">Cardinal</font></button>
+<Button ALIGN="LEFT" ICON="NORMAL" action="bypass -h Quest AdditionalServicesAdvisor choose_class 98"><font color="LEVEL">Hierophant</font></button>
+<Button ALIGN="LEFT" ICON="NORMAL" action="bypass -h Quest AdditionalServicesAdvisor choose_class 199"><font color="LEVEL">Death Knight (Human)</font></button>
+</body></html>

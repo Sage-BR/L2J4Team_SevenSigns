@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -55,42 +55,45 @@ public class ConditionUsingItemType extends Condition
 			return !_armor && ((_mask & effector.getAttackType().mask()) != 0);
 		}
 		
+		// If ConditionUsingItemType is one between Light, Heavy or Magic.
 		final Inventory inv = effector.getInventory();
-		// If ConditionUsingItemType is one between Light, Heavy or Magic
 		if (_armor)
 		{
-			// Get the itemMask of the weared chest (if exists)
+			// Get the itemMask of the weared chest (if exists).
 			final Item chest = inv.getPaperdollItem(Inventory.PAPERDOLL_CHEST);
 			if (chest == null)
 			{
 				return (ArmorType.NONE.mask() & _mask) == ArmorType.NONE.mask();
 			}
-			final int chestMask = chest.getTemplate().getItemMask();
 			
-			// If chest armor is different from the condition one return false
+			// If chest armor is different from the condition one return false.
+			final int chestMask = chest.getTemplate().getItemMask();
 			if ((_mask & chestMask) == 0)
 			{
 				return false;
 			}
 			
-			// So from here, chest armor matches conditions
+			// So from here, chest armor matches conditions.
 			
+			// Return true if chest armor is a Full Armor.
 			final long chestBodyPart = chest.getTemplate().getBodyPart();
-			// return True if chest armor is a Full Armor
 			if (chestBodyPart == ItemTemplate.SLOT_FULL_ARMOR)
 			{
 				return true;
 			}
-			// check legs armor
+			
+			// Check legs armor.
 			final Item legs = inv.getPaperdollItem(Inventory.PAPERDOLL_LEGS);
 			if (legs == null)
 			{
 				return (ArmorType.NONE.mask() & _mask) == ArmorType.NONE.mask();
 			}
+			
+			// Return true if legs armor matches too.
 			final int legMask = legs.getTemplate().getItemMask();
-			// return true if legs armor matches too
 			return (_mask & legMask) != 0;
 		}
+		
 		return (_mask & inv.getWearedMask()) != 0;
 	}
 }

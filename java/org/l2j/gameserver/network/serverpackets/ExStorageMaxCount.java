@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,9 +16,11 @@
  */
 package org.l2j.gameserver.network.serverpackets;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.Config;
 import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.model.stats.Stat;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 
 /**
@@ -57,26 +59,26 @@ public class ExStorageMaxCount extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
 		if (_player == null)
 		{
 			return;
 		}
 		
-		ServerPackets.EX_STORAGE_MAX_COUNT.writeId(this);
-		writeInt(_inventory);
-		writeInt(_warehouse);
-		// writeInt(_freight); // Removed with 152.
-		writeInt(_clan);
-		writeInt(_privateSell);
-		writeInt(_privateBuy);
-		writeInt(_receipeD);
-		writeInt(_recipe);
-		writeInt(_inventoryExtraSlots); // Belt inventory slots increase count
-		writeInt(_inventoryQuestItems);
-		writeInt(40); // TODO: Find me!
-		writeInt(40); // TODO: Find me!
-		writeInt(0x64); // Artifact slots (Fixed)
+		ServerPackets.EX_STORAGE_MAX_COUNT.writeId(this, buffer);
+		buffer.writeInt(_inventory);
+		buffer.writeInt(_warehouse);
+		// buffer.writeInt(_freight); // Removed with 152.
+		buffer.writeInt(_clan);
+		buffer.writeInt(_privateSell);
+		buffer.writeInt(_privateBuy);
+		buffer.writeInt(_receipeD);
+		buffer.writeInt(_recipe);
+		buffer.writeInt(_inventoryExtraSlots); // Belt inventory slots increase count
+		buffer.writeInt(_inventoryQuestItems);
+		buffer.writeInt(40); // TODO: Find me!
+		buffer.writeInt(40); // TODO: Find me!
+		buffer.writeInt(0x64); // Artifact slots (Fixed)
 	}
 }

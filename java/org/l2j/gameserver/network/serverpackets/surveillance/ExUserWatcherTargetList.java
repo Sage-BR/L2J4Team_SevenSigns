@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,9 +19,11 @@ package org.l2j.gameserver.network.serverpackets.surveillance;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.data.sql.CharInfoTable;
 import org.l2j.gameserver.model.World;
 import org.l2j.gameserver.model.actor.Player;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 import org.l2j.gameserver.network.serverpackets.ServerPacket;
 
@@ -57,17 +59,17 @@ public class ExUserWatcherTargetList extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_USER_WATCHER_TARGET_LIST.writeId(this);
-		writeInt(_info.size());
+		ServerPackets.EX_USER_WATCHER_TARGET_LIST.writeId(this, buffer);
+		buffer.writeInt(_info.size());
 		for (TargetInfo info : _info)
 		{
-			writeSizedString(info._name);
-			writeInt(0); // client.getProxyServerId()
-			writeInt(info._level);
-			writeInt(info._classId);
-			writeByte(info._online ? 1 : 0);
+			buffer.writeSizedString(info._name);
+			buffer.writeInt(0); // client.getProxyServerId()
+			buffer.writeInt(info._level);
+			buffer.writeInt(info._classId);
+			buffer.writeByte(info._online ? 1 : 0);
 		}
 	}
 	

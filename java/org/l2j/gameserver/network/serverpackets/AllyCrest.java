@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,8 +16,10 @@
  */
 package org.l2j.gameserver.network.serverpackets;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.data.sql.CrestTable;
 import org.l2j.gameserver.model.Crest;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 
 public class AllyCrest extends ServerPacket
@@ -42,20 +44,20 @@ public class AllyCrest extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.ALLIANCE_CREST.writeId(this);
-		writeInt(_crestId);
-		writeInt(_clanId);
+		ServerPackets.ALLIANCE_CREST.writeId(this, buffer);
+		buffer.writeInt(_crestId);
+		buffer.writeInt(_clanId);
 		if (_data != null)
 		{
-			writeInt(_data.length);
-			writeInt(_data.length);
-			writeBytes(_data);
+			buffer.writeInt(_data.length);
+			buffer.writeInt(_data.length);
+			buffer.writeBytes(_data);
 		}
 		else
 		{
-			writeInt(0);
+			buffer.writeInt(0);
 		}
 	}
 }

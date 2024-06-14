@@ -1,0 +1,9 @@
+<html><body>Castle Teleport Device:<br>
+Appearance of the Enraged Kelbim.<br>
+Movement to the roof of Kelbim's Fortress is available.<br1>
+The cost of teleportation increases depending on the level of the Teleport Overload effect.<br>
+%cost%
+<Button ALIGN=LEFT ICON="TELEPORT" action="bypass -h Quest KelbimRaid teleport_to_0">Move to the left side of the roof</Button>
+<Button ALIGN=LEFT ICON="TELEPORT" action="bypass -h Quest KelbimRaid teleport_to_1">Move to the center of the roof</Button>
+<Button ALIGN=LEFT ICON="TELEPORT" action="bypass -h Quest KelbimRaid teleport_to_2">Move to the right side of the roof</Button>
+</body></html>

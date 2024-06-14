@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/multisell.xsd">
+	<npcs>
+		<npc>-1</npc> <!-- Item Multisell -->
+	</npcs>
+	<!-- Special Armor Coupon (Sealed) - Sealed (98814) -->
+	<item>
+		<ingredient id="98814" count="2" /> <!-- Special Armor Coupon (Sealed) - Sealed -->
+		<production id="93141" count="1" /> <!-- Ice Crystal Breastplate - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98814" count="2" /> <!-- Special Armor Coupon (Sealed) - Sealed -->
+		<production id="93142" count="1" /> <!-- Ice Crystal Gaiters - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98814" count="2" /> <!-- Special Armor Coupon (Sealed) - Sealed -->
+		<production id="93317" count="1" /> <!-- Leather Armor of Lightning - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98814" count="2" /> <!-- Special Armor Coupon (Sealed) - Sealed -->
+		<production id="93318" count="1" /> <!-- Leather Leggings of Lightning - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98814" count="2" /> <!-- Special Armor Coupon (Sealed) - Sealed -->
+		<production id="93735" count="1" /> <!-- Flaming Tunic - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98814" count="2" /> <!-- Special Armor Coupon (Sealed) - Sealed -->
+		<production id="93736" count="1" /> <!-- Flaming Stockings - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98814" count="3" /> <!-- Special Armor Coupon (Sealed) - Sealed -->
+		<production id="94084" count="1" /> <!-- Helmet of Mana - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98814" count="3" /> <!-- Special Armor Coupon (Sealed) - Sealed -->
+		<production id="94264" count="1" /> <!-- Stun Gauntlets - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98814" count="3" /> <!-- Special Armor Coupon (Sealed) - Sealed -->
+		<production id="94086" count="1" /> <!-- Boots of Evasion - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98814" count="3" /> <!-- Special Armor Coupon (Sealed) - Sealed -->
+		<production id="93076" count="1" /> <!-- Gloves of Silence - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98814" count="4" /> <!-- Special Armor Coupon (Sealed) - Sealed -->
+		<production id="94300" count="1" /> <!-- Sigil of Inevitability - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98814" count="4" /> <!-- Special Armor Coupon (Sealed) - Sealed -->
+		<production id="94302" count="1" /> <!-- Shield of Vengeance - Sealed -->
+	</item>
+</list>

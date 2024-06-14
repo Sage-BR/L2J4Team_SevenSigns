@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,16 +16,14 @@
  */
 package org.l2j.gameserver.network.clientpackets;
 
-import org.l2j.commons.network.ReadablePacket;
 import org.l2j.gameserver.handler.AdminCommandHandler;
 import org.l2j.gameserver.model.actor.Player;
-import org.l2j.gameserver.network.GameClient;
 
 /**
  * This class handles all GM commands triggered by //command
  * @version $Revision: 1.3.4.2 $ $Date: 2005/03/27 15:29:29 $
  */
-public class SendBypassBuildCmd implements ClientPacket
+public class SendBypassBuildCmd extends ClientPacket
 {
 	public static final int GM_MESSAGE = 9;
 	public static final int ANNOUNCEMENT = 10;
@@ -33,9 +31,9 @@ public class SendBypassBuildCmd implements ClientPacket
 	private String _command;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_command = packet.readString();
+		_command = readString();
 		if (_command != null)
 		{
 			_command = _command.trim();
@@ -43,9 +41,9 @@ public class SendBypassBuildCmd implements ClientPacket
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
-		final Player player = client.getPlayer();
+		final Player player = getPlayer();
 		if (player == null)
 		{
 			return;

@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,36 +16,34 @@
  */
 package org.l2j.gameserver.network.clientpackets;
 
-import org.l2j.commons.network.ReadablePacket;
 import org.l2j.gameserver.data.xml.BeautyShopData;
 import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.model.beautyshop.BeautyData;
 import org.l2j.gameserver.model.beautyshop.BeautyItem;
-import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.serverpackets.ExResponseBeautyList;
 import org.l2j.gameserver.network.serverpackets.ExResponseBeautyRegistReset;
 
 /**
  * @author Sdw
  */
-public class RequestRegistBeauty implements ClientPacket
+public class RequestRegistBeauty extends ClientPacket
 {
 	private int _hairId;
 	private int _faceId;
 	private int _colorId;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_hairId = packet.readInt();
-		_faceId = packet.readInt();
-		_colorId = packet.readInt();
+		_hairId = readInt();
+		_faceId = readInt();
+		_colorId = readInt();
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
-		final Player player = client.getPlayer();
+		final Player player = getPlayer();
 		if (player == null)
 		{
 			return;
@@ -99,7 +97,14 @@ public class RequestRegistBeauty implements ClientPacket
 			requiredBeautyShopTicket += face.getBeautyShopTicket();
 		}
 		
-		if ((player.getAdena() < requiredAdena) || (player.getBeautyTickets() < requiredBeautyShopTicket) || ((requiredAdena > 0) && !player.reduceAdena(getClass().getSimpleName(), requiredAdena, null, true)))
+		if ((player.getAdena() < requiredAdena) || (player.getBeautyTickets() < requiredBeautyShopTicket))
+		{
+			player.sendPacket(new ExResponseBeautyRegistReset(player, ExResponseBeautyRegistReset.CHANGE, ExResponseBeautyRegistReset.FAILURE));
+			player.sendPacket(new ExResponseBeautyList(player, ExResponseBeautyList.SHOW_FACESHAPE));
+			return;
+		}
+		
+		if ((requiredAdena > 0) && !player.reduceAdena(getClass().getSimpleName(), requiredAdena, null, true))
 		{
 			player.sendPacket(new ExResponseBeautyRegistReset(player, ExResponseBeautyRegistReset.CHANGE, ExResponseBeautyRegistReset.FAILURE));
 			player.sendPacket(new ExResponseBeautyList(player, ExResponseBeautyList.SHOW_FACESHAPE));

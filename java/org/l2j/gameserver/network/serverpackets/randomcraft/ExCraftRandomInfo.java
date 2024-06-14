@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,8 +18,10 @@ package org.l2j.gameserver.network.serverpackets.randomcraft;
 
 import java.util.List;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.model.holders.RandomCraftRewardItemHolder;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 import org.l2j.gameserver.network.serverpackets.ServerPacket;
 
@@ -36,38 +38,38 @@ public class ExCraftRandomInfo extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_CRAFT_RANDOM_INFO.writeId(this);
+		ServerPackets.EX_CRAFT_RANDOM_INFO.writeId(this, buffer);
 		final List<RandomCraftRewardItemHolder> rewards = _player.getRandomCraft().getRewards();
 		int size = 5;
-		writeInt(size); // size
+		buffer.writeInt(size); // size
 		for (int i = 0; i < rewards.size(); i++)
 		{
 			final RandomCraftRewardItemHolder holder = rewards.get(i);
 			if ((holder != null) && (holder.getItemId() != 0))
 			{
-				writeByte(holder.isLocked()); // Locked
-				writeInt(holder.getLockLeft()); // Rolls it will stay locked
-				writeInt(holder.getItemId()); // Item id
-				writeLong(holder.getItemCount()); // Item count
+				buffer.writeByte(holder.isLocked()); // Locked
+				buffer.writeInt(holder.getLockLeft()); // Rolls it will stay locked
+				buffer.writeInt(holder.getItemId()); // Item id
+				buffer.writeLong(holder.getItemCount()); // Item count
 			}
 			else
 			{
-				writeByte(0);
-				writeInt(0);
-				writeInt(0);
-				writeLong(0);
+				buffer.writeByte(0);
+				buffer.writeInt(0);
+				buffer.writeInt(0);
+				buffer.writeLong(0);
 			}
 			size--;
 		}
 		// Write missing
 		for (int i = size; i > 0; i--)
 		{
-			writeByte(0);
-			writeInt(0);
-			writeInt(0);
-			writeLong(0);
+			buffer.writeByte(0);
+			buffer.writeInt(0);
+			buffer.writeInt(0);
+			buffer.writeLong(0);
 		}
 	}
 }

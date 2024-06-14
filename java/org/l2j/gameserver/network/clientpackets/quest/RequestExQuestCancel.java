@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,7 +16,6 @@
  */
 package org.l2j.gameserver.network.clientpackets.quest;
 
-import org.l2j.commons.network.ReadablePacket;
 import org.l2j.gameserver.enums.QuestType;
 import org.l2j.gameserver.instancemanager.QuestManager;
 import org.l2j.gameserver.model.actor.Player;
@@ -26,7 +25,6 @@ import org.l2j.gameserver.model.events.EventType;
 import org.l2j.gameserver.model.events.impl.creature.player.OnPlayerQuestAbort;
 import org.l2j.gameserver.model.quest.Quest;
 import org.l2j.gameserver.model.quest.QuestState;
-import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.clientpackets.ClientPacket;
 import org.l2j.gameserver.network.serverpackets.quest.ExQuestNotificationAll;
 import org.l2j.gameserver.network.serverpackets.quest.ExQuestUI;
@@ -34,20 +32,20 @@ import org.l2j.gameserver.network.serverpackets.quest.ExQuestUI;
 /**
  * @author Magik, Mobius
  */
-public class RequestExQuestCancel implements ClientPacket
+public class RequestExQuestCancel extends ClientPacket
 {
 	private int _questId;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_questId = packet.readInt();
+		_questId = readInt();
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
-		final Player player = client.getPlayer();
+		final Player player = getPlayer();
 		if (player == null)
 		{
 			return;

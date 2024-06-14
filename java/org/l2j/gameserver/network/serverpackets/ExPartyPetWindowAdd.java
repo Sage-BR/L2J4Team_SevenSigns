@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,7 +16,9 @@
  */
 package org.l2j.gameserver.network.serverpackets;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.model.actor.Summon;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 
 /**
@@ -32,16 +34,16 @@ public class ExPartyPetWindowAdd extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_PARTY_PET_WINDOW_ADD.writeId(this);
-		writeInt(_summon.getObjectId());
-		writeInt(_summon.getTemplate().getDisplayId() + 1000000);
-		writeByte(_summon.getSummonType());
-		writeInt(_summon.getOwner().getObjectId());
-		writeInt((int) _summon.getCurrentHp());
-		writeInt(_summon.getMaxHp());
-		writeInt((int) _summon.getCurrentMp());
-		writeInt(_summon.getMaxMp());
+		ServerPackets.EX_PARTY_PET_WINDOW_ADD.writeId(this, buffer);
+		buffer.writeInt(_summon.getObjectId());
+		buffer.writeInt(_summon.getTemplate().getDisplayId() + 1000000);
+		buffer.writeByte(_summon.getSummonType());
+		buffer.writeInt(_summon.getOwner().getObjectId());
+		buffer.writeInt((int) _summon.getCurrentHp());
+		buffer.writeInt(_summon.getMaxHp());
+		buffer.writeInt((int) _summon.getCurrentMp());
+		buffer.writeInt(_summon.getMaxMp());
 	}
 }

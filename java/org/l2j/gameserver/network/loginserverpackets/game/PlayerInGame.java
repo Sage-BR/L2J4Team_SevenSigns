@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,12 +18,12 @@ package org.l2j.gameserver.network.loginserverpackets.game;
 
 import java.util.List;
 
-import org.l2j.commons.network.WritablePacket;
+import org.l2j.commons.network.base.BaseWritablePacket;
 
 /**
  * @author -Wooden-
  */
-public class PlayerInGame extends WritablePacket
+public class PlayerInGame extends BaseWritablePacket
 {
 	public PlayerInGame(String player)
 	{

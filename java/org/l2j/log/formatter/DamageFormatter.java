@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,7 +21,6 @@ import java.util.Date;
 import java.util.logging.Formatter;
 import java.util.logging.LogRecord;
 
-import org.l2j.Config;
 import org.l2j.commons.util.StringUtil;
 import org.l2j.gameserver.model.actor.Creature;
 import org.l2j.gameserver.model.actor.Player;
@@ -77,7 +76,7 @@ public class DamageFormatter extends Formatter
 			}
 		}
 		
-		output.append(Config.EOL);
+		output.append(System.lineSeparator());
 		return output.toString();
 	}
 }

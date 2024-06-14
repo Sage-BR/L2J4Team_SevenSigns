@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,16 +18,20 @@ package org.l2j.gameserver.network.clientpackets;
 
 import org.l2j.gameserver.data.xml.PlayerTemplateData;
 import org.l2j.gameserver.enums.ClassId;
-import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.serverpackets.NewCharacterSuccess;
 
 /**
  * @author Zoey76
  */
-public class NewCharacter implements ClientPacket
+public class NewCharacter extends ClientPacket
 {
 	@Override
-	public void run(GameClient client)
+	protected void readImpl()
+	{
+	}
+	
+	@Override
+	protected void runImpl()
 	{
 		final NewCharacterSuccess ct = new NewCharacterSuccess();
 		ct.addChar(PlayerTemplateData.getInstance().getTemplate(ClassId.FIGHTER)); // Human Figther
@@ -40,6 +44,6 @@ public class NewCharacter implements ClientPacket
 		ct.addChar(PlayerTemplateData.getInstance().getTemplate(ClassId.ORC_MAGE)); // Orc Mystic
 		ct.addChar(PlayerTemplateData.getInstance().getTemplate(ClassId.DWARVEN_FIGHTER)); // Dwarf Fighter
 		ct.addChar(PlayerTemplateData.getInstance().getTemplate(ClassId.KAMAEL_SOLDIER)); // Kamael Soldier
-		client.sendPacket(ct);
+		getClient().sendPacket(ct);
 	}
 }

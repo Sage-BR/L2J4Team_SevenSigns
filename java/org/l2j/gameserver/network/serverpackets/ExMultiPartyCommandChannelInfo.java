@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,8 +18,10 @@ package org.l2j.gameserver.network.serverpackets;
 
 import java.util.Objects;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.model.CommandChannel;
 import org.l2j.gameserver.model.Party;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 
 /**
@@ -36,18 +38,18 @@ public class ExMultiPartyCommandChannelInfo extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_MULTI_PARTY_COMMAND_CHANNEL_INFO.writeId(this);
-		writeString(_channel.getLeader().getName());
-		writeInt(0); // Channel loot 0 or 1
-		writeInt(_channel.getMemberCount());
-		writeInt(_channel.getParties().size());
+		ServerPackets.EX_MULTI_PARTY_COMMAND_CHANNEL_INFO.writeId(this, buffer);
+		buffer.writeString(_channel.getLeader().getName());
+		buffer.writeInt(0); // Channel loot 0 or 1
+		buffer.writeInt(_channel.getMemberCount());
+		buffer.writeInt(_channel.getParties().size());
 		for (Party p : _channel.getParties())
 		{
-			writeString(p.getLeader().getName());
-			writeInt(p.getLeaderObjectId());
-			writeInt(p.getMemberCount());
+			buffer.writeString(p.getLeader().getName());
+			buffer.writeInt(p.getLeaderObjectId());
+			buffer.writeInt(p.getMemberCount());
 		}
 	}
 }

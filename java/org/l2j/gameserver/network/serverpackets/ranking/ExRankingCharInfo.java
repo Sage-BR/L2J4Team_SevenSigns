@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,9 +18,11 @@ package org.l2j.gameserver.network.serverpackets.ranking;
 
 import java.util.Map;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.instancemanager.RankManager;
 import org.l2j.gameserver.model.StatSet;
 import org.l2j.gameserver.model.actor.Player;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 import org.l2j.gameserver.network.serverpackets.ServerPacket;
 
@@ -41,9 +43,9 @@ public class ExRankingCharInfo extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_RANKING_CHAR_INFO.writeId(this);
+		ServerPackets.EX_RANKING_CHAR_INFO.writeId(this, buffer);
 		if (!_playerList.isEmpty())
 		{
 			for (Integer id : _playerList.keySet())
@@ -51,41 +53,41 @@ public class ExRankingCharInfo extends ServerPacket
 				final StatSet player = _playerList.get(id);
 				if (player.getInt("charId") == _player.getObjectId())
 				{
-					writeInt(id); // server rank
-					writeInt(player.getInt("raceRank")); // race rank
-					writeInt(player.getInt("classRank")); // class rank
+					buffer.writeInt(id); // server rank
+					buffer.writeInt(player.getInt("raceRank")); // race rank
+					buffer.writeInt(player.getInt("classRank")); // class rank
 					for (Integer id2 : _snapshotList.keySet())
 					{
 						final StatSet snapshot = _snapshotList.get(id2);
 						if (player.getInt("charId") == snapshot.getInt("charId"))
 						{
-							writeInt(id2); // server rank snapshot
-							writeInt(snapshot.getInt("classRank")); // class rank snapshot
-							writeInt(player.getInt("classRank")); // class rank snapshot
-							writeInt(0);
-							writeInt(0);
-							writeInt(0);
+							buffer.writeInt(id2); // server rank snapshot
+							buffer.writeInt(snapshot.getInt("classRank")); // class rank snapshot
+							buffer.writeInt(player.getInt("classRank")); // class rank snapshot
+							buffer.writeInt(0);
+							buffer.writeInt(0);
+							buffer.writeInt(0);
 							return;
 						}
 					}
 				}
 			}
 			
-			writeInt(0); // server rank
-			writeInt(0); // race rank
-			writeInt(0); // server rank snapshot
-			writeInt(0); // race rank snapshot
-			writeInt(0); // nClassRank
-			writeInt(0); // nClassRank_Snapshot snapshot
+			buffer.writeInt(0); // server rank
+			buffer.writeInt(0); // race rank
+			buffer.writeInt(0); // server rank snapshot
+			buffer.writeInt(0); // race rank snapshot
+			buffer.writeInt(0); // nClassRank
+			buffer.writeInt(0); // nClassRank_Snapshot snapshot
 		}
 		else
 		{
-			writeInt(0); // server rank
-			writeInt(0); // race rank
-			writeInt(0); // server rank snapshot
-			writeInt(0); // race rank snapshot
-			writeInt(0); // nClassRank
-			writeInt(0); // nClassRank_Snapshot snapshot
+			buffer.writeInt(0); // server rank
+			buffer.writeInt(0); // race rank
+			buffer.writeInt(0); // server rank snapshot
+			buffer.writeInt(0); // race rank snapshot
+			buffer.writeInt(0); // nClassRank
+			buffer.writeInt(0); // nClassRank_Snapshot snapshot
 		}
 	}
 }

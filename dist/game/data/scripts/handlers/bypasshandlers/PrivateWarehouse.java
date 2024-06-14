@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -38,7 +38,17 @@ public class PrivateWarehouse implements IBypassHandler
 	@Override
 	public boolean useBypass(String command, Player player, Creature target)
 	{
-		if (!Config.ALLOW_WAREHOUSE || !target.isNpc() || player.hasItemRequest())
+		if (!Config.ALLOW_WAREHOUSE)
+		{
+			return false;
+		}
+		
+		if (!target.isNpc())
+		{
+			return false;
+		}
+		
+		if (player.hasItemRequest())
 		{
 			return false;
 		}

@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,17 +16,15 @@
  */
 package org.l2j.gameserver.network.clientpackets;
 
-import org.l2j.commons.network.ReadablePacket;
 import org.l2j.commons.util.CommonUtil;
 import org.l2j.gameserver.instancemanager.ClanEntryManager;
 import org.l2j.gameserver.model.actor.Player;
-import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.serverpackets.ExPledgeDraftListSearch;
 
 /**
  * @author Sdw
  */
-public class RequestPledgeDraftListSearch implements ClientPacket
+public class RequestPledgeDraftListSearch extends ClientPacket
 {
 	private int _levelMin;
 	private int _levelMax;
@@ -36,20 +34,20 @@ public class RequestPledgeDraftListSearch implements ClientPacket
 	private boolean _descending;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_levelMin = CommonUtil.constrain(packet.readInt(), 0, 107);
-		_levelMax = CommonUtil.constrain(packet.readInt(), 0, 107);
-		_classId = packet.readInt();
-		_query = packet.readString();
-		_sortBy = packet.readInt();
-		_descending = packet.readInt() == 2;
+		_levelMin = CommonUtil.constrain(readInt(), 0, 107);
+		_levelMax = CommonUtil.constrain(readInt(), 0, 107);
+		_classId = readInt();
+		_query = readString();
+		_sortBy = readInt();
+		_descending = readInt() == 2;
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
-		final Player player = client.getPlayer();
+		final Player player = getPlayer();
 		if (player == null)
 		{
 			return;

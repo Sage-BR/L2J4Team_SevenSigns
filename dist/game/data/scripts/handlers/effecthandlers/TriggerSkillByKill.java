@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -45,7 +45,12 @@ public class TriggerSkillByKill extends AbstractEffect
 	
 	private void onCreatureKilled(OnCreatureKilled event, Creature target)
 	{
-		if ((_chance == 0) || ((_skill.getSkillId() == 0) || (_skill.getSkillLevel() == 0)) || (Rnd.get(100) > _chance))
+		if ((_chance == 0) || ((_skill.getSkillId() == 0) || (_skill.getSkillLevel() == 0)))
+		{
+			return;
+		}
+		
+		if (Rnd.get(100) > _chance)
 		{
 			return;
 		}

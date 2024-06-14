@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,16 +16,14 @@
  */
 package org.l2j.gameserver.network.clientpackets;
 
-import org.l2j.commons.network.ReadablePacket;
 import org.l2j.gameserver.instancemanager.ClanEntryManager;
 import org.l2j.gameserver.model.actor.Player;
-import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.serverpackets.ExPledgeRecruitBoardSearch;
 
 /**
  * @author Sdw
  */
-public class RequestPledgeRecruitBoardSearch implements ClientPacket
+public class RequestPledgeRecruitBoardSearch extends ClientPacket
 {
 	private int _clanLevel;
 	private int _karma;
@@ -38,22 +36,22 @@ public class RequestPledgeRecruitBoardSearch implements ClientPacket
 	private int _applicationType;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_clanLevel = packet.readInt();
-		_karma = packet.readInt();
-		_type = packet.readInt();
-		_query = packet.readString();
-		_sort = packet.readInt();
-		_descending = packet.readInt() == 2;
-		_page = packet.readInt();
-		_applicationType = packet.readInt(); // Helios
+		_clanLevel = readInt();
+		_karma = readInt();
+		_type = readInt();
+		_query = readString();
+		_sort = readInt();
+		_descending = readInt() == 2;
+		_page = readInt();
+		_applicationType = readInt(); // Helios
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
-		final Player player = client.getPlayer();
+		final Player player = getPlayer();
 		if (player == null)
 		{
 			return;

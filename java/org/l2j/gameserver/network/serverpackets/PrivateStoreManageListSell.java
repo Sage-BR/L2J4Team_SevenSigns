@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,8 +18,10 @@ package org.l2j.gameserver.network.serverpackets;
 
 import java.util.Collection;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.model.TradeItem;
 import org.l2j.gameserver.model.actor.Player;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 
 public class PrivateStoreManageListSell extends AbstractItemPacket
@@ -43,37 +45,37 @@ public class PrivateStoreManageListSell extends AbstractItemPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.PRIVATE_STORE_MANAGE_LIST.writeId(this);
-		writeByte(_sendType);
+		ServerPackets.PRIVATE_STORE_MANAGE_LIST.writeId(this, buffer);
+		buffer.writeByte(_sendType);
 		if (_sendType == 2)
 		{
-			writeInt(_itemList.size());
-			writeInt(_itemList.size());
+			buffer.writeInt(_itemList.size());
+			buffer.writeInt(_itemList.size());
 			for (TradeItem item : _itemList)
 			{
-				writeItem(item);
-				writeLong(item.getItem().getReferencePrice() * 2);
+				writeItem(item, buffer);
+				buffer.writeLong(item.getItem().getReferencePrice() * 2);
 			}
 		}
 		else
 		{
-			writeInt(_objId);
-			writeInt(_packageSale);
-			writeLong(_playerAdena);
-			writeInt(0);
+			buffer.writeInt(_objId);
+			buffer.writeInt(_packageSale);
+			buffer.writeLong(_playerAdena);
+			buffer.writeInt(0);
 			for (TradeItem item : _itemList)
 			{
-				writeItem(item);
-				writeLong(item.getItem().getReferencePrice() * 2);
+				writeItem(item, buffer);
+				buffer.writeLong(item.getItem().getReferencePrice() * 2);
 			}
-			writeInt(0);
-			for (TradeItem item2 : _sellList)
+			buffer.writeInt(0);
+			for (TradeItem item : _sellList)
 			{
-				writeItem(item2);
-				writeLong(item2.getPrice());
-				writeLong(item2.getItem().getReferencePrice() * 2);
+				writeItem(item, buffer);
+				buffer.writeLong(item.getPrice());
+				buffer.writeLong(item.getItem().getReferencePrice() * 2);
 			}
 		}
 	}

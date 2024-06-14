@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,8 +16,10 @@
  */
 package org.l2j.gameserver.network.serverpackets.huntpass;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.model.HuntPass;
 import org.l2j.gameserver.model.actor.Player;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 import org.l2j.gameserver.network.serverpackets.ServerPacket;
 
@@ -34,15 +36,15 @@ public class HuntPassSimpleInfo extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_L2PASS_SIMPLE_INFO.writeId(this);
+		ServerPackets.EX_L2PASS_SIMPLE_INFO.writeId(this, buffer);
 		
-		writeInt(1); // passInfos
-		writeByte(0);
-		writeByte(1); // isOn
+		buffer.writeInt(1); // passInfos
+		buffer.writeByte(0);
+		buffer.writeByte(1); // isOn
 		
-		writeByte(_huntPassInfo.rewardAlert());
-		writeInt(0);
+		buffer.writeByte(_huntPassInfo.rewardAlert());
+		buffer.writeInt(0);
 	}
 }

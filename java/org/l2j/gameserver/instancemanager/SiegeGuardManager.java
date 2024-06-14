@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -172,7 +172,12 @@ public class SiegeGuardManager
 	public void addTicket(int itemId, Player player)
 	{
 		final Castle castle = CastleManager.getInstance().getCastle(player);
-		if ((castle == null) || isAtNpcLimit(castle.getResidenceId(), itemId))
+		if (castle == null)
+		{
+			return;
+		}
+		
+		if (isAtNpcLimit(castle.getResidenceId(), itemId))
 		{
 			return;
 		}
@@ -386,7 +391,7 @@ public class SiegeGuardManager
 			if ((spawn != null) && (spawn.getLastSpawn() != null))
 			{
 				spawn.stopRespawn();
-				spawn.getLastSpawn().doDie(spawn.getLastSpawn());
+				spawn.getLastSpawn().deleteMe();
 			}
 		}
 		getSpawnedGuards(castle.getResidenceId()).clear();

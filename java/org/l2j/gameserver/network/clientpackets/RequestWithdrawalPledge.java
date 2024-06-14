@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,7 +19,6 @@ package org.l2j.gameserver.network.clientpackets;
 import org.l2j.Config;
 import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.model.clan.Clan;
-import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.SystemMessageId;
 import org.l2j.gameserver.network.serverpackets.ExPledgeCount;
 import org.l2j.gameserver.network.serverpackets.PledgeShowMemberListDelete;
@@ -28,12 +27,17 @@ import org.l2j.gameserver.network.serverpackets.SystemMessage;
 /**
  * @version $Revision: 1.3.2.1.2.3 $ $Date: 2005/03/27 15:29:30 $
  */
-public class RequestWithdrawalPledge implements ClientPacket
+public class RequestWithdrawalPledge extends ClientPacket
 {
 	@Override
-	public void run(GameClient client)
+	protected void readImpl()
 	{
-		final Player player = client.getPlayer();
+	}
+	
+	@Override
+	protected void runImpl()
+	{
+		final Player player = getPlayer();
 		if (player == null)
 		{
 			return;

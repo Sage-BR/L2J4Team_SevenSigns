@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,32 +16,30 @@
  */
 package org.l2j.gameserver.network.clientpackets;
 
-import org.l2j.commons.network.ReadablePacket;
 import org.l2j.gameserver.data.xml.SecondaryAuthData;
-import org.l2j.gameserver.network.GameClient;
 
 /**
  * Format: (ch)S S: numerical password
  * @author mrTJO
  */
-public class RequestEx2ndPasswordVerify implements ClientPacket
+public class RequestEx2ndPasswordVerify extends ClientPacket
 {
 	private String _password;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_password = packet.readString();
+		_password = readString();
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
 		if (!SecondaryAuthData.getInstance().isEnabled())
 		{
 			return;
 		}
 		
-		client.getSecondaryAuth().checkPassword(_password, false);
+		getClient().getSecondaryAuth().checkPassword(_password, false);
 	}
 }

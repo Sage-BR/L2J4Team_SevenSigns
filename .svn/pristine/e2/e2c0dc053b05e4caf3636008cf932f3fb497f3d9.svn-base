@@ -1,0 +1,8 @@
+<html><body>Additional Services' Researcher Hermin:<br>
+Aha, Orc! So you want to be an Orc. Now choose <font color="LEVEL">class</font> for your character.<br>
+<Button ALIGN="LEFT" ICON="NORMAL" action="bypass -h Quest AdditionalServicesAdvisor choose_class 113"><font color="LEVEL">Titan</font></button>
+<Button ALIGN="LEFT" ICON="NORMAL" action="bypass -h Quest AdditionalServicesAdvisor choose_class 114"><font color="LEVEL">Grand Khavatari</font></button>
+<Button ALIGN="LEFT" ICON="NORMAL" action="bypass -h Quest AdditionalServicesAdvisor choose_class 115"><font color="LEVEL">Dominator</font></button>
+<Button ALIGN="LEFT" ICON="NORMAL" action="bypass -h Quest AdditionalServicesAdvisor choose_class 116"><font color="LEVEL">Doomcryer</font></button>
+<Button ALIGN="LEFT" ICON="NORMAL" action="bypass -h Quest AdditionalServicesAdvisor choose_class 220"><font color="LEVEL">Vanguard Rider</font></button>
+</body></html>

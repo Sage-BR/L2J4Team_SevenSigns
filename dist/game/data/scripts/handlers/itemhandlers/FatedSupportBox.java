@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -71,7 +71,7 @@ public class FatedSupportBox implements IItemHandler
 		}
 		
 		player.getInventory().destroyItem(getClass().getSimpleName(), item, 1, player, null);
-		player.sendPacket(new InventoryUpdate(item));
+		player.sendInventoryUpdate(new InventoryUpdate(item));
 		
 		// It will stay in your inventory after use until you reach level 84.
 		if (player.getLevel() > 84)

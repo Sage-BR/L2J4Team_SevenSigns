@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,9 +16,11 @@
  */
 package org.l2j.gameserver.network.serverpackets.vip;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.model.item.instance.Item;
 import org.l2j.gameserver.model.itemcontainer.Inventory;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 import org.l2j.gameserver.network.serverpackets.ServerPacket;
 
@@ -35,12 +37,12 @@ public class ReceiveVipLuckyGameInfo extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.RECIVE_VIP_LUCKY_GAME_INFO.writeId(this);
-		writeByte(1); // enabled
-		writeShort((int) _player.getAdena());
+		ServerPackets.RECIVE_VIP_LUCKY_GAME_INFO.writeId(this, buffer);
+		buffer.writeByte(1); // enabled
+		buffer.writeShort((int) _player.getAdena());
 		final Item item = _player.getInventory().getItemByItemId(Inventory.LCOIN_ID);
-		writeShort(item == null ? 0 : (int) item.getCount()); // L Coin count
+		buffer.writeShort(item == null ? 0 : (int) item.getCount()); // L Coin count
 	}
 }

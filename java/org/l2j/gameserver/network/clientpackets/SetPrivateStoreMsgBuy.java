@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,31 +17,29 @@
 package org.l2j.gameserver.network.clientpackets;
 
 import org.l2j.Config;
-import org.l2j.commons.network.ReadablePacket;
 import org.l2j.gameserver.model.actor.Player;
-import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.serverpackets.PrivateStoreMsgBuy;
 import org.l2j.gameserver.util.Util;
 
 /**
  * @version $Revision: 1.2.4.2 $ $Date: 2005/03/27 15:29:30 $
  */
-public class SetPrivateStoreMsgBuy implements ClientPacket
+public class SetPrivateStoreMsgBuy extends ClientPacket
 {
 	private static final int MAX_MSG_LENGTH = 29;
 	
 	private String _storeMsg;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_storeMsg = packet.readString();
+		_storeMsg = readString();
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
-		final Player player = client.getPlayer();
+		final Player player = getPlayer();
 		if ((player == null) || (player.getBuyList() == null))
 		{
 			return;

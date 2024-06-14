@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,7 +16,9 @@
  */
 package org.l2j.gameserver.network.serverpackets;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.model.actor.Player;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 
 public class ChairSit extends ServerPacket
@@ -35,10 +37,10 @@ public class ChairSit extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.CHAIR_SIT.writeId(this);
-		writeInt(_player.getObjectId());
-		writeInt(_staticObjectId);
+		ServerPackets.CHAIR_SIT.writeId(this, buffer);
+		buffer.writeInt(_player.getObjectId());
+		buffer.writeInt(_staticObjectId);
 	}
 }

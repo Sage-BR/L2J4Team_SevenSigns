@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -63,6 +63,8 @@ public class ResetInstanceEntry extends AbstractEffect
 		for (int instanceId : _instanceId)
 		{
 			InstanceManager.getInstance().deleteInstanceTime(effector.getActingPlayer(), instanceId);
+			final String instanceName = InstanceManager.getInstance().getInstanceName(instanceId);
+			effector.sendMessage(instanceName + " entry has been reset.");
 		}
 	}
 }

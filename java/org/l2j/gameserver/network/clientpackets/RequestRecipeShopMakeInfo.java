@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,32 +16,30 @@
  */
 package org.l2j.gameserver.network.clientpackets;
 
-import org.l2j.commons.network.ReadablePacket;
 import org.l2j.gameserver.enums.PrivateStoreType;
 import org.l2j.gameserver.model.World;
 import org.l2j.gameserver.model.actor.Player;
-import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.serverpackets.RecipeShopItemInfo;
 
 /**
  * @version $Revision: 1.1.2.1.2.2 $ $Date: 2005/03/27 15:29:30 $
  */
-public class RequestRecipeShopMakeInfo implements ClientPacket
+public class RequestRecipeShopMakeInfo extends ClientPacket
 {
 	private int _playerObjectId;
 	private int _recipeId;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_playerObjectId = packet.readInt();
-		_recipeId = packet.readInt();
+		_playerObjectId = readInt();
+		_recipeId = readInt();
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
-		final Player player = client.getPlayer();
+		final Player player = getPlayer();
 		if (player == null)
 		{
 			return;

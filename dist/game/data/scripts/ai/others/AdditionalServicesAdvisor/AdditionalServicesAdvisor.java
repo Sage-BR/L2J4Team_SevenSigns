@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -64,7 +64,7 @@ public class AdditionalServicesAdvisor extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onAdvEvent(String event, Npc npc, Player player)
+	public String onEvent(String event, Npc npc, Player player)
 	{
 		String html = null;
 		switch (npc.getId())
@@ -187,6 +187,7 @@ public class AdditionalServicesAdvisor extends AbstractNpcAI
 						takeItems(player, CLASS_CHANGE_COUPON, 1);
 						
 						player.removeAllSkills();
+						player.getEffectList().stopAllEffectsWithoutExclusions(false, false);
 						
 						player.setVitalityPoints(0, true);
 						player.setExpBeforeDeath(0);

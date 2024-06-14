@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/multisell.xsd">
+	<npcs>
+		<npc>-1</npc> <!-- Item Multisell -->
+	</npcs>
+	<!-- Wood (92477) -->
+	<item>
+		<ingredient id="92477" count="2" /> <!-- Wood -->
+		<ingredient id="57" count="100" /> <!-- Adena -->
+		<production id="100302" count="1" /> <!-- Doll Pack (Time-limited) - Sealed -->
+	</item>
+</list>

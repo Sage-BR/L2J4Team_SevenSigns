@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,7 +18,6 @@ package org.l2j.gameserver.network.clientpackets.pledgebonus;
 
 import org.l2j.Config;
 import org.l2j.gameserver.model.actor.Player;
-import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.clientpackets.ClientPacket;
 import org.l2j.gameserver.network.serverpackets.pledgebonus.ExPledgeBonusOpen;
 import org.l2j.gameserver.network.serverpackets.pledgedonation.ExPledgeDonationInfo;
@@ -26,12 +25,17 @@ import org.l2j.gameserver.network.serverpackets.pledgedonation.ExPledgeDonationI
 /**
  * @author UnAfraid
  */
-public class RequestPledgeBonusOpen implements ClientPacket
+public class RequestPledgeBonusOpen extends ClientPacket
 {
 	@Override
-	public void run(GameClient client)
+	protected void readImpl()
 	{
-		final Player player = client.getPlayer();
+	}
+	
+	@Override
+	protected void runImpl()
+	{
+		final Player player = getPlayer();
 		if ((player == null) || (player.getClan() == null))
 		{
 			return;

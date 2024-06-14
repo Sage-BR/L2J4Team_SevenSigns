@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -170,7 +170,7 @@ public class OlympiadGameTask implements Runnable
 				case BEGIN:
 				{
 					_state = OlympiadGameState.TELEPORT_TO_ARENA;
-					_countDown = Config.ALT_OLY_WAIT_TIME;
+					_countDown = Config.OLYMPIAD_WAIT_TIME;
 					break;
 				}
 				// Teleport to arena countdown
@@ -274,7 +274,7 @@ public class OlympiadGameTask implements Runnable
 				case BATTLE_IN_PROGRESS:
 				{
 					_countDown += 1000;
-					final int remaining = (int) ((Config.ALT_OLY_BATTLE - _countDown) / 1000);
+					final int remaining = (int) ((Config.OLYMPIAD_BATTLE - _countDown) / 1000);
 					for (int announceTime : BATTLE_END_TIME_SECOND)
 					{
 						if (announceTime == remaining)
@@ -286,7 +286,7 @@ public class OlympiadGameTask implements Runnable
 						}
 					}
 					
-					if (checkBattle() || (_countDown > Config.ALT_OLY_BATTLE))
+					if (checkBattle() || (_countDown > Config.OLYMPIAD_BATTLE))
 					{
 						_state = OlympiadGameState.GAME_STOPPED;
 					}

@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,7 +17,9 @@
 package org.l2j.gameserver.data.xml;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.logging.Logger;
@@ -25,6 +27,7 @@ import java.util.logging.Logger;
 import org.w3c.dom.Document;
 
 import org.l2j.commons.util.IXmlReader;
+import org.l2j.commons.util.Rnd;
 import org.l2j.gameserver.model.StatSet;
 import org.l2j.gameserver.model.holders.SkillHolder;
 
@@ -77,13 +80,30 @@ public class PetTypeData implements IXmlReader
 	
 	public int getIdByName(String name)
 	{
+		if (name == null)
+		{
+			return 0;
+		}
+		
+		final int spaceIndex = name.indexOf(' ');
+		final String searchName;
+		if (spaceIndex != -1)
+		{
+			searchName = name.substring(spaceIndex + 1);
+		}
+		else
+		{
+			searchName = name;
+		}
+		
 		for (Entry<Integer, String> entry : _names.entrySet())
 		{
-			if (name.endsWith(entry.getValue()))
+			if (searchName.endsWith(entry.getValue()))
 			{
 				return entry.getKey();
 			}
 		}
+		
 		return 0;
 	}
 	
@@ -94,12 +114,32 @@ public class PetTypeData implements IXmlReader
 	
 	public String getRandomName()
 	{
-		return _names.entrySet().stream().filter(e -> e.getKey() > 100).findAny().get().getValue();
+		String result = null;
+		final List<Entry<Integer, String>> entryList = new ArrayList<>(_names.entrySet());
+		while (result == null)
+		{
+			final Entry<Integer, String> temp = entryList.get(Rnd.get(entryList.size()));
+			if (temp.getKey() > 100)
+			{
+				result = temp.getValue();
+			}
+		}
+		return result;
 	}
 	
 	public Entry<Integer, SkillHolder> getRandomSkill()
 	{
-		return _skills.entrySet().stream().filter(e -> e.getValue().getSkillId() > 0).findAny().get();
+		Entry<Integer, SkillHolder> result = null;
+		final List<Entry<Integer, SkillHolder>> entryList = new ArrayList<>(_skills.entrySet());
+		while (result == null)
+		{
+			final Entry<Integer, SkillHolder> temp = entryList.get(Rnd.get(entryList.size()));
+			if (temp.getValue().getSkillId() > 0)
+			{
+				result = temp;
+			}
+		}
+		return result;
 	}
 	
 	public static PetTypeData getInstance()

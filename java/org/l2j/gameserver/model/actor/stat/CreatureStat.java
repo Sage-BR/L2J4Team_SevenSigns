@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,25 +17,25 @@
 package org.l2j.gameserver.model.actor.stat;
 
 import java.util.Collections;
-import java.util.Deque;
 import java.util.EnumMap;
 import java.util.EnumSet;
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Map;
 import java.util.OptionalDouble;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ConcurrentLinkedDeque;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 import java.util.function.BiFunction;
-import java.util.function.BiPredicate;
 
 import org.l2j.Config;
 import org.l2j.gameserver.enums.AttributeType;
 import org.l2j.gameserver.enums.Position;
 import org.l2j.gameserver.model.actor.Creature;
 import org.l2j.gameserver.model.effects.AbstractEffect;
+import org.l2j.gameserver.model.events.EventDispatcher;
+import org.l2j.gameserver.model.events.EventType;
+import org.l2j.gameserver.model.events.impl.creature.OnCreatureMDefChange;
+import org.l2j.gameserver.model.events.impl.creature.OnCreaturePDefChange;
 import org.l2j.gameserver.model.item.instance.Item;
 import org.l2j.gameserver.model.skill.AbnormalType;
 import org.l2j.gameserver.model.skill.BuffInfo;
@@ -44,7 +44,6 @@ import org.l2j.gameserver.model.skill.SkillConditionScope;
 import org.l2j.gameserver.model.stats.Formulas;
 import org.l2j.gameserver.model.stats.MoveType;
 import org.l2j.gameserver.model.stats.Stat;
-import org.l2j.gameserver.model.stats.StatHolder;
 import org.l2j.gameserver.model.stats.TraitType;
 import org.l2j.gameserver.model.zone.ZoneId;
 import org.l2j.gameserver.util.MathUtil;
@@ -67,8 +66,6 @@ public class CreatureStat
 	private final Map<Integer, Double> _mpConsumeStat = new ConcurrentHashMap<>();
 	private final Map<Integer, LinkedList<Double>> _skillEvasionStat = new ConcurrentHashMap<>();
 	private final Map<Stat, Map<Position, Double>> _positionStats = new ConcurrentHashMap<>();
-	private final Deque<StatHolder> _additionalAdd = new ConcurrentLinkedDeque<>();
-	private final Deque<StatHolder> _additionalMul = new ConcurrentLinkedDeque<>();
 	private final Map<Stat, Double> _fixedValue = new ConcurrentHashMap<>();
 	
 	private final float[] _attackTraitValues = new float[TraitType.values().length];
@@ -80,6 +77,9 @@ public class CreatureStat
 	/** Values to be recalculated after every stat update */
 	private double _attackSpeedMultiplier = 1;
 	private double _mAttackSpeedMultiplier = 1;
+	
+	private int _lastMDef = 0;
+	private int _lastPDef = 0;
 	
 	private final ReentrantReadWriteLock _lock = new ReentrantReadWriteLock();
 	
@@ -227,8 +227,15 @@ public class CreatureStat
 	{
 		if (skill != null)
 		{
-			return skill.getCastRange() + (int) getValue(Stat.MAGIC_ATTACK_RANGE, 0);
+			final int range = skill.getCastRange();
+			if (range > 0)
+			{
+				return range + (int) getValue(Stat.MAGIC_ATTACK_RANGE, 0);
+			}
+			
+			return range;
 		}
+		
 		return _creature.getTemplate().getBaseAttackRange();
 	}
 	
@@ -758,11 +765,11 @@ public class CreatureStat
 	
 	/**
 	 * Sets the maximum buff count.
-	 * @param buffCount the buff count
+	 * @param value the buff count
 	 */
-	public void setMaxBuffCount(int buffCount)
+	public void setMaxBuffCount(int value)
 	{
-		_maxBuffCount = buffCount;
+		_maxBuffCount = value;
 	}
 	
 	/**
@@ -814,6 +821,30 @@ public class CreatureStat
 	}
 	
 	/**
+	 * Non blocking stat ADD getter.<br>
+	 * WARNING: Only use with effect handlers!
+	 * @param stat
+	 * @return the add value
+	 */
+	public double getAddValue(Stat stat)
+	{
+		return getAddValue(stat, 0d);
+	}
+	
+	/**
+	 * Non blocking stat ADD getter.<br>
+	 * WARNING: Only use with effect handlers!
+	 * @param stat
+	 * @param defaultValue
+	 * @return the add value
+	 */
+	public double getAddValue(Stat stat, double defaultValue)
+	{
+		final Double val = _statsAdd.get(stat);
+		return val != null ? val.doubleValue() : defaultValue;
+	}
+	
+	/**
 	 * @param stat
 	 * @return the mul value
 	 */
@@ -839,6 +870,30 @@ public class CreatureStat
 		{
 			_lock.readLock().unlock();
 		}
+	}
+	
+	/**
+	 * Non blocking stat MUL getter.<br>
+	 * WARNING: Only use with effect handlers!
+	 * @param stat
+	 * @return the mul value
+	 */
+	public double getMulValue(Stat stat)
+	{
+		return getMulValue(stat, 1d);
+	}
+	
+	/**
+	 * Non blocking stat MUL getter.<br>
+	 * WARNING: Only use with effect handlers!
+	 * @param stat
+	 * @param defaultValue
+	 * @return the mul value
+	 */
+	public double getMulValue(Stat stat, double defaultValue)
+	{
+		final Double val = _statsMul.get(stat);
+		return val != null ? val.doubleValue() : defaultValue;
 	}
 	
 	/**
@@ -959,21 +1014,6 @@ public class CreatureStat
 				}
 			}
 			
-			// Merge with additional stats.
-			for (StatHolder holder : _additionalAdd)
-			{
-				if (holder.verifyCondition(_creature))
-				{
-					mergeAdd(holder.getStat(), holder.getValue());
-				}
-			}
-			for (StatHolder holder : _additionalMul)
-			{
-				if (holder.verifyCondition(_creature))
-				{
-					mergeMul(holder.getStat(), holder.getValue());
-				}
-			}
 			_attackSpeedMultiplier = Formulas.calcAtkSpdMultiplier(_creature);
 			_mAttackSpeedMultiplier = Formulas.calcMAtkSpdMultiplier(_creature);
 		}
@@ -987,11 +1027,23 @@ public class CreatureStat
 		
 		if (broadcast)
 		{
-			// Calculate the difference between old and new stats
+			// Calculate the difference between old and new stats.
 			final Set<Stat> changed = EnumSet.noneOf(Stat.class);
+			Double statAddResetValue;
+			Double statMulResetValue;
+			Double statAddValue;
+			Double statMulValue;
+			Double addsValue;
+			Double mulsValue;
 			for (Stat stat : Stat.values())
 			{
-				if (_statsAdd.getOrDefault(stat, stat.getResetAddValue()).equals(adds.getOrDefault(stat, stat.getResetAddValue())) || _statsMul.getOrDefault(stat, stat.getResetMulValue()).equals(muls.getOrDefault(stat, stat.getResetMulValue())))
+				statAddResetValue = stat.getResetAddValue();
+				statMulResetValue = stat.getResetMulValue();
+				addsValue = adds.getOrDefault(stat, statAddResetValue);
+				mulsValue = muls.getOrDefault(stat, statMulResetValue);
+				statAddValue = _statsAdd.getOrDefault(stat, statAddResetValue);
+				statMulValue = _statsMul.getOrDefault(stat, statMulResetValue);
+				if (addsValue.equals(statAddResetValue) || mulsValue.equals(statMulResetValue) || !addsValue.equals(statAddValue) || !mulsValue.equals(statMulValue))
 				{
 					changed.add(stat);
 				}
@@ -1014,6 +1066,26 @@ public class CreatureStat
 		if (_creature.getCurrentMp() > getMaxMp())
 		{
 			_creature.setCurrentMp(getMaxMp());
+		}
+		
+		final int oldMDef = getLastMDef();
+		final int mDef = getMDef();
+		if (oldMDef != mDef)
+		{
+			if (EventDispatcher.getInstance().hasListener(EventType.ON_CREATURE_MDEF_CHANGE, _creature))
+			{
+				EventDispatcher.getInstance().notifyEventAsync(new OnCreatureMDefChange(getActiveChar(), oldMDef, mDef), _creature);
+			}
+		}
+		
+		final int oldPDef = getLastPDef();
+		final int pDef = getPDef();
+		if (oldPDef != pDef)
+		{
+			if (EventDispatcher.getInstance().hasListener(EventType.ON_CREATURE_PDEF_CHANGE, _creature))
+			{
+				EventDispatcher.getInstance().notifyEventAsync(new OnCreaturePDefChange(getActiveChar(), oldPDef, pDef), _creature);
+			}
 		}
 	}
 	
@@ -1148,92 +1220,6 @@ public class CreatureStat
 	}
 	
 	/**
-	 * Adds static value to the 'add' map of the stat everytime recalculation happens
-	 * @param stat
-	 * @param value
-	 * @param condition
-	 * @return
-	 */
-	public boolean addAdditionalStat(Stat stat, double value, BiPredicate<Creature, StatHolder> condition)
-	{
-		return _additionalAdd.add(new StatHolder(stat, value, condition));
-	}
-	
-	/**
-	 * Adds static value to the 'add' map of the stat everytime recalculation happens
-	 * @param stat
-	 * @param value
-	 * @return
-	 */
-	public boolean addAdditionalStat(Stat stat, double value)
-	{
-		return _additionalAdd.add(new StatHolder(stat, value));
-	}
-	
-	/**
-	 * @param stat
-	 * @param value
-	 * @return {@code true} if 'add' was removed, {@code false} in case there wasn't such stat and value
-	 */
-	public boolean removeAddAdditionalStat(Stat stat, double value)
-	{
-		final Iterator<StatHolder> it = _additionalAdd.iterator();
-		while (it.hasNext())
-		{
-			final StatHolder holder = it.next();
-			if ((holder.getStat() == stat) && (holder.getValue() == value))
-			{
-				it.remove();
-				return true;
-			}
-		}
-		return false;
-	}
-	
-	/**
-	 * Adds static multiplier to the 'mul' map of the stat everytime recalculation happens
-	 * @param stat
-	 * @param value
-	 * @param condition
-	 * @return
-	 */
-	public boolean mulAdditionalStat(Stat stat, double value, BiPredicate<Creature, StatHolder> condition)
-	{
-		return _additionalMul.add(new StatHolder(stat, value, condition));
-	}
-	
-	/**
-	 * Adds static multiplier to the 'mul' map of the stat everytime recalculation happens
-	 * @param stat
-	 * @param value
-	 * @return {@code true}
-	 */
-	public boolean mulAdditionalStat(Stat stat, double value)
-	{
-		return _additionalMul.add(new StatHolder(stat, value));
-	}
-	
-	/**
-	 * @param stat
-	 * @param value
-	 * @return {@code true} if 'mul' was removed, {@code false} in case there wasn't such stat and value
-	 */
-	public boolean removeMulAdditionalStat(Stat stat, double value)
-	{
-		final Iterator<StatHolder> it = _additionalMul.iterator();
-		while (it.hasNext())
-		{
-			final StatHolder holder = it.next();
-			if ((holder.getStat() == stat) && (holder.getValue() == value))
-			{
-				it.remove();
-				return true;
-			}
-		}
-		return false;
-	}
-	
-	/**
 	 * @param stat
 	 * @param value
 	 * @return true if the there wasn't previously set fixed value, {@code false} otherwise
@@ -1250,5 +1236,25 @@ public class CreatureStat
 	public boolean removeFixedValue(Stat stat)
 	{
 		return _fixedValue.remove(stat) != null;
+	}
+	
+	public int getLastMDef()
+	{
+		return _lastMDef;
+	}
+	
+	public void setLastMDef(int val)
+	{
+		_lastMDef = val;
+	}
+	
+	public int getLastPDef()
+	{
+		return _lastPDef;
+	}
+	
+	public void setLastPDef(int val)
+	{
+		_lastPDef = val;
 	}
 }

@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,8 +16,10 @@
  */
 package org.l2j.gameserver.network.serverpackets.castlewar;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.instancemanager.CastleManager;
 import org.l2j.gameserver.model.siege.Castle;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 import org.l2j.gameserver.network.serverpackets.ServerPacket;
 
@@ -34,34 +36,34 @@ public class MercenaryCastleWarCastleSiegeInfo extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_MERCENARY_CASTLEWAR_CASTLE_SIEGE_INFO.writeId(this);
+		ServerPackets.EX_MERCENARY_CASTLEWAR_CASTLE_SIEGE_INFO.writeId(this, buffer);
 		
-		writeInt(_castleId);
+		buffer.writeInt(_castleId);
 		
 		final Castle castle = CastleManager.getInstance().getCastleById(_castleId);
 		if (castle == null)
 		{
-			writeInt(0);
-			writeInt(0);
-			writeSizedString("-");
-			writeSizedString("-");
-			writeInt(0);
-			writeInt(0);
-			writeInt(0);
+			buffer.writeInt(0);
+			buffer.writeInt(0);
+			buffer.writeSizedString("-");
+			buffer.writeSizedString("-");
+			buffer.writeInt(0);
+			buffer.writeInt(0);
+			buffer.writeInt(0);
 		}
 		else
 		{
-			writeInt(0); // seconds?
-			writeInt(0); // crest?
+			buffer.writeInt(0); // seconds?
+			buffer.writeInt(0); // crest?
 			
-			writeSizedString(castle.getOwner() != null ? castle.getOwner().getName() : "-");
-			writeSizedString(castle.getOwner() != null ? castle.getOwner().getLeaderName() : "-");
+			buffer.writeSizedString(castle.getOwner() != null ? castle.getOwner().getName() : "-");
+			buffer.writeSizedString(castle.getOwner() != null ? castle.getOwner().getLeaderName() : "-");
 			
-			writeInt(0); // crest?
-			writeInt(castle.getSiege().getAttackerClans().size());
-			writeInt(castle.getSiege().getDefenderClans().size() + castle.getSiege().getDefenderWaitingClans().size());
+			buffer.writeInt(0); // crest?
+			buffer.writeInt(castle.getSiege().getAttackerClans().size());
+			buffer.writeInt(castle.getSiege().getDefenderClans().size() + castle.getSiege().getDefenderWaitingClans().size());
 		}
 	}
 }

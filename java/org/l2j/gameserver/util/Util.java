@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,14 +23,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.Charset;
-import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.text.NumberFormat;
-import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.Locale;
 import java.util.Map;
@@ -374,28 +371,6 @@ public class Util
 		return formatter.format(value);
 	}
 	
-	/**
-	 * Format the given date on the given format
-	 * @param date : the date to format.
-	 * @param format : the format to correct by.
-	 * @return a string representation of the formatted date.
-	 */
-	public static String formatDate(Date date, String format)
-	{
-		if (date == null)
-		{
-			return null;
-		}
-		final DateFormat dateFormat = new SimpleDateFormat(format);
-		return dateFormat.format(date);
-	}
-	
-	public static String getDateString(Date date)
-	{
-		final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-		return dateFormat.format(date.getTime());
-	}
-	
 	private static void buildHtmlBypassCache(Player player, HtmlActionScope scope, String html)
 	{
 		final String htmlLower = html.toLowerCase(Locale.ENGLISH);
@@ -603,7 +578,7 @@ public class Util
 	 */
 	public static void fillMultiEditContent(Player player, String text)
 	{
-		player.sendPacket(new ShowBoard(Arrays.asList("0", "0", "0", "0", "0", "0", player.getName(), Integer.toString(player.getObjectId()), player.getAccountName(), "9", " ", " ", text.replace("<br>", Config.EOL), "0", "0", "0", "0")));
+		player.sendPacket(new ShowBoard(Arrays.asList("0", "0", "0", "0", "0", "0", player.getName(), Integer.toString(player.getObjectId()), player.getAccountName(), "9", " ", " ", text.replace("<br>", System.lineSeparator()), "0", "0", "0", "0")));
 	}
 	
 	public static boolean isInsideRangeOfObjectId(WorldObject obj, int targetObjId, int radius)

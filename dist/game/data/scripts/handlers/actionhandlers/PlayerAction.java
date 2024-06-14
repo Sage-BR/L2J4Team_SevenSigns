@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,7 +18,6 @@ package handlers.actionhandlers;
 
 import org.l2j.gameserver.ai.CtrlIntention;
 import org.l2j.gameserver.enums.InstanceType;
-import org.l2j.gameserver.enums.PrivateStoreType;
 import org.l2j.gameserver.geoengine.GeoEngine;
 import org.l2j.gameserver.handler.IActionHandler;
 import org.l2j.gameserver.model.WorldObject;
@@ -73,7 +72,7 @@ public class PlayerAction implements IActionHandler
 		{
 			// Check if this Player has a Private Store
 			final Player targetPlayer = target.getActingPlayer();
-			if (targetPlayer.getPrivateStoreType() != PrivateStoreType.NONE)
+			if (targetPlayer.isInStoreMode())
 			{
 				player.getAI().setIntention(CtrlIntention.AI_INTENTION_INTERACT, target);
 			}

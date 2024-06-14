@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/multisell.xsd">
+	<npcs>
+		<npc>-1</npc> <!-- Item Multisell -->
+	</npcs>
+	<!-- Secret Shop Ticket (Time-limited) - Sealed (94871) -->
+	<item>
+		<ingredient id="94871" count="1" /> <!-- Secret Shop Ticket (Time-limited) - Sealed -->
+		<production id="97640" count="5" /> <!-- Secret Shop Coin (Time-limited) - Sealed -->
+	</item>
+	<item>
+		<ingredient id="94871" count="1" /> <!-- Secret Shop Ticket (Time-limited) - Sealed -->
+		<production id="93848" count="10" /> <!-- Sayha's Cookie (Time-limited) - Sealed -->
+	</item>
+</list>

@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,13 +16,11 @@
  */
 package org.l2j.gameserver.network.clientpackets;
 
-import org.l2j.commons.network.ReadablePacket;
 import org.l2j.gameserver.instancemanager.CastleManager;
 import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.model.clan.Clan;
 import org.l2j.gameserver.model.clan.ClanPrivilege;
 import org.l2j.gameserver.model.siege.Castle;
-import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.SystemMessageId;
 import org.l2j.gameserver.network.serverpackets.castlewar.MercenaryCastleWarCastleSiegeAttackerList;
 import org.l2j.gameserver.network.serverpackets.castlewar.MercenaryCastleWarCastleSiegeDefenderList;
@@ -30,24 +28,24 @@ import org.l2j.gameserver.network.serverpackets.castlewar.MercenaryCastleWarCast
 /**
  * @author KenM
  */
-public class RequestJoinSiege implements ClientPacket
+public class RequestJoinSiege extends ClientPacket
 {
 	private int _castleId;
 	private int _isAttacker;
 	private int _isJoining;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_castleId = packet.readInt();
-		_isAttacker = packet.readInt();
-		_isJoining = packet.readInt();
+		_castleId = readInt();
+		_isAttacker = readInt();
+		_isJoining = readInt();
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
-		final Player player = client.getPlayer();
+		final Player player = getPlayer();
 		if (player == null)
 		{
 			return;
@@ -88,6 +86,10 @@ public class RequestJoinSiege implements ClientPacket
 			}
 			else
 			{
+				if (clan.isRecruitMercenary() && (clan.getMapMercenary().size() > 0))
+				{
+					return;
+				}
 				castle.getSiege().removeSiegeClan(player);
 				if (_isAttacker == 1)
 				{

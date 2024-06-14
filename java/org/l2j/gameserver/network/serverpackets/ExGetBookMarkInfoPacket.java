@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,8 +16,10 @@
  */
 package org.l2j.gameserver.network.serverpackets;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.model.TeleportBookmark;
 import org.l2j.gameserver.model.actor.Player;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 
 /**
@@ -33,21 +35,21 @@ public class ExGetBookMarkInfoPacket extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_GET_BOOK_MARK_INFO.writeId(this);
-		writeInt(0); // Dummy
-		writeInt(_player.getBookMarkSlot());
-		writeInt(_player.getTeleportBookmarks().size());
+		ServerPackets.EX_GET_BOOK_MARK_INFO.writeId(this, buffer);
+		buffer.writeInt(0); // Dummy
+		buffer.writeInt(_player.getBookMarkSlot());
+		buffer.writeInt(_player.getTeleportBookmarks().size());
 		for (TeleportBookmark tpbm : _player.getTeleportBookmarks())
 		{
-			writeInt(tpbm.getId());
-			writeInt(tpbm.getX());
-			writeInt(tpbm.getY());
-			writeInt(tpbm.getZ());
-			writeString(tpbm.getName());
-			writeInt(tpbm.getIcon());
-			writeString(tpbm.getTag());
+			buffer.writeInt(tpbm.getId());
+			buffer.writeInt(tpbm.getX());
+			buffer.writeInt(tpbm.getY());
+			buffer.writeInt(tpbm.getZ());
+			buffer.writeString(tpbm.getName());
+			buffer.writeInt(tpbm.getIcon());
+			buffer.writeString(tpbm.getTag());
 		}
 	}
 }

@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -55,7 +55,7 @@ public class OpBlinkSkillCondition implements ISkillCondition
 			}
 		}
 		
-		_range = params.getInt("range");
+		_range = params.getInt("range") + 15; // TODO: Check if 15 can be replaced with effected collision radius.
 	}
 	
 	@Override

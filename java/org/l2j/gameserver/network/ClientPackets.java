@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -179,7 +179,7 @@ public enum ClientPackets
 	REQUEST_CONFIRM_SIEGE_WAITING_LIST(0xAE, RequestConfirmSiegeWaitingList::new, ConnectionState.IN_GAME),
 	REQUEST_SET_CASTLE_SIEGE_TIME(0xAF, RequestSetCastleSiegeTime::new, ConnectionState.IN_GAME),
 	MULTI_SELL_CHOOSE(0xB0, MultiSellChoose::new, ConnectionState.IN_GAME),
-	NET_PING(0xB1, null, ConnectionState.IN_GAME),
+	NET_PING(0xB1, RequestNetPing::new, ConnectionState.IN_GAME),
 	REQUEST_REMAIN_TIME(0xB2, null, ConnectionState.IN_GAME),
 	BYPASS_USER_CMD(0xB3, BypassUserCmd::new, ConnectionState.IN_GAME),
 	SNOOP_QUIT(0xB4, SnoopQuit::new, ConnectionState.IN_GAME),
@@ -209,7 +209,7 @@ public enum ClientPackets
 	REQUEST_MAKE_MACRO(0xCD, RequestMakeMacro::new, ConnectionState.IN_GAME),
 	REQUEST_DELETE_MACRO(0xCE, RequestDeleteMacro::new, ConnectionState.IN_GAME),
 	REQUEST_BUY_PROCURE(0xCF, null, ConnectionState.IN_GAME),
-	EX_PACKET(0xD0, ExPacket::new, ConnectionState.values()); // This packet has its own connection state checking so we allow all of them.
+	EX_PACKET(0xD0, null, ConnectionState.values()); // This packet has its own connection state checking so we allow all of them.
 	
 	public static final ClientPackets[] PACKET_ARRAY;
 	static
@@ -222,9 +222,9 @@ public enum ClientPackets
 		}
 	}
 	
-	private int _packetId;
-	private Supplier<ClientPacket> _packetSupplier;
-	private Set<ConnectionState> _connectionStates;
+	private final int _packetId;
+	private final Supplier<ClientPacket> _packetSupplier;
+	private final Set<ConnectionState> _connectionStates;
 	
 	ClientPackets(int packetId, Supplier<ClientPacket> packetSupplier, ConnectionState... connectionStates)
 	{

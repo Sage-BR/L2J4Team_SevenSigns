@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,7 +16,9 @@
  */
 package org.l2j.gameserver.network.serverpackets;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.model.actor.Player;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 
 public class JoinParty extends ServerPacket
@@ -31,15 +33,15 @@ public class JoinParty extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.JOIN_PARTY.writeId(this);
-		writeInt(_response);
-		writeInt(_type);
+		ServerPackets.JOIN_PARTY.writeId(this, buffer);
+		buffer.writeInt(_response);
+		buffer.writeInt(_type);
 		if (_type != 0)
 		{
-			writeInt(0); // TODO: Find me!
-			writeInt(0); // TODO: Find me!
+			buffer.writeInt(0); // TODO: Find me!
+			buffer.writeInt(0); // TODO: Find me!
 		}
 	}
 }

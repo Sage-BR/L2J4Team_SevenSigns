@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -61,7 +61,7 @@ public class SendMessageLocalisationData implements IXmlReader
 					continue;
 				}
 				
-				SEND_MESSAGE_LOCALISATIONS.put(lang, new ConcurrentHashMap<String[], String[]>());
+				SEND_MESSAGE_LOCALISATIONS.put(lang, new ConcurrentHashMap<>());
 				_lang = lang;
 				parseDatapackFile("data/lang/" + lang + "/SendMessageLocalisation.xml");
 				final int count = SEND_MESSAGE_LOCALISATIONS.get(lang).values().size();

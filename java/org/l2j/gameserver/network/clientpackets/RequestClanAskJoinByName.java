@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,38 +16,40 @@
  */
 package org.l2j.gameserver.network.clientpackets;
 
-import org.l2j.commons.network.ReadablePacket;
 import org.l2j.gameserver.model.World;
 import org.l2j.gameserver.model.actor.Player;
-import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.serverpackets.AskJoinPledge;
 
 /**
  * @author Mobius
  */
-public class RequestClanAskJoinByName implements ClientPacket
+public class RequestClanAskJoinByName extends ClientPacket
 {
 	private String _playerName;
 	private int _pledgeType;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_playerName = packet.readString();
-		_pledgeType = packet.readInt();
+		_playerName = readString();
+		_pledgeType = readInt();
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
-		final Player player = client.getPlayer();
+		final Player player = getPlayer();
 		if ((player == null) || (player.getClan() == null))
 		{
 			return;
 		}
 		
 		final Player invitedPlayer = World.getInstance().getPlayer(_playerName);
-		if (!player.getClan().checkClanJoinCondition(player, invitedPlayer, _pledgeType) || !player.getRequest().setRequest(invitedPlayer, this))
+		if (!player.getClan().checkClanJoinCondition(player, invitedPlayer, _pledgeType))
+		{
+			return;
+		}
+		if (!player.getRequest().setRequest(invitedPlayer, this))
 		{
 			return;
 		}

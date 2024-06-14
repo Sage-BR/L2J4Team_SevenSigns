@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -30,9 +30,9 @@ public enum ClanRewardType
 	MEMBERS_ONLINE(0, Clan::getPreviousMaxOnlinePlayers),
 	HUNTING_MONSTERS(1, Clan::getPreviousHuntingPoints);
 	
-	final int _clientId;
-	final int _mask;
-	final Function<Clan, Integer> _pointsFunction;
+	private final int _clientId;
+	private final int _mask;
+	private final Function<Clan, Integer> _pointsFunction;
 	
 	ClanRewardType(int clientId, Function<Clan, Integer> pointsFunction)
 	{

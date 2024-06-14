@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,38 +17,36 @@
 package org.l2j.gameserver.network.clientpackets.worldexchange;
 
 import org.l2j.Config;
-import org.l2j.commons.network.ReadablePacket;
 import org.l2j.gameserver.instancemanager.WorldExchangeManager;
 import org.l2j.gameserver.model.actor.Player;
-import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.clientpackets.ClientPacket;
 
 /**
  * @author Index
  */
-public class ExWorldExchangeRegisterItem implements ClientPacket
+public class ExWorldExchangeRegisterItem extends ClientPacket
 {
 	private long _price;
 	private int _itemId;
 	private long _amount;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_price = packet.readLong();
-		_itemId = packet.readInt();
-		_amount = packet.readLong();
+		_price = readLong();
+		_itemId = readInt();
+		_amount = readLong();
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
 		if (!Config.ENABLE_WORLD_EXCHANGE)
 		{
 			return;
 		}
 		
-		final Player player = client.getPlayer();
+		final Player player = getPlayer();
 		if (player == null)
 		{
 			return;

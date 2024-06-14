@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,6 +18,8 @@ package org.l2j.gameserver.model;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentLinkedQueue;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 import org.l2j.gameserver.enums.InstanceType;
 import org.l2j.gameserver.enums.PlayerCondOverride;
@@ -38,6 +40,8 @@ import org.l2j.gameserver.model.interfaces.INamable;
 import org.l2j.gameserver.model.interfaces.IPositionable;
 import org.l2j.gameserver.model.interfaces.ISpawnable;
 import org.l2j.gameserver.model.interfaces.IUniqueId;
+import org.l2j.gameserver.model.skill.SkillCaster;
+import org.l2j.gameserver.model.skill.TriggerCastInfo;
 import org.l2j.gameserver.model.zone.ZoneId;
 import org.l2j.gameserver.network.SystemMessageId;
 import org.l2j.gameserver.network.serverpackets.ActionFailed;
@@ -66,6 +70,10 @@ public abstract class WorldObject extends ListenersContainer implements IIdentif
 	private boolean _isInvisible;
 	private boolean _isTargetable = true;
 	private Map<String, Object> _scripts;
+	
+	/** TriggerCast Queue */
+	private final ConcurrentLinkedQueue<TriggerCastInfo> _triggerCastQueue = new ConcurrentLinkedQueue<>();
+	private final AtomicBoolean _triggerCasting = new AtomicBoolean();
 	
 	public WorldObject(int objectId)
 	{
@@ -910,12 +918,49 @@ public abstract class WorldObject extends ListenersContainer implements IIdentif
 		}
 		
 		final WorldRegion worldRegion = worldObject.getWorldRegion();
-		if ((worldRegion == null) || (_worldRegion == null))
+		if (worldRegion == null)
+		{
+			return false;
+		}
+		
+		if (_worldRegion == null)
 		{
 			return false;
 		}
 		
 		return worldRegion.isSurroundingRegion(_worldRegion);
+	}
+	
+	public void addTriggerCast(TriggerCastInfo info)
+	{
+		_triggerCastQueue.offer(info);
+		if (_triggerCasting.compareAndSet(false, true))
+		{
+			processTriggerCastQueue();
+		}
+	}
+	
+	private void processTriggerCastQueue()
+	{
+		try
+		{
+			while (!_triggerCastQueue.isEmpty())
+			{
+				final TriggerCastInfo info = _triggerCastQueue.poll();
+				if (info != null)
+				{
+					SkillCaster.triggerCast(info);
+				}
+			}
+		}
+		finally
+		{
+			_triggerCasting.set(false);
+			if (!_triggerCastQueue.isEmpty() && _triggerCasting.compareAndSet(false, true))
+			{
+				processTriggerCastQueue();
+			}
+		}
 	}
 	
 	@Override

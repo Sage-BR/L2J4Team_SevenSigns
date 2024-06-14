@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,28 +16,26 @@
  */
 package org.l2j.gameserver.network.clientpackets;
 
-import org.l2j.commons.network.ReadablePacket;
 import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.model.holders.MovieHolder;
-import org.l2j.gameserver.network.GameClient;
 
 /**
  * @author JIV
  */
-public class EndScenePlayer implements ClientPacket
+public class EndScenePlayer extends ClientPacket
 {
 	private int _movieId;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_movieId = packet.readInt();
+		_movieId = readInt();
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
-		final Player player = client.getPlayer();
+		final Player player = getPlayer();
 		if ((player == null) || (_movieId == 0))
 		{
 			return;

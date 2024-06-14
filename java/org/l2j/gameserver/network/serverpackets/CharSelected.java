@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,7 +16,9 @@
  */
 package org.l2j.gameserver.network.serverpackets;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.model.actor.Player;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 import org.l2j.gameserver.taskmanager.GameTimeTaskManager;
 
@@ -36,43 +38,43 @@ public class CharSelected extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.CHARACTER_SELECTED.writeId(this);
-		writeString(_player.getName());
-		writeInt(_player.getObjectId());
-		writeString(_player.getTitle());
-		writeInt(_sessionId);
-		writeInt(_player.getClanId());
-		writeInt(0); // ??
-		writeInt(_player.getAppearance().isFemale());
-		writeInt(_player.getRace().ordinal());
-		writeInt(_player.getClassId().getId());
-		writeInt(1); // active ??
-		writeInt(_player.getX());
-		writeInt(_player.getY());
-		writeInt(_player.getZ());
-		writeDouble(_player.getCurrentHp());
-		writeDouble(_player.getCurrentMp());
-		writeLong(_player.getSp());
-		writeLong(_player.getExp());
-		writeInt(_player.getLevel());
-		writeInt(_player.getReputation());
-		writeInt(_player.getPkKills());
-		writeInt(GameTimeTaskManager.getInstance().getGameTime() % (24 * 60)); // "reset" on 24th hour
-		writeInt(0);
-		writeInt(_player.getClassId().getId());
-		writeBytes(new byte[16]);
-		writeInt(0);
-		writeInt(0);
-		writeInt(0);
-		writeInt(0);
-		writeInt(0);
-		writeInt(0);
-		writeInt(0);
-		writeInt(0);
-		writeInt(0);
-		writeBytes(new byte[28]);
-		writeInt(0);
+		ServerPackets.CHARACTER_SELECTED.writeId(this, buffer);
+		buffer.writeString(_player.getName());
+		buffer.writeInt(_player.getObjectId());
+		buffer.writeString(_player.getTitle());
+		buffer.writeInt(_sessionId);
+		buffer.writeInt(_player.getClanId());
+		buffer.writeInt(0); // ??
+		buffer.writeInt(_player.getAppearance().isFemale());
+		buffer.writeInt(_player.getRace().ordinal());
+		buffer.writeInt(_player.getClassId().getId());
+		buffer.writeInt(1); // active ??
+		buffer.writeInt(_player.getX());
+		buffer.writeInt(_player.getY());
+		buffer.writeInt(_player.getZ());
+		buffer.writeDouble(_player.getCurrentHp());
+		buffer.writeDouble(_player.getCurrentMp());
+		buffer.writeLong(_player.getSp());
+		buffer.writeLong(_player.getExp());
+		buffer.writeInt(_player.getLevel());
+		buffer.writeInt(_player.getReputation());
+		buffer.writeInt(_player.getPkKills());
+		buffer.writeInt(GameTimeTaskManager.getInstance().getGameTime() % (24 * 60)); // "reset" on 24th hour
+		buffer.writeInt(0);
+		buffer.writeInt(_player.getClassId().getId());
+		buffer.writeBytes(new byte[16]);
+		buffer.writeInt(0);
+		buffer.writeInt(0);
+		buffer.writeInt(0);
+		buffer.writeInt(0);
+		buffer.writeInt(0);
+		buffer.writeInt(0);
+		buffer.writeInt(0);
+		buffer.writeInt(0);
+		buffer.writeInt(0);
+		buffer.writeBytes(new byte[28]);
+		buffer.writeInt(0);
 	}
 }

@@ -1,0 +1,6 @@
+<html><body>Holiday Manager Santa Claus<br>
+Ho-ho-ho! It's been a long time since I've been to Elmoraden. And the kingdom looks so much better this year! Even with my poor eyesight I couldn't help but notice new territories, new bosses and new classes.<br>
+Oh. I'm rambling, and time is wasting... I must give out as many gift as I can. Ironically, event Santa Claus is on schedule. I give out gifts from 11:00 till 12:00 and from 21:00 till 22:00.<br>
+I have quite a lot of gifts. And brave warriors, such as yourself, I'm willing to give one gift per day. Hurry up and get yours!<br>
+<Button ALIGN=LEFT ICON="NORMAL" action="bypass -h Quest HolidayOutOfSchedule GET_SANTA_GIFT">"Get Santa's Gift"</Button>
+</body></html>

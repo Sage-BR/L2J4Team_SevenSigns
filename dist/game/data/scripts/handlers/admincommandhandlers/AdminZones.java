@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -29,7 +29,6 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.logging.Level;
 
-import org.l2j.Config;
 import org.l2j.commons.util.CommonUtil;
 import org.l2j.commons.util.Rnd;
 import org.l2j.gameserver.enums.PlayerAction;
@@ -447,7 +446,7 @@ public class AdminZones extends AbstractNpcAI implements IAdminCommandHandler
 			}
 			
 			final Location firstNode = holder.getNodes().get(0);
-			final StringJoiner sj = new StringJoiner(Config.EOL);
+			final StringJoiner sj = new StringJoiner(System.lineSeparator());
 			sj.add("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
 			sj.add("<list enabled=\"true\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:noNamespaceSchemaLocation=\"../../data/xsd/zones.xsd\">");
 			sj.add("\t<zone name=\"" + holder.getName() + "\" type=\"ScriptZone\" shape=\"NPoly\" minZ=\"" + (holder.getMinZ() != 0 ? holder.getMinZ() : firstNode.getZ() - 100) + "\" maxZ=\"" + (holder.getMaxZ() != 0 ? holder.getMaxZ() : firstNode.getZ() + 100) + "\">");

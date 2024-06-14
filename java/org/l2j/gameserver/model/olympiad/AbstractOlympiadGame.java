@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,6 +22,7 @@ import java.util.logging.Logger;
 
 import org.l2j.Config;
 import org.l2j.gameserver.ai.CtrlIntention;
+import org.l2j.gameserver.enums.OlympiadMode;
 import org.l2j.gameserver.enums.PartyMessageType;
 import org.l2j.gameserver.instancemanager.AntiFeedManager;
 import org.l2j.gameserver.instancemanager.CastleManager;
@@ -39,11 +40,11 @@ import org.l2j.gameserver.model.siege.Castle;
 import org.l2j.gameserver.model.siege.Fort;
 import org.l2j.gameserver.model.skill.Skill;
 import org.l2j.gameserver.network.SystemMessageId;
-import org.l2j.gameserver.network.serverpackets.ExOlympiadMode;
 import org.l2j.gameserver.network.serverpackets.InventoryUpdate;
 import org.l2j.gameserver.network.serverpackets.ServerPacket;
 import org.l2j.gameserver.network.serverpackets.SkillCoolTime;
 import org.l2j.gameserver.network.serverpackets.SystemMessage;
+import org.l2j.gameserver.network.serverpackets.olympiad.ExOlympiadMode;
 
 /**
  * @author godson, GodKratos, Pere, DS
@@ -113,7 +114,12 @@ public abstract class AbstractOlympiadGame
 	 */
 	protected static SystemMessage checkDefaulted(Player player)
 	{
-		if ((player == null) || !player.isOnline() || (player.getClient() == null) || player.getClient().isDetached())
+		if ((player == null) || !player.isOnline())
+		{
+			return new SystemMessage(SystemMessageId.YOUR_OPPONENT_MADE_HASTE_WITH_THEIR_TAIL_BETWEEN_THEIR_LEGS_THE_MATCH_HAS_BEEN_CANCELLED);
+		}
+		
+		if ((player.getClient() == null) || player.getClient().isDetached())
 		{
 			return new SystemMessage(SystemMessageId.YOUR_OPPONENT_MADE_HASTE_WITH_THEIR_TAIL_BETWEEN_THEIR_LEGS_THE_MATCH_HAS_BEEN_CANCELLED);
 		}
@@ -158,7 +164,7 @@ public abstract class AbstractOlympiadGame
 		return null;
 	}
 	
-	protected static boolean portPlayerToArena(Participant par, Location loc, int id, Instance instance)
+	protected static boolean portPlayerToArena(Participant par, Location loc, int id, Instance instance, OlympiadMode mode)
 	{
 		final Player player = par.getPlayer();
 		if ((player == null) || !player.isOnline())
@@ -168,6 +174,7 @@ public abstract class AbstractOlympiadGame
 		
 		try
 		{
+			player.setPvpFlag(0);
 			player.setLastLocation();
 			if (player.isSitting())
 			{
@@ -180,7 +187,7 @@ public abstract class AbstractOlympiadGame
 			player.setOlympiadStart(false);
 			player.setOlympiadSide(par.getSide());
 			player.teleToLocation(loc, instance);
-			player.sendPacket(new ExOlympiadMode(2));
+			player.sendPacket(new ExOlympiadMode(mode));
 		}
 		catch (Exception e)
 		{
@@ -366,7 +373,7 @@ public abstract class AbstractOlympiadGame
 			player.setOlympiadStart(false);
 			player.setOlympiadSide(-1);
 			player.setOlympiadGameId(-1);
-			player.sendPacket(new ExOlympiadMode(0));
+			player.sendPacket(new ExOlympiadMode(OlympiadMode.NONE));
 			
 			// Add Clan Skills
 			final Clan clan = player.getClan();
@@ -415,6 +422,7 @@ public abstract class AbstractOlympiadGame
 		{
 			return;
 		}
+		
 		final Location loc = player.getLastLocation();
 		if (loc != null)
 		{

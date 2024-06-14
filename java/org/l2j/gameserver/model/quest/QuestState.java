@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -32,10 +32,8 @@ import org.l2j.gameserver.model.events.EventType;
 import org.l2j.gameserver.model.events.impl.creature.player.OnPlayerQuestAccept;
 import org.l2j.gameserver.model.events.impl.creature.player.OnPlayerQuestComplete;
 import org.l2j.gameserver.model.quest.newquestdata.QuestCondType;
-import org.l2j.gameserver.network.serverpackets.QuestList;
 import org.l2j.gameserver.network.serverpackets.quest.ExQuestAcceptableList;
 import org.l2j.gameserver.network.serverpackets.quest.ExQuestNotification;
-import org.l2j.gameserver.network.serverpackets.quest.ExQuestNotificationAll;
 import org.l2j.gameserver.network.serverpackets.quest.ExQuestUI;
 
 /**
@@ -168,7 +166,12 @@ public class QuestState
 	 */
 	public void setState(byte state, boolean saveInDb)
 	{
-		if (_simulated || (_state == state))
+		if (_simulated)
+		{
+			return;
+		}
+		
+		if (_state == state)
 		{
 			return;
 		}
@@ -187,7 +190,7 @@ public class QuestState
 			}
 		}
 		
-		_player.sendPacket(new QuestList(_player));
+		// _player.sendPacket(new QuestList(_player));
 	}
 	
 	/**
@@ -326,7 +329,12 @@ public class QuestState
 	 */
 	private void setCond(int cond, int old)
 	{
-		if (_simulated || (cond == old))
+		if (_simulated)
+		{
+			return;
+		}
+		
+		if (cond == old)
 		{
 			return;
 		}
@@ -392,7 +400,7 @@ public class QuestState
 		
 		// send a packet to the client to inform it of the quest progress (step change)
 		_player.sendPacket(new ExQuestUI(_player));
-		_player.sendPacket(new ExQuestNotificationAll(_player));
+		_player.sendPacket(new ExQuestNotification(this));
 	}
 	
 	/**
@@ -401,7 +409,12 @@ public class QuestState
 	 */
 	public void unset(String variable)
 	{
-		if (_simulated || (_vars == null))
+		if (_simulated)
+		{
+			return;
+		}
+		
+		if (_vars == null)
 		{
 			return;
 		}
@@ -580,7 +593,12 @@ public class QuestState
 	 */
 	public void setCond(int value, boolean playQuestMiddle)
 	{
-		if (_simulated || !isStarted())
+		if (_simulated)
+		{
+			return;
+		}
+		
+		if (!isStarted())
 		{
 			return;
 		}
@@ -627,7 +645,7 @@ public class QuestState
 		
 		_player.sendPacket(QuestSound.ITEMSOUND_QUEST_ITEMGET.getPacket());
 		_player.sendPacket(new ExQuestUI(_player));
-		_player.sendPacket(new ExQuestNotificationAll(_player));
+		_player.sendPacket(new ExQuestNotification(this));
 	}
 	
 	/**
@@ -727,9 +745,8 @@ public class QuestState
 			set(COUNT_VAR, "0");
 			setState(State.STARTED);
 			_player.sendPacket(QuestSound.ITEMSOUND_QUEST_ACCEPT.getPacket());
-			_player.sendPacket(new ExQuestUI(_player));
-			_player.sendPacket(new ExQuestNotification(this));
-			_player.sendPacket(new ExQuestNotificationAll(_player));
+			// _player.sendPacket(new ExQuestUI(_player));
+			// _player.sendPacket(new ExQuestNotification(this));
 			_player.sendPacket(new ExQuestAcceptableList(_player));
 			
 			if (EventDispatcher.getInstance().hasListener(EventType.ON_PLAYER_QUEST_ACCEPT, _player, Containers.Players()))
@@ -795,12 +812,11 @@ public class QuestState
 		}
 		
 		exitQuest(type);
+		
 		if (playExitQuest)
 		{
 			_player.sendPacket(QuestSound.ITEMSOUND_QUEST_FINISH.getPacket());
 		}
-		
-		_player.sendPacket(new ExQuestNotificationAll(getPlayer()));
 	}
 	
 	/**
@@ -832,14 +848,13 @@ public class QuestState
 		if (repeatable)
 		{
 			_player.delQuestState(_questName);
-			_player.sendPacket(new ExQuestUI(_player));
 		}
 		else
 		{
 			setState(State.COMPLETED);
 		}
 		
-		_player.sendPacket(new ExQuestNotificationAll(_player));
+		_player.sendPacket(new ExQuestNotification(this));
 		_player.sendPacket(new ExQuestUI(_player));
 		
 		_vars = null;
@@ -862,13 +877,11 @@ public class QuestState
 		}
 		
 		exitQuest(repeatable);
+		
 		if (playExitQuest)
 		{
 			_player.sendPacket(QuestSound.ITEMSOUND_QUEST_FINISH.getPacket());
 		}
-		
-		_player.sendPacket(new ExQuestNotificationAll(_player));
-		_player.sendPacket(new ExQuestUI(_player));
 		
 		// Notify to scripts
 		if (EventDispatcher.getInstance().hasListener(EventType.ON_PLAYER_QUEST_COMPLETE, _player))

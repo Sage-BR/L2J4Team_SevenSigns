@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -64,8 +64,13 @@ public class KarmaCount extends AbstractEffect
 	public void instant(Creature effector, Creature effected, Skill skill, Item item)
 	{
 		final Player player = effected.getActingPlayer();
+		if (player == null)
+		{
+			return;
+		}
+		
 		// Check if player has no karma.
-		if ((player == null) || (player.getReputation() >= 0))
+		if (player.getReputation() >= 0)
 		{
 			return;
 		}

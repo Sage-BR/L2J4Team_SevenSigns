@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -444,7 +444,7 @@ public class FortSiegeManager
 			return false;
 		}
 		
-		final Fort fort = FortManager.getInstance().getFort(player);
+		final Fort fort = FortManager.getInstance().findNearestFort(player);
 		// if ((fort == null) || (fort.getResidenceId() <= 0) || (fort.getSiege().getAttackerClan(player.getClan()) == null))
 		if ((fort == null) || (fort.getResidenceId() <= 0))
 		{

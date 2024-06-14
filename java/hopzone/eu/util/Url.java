@@ -21,17 +21,27 @@
  */
 package hopzone.eu.util;
 
-import java.util.Arrays;
-
 import hopzone.eu.Configurations;
 
+import java.util.Arrays;
+
 /**
- * @Author Nightwolf iToPz Discord: https://discord.gg/KkPms6B5aE
- * @Author Rationale Base structure credits goes on Rationale Discord: Rationale#7773
- *         <p>
- *         VDS Stands for: Vote Donation System Script website: https://itopz.com/ Partner website: https://hopzone.eu/ Script version: 1.8 Pack Support: 4Team Essence SevenSigns
- *         <p>
- *         Freemium Donate Panel V4: https://www.denart-designs.com/ Download: https://mega.nz/folder/6oxUyaIJ#qQDUXeoXlPvBjbPMDYzu-g Buy: https://shop.denart-designs.com/product/auto-donate-panel-v4/ Quick Guide: https://github.com/nightw0lv/VDSystem/tree/master/Guide
+ * @Author Nightwolf
+ * iToPz Discord: https://discord.gg/KkPms6B5aE
+ * @Author Rationale
+ * Base structure credits goes on Rationale Discord: Rationale#7773
+ * <p>
+ * VDS Stands for: Vote Donation System
+ * Script website: https://itopz.com/
+ * Partner website: https://hopzone.eu/
+ * Script version: 1.8
+ * Pack Support: Mobius Essence 7.0 Assassin
+ * <p>
+ * Freemium Donate Panel V4: https://www.denart-designs.com/
+ * Download: https://mega.nz/folder/6oxUyaIJ#qQDUXeoXlPvBjbPMDYzu-g
+ * Buy: https://shop.denart-designs.com/product/auto-donate-panel-v4/
+ *
+ * Quick Guide: https://github.com/nightw0lv/VDSystem/tree/master/Guide
  */
 public enum Url
 {
@@ -75,10 +85,10 @@ public enum Url
 	DENART_DESIGNS_VOTE_PANEL("https://shop.denart-designs.com/product/l2off-l2java-vote-panel-v2/"),
 	DENART_DESIGNS_REFERRAL_PANEL("https://shop.denart-designs.com/product/referral-panel/"),
 	GITHUB_URL("https://github.com/nightw0lv/VDSystem");
-	
+
 	private final String _text;
 	private static final Url[] _urls = values();
-	
+
 	/**
 	 * @param text String
 	 */
@@ -86,9 +96,10 @@ public enum Url
 	{
 		_text = text;
 	}
-	
+
 	/**
 	 * (non-Javadoc)
+	 *
 	 * @see Enum#toString()
 	 */
 	@Override
@@ -96,9 +107,10 @@ public enum Url
 	{
 		return _text;
 	}
-	
+
 	/**
 	 * returns enum from string
+	 *
 	 * @param TOPSITE string
 	 * @return Individual
 	 */

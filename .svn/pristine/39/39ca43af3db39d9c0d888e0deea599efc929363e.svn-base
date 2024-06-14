@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/multisell.xsd">
+	<npcs>
+		<npc>-1</npc> <!-- Item Multisell -->
+	</npcs>
+	<!-- Frost Lord's Weapon Coupon (Sealed) (Time-limited) - Sealed (100111) -->
+	<item>
+		<ingredient id="100111" count="1" /> <!-- Frost Lord's Weapon Coupon (Sealed) (Time-limited) - Sealed -->
+		<production id="96766" count="1" /> <!-- Package: Frost Lord's Sword (Sealed) - Sealed -->
+	</item>
+	<item>
+		<ingredient id="100111" count="1" /> <!-- Frost Lord's Weapon Coupon (Sealed) (Time-limited) - Sealed -->
+		<production id="96767" count="1" /> <!-- Package: Frost Lord's Two-handed Sword (Sealed) - Sealed -->
+	</item>
+	<item>
+		<ingredient id="100111" count="1" /> <!-- Frost Lord's Weapon Coupon (Sealed) (Time-limited) - Sealed -->
+		<production id="96768" count="1" /> <!-- Package: Frost Lord's Axe (Sealed) - Sealed -->
+	</item>
+	<item>
+		<ingredient id="100111" count="1" /> <!-- Frost Lord's Weapon Coupon (Sealed) (Time-limited) - Sealed -->
+		<production id="96769" count="1" /> <!-- Package: Frost Lord's Dagger (Sealed) - Sealed -->
+	</item>
+	<item>
+		<ingredient id="100111" count="1" /> <!-- Frost Lord's Weapon Coupon (Sealed) (Time-limited) - Sealed -->
+		<production id="96770" count="1" /> <!-- Package: Frost Lord's Spear (Sealed) - Sealed -->
+	</item>
+	<item>
+		<ingredient id="100111" count="1" /> <!-- Frost Lord's Weapon Coupon (Sealed) (Time-limited) - Sealed -->
+		<production id="96771" count="1" /> <!-- Package: Frost Lord's Bow (Sealed) - Sealed -->
+	</item>
+	<item>
+		<ingredient id="100111" count="1" /> <!-- Frost Lord's Weapon Coupon (Sealed) (Time-limited) - Sealed -->
+		<production id="96772" count="1" /> <!-- Package: Frost Lord's Blade Fists (Sealed) - Sealed -->
+	</item>
+	<item>
+		<ingredient id="100111" count="1" /> <!-- Frost Lord's Weapon Coupon (Sealed) (Time-limited) - Sealed -->
+		<production id="96773" count="1" /> <!-- Package: Frost Lord's Magic Blunt Weapon (Sealed) - Sealed -->
+	</item>
+	<item>
+		<ingredient id="100111" count="1" /> <!-- Frost Lord's Weapon Coupon (Sealed) (Time-limited) - Sealed -->
+		<production id="96774" count="1" /> <!-- Package: Frost Lord's Staff (Sealed) - Sealed -->
+	</item>
+	<item>
+		<ingredient id="100111" count="1" /> <!-- Frost Lord's Weapon Coupon (Sealed) (Time-limited) - Sealed -->
+		<production id="96775" count="1" /> <!-- Package: Frost Lord's Ancient Sword (Sealed) - Sealed -->
+	</item>
+	<item>
+		<ingredient id="100111" count="1" /> <!-- Frost Lord's Weapon Coupon (Sealed) (Time-limited) - Sealed -->
+		<production id="96776" count="1" /> <!-- Package: Frost Lord's Rapier (Sealed) - Sealed -->
+	</item>
+	<item>
+		<ingredient id="100111" count="1" /> <!-- Frost Lord's Weapon Coupon (Sealed) (Time-limited) - Sealed -->
+		<production id="96777" count="1" /> <!-- Package: Frost Lord's Pistols (Sealed) - Sealed -->
+	</item>
+	<item>
+		<ingredient id="100111" count="1" /> <!-- Frost Lord's Weapon Coupon (Sealed) (Time-limited) - Sealed -->
+		<production id="96778" count="1" /> <!-- Package: Frost Lord's Dual Swords (Sealed) - Sealed -->
+	</item>
+</list>

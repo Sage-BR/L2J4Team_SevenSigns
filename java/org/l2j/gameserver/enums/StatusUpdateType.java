@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -64,8 +64,8 @@ public enum StatusUpdateType
 	CUR_AP(0x2D, creature -> creature.isPlayer() ? creature.getActingPlayer().getAssassinationPoints() : 0),
 	MAX_AP(0x2E, creature -> creature.isPlayer() ? creature.getActingPlayer().getMaxAssassinationPoints() : 0);
 	
-	private int _clientId;
-	private Function<Creature, Integer> _valueSupplier;
+	private final int _clientId;
+	private final Function<Creature, Integer> _valueSupplier;
 	
 	StatusUpdateType(int clientId, Function<Creature, Integer> valueSupplier)
 	{

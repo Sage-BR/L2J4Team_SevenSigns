@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,20 +18,20 @@ package org.l2j.loginserver.network.gameserverpackets;
 
 import java.util.logging.Logger;
 
-import org.l2j.commons.network.ReadablePacket;
+import org.l2j.commons.network.base.BaseReadablePacket;
 import org.l2j.loginserver.GameServerThread;
 
 /**
  * @author -Wooden-
  */
-public class PlayerLogout extends ReadablePacket
+public class PlayerLogout extends BaseReadablePacket
 {
 	protected static final Logger LOGGER = Logger.getLogger(PlayerLogout.class.getName());
 	
 	public PlayerLogout(byte[] decrypt, GameServerThread server)
 	{
 		super(decrypt);
-		readByte(); // id (already processed)
+		readByte(); // Packet id, it is already processed.
 		
 		final String account = readString();
 		server.removeAccountOnGameServer(account);

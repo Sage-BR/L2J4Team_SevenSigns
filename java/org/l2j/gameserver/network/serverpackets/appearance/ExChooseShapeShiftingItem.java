@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,9 +16,11 @@
  */
 package org.l2j.gameserver.network.serverpackets.appearance;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.model.item.appearance.AppearanceStone;
 import org.l2j.gameserver.model.item.appearance.AppearanceTargetType;
 import org.l2j.gameserver.model.item.appearance.AppearanceType;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 import org.l2j.gameserver.network.serverpackets.ServerPacket;
 
@@ -39,11 +41,11 @@ public class ExChooseShapeShiftingItem extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_CHOOSE_SHAPE_SHIFTING_ITEM.writeId(this);
-		writeInt(_targetType != null ? _targetType.ordinal() : 0);
-		writeInt(_type != null ? _type.ordinal() : 0);
-		writeInt(_itemId);
+		ServerPackets.EX_CHOOSE_SHAPE_SHIFTING_ITEM.writeId(this, buffer);
+		buffer.writeInt(_targetType != null ? _targetType.ordinal() : 0);
+		buffer.writeInt(_type != null ? _type.ordinal() : 0);
+		buffer.writeInt(_itemId);
 	}
 }

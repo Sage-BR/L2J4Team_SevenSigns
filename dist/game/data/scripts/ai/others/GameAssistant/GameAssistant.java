@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -83,6 +83,14 @@ public class GameAssistant extends AbstractNpcAI
 	private static final int EX_DYES2 = 3247844;
 	private static final int EX_DYES3 = 3247845;
 	private static final int EX_DYES4 = 3247846;
+	private static final int EX_BOOKS1 = 3247847;
+	private static final int EX_BOOKS2 = 3247848;
+	private static final int EX_BOOKS3 = 3247849;
+	private static final int EX_BOOKS4 = 3247850;
+	private static final int EX_BOOKS5 = 3247851;
+	private static final int EX_BOOKS6 = 3247852;
+	private static final int EX_BOOKS7 = 3247853;
+	private static final int EX_PETS = 3247854;
 	// Others
 	private static final String COMMAND_BYPASS = "Quest GameAssistant ";
 	
@@ -94,7 +102,7 @@ public class GameAssistant extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onAdvEvent(String event, Npc npc, Player player)
+	public String onEvent(String event, Npc npc, Player player)
 	{
 		final String htmltext = null;
 		switch (event)
@@ -219,6 +227,16 @@ public class GameAssistant extends AbstractNpcAI
 				player.sendPacket(new ExPremiumManagerShowHtml(HtmCache.getInstance().getHtm(player, "data/scripts/ai/others/GameAssistant/dyes.html")));
 				break;
 			}
+			case "Chat_Spellbooks":
+			{
+				player.sendPacket(new ExPremiumManagerShowHtml(HtmCache.getInstance().getHtm(player, "data/scripts/ai/others/GameAssistant/spellbooks.html")));
+				break;
+			}
+			case "Chat_Pets":
+			{
+				player.sendPacket(new ExPremiumManagerShowHtml(HtmCache.getInstance().getHtm(player, "data/scripts/ai/others/GameAssistant/pets.html")));
+				break;
+			}
 			// Actions
 			case "removeAug":
 			{
@@ -328,6 +346,66 @@ public class GameAssistant extends AbstractNpcAI
 				MultisellData.getInstance().separateAndSend(EX_SOULSHOT, player, null, false);
 				break;
 			}
+			case "Ex_Dyes1":
+			{
+				MultisellData.getInstance().separateAndSend(EX_DYES1, player, null, false);
+				break;
+			}
+			case "Ex_Dyes2":
+			{
+				MultisellData.getInstance().separateAndSend(EX_DYES2, player, null, false);
+				break;
+			}
+			case "Ex_Dyes3":
+			{
+				MultisellData.getInstance().separateAndSend(EX_DYES3, player, null, false);
+				break;
+			}
+			case "Ex_Dyes4":
+			{
+				MultisellData.getInstance().separateAndSend(EX_DYES4, player, null, false);
+				break;
+			}
+			case "Ex_Books1":
+			{
+				MultisellData.getInstance().separateAndSend(EX_BOOKS1, player, null, false);
+				break;
+			}
+			case "Ex_Books2":
+			{
+				MultisellData.getInstance().separateAndSend(EX_BOOKS2, player, null, false);
+				break;
+			}
+			case "Ex_Books3":
+			{
+				MultisellData.getInstance().separateAndSend(EX_BOOKS3, player, null, false);
+				break;
+			}
+			case "Ex_Books4":
+			{
+				MultisellData.getInstance().separateAndSend(EX_BOOKS4, player, null, false);
+				break;
+			}
+			case "Ex_Books5":
+			{
+				MultisellData.getInstance().separateAndSend(EX_BOOKS5, player, null, false);
+				break;
+			}
+			case "Ex_Books6":
+			{
+				MultisellData.getInstance().separateAndSend(EX_BOOKS6, player, null, false);
+				break;
+			}
+			case "Ex_Books7":
+			{
+				MultisellData.getInstance().separateAndSend(EX_BOOKS7, player, null, false);
+				break;
+			}
+			case "Ex_Pets":
+			{
+				MultisellData.getInstance().separateAndSend(EX_PETS, player, null, false);
+				break;
+			}
 			case "Take_Adventures_Mark":
 			{
 				if ((player.getLevel() >= 20) || (player.getLevel() <= 30))
@@ -390,30 +468,6 @@ public class GameAssistant extends AbstractNpcAI
 					
 					player.addItem("GameAssistant", ADVENTURER_MARK_LV_5, 1, null, false);
 				}
-				break;
-			}
-			case "Ex_Dyes1":
-			{
-				player.sendPacket(new ExPremiumManagerShowHtml(HtmCache.getInstance().getHtm(player, "data/scripts/ai/others/GameAssistant/dyes.html")));
-				MultisellData.getInstance().separateAndSend(EX_DYES1, player, null, false);
-				break;
-			}
-			case "Ex_Dyes2":
-			{
-				player.sendPacket(new ExPremiumManagerShowHtml(HtmCache.getInstance().getHtm(player, "data/scripts/ai/others/GameAssistant/dyes.html")));
-				MultisellData.getInstance().separateAndSend(EX_DYES2, player, null, false);
-				break;
-			}
-			case "Ex_Dyes3":
-			{
-				player.sendPacket(new ExPremiumManagerShowHtml(HtmCache.getInstance().getHtm(player, "data/scripts/ai/others/GameAssistant/dyes.html")));
-				MultisellData.getInstance().separateAndSend(EX_DYES3, player, null, false);
-				break;
-			}
-			case "Ex_Dyes4":
-			{
-				player.sendPacket(new ExPremiumManagerShowHtml(HtmCache.getInstance().getHtm(player, "data/scripts/ai/others/GameAssistant/dyes.html")));
-				MultisellData.getInstance().separateAndSend(EX_DYES4, player, null, false);
 				break;
 			}
 			case "exc_black_sayha_cloak":

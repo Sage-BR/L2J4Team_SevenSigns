@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/cubics.xsd">
+	<cubic id="27" level="1" slot="18" duration="1200" delay="13" maxCount="50" useUp="0" power="2106.0" targetType="BY_SKILL" />
+	<cubic id="27" level="2" slot="18" duration="1200" delay="13" maxCount="50" useUp="0" power="2106.0" targetType="BY_SKILL" />
+	<cubic id="27" level="3" slot="18" duration="1200" delay="13" maxCount="50" useUp="0" power="2106.0" targetType="BY_SKILL" />
+	<cubic id="27" level="4" slot="18" duration="1200" delay="13" maxCount="50" useUp="0" power="2106.0" targetType="BY_SKILL" />
+</list>

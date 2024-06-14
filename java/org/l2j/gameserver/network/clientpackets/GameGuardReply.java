@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,15 +20,13 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 
-import org.l2j.commons.network.ReadablePacket;
-import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.PacketLogger;
 
 /**
  * Format: c dddd
  * @author KenM
  */
-public class GameGuardReply implements ClientPacket
+public class GameGuardReply extends ClientPacket
 {
 	private static final byte[] VALID =
 	{
@@ -57,21 +55,21 @@ public class GameGuardReply implements ClientPacket
 	private final byte[] _reply = new byte[8];
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_reply[0] = (byte) packet.readByte();
-		_reply[1] = (byte) packet.readByte();
-		_reply[2] = (byte) packet.readByte();
-		_reply[3] = (byte) packet.readByte();
-		packet.readInt();
-		_reply[4] = (byte) packet.readByte();
-		_reply[5] = (byte) packet.readByte();
-		_reply[6] = (byte) packet.readByte();
-		_reply[7] = (byte) packet.readByte();
+		_reply[0] = readByte();
+		_reply[1] = readByte();
+		_reply[2] = readByte();
+		_reply[3] = readByte();
+		readInt();
+		_reply[4] = readByte();
+		_reply[5] = readByte();
+		_reply[6] = readByte();
+		_reply[7] = readByte();
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
 		try
 		{
@@ -79,7 +77,7 @@ public class GameGuardReply implements ClientPacket
 			final byte[] result = md.digest(_reply);
 			if (Arrays.equals(result, VALID))
 			{
-				client.setGameGuardOk(true);
+				getClient().setGameGuardOk(true);
 			}
 		}
 		catch (NoSuchAlgorithmException e)

@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,11 +16,13 @@
  */
 package org.l2j.gameserver.network.serverpackets.newskillenchant;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.model.ItemInfo;
 import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.model.item.instance.Item;
 import org.l2j.gameserver.model.itemcontainer.Inventory;
 import org.l2j.gameserver.model.variables.PlayerVariables;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 import org.l2j.gameserver.network.serverpackets.AbstractItemPacket;
 
@@ -37,24 +39,24 @@ public class ExSpExtractInfo extends AbstractItemPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_SP_EXTRACT_INFO.writeId(this);
-		writeInt(Inventory.SP_POUCH); // ItemID
-		writeInt(1); // ExtractCount
-		writeLong(5000000000L); // NeedSP
-		writeInt(100); // chance
-		writeInt(0); // critical rate
-		writeShort(calculatePacketSize(new ItemInfo(new Item(Inventory.SP_POINTS))));
-		writeInt(Inventory.SP_POINTS);
-		writeLong(5000000000L);
-		writeShort(calculatePacketSize(new ItemInfo(new Item(Inventory.ADENA_ID))));
-		writeInt(Inventory.ADENA_ID);
-		writeLong(3000000);
-		writeShort(calculatePacketSize(new ItemInfo(new Item(Inventory.ADENA_ID))));
-		writeInt(Inventory.ADENA_ID);
-		writeLong(1);
-		writeInt(_player.getVariables().getInt(PlayerVariables.DAILY_EXTRACT_ITEM + Inventory.SP_POUCH, 5));
-		writeInt(5);
+		ServerPackets.EX_SP_EXTRACT_INFO.writeId(this, buffer);
+		buffer.writeInt(Inventory.SP_POUCH); // ItemID
+		buffer.writeInt(1); // ExtractCount
+		buffer.writeLong(5000000000L); // NeedSP
+		buffer.writeInt(100); // chance
+		buffer.writeInt(0); // critical rate
+		buffer.writeShort(calculatePacketSize(new ItemInfo(new Item(Inventory.SP_POINTS))));
+		buffer.writeInt(Inventory.SP_POINTS);
+		buffer.writeLong(5000000000L);
+		buffer.writeShort(calculatePacketSize(new ItemInfo(new Item(Inventory.ADENA_ID))));
+		buffer.writeInt(Inventory.ADENA_ID);
+		buffer.writeLong(3000000);
+		buffer.writeShort(calculatePacketSize(new ItemInfo(new Item(Inventory.ADENA_ID))));
+		buffer.writeInt(Inventory.ADENA_ID);
+		buffer.writeLong(1);
+		buffer.writeInt(_player.getVariables().getInt(PlayerVariables.DAILY_EXTRACT_ITEM + Inventory.SP_POUCH, 5));
+		buffer.writeInt(5);
 	}
 }

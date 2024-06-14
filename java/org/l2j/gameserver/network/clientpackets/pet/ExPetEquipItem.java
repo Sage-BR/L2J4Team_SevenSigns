@@ -2,12 +2,10 @@ package org.l2j.gameserver.network.clientpackets.pet;
 
 import java.util.concurrent.TimeUnit;
 
-import org.l2j.commons.network.ReadablePacket;
 import org.l2j.commons.threads.ThreadPool;
 import org.l2j.gameserver.ai.CtrlEvent;
 import org.l2j.gameserver.ai.CtrlIntention;
 import org.l2j.gameserver.ai.NextAction;
-import org.l2j.gameserver.enums.PrivateStoreType;
 import org.l2j.gameserver.instancemanager.FortManager;
 import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.model.actor.instance.Pet;
@@ -15,7 +13,6 @@ import org.l2j.gameserver.model.item.ItemTemplate;
 import org.l2j.gameserver.model.item.instance.Item;
 import org.l2j.gameserver.model.item.type.ArmorType;
 import org.l2j.gameserver.model.zone.ZoneId;
-import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.SystemMessageId;
 import org.l2j.gameserver.network.clientpackets.ClientPacket;
 import org.l2j.gameserver.network.serverpackets.ActionFailed;
@@ -26,28 +23,33 @@ import org.l2j.gameserver.network.serverpackets.pet.PetSummonInfo;
 /**
  * @author Berezkin Nikolay
  */
-public class ExPetEquipItem implements ClientPacket
+public class ExPetEquipItem extends ClientPacket
 {
 	private int _objectId;
 	private int _itemId;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_objectId = packet.readInt();
+		_objectId = readInt();
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
-		final Player player = client.getPlayer();
+		final Player player = getPlayer();
 		if (player == null)
 		{
 			return;
 		}
 		final Pet pet = player.getPet();
+		if (pet == null)
+		{
+			return;
+		}
+		
 		// Flood protect UseItem
-		if ((pet == null) || !client.getFloodProtectors().canUseItem())
+		if (!getClient().getFloodProtectors().canUseItem())
 		{
 			return;
 		}
@@ -63,7 +65,7 @@ public class ExPetEquipItem implements ClientPacket
 			player.cancelActiveTrade();
 		}
 		
-		if (player.getPrivateStoreType() != PrivateStoreType.NONE)
+		if (player.isInStoreMode())
 		{
 			player.sendPacket(SystemMessageId.WHILE_OPERATING_A_PRIVATE_STORE_OR_WORKSHOP_YOU_CANNOT_DISCARD_DESTROY_OR_TRADE_AN_ITEM);
 			player.sendPacket(ActionFailed.STATIC_PACKET);

@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,9 +21,7 @@ import java.sql.PreparedStatement;
 
 import org.l2j.Config;
 import org.l2j.commons.database.DatabaseFactory;
-import org.l2j.commons.network.ReadablePacket;
 import org.l2j.gameserver.enums.PlayerCondOverride;
-import org.l2j.gameserver.enums.PrivateStoreType;
 import org.l2j.gameserver.handler.AdminCommandHandler;
 import org.l2j.gameserver.instancemanager.CursedWeaponsManager;
 import org.l2j.gameserver.model.World;
@@ -31,41 +29,39 @@ import org.l2j.gameserver.model.WorldObject;
 import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.model.actor.Summon;
 import org.l2j.gameserver.model.item.instance.Item;
-import org.l2j.gameserver.model.itemcontainer.Inventory;
-import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.PacketLogger;
 import org.l2j.gameserver.network.SystemMessageId;
 import org.l2j.gameserver.network.serverpackets.InventoryUpdate;
 import org.l2j.gameserver.network.serverpackets.SystemMessage;
-import org.l2j.gameserver.network.serverpackets.limitshop.ExBloodyCoinCount;
 import org.l2j.gameserver.util.Util;
 
 /**
  * @version $Revision: 1.7.2.4.2.6 $ $Date: 2005/03/27 15:29:30 $
  */
-public class RequestDestroyItem implements ClientPacket
+public class RequestDestroyItem extends ClientPacket
 {
 	private int _objectId;
 	private long _count;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_objectId = packet.readInt();
-		_count = packet.readLong();
+		_objectId = readInt();
+		_count = readLong();
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
-		final Player player = client.getPlayer();
+		final Player player = getPlayer();
 		if (player == null)
 		{
 			return;
 		}
 		
-		if (_count <= 0)
+		if (_count < 1)
 		{
+			player.sendPacket(SystemMessageId.YOU_CANNOT_DESTROY_IT_BECAUSE_THE_NUMBER_IS_INCORRECT);
 			if (_count < 0)
 			{
 				Util.handleIllegalPlayerAction(player, "[RequestDestroyItem] Character " + player.getName() + " of account " + player.getAccountName() + " tried to destroy item with oid " + _objectId + " but has count < 0!", Config.DEFAULT_PUNISH);
@@ -73,14 +69,14 @@ public class RequestDestroyItem implements ClientPacket
 			return;
 		}
 		
-		if (!client.getFloodProtectors().canPerformTransaction())
+		if (!getClient().getFloodProtectors().canPerformTransaction())
 		{
 			player.sendMessage("You are destroying items too fast.");
 			return;
 		}
 		
 		long count = _count;
-		if (player.isProcessingTransaction() || (player.getPrivateStoreType() != PrivateStoreType.NONE))
+		if (player.isProcessingTransaction() || player.isInStoreMode())
 		{
 			player.sendPacket(SystemMessageId.WHILE_OPERATING_A_PRIVATE_STORE_OR_WORKSHOP_YOU_CANNOT_DISCARD_DESTROY_OR_TRADE_AN_ITEM);
 			return;
@@ -156,10 +152,12 @@ public class RequestDestroyItem implements ClientPacket
 		
 		if (itemToRemove.getTemplate().isPetItem())
 		{
+			// Check if the player has a summoned pet or mount active with the same object ID.
 			final Summon pet = player.getPet();
-			if ((pet != null) && (pet.getControlObjectId() == _objectId))
+			if (((pet != null) && (pet.getControlObjectId() == _objectId)) || (player.isMounted() && (player.getMountObjectID() == _objectId)))
 			{
-				pet.unSummon(player);
+				player.sendPacket(SystemMessageId.AS_YOUR_PET_IS_CURRENTLY_OUT_ITS_SUMMONING_ITEM_CANNOT_BE_DESTROYED);
+				return;
 			}
 			
 			try (Connection con = DatabaseFactory.getConnection();
@@ -199,7 +197,7 @@ public class RequestDestroyItem implements ClientPacket
 			{
 				iu.addModifiedItem(itm);
 			}
-			player.sendInventoryUpdate(iu);
+			player.sendPacket(iu); // Sent inventory update for unequip instantly.
 		}
 		
 		final Item removedItem = player.getInventory().destroyItem("Destroy", itemToRemove, count, player, null);
@@ -217,12 +215,21 @@ public class RequestDestroyItem implements ClientPacket
 		{
 			iu.addModifiedItem(removedItem);
 		}
-		player.sendInventoryUpdate(iu);
+		player.sendPacket(iu); // Sent inventory update for destruction instantly.
+		player.updateAdenaAndWeight();
 		
-		// LCoin UI update.
-		if (removedItem.getId() == Inventory.LCOIN_ID)
+		final SystemMessage sm;
+		if (count > 1)
 		{
-			player.sendPacket(new ExBloodyCoinCount(player));
+			sm = new SystemMessage(SystemMessageId.S1_X_S2_DISAPPEARED);
+			sm.addItemName(removedItem);
+			sm.addLong(count);
 		}
+		else
+		{
+			sm = new SystemMessage(SystemMessageId.S1_HAS_DISAPPEARED);
+			sm.addItemName(removedItem);
+		}
+		player.sendPacket(sm);
 	}
 }

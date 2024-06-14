@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -1302,7 +1302,12 @@ public class Skill implements IIdentifiable
 	public void applyEffects(Creature effector, Creature effected, boolean self, boolean passive, boolean instant, int abnormalTime, Item item)
 	{
 		// null targets cannot receive any effects.
-		if ((effected == null) || effected.isIgnoringSkillEffects(_id, _level))
+		if (effected == null)
+		{
+			return;
+		}
+		
+		if (effected.isIgnoringSkillEffects(_id, _level))
 		{
 			return;
 		}
@@ -1433,7 +1438,12 @@ public class Skill implements IIdentifiable
 	{
 		for (WorldObject targetObject : targets)
 		{
-			if (!targetObject.isCreature() || (targetObject.isSummon() && !isSharedWithSummon()))
+			if (!targetObject.isCreature())
+			{
+				continue;
+			}
+			
+			if (targetObject.isSummon() && !isSharedWithSummon())
 			{
 				continue;
 			}

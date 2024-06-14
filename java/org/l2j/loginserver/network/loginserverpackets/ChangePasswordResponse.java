@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,17 +16,16 @@
  */
 package org.l2j.loginserver.network.loginserverpackets;
 
-import org.l2j.commons.network.WritablePacket;
+import org.l2j.commons.network.base.BaseWritablePacket;
 
 /**
  * @author Nik
  */
-public class ChangePasswordResponse extends WritablePacket
+public class ChangePasswordResponse extends BaseWritablePacket
 {
-	public ChangePasswordResponse(byte successful, String characterName, String msgToSend)
+	public ChangePasswordResponse(String characterName, String msgToSend)
 	{
 		writeByte(0x06);
-		// writeByte(successful); // 0 false, 1 true
 		writeString(characterName);
 		writeString(msgToSend);
 	}

@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,8 +16,10 @@
  */
 package org.l2j.gameserver.network.serverpackets.commission;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.model.ItemInfo;
 import org.l2j.gameserver.model.commission.CommissionItem;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 import org.l2j.gameserver.network.serverpackets.ServerPacket;
 
@@ -36,16 +38,16 @@ public class ExResponseCommissionBuyItem extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_RESPONSE_COMMISSION_BUY_ITEM.writeId(this);
-		writeInt(_commissionItem != null);
+		ServerPackets.EX_RESPONSE_COMMISSION_BUY_ITEM.writeId(this, buffer);
+		buffer.writeInt(_commissionItem != null);
 		if (_commissionItem != null)
 		{
 			final ItemInfo itemInfo = _commissionItem.getItemInfo();
-			writeInt(itemInfo.getEnchantLevel());
-			writeInt(itemInfo.getItem().getId());
-			writeLong(itemInfo.getCount());
+			buffer.writeInt(itemInfo.getEnchantLevel());
+			buffer.writeInt(itemInfo.getItem().getId());
+			buffer.writeLong(itemInfo.getCount());
 		}
 	}
 }

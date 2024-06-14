@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,23 +18,27 @@ package org.l2j.gameserver.network.clientpackets;
 
 import org.l2j.Config;
 import org.l2j.gameserver.model.actor.Player;
-import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.serverpackets.ExReplyPostItemList;
 
 /**
  * @author Migi, DS
  */
-public class RequestPostItemList implements ClientPacket
+public class RequestPostItemList extends ClientPacket
 {
 	@Override
-	public void run(GameClient client)
+	protected void readImpl()
+	{
+	}
+	
+	@Override
+	protected void runImpl()
 	{
 		if (!Config.ALLOW_MAIL || !Config.ALLOW_ATTACHMENTS)
 		{
 			return;
 		}
 		
-		final Player player = client.getPlayer();
+		final Player player = getPlayer();
 		if (player == null)
 		{
 			return;

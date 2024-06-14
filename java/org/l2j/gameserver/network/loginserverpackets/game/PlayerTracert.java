@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,12 +16,12 @@
  */
 package org.l2j.gameserver.network.loginserverpackets.game;
 
-import org.l2j.commons.network.WritablePacket;
+import org.l2j.commons.network.base.BaseWritablePacket;
 
 /**
  * @author mrTJO
  */
-public class PlayerTracert extends WritablePacket
+public class PlayerTracert extends BaseWritablePacket
 {
 	public PlayerTracert(String account, String pcIp, String hop1, String hop2, String hop3, String hop4)
 	{

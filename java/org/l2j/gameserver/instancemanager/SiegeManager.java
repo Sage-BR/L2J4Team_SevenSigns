@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -50,6 +50,7 @@ public class SiegeManager
 	
 	private final Map<Integer, List<TowerSpawn>> _controlTowers = new HashMap<>();
 	private final Map<Integer, List<TowerSpawn>> _flameTowers = new HashMap<>();
+	private final Map<Integer, TowerSpawn> _relicTowers = new HashMap<>();
 	
 	private int _siegeCycle = 2; // 2 weeks by default
 	private int _attackerMaxClans = 500; // Max number of clans
@@ -198,6 +199,23 @@ public class SiegeManager
 				loadTrapUpgrade(castle.getResidenceId());
 			}
 		}
+		
+		// Mercenary Siege
+		final String[] relics = siegeSettings.getString("Relic", null).split(";");
+		for (String elem : relics)
+		{
+			final String[] s = elem.split(",");
+			final int castleId = Integer.parseInt(s[0]);
+			final int npcId = Integer.parseInt(s[1]);
+			final Location loc = new Location(Integer.parseInt(s[2]), Integer.parseInt(s[3]), Integer.parseInt(s[4]));
+			final TowerSpawn towerSpawn = new TowerSpawn(npcId, loc);
+			_relicTowers.put(castleId, towerSpawn);
+		}
+	}
+	
+	public TowerSpawn getRelicTowers(int castleId)
+	{
+		return _relicTowers.get(castleId);
 	}
 	
 	public List<TowerSpawn> getControlTowers(int castleId)

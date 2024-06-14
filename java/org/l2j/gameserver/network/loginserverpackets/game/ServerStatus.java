@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,12 +19,12 @@ package org.l2j.gameserver.network.loginserverpackets.game;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.l2j.commons.network.WritablePacket;
+import org.l2j.commons.network.base.BaseWritablePacket;
 
 /**
  * @author -Wooden-
  */
-public class ServerStatus extends WritablePacket
+public class ServerStatus extends BaseWritablePacket
 {
 	private final List<Attribute> _attributes;
 	
@@ -38,6 +38,7 @@ public class ServerStatus extends WritablePacket
 		"Gm Only"
 	};
 	
+	// Ids
 	public static final int SERVER_LIST_STATUS = 0x01;
 	public static final int SERVER_TYPE = 0x02;
 	public static final int SERVER_LIST_SQUARE_BRACKET = 0x03;

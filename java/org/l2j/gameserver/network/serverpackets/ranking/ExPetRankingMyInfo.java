@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,10 +20,12 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Optional;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.data.xml.PetDataTable;
 import org.l2j.gameserver.instancemanager.RankManager;
 import org.l2j.gameserver.model.StatSet;
 import org.l2j.gameserver.model.actor.Player;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 import org.l2j.gameserver.network.serverpackets.ServerPacket;
 
@@ -50,15 +52,15 @@ public class ExPetRankingMyInfo extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_PET_RANKING_MY_INFO.writeId(this);
-		writeInt(_petId);
-		writeShort(1);
-		writeInt(-1);
-		writeInt(0);
-		writeInt(_ranking.isPresent() ? _ranking.get().getKey() : 0); // server rank
-		writeInt(_snapshotRanking.isPresent() ? _snapshotRanking.get().getKey() : 0); // snapshot server rank
+		ServerPackets.EX_PET_RANKING_MY_INFO.writeId(this, buffer);
+		buffer.writeInt(_petId);
+		buffer.writeShort(1);
+		buffer.writeInt(-1);
+		buffer.writeInt(0);
+		buffer.writeInt(_ranking.isPresent() ? _ranking.get().getKey() : 0); // server rank
+		buffer.writeInt(_snapshotRanking.isPresent() ? _snapshotRanking.get().getKey() : 0); // snapshot server rank
 		if (_petId > 0)
 		{
 			int typeRank = 1;
@@ -70,7 +72,7 @@ public class ExPetRankingMyInfo extends ServerPacket
 					if (ss.getInt("controlledItemObjId", -1) == _petId)
 					{
 						found = true;
-						writeInt(typeRank);
+						buffer.writeInt(typeRank);
 						break;
 					}
 					typeRank++;
@@ -78,7 +80,7 @@ public class ExPetRankingMyInfo extends ServerPacket
 			}
 			if (!found)
 			{
-				writeInt(0);
+				buffer.writeInt(0);
 			}
 			int snapshotTypeRank = 1;
 			boolean snapshotFound = false;
@@ -89,7 +91,7 @@ public class ExPetRankingMyInfo extends ServerPacket
 					if (ss.getInt("controlledItemObjId", -1) == _petId)
 					{
 						snapshotFound = true;
-						writeInt(snapshotTypeRank);
+						buffer.writeInt(snapshotTypeRank);
 						break;
 					}
 					snapshotTypeRank++;
@@ -97,13 +99,13 @@ public class ExPetRankingMyInfo extends ServerPacket
 			}
 			if (!snapshotFound)
 			{
-				writeInt(0);
+				buffer.writeInt(0);
 			}
 		}
 		else
 		{
-			writeInt(0);
-			writeInt(0);
+			buffer.writeInt(0);
+			buffer.writeInt(0);
 		}
 	}
 }

@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -45,7 +45,12 @@ public class SummonExceptMaster implements IAffectScopeHandler
 			final int limit = (affectLimit > 0) ? affectLimit : Integer.MAX_VALUE;
 			for (Creature c : target.getActingPlayer().getServitorsAndPets())
 			{
-				if (c.isDead() || ((affectRange > 0) && !Util.checkIfInRange(affectRange, c, target, true)))
+				if (c.isDead())
+				{
+					continue;
+				}
+				
+				if ((affectRange > 0) && !Util.checkIfInRange(affectRange, c, target, true))
 				{
 					continue;
 				}

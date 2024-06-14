@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,7 +16,6 @@
  */
 package org.l2j.gameserver.network.clientpackets.dailymission;
 
-import org.l2j.commons.network.ReadablePacket;
 import org.l2j.commons.threads.ThreadPool;
 import org.l2j.gameserver.data.xml.MissionLevel;
 import org.l2j.gameserver.model.MissionLevelHolder;
@@ -24,31 +23,35 @@ import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.model.actor.request.RewardRequest;
 import org.l2j.gameserver.model.holders.ItemHolder;
 import org.l2j.gameserver.model.holders.MissionLevelPlayerDataHolder;
-import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.clientpackets.ClientPacket;
 import org.l2j.gameserver.network.serverpackets.dailymission.ExMissionLevelRewardList;
 
 /**
  * @author Index
  */
-public class RequestMissionLevelReceiveReward implements ClientPacket
+public class RequestMissionLevelReceiveReward extends ClientPacket
 {
 	private final MissionLevelHolder _holder = MissionLevel.getInstance().getMissionBySeason(MissionLevel.getInstance().getCurrentSeason());
 	private int _level;
 	private int _rewardType;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_level = packet.readInt();
-		_rewardType = packet.readInt();
+		_level = readInt();
+		_rewardType = readInt();
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
-		final Player player = client.getPlayer();
-		if ((player == null) || player.hasRequest(RewardRequest.class))
+		final Player player = getPlayer();
+		if (player == null)
+		{
+			return;
+		}
+		
+		if (player.hasRequest(RewardRequest.class))
 		{
 			return;
 		}

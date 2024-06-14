@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -77,9 +77,9 @@ public class CatGuildsLair extends AbstractInstance
 	
 	private static final NpcStringId DREAM_WATCHER = NpcStringId.DREAM_WATCHER;
 	private static final NpcStringId STRING_ID_01 = NpcStringId.THE_CAT_GUILD_S_KING_IS_IN_TROUBLE_PLEASE_HELP_HIM;
-	private static final NpcStringId STRING_ID_02 = NpcStringId.HELP_OUR_GUILD_PLEASE_I_WILL_TELL_YOU_WHATS_GOING_ON;
+	private static final NpcStringId STRING_ID_02 = NpcStringId.HELP_OUR_GUILD_PLEASE_I_WILL_TELL_YOU_WHAT_S_GOING_ON;
 	private static final NpcStringId STRING_ID_03 = NpcStringId.WHAT_S_THE_FUSS_THOSE_WILLING_TO_ADDRESS_THE_KING_COME_TO_ME;
-	private static final NpcStringId STRING_ID_04 = NpcStringId.WHAT_YOU_ARE_GOING_TO_GIVE_ADVICES_TO_OUR_KING_HELL_BE_SO_MAD;
+	private static final NpcStringId STRING_ID_04 = NpcStringId.WHAT_YOU_ARE_GOING_TO_GIVE_ADVICES_TO_OUR_KING_HE_LL_BE_SO_MAD;
 	private static final NpcStringId STRING_ID_05 = NpcStringId.IS_SOMETHING_WRONG_WITH_ME_THEN_ADVISE_ME;
 	private static final NpcStringId STRING_ID_06 = NpcStringId.WHEW_AS_I_THOUGHT_THE_FALL_HAS_STOPPED;
 	
@@ -155,7 +155,7 @@ public class CatGuildsLair extends AbstractInstance
 	}
 	
 	@Override
-	public String onAdvEvent(String event, Npc npc, Player player)
+	public String onEvent(String event, Npc npc, Player player)
 	{
 		final Instance instance = npc.getInstanceWorld();
 		if ((instance == null) || (instance.getStatus() < CREATED))
@@ -169,7 +169,7 @@ public class CatGuildsLair extends AbstractInstance
 			setRandomTitles(instance, true);
 		}
 		
-		return super.onAdvEvent(event, npc, player);
+		return super.onEvent(event, npc, player);
 	}
 	
 	private void spawnBoss(Instance instance)
@@ -287,17 +287,17 @@ public class CatGuildsLair extends AbstractInstance
 				{
 					case 1:
 					{
-						instance.broadcastPacket(new ExShowScreenMessage(NpcStringId.DREAM_WATCHERS_DEATH_1_4, ExShowScreenMessage.BOTTOM_RIGHT, 10000, false));
+						instance.broadcastPacket(new ExShowScreenMessage(NpcStringId.DREAM_WATCHER_S_DEATH_1_4, ExShowScreenMessage.BOTTOM_RIGHT, 10000, false));
 						break;
 					}
 					case 2:
 					{
-						instance.broadcastPacket(new ExShowScreenMessage(NpcStringId.DREAM_WATCHERS_DEATH_2_4, ExShowScreenMessage.BOTTOM_RIGHT, 10000, false));
+						instance.broadcastPacket(new ExShowScreenMessage(NpcStringId.DREAM_WATCHER_S_DEATH_2_4, ExShowScreenMessage.BOTTOM_RIGHT, 10000, false));
 						break;
 					}
 					case 3:
 					{
-						instance.broadcastPacket(new ExShowScreenMessage(NpcStringId.DREAM_WATCHERS_DEATH_3_4, ExShowScreenMessage.BOTTOM_RIGHT, 10000, false));
+						instance.broadcastPacket(new ExShowScreenMessage(NpcStringId.DREAM_WATCHER_S_DEATH_3_4, ExShowScreenMessage.BOTTOM_RIGHT, 10000, false));
 						break;
 					}
 					case 4:

@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,7 +18,6 @@ package org.l2j.gameserver.network.clientpackets;
 
 import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.model.clan.ClanInfo;
-import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.SystemMessageId;
 import org.l2j.gameserver.network.serverpackets.AllianceInfo;
 import org.l2j.gameserver.network.serverpackets.SystemMessage;
@@ -26,12 +25,17 @@ import org.l2j.gameserver.network.serverpackets.SystemMessage;
 /**
  * @version $Revision: 1479 $ $Date: 2005-11-09 00:47:42 +0100 (mer., 09 nov. 2005) $
  */
-public class RequestAllyInfo implements ClientPacket
+public class RequestAllyInfo extends ClientPacket
 {
 	@Override
-	public void run(GameClient client)
+	protected void readImpl()
 	{
-		final Player player = client.getPlayer();
+	}
+	
+	@Override
+	protected void runImpl()
+	{
+		final Player player = getPlayer();
 		if (player == null)
 		{
 			return;

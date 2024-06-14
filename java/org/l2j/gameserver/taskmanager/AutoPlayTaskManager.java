@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -32,9 +32,11 @@ import org.l2j.gameserver.model.WorldObject;
 import org.l2j.gameserver.model.actor.Creature;
 import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.model.actor.Summon;
+import org.l2j.gameserver.model.actor.instance.Monster;
 import org.l2j.gameserver.model.actor.instance.Pet;
 import org.l2j.gameserver.model.item.Weapon;
 import org.l2j.gameserver.model.item.instance.Item;
+import org.l2j.gameserver.model.skill.Skill;
 import org.l2j.gameserver.model.zone.ZoneId;
 import org.l2j.gameserver.network.serverpackets.autoplay.ExAutoPlayDoMacro;
 import org.l2j.gameserver.util.Util;
@@ -96,10 +98,44 @@ public class AutoPlayTaskManager
 					final Creature creature = (Creature) target;
 					if (creature.isAlikeDead() || !isTargetModeValid(targetMode, player, creature))
 					{
+						// Logic for Spoil (254) skill.
+						if (creature.isMonster() && creature.isDead() && player.getAutoUseSettings().getAutoSkills().contains(254))
+						{
+							final Skill sweeper = player.getKnownSkill(42);
+							if (sweeper != null)
+							{
+								final Monster monster = ((Monster) target);
+								if (monster.checkSpoilOwner(player, false))
+								{
+									// Move to target.
+									if (player.calculateDistance2D(target) > 40)
+									{
+										if (!player.isMoving())
+										{
+											player.getAI().setIntention(CtrlIntention.AI_INTENTION_MOVE_TO, target);
+										}
+										continue PLAY;
+									}
+									
+									// Sweep target.
+									player.doCast(sweeper);
+									continue PLAY;
+								}
+							}
+						}
+						
+						// Clear target.
 						player.setTarget(null);
 					}
 					else if ((creature.getTarget() == player) || (creature.getTarget() == null))
 					{
+						// GeoEngine can see target check.
+						if (!GeoEngine.getInstance().canSeeTarget(player, creature))
+						{
+							player.setTarget(null);
+							continue PLAY;
+						}
+						
 						// Pet Attack.
 						final Pet pet = player.getPet();
 						if ((pet != null) && player.getAutoUseSettings().getAutoActions().contains(PET_ATTACK_ACTION) && pet.hasAI() && !pet.isMoving() && !pet.isDisabled() && (pet.getAI().getIntention() != CtrlIntention.AI_INTENTION_ATTACK) && (pet.getAI().getIntention() != CtrlIntention.AI_INTENTION_CAST) && creature.isAutoAttackable(player) && GeoEngine.getInstance().canSeeTarget(player, creature))
@@ -351,7 +387,7 @@ public class AutoPlayTaskManager
 		final Set<Player> pool = ConcurrentHashMap.newKeySet(POOL_SIZE);
 		player.onActionRequest();
 		pool.add(player);
-		ThreadPool.scheduleAtFixedRate(new AutoPlay(pool), TASK_DELAY, TASK_DELAY);
+		ThreadPool.schedulePriorityTaskAtFixedRate(new AutoPlay(pool), TASK_DELAY, TASK_DELAY);
 		POOLS.add(pool);
 	}
 	

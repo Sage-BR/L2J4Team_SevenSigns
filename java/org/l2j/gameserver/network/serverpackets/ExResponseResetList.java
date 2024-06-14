@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,7 +16,9 @@
  */
 package org.l2j.gameserver.network.serverpackets;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.model.actor.Player;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 
 /**
@@ -32,13 +34,13 @@ public class ExResponseResetList extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_RESPONSE_RESET_LIST.writeId(this);
-		writeLong(_player.getAdena());
-		writeLong(_player.getBeautyTickets());
-		writeInt(_player.getAppearance().getHairStyle());
-		writeInt(_player.getAppearance().getHairColor());
-		writeInt(_player.getAppearance().getFace());
+		ServerPackets.EX_RESPONSE_RESET_LIST.writeId(this, buffer);
+		buffer.writeLong(_player.getAdena());
+		buffer.writeLong(_player.getBeautyTickets());
+		buffer.writeInt(_player.getAppearance().getHairStyle());
+		buffer.writeInt(_player.getAppearance().getHairColor());
+		buffer.writeInt(_player.getAppearance().getFace());
 	}
 }

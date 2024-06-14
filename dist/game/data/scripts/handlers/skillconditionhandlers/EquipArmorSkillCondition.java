@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -55,38 +55,39 @@ public class EquipArmorSkillCondition implements ISkillCondition
 			return false;
 		}
 		
+		// Get the itemMask of the weared chest (if exists).
 		final Inventory inv = caster.getInventory();
-		
-		// Get the itemMask of the weared chest (if exists)
 		final Item chest = inv.getPaperdollItem(Inventory.PAPERDOLL_CHEST);
 		if (chest == null)
 		{
 			return false;
 		}
-		final int chestMask = chest.getTemplate().getItemMask();
 		
-		// If chest armor is different from the condition one return false
+		// If chest armor is different from the condition one return false.
+		final int chestMask = chest.getTemplate().getItemMask();
 		if ((_armorTypesMask & chestMask) == 0)
 		{
 			return false;
 		}
 		
-		// So from here, chest armor matches conditions
+		// So from here, chest armor matches conditions.
 		
+		// Return true if chest armor is a Full Armor.
 		final long chestBodyPart = chest.getTemplate().getBodyPart();
-		// return True if chest armor is a Full Armor
 		if (chestBodyPart == ItemTemplate.SLOT_FULL_ARMOR)
 		{
 			return true;
 		}
-		// check legs armor
+		
+		// Check legs armor.
 		final Item legs = inv.getPaperdollItem(Inventory.PAPERDOLL_LEGS);
 		if (legs == null)
 		{
 			return false;
 		}
+		
+		// Return true if legs armor matches too.
 		final int legMask = legs.getTemplate().getItemMask();
-		// return true if legs armor matches too
 		return (_armorTypesMask & legMask) != 0;
 	}
 }

@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/multisell.xsd">
+	<npcs>
+		<npc>-1</npc> <!-- Item Multisell -->
+	</npcs>
+	<!-- Purified Sphere of Immortality (98152) -->
+	<item>
+		<ingredient id="93864" count="1" /> <!-- Death Knight's Flame Sword -->
+		<ingredient id="98152" count="1" /> <!-- Purified Sphere of Immortality -->
+		<ingredient id="57" count="1000000000" /> <!-- Adena -->
+		<production id="96927" count="1" /> <!-- Axe of Immortality -->
+	</item>
+	<item>
+		<ingredient id="96928" count="1" /> <!-- Ancient Sword of Immortality -->
+		<ingredient id="98152" count="1" /> <!-- Purified Sphere of Immortality -->
+		<ingredient id="57" count="1000000000" /> <!-- Adena -->
+		<production id="96927" count="1" /> <!-- Axe of Immortality -->
+	</item>
+	<item>
+		<ingredient id="96929" count="1" /> <!-- Magic Blunt Weapon of Immortality -->
+		<ingredient id="98152" count="1" /> <!-- Purified Sphere of Immortality -->
+		<ingredient id="57" count="1000000000" /> <!-- Adena -->
+		<production id="96927" count="1" /> <!-- Axe of Immortality -->
+	</item>
+	<item>
+		<ingredient id="96930" count="1" /> <!-- Flame Fists of Immortality -->
+		<ingredient id="98152" count="1" /> <!-- Purified Sphere of Immortality -->
+		<ingredient id="57" count="1000000000" /> <!-- Adena -->
+		<production id="96927" count="1" /> <!-- Axe of Immortality -->
+	</item>
+	<item>
+		<ingredient id="96931" count="1" /> <!-- Pistols of Immortality -->
+		<ingredient id="98152" count="1" /> <!-- Purified Sphere of Immortality -->
+		<ingredient id="57" count="1000000000" /> <!-- Adena -->
+		<production id="96927" count="1" /> <!-- Axe of Immortality -->
+	</item>
+	<item>
+		<ingredient id="96932" count="1" /> <!-- Rapier of Immortality -->
+		<ingredient id="98152" count="1" /> <!-- Purified Sphere of Immortality -->
+		<ingredient id="57" count="1000000000" /> <!-- Adena -->
+		<production id="96927" count="1" /> <!-- Axe of Immortality -->
+	</item>
+	<item>
+		<ingredient id="96933" count="1" /> <!-- Staff of Immortality -->
+		<ingredient id="98152" count="1" /> <!-- Purified Sphere of Immortality -->
+		<ingredient id="57" count="1000000000" /> <!-- Adena -->
+		<production id="96927" count="1" /> <!-- Axe of Immortality -->
+	</item>
+	<item>
+		<ingredient id="96935" count="1" /> <!-- Dagger of Immortality -->
+		<ingredient id="98152" count="1" /> <!-- Purified Sphere of Immortality -->
+		<ingredient id="57" count="1000000000" /> <!-- Adena -->
+		<production id="96927" count="1" /> <!-- Axe of Immortality -->
+	</item>
+	<item>
+		<ingredient id="96938" count="1" /> <!-- Two-handed Sword of Immortality -->
+		<ingredient id="98152" count="1" /> <!-- Purified Sphere of Immortality -->
+		<ingredient id="57" count="1000000000" /> <!-- Adena -->
+		<production id="96927" count="1" /> <!-- Axe of Immortality -->
+	</item>
+	<item>
+		<ingredient id="96939" count="1" /> <!-- Spear of Immortality -->
+		<ingredient id="98152" count="1" /> <!-- Purified Sphere of Immortality -->
+		<ingredient id="57" count="1000000000" /> <!-- Adena -->
+		<production id="96927" count="1" /> <!-- Axe of Immortality -->
+	</item>
+	<item>
+		<ingredient id="96940" count="1" /> <!-- Bow of Immortality -->
+		<ingredient id="98152" count="1" /> <!-- Purified Sphere of Immortality -->
+		<ingredient id="57" count="1000000000" /> <!-- Adena -->
+		<production id="96927" count="1" /> <!-- Axe of Immortality -->
+	</item>
+	<item>
+		<ingredient id="97088" count="1" /> <!-- Sword of Immortality -->
+		<ingredient id="98152" count="1" /> <!-- Purified Sphere of Immortality -->
+		<ingredient id="57" count="1000000000" /> <!-- Adena -->
+		<production id="96927" count="1" /> <!-- Axe of Immortality -->
+	</item>
+	<item>
+		<ingredient id="97089" count="1" /> <!-- Dual Swords of Immortality -->
+		<ingredient id="98152" count="1" /> <!-- Purified Sphere of Immortality -->
+		<ingredient id="57" count="1000000000" /> <!-- Adena -->
+		<production id="96927" count="1" /> <!-- Axe of Immortality -->
+	</item>
+	<item>
+		<ingredient id="93864" count="1" /> <!-- Death Knight's Flame Sword -->
+		<ingredient id="98152" count="1" /> <!-- Purified Sphere of Immortality -->
+		<ingredient id="57" count="1000000000" /> <!-- Adena -->
+		<production id="96929" count="1" /> <!-- Magic Blunt Weapon of Immortality -->
+	</item>
+	<item>
+		<ingredient id="96927" count="1" /> <!-- Axe of Immortality -->
+		<ingredient id="98152" count="1" /> <!-- Purified Sphere of Immortality -->
+		<ingredient id="57" count="1000000000" /> <!-- Adena -->
+		<production id="96929" count="1" /> <!-- Magic Blunt Weapon of Immortality -->
+	</item>
+	<item>
+		<ingredient id="96928" count="1" /> <!-- Ancient Sword of Immortality -->
+		<ingredient id="98152" count="1" /> <!-- Purified Sphere of Immortality -->
+		<ingredient id="57" count="1000000000" /> <!-- Adena -->
+		<production id="96929" count="1" /> <!-- Magic Blunt Weapon of Immortality -->
+	</item>
+	<item>
+		<ingredient id="96930" count="1" /> <!-- Flame Fists of Immortality -->
+		<ingredient id="98152" count="1" /> <!-- Purified Sphere of Immortality -->
+		<ingredient id="57" count="1000000000" /> <!-- Adena -->
+		<production id="96929" count="1" /> <!-- Magic Blunt Weapon of Immortality -->
+	</item>
+	<item>
+		<ingredient id="96931" count="1" /> <!-- Pistols of Immortality -->
+		<ingredient id="98152" count="1" /> <!-- Purified Sphere of Immortality -->
+		<ingredient id="57" count="1000000000" /> <!-- Adena -->
+		<production id="96929" count="1" /> <!-- Magic Blunt Weapon of Immortality -->
+	</item>
+	<item>
+		<ingredient id="96932" count="1" /> <!-- Rapier of Immortality -->
+		<ingredient id="98152" count="1" /> <!-- Purified Sphere of Immortality -->
+		<ingredient id="57" count="1000000000" /> <!-- Adena -->
+		<production id="96929" count="1" /> <!-- Magic Blunt Weapon of Immortality -->
+	</item>
+	<item>
+		<ingredient id="96933" count="1" /> <!-- Staff of Immortality -->
+		<ingredient id="98152" count="1" /> <!-- Purified Sphere of Immortality -->
+		<ingredient id="57" count="1000000000" /> <!-- Adena -->
+		<production id="96929" count="1" /> <!-- Magic Blunt Weapon of Immortality -->
+	</item>
+</list>

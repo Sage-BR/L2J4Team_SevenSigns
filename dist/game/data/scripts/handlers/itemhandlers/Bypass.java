@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,6 +20,9 @@ import org.l2j.gameserver.cache.HtmCache;
 import org.l2j.gameserver.handler.IItemHandler;
 import org.l2j.gameserver.model.actor.Playable;
 import org.l2j.gameserver.model.actor.Player;
+import org.l2j.gameserver.model.events.EventDispatcher;
+import org.l2j.gameserver.model.events.EventType;
+import org.l2j.gameserver.model.events.impl.item.OnItemTalk;
 import org.l2j.gameserver.model.item.instance.Item;
 import org.l2j.gameserver.network.serverpackets.NpcHtmlMessage;
 
@@ -35,11 +38,12 @@ public class Bypass implements IItemHandler
 		{
 			return false;
 		}
+		
 		final Player player = (Player) playable;
 		final int itemId = item.getId();
 		final String filename = "data/html/item/" + itemId + ".htm";
 		final String content = HtmCache.getInstance().getHtm(player, filename);
-		final NpcHtmlMessage html = new NpcHtmlMessage(0, item.getId());
+		final NpcHtmlMessage html = new NpcHtmlMessage(item.getId());
 		if (content == null)
 		{
 			html.setHtml("<html><body>My Text is missing:<br>" + filename + "</body></html>");
@@ -51,6 +55,13 @@ public class Bypass implements IItemHandler
 			html.replace("%itemId%", String.valueOf(item.getObjectId()));
 			player.sendPacket(html);
 		}
+		
+		// Notify events.
+		if (EventDispatcher.getInstance().hasListener(EventType.ON_ITEM_TALK, item.getTemplate()))
+		{
+			EventDispatcher.getInstance().notifyEventAsync(new OnItemTalk(item, player), item.getTemplate());
+		}
+		
 		return true;
 	}
 }

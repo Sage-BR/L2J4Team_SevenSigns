@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -97,7 +97,7 @@ public class MultilayerBlock implements IBlock
 	
 	private short extractLayerData(int dataOffset)
 	{
-		return (short) ((_data[dataOffset] & 0xFF) | (_data[dataOffset + 1] << 8));
+		return (short) ((_data[dataOffset] & 0xff) | (_data[dataOffset + 1] << 8));
 	}
 	
 	private int getNearestNSWE(int geoX, int geoY, int worldZ)
@@ -105,9 +105,95 @@ public class MultilayerBlock implements IBlock
 		return extractLayerNswe(getNearestLayer(geoX, geoY, worldZ));
 	}
 	
+	@Override
+	public void setNearestNswe(int geoX, int geoY, int worldZ, byte nswe)
+	{
+		final int startOffset = getCellDataOffset(geoX, geoY);
+		final byte nLayers = _data[startOffset];
+		final int endOffset = startOffset + 1 + (nLayers * 2);
+		
+		int nearestDZ = 0;
+		int nearestLayerZ = 0;
+		int nearestOffset = 0;
+		short nearestLayerData = 0;
+		for (int offset = startOffset + 1; offset < endOffset; offset += 2)
+		{
+			final short layerData = extractLayerData(offset);
+			final int layerZ = extractLayerHeight(layerData);
+			if (layerZ == worldZ)
+			{
+				nearestLayerZ = layerZ;
+				nearestOffset = offset;
+				nearestLayerData = layerData;
+				break;
+			}
+			
+			final int layerDZ = Math.abs(layerZ - worldZ);
+			if ((offset == (startOffset + 1)) || (layerDZ < nearestDZ))
+			{
+				nearestDZ = layerDZ;
+				nearestLayerZ = layerZ;
+				nearestOffset = offset;
+			}
+		}
+		
+		final short currentNswe = (short) extractLayerNswe(nearestLayerData);
+		if ((currentNswe & nswe) == 0)
+		{
+			final short encodedHeight = (short) (nearestLayerZ << 1); // Shift left by 1 bit.
+			final short newNswe = (short) (currentNswe | nswe); // Combine NSWE.
+			final short newCombinedData = (short) (encodedHeight | newNswe); // Combine height and NSWE.
+			_data[nearestOffset] = (byte) (newCombinedData & 0xff); // Update the first byte at offset.
+			_data[nearestOffset + 1] = (byte) ((newCombinedData >> 8) & 0xff); // Update the second byte at offset + 1.
+		}
+	}
+	
+	@Override
+	public void unsetNearestNswe(int geoX, int geoY, int worldZ, byte nswe)
+	{
+		final int startOffset = getCellDataOffset(geoX, geoY);
+		final byte nLayers = _data[startOffset];
+		final int endOffset = startOffset + 1 + (nLayers * 2);
+		
+		int nearestDZ = 0;
+		int nearestLayerZ = 0;
+		int nearestOffset = 0;
+		short nearestLayerData = 0;
+		for (int offset = startOffset + 1; offset < endOffset; offset += 2)
+		{
+			final short layerData = extractLayerData(offset);
+			final int layerZ = extractLayerHeight(layerData);
+			if (layerZ == worldZ)
+			{
+				nearestLayerZ = layerZ;
+				nearestOffset = offset;
+				nearestLayerData = layerData;
+				break;
+			}
+			
+			final int layerDZ = Math.abs(layerZ - worldZ);
+			if ((offset == (startOffset + 1)) || (layerDZ < nearestDZ))
+			{
+				nearestDZ = layerDZ;
+				nearestLayerZ = layerZ;
+				nearestOffset = offset;
+			}
+		}
+		
+		final short currentNswe = (short) extractLayerNswe(nearestLayerData);
+		if ((currentNswe & nswe) != 0)
+		{
+			final short encodedHeight = (short) (nearestLayerZ << 1); // Shift left by 1 bit.
+			final short newNswe = (short) (currentNswe & ~nswe); // Subtract NSWE.
+			final short newCombinedData = (short) (encodedHeight | newNswe); // Combine height and NSWE.
+			_data[nearestOffset] = (byte) (newCombinedData & 0xff); // Update the first byte at offset.
+			_data[nearestOffset + 1] = (byte) ((newCombinedData >> 8) & 0xff); // Update the second byte at offset + 1.
+		}
+	}
+	
 	private int extractLayerNswe(short layer)
 	{
-		return (byte) (layer & 0x000F);
+		return (byte) (layer & 0x000f);
 	}
 	
 	private int extractLayerHeight(short layer)
@@ -181,5 +267,10 @@ public class MultilayerBlock implements IBlock
 		}
 		
 		return higherZ == Integer.MAX_VALUE ? worldZ : higherZ;
+	}
+	
+	public byte[] getData()
+	{
+		return _data;
 	}
 }

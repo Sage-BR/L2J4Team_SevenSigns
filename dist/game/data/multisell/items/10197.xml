@@ -1,0 +1,967 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/multisell.xsd">
+	<npcs>
+		<npc>-1</npc> <!-- Item Multisell -->
+	</npcs>
+	<!-- Frost Lord's Weapon Change Coupon - Sealed (100396) -->
+	<item>
+		<ingredient id="95726" count="1" /> <!-- Frost Lord's Two-handed Sword -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95725" count="1" /> <!-- Frost Lord's Sword -->
+	</item>
+	<item>
+		<ingredient id="95727" count="1" /> <!-- Frost Lord's Axe -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95725" count="1" /> <!-- Frost Lord's Sword -->
+	</item>
+	<item>
+		<ingredient id="95728" count="1" /> <!-- Frost Lord's Dagger -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95725" count="1" /> <!-- Frost Lord's Sword -->
+	</item>
+	<item>
+		<ingredient id="95729" count="1" /> <!-- Frost Lord's Spear -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95725" count="1" /> <!-- Frost Lord's Sword -->
+	</item>
+	<item>
+		<ingredient id="95730" count="1" /> <!-- Frost Lord's Bow -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95725" count="1" /> <!-- Frost Lord's Sword -->
+	</item>
+	<item>
+		<ingredient id="95731" count="1" /> <!-- Frost Lord's Blade Fists -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95725" count="1" /> <!-- Frost Lord's Sword -->
+	</item>
+	<item>
+		<ingredient id="95732" count="1" /> <!-- Frost Lord's Magic Blunt Weapon -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95725" count="1" /> <!-- Frost Lord's Sword -->
+	</item>
+	<item>
+		<ingredient id="95733" count="1" /> <!-- Frost Lord's Staff -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95725" count="1" /> <!-- Frost Lord's Sword -->
+	</item>
+	<item>
+		<ingredient id="95734" count="1" /> <!-- Frost Lord's Ancient Sword -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95725" count="1" /> <!-- Frost Lord's Sword -->
+	</item>
+	<item>
+		<ingredient id="95735" count="1" /> <!-- Frost Lord's Rapier -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95725" count="1" /> <!-- Frost Lord's Sword -->
+	</item>
+	<item>
+		<ingredient id="95736" count="1" /> <!-- Frost Lord's Pistols -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95725" count="1" /> <!-- Frost Lord's Sword -->
+	</item>
+	<item>
+		<ingredient id="95737" count="1" /> <!-- Frost Lord's Dual Swords -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95725" count="1" /> <!-- Frost Lord's Sword -->
+	</item>
+	<item>
+		<ingredient id="95725" count="1" /> <!-- Frost Lord's Sword -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95726" count="1" /> <!-- Frost Lord's Two-handed Sword -->
+	</item>
+	<item>
+		<ingredient id="95727" count="1" /> <!-- Frost Lord's Axe -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95726" count="1" /> <!-- Frost Lord's Two-handed Sword -->
+	</item>
+	<item>
+		<ingredient id="95728" count="1" /> <!-- Frost Lord's Dagger -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95726" count="1" /> <!-- Frost Lord's Two-handed Sword -->
+	</item>
+	<item>
+		<ingredient id="95729" count="1" /> <!-- Frost Lord's Spear -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95726" count="1" /> <!-- Frost Lord's Two-handed Sword -->
+	</item>
+	<item>
+		<ingredient id="95730" count="1" /> <!-- Frost Lord's Bow -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95726" count="1" /> <!-- Frost Lord's Two-handed Sword -->
+	</item>
+	<item>
+		<ingredient id="95731" count="1" /> <!-- Frost Lord's Blade Fists -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95726" count="1" /> <!-- Frost Lord's Two-handed Sword -->
+	</item>
+	<item>
+		<ingredient id="95732" count="1" /> <!-- Frost Lord's Magic Blunt Weapon -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95726" count="1" /> <!-- Frost Lord's Two-handed Sword -->
+	</item>
+	<item>
+		<ingredient id="95733" count="1" /> <!-- Frost Lord's Staff -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95726" count="1" /> <!-- Frost Lord's Two-handed Sword -->
+	</item>
+	<item>
+		<ingredient id="95726" count="1" /> <!-- Frost Lord's Two-handed Sword -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95725" count="1" /> <!-- Frost Lord's Sword -->
+	</item>
+	<item>
+		<ingredient id="95727" count="1" /> <!-- Frost Lord's Axe -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95725" count="1" /> <!-- Frost Lord's Sword -->
+	</item>
+	<item>
+		<ingredient id="95728" count="1" /> <!-- Frost Lord's Dagger -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95725" count="1" /> <!-- Frost Lord's Sword -->
+	</item>
+	<item>
+		<ingredient id="95729" count="1" /> <!-- Frost Lord's Spear -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95725" count="1" /> <!-- Frost Lord's Sword -->
+	</item>
+	<item>
+		<ingredient id="95730" count="1" /> <!-- Frost Lord's Bow -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95725" count="1" /> <!-- Frost Lord's Sword -->
+	</item>
+	<item>
+		<ingredient id="95731" count="1" /> <!-- Frost Lord's Blade Fists -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95725" count="1" /> <!-- Frost Lord's Sword -->
+	</item>
+	<item>
+		<ingredient id="95732" count="1" /> <!-- Frost Lord's Magic Blunt Weapon -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95725" count="1" /> <!-- Frost Lord's Sword -->
+	</item>
+	<item>
+		<ingredient id="95733" count="1" /> <!-- Frost Lord's Staff -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95725" count="1" /> <!-- Frost Lord's Sword -->
+	</item>
+	<item>
+		<ingredient id="95734" count="1" /> <!-- Frost Lord's Ancient Sword -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95725" count="1" /> <!-- Frost Lord's Sword -->
+	</item>
+	<item>
+		<ingredient id="95735" count="1" /> <!-- Frost Lord's Rapier -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95725" count="1" /> <!-- Frost Lord's Sword -->
+	</item>
+	<item>
+		<ingredient id="95736" count="1" /> <!-- Frost Lord's Pistols -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95725" count="1" /> <!-- Frost Lord's Sword -->
+	</item>
+	<item>
+		<ingredient id="95737" count="1" /> <!-- Frost Lord's Dual Swords -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95725" count="1" /> <!-- Frost Lord's Sword -->
+	</item>
+	<item>
+		<ingredient id="95725" count="1" /> <!-- Frost Lord's Sword -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95726" count="1" /> <!-- Frost Lord's Two-handed Sword -->
+	</item>
+	<item>
+		<ingredient id="95727" count="1" /> <!-- Frost Lord's Axe -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95726" count="1" /> <!-- Frost Lord's Two-handed Sword -->
+	</item>
+	<item>
+		<ingredient id="95728" count="1" /> <!-- Frost Lord's Dagger -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95726" count="1" /> <!-- Frost Lord's Two-handed Sword -->
+	</item>
+	<item>
+		<ingredient id="95729" count="1" /> <!-- Frost Lord's Spear -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95726" count="1" /> <!-- Frost Lord's Two-handed Sword -->
+	</item>
+	<item>
+		<ingredient id="95730" count="1" /> <!-- Frost Lord's Bow -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95726" count="1" /> <!-- Frost Lord's Two-handed Sword -->
+	</item>
+	<item>
+		<ingredient id="95731" count="1" /> <!-- Frost Lord's Blade Fists -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95726" count="1" /> <!-- Frost Lord's Two-handed Sword -->
+	</item>
+	<item>
+		<ingredient id="95732" count="1" /> <!-- Frost Lord's Magic Blunt Weapon -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95726" count="1" /> <!-- Frost Lord's Two-handed Sword -->
+	</item>
+	<item>
+		<ingredient id="95733" count="1" /> <!-- Frost Lord's Staff -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95726" count="1" /> <!-- Frost Lord's Two-handed Sword -->
+	</item>
+	<item>
+		<ingredient id="95726" count="1" /> <!-- Frost Lord's Two-handed Sword -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95725" count="1" /> <!-- Frost Lord's Sword -->
+	</item>
+	<item>
+		<ingredient id="95727" count="1" /> <!-- Frost Lord's Axe -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95725" count="1" /> <!-- Frost Lord's Sword -->
+	</item>
+	<item>
+		<ingredient id="95728" count="1" /> <!-- Frost Lord's Dagger -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95725" count="1" /> <!-- Frost Lord's Sword -->
+	</item>
+	<item>
+		<ingredient id="95729" count="1" /> <!-- Frost Lord's Spear -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95725" count="1" /> <!-- Frost Lord's Sword -->
+	</item>
+	<item>
+		<ingredient id="95730" count="1" /> <!-- Frost Lord's Bow -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95725" count="1" /> <!-- Frost Lord's Sword -->
+	</item>
+	<item>
+		<ingredient id="95731" count="1" /> <!-- Frost Lord's Blade Fists -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95725" count="1" /> <!-- Frost Lord's Sword -->
+	</item>
+	<item>
+		<ingredient id="95732" count="1" /> <!-- Frost Lord's Magic Blunt Weapon -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95725" count="1" /> <!-- Frost Lord's Sword -->
+	</item>
+	<item>
+		<ingredient id="95733" count="1" /> <!-- Frost Lord's Staff -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95725" count="1" /> <!-- Frost Lord's Sword -->
+	</item>
+	<item>
+		<ingredient id="95734" count="1" /> <!-- Frost Lord's Ancient Sword -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95725" count="1" /> <!-- Frost Lord's Sword -->
+	</item>
+	<item>
+		<ingredient id="95735" count="1" /> <!-- Frost Lord's Rapier -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95725" count="1" /> <!-- Frost Lord's Sword -->
+	</item>
+	<item>
+		<ingredient id="95736" count="1" /> <!-- Frost Lord's Pistols -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95725" count="1" /> <!-- Frost Lord's Sword -->
+	</item>
+	<item>
+		<ingredient id="95737" count="1" /> <!-- Frost Lord's Dual Swords -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95725" count="1" /> <!-- Frost Lord's Sword -->
+	</item>
+	<item>
+		<ingredient id="95725" count="1" /> <!-- Frost Lord's Sword -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95726" count="1" /> <!-- Frost Lord's Two-handed Sword -->
+	</item>
+	<item>
+		<ingredient id="95727" count="1" /> <!-- Frost Lord's Axe -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95726" count="1" /> <!-- Frost Lord's Two-handed Sword -->
+	</item>
+	<item>
+		<ingredient id="95728" count="1" /> <!-- Frost Lord's Dagger -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95726" count="1" /> <!-- Frost Lord's Two-handed Sword -->
+	</item>
+	<item>
+		<ingredient id="95729" count="1" /> <!-- Frost Lord's Spear -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95726" count="1" /> <!-- Frost Lord's Two-handed Sword -->
+	</item>
+	<item>
+		<ingredient id="95730" count="1" /> <!-- Frost Lord's Bow -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95726" count="1" /> <!-- Frost Lord's Two-handed Sword -->
+	</item>
+	<item>
+		<ingredient id="95731" count="1" /> <!-- Frost Lord's Blade Fists -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95726" count="1" /> <!-- Frost Lord's Two-handed Sword -->
+	</item>
+	<item>
+		<ingredient id="95732" count="1" /> <!-- Frost Lord's Magic Blunt Weapon -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95726" count="1" /> <!-- Frost Lord's Two-handed Sword -->
+	</item>
+	<item>
+		<ingredient id="95733" count="1" /> <!-- Frost Lord's Staff -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95726" count="1" /> <!-- Frost Lord's Two-handed Sword -->
+	</item>
+	<item>
+		<ingredient id="95726" count="1" /> <!-- Frost Lord's Two-handed Sword -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95725" count="1" /> <!-- Frost Lord's Sword -->
+	</item>
+	<item>
+		<ingredient id="95727" count="1" /> <!-- Frost Lord's Axe -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95725" count="1" /> <!-- Frost Lord's Sword -->
+	</item>
+	<item>
+		<ingredient id="95728" count="1" /> <!-- Frost Lord's Dagger -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95725" count="1" /> <!-- Frost Lord's Sword -->
+	</item>
+	<item>
+		<ingredient id="95729" count="1" /> <!-- Frost Lord's Spear -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95725" count="1" /> <!-- Frost Lord's Sword -->
+	</item>
+	<item>
+		<ingredient id="95730" count="1" /> <!-- Frost Lord's Bow -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95725" count="1" /> <!-- Frost Lord's Sword -->
+	</item>
+	<item>
+		<ingredient id="95731" count="1" /> <!-- Frost Lord's Blade Fists -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95725" count="1" /> <!-- Frost Lord's Sword -->
+	</item>
+	<item>
+		<ingredient id="95732" count="1" /> <!-- Frost Lord's Magic Blunt Weapon -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95725" count="1" /> <!-- Frost Lord's Sword -->
+	</item>
+	<item>
+		<ingredient id="95733" count="1" /> <!-- Frost Lord's Staff -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95725" count="1" /> <!-- Frost Lord's Sword -->
+	</item>
+	<item>
+		<ingredient id="95734" count="1" /> <!-- Frost Lord's Ancient Sword -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95725" count="1" /> <!-- Frost Lord's Sword -->
+	</item>
+	<item>
+		<ingredient id="95735" count="1" /> <!-- Frost Lord's Rapier -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95725" count="1" /> <!-- Frost Lord's Sword -->
+	</item>
+	<item>
+		<ingredient id="95736" count="1" /> <!-- Frost Lord's Pistols -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95725" count="1" /> <!-- Frost Lord's Sword -->
+	</item>
+	<item>
+		<ingredient id="95737" count="1" /> <!-- Frost Lord's Dual Swords -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95725" count="1" /> <!-- Frost Lord's Sword -->
+	</item>
+	<item>
+		<ingredient id="95725" count="1" /> <!-- Frost Lord's Sword -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95726" count="1" /> <!-- Frost Lord's Two-handed Sword -->
+	</item>
+	<item>
+		<ingredient id="95727" count="1" /> <!-- Frost Lord's Axe -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95726" count="1" /> <!-- Frost Lord's Two-handed Sword -->
+	</item>
+	<item>
+		<ingredient id="95728" count="1" /> <!-- Frost Lord's Dagger -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95726" count="1" /> <!-- Frost Lord's Two-handed Sword -->
+	</item>
+	<item>
+		<ingredient id="95729" count="1" /> <!-- Frost Lord's Spear -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95726" count="1" /> <!-- Frost Lord's Two-handed Sword -->
+	</item>
+	<item>
+		<ingredient id="95730" count="1" /> <!-- Frost Lord's Bow -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95726" count="1" /> <!-- Frost Lord's Two-handed Sword -->
+	</item>
+	<item>
+		<ingredient id="95731" count="1" /> <!-- Frost Lord's Blade Fists -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95726" count="1" /> <!-- Frost Lord's Two-handed Sword -->
+	</item>
+	<item>
+		<ingredient id="95732" count="1" /> <!-- Frost Lord's Magic Blunt Weapon -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95726" count="1" /> <!-- Frost Lord's Two-handed Sword -->
+	</item>
+	<item>
+		<ingredient id="95733" count="1" /> <!-- Frost Lord's Staff -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95726" count="1" /> <!-- Frost Lord's Two-handed Sword -->
+	</item>
+	<item>
+		<ingredient id="95726" count="1" /> <!-- Frost Lord's Two-handed Sword -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95725" count="1" /> <!-- Frost Lord's Sword -->
+	</item>
+	<item>
+		<ingredient id="95727" count="1" /> <!-- Frost Lord's Axe -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95725" count="1" /> <!-- Frost Lord's Sword -->
+	</item>
+	<item>
+		<ingredient id="95728" count="1" /> <!-- Frost Lord's Dagger -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95725" count="1" /> <!-- Frost Lord's Sword -->
+	</item>
+	<item>
+		<ingredient id="95729" count="1" /> <!-- Frost Lord's Spear -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95725" count="1" /> <!-- Frost Lord's Sword -->
+	</item>
+	<item>
+		<ingredient id="95730" count="1" /> <!-- Frost Lord's Bow -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95725" count="1" /> <!-- Frost Lord's Sword -->
+	</item>
+	<item>
+		<ingredient id="95731" count="1" /> <!-- Frost Lord's Blade Fists -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95725" count="1" /> <!-- Frost Lord's Sword -->
+	</item>
+	<item>
+		<ingredient id="95732" count="1" /> <!-- Frost Lord's Magic Blunt Weapon -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95725" count="1" /> <!-- Frost Lord's Sword -->
+	</item>
+	<item>
+		<ingredient id="95733" count="1" /> <!-- Frost Lord's Staff -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95725" count="1" /> <!-- Frost Lord's Sword -->
+	</item>
+	<item>
+		<ingredient id="95734" count="1" /> <!-- Frost Lord's Ancient Sword -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95725" count="1" /> <!-- Frost Lord's Sword -->
+	</item>
+	<item>
+		<ingredient id="95735" count="1" /> <!-- Frost Lord's Rapier -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95725" count="1" /> <!-- Frost Lord's Sword -->
+	</item>
+	<item>
+		<ingredient id="95736" count="1" /> <!-- Frost Lord's Pistols -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95725" count="1" /> <!-- Frost Lord's Sword -->
+	</item>
+	<item>
+		<ingredient id="95737" count="1" /> <!-- Frost Lord's Dual Swords -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95725" count="1" /> <!-- Frost Lord's Sword -->
+	</item>
+	<item>
+		<ingredient id="95725" count="1" /> <!-- Frost Lord's Sword -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95726" count="1" /> <!-- Frost Lord's Two-handed Sword -->
+	</item>
+	<item>
+		<ingredient id="95727" count="1" /> <!-- Frost Lord's Axe -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95726" count="1" /> <!-- Frost Lord's Two-handed Sword -->
+	</item>
+	<item>
+		<ingredient id="95728" count="1" /> <!-- Frost Lord's Dagger -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95726" count="1" /> <!-- Frost Lord's Two-handed Sword -->
+	</item>
+	<item>
+		<ingredient id="95729" count="1" /> <!-- Frost Lord's Spear -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95726" count="1" /> <!-- Frost Lord's Two-handed Sword -->
+	</item>
+	<item>
+		<ingredient id="95730" count="1" /> <!-- Frost Lord's Bow -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95726" count="1" /> <!-- Frost Lord's Two-handed Sword -->
+	</item>
+	<item>
+		<ingredient id="95731" count="1" /> <!-- Frost Lord's Blade Fists -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95726" count="1" /> <!-- Frost Lord's Two-handed Sword -->
+	</item>
+	<item>
+		<ingredient id="95732" count="1" /> <!-- Frost Lord's Magic Blunt Weapon -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95726" count="1" /> <!-- Frost Lord's Two-handed Sword -->
+	</item>
+	<item>
+		<ingredient id="95733" count="1" /> <!-- Frost Lord's Staff -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95726" count="1" /> <!-- Frost Lord's Two-handed Sword -->
+	</item>
+	<item>
+		<ingredient id="95726" count="1" /> <!-- Frost Lord's Two-handed Sword -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95725" count="1" /> <!-- Frost Lord's Sword -->
+	</item>
+	<item>
+		<ingredient id="95727" count="1" /> <!-- Frost Lord's Axe -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95725" count="1" /> <!-- Frost Lord's Sword -->
+	</item>
+	<item>
+		<ingredient id="95728" count="1" /> <!-- Frost Lord's Dagger -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95725" count="1" /> <!-- Frost Lord's Sword -->
+	</item>
+	<item>
+		<ingredient id="95729" count="1" /> <!-- Frost Lord's Spear -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95725" count="1" /> <!-- Frost Lord's Sword -->
+	</item>
+	<item>
+		<ingredient id="95730" count="1" /> <!-- Frost Lord's Bow -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95725" count="1" /> <!-- Frost Lord's Sword -->
+	</item>
+	<item>
+		<ingredient id="95731" count="1" /> <!-- Frost Lord's Blade Fists -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95725" count="1" /> <!-- Frost Lord's Sword -->
+	</item>
+	<item>
+		<ingredient id="95732" count="1" /> <!-- Frost Lord's Magic Blunt Weapon -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95725" count="1" /> <!-- Frost Lord's Sword -->
+	</item>
+	<item>
+		<ingredient id="95733" count="1" /> <!-- Frost Lord's Staff -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95725" count="1" /> <!-- Frost Lord's Sword -->
+	</item>
+	<item>
+		<ingredient id="95734" count="1" /> <!-- Frost Lord's Ancient Sword -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95725" count="1" /> <!-- Frost Lord's Sword -->
+	</item>
+	<item>
+		<ingredient id="95735" count="1" /> <!-- Frost Lord's Rapier -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95725" count="1" /> <!-- Frost Lord's Sword -->
+	</item>
+	<item>
+		<ingredient id="95736" count="1" /> <!-- Frost Lord's Pistols -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95725" count="1" /> <!-- Frost Lord's Sword -->
+	</item>
+	<item>
+		<ingredient id="95737" count="1" /> <!-- Frost Lord's Dual Swords -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95725" count="1" /> <!-- Frost Lord's Sword -->
+	</item>
+	<item>
+		<ingredient id="95725" count="1" /> <!-- Frost Lord's Sword -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95726" count="1" /> <!-- Frost Lord's Two-handed Sword -->
+	</item>
+	<item>
+		<ingredient id="95727" count="1" /> <!-- Frost Lord's Axe -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95726" count="1" /> <!-- Frost Lord's Two-handed Sword -->
+	</item>
+	<item>
+		<ingredient id="95728" count="1" /> <!-- Frost Lord's Dagger -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95726" count="1" /> <!-- Frost Lord's Two-handed Sword -->
+	</item>
+	<item>
+		<ingredient id="95729" count="1" /> <!-- Frost Lord's Spear -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95726" count="1" /> <!-- Frost Lord's Two-handed Sword -->
+	</item>
+	<item>
+		<ingredient id="95730" count="1" /> <!-- Frost Lord's Bow -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95726" count="1" /> <!-- Frost Lord's Two-handed Sword -->
+	</item>
+	<item>
+		<ingredient id="95731" count="1" /> <!-- Frost Lord's Blade Fists -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95726" count="1" /> <!-- Frost Lord's Two-handed Sword -->
+	</item>
+	<item>
+		<ingredient id="95732" count="1" /> <!-- Frost Lord's Magic Blunt Weapon -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95726" count="1" /> <!-- Frost Lord's Two-handed Sword -->
+	</item>
+	<item>
+		<ingredient id="95733" count="1" /> <!-- Frost Lord's Staff -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95726" count="1" /> <!-- Frost Lord's Two-handed Sword -->
+	</item>
+	<item>
+		<ingredient id="95726" count="1" /> <!-- Frost Lord's Two-handed Sword -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95725" count="1" /> <!-- Frost Lord's Sword -->
+	</item>
+	<item>
+		<ingredient id="95727" count="1" /> <!-- Frost Lord's Axe -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95725" count="1" /> <!-- Frost Lord's Sword -->
+	</item>
+	<item>
+		<ingredient id="95728" count="1" /> <!-- Frost Lord's Dagger -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95725" count="1" /> <!-- Frost Lord's Sword -->
+	</item>
+	<item>
+		<ingredient id="95729" count="1" /> <!-- Frost Lord's Spear -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95725" count="1" /> <!-- Frost Lord's Sword -->
+	</item>
+	<item>
+		<ingredient id="95730" count="1" /> <!-- Frost Lord's Bow -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95725" count="1" /> <!-- Frost Lord's Sword -->
+	</item>
+	<item>
+		<ingredient id="95731" count="1" /> <!-- Frost Lord's Blade Fists -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95725" count="1" /> <!-- Frost Lord's Sword -->
+	</item>
+	<item>
+		<ingredient id="95732" count="1" /> <!-- Frost Lord's Magic Blunt Weapon -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95725" count="1" /> <!-- Frost Lord's Sword -->
+	</item>
+	<item>
+		<ingredient id="95733" count="1" /> <!-- Frost Lord's Staff -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95725" count="1" /> <!-- Frost Lord's Sword -->
+	</item>
+	<item>
+		<ingredient id="95734" count="1" /> <!-- Frost Lord's Ancient Sword -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95725" count="1" /> <!-- Frost Lord's Sword -->
+	</item>
+	<item>
+		<ingredient id="95735" count="1" /> <!-- Frost Lord's Rapier -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95725" count="1" /> <!-- Frost Lord's Sword -->
+	</item>
+	<item>
+		<ingredient id="95736" count="1" /> <!-- Frost Lord's Pistols -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95725" count="1" /> <!-- Frost Lord's Sword -->
+	</item>
+	<item>
+		<ingredient id="95737" count="1" /> <!-- Frost Lord's Dual Swords -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95725" count="1" /> <!-- Frost Lord's Sword -->
+	</item>
+	<item>
+		<ingredient id="95725" count="1" /> <!-- Frost Lord's Sword -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95726" count="1" /> <!-- Frost Lord's Two-handed Sword -->
+	</item>
+	<item>
+		<ingredient id="95727" count="1" /> <!-- Frost Lord's Axe -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95726" count="1" /> <!-- Frost Lord's Two-handed Sword -->
+	</item>
+	<item>
+		<ingredient id="95728" count="1" /> <!-- Frost Lord's Dagger -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95726" count="1" /> <!-- Frost Lord's Two-handed Sword -->
+	</item>
+	<item>
+		<ingredient id="95729" count="1" /> <!-- Frost Lord's Spear -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95726" count="1" /> <!-- Frost Lord's Two-handed Sword -->
+	</item>
+	<item>
+		<ingredient id="95730" count="1" /> <!-- Frost Lord's Bow -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95726" count="1" /> <!-- Frost Lord's Two-handed Sword -->
+	</item>
+	<item>
+		<ingredient id="95731" count="1" /> <!-- Frost Lord's Blade Fists -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95726" count="1" /> <!-- Frost Lord's Two-handed Sword -->
+	</item>
+	<item>
+		<ingredient id="95732" count="1" /> <!-- Frost Lord's Magic Blunt Weapon -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95726" count="1" /> <!-- Frost Lord's Two-handed Sword -->
+	</item>
+	<item>
+		<ingredient id="95733" count="1" /> <!-- Frost Lord's Staff -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95726" count="1" /> <!-- Frost Lord's Two-handed Sword -->
+	</item>
+	<item>
+		<ingredient id="95726" count="1" /> <!-- Frost Lord's Two-handed Sword -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95725" count="1" /> <!-- Frost Lord's Sword -->
+	</item>
+	<item>
+		<ingredient id="95727" count="1" /> <!-- Frost Lord's Axe -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95725" count="1" /> <!-- Frost Lord's Sword -->
+	</item>
+	<item>
+		<ingredient id="95728" count="1" /> <!-- Frost Lord's Dagger -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95725" count="1" /> <!-- Frost Lord's Sword -->
+	</item>
+	<item>
+		<ingredient id="95729" count="1" /> <!-- Frost Lord's Spear -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95725" count="1" /> <!-- Frost Lord's Sword -->
+	</item>
+	<item>
+		<ingredient id="95730" count="1" /> <!-- Frost Lord's Bow -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95725" count="1" /> <!-- Frost Lord's Sword -->
+	</item>
+	<item>
+		<ingredient id="95731" count="1" /> <!-- Frost Lord's Blade Fists -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95725" count="1" /> <!-- Frost Lord's Sword -->
+	</item>
+	<item>
+		<ingredient id="95732" count="1" /> <!-- Frost Lord's Magic Blunt Weapon -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95725" count="1" /> <!-- Frost Lord's Sword -->
+	</item>
+	<item>
+		<ingredient id="95733" count="1" /> <!-- Frost Lord's Staff -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95725" count="1" /> <!-- Frost Lord's Sword -->
+	</item>
+	<item>
+		<ingredient id="95734" count="1" /> <!-- Frost Lord's Ancient Sword -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95725" count="1" /> <!-- Frost Lord's Sword -->
+	</item>
+	<item>
+		<ingredient id="95735" count="1" /> <!-- Frost Lord's Rapier -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95725" count="1" /> <!-- Frost Lord's Sword -->
+	</item>
+	<item>
+		<ingredient id="95736" count="1" /> <!-- Frost Lord's Pistols -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95725" count="1" /> <!-- Frost Lord's Sword -->
+	</item>
+	<item>
+		<ingredient id="95737" count="1" /> <!-- Frost Lord's Dual Swords -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95725" count="1" /> <!-- Frost Lord's Sword -->
+	</item>
+	<item>
+		<ingredient id="95725" count="1" /> <!-- Frost Lord's Sword -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95726" count="1" /> <!-- Frost Lord's Two-handed Sword -->
+	</item>
+	<item>
+		<ingredient id="95727" count="1" /> <!-- Frost Lord's Axe -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95726" count="1" /> <!-- Frost Lord's Two-handed Sword -->
+	</item>
+	<item>
+		<ingredient id="95728" count="1" /> <!-- Frost Lord's Dagger -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95726" count="1" /> <!-- Frost Lord's Two-handed Sword -->
+	</item>
+	<item>
+		<ingredient id="95729" count="1" /> <!-- Frost Lord's Spear -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95726" count="1" /> <!-- Frost Lord's Two-handed Sword -->
+	</item>
+	<item>
+		<ingredient id="95730" count="1" /> <!-- Frost Lord's Bow -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95726" count="1" /> <!-- Frost Lord's Two-handed Sword -->
+	</item>
+	<item>
+		<ingredient id="95731" count="1" /> <!-- Frost Lord's Blade Fists -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95726" count="1" /> <!-- Frost Lord's Two-handed Sword -->
+	</item>
+	<item>
+		<ingredient id="95732" count="1" /> <!-- Frost Lord's Magic Blunt Weapon -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95726" count="1" /> <!-- Frost Lord's Two-handed Sword -->
+	</item>
+	<item>
+		<ingredient id="95733" count="1" /> <!-- Frost Lord's Staff -->
+		<ingredient id="92314" count="2120" /> <!-- Giran Seal -->
+		<ingredient id="100396" count="1" /> <!-- Frost Lord's Weapon Change Coupon - Sealed -->
+		<production id="95726" count="1" /> <!-- Frost Lord's Two-handed Sword -->
+	</item>
+</list>

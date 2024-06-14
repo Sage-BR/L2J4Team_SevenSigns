@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,9 +16,11 @@
  */
 package org.l2j.gameserver.network.serverpackets;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.enums.BonusExpType;
 import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.model.stats.Stat;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 
 /**
@@ -36,9 +38,9 @@ public class ExUserBoostStat extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_USER_BOOST_STAT.writeId(this);
+		ServerPackets.EX_USER_BOOST_STAT.writeId(this, buffer);
 		int count = 0;
 		int bonus = 0;
 		switch (_type)
@@ -66,8 +68,8 @@ public class ExUserBoostStat extends ServerPacket
 				break;
 			}
 		}
-		writeByte(_type.getId());
-		writeByte(count);
-		writeShort(bonus);
+		buffer.writeByte(_type.getId());
+		buffer.writeByte(count);
+		buffer.writeShort(bonus);
 	}
 }

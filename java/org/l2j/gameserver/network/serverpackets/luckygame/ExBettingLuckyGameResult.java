@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,10 +21,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.enums.LuckyGameItemType;
 import org.l2j.gameserver.enums.LuckyGameResultType;
 import org.l2j.gameserver.enums.LuckyGameType;
 import org.l2j.gameserver.model.holders.ItemHolder;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 import org.l2j.gameserver.network.serverpackets.ServerPacket;
 
@@ -63,20 +65,20 @@ public class ExBettingLuckyGameResult extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_BETTING_LUCKY_GAME_RESULT.writeId(this);
-		writeInt(_result.getClientId());
-		writeInt(_type.ordinal());
-		writeInt(_ticketCount);
-		writeInt(_size);
+		ServerPackets.EX_BETTING_LUCKY_GAME_RESULT.writeId(this, buffer);
+		buffer.writeInt(_result.getClientId());
+		buffer.writeInt(_type.ordinal());
+		buffer.writeInt(_ticketCount);
+		buffer.writeInt(_size);
 		for (Entry<LuckyGameItemType, List<ItemHolder>> reward : _rewards.entrySet())
 		{
 			for (ItemHolder item : reward.getValue())
 			{
-				writeInt(reward.getKey().getClientId());
-				writeInt(item.getId());
-				writeInt((int) item.getCount());
+				buffer.writeInt(reward.getKey().getClientId());
+				buffer.writeInt(item.getId());
+				buffer.writeInt((int) item.getCount());
 			}
 		}
 	}

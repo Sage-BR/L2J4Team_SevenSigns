@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,17 +17,21 @@
 package org.l2j.gameserver.network.clientpackets;
 
 import org.l2j.gameserver.model.actor.Player;
-import org.l2j.gameserver.network.GameClient;
 
 /**
  * @version $Revision: 1.7.4.4 $ $Date: 2005/03/27 18:46:19 $
  */
-public class ObserverReturn implements ClientPacket
+public class ObserverReturn extends ClientPacket
 {
 	@Override
-	public void run(GameClient client)
+	protected void readImpl()
 	{
-		final Player player = client.getPlayer();
+	}
+	
+	@Override
+	protected void runImpl()
+	{
+		final Player player = getPlayer();
 		if (player == null)
 		{
 			return;

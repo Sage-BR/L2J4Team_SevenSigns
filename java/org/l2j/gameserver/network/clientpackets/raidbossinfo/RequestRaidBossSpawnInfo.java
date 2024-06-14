@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,32 +19,30 @@ package org.l2j.gameserver.network.clientpackets.raidbossinfo;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.l2j.commons.network.ReadablePacket;
 import org.l2j.gameserver.enums.RaidBossStatus;
 import org.l2j.gameserver.instancemanager.DBSpawnManager;
 import org.l2j.gameserver.instancemanager.GrandBossManager;
 import org.l2j.gameserver.model.actor.Npc;
 import org.l2j.gameserver.model.actor.instance.GrandBoss;
-import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.clientpackets.ClientPacket;
 import org.l2j.gameserver.network.serverpackets.raidbossinfo.ExRaidBossSpawnInfo;
 
 /**
  * @author Mobius
  */
-public class RequestRaidBossSpawnInfo implements ClientPacket
+public class RequestRaidBossSpawnInfo extends ClientPacket
 {
 	private static final int BAIUM = 29020;
 	
 	private final Map<Integer, RaidBossStatus> _statuses = new HashMap<>();
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		final int count = packet.readInt();
+		final int count = readInt();
 		for (int i = 0; i < count; i++)
 		{
-			final int bossId = packet.readInt();
+			final int bossId = readInt();
 			final GrandBoss boss = GrandBossManager.getInstance().getBoss(bossId);
 			if (boss == null)
 			{
@@ -93,8 +91,8 @@ public class RequestRaidBossSpawnInfo implements ClientPacket
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
-		client.sendPacket(new ExRaidBossSpawnInfo(_statuses));
+		getClient().sendPacket(new ExRaidBossSpawnInfo(_statuses));
 	}
 }

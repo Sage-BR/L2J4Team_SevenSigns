@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -24,6 +24,7 @@ import org.l2j.gameserver.model.actor.Creature;
 import org.l2j.gameserver.model.actor.instance.Pet;
 import org.l2j.gameserver.model.actor.transform.TransformType;
 import org.l2j.gameserver.model.item.ItemTemplate;
+import org.l2j.gameserver.model.item.Weapon;
 import org.l2j.gameserver.model.item.instance.Item;
 import org.l2j.gameserver.model.item.type.CrystalType;
 import org.l2j.gameserver.model.item.type.WeaponType;
@@ -133,16 +134,16 @@ public interface IStatFunction
 			{
 				if (item.isWeapon())
 				{
-					if ((Config.ALT_OLY_WEAPON_ENCHANT_LIMIT >= 0) && (enchant > Config.ALT_OLY_WEAPON_ENCHANT_LIMIT))
+					if ((Config.OLYMPIAD_WEAPON_ENCHANT_LIMIT >= 0) && (enchant > Config.OLYMPIAD_WEAPON_ENCHANT_LIMIT))
 					{
-						enchant = Config.ALT_OLY_WEAPON_ENCHANT_LIMIT;
+						enchant = Config.OLYMPIAD_WEAPON_ENCHANT_LIMIT;
 					}
 				}
 				else
 				{
-					if ((Config.ALT_OLY_ARMOR_ENCHANT_LIMIT >= 0) && (enchant > Config.ALT_OLY_ARMOR_ENCHANT_LIMIT))
+					if ((Config.OLYMPIAD_ARMOR_ENCHANT_LIMIT >= 0) && (enchant > Config.OLYMPIAD_ARMOR_ENCHANT_LIMIT))
 					{
-						enchant = Config.ALT_OLY_ARMOR_ENCHANT_LIMIT;
+						enchant = Config.OLYMPIAD_ARMOR_ENCHANT_LIMIT;
 					}
 				}
 			}
@@ -229,6 +230,16 @@ public interface IStatFunction
 			}
 			case A:
 			{
+				if (item.getWeaponItem().isImmortalityWeapon())
+				{
+					if (item.getItemType() == WeaponType.BLUNT)
+					{
+						return 55 * enchant;
+					}
+					
+					return 50 * enchant;
+				}
+				
 				// M. Atk. increases by 6 for all A weapons.
 				// Starting at +4, M. Atk. bonus triple.
 				return (6 * enchant) + (12 * Math.max(0, enchant - 3)) + (getFrostLordWeaponBonus(item, enchant) * (18 * Math.max(0, enchant - 7)));
@@ -270,28 +281,46 @@ public interface IStatFunction
 						// Starting at +4, P. Atk. bonus double.
 						return (31 * enchant) + (62 * Math.max(0, enchant - 3));
 					}
+					
 					// P. Atk. increases by 19 for two-handed swords, two-handed blunts, dualswords, and two-handed combat weapons.
 					// Starting at +4, P. Atk. bonus double.
 					return (19 * enchant) + (38 * Math.max(0, enchant - 3));
 				}
+				
 				// P. Atk. increases by 15 for one-handed swords, one-handed blunts, daggers, spears, and other weapons.
 				// Starting at +4, P. Atk. bonus double.
 				return (15 * enchant) + (30 * Math.max(0, enchant - 3));
 			}
 			case A:
 			{
-				if ((item.getWeaponItem().getBodyPart() == ItemTemplate.SLOT_LR_HAND) && (item.getWeaponItem().getItemType() != WeaponType.POLE))
+				final Weapon weapon = item.getWeaponItem();
+				if ((weapon.getBodyPart() == ItemTemplate.SLOT_LR_HAND) && (weapon.getItemType() != WeaponType.POLE))
 				{
-					if (item.getWeaponItem().getItemType().isRanged())
+					if (weapon.getItemType().isRanged())
 					{
+						if (weapon.isImmortalityWeapon())
+						{
+							return 128 * enchant;
+						}
+						
 						// P. Atk. increases by 16 for A bows.
 						// Starting at +4, P. Atk. bonus triple.
 						return (16 * enchant) + ((32 * Math.max(0, enchant - 3)) + (getFrostLordWeaponBonus(item, enchant) * (48 * Math.max(0, enchant - 7))));
 					}
+					else if (weapon.isImmortalityWeapon())
+					{
+						return 96 * enchant;
+					}
+					
 					// P. Atk. increases by 12 for two-handed swords, two-handed blunts, dualswords, and two-handed combat A weapons.
 					// Starting at +4, P. Atk. bonus triple.
 					return (12 * enchant) + ((24 * Math.max(0, enchant - 3)) + (getFrostLordWeaponBonus(item, enchant) * (36 * Math.max(0, enchant - 7))));
 				}
+				else if (weapon.isImmortalityWeapon())
+				{
+					return 80 * enchant;
+				}
+				
 				// P. Atk. increases by 10 for one-handed swords, one-handed blunts, daggers, spears, and other A weapons.
 				// Starting at +4, P. Atk. bonus triple.
 				return (10 * enchant) + ((20 * Math.max(0, enchant - 3)) + (getFrostLordWeaponBonus(item, enchant) * (30 * Math.max(0, enchant - 7))));
@@ -300,18 +329,21 @@ public interface IStatFunction
 			case C:
 			case D:
 			{
-				if ((item.getWeaponItem().getBodyPart() == ItemTemplate.SLOT_LR_HAND) && (item.getWeaponItem().getItemType() != WeaponType.POLE))
+				final Weapon weapon = item.getWeaponItem();
+				if ((weapon.getBodyPart() == ItemTemplate.SLOT_LR_HAND) && (weapon.getItemType() != WeaponType.POLE))
 				{
-					if (item.getWeaponItem().getItemType().isRanged())
+					if (weapon.getItemType().isRanged())
 					{
 						// P. Atk. increases by 8 for B,C,D bows.
 						// Starting at +4, P. Atk. bonus double.
 						return (8 * enchant) + (8 * Math.max(0, enchant - 3));
 					}
+					
 					// P. Atk. increases by 5 for two-handed swords, two-handed blunts, dualswords, and two-handed combat B,C,D weapons.
 					// Starting at +4, P. Atk. bonus double.
 					return (5 * enchant) + (5 * Math.max(0, enchant - 3));
 				}
+				
 				// P. Atk. increases by 4 for one-handed swords, one-handed blunts, daggers, spears, and other B,C,D weapons.
 				// Starting at +4, P. Atk. bonus double.
 				return (4 * enchant) + (4 * Math.max(0, enchant - 3));
@@ -324,6 +356,7 @@ public interface IStatFunction
 					// Starting at +4, P. Atk. bonus double.
 					return (4 * enchant) + (4 * Math.max(0, enchant - 3));
 				}
+				
 				// P. Atk. increases by 2 for all weapons with the exception of bows.
 				// Starting at +4, P. Atk. bonus double.
 				return (2 * enchant) + (2 * Math.max(0, enchant - 3));

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- TODO: Remove "castle" attributes from here, it should be loaded from TaxZones -->
+<list enabled="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../xsd/MapRegion.xsd">
+	<region name="wind_village" town="Wind Village" castle="5" locId="13400" bbs="11">
+		<respawnPoint X="104497" Y="57970" Z="-3953" />
+		<respawnPoint X="108478" Y="52271" Z="-4736" isChaotic="true" />
+		<map X="23" Y="19" />
+	</region>
+</list>

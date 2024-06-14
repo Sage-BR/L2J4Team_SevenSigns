@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -305,7 +305,7 @@ public class Gui
 		layeredPanel.add(systemPanel, 1, 0);
 		
 		// Set frame.
-		final JFrame frame = new JFrame("4Team - GameServer");
+		final JFrame frame = new JFrame("Mobius - GameServer");
 		frame.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
 		frame.addWindowListener(new WindowAdapter()
 		{

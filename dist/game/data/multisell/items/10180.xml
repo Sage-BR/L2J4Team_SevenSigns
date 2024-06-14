@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/multisell.xsd">
+	<npcs>
+		<npc>-1</npc> <!-- Item Multisell -->
+	</npcs>
+	<!-- Selected Jewel Coupon - Sealed (97597) -->
+	<item>
+		<ingredient id="97597" count="20" /> <!-- Selected Jewel Coupon - Sealed -->
+		<production id="99976" count="1" /> <!-- Ruby Jewelry Box Lv. 2 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="97597" count="15" /> <!-- Selected Jewel Coupon - Sealed -->
+		<production id="99968" count="1" /> <!-- Diamond Jewelry Box Lv. 2 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="97597" count="13" /> <!-- Selected Jewel Coupon - Sealed -->
+		<production id="97599" count="1" /> <!-- Beryl Jewelry Box Lv. 2 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="97597" count="8" /> <!-- Selected Jewel Coupon - Sealed -->
+		<production id="97604" count="1" /> <!-- Onyx Jewelry Box Lv. 2 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="97597" count="8" /> <!-- Selected Jewel Coupon - Sealed -->
+		<production id="97609" count="1" /> <!-- Spinel Jewelry Box Lv. 2 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="97597" count="8" /> <!-- Selected Jewel Coupon - Sealed -->
+		<production id="97614" count="1" /> <!-- Zircon Jewelry Box Lv. 2 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="97597" count="5" /> <!-- Selected Jewel Coupon - Sealed -->
+		<production id="97619" count="1" /> <!-- Coral Jewelry Box Lv. 2 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="97597" count="5" /> <!-- Selected Jewel Coupon - Sealed -->
+		<production id="97624" count="1" /> <!-- Opal Jewelry Box Lv. 2 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="97597" count="3" /> <!-- Selected Jewel Coupon - Sealed -->
+		<production id="97629" count="1" /> <!-- Amber Jewelry Box Lv. 2 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="97597" count="3" /> <!-- Selected Jewel Coupon - Sealed -->
+		<production id="97634" count="1" /> <!-- Moonstone Jewelry Box Lv. 2 - Sealed -->
+	</item>
+</list>

@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,7 +16,9 @@
  */
 package org.l2j.gameserver.network.serverpackets.elementalspirits;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.model.actor.Player;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 
 /**
@@ -30,9 +32,9 @@ public class ElementalSpiritEvolution extends UpdateElementalSpiritPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_ELEMENTAL_SPIRIT_EVOLUTION.writeId(this);
-		writeUpdate();
+		ServerPackets.EX_ELEMENTAL_SPIRIT_EVOLUTION.writeId(this, buffer);
+		writeUpdate(buffer);
 	}
 }

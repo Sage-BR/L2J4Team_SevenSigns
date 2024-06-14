@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,14 +17,12 @@
 package org.l2j.gameserver.network.clientpackets;
 
 import org.l2j.Config;
-import org.l2j.commons.network.ReadablePacket;
 import org.l2j.gameserver.enums.ChatType;
 import org.l2j.gameserver.enums.PlayerCondOverride;
 import org.l2j.gameserver.model.Party;
 import org.l2j.gameserver.model.World;
 import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.model.clan.Clan;
-import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.SystemMessageId;
 import org.l2j.gameserver.network.serverpackets.ExRequestNewInvitePartyInquiry;
 import org.l2j.gameserver.util.Broadcast;
@@ -32,17 +30,17 @@ import org.l2j.gameserver.util.Broadcast;
 /**
  * @author Serenitty
  */
-public class RequestNewInvitePartyInquiry implements ClientPacket
+public class RequestNewInvitePartyInquiry extends ClientPacket
 {
 	private int _reqType;
 	private ChatType _sayType;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_reqType = packet.readByte();
+		_reqType = readByte();
 		
-		final int chatTypeValue = packet.readByte();
+		final int chatTypeValue = readByte();
 		
 		switch (chatTypeValue)
 		{
@@ -75,9 +73,9 @@ public class RequestNewInvitePartyInquiry implements ClientPacket
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
-		final Player player = client.getPlayer();
+		final Player player = getPlayer();
 		if (player == null)
 		{
 			return;
@@ -91,7 +89,7 @@ public class RequestNewInvitePartyInquiry implements ClientPacket
 		
 		// Ten second delay.
 		// TODO: Create another flood protection for this?
-		if (!client.getFloodProtectors().canSendMail())
+		if (!getClient().getFloodProtectors().canSendMail())
 		{
 			return;
 		}

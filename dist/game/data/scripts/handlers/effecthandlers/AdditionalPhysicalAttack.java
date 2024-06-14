@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -39,11 +39,14 @@ public class AdditionalPhysicalAttack extends PhysicalAttack
 	@Override
 	public void instant(Creature effector, Creature effected, Skill skill, Item item)
 	{
-		if ((effector.isPlayer() && effector.hasAbnormalType(AbnormalType.SEAL_OF_DAMAGE)) || (Rnd.get(100) < _chance))
+		if (effector.isPlayer() && effector.hasAbnormalType(AbnormalType.SEAL_OF_DAMAGE))
 		{
 			return;
 		}
 		
-		super.instant(effector, effected, skill, item);
+		if (Rnd.get(100) < _chance)
+		{
+			super.instant(effector, effected, skill, item);
+		}
 	}
 }

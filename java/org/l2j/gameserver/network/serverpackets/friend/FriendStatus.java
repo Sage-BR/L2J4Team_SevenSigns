@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,7 +16,9 @@
  */
 package org.l2j.gameserver.network.serverpackets.friend;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.model.actor.Player;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 import org.l2j.gameserver.network.serverpackets.ServerPacket;
 
@@ -48,26 +50,26 @@ public class FriendStatus extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.FRIEND_STATUS.writeId(this);
-		writeInt(_type);
-		writeString(_name);
+		ServerPackets.FRIEND_STATUS.writeId(this, buffer);
+		buffer.writeInt(_type);
+		buffer.writeString(_name);
 		switch (_type)
 		{
 			case MODE_OFFLINE:
 			{
-				writeInt(_objectId);
+				buffer.writeInt(_objectId);
 				break;
 			}
 			case MODE_LEVEL:
 			{
-				writeInt(_level);
+				buffer.writeInt(_level);
 				break;
 			}
 			case MODE_CLASS:
 			{
-				writeInt(_classId);
+				buffer.writeInt(_classId);
 				break;
 			}
 		}

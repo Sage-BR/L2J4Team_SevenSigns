@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -34,7 +34,6 @@ import org.l2j.gameserver.model.World;
 import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.model.holders.SellBuffHolder;
 import org.l2j.gameserver.network.Disconnection;
-import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.serverpackets.LeaveWorld;
 
 public class OfflineTraderTable
@@ -70,7 +69,7 @@ public class OfflineTraderTable
 			{
 				try
 				{
-					if ((pc.getPrivateStoreType() != PrivateStoreType.NONE) && ((pc.getClient() == null) || pc.getClient().isDetached()))
+					if (pc.isInStoreMode() && ((pc.getClient() == null) || pc.getClient().isDetached()))
 					{
 						stm3.setInt(1, pc.getObjectId()); // Char Id
 						stm3.setLong(2, pc.getOfflineStartTime());
@@ -214,13 +213,8 @@ public class OfflineTraderTable
 				
 				try
 				{
-					final GameClient client = new GameClient();
-					client.setDetached(true);
 					player = Player.load(rs.getInt("charId"));
-					client.setPlayer(player);
 					player.setOnlineStatus(true, false);
-					client.setAccountName(player.getAccountNamePlayer());
-					player.setClient(client);
 					player.setOfflineStartTime(time);
 					
 					if (isSellBuff)

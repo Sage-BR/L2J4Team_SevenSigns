@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,29 +16,27 @@
  */
 package org.l2j.gameserver.network.clientpackets.settings;
 
-import org.l2j.commons.network.ReadablePacket;
 import org.l2j.gameserver.model.actor.Player;
-import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.clientpackets.ClientPacket;
 import org.l2j.gameserver.network.serverpackets.settings.ExItemAnnounceSetting;
 
 /**
  * @author Index
  */
-public class ExSaveItemAnnounceSetting implements ClientPacket
+public class ExSaveItemAnnounceSetting extends ClientPacket
 {
 	private boolean _announceType;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_announceType = packet.readByte() == 1;
+		_announceType = readByte() == 1;
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
-		final Player player = client.getPlayer();
+		final Player player = getPlayer();
 		if (player == null)
 		{
 			return;

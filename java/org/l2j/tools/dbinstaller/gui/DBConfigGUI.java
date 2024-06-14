@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -54,7 +54,7 @@ public class DBConfigGUI extends JFrame
 	
 	public DBConfigGUI(String db, String dir)
 	{
-		super("4Team - DB Installer");
+		super("Mobius - DB Installer");
 		setVisible(false);
 		setLayout(new SpringLayout());
 		setDefaultLookAndFeelDecorated(true);

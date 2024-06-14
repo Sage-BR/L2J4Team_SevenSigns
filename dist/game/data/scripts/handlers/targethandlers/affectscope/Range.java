@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -62,7 +62,11 @@ public class Range implements IAffectScopeHandler
 			{
 				return false;
 			}
-			if (((c != target) && (affectObject != null) && !affectObject.checkAffectedObject(creature, c)) || !GeoEngine.getInstance().canSeeTarget(target, c))
+			if ((c != target) && (affectObject != null) && !affectObject.checkAffectedObject(creature, c))
+			{
+				return false;
+			}
+			if (!GeoEngine.getInstance().canSeeTarget(target, c))
 			{
 				return false;
 			}

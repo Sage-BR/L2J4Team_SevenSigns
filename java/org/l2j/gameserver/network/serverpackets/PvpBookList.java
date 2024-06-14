@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,6 +19,8 @@ package org.l2j.gameserver.network.serverpackets;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 
+import org.l2j.commons.network.WritableBuffer;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 
 public class PvpBookList extends ServerPacket
@@ -28,22 +30,22 @@ public class PvpBookList extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_PVPBOOK_LIST.writeId(this);
+		ServerPackets.EX_PVPBOOK_LIST.writeId(this, buffer);
 		final int size = 1;
-		writeInt(4); // show killer's location count
-		writeInt(5); // teleport count
-		writeInt(size); // killer count
+		buffer.writeInt(4); // show killer's location count
+		buffer.writeInt(5); // teleport count
+		buffer.writeInt(size); // killer count
 		for (int i = 0; i < size; i++)
 		{
-			writeSizedString("killer" + i); // killer name
-			writeSizedString("clanKiller" + i); // killer clan name
-			writeInt(15); // killer level
-			writeInt(2); // killer race
-			writeInt(10); // killer class
-			writeInt((int) LocalDateTime.now().atZone(ZoneId.systemDefault()).toEpochSecond()); // kill time
-			writeByte(1); // is online
+			buffer.writeSizedString("killer" + i); // killer name
+			buffer.writeSizedString("clanKiller" + i); // killer clan name
+			buffer.writeInt(15); // killer level
+			buffer.writeInt(2); // killer race
+			buffer.writeInt(10); // killer class
+			buffer.writeInt((int) LocalDateTime.now().atZone(ZoneId.systemDefault()).toEpochSecond()); // kill time
+			buffer.writeByte(1); // is online
 		}
 	}
 }

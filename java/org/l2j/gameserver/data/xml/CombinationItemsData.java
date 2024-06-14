@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -63,7 +63,7 @@ public class CombinationItemsData implements IXmlReader
 				final int enchant = parseInteger(rewardNode.getAttributes(), "enchant", 0);
 				final CombinationItemType type = parseEnum(rewardNode.getAttributes(), CombinationItemType.class, "type");
 				item.addReward(new CombinationItemReward(id, count, type, enchant));
-				if (ItemData.getInstance().getTemplate(id) == null)
+				if ((id > 0) && (ItemData.getInstance().getTemplate(id) == null))
 				{
 					LOGGER.info(getClass().getSimpleName() + ": Could not find item with id " + id);
 				}

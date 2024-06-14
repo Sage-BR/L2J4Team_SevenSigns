@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,9 +20,11 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.instancemanager.CastleManorManager;
 import org.l2j.gameserver.model.Seed;
 import org.l2j.gameserver.model.SeedProduction;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 
 /**
@@ -58,46 +60,46 @@ public class ExShowSeedSetting extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_SHOW_SEED_SETTING.writeId(this);
-		writeInt(_manorId); // manor id
-		writeInt(_seeds.size()); // size
+		ServerPackets.EX_SHOW_SEED_SETTING.writeId(this, buffer);
+		buffer.writeInt(_manorId); // manor id
+		buffer.writeInt(_seeds.size()); // size
 		for (Seed s : _seeds)
 		{
-			writeInt(s.getSeedId()); // seed id
-			writeInt(s.getLevel()); // level
-			writeByte(1);
-			writeInt(s.getReward(1)); // reward 1 id
-			writeByte(1);
-			writeInt(s.getReward(2)); // reward 2 id
-			writeInt(s.getSeedLimit()); // next sale limit
-			writeInt(s.getSeedReferencePrice()); // price for castle to produce 1
-			writeInt(s.getSeedMinPrice()); // min seed price
-			writeInt(s.getSeedMaxPrice()); // max seed price
+			buffer.writeInt(s.getSeedId()); // seed id
+			buffer.writeInt(s.getLevel()); // level
+			buffer.writeByte(1);
+			buffer.writeInt(s.getReward(1)); // reward 1 id
+			buffer.writeByte(1);
+			buffer.writeInt(s.getReward(2)); // reward 2 id
+			buffer.writeInt(s.getSeedLimit()); // next sale limit
+			buffer.writeInt(s.getSeedReferencePrice()); // price for castle to produce 1
+			buffer.writeInt(s.getSeedMinPrice()); // min seed price
+			buffer.writeInt(s.getSeedMaxPrice()); // max seed price
 			// Current period
 			if (_current.containsKey(s.getSeedId()))
 			{
 				final SeedProduction sp = _current.get(s.getSeedId());
-				writeLong(sp.getStartAmount()); // sales
-				writeLong(sp.getPrice()); // price
+				buffer.writeLong(sp.getStartAmount()); // sales
+				buffer.writeLong(sp.getPrice()); // price
 			}
 			else
 			{
-				writeLong(0);
-				writeLong(0);
+				buffer.writeLong(0);
+				buffer.writeLong(0);
 			}
 			// Next period
 			if (_next.containsKey(s.getSeedId()))
 			{
 				final SeedProduction sp = _next.get(s.getSeedId());
-				writeLong(sp.getStartAmount()); // sales
-				writeLong(sp.getPrice()); // price
+				buffer.writeLong(sp.getStartAmount()); // sales
+				buffer.writeLong(sp.getPrice()); // price
 			}
 			else
 			{
-				writeLong(0);
-				writeLong(0);
+				buffer.writeLong(0);
+				buffer.writeLong(0);
 			}
 		}
 		_current.clear();

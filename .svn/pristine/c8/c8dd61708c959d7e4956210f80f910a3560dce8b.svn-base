@@ -1,0 +1,4 @@
+<html><body>Yand:<br>
+Do you Want to enter the base once again? Then you'll need a <font color="LEVEL">Scroll of Escape: Morgos Military Base's Central Barracks</font><br>
+<Button ALIGN=LEFT ICON="RETURN" action="bypass -h npc_%objectId%_Chat 0">Back</Button>
+</body></html>

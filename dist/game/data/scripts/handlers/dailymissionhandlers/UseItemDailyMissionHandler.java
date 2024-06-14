@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -94,16 +94,14 @@ public class UseItemDailyMissionHandler extends AbstractDailyMissionHandler
 	private void onItemUse(OnItemUse event)
 	{
 		final Player player = event.getPlayer();
-		if (_minLevel > 0)
+		if ((player.getLevel() < _minLevel) || (player.getLevel() > _maxLevel) || _itemIds.isEmpty())
 		{
-			if ((player.getLevel() < _minLevel) || (player.getLevel() > _maxLevel) || _itemIds.isEmpty())
-			{
-				return;
-			}
-			if (_itemIds.contains(event.getItem().getId()))
-			{
-				processPlayerProgress(player);
-			}
+			return;
+		}
+		
+		if (_itemIds.contains(event.getItem().getId()))
+		{
+			processPlayerProgress(player);
 		}
 	}
 	

@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,7 +23,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.l2j.Config;
-import org.l2j.commons.network.ReadablePacket;
 import org.l2j.gameserver.data.xml.BuyListData;
 import org.l2j.gameserver.enums.TaxType;
 import org.l2j.gameserver.model.WorldObject;
@@ -32,7 +31,6 @@ import org.l2j.gameserver.model.actor.instance.Merchant;
 import org.l2j.gameserver.model.buylist.Product;
 import org.l2j.gameserver.model.buylist.ProductList;
 import org.l2j.gameserver.model.holders.ItemHolder;
-import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.PacketLogger;
 import org.l2j.gameserver.network.SystemMessageId;
 import org.l2j.gameserver.network.serverpackets.ActionFailed;
@@ -40,7 +38,7 @@ import org.l2j.gameserver.network.serverpackets.ExBuySellList;
 import org.l2j.gameserver.network.serverpackets.ExUserInfoInvenWeight;
 import org.l2j.gameserver.util.Util;
 
-public class RequestBuyItem implements ClientPacket
+public class RequestBuyItem extends ClientPacket
 {
 	private static final int BATCH_LENGTH = 12;
 	private static final int CUSTOM_CB_SELL_LIST = 423;
@@ -49,11 +47,11 @@ public class RequestBuyItem implements ClientPacket
 	private List<ItemHolder> _items = null;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_listId = packet.readInt();
-		final int size = packet.readInt();
-		if ((size <= 0) || (size > Config.MAX_ITEM_IN_PACKET) || ((size * BATCH_LENGTH) != packet.getRemainingLength()))
+		_listId = readInt();
+		final int size = readInt();
+		if ((size <= 0) || (size > Config.MAX_ITEM_IN_PACKET) || ((size * BATCH_LENGTH) != remaining()))
 		{
 			return;
 		}
@@ -61,8 +59,8 @@ public class RequestBuyItem implements ClientPacket
 		_items = new ArrayList<>(size);
 		for (int i = 0; i < size; i++)
 		{
-			final int itemId = packet.readInt();
-			final long count = packet.readLong();
+			final int itemId = readInt();
+			final long count = readLong();
 			if ((itemId < 1) || (count < 1))
 			{
 				_items = null;
@@ -73,22 +71,28 @@ public class RequestBuyItem implements ClientPacket
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
-		final Player player = client.getPlayer();
+		final Player player = getPlayer();
 		if (player == null)
 		{
 			return;
 		}
 		
-		if (!client.getFloodProtectors().canPerformTransaction())
+		if (!getClient().getFloodProtectors().canPerformTransaction())
 		{
 			player.sendMessage("You are buying too fast.");
 			return;
 		}
 		
+		if (_items == null)
+		{
+			player.sendPacket(ActionFailed.STATIC_PACKET);
+			return;
+		}
+		
 		// Alt game - Karma punishment
-		if ((_items == null) || (!Config.ALT_GAME_KARMA_PLAYER_CAN_SHOP && (player.getReputation() < 0)))
+		if (!Config.ALT_GAME_KARMA_PLAYER_CAN_SHOP && (player.getReputation() < 0))
 		{
 			player.sendPacket(ActionFailed.STATIC_PACKET);
 			return;
@@ -242,7 +246,7 @@ public class RequestBuyItem implements ClientPacket
 		// add to castle treasury
 		if (merchant != null)
 		{
-			merchant.handleTaxPayment((long) (subTotal * castleTaxRate));
+			merchant.handleTaxPayment(subTotal);
 		}
 		
 		player.sendPacket(new ExUserInfoInvenWeight(player));

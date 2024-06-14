@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,8 +16,8 @@
  */
 package org.l2j.loginserver.network.serverpackets;
 
-import org.l2j.commons.network.WritablePacket;
-import org.l2j.loginserver.network.LoginServerPackets;
+import org.l2j.commons.network.WritableBuffer;
+import org.l2j.loginserver.network.LoginClient;
 
 /**
  * <pre>
@@ -33,12 +33,17 @@ import org.l2j.loginserver.network.LoginServerPackets;
  * s: blowfish key
  * </pre>
  */
-public class Init extends WritablePacket
+public class Init extends LoginServerPacket
 {
 	private final int _sessionId;
 	
 	private final byte[] _publicKey;
 	private final byte[] _blowfishKey;
+	
+	public Init(LoginClient client)
+	{
+		this(client.getScrambledModulus(), client.getBlowfishKey(), client.getSessionId());
+	}
 	
 	public Init(byte[] publickey, byte[] blowfishkey, int sessionId)
 	{
@@ -48,21 +53,22 @@ public class Init extends WritablePacket
 	}
 	
 	@Override
-	public void write()
+	protected void writeImpl(LoginClient client, WritableBuffer buffer)
 	{
-		LoginServerPackets.INIT.writeId(this);
-		writeInt(_sessionId); // session id
-		writeInt(0x0000c621); // protocol revision
+		buffer.writeByte(0x00); // Init packet id.
 		
-		writeBytes(_publicKey); // RSA Public Key
+		buffer.writeInt(_sessionId); // Session id.
+		buffer.writeInt(0x0000c621); // Protocol revision.
 		
-		// unk GG related?
-		writeInt(0x29DD954E);
-		writeInt(0x77C39CFC);
-		writeInt(0x97ADB620);
-		writeInt(0x07BDE0F7);
+		buffer.writeBytes(_publicKey); // RSA Public Key.
 		
-		writeBytes(_blowfishKey); // BlowFish key
-		writeByte(0); // null termination ;)
+		// GG related.
+		buffer.writeInt(0x29DD954E);
+		buffer.writeInt(0x77C39CFC);
+		buffer.writeInt(0x97ADB620);
+		buffer.writeInt(0x07BDE0F7);
+		
+		buffer.writeBytes(_blowfishKey); // BlowFish key.
+		buffer.writeByte(0); // Null termination.
 	}
 }

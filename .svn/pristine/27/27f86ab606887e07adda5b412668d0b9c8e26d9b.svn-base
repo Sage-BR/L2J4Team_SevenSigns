@@ -1,0 +1,9 @@
+<html><head><body>Defense Wizard Toka:<br>
+Hello! I'm Eri, Arbana's mentee!<br>
+Now I'm studying auxiliary magic that works in specific areas. I arrived here with Arbana as she is now in charge of the Training Zone.<br>
+Auxiliary magic I use, <font color="LEVEL">boosts defensive abilities</font>. It does not apply to individual travelers, but to <font color="LEVEL">to the entire area</font>.<br>
+<font color="LEVEL">Choose the auxiliary magic you need</font>, and I will apply it to the entire area where you will train., <font color="LEVEL">It will take some time</font> to cast magic that will affect the entire zone.<br>
+What type of defensive auxiliary magic are you interested in?<br>
+<Button ALIGN=LEFT ICON="NORMAL" action="bypass -h Quest TrainingZone 34306-1.html">Select defensive auxiliary magic</Button>
+<Button ALIGN=LEFT ICON="QUEST" action="bypass -h npc_%objectId%_Quest">Quest</Button>
+</body></html>

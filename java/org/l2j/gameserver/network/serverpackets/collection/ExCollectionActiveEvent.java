@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,8 +18,10 @@ package org.l2j.gameserver.network.serverpackets.collection;
 
 import java.util.List;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.data.xml.CollectionData;
 import org.l2j.gameserver.model.holders.CollectionDataHolder;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 import org.l2j.gameserver.network.serverpackets.ServerPacket;
 
@@ -36,13 +38,13 @@ public class ExCollectionActiveEvent extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_COLLECTION_ACTIVE_EVENT.writeId(this);
-		writeInt(_collections.size());
+		ServerPackets.EX_COLLECTION_ACTIVE_EVENT.writeId(this, buffer);
+		buffer.writeInt(_collections.size());
 		for (CollectionDataHolder collection : _collections)
 		{
-			writeShort(collection.getCollectionId());
+			buffer.writeShort(collection.getCollectionId());
 		}
 	}
 }

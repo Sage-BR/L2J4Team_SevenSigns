@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -87,7 +87,22 @@ public class ZoneRegion
 		{
 			if (e instanceof PeaceZone)
 			{
-				if (e.isInsideZone(x, up, z) || e.isInsideZone(x, down, z) || e.isInsideZone(left, y, z) || e.isInsideZone(right, y, z))
+				if (e.isInsideZone(x, up, z))
+				{
+					return false;
+				}
+				
+				if (e.isInsideZone(x, down, z))
+				{
+					return false;
+				}
+				
+				if (e.isInsideZone(left, y, z))
+				{
+					return false;
+				}
+				
+				if (e.isInsideZone(right, y, z))
 				{
 					return false;
 				}

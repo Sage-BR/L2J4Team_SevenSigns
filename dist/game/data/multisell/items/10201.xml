@@ -1,0 +1,847 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/multisell.xsd">
+	<npcs>
+		<npc>-1</npc> <!-- Item Multisell -->
+	</npcs>
+	<!-- Boss Weapon Change Coupon - Sealed (100398) -->
+	<item>
+		<ingredient id="92405" count="1" /> <!-- Core's Plasmic Bow -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92404" count="1" /> <!-- Zaken's Blood Sword -->
+	</item>
+	<item>
+		<ingredient id="92407" count="1" /> <!-- Orfen's Venom Sword -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92404" count="1" /> <!-- Zaken's Blood Sword -->
+	</item>
+	<item>
+		<ingredient id="92408" count="1" /> <!-- Baium's Thunder Breaker -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92404" count="1" /> <!-- Zaken's Blood Sword -->
+	</item>
+	<item>
+		<ingredient id="92421" count="1" /> <!-- Queen Ant's Stone Breaker -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92404" count="1" /> <!-- Zaken's Blood Sword -->
+	</item>
+	<item>
+		<ingredient id="94888" count="1" /> <!-- Anakim's Divine Pistols -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92404" count="1" /> <!-- Zaken's Blood Sword -->
+	</item>
+	<item>
+		<ingredient id="96268" count="1" /> <!-- Beleth' Soul Eater -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92404" count="1" /> <!-- Zaken's Blood Sword -->
+	</item>
+	<item>
+		<ingredient id="97301" count="1" /> <!-- Gorde's Flame Spear -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92404" count="1" /> <!-- Zaken's Blood Sword -->
+	</item>
+	<item>
+		<ingredient id="97956" count="1" /> <!-- Galaxia's Ancient Sword -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92404" count="1" /> <!-- Zaken's Blood Sword -->
+	</item>
+	<item>
+		<ingredient id="97958" count="1" /> <!-- Phiriel's Rapier -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92404" count="1" /> <!-- Zaken's Blood Sword -->
+	</item>
+	<item>
+		<ingredient id="97960" count="1" /> <!-- Anais' Fists -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92404" count="1" /> <!-- Zaken's Blood Sword -->
+	</item>
+	<item>
+		<ingredient id="97962" count="1" /> <!-- Juriel's Dual Swords -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92404" count="1" /> <!-- Zaken's Blood Sword -->
+	</item>
+	<item>
+		<ingredient id="92404" count="1" /> <!-- Zaken's Blood Sword -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92405" count="1" /> <!-- Core's Plasmic Bow -->
+	</item>
+	<item>
+		<ingredient id="92407" count="1" /> <!-- Orfen's Venom Sword -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92405" count="1" /> <!-- Core's Plasmic Bow -->
+	</item>
+	<item>
+		<ingredient id="92408" count="1" /> <!-- Baium's Thunder Breaker -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92405" count="1" /> <!-- Core's Plasmic Bow -->
+	</item>
+	<item>
+		<ingredient id="92421" count="1" /> <!-- Queen Ant's Stone Breaker -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92405" count="1" /> <!-- Core's Plasmic Bow -->
+	</item>
+	<item>
+		<ingredient id="94888" count="1" /> <!-- Anakim's Divine Pistols -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92405" count="1" /> <!-- Core's Plasmic Bow -->
+	</item>
+	<item>
+		<ingredient id="96268" count="1" /> <!-- Beleth' Soul Eater -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92405" count="1" /> <!-- Core's Plasmic Bow -->
+	</item>
+	<item>
+		<ingredient id="97301" count="1" /> <!-- Gorde's Flame Spear -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92405" count="1" /> <!-- Core's Plasmic Bow -->
+	</item>
+	<item>
+		<ingredient id="97956" count="1" /> <!-- Galaxia's Ancient Sword -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92405" count="1" /> <!-- Core's Plasmic Bow -->
+	</item>
+	<item>
+		<ingredient id="97958" count="1" /> <!-- Phiriel's Rapier -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92405" count="1" /> <!-- Core's Plasmic Bow -->
+	</item>
+	<item>
+		<ingredient id="92405" count="1" /> <!-- Core's Plasmic Bow -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92404" count="1" /> <!-- Zaken's Blood Sword -->
+	</item>
+	<item>
+		<ingredient id="92407" count="1" /> <!-- Orfen's Venom Sword -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92404" count="1" /> <!-- Zaken's Blood Sword -->
+	</item>
+	<item>
+		<ingredient id="92408" count="1" /> <!-- Baium's Thunder Breaker -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92404" count="1" /> <!-- Zaken's Blood Sword -->
+	</item>
+	<item>
+		<ingredient id="92421" count="1" /> <!-- Queen Ant's Stone Breaker -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92404" count="1" /> <!-- Zaken's Blood Sword -->
+	</item>
+	<item>
+		<ingredient id="94888" count="1" /> <!-- Anakim's Divine Pistols -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92404" count="1" /> <!-- Zaken's Blood Sword -->
+	</item>
+	<item>
+		<ingredient id="96268" count="1" /> <!-- Beleth' Soul Eater -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92404" count="1" /> <!-- Zaken's Blood Sword -->
+	</item>
+	<item>
+		<ingredient id="97301" count="1" /> <!-- Gorde's Flame Spear -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92404" count="1" /> <!-- Zaken's Blood Sword -->
+	</item>
+	<item>
+		<ingredient id="97956" count="1" /> <!-- Galaxia's Ancient Sword -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92404" count="1" /> <!-- Zaken's Blood Sword -->
+	</item>
+	<item>
+		<ingredient id="97958" count="1" /> <!-- Phiriel's Rapier -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92404" count="1" /> <!-- Zaken's Blood Sword -->
+	</item>
+	<item>
+		<ingredient id="97960" count="1" /> <!-- Anais' Fists -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92404" count="1" /> <!-- Zaken's Blood Sword -->
+	</item>
+	<item>
+		<ingredient id="97962" count="1" /> <!-- Juriel's Dual Swords -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92404" count="1" /> <!-- Zaken's Blood Sword -->
+	</item>
+	<item>
+		<ingredient id="92404" count="1" /> <!-- Zaken's Blood Sword -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92405" count="1" /> <!-- Core's Plasmic Bow -->
+	</item>
+	<item>
+		<ingredient id="92407" count="1" /> <!-- Orfen's Venom Sword -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92405" count="1" /> <!-- Core's Plasmic Bow -->
+	</item>
+	<item>
+		<ingredient id="92408" count="1" /> <!-- Baium's Thunder Breaker -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92405" count="1" /> <!-- Core's Plasmic Bow -->
+	</item>
+	<item>
+		<ingredient id="92421" count="1" /> <!-- Queen Ant's Stone Breaker -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92405" count="1" /> <!-- Core's Plasmic Bow -->
+	</item>
+	<item>
+		<ingredient id="94888" count="1" /> <!-- Anakim's Divine Pistols -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92405" count="1" /> <!-- Core's Plasmic Bow -->
+	</item>
+	<item>
+		<ingredient id="96268" count="1" /> <!-- Beleth' Soul Eater -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92405" count="1" /> <!-- Core's Plasmic Bow -->
+	</item>
+	<item>
+		<ingredient id="97301" count="1" /> <!-- Gorde's Flame Spear -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92405" count="1" /> <!-- Core's Plasmic Bow -->
+	</item>
+	<item>
+		<ingredient id="97956" count="1" /> <!-- Galaxia's Ancient Sword -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92405" count="1" /> <!-- Core's Plasmic Bow -->
+	</item>
+	<item>
+		<ingredient id="97958" count="1" /> <!-- Phiriel's Rapier -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92405" count="1" /> <!-- Core's Plasmic Bow -->
+	</item>
+	<item>
+		<ingredient id="92405" count="1" /> <!-- Core's Plasmic Bow -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92404" count="1" /> <!-- Zaken's Blood Sword -->
+	</item>
+	<item>
+		<ingredient id="92407" count="1" /> <!-- Orfen's Venom Sword -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92404" count="1" /> <!-- Zaken's Blood Sword -->
+	</item>
+	<item>
+		<ingredient id="92408" count="1" /> <!-- Baium's Thunder Breaker -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92404" count="1" /> <!-- Zaken's Blood Sword -->
+	</item>
+	<item>
+		<ingredient id="92421" count="1" /> <!-- Queen Ant's Stone Breaker -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92404" count="1" /> <!-- Zaken's Blood Sword -->
+	</item>
+	<item>
+		<ingredient id="94888" count="1" /> <!-- Anakim's Divine Pistols -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92404" count="1" /> <!-- Zaken's Blood Sword -->
+	</item>
+	<item>
+		<ingredient id="96268" count="1" /> <!-- Beleth' Soul Eater -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92404" count="1" /> <!-- Zaken's Blood Sword -->
+	</item>
+	<item>
+		<ingredient id="97301" count="1" /> <!-- Gorde's Flame Spear -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92404" count="1" /> <!-- Zaken's Blood Sword -->
+	</item>
+	<item>
+		<ingredient id="97956" count="1" /> <!-- Galaxia's Ancient Sword -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92404" count="1" /> <!-- Zaken's Blood Sword -->
+	</item>
+	<item>
+		<ingredient id="97958" count="1" /> <!-- Phiriel's Rapier -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92404" count="1" /> <!-- Zaken's Blood Sword -->
+	</item>
+	<item>
+		<ingredient id="97960" count="1" /> <!-- Anais' Fists -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92404" count="1" /> <!-- Zaken's Blood Sword -->
+	</item>
+	<item>
+		<ingredient id="97962" count="1" /> <!-- Juriel's Dual Swords -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92404" count="1" /> <!-- Zaken's Blood Sword -->
+	</item>
+	<item>
+		<ingredient id="92404" count="1" /> <!-- Zaken's Blood Sword -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92405" count="1" /> <!-- Core's Plasmic Bow -->
+	</item>
+	<item>
+		<ingredient id="92407" count="1" /> <!-- Orfen's Venom Sword -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92405" count="1" /> <!-- Core's Plasmic Bow -->
+	</item>
+	<item>
+		<ingredient id="92408" count="1" /> <!-- Baium's Thunder Breaker -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92405" count="1" /> <!-- Core's Plasmic Bow -->
+	</item>
+	<item>
+		<ingredient id="92421" count="1" /> <!-- Queen Ant's Stone Breaker -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92405" count="1" /> <!-- Core's Plasmic Bow -->
+	</item>
+	<item>
+		<ingredient id="94888" count="1" /> <!-- Anakim's Divine Pistols -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92405" count="1" /> <!-- Core's Plasmic Bow -->
+	</item>
+	<item>
+		<ingredient id="96268" count="1" /> <!-- Beleth' Soul Eater -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92405" count="1" /> <!-- Core's Plasmic Bow -->
+	</item>
+	<item>
+		<ingredient id="97301" count="1" /> <!-- Gorde's Flame Spear -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92405" count="1" /> <!-- Core's Plasmic Bow -->
+	</item>
+	<item>
+		<ingredient id="97956" count="1" /> <!-- Galaxia's Ancient Sword -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92405" count="1" /> <!-- Core's Plasmic Bow -->
+	</item>
+	<item>
+		<ingredient id="97958" count="1" /> <!-- Phiriel's Rapier -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92405" count="1" /> <!-- Core's Plasmic Bow -->
+	</item>
+	<item>
+		<ingredient id="92405" count="1" /> <!-- Core's Plasmic Bow -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92404" count="1" /> <!-- Zaken's Blood Sword -->
+	</item>
+	<item>
+		<ingredient id="92407" count="1" /> <!-- Orfen's Venom Sword -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92404" count="1" /> <!-- Zaken's Blood Sword -->
+	</item>
+	<item>
+		<ingredient id="92408" count="1" /> <!-- Baium's Thunder Breaker -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92404" count="1" /> <!-- Zaken's Blood Sword -->
+	</item>
+	<item>
+		<ingredient id="92421" count="1" /> <!-- Queen Ant's Stone Breaker -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92404" count="1" /> <!-- Zaken's Blood Sword -->
+	</item>
+	<item>
+		<ingredient id="94888" count="1" /> <!-- Anakim's Divine Pistols -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92404" count="1" /> <!-- Zaken's Blood Sword -->
+	</item>
+	<item>
+		<ingredient id="96268" count="1" /> <!-- Beleth' Soul Eater -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92404" count="1" /> <!-- Zaken's Blood Sword -->
+	</item>
+	<item>
+		<ingredient id="97301" count="1" /> <!-- Gorde's Flame Spear -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92404" count="1" /> <!-- Zaken's Blood Sword -->
+	</item>
+	<item>
+		<ingredient id="97956" count="1" /> <!-- Galaxia's Ancient Sword -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92404" count="1" /> <!-- Zaken's Blood Sword -->
+	</item>
+	<item>
+		<ingredient id="97958" count="1" /> <!-- Phiriel's Rapier -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92404" count="1" /> <!-- Zaken's Blood Sword -->
+	</item>
+	<item>
+		<ingredient id="97960" count="1" /> <!-- Anais' Fists -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92404" count="1" /> <!-- Zaken's Blood Sword -->
+	</item>
+	<item>
+		<ingredient id="97962" count="1" /> <!-- Juriel's Dual Swords -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92404" count="1" /> <!-- Zaken's Blood Sword -->
+	</item>
+	<item>
+		<ingredient id="92404" count="1" /> <!-- Zaken's Blood Sword -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92405" count="1" /> <!-- Core's Plasmic Bow -->
+	</item>
+	<item>
+		<ingredient id="92407" count="1" /> <!-- Orfen's Venom Sword -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92405" count="1" /> <!-- Core's Plasmic Bow -->
+	</item>
+	<item>
+		<ingredient id="92408" count="1" /> <!-- Baium's Thunder Breaker -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92405" count="1" /> <!-- Core's Plasmic Bow -->
+	</item>
+	<item>
+		<ingredient id="92421" count="1" /> <!-- Queen Ant's Stone Breaker -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92405" count="1" /> <!-- Core's Plasmic Bow -->
+	</item>
+	<item>
+		<ingredient id="94888" count="1" /> <!-- Anakim's Divine Pistols -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92405" count="1" /> <!-- Core's Plasmic Bow -->
+	</item>
+	<item>
+		<ingredient id="96268" count="1" /> <!-- Beleth' Soul Eater -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92405" count="1" /> <!-- Core's Plasmic Bow -->
+	</item>
+	<item>
+		<ingredient id="97301" count="1" /> <!-- Gorde's Flame Spear -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92405" count="1" /> <!-- Core's Plasmic Bow -->
+	</item>
+	<item>
+		<ingredient id="97956" count="1" /> <!-- Galaxia's Ancient Sword -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92405" count="1" /> <!-- Core's Plasmic Bow -->
+	</item>
+	<item>
+		<ingredient id="97958" count="1" /> <!-- Phiriel's Rapier -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92405" count="1" /> <!-- Core's Plasmic Bow -->
+	</item>
+	<item>
+		<ingredient id="92405" count="1" /> <!-- Core's Plasmic Bow -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92404" count="1" /> <!-- Zaken's Blood Sword -->
+	</item>
+	<item>
+		<ingredient id="92407" count="1" /> <!-- Orfen's Venom Sword -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92404" count="1" /> <!-- Zaken's Blood Sword -->
+	</item>
+	<item>
+		<ingredient id="92408" count="1" /> <!-- Baium's Thunder Breaker -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92404" count="1" /> <!-- Zaken's Blood Sword -->
+	</item>
+	<item>
+		<ingredient id="92421" count="1" /> <!-- Queen Ant's Stone Breaker -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92404" count="1" /> <!-- Zaken's Blood Sword -->
+	</item>
+	<item>
+		<ingredient id="94888" count="1" /> <!-- Anakim's Divine Pistols -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92404" count="1" /> <!-- Zaken's Blood Sword -->
+	</item>
+	<item>
+		<ingredient id="96268" count="1" /> <!-- Beleth' Soul Eater -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92404" count="1" /> <!-- Zaken's Blood Sword -->
+	</item>
+	<item>
+		<ingredient id="97301" count="1" /> <!-- Gorde's Flame Spear -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92404" count="1" /> <!-- Zaken's Blood Sword -->
+	</item>
+	<item>
+		<ingredient id="97956" count="1" /> <!-- Galaxia's Ancient Sword -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92404" count="1" /> <!-- Zaken's Blood Sword -->
+	</item>
+	<item>
+		<ingredient id="97958" count="1" /> <!-- Phiriel's Rapier -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92404" count="1" /> <!-- Zaken's Blood Sword -->
+	</item>
+	<item>
+		<ingredient id="97960" count="1" /> <!-- Anais' Fists -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92404" count="1" /> <!-- Zaken's Blood Sword -->
+	</item>
+	<item>
+		<ingredient id="97962" count="1" /> <!-- Juriel's Dual Swords -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92404" count="1" /> <!-- Zaken's Blood Sword -->
+	</item>
+	<item>
+		<ingredient id="92404" count="1" /> <!-- Zaken's Blood Sword -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92405" count="1" /> <!-- Core's Plasmic Bow -->
+	</item>
+	<item>
+		<ingredient id="92407" count="1" /> <!-- Orfen's Venom Sword -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92405" count="1" /> <!-- Core's Plasmic Bow -->
+	</item>
+	<item>
+		<ingredient id="92408" count="1" /> <!-- Baium's Thunder Breaker -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92405" count="1" /> <!-- Core's Plasmic Bow -->
+	</item>
+	<item>
+		<ingredient id="92421" count="1" /> <!-- Queen Ant's Stone Breaker -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92405" count="1" /> <!-- Core's Plasmic Bow -->
+	</item>
+	<item>
+		<ingredient id="94888" count="1" /> <!-- Anakim's Divine Pistols -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92405" count="1" /> <!-- Core's Plasmic Bow -->
+	</item>
+	<item>
+		<ingredient id="96268" count="1" /> <!-- Beleth' Soul Eater -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92405" count="1" /> <!-- Core's Plasmic Bow -->
+	</item>
+	<item>
+		<ingredient id="97301" count="1" /> <!-- Gorde's Flame Spear -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92405" count="1" /> <!-- Core's Plasmic Bow -->
+	</item>
+	<item>
+		<ingredient id="97956" count="1" /> <!-- Galaxia's Ancient Sword -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92405" count="1" /> <!-- Core's Plasmic Bow -->
+	</item>
+	<item>
+		<ingredient id="97958" count="1" /> <!-- Phiriel's Rapier -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92405" count="1" /> <!-- Core's Plasmic Bow -->
+	</item>
+	<item>
+		<ingredient id="92405" count="1" /> <!-- Core's Plasmic Bow -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92404" count="1" /> <!-- Zaken's Blood Sword -->
+	</item>
+	<item>
+		<ingredient id="92407" count="1" /> <!-- Orfen's Venom Sword -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92404" count="1" /> <!-- Zaken's Blood Sword -->
+	</item>
+	<item>
+		<ingredient id="92408" count="1" /> <!-- Baium's Thunder Breaker -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92404" count="1" /> <!-- Zaken's Blood Sword -->
+	</item>
+	<item>
+		<ingredient id="92421" count="1" /> <!-- Queen Ant's Stone Breaker -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92404" count="1" /> <!-- Zaken's Blood Sword -->
+	</item>
+	<item>
+		<ingredient id="94888" count="1" /> <!-- Anakim's Divine Pistols -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92404" count="1" /> <!-- Zaken's Blood Sword -->
+	</item>
+	<item>
+		<ingredient id="96268" count="1" /> <!-- Beleth' Soul Eater -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92404" count="1" /> <!-- Zaken's Blood Sword -->
+	</item>
+	<item>
+		<ingredient id="97301" count="1" /> <!-- Gorde's Flame Spear -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92404" count="1" /> <!-- Zaken's Blood Sword -->
+	</item>
+	<item>
+		<ingredient id="97956" count="1" /> <!-- Galaxia's Ancient Sword -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92404" count="1" /> <!-- Zaken's Blood Sword -->
+	</item>
+	<item>
+		<ingredient id="97958" count="1" /> <!-- Phiriel's Rapier -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92404" count="1" /> <!-- Zaken's Blood Sword -->
+	</item>
+	<item>
+		<ingredient id="97960" count="1" /> <!-- Anais' Fists -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92404" count="1" /> <!-- Zaken's Blood Sword -->
+	</item>
+	<item>
+		<ingredient id="97962" count="1" /> <!-- Juriel's Dual Swords -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92404" count="1" /> <!-- Zaken's Blood Sword -->
+	</item>
+	<item>
+		<ingredient id="92404" count="1" /> <!-- Zaken's Blood Sword -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92405" count="1" /> <!-- Core's Plasmic Bow -->
+	</item>
+	<item>
+		<ingredient id="92407" count="1" /> <!-- Orfen's Venom Sword -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92405" count="1" /> <!-- Core's Plasmic Bow -->
+	</item>
+	<item>
+		<ingredient id="92408" count="1" /> <!-- Baium's Thunder Breaker -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92405" count="1" /> <!-- Core's Plasmic Bow -->
+	</item>
+	<item>
+		<ingredient id="92421" count="1" /> <!-- Queen Ant's Stone Breaker -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92405" count="1" /> <!-- Core's Plasmic Bow -->
+	</item>
+	<item>
+		<ingredient id="94888" count="1" /> <!-- Anakim's Divine Pistols -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92405" count="1" /> <!-- Core's Plasmic Bow -->
+	</item>
+	<item>
+		<ingredient id="96268" count="1" /> <!-- Beleth' Soul Eater -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92405" count="1" /> <!-- Core's Plasmic Bow -->
+	</item>
+	<item>
+		<ingredient id="97301" count="1" /> <!-- Gorde's Flame Spear -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92405" count="1" /> <!-- Core's Plasmic Bow -->
+	</item>
+	<item>
+		<ingredient id="97956" count="1" /> <!-- Galaxia's Ancient Sword -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92405" count="1" /> <!-- Core's Plasmic Bow -->
+	</item>
+	<item>
+		<ingredient id="97958" count="1" /> <!-- Phiriel's Rapier -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92405" count="1" /> <!-- Core's Plasmic Bow -->
+	</item>
+	<item>
+		<ingredient id="92405" count="1" /> <!-- Core's Plasmic Bow -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92404" count="1" /> <!-- Zaken's Blood Sword -->
+	</item>
+	<item>
+		<ingredient id="92407" count="1" /> <!-- Orfen's Venom Sword -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92404" count="1" /> <!-- Zaken's Blood Sword -->
+	</item>
+	<item>
+		<ingredient id="92408" count="1" /> <!-- Baium's Thunder Breaker -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92404" count="1" /> <!-- Zaken's Blood Sword -->
+	</item>
+	<item>
+		<ingredient id="92421" count="1" /> <!-- Queen Ant's Stone Breaker -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92404" count="1" /> <!-- Zaken's Blood Sword -->
+	</item>
+	<item>
+		<ingredient id="94888" count="1" /> <!-- Anakim's Divine Pistols -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92404" count="1" /> <!-- Zaken's Blood Sword -->
+	</item>
+	<item>
+		<ingredient id="96268" count="1" /> <!-- Beleth' Soul Eater -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92404" count="1" /> <!-- Zaken's Blood Sword -->
+	</item>
+	<item>
+		<ingredient id="97301" count="1" /> <!-- Gorde's Flame Spear -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92404" count="1" /> <!-- Zaken's Blood Sword -->
+	</item>
+	<item>
+		<ingredient id="97956" count="1" /> <!-- Galaxia's Ancient Sword -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92404" count="1" /> <!-- Zaken's Blood Sword -->
+	</item>
+	<item>
+		<ingredient id="97958" count="1" /> <!-- Phiriel's Rapier -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92404" count="1" /> <!-- Zaken's Blood Sword -->
+	</item>
+	<item>
+		<ingredient id="97960" count="1" /> <!-- Anais' Fists -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92404" count="1" /> <!-- Zaken's Blood Sword -->
+	</item>
+	<item>
+		<ingredient id="97962" count="1" /> <!-- Juriel's Dual Swords -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92404" count="1" /> <!-- Zaken's Blood Sword -->
+	</item>
+	<item>
+		<ingredient id="92404" count="1" /> <!-- Zaken's Blood Sword -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92405" count="1" /> <!-- Core's Plasmic Bow -->
+	</item>
+	<item>
+		<ingredient id="92407" count="1" /> <!-- Orfen's Venom Sword -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92405" count="1" /> <!-- Core's Plasmic Bow -->
+	</item>
+	<item>
+		<ingredient id="92408" count="1" /> <!-- Baium's Thunder Breaker -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92405" count="1" /> <!-- Core's Plasmic Bow -->
+	</item>
+	<item>
+		<ingredient id="92421" count="1" /> <!-- Queen Ant's Stone Breaker -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92405" count="1" /> <!-- Core's Plasmic Bow -->
+	</item>
+	<item>
+		<ingredient id="94888" count="1" /> <!-- Anakim's Divine Pistols -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92405" count="1" /> <!-- Core's Plasmic Bow -->
+	</item>
+	<item>
+		<ingredient id="96268" count="1" /> <!-- Beleth' Soul Eater -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92405" count="1" /> <!-- Core's Plasmic Bow -->
+	</item>
+	<item>
+		<ingredient id="97301" count="1" /> <!-- Gorde's Flame Spear -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92405" count="1" /> <!-- Core's Plasmic Bow -->
+	</item>
+	<item>
+		<ingredient id="97956" count="1" /> <!-- Galaxia's Ancient Sword -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92405" count="1" /> <!-- Core's Plasmic Bow -->
+	</item>
+	<item>
+		<ingredient id="97958" count="1" /> <!-- Phiriel's Rapier -->
+		<ingredient id="92314" count="820" /> <!-- Giran Seal -->
+		<ingredient id="100398" count="1" /> <!-- Boss Weapon Change Coupon - Sealed -->
+		<production id="92405" count="1" /> <!-- Core's Plasmic Bow -->
+	</item>
+</list>

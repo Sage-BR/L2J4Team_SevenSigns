@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,7 +22,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.l2j.Config;
-import org.l2j.commons.network.ReadablePacket;
 import org.l2j.gameserver.data.sql.OfflineTraderTable;
 import org.l2j.gameserver.enums.PrivateStoreType;
 import org.l2j.gameserver.model.ItemRequest;
@@ -30,7 +29,6 @@ import org.l2j.gameserver.model.TradeList;
 import org.l2j.gameserver.model.World;
 import org.l2j.gameserver.model.WorldObject;
 import org.l2j.gameserver.model.actor.Player;
-import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.PacketLogger;
 import org.l2j.gameserver.network.serverpackets.ActionFailed;
 import org.l2j.gameserver.util.Util;
@@ -38,7 +36,7 @@ import org.l2j.gameserver.util.Util;
 /**
  * @version $Revision: 1.2.2.1.2.5 $ $Date: 2005/03/27 15:29:30 $
  */
-public class RequestPrivateStoreBuy implements ClientPacket
+public class RequestPrivateStoreBuy extends ClientPacket
 {
 	private static final int BATCH_LENGTH = 20; // length of the one item
 	
@@ -46,20 +44,21 @@ public class RequestPrivateStoreBuy implements ClientPacket
 	private Set<ItemRequest> _items = null;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_storePlayerId = packet.readInt();
-		final int count = packet.readInt();
-		if ((count <= 0) || (count > Config.MAX_ITEM_IN_PACKET) || ((count * BATCH_LENGTH) != packet.getRemainingLength()))
+		_storePlayerId = readInt();
+		final int count = readInt();
+		if ((count <= 0) || (count > Config.MAX_ITEM_IN_PACKET) || ((count * BATCH_LENGTH) != remaining()))
 		{
 			return;
 		}
+		
 		_items = new HashSet<>();
 		for (int i = 0; i < count; i++)
 		{
-			final int objectId = packet.readInt();
-			final long cnt = packet.readLong();
-			final long price = packet.readLong();
+			final int objectId = readInt();
+			final long cnt = readLong();
+			final long price = readLong();
 			if ((objectId < 1) || (cnt < 1) || (price < 0))
 			{
 				_items = null;
@@ -71,9 +70,9 @@ public class RequestPrivateStoreBuy implements ClientPacket
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
-		final Player player = client.getPlayer();
+		final Player player = getPlayer();
 		if (player == null)
 		{
 			return;
@@ -91,7 +90,7 @@ public class RequestPrivateStoreBuy implements ClientPacket
 			return;
 		}
 		
-		if (!client.getFloodProtectors().canPerformTransaction())
+		if (!getClient().getFloodProtectors().canPerformTransaction())
 		{
 			player.sendMessage("You are buying items too fast.");
 			return;
@@ -104,7 +103,17 @@ public class RequestPrivateStoreBuy implements ClientPacket
 		}
 		
 		final Player storePlayer = (Player) object;
-		if (!player.isInsideRadius3D(storePlayer, INTERACTION_DISTANCE) || (player.getInstanceWorld() != storePlayer.getInstanceWorld()) || !((storePlayer.getPrivateStoreType() == PrivateStoreType.SELL) || (storePlayer.getPrivateStoreType() == PrivateStoreType.PACKAGE_SELL)))
+		if (!player.isInsideRadius3D(storePlayer, INTERACTION_DISTANCE))
+		{
+			return;
+		}
+		
+		if (player.getInstanceWorld() != storePlayer.getInstanceWorld())
+		{
+			return;
+		}
+		
+		if (!((storePlayer.getPrivateStoreType() == PrivateStoreType.SELL) || (storePlayer.getPrivateStoreType() == PrivateStoreType.PACKAGE_SELL)))
 		{
 			return;
 		}

@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,9 +18,11 @@ package org.l2j.gameserver.network.serverpackets.pledgebonus;
 
 import java.util.Comparator;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.data.xml.ClanRewardData;
 import org.l2j.gameserver.enums.ClanRewardType;
 import org.l2j.gameserver.model.clan.ClanRewardBonus;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 import org.l2j.gameserver.network.serverpackets.ServerPacket;
 
@@ -30,18 +32,18 @@ import org.l2j.gameserver.network.serverpackets.ServerPacket;
 public class ExPledgeBonusList extends ServerPacket
 {
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_PLEDGE_BONUS_LIST.writeId(this);
-		writeByte(0); // 140
+		ServerPackets.EX_PLEDGE_BONUS_LIST.writeId(this, buffer);
+		buffer.writeByte(0); // 140
 		ClanRewardData.getInstance().getClanRewardBonuses(ClanRewardType.MEMBERS_ONLINE).stream().sorted(Comparator.comparingInt(ClanRewardBonus::getLevel)).forEach(bonus ->
 		{
-			writeInt(bonus.getSkillReward().getSkillId());
+			buffer.writeInt(bonus.getSkillReward().getSkillId());
 		});
-		writeByte(0); // 140
+		buffer.writeByte(0); // 140
 		ClanRewardData.getInstance().getClanRewardBonuses(ClanRewardType.HUNTING_MONSTERS).stream().sorted(Comparator.comparingInt(ClanRewardBonus::getLevel)).forEach(bonus ->
 		{
-			writeInt(bonus.getSkillReward().getSkillId());
+			buffer.writeInt(bonus.getSkillReward().getSkillId());
 		});
 	}
 }

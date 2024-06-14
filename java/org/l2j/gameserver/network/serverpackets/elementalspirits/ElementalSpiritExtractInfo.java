@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,10 +16,12 @@
  */
 package org.l2j.gameserver.network.serverpackets.elementalspirits;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.data.xml.ElementalSpiritData;
 import org.l2j.gameserver.enums.ElementalType;
 import org.l2j.gameserver.model.ElementalSpirit;
 import org.l2j.gameserver.model.actor.Player;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 import org.l2j.gameserver.network.serverpackets.ServerPacket;
 
@@ -38,23 +40,23 @@ public class ElementalSpiritExtractInfo extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_ELEMENTAL_SPIRIT_EXTRACT_INFO.writeId(this);
+		ServerPackets.EX_ELEMENTAL_SPIRIT_EXTRACT_INFO.writeId(this, buffer);
 		final ElementalSpirit spirit = _player.getElementalSpirit(ElementalType.of(_type));
 		if (spirit == null)
 		{
-			writeByte(0);
-			writeByte(0);
+			buffer.writeByte(0);
+			buffer.writeByte(0);
 			return;
 		}
-		writeByte(_type); // active elemental spirit
-		writeByte(1); // is extract ?
-		writeByte(1); // cost count
+		buffer.writeByte(_type); // active elemental spirit
+		buffer.writeByte(1); // is extract ?
+		buffer.writeByte(1); // cost count
 		// for each cost count
-		writeInt(57); // item id
-		writeInt(ElementalSpiritData.EXTRACT_FEES[spirit.getStage() - 1]); // item count
-		writeInt(spirit.getExtractItem());
-		writeInt(spirit.getExtractAmount());
+		buffer.writeInt(57); // item id
+		buffer.writeInt(ElementalSpiritData.EXTRACT_FEES[spirit.getStage() - 1]); // item count
+		buffer.writeInt(spirit.getExtractItem());
+		buffer.writeInt(spirit.getExtractAmount());
 	}
 }

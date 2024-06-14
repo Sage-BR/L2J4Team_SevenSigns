@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/multisell.xsd">
+	<npcs>
+		<npc>-1</npc> <!-- Item Multisell -->
+	</npcs>
+	<!-- Fluffy Reinforcement Kit (Time-limited) - Sealed (98972) -->
+	<item>
+		<ingredient id="98972" count="1" /> <!-- Fluffy Reinforcement Kit (Time-limited) - Sealed -->
+		<production id="98973" count="1" /> <!-- Kit: Dragon (Time-limited) - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98972" count="1" /> <!-- Fluffy Reinforcement Kit (Time-limited) - Sealed -->
+		<production id="98974" count="1" /> <!-- Kit: Wolf (Time-limited) - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98972" count="1" /> <!-- Fluffy Reinforcement Kit (Time-limited) - Sealed -->
+		<production id="98975" count="1" /> <!-- Kit: Tiger (Time-limited) - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98972" count="1" /> <!-- Fluffy Reinforcement Kit (Time-limited) - Sealed -->
+		<production id="98976" count="1" /> <!-- Kit: Buffalo (Time-limited) - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98972" count="1" /> <!-- Fluffy Reinforcement Kit (Time-limited) - Sealed -->
+		<production id="98977" count="1" /> <!-- Kit: Hawk (Time-limited) - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98972" count="1" /> <!-- Fluffy Reinforcement Kit (Time-limited) - Sealed -->
+		<production id="98978" count="1" /> <!-- Kit: Kookaburra (Time-limited) - Sealed -->
+	</item>
+</list>

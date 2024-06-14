@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -31,7 +31,6 @@ public class AutoPlaySettingsHolder
 	private final AtomicBoolean _respectfulHunting = new AtomicBoolean();
 	private final AtomicInteger _autoPotionPercent = new AtomicInteger();
 	private final AtomicInteger _autoPetPotionPercent = new AtomicInteger();
-	private final AtomicInteger _macroIndex = new AtomicInteger();
 	
 	public AutoPlaySettingsHolder()
 	{
@@ -105,15 +104,5 @@ public class AutoPlaySettingsHolder
 	public void setAutoPetPotionPercent(int value)
 	{
 		_autoPetPotionPercent.set(value);
-	}
-	
-	public void setMacroIndex(int value)
-	{
-		_macroIndex.set(value);
-	}
-	
-	public int getMacroIndex()
-	{
-		return _macroIndex.get();
 	}
 }

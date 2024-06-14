@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,11 +20,13 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.enums.BroochJewel;
 import org.l2j.gameserver.model.Hit;
 import org.l2j.gameserver.model.Location;
 import org.l2j.gameserver.model.actor.Creature;
 import org.l2j.gameserver.model.actor.Player;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 
 public class Attack extends ServerPacket
@@ -93,37 +95,38 @@ public class Attack extends ServerPacket
 	/**
 	 * Writes current hit
 	 * @param hit
+	 * @param buffer
 	 */
-	private void writeHit(Hit hit)
+	private void writeHit(Hit hit, WritableBuffer buffer)
 	{
-		writeInt(hit.getTargetId());
-		writeInt(hit.getDamage());
-		writeInt(hit.getFlags());
-		writeInt(hit.getGrade()); // GOD
+		buffer.writeInt(hit.getTargetId());
+		buffer.writeInt(hit.getDamage());
+		buffer.writeInt(hit.getFlags());
+		buffer.writeInt(hit.getGrade()); // GOD
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
 		final Iterator<Hit> it = _hits.iterator();
 		final Hit firstHit = it.next();
-		ServerPackets.ATTACK.writeId(this);
-		writeInt(_attackerObjId);
-		writeInt(firstHit.getTargetId());
-		writeInt(_soulshotVisualSubstitute); // Ertheia
-		writeInt(firstHit.getDamage());
-		writeInt(firstHit.getFlags());
-		writeInt(firstHit.getGrade()); // GOD
-		writeInt(_attackerLoc.getX());
-		writeInt(_attackerLoc.getY());
-		writeInt(_attackerLoc.getZ());
-		writeShort(_hits.size() - 1);
+		ServerPackets.ATTACK.writeId(this, buffer);
+		buffer.writeInt(_attackerObjId);
+		buffer.writeInt(firstHit.getTargetId());
+		buffer.writeInt(_soulshotVisualSubstitute); // Ertheia
+		buffer.writeInt(firstHit.getDamage());
+		buffer.writeInt(firstHit.getFlags());
+		buffer.writeInt(firstHit.getGrade()); // GOD
+		buffer.writeInt(_attackerLoc.getX());
+		buffer.writeInt(_attackerLoc.getY());
+		buffer.writeInt(_attackerLoc.getZ());
+		buffer.writeShort(_hits.size() - 1);
 		while (it.hasNext())
 		{
-			writeHit(it.next());
+			writeHit(it.next(), buffer);
 		}
-		writeInt(_targetLoc.getX());
-		writeInt(_targetLoc.getY());
-		writeInt(_targetLoc.getZ());
+		buffer.writeInt(_targetLoc.getX());
+		buffer.writeInt(_targetLoc.getY());
+		buffer.writeInt(_targetLoc.getZ());
 	}
 }

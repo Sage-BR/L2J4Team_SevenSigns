@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,7 +19,6 @@ package org.l2j.gameserver.network.clientpackets;
 import java.util.StringTokenizer;
 
 import org.l2j.Config;
-import org.l2j.commons.network.ReadablePacket;
 import org.l2j.commons.util.CommonUtil;
 import org.l2j.gameserver.ai.CtrlIntention;
 import org.l2j.gameserver.data.xml.MultisellData;
@@ -41,7 +40,6 @@ import org.l2j.gameserver.model.events.returns.TerminateReturn;
 import org.l2j.gameserver.model.item.instance.Item;
 import org.l2j.gameserver.model.olympiad.Hero;
 import org.l2j.gameserver.network.Disconnection;
-import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.PacketLogger;
 import org.l2j.gameserver.network.serverpackets.ActionFailed;
 import org.l2j.gameserver.network.serverpackets.LeaveWorld;
@@ -52,7 +50,7 @@ import org.l2j.gameserver.util.Util;
  * RequestBypassToServer client packet implementation.
  * @author HorridoJoho
  */
-public class RequestBypassToServer implements ClientPacket
+public class RequestBypassToServer extends ClientPacket
 {
 	// FIXME: This is for compatibility, will be changed when bypass functionality got an overhaul by NosBit
 	private static final String[] _possibleNonHtmlCommands =
@@ -73,15 +71,15 @@ public class RequestBypassToServer implements ClientPacket
 	private String _command;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_command = packet.readString();
+		_command = readString();
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
-		final Player player = client.getPlayer();
+		final Player player = getPlayer();
 		if (player == null)
 		{
 			return;
@@ -90,7 +88,7 @@ public class RequestBypassToServer implements ClientPacket
 		if (_command.isEmpty())
 		{
 			PacketLogger.warning(player + " sent empty bypass!");
-			Disconnection.of(client, player).defaultSequence(LeaveWorld.STATIC_PACKET);
+			Disconnection.of(getClient(), player).defaultSequence(LeaveWorld.STATIC_PACKET);
 			return;
 		}
 		
@@ -108,14 +106,19 @@ public class RequestBypassToServer implements ClientPacket
 		if (requiresBypassValidation)
 		{
 			bypassOriginId = player.validateHtmlAction(_command);
-			if ((bypassOriginId == -1) || ((bypassOriginId > 0) && !Util.isInsideRangeOfObjectId(player, bypassOriginId, Npc.INTERACTION_DISTANCE)))
+			if (bypassOriginId == -1)
+			{
+				return;
+			}
+			
+			if ((bypassOriginId > 0) && !Util.isInsideRangeOfObjectId(player, bypassOriginId, Npc.INTERACTION_DISTANCE))
 			{
 				// No logging here, this could be a common case where the player has the html still open and run too far away and then clicks a html action
 				return;
 			}
 		}
 		
-		if (!client.getFloodProtectors().canUseServerBypass())
+		if (!getClient().getFloodProtectors().canUseServerBypass())
 		{
 			return;
 		}
@@ -283,7 +286,7 @@ public class RequestBypassToServer implements ClientPacket
 				}
 				else
 				{
-					PacketLogger.warning(client + " sent not handled RequestBypassToServer: [" + _command + "]");
+					PacketLogger.warning(getClient() + " sent not handled RequestBypassToServer: [" + _command + "]");
 				}
 			}
 		}

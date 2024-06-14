@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,11 +20,9 @@ import static org.l2j.gameserver.model.itemcontainer.Inventory.ADENA_ID;
 import static org.l2j.gameserver.model.itemcontainer.Inventory.MAX_ADENA;
 
 import org.l2j.Config;
-import org.l2j.commons.network.ReadablePacket;
 import org.l2j.gameserver.data.sql.CharInfoTable;
 import org.l2j.gameserver.data.xml.AdminData;
 import org.l2j.gameserver.data.xml.FakePlayerData;
-import org.l2j.gameserver.enums.PrivateStoreType;
 import org.l2j.gameserver.instancemanager.MailManager;
 import org.l2j.gameserver.model.AccessLevel;
 import org.l2j.gameserver.model.BlockList;
@@ -32,7 +30,6 @@ import org.l2j.gameserver.model.Message;
 import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.model.item.instance.Item;
 import org.l2j.gameserver.model.itemcontainer.Mail;
-import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.PacketLogger;
 import org.l2j.gameserver.network.SystemMessageId;
 import org.l2j.gameserver.network.serverpackets.ExNoticePostSent;
@@ -42,7 +39,7 @@ import org.l2j.gameserver.network.serverpackets.SystemMessage;
 /**
  * @author Migi, DS
  */
-public class RequestSendPost implements ClientPacket
+public class RequestSendPost extends ClientPacket
 {
 	private static final int BATCH_LENGTH = 12; // length of the one item
 	
@@ -64,15 +61,15 @@ public class RequestSendPost implements ClientPacket
 	private long _reqAdena;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_receiver = packet.readString();
-		_isCod = packet.readInt() != 0;
-		_subject = packet.readString();
-		_text = packet.readString();
+		_receiver = readString();
+		_isCod = readInt() != 0;
+		_subject = readString();
+		_text = readString();
 		
-		final int attachCount = packet.readInt();
-		if ((attachCount < 0) || (attachCount > Config.MAX_ITEM_IN_PACKET) || (((attachCount * BATCH_LENGTH) + 8) != packet.getRemainingLength()))
+		final int attachCount = readInt();
+		if ((attachCount < 0) || (attachCount > Config.MAX_ITEM_IN_PACKET) || (((attachCount * BATCH_LENGTH) + 8) != remaining()))
 		{
 			return;
 		}
@@ -82,9 +79,9 @@ public class RequestSendPost implements ClientPacket
 			_items = new AttachmentItem[attachCount];
 			for (int i = 0; i < attachCount; i++)
 			{
-				final int objectId = packet.readInt();
-				final long count = packet.readLong();
-				if ((objectId < 1) || (count < 0))
+				final int objectId = readInt();
+				final long count = readLong();
+				if ((objectId < 1) || (count < 1))
 				{
 					_items = null;
 					return;
@@ -93,19 +90,22 @@ public class RequestSendPost implements ClientPacket
 			}
 		}
 		
-		_reqAdena = packet.readLong();
-		return;
+		_reqAdena = readLong();
+		if (_reqAdena < 0)
+		{
+			_items = null;
+		}
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
 		if (!Config.ALLOW_MAIL)
 		{
 			return;
 		}
 		
-		final Player player = client.getPlayer();
+		final Player player = getPlayer();
 		if (player == null)
 		{
 			return;
@@ -148,7 +148,7 @@ public class RequestSendPost implements ClientPacket
 			return;
 		}
 		
-		if (player.getPrivateStoreType() != PrivateStoreType.NONE)
+		if (player.isInStoreMode())
 		{
 			player.sendPacket(SystemMessageId.YOU_CANNOT_FORWARD_BECAUSE_THE_PRIVATE_STORE_OR_WORKSHOP_IS_IN_PROGRESS);
 			return;
@@ -160,7 +160,13 @@ public class RequestSendPost implements ClientPacket
 			return;
 		}
 		
-		if ((_subject.length() > MAX_SUBJ_LENGTH) || (_text.length() > MAX_TEXT_LENGTH))
+		if (_subject.length() > MAX_SUBJ_LENGTH)
+		{
+			player.sendPacket(SystemMessageId.THE_ALLOWED_LENGTH_FOR_A_TITLE_EXCEEDED);
+			return;
+		}
+		
+		if (_text.length() > MAX_TEXT_LENGTH)
 		{
 			// not found message for this
 			player.sendPacket(SystemMessageId.THE_ALLOWED_LENGTH_FOR_A_TITLE_EXCEEDED);
@@ -249,7 +255,7 @@ public class RequestSendPost implements ClientPacket
 			return;
 		}
 		
-		if (!client.getFloodProtectors().canSendMail())
+		if (!getClient().getFloodProtectors().canSendMail())
 		{
 			player.sendPacket(SystemMessageId.THE_PREVIOUS_MAIL_WAS_FORWARDED_LESS_THAN_10_SEC_AGO_AND_THIS_CANNOT_BE_FORWARDED);
 			return;

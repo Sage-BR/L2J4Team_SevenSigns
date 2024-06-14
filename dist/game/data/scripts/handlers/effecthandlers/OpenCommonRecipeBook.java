@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,7 +16,6 @@
  */
 package handlers.effecthandlers;
 
-import org.l2j.gameserver.enums.PrivateStoreType;
 import org.l2j.gameserver.instancemanager.RecipeManager;
 import org.l2j.gameserver.model.StatSet;
 import org.l2j.gameserver.model.actor.Creature;
@@ -51,7 +50,7 @@ public class OpenCommonRecipeBook extends AbstractEffect
 		}
 		
 		final Player player = effector.getActingPlayer();
-		if (player.getPrivateStoreType() != PrivateStoreType.NONE)
+		if (player.isInStoreMode())
 		{
 			player.sendPacket(SystemMessageId.ITEM_CREATION_IS_NOT_POSSIBLE_WHILE_ENGAGED_IN_A_TRADE);
 			return;

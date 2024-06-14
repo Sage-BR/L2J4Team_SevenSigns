@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,7 +16,10 @@
  */
 package org.l2j.gameserver.network.serverpackets;
 
+import org.l2j.commons.network.WritableBuffer;
+
 import org.l2j.gameserver.model.Location;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 
 /**
@@ -36,13 +39,13 @@ public class ExMagicSkillUseGround extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_MAGIC_SKILL_USE_GROUND.writeId(this);
-		writeInt(_playerObjectId);
-		writeInt(_skillId);
-		writeInt(_location.getX());
-		writeInt(_location.getY());
-		writeInt(_location.getZ());
+		ServerPackets.EX_MAGIC_SKILL_USE_GROUND.writeId(this, buffer);
+		buffer.writeInt(_playerObjectId);
+		buffer.writeInt(_skillId);
+		buffer.writeInt(_location.getX());
+		buffer.writeInt(_location.getY());
+		buffer.writeInt(_location.getZ());
 	}
 }

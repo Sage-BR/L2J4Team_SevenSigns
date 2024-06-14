@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,10 +16,8 @@
  */
 package org.l2j.gameserver.network.clientpackets;
 
-import org.l2j.commons.network.ReadablePacket;
 import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.model.zone.ZoneId;
-import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.serverpackets.ActionFailed;
 import org.l2j.gameserver.network.serverpackets.GetOffVehicle;
 import org.l2j.gameserver.network.serverpackets.StopMoveInVehicle;
@@ -27,7 +25,7 @@ import org.l2j.gameserver.network.serverpackets.StopMoveInVehicle;
 /**
  * @author Maktakien
  */
-public class RequestGetOffVehicle implements ClientPacket
+public class RequestGetOffVehicle extends ClientPacket
 {
 	private int _boatId;
 	private int _x;
@@ -35,22 +33,23 @@ public class RequestGetOffVehicle implements ClientPacket
 	private int _z;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_boatId = packet.readInt();
-		_x = packet.readInt();
-		_y = packet.readInt();
-		_z = packet.readInt();
+		_boatId = readInt();
+		_x = readInt();
+		_y = readInt();
+		_z = readInt();
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
-		final Player player = client.getPlayer();
+		final Player player = getPlayer();
 		if (player == null)
 		{
 			return;
 		}
+		
 		if (!player.isInBoat() || (player.getBoat().getObjectId() != _boatId) || player.getBoat().isMoving() || !player.isInsideRadius3D(_x, _y, _z, 1000))
 		{
 			player.sendPacket(ActionFailed.STATIC_PACKET);

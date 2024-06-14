@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,7 +17,6 @@
 package org.l2j.gameserver.network.clientpackets.mentoring;
 
 import org.l2j.Config;
-import org.l2j.commons.network.ReadablePacket;
 import org.l2j.gameserver.data.sql.CharInfoTable;
 import org.l2j.gameserver.instancemanager.MentorManager;
 import org.l2j.gameserver.model.Mentee;
@@ -26,7 +25,6 @@ import org.l2j.gameserver.model.events.EventDispatcher;
 import org.l2j.gameserver.model.events.EventType;
 import org.l2j.gameserver.model.events.impl.creature.player.OnPlayerMenteeLeft;
 import org.l2j.gameserver.model.events.impl.creature.player.OnPlayerMenteeRemove;
-import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.SystemMessageId;
 import org.l2j.gameserver.network.clientpackets.ClientPacket;
 import org.l2j.gameserver.network.serverpackets.SystemMessage;
@@ -34,27 +32,27 @@ import org.l2j.gameserver.network.serverpackets.SystemMessage;
 /**
  * @author UnAfraid
  */
-public class RequestMentorCancel implements ClientPacket
+public class RequestMentorCancel extends ClientPacket
 {
 	private int _confirmed;
 	private String _name;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_confirmed = packet.readInt();
-		_name = packet.readString();
+		_confirmed = readInt();
+		_name = readString();
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
 		if (_confirmed != 1)
 		{
 			return;
 		}
 		
-		final Player player = client.getPlayer();
+		final Player player = getPlayer();
 		final int objectId = CharInfoTable.getInstance().getIdByName(_name);
 		if (player != null)
 		{

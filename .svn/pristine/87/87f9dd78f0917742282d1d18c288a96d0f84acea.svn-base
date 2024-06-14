@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/multisell.xsd">
+	<npcs>
+		<npc>-1</npc> <!-- Item Multisell -->
+	</npcs>
+	<!-- +7 Special Armor Coupon (Sealed) (Time-limited) - Sealed (98767) -->
+	<item>
+		<ingredient id="98767" count="1" /> <!-- +7 Special Armor Coupon (Sealed) (Time-limited) - Sealed -->
+		<production id="98768" count="1" /> <!-- Package: +7 Ice Crystal Breastplate - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98767" count="1" /> <!-- +7 Special Armor Coupon (Sealed) (Time-limited) - Sealed -->
+		<production id="98769" count="1" /> <!-- Package: +7 Ice Crystal Gaiters - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98767" count="1" /> <!-- +7 Special Armor Coupon (Sealed) (Time-limited) - Sealed -->
+		<production id="98770" count="1" /> <!-- Package: +7 Leather Armor of Lightning - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98767" count="1" /> <!-- +7 Special Armor Coupon (Sealed) (Time-limited) - Sealed -->
+		<production id="98771" count="1" /> <!-- Package: +7 Leather Leggings of Lightning - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98767" count="1" /> <!-- +7 Special Armor Coupon (Sealed) (Time-limited) - Sealed -->
+		<production id="98772" count="1" /> <!-- Package: +7 Flaming Tunic - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98767" count="1" /> <!-- +7 Special Armor Coupon (Sealed) (Time-limited) - Sealed -->
+		<production id="98773" count="1" /> <!-- Package: +7 Flaming Stockings - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98767" count="1" /> <!-- +7 Special Armor Coupon (Sealed) (Time-limited) - Sealed -->
+		<production id="98774" count="1" /> <!-- Package: +7 Helmet of Mana - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98767" count="1" /> <!-- +7 Special Armor Coupon (Sealed) (Time-limited) - Sealed -->
+		<production id="98775" count="1" /> <!-- Package: +7 Stun Gauntlets - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98767" count="1" /> <!-- +7 Special Armor Coupon (Sealed) (Time-limited) - Sealed -->
+		<production id="98776" count="1" /> <!-- Package: +7 Boots of Evasion - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98767" count="1" /> <!-- +7 Special Armor Coupon (Sealed) (Time-limited) - Sealed -->
+		<production id="98777" count="1" /> <!-- Package: +7 Gloves of Silence - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98767" count="1" /> <!-- +7 Special Armor Coupon (Sealed) (Time-limited) - Sealed -->
+		<production id="98778" count="1" /> <!-- Package: +7 Sigil of Inevitability - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98767" count="1" /> <!-- +7 Special Armor Coupon (Sealed) (Time-limited) - Sealed -->
+		<production id="98779" count="1" /> <!-- Package: +7 Shield of Vengeance - Sealed -->
+	</item>
+</list>

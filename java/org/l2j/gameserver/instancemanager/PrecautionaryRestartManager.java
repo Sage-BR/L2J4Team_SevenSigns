@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -149,7 +149,17 @@ public class PrecautionaryRestartManager
 				continue;
 			}
 			
-			if (player.isInOlympiadMode() || player.isOnEvent() || player.isInInstance())
+			if (player.isInOlympiadMode())
+			{
+				return true;
+			}
+			
+			if (player.isOnEvent())
+			{
+				return true;
+			}
+			
+			if (player.isInInstance())
 			{
 				return true;
 			}

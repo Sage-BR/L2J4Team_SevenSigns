@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,6 +16,8 @@
  */
 package org.l2j.gameserver.network.serverpackets;
 
+import org.l2j.commons.network.WritableBuffer;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 
 /**
@@ -45,15 +47,15 @@ public class ExChangePostState extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_CHANGE_POST_STATE.writeId(this);
-		writeInt(_receivedBoard);
-		writeInt(_changedMsgIds.length);
+		ServerPackets.EX_CHANGE_POST_STATE.writeId(this, buffer);
+		buffer.writeInt(_receivedBoard);
+		buffer.writeInt(_changedMsgIds.length);
 		for (int postId : _changedMsgIds)
 		{
-			writeInt(postId); // postId
-			writeInt(_changeId); // state
+			buffer.writeInt(postId); // postId
+			buffer.writeInt(_changeId); // state
 		}
 	}
 }

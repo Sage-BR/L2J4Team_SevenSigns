@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -26,6 +26,8 @@ import org.l2j.gameserver.data.xml.DoorData;
 import org.l2j.gameserver.data.xml.FenceData;
 import org.l2j.gameserver.geoengine.geodata.Cell;
 import org.l2j.gameserver.geoengine.geodata.GeoData;
+import org.l2j.gameserver.geoengine.geodata.IRegion;
+import org.l2j.gameserver.geoengine.geodata.regions.Region;
 import org.l2j.gameserver.model.Location;
 import org.l2j.gameserver.model.World;
 import org.l2j.gameserver.model.WorldObject;
@@ -43,7 +45,8 @@ public class GeoEngine
 {
 	private static final Logger LOGGER = Logger.getLogger(GeoEngine.class.getName());
 	
-	private static final String FILE_NAME_FORMAT = "%d_%d.l2j";
+	public static final String FILE_NAME_FORMAT = "%d_%d.l2j";
+	
 	private static final int ELEVATED_SEE_OVER_DISTANCE = 2;
 	private static final int MAX_SEE_OVER_HEIGHT = 48;
 	private static final int SPAWN_Z_DELTA_LIMIT = 100;
@@ -83,6 +86,13 @@ public class GeoEngine
 		}
 		
 		LOGGER.info(getClass().getSimpleName() + ": Loaded " + loadedRegions + " regions.");
+		
+		// Avoid wrong configuration when no files are loaded.
+		if ((loadedRegions == 0) && (Config.PATHFINDING > 0))
+		{
+			Config.PATHFINDING = 0;
+			LOGGER.info(getClass().getSimpleName() + ": Pathfinding is disabled.");
+		}
 	}
 	
 	public boolean hasGeoPos(int geoX, int geoY)
@@ -125,6 +135,16 @@ public class GeoEngine
 		return can && checkNearestNswe(geoX, geoY, worldZ, nswe);
 	}
 	
+	public void setNearestNswe(int geoX, int geoY, int worldZ, byte nswe)
+	{
+		_geodata.setNearestNswe(geoX, geoY, worldZ, nswe);
+	}
+	
+	public void unsetNearestNswe(int geoX, int geoY, int worldZ, byte nswe)
+	{
+		_geodata.unsetNearestNswe(geoX, geoY, worldZ, nswe);
+	}
+	
 	public int getNearestZ(int geoX, int geoY, int worldZ)
 	{
 		return _geodata.getNearestZ(geoX, geoY, worldZ);
@@ -158,6 +178,16 @@ public class GeoEngine
 	public int getWorldY(int geoY)
 	{
 		return _geodata.getWorldY(geoY);
+	}
+	
+	public IRegion getRegion(int geoX, int geoY)
+	{
+		return _geodata.getRegion(geoX, geoY);
+	}
+	
+	public void setRegion(int regionX, int regionY, Region region)
+	{
+		_geodata.setRegion(regionX, regionY, region);
 	}
 	
 	/**
@@ -256,8 +286,13 @@ public class GeoEngine
 	public boolean canSeeTarget(int x, int y, int z, int tx, int ty, int tz, Instance instance)
 	{
 		// Door checks.
+		if (DoorData.getInstance().checkIfDoorsBetween(x, y, z, tx, ty, tz, instance, true))
+		{
+			return false;
+		}
+		
 		// Fence checks.
-		if (DoorData.getInstance().checkIfDoorsBetween(x, y, z, tx, ty, tz, instance, true) || FenceData.getInstance().checkIfFenceBetween(x, y, z, tx, ty, tz, instance))
+		if (FenceData.getInstance().checkIfFenceBetween(x, y, z, tx, ty, tz, instance))
 		{
 			return false;
 		}
@@ -434,8 +469,13 @@ public class GeoEngine
 		final int nearestToZ = getNearestZ(tGeoX, tGeoY, tz);
 		
 		// Door checks.
+		if (DoorData.getInstance().checkIfDoorsBetween(x, y, nearestFromZ, tx, ty, nearestToZ, instance, false))
+		{
+			return new Location(x, y, getHeight(x, y, nearestFromZ));
+		}
+		
 		// Fence checks.
-		if (DoorData.getInstance().checkIfDoorsBetween(x, y, nearestFromZ, tx, ty, nearestToZ, instance, false) || FenceData.getInstance().checkIfFenceBetween(x, y, nearestFromZ, tx, ty, nearestToZ, instance))
+		if (FenceData.getInstance().checkIfFenceBetween(x, y, nearestFromZ, tx, ty, nearestToZ, instance))
 		{
 			return new Location(x, y, getHeight(x, y, nearestFromZ));
 		}
@@ -485,8 +525,13 @@ public class GeoEngine
 		final int nearestToZ = getNearestZ(tGeoX, tGeoY, toZ);
 		
 		// Door checks.
+		if (DoorData.getInstance().checkIfDoorsBetween(fromX, fromY, nearestFromZ, toX, toY, nearestToZ, instance, false))
+		{
+			return false;
+		}
+		
 		// Fence checks.
-		if (DoorData.getInstance().checkIfDoorsBetween(fromX, fromY, nearestFromZ, toX, toY, nearestToZ, instance, false) || FenceData.getInstance().checkIfFenceBetween(fromX, fromY, nearestFromZ, toX, toY, nearestToZ, instance))
+		if (FenceData.getInstance().checkIfFenceBetween(fromX, fromY, nearestFromZ, toX, toY, nearestToZ, instance))
 		{
 			return false;
 		}

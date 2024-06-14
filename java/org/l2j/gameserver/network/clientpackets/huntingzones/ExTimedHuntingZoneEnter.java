@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,7 +16,6 @@
  */
 package org.l2j.gameserver.network.clientpackets.huntingzones;
 
-import org.l2j.commons.network.ReadablePacket;
 import org.l2j.gameserver.data.xml.TimedHuntingZoneData;
 import org.l2j.gameserver.instancemanager.InstanceManager;
 import org.l2j.gameserver.instancemanager.QuestManager;
@@ -26,7 +25,6 @@ import org.l2j.gameserver.model.itemcontainer.Inventory;
 import org.l2j.gameserver.model.olympiad.OlympiadManager;
 import org.l2j.gameserver.model.variables.PlayerVariables;
 import org.l2j.gameserver.model.zone.ZoneId;
-import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.SystemMessageId;
 import org.l2j.gameserver.network.clientpackets.ClientPacket;
 import org.l2j.gameserver.network.serverpackets.huntingzones.TimedHuntingZoneEnter;
@@ -34,20 +32,20 @@ import org.l2j.gameserver.network.serverpackets.huntingzones.TimedHuntingZoneEnt
 /**
  * @author Mobius
  */
-public class ExTimedHuntingZoneEnter implements ClientPacket
+public class ExTimedHuntingZoneEnter extends ClientPacket
 {
 	private int _zoneId;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_zoneId = packet.readInt();
+		_zoneId = readInt();
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
-		final Player player = client.getPlayer();
+		final Player player = getPlayer();
 		if (player == null)
 		{
 			return;
@@ -88,7 +86,7 @@ public class ExTimedHuntingZoneEnter implements ClientPacket
 			player.sendMessage("Cannot use time-limited hunting zones while registered on an event.");
 			return;
 		}
-		if (player.isInInstance() || player.isInTimedHuntingZone())
+		if (player.isInInstance() /* || player.isInTimedHuntingZone() */)
 		{
 			player.sendMessage("Cannot use time-limited hunting zones while in an instance.");
 			return;
@@ -163,6 +161,7 @@ public class ExTimedHuntingZoneEnter implements ClientPacket
 				return;
 			}
 			
+			player.getVariables().set(PlayerVariables.LAST_HUNTING_ZONE_ID, _zoneId);
 			player.getVariables().set(PlayerVariables.HUNTING_ZONE_TIME + _zoneId, endTime - currentTime);
 			
 			if (instanceId == 0)
@@ -175,6 +174,7 @@ public class ExTimedHuntingZoneEnter implements ClientPacket
 			else // Instanced zones.
 			{
 				QuestManager.getInstance().getQuest("TimedHunting").notifyEvent("ENTER " + _zoneId, null, player);
+				player.sendPacket(new TimedHuntingZoneEnter(player, _zoneId));
 			}
 		}
 		else

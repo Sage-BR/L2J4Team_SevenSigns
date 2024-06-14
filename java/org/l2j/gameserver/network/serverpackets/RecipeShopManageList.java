@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,9 +19,11 @@ package org.l2j.gameserver.network.serverpackets;
 import java.util.Collection;
 import java.util.Iterator;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.model.ManufactureItem;
 import org.l2j.gameserver.model.RecipeList;
 import org.l2j.gameserver.model.actor.Player;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 
 public class RecipeShopManageList extends ServerPacket
@@ -58,38 +60,38 @@ public class RecipeShopManageList extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.RECIPE_SHOP_MANAGE_LIST.writeId(this);
-		writeInt(_seller.getObjectId());
-		writeInt((int) _seller.getAdena());
-		writeInt(!_isDwarven);
+		ServerPackets.RECIPE_SHOP_MANAGE_LIST.writeId(this, buffer);
+		buffer.writeInt(_seller.getObjectId());
+		buffer.writeInt((int) _seller.getAdena());
+		buffer.writeInt(!_isDwarven);
 		if (_recipes == null)
 		{
-			writeInt(0);
+			buffer.writeInt(0);
 		}
 		else
 		{
-			writeInt(_recipes.size()); // number of items in recipe book
+			buffer.writeInt(_recipes.size()); // number of items in recipe book
 			int count = 1;
 			for (RecipeList recipe : _recipes)
 			{
-				writeInt(recipe.getId());
-				writeInt(count++);
+				buffer.writeInt(recipe.getId());
+				buffer.writeInt(count++);
 			}
 		}
 		if (!_seller.hasManufactureShop())
 		{
-			writeInt(0);
+			buffer.writeInt(0);
 		}
 		else
 		{
-			writeInt(_seller.getManufactureItems().size());
+			buffer.writeInt(_seller.getManufactureItems().size());
 			for (ManufactureItem item : _seller.getManufactureItems().values())
 			{
-				writeInt(item.getRecipeId());
-				writeInt(0);
-				writeLong(item.getCost());
+				buffer.writeInt(item.getRecipeId());
+				buffer.writeInt(0);
+				buffer.writeLong(item.getCost());
 			}
 		}
 	}

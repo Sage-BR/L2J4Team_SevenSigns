@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -41,8 +41,11 @@ public class EffectMasterHandler
 		EffectHandler.getInstance().registerHandler("AddHuntingTime", AddHuntingTime::new);
 		EffectHandler.getInstance().registerHandler("AdditionalPhysicalAttack", AdditionalPhysicalAttack::new);
 		EffectHandler.getInstance().registerHandler("AdditionalPotionCp", AdditionalPotionCp::new);
+		EffectHandler.getInstance().registerHandler("AdditionalPotionCpPer", AdditionalPotionCpPer::new);
 		EffectHandler.getInstance().registerHandler("AdditionalPotionHp", AdditionalPotionHp::new);
+		EffectHandler.getInstance().registerHandler("AdditionalPotionHpPer", AdditionalPotionHpPer::new);
 		EffectHandler.getInstance().registerHandler("AdditionalPotionMp", AdditionalPotionMp::new);
+		EffectHandler.getInstance().registerHandler("AdditionalPotionMpPer", AdditionalPotionMpPer::new);
 		EffectHandler.getInstance().registerHandler("AddPcCafePoints", AddPcCafePoints::new);
 		EffectHandler.getInstance().registerHandler("AddMaxPhysicalCriticalRate", AddMaxPhysicalCriticalRate::new);
 		EffectHandler.getInstance().registerHandler("AddMaxMagicCriticalRate", AddMaxMagicCriticalRate::new);
@@ -73,6 +76,7 @@ public class EffectMasterHandler
 		EffectHandler.getInstance().registerHandler("BlockResurrection", BlockResurrection::new);
 		EffectHandler.getInstance().registerHandler("BlockSkill", BlockSkill::new);
 		EffectHandler.getInstance().registerHandler("BlockTarget", BlockTarget::new);
+		EffectHandler.getInstance().registerHandler("BlockFrontalRangedDamage", BlockFrontalRangedDamage::new);
 		EffectHandler.getInstance().registerHandler("Bluff", Bluff::new);
 		EffectHandler.getInstance().registerHandler("BonusDropAdena", BonusDropAdena::new);
 		EffectHandler.getInstance().registerHandler("BonusDropAmount", BonusDropAmount::new);
@@ -142,6 +146,7 @@ public class EffectMasterHandler
 		EffectHandler.getInstance().registerHandler("Disarmor", Disarmor::new);
 		EffectHandler.getInstance().registerHandler("DispelAll", DispelAll::new);
 		EffectHandler.getInstance().registerHandler("DispelByCategory", DispelByCategory::new);
+		EffectHandler.getInstance().registerHandler("DispelBySkillId", DispelBySkillId::new);
 		EffectHandler.getInstance().registerHandler("DispelBySlot", DispelBySlot::new);
 		EffectHandler.getInstance().registerHandler("DispelBySlotMyself", DispelBySlotMyself::new);
 		EffectHandler.getInstance().registerHandler("DispelBySlotProbability", DispelBySlotProbability::new);
@@ -248,7 +253,9 @@ public class EffectMasterHandler
 		EffectHandler.getInstance().registerHandler("MaxHp", MaxHp::new);
 		EffectHandler.getInstance().registerHandler("MaxMp", MaxMp::new);
 		EffectHandler.getInstance().registerHandler("ModifyAssassinationPoints", ModifyAssassinationPoints::new);
+		EffectHandler.getInstance().registerHandler("ModifyAssassinationPointsMax", ModifyAssassinationPointsMax::new);
 		EffectHandler.getInstance().registerHandler("ModifyBeastPoints", ModifyBeastPoints::new);
+		EffectHandler.getInstance().registerHandler("ModifyBeastPointsMax", ModifyBeastPointsMax::new);
 		EffectHandler.getInstance().registerHandler("ModifyCraftPoints", ModifyCraftPoints::new);
 		EffectHandler.getInstance().registerHandler("ModifyDeathPoints", ModifyDeathPoints::new);
 		EffectHandler.getInstance().registerHandler("ModifyMagicLampPoints", ModifyMagicLampPoints::new);
@@ -426,6 +433,9 @@ public class EffectMasterHandler
 		EffectHandler.getInstance().registerHandler("TriggerSkillBySkill", TriggerSkillBySkill::new);
 		EffectHandler.getInstance().registerHandler("TriggerSkillBySkillAttack", TriggerSkillBySkillAttack::new);
 		EffectHandler.getInstance().registerHandler("TriggerSkillByStat", TriggerSkillByStat::new);
+		EffectHandler.getInstance().registerHandler("TriggerSkillByTripleRange", TriggerSkillByTripleRange::new);
+		EffectHandler.getInstance().registerHandler("TriggerSkillByMDef", TriggerSkillByMDef::new);
+		EffectHandler.getInstance().registerHandler("TriggerSkillByPDef", TriggerSkillByPDef::new);
 		EffectHandler.getInstance().registerHandler("TwoHandedBluntBonus", TwoHandedBluntBonus::new);
 		EffectHandler.getInstance().registerHandler("TwoHandedStance", TwoHandedStance::new);
 		EffectHandler.getInstance().registerHandler("TwoHandedSwordBonus", TwoHandedSwordBonus::new);

@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,9 +16,7 @@
  */
 package org.l2j.gameserver.network.clientpackets.ensoul;
 
-import org.l2j.commons.network.ReadablePacket;
 import org.l2j.gameserver.data.xml.EnsoulData;
-import org.l2j.gameserver.enums.PrivateStoreType;
 import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.model.ensoul.EnsoulOption;
 import org.l2j.gameserver.model.ensoul.EnsoulStone;
@@ -26,7 +24,6 @@ import org.l2j.gameserver.model.holders.ItemHolder;
 import org.l2j.gameserver.model.item.ItemTemplate;
 import org.l2j.gameserver.model.item.instance.Item;
 import org.l2j.gameserver.model.skill.AbnormalType;
-import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.PacketLogger;
 import org.l2j.gameserver.network.SystemMessageId;
 import org.l2j.gameserver.network.clientpackets.ClientPacket;
@@ -37,26 +34,26 @@ import org.l2j.gameserver.taskmanager.AttackStanceTaskManager;
 /**
  * @author UnAfraid
  */
-public class RequestItemEnsoul implements ClientPacket
+public class RequestItemEnsoul extends ClientPacket
 {
 	private int _itemObjectId;
 	private int _type;
 	private EnsoulItemOption[] _options;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_itemObjectId = packet.readInt();
-		final int options = packet.readByte();
+		_itemObjectId = readInt();
+		final int options = readByte();
 		if ((options > 0) && (options <= 3))
 		{
 			_options = new EnsoulItemOption[options];
 			for (int i = 0; i < options; i++)
 			{
-				_type = packet.readByte(); // 1 = normal ; 2 = mystic
-				final int position = packet.readByte();
-				final int soulCrystalObjectId = packet.readInt();
-				final int soulCrystalOption = packet.readInt();
+				_type = readByte(); // 1 = normal ; 2 = mystic
+				final int position = readByte();
+				final int soulCrystalObjectId = readInt();
+				final int soulCrystalOption = readInt();
 				if ((position > 0) && (position < 3) && ((_type == 1) || (_type == 2)))
 				{
 					_options[i] = new EnsoulItemOption(_type, position, soulCrystalObjectId, soulCrystalOption);
@@ -67,15 +64,15 @@ public class RequestItemEnsoul implements ClientPacket
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
-		final Player player = client.getPlayer();
+		final Player player = getPlayer();
 		if (player == null)
 		{
 			return;
 		}
 		
-		if (player.getPrivateStoreType() != PrivateStoreType.NONE)
+		if (player.isInStoreMode())
 		{
 			player.sendPacket(SystemMessageId.SOUL_CRYSTAL_INSERTION_IS_IMPOSSIBLE_WHEN_PRIVATE_STORE_AND_WORKSHOP_ARE_OPENED);
 			return;

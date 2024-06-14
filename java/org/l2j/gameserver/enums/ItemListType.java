@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -28,6 +28,7 @@ public enum ItemListType implements IUpdateTypeComponent
 	VISUAL_ID(4),
 	SOUL_CRYSTAL(8),
 	REUSE_DELAY(16),
+	PET_EVOLVE(64),
 	BLESSED(128);
 	
 	private final int _mask;

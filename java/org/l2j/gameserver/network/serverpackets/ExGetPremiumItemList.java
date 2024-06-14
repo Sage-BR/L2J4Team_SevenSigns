@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,8 +19,10 @@ package org.l2j.gameserver.network.serverpackets;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.model.PremiumItem;
 import org.l2j.gameserver.model.actor.Player;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 
 /**
@@ -38,18 +40,18 @@ public class ExGetPremiumItemList extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_GET_PREMIUM_ITEM_LIST.writeId(this);
-		writeInt(_map.size());
+		ServerPackets.EX_GET_PREMIUM_ITEM_LIST.writeId(this, buffer);
+		buffer.writeInt(_map.size());
 		for (Entry<Integer, PremiumItem> entry : _map.entrySet())
 		{
 			final PremiumItem item = entry.getValue();
-			writeLong(entry.getKey());
-			writeInt(item.getItemId());
-			writeLong(item.getCount());
-			writeInt(0); // ?
-			writeString(item.getSender());
+			buffer.writeLong(entry.getKey());
+			buffer.writeInt(item.getItemId());
+			buffer.writeLong(item.getCount());
+			buffer.writeInt(0); // ?
+			buffer.writeString(item.getSender());
 		}
 	}
 }

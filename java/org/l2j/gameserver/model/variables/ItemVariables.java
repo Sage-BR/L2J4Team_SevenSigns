@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -45,6 +45,7 @@ public class ItemVariables extends AbstractVariables
 	public static final String VISUAL_ID = "visualId";
 	public static final String VISUAL_APPEARANCE_STONE_ID = "visualAppearanceStoneId";
 	public static final String VISUAL_APPEARANCE_LIFE_TIME = "visualAppearanceLifetime";
+	public static final String TRANSMOG_ID = "transmogId";
 	public static final String BLESSED = "blessed";
 	
 	public ItemVariables(int objectId)

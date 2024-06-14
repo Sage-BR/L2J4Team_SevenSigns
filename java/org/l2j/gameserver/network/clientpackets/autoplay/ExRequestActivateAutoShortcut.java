@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,7 +17,6 @@
 package org.l2j.gameserver.network.clientpackets.autoplay;
 
 import org.l2j.Config;
-import org.l2j.commons.network.ReadablePacket;
 import org.l2j.gameserver.enums.ShortcutType;
 import org.l2j.gameserver.model.ShortCuts;
 import org.l2j.gameserver.model.Shortcut;
@@ -25,39 +24,32 @@ import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.model.actor.Summon;
 import org.l2j.gameserver.model.item.instance.Item;
 import org.l2j.gameserver.model.skill.Skill;
-import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.clientpackets.ClientPacket;
 import org.l2j.gameserver.taskmanager.AutoUseTaskManager;
 
 /**
  * @author Mobius
  */
-public class ExRequestActivateAutoShortcut implements ClientPacket
+public class ExRequestActivateAutoShortcut extends ClientPacket
 {
 	private int _slot;
 	private int _page;
 	private boolean _active;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		final int position = packet.readShort();
+		final int position = readShort();
 		_slot = position % ShortCuts.MAX_SHORTCUTS_PER_BAR;
 		_page = position / ShortCuts.MAX_SHORTCUTS_PER_BAR;
-		_active = packet.readByte() == 1;
+		_active = readByte() == 1;
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
-		final Player player = client.getPlayer();
+		final Player player = getPlayer();
 		if (player == null)
-		{
-			return;
-		}
-		
-		final Shortcut shortcut = player.getShortCut(_slot, _page);
-		if (shortcut == null)
 		{
 			return;
 		}
@@ -73,6 +65,71 @@ public class ExRequestActivateAutoShortcut implements ClientPacket
 		
 		Item item = null;
 		Skill skill = null;
+		if ((_slot == -1) && (_page == 0) && _active)
+		{
+			for (int i = 0; i < 12; i++)
+			{
+				final Shortcut autoUseAllSupply1 = player.getShortCut(i, 22);
+				final Shortcut autoUseAllSupply2 = player.getShortCut(i, 24);
+				
+				if (autoUseAllSupply1 != null)
+				{
+					final Item itemAll1 = player.getInventory().getItemByObjectId(autoUseAllSupply1.getId());
+					if (itemAll1 != null)
+					{
+						player.addAutoShortcut(i, 22);
+						AutoUseTaskManager.getInstance().addAutoSupplyItem(player, itemAll1.getId());
+					}
+				}
+				
+				if (autoUseAllSupply2 != null)
+				{
+					final Item itemAll2 = player.getInventory().getItemByObjectId(autoUseAllSupply2.getId());
+					if (itemAll2 != null)
+					{
+						player.addAutoShortcut(i, 24);
+						AutoUseTaskManager.getInstance().addAutoSupplyItem(player, itemAll2.getId());
+					}
+				}
+			}
+			return;
+		}
+		else if ((_slot == -1) && (_page == 0) && !_active)
+		{
+			for (int i = 0; i < 12; i++)
+			{
+				final Shortcut autoUseAllSupply1 = player.getShortCut(i, 22);
+				final Shortcut autoUseAllSupply2 = player.getShortCut(i, 24);
+				
+				if (autoUseAllSupply1 != null)
+				{
+					final Item itemAll1 = player.getInventory().getItemByObjectId(autoUseAllSupply1.getId());
+					if (itemAll1 != null)
+					{
+						player.removeAutoShortcut(i, 22);
+						AutoUseTaskManager.getInstance().removeAutoSupplyItem(player, itemAll1.getId());
+					}
+				}
+				
+				if (autoUseAllSupply2 != null)
+				{
+					final Item itemAll2 = player.getInventory().getItemByObjectId(autoUseAllSupply2.getId());
+					if (itemAll2 != null)
+					{
+						player.removeAutoShortcut(i, 24);
+						AutoUseTaskManager.getInstance().removeAutoSupplyItem(player, itemAll2.getId());
+					}
+				}
+			}
+			return;
+		}
+		
+		final Shortcut shortcut = player.getShortCut(_slot, _page);
+		if ((shortcut == null))
+		{
+			return;
+		}
+		
 		if (shortcut.getType() == ShortcutType.SKILL)
 		{
 			final int skillId = player.getReplacementSkill(shortcut.getId());

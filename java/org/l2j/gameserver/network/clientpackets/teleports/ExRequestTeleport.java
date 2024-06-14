@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,7 +17,6 @@
 package org.l2j.gameserver.network.clientpackets.teleports;
 
 import org.l2j.Config;
-import org.l2j.commons.network.ReadablePacket;
 import org.l2j.gameserver.data.xml.TeleportListData;
 import org.l2j.gameserver.instancemanager.CastleManager;
 import org.l2j.gameserver.model.Location;
@@ -26,8 +25,6 @@ import org.l2j.gameserver.model.holders.TeleportListHolder;
 import org.l2j.gameserver.model.itemcontainer.Inventory;
 import org.l2j.gameserver.model.siege.Castle;
 import org.l2j.gameserver.model.skill.CommonSkill;
-import org.l2j.gameserver.model.zone.ZoneId;
-import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.PacketLogger;
 import org.l2j.gameserver.network.SystemMessageId;
 import org.l2j.gameserver.network.clientpackets.ClientPacket;
@@ -35,20 +32,20 @@ import org.l2j.gameserver.network.clientpackets.ClientPacket;
 /**
  * @author NviX, Mobius
  */
-public class ExRequestTeleport implements ClientPacket
+public class ExRequestTeleport extends ClientPacket
 {
 	private int _teleportId;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_teleportId = packet.readInt();
+		_teleportId = readInt();
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
-		final Player player = client.getPlayer();
+		final Player player = getPlayer();
 		if (player == null)
 		{
 			return;
@@ -69,7 +66,7 @@ public class ExRequestTeleport implements ClientPacket
 		}
 		
 		// Players should not be able to teleport if in a special location.
-		if ((player.getMovieHolder() != null) || player.isFishing() || player.isInInstance() || player.isOnEvent() || player.isInOlympiadMode() || player.inObserverMode() || player.isInTraingCamp() || player.isInsideZone(ZoneId.TIMED_HUNTING))
+		if ((player.getMovieHolder() != null) || player.isFishing() || player.isInInstance() || player.isOnEvent() || player.isInOlympiadMode() || player.inObserverMode() || player.isInTraingCamp() || player.isInTimedHuntingZone() || player.isInStoreMode())
 		{
 			player.sendPacket(SystemMessageId.YOU_CANNOT_TELEPORT_RIGHT_NOW);
 			return;
@@ -83,8 +80,14 @@ public class ExRequestTeleport implements ClientPacket
 		}
 		
 		// Karma related configurations.
+		if ((!Config.ALT_GAME_KARMA_PLAYER_CAN_TELEPORT || !Config.ALT_GAME_KARMA_PLAYER_CAN_USE_GK) && (player.getReputation() < 0))
+		{
+			player.sendPacket(SystemMessageId.YOU_CANNOT_TELEPORT_RIGHT_NOW);
+			return;
+		}
+		
 		// Cannot escape effect.
-		if (((!Config.ALT_GAME_KARMA_PLAYER_CAN_TELEPORT || !Config.ALT_GAME_KARMA_PLAYER_CAN_USE_GK) && (player.getReputation() < 0)) || player.cannotEscape())
+		if (player.cannotEscape())
 		{
 			player.sendPacket(SystemMessageId.YOU_CANNOT_TELEPORT_RIGHT_NOW);
 			return;

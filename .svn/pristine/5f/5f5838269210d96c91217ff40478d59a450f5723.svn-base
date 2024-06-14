@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/multisell.xsd">
+	<npcs>
+		<npc>-1</npc> <!-- Item Multisell -->
+	</npcs>
+	<!-- Selected Jewel Coupon - Sealed (97597) -->
+	<item>
+		<ingredient id="97597" count="1188" /> <!-- Selected Jewel Coupon - Sealed -->
+		<production id="99973" count="1" /> <!-- Ruby Jewelry Box Lv. 5 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="97597" count="891" /> <!-- Selected Jewel Coupon - Sealed -->
+		<production id="99965" count="1" /> <!-- Diamond Jewelry Box Lv. 5 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="97597" count="743" /> <!-- Selected Jewel Coupon - Sealed -->
+		<production id="97602" count="1" /> <!-- Beryl Jewelry Box Lv. 5 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="97597" count="446" /> <!-- Selected Jewel Coupon - Sealed -->
+		<production id="97607" count="1" /> <!-- Onyx Jewelry Box Lv. 5 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="97597" count="446" /> <!-- Selected Jewel Coupon - Sealed -->
+		<production id="97612" count="1" /> <!-- Spinel Jewelry Box Lv. 5 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="97597" count="446" /> <!-- Selected Jewel Coupon - Sealed -->
+		<production id="97617" count="1" /> <!-- Zircon Jewelry Box Lv. 5 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="97597" count="297" /> <!-- Selected Jewel Coupon - Sealed -->
+		<production id="97622" count="1" /> <!-- Coral Jewelry Box Lv. 5 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="97597" count="297" /> <!-- Selected Jewel Coupon - Sealed -->
+		<production id="97627" count="1" /> <!-- Opal Jewelry Box Lv. 5 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="97597" count="149" /> <!-- Selected Jewel Coupon - Sealed -->
+		<production id="97632" count="1" /> <!-- Amber Jewelry Box Lv. 5 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="97597" count="149" /> <!-- Selected Jewel Coupon - Sealed -->
+		<production id="97637" count="1" /> <!-- Moonstone Jewelry Box Lv. 5 - Sealed -->
+	</item>
+</list>

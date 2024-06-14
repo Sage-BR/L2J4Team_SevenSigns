@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,7 +20,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.commons.database.DatabaseFactory;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.PacketLogger;
 import org.l2j.gameserver.network.ServerPackets;
 
@@ -36,18 +38,18 @@ public class ExRequestPartyMatchingHistory extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_PARTY_MATCHING_ROOM_HISTORY.writeId(this);
-		writeInt(100); // Maximum size according to retail.
+		ServerPackets.EX_PARTY_MATCHING_ROOM_HISTORY.writeId(this, buffer);
+		buffer.writeInt(100); // Maximum size according to retail.
 		try (Connection con = DatabaseFactory.getConnection();
 			PreparedStatement statement = con.prepareStatement(GET_HISTORY))
 		{
 			final ResultSet rset = statement.executeQuery();
 			while (rset.next())
 			{
-				writeString(rset.getString("title"));
-				writeString(rset.getString("leader"));
+				buffer.writeString(rset.getString("title"));
+				buffer.writeString(rset.getString("leader"));
 			}
 		}
 		catch (Exception e)

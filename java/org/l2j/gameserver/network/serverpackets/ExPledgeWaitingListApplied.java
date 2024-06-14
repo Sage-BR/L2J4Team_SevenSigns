@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,9 +16,11 @@
  */
 package org.l2j.gameserver.network.serverpackets;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.instancemanager.ClanEntryManager;
 import org.l2j.gameserver.model.clan.entry.PledgeApplicantInfo;
 import org.l2j.gameserver.model.clan.entry.PledgeRecruitInfo;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 
 /**
@@ -36,16 +38,16 @@ public class ExPledgeWaitingListApplied extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_PLEDGE_WAITING_LIST_APPLIED.writeId(this);
-		writeInt(_pledgeRecruitInfo.getClan().getId());
-		writeString(_pledgeRecruitInfo.getClan().getName());
-		writeString(_pledgeRecruitInfo.getClan().getLeaderName());
-		writeInt(_pledgeRecruitInfo.getClan().getLevel());
-		writeInt(_pledgeRecruitInfo.getClan().getMembersCount());
-		writeInt(_pledgeRecruitInfo.getKarma());
-		writeString(_pledgeRecruitInfo.getInformation());
-		writeString(_pledgePlayerRecruitInfo.getMessage());
+		ServerPackets.EX_PLEDGE_WAITING_LIST_APPLIED.writeId(this, buffer);
+		buffer.writeInt(_pledgeRecruitInfo.getClan().getId());
+		buffer.writeString(_pledgeRecruitInfo.getClan().getName());
+		buffer.writeString(_pledgeRecruitInfo.getClan().getLeaderName());
+		buffer.writeInt(_pledgeRecruitInfo.getClan().getLevel());
+		buffer.writeInt(_pledgeRecruitInfo.getClan().getMembersCount());
+		buffer.writeInt(_pledgeRecruitInfo.getKarma());
+		buffer.writeString(_pledgeRecruitInfo.getInformation());
+		buffer.writeString(_pledgePlayerRecruitInfo.getMessage());
 	}
 }

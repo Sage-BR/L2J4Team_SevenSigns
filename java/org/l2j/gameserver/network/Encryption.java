@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,12 +16,12 @@
  */
 package org.l2j.gameserver.network;
 
-import org.l2j.commons.network.EncryptionInterface;
+import org.l2j.commons.network.Buffer;
 
 /**
  * @author KenM
  */
-public class Encryption implements EncryptionInterface
+public class Encryption
 {
 	private final byte[] _inKey = new byte[16];
 	private final byte[] _outKey = new byte[16];
@@ -33,8 +33,7 @@ public class Encryption implements EncryptionInterface
 		System.arraycopy(key, 0, _outKey, 0, 16);
 	}
 	
-	@Override
-	public void encrypt(byte[] data, int offset, int size)
+	public void encrypt(Buffer data, int offset, int size)
 	{
 		if (!_isEnabled)
 		{
@@ -42,12 +41,12 @@ public class Encryption implements EncryptionInterface
 			return;
 		}
 		
-		int a = 0;
+		int encrypted = 0;
 		for (int i = 0; i < size; i++)
 		{
-			final int b = data[offset + i] & 0xff;
-			a = b ^ _outKey[i & 15] ^ a;
-			data[offset + i] = (byte) a;
+			final int raw = Byte.toUnsignedInt(data.readByte(offset + i));
+			encrypted = raw ^ _outKey[i & 0x0f] ^ encrypted;
+			data.writeByte(offset + i, (byte) encrypted);
 		}
 		
 		// Shift key.
@@ -62,20 +61,19 @@ public class Encryption implements EncryptionInterface
 		_outKey[11] = (byte) ((old >> 24) & 0xff);
 	}
 	
-	@Override
-	public void decrypt(byte[] data, int offset, int size)
+	public void decrypt(Buffer data, int offset, int size)
 	{
 		if (!_isEnabled)
 		{
 			return;
 		}
 		
-		int a = 0;
+		int xOr = 0;
 		for (int i = 0; i < size; i++)
 		{
-			final int b = data[offset + i] & 0xff;
-			data[offset + i] = (byte) (b ^ _inKey[i & 15] ^ a);
-			a = b;
+			final int encrypted = Byte.toUnsignedInt(data.readByte(offset + i));
+			data.writeByte(offset + i, (byte) (encrypted ^ _inKey[i & 15] ^ xOr));
+			xOr = encrypted;
 		}
 		
 		// Shift key.

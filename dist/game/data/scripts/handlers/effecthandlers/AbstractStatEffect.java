@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,6 +25,8 @@ import org.l2j.gameserver.model.actor.Creature;
 import org.l2j.gameserver.model.conditions.Condition;
 import org.l2j.gameserver.model.conditions.ConditionPlayerIsInCombat;
 import org.l2j.gameserver.model.conditions.ConditionUsingItemType;
+import org.l2j.gameserver.model.conditions.ConditionUsingMagicWeapon;
+import org.l2j.gameserver.model.conditions.ConditionUsingTwoHandWeapon;
 import org.l2j.gameserver.model.effects.AbstractEffect;
 import org.l2j.gameserver.model.item.type.ArmorType;
 import org.l2j.gameserver.model.item.type.WeaponType;
@@ -44,15 +46,27 @@ public abstract class AbstractStatEffect extends AbstractEffect
 	
 	public AbstractStatEffect(StatSet params, Stat stat)
 	{
-		this(params, stat, stat);
+		this(params, stat, stat, false);
 	}
 	
 	public AbstractStatEffect(StatSet params, Stat mulStat, Stat addStat)
 	{
+		this(params, mulStat, addStat, false);
+	}
+	
+	public AbstractStatEffect(StatSet params, Stat mulStat, Stat addStat, boolean negativePercent)
+	{
 		_addStat = addStat;
 		_mulStat = mulStat;
-		_amount = params.getDouble("amount", 0);
 		_mode = params.getEnum("mode", StatModifierType.class, StatModifierType.DIFF);
+		if (negativePercent && (_mode == StatModifierType.PER))
+		{
+			_amount = params.getDouble("amount", 0) * -1d;
+		}
+		else
+		{
+			_amount = params.getDouble("amount", 0);
+		}
 		
 		int weaponTypesMask = 0;
 		final List<String> weaponTypes = params.getList("weaponType", String.class);
@@ -105,6 +119,16 @@ public abstract class AbstractStatEffect extends AbstractEffect
 		if (params.contains("inCombat"))
 		{
 			_conditions.add(new ConditionPlayerIsInCombat(params.getBoolean("inCombat")));
+		}
+		
+		if (params.contains("magicWeapon"))
+		{
+			_conditions.add(new ConditionUsingMagicWeapon(params.getBoolean("magicWeapon")));
+		}
+		
+		if (params.contains("twoHandWeapon"))
+		{
+			_conditions.add(new ConditionUsingTwoHandWeapon(params.getBoolean("twoHandWeapon")));
 		}
 	}
 	

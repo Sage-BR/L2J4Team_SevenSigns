@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,16 +16,14 @@
  */
 package org.l2j.gameserver.network.clientpackets;
 
-import org.l2j.commons.network.ReadablePacket;
 import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.model.item.instance.Item;
-import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.SystemMessageId;
 
 /**
  * @author Serenitty
  */
-public class RequestChangeNicknameEmote implements ClientPacket
+public class RequestChangeNicknameEmote extends ClientPacket
 {
 	private static final int ESPECIAL_COLOR_TITLE_EMOTE = 95892;
 	private static final int ESPECIAL_COLOR_TITLE_SEALED = 94764;
@@ -56,17 +54,17 @@ public class RequestChangeNicknameEmote implements ClientPacket
 	private String _title;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_itemId = packet.readInt();
-		_colorNum = packet.readInt();
-		_title = packet.readSizedString();
+		_itemId = readInt();
+		_colorNum = readInt();
+		_title = readSizedString();
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
-		final Player player = client.getPlayer();
+		final Player player = getPlayer();
 		if (player == null)
 		{
 			return;
@@ -83,11 +81,12 @@ public class RequestChangeNicknameEmote implements ClientPacket
 			return;
 		}
 		
-		if (_title.contains("{"))
-		{
-			player.sendMessage("Cannot use this type of characters {}");
-			return;
-		}
+		// FIXME: Title icon uses {}.
+		// if (_title.contains("{"))
+		// {
+		// player.sendMessage("Cannot use this type of characters {}");
+		// return;
+		// }
 		
 		if (((_itemId == ESPECIAL_COLOR_TITLE_EMOTE) || (_itemId == ESPECIAL_COLOR_TITLE_SEALED) || (_itemId == ESPECIAL_STYLISH_COLOR_TITLE)) && player.destroyItem("Consume", item, 1, null, true))
 		{

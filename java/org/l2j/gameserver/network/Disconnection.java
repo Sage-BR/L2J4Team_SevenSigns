@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -46,7 +46,7 @@ public class Disconnection
 		return null;
 	}
 	
-	public static Player getActiveChar(GameClient client, Player player)
+	public static Player getPlayer(GameClient client, Player player)
 	{
 		if (player != null)
 		{
@@ -87,7 +87,7 @@ public class Disconnection
 	private Disconnection(GameClient client, Player player)
 	{
 		_client = getClient(client, player);
-		_player = getActiveChar(client, player);
+		_player = getPlayer(client, player);
 		
 		// Stop player tasks.
 		if (_player != null)

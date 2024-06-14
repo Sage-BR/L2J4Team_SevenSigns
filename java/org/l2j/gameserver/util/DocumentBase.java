@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -264,8 +264,8 @@ public abstract class DocumentBase
 			value = Double.parseDouble(valueString);
 		}
 		
-		final Condition applayCond = parseCondition(n.getFirstChild(), template);
-		final FuncTemplate ft = new FuncTemplate(attachCond, applayCond, functionName, order, stat, value);
+		final Condition applyCond = parseCondition(n.getFirstChild(), template);
+		final FuncTemplate ft = new FuncTemplate(attachCond, applyCond, functionName, order, stat, value);
 		if (template instanceof ItemTemplate)
 		{
 			((ItemTemplate) template).addFunctionTemplate(ft);

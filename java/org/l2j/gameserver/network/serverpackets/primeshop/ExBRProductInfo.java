@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,9 +16,11 @@
  */
 package org.l2j.gameserver.network.serverpackets.primeshop;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.model.primeshop.PrimeShopGroup;
 import org.l2j.gameserver.model.primeshop.PrimeShopItem;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 import org.l2j.gameserver.network.serverpackets.ServerPacket;
 
@@ -41,21 +43,21 @@ public class ExBRProductInfo extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_BR_PRODUCT_INFO.writeId(this);
-		writeInt(_item.getBrId());
-		writeInt(_item.getPrice());
-		writeInt(_item.getItems().size());
+		ServerPackets.EX_BR_PRODUCT_INFO.writeId(this, buffer);
+		buffer.writeInt(_item.getBrId());
+		buffer.writeInt(_item.getPrice());
+		buffer.writeInt(_item.getItems().size());
 		for (PrimeShopItem item : _item.getItems())
 		{
-			writeInt(item.getId());
-			writeInt((int) item.getCount());
-			writeInt(item.getWeight());
-			writeInt(item.isTradable());
+			buffer.writeInt(item.getId());
+			buffer.writeInt((int) item.getCount());
+			buffer.writeInt(item.getWeight());
+			buffer.writeInt(item.isTradable());
 		}
-		writeLong(_charAdena);
-		writeLong(_charPoints);
-		writeLong(_charCoins); // Hero coins
+		buffer.writeLong(_charAdena);
+		buffer.writeLong(_charPoints);
+		buffer.writeLong(_charCoins); // Hero coins
 	}
 }

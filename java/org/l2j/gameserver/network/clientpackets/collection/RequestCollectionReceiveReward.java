@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,11 +16,32 @@
  */
 package org.l2j.gameserver.network.clientpackets.collection;
 
+import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.network.clientpackets.ClientPacket;
+import org.l2j.gameserver.network.serverpackets.collection.ExCollectionReceiveReward;
 
 /**
- * @author Berezkin Nikolay
+ * @author Mobius
  */
-public class RequestCollectionReceiveReward implements ClientPacket
+public class RequestCollectionReceiveReward extends ClientPacket
 {
+	private int _collectionId;
+	
+	@Override
+	protected void readImpl()
+	{
+		_collectionId = readShort();
+	}
+	
+	@Override
+	protected void runImpl()
+	{
+		final Player player = getClient().getPlayer();
+		if (player == null)
+		{
+			return;
+		}
+		
+		player.sendPacket(new ExCollectionReceiveReward(_collectionId, true));
+	}
 }

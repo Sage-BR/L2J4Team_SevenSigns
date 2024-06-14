@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/multisell.xsd">
+	<npcs>
+		<npc>-1</npc> <!-- Item Multisell -->
+	</npcs>
+	<!-- Selected Jewel Coupon - Sealed (97597) -->
+	<item>
+		<ingredient id="97597" count="8" /> <!-- Selected Jewel Coupon - Sealed -->
+		<production id="99977" count="1" /> <!-- Ruby Jewelry Box Lv. 1 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="97597" count="6" /> <!-- Selected Jewel Coupon - Sealed -->
+		<production id="99969" count="1" /> <!-- Diamond Jewelry Box Lv. 1 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="97597" count="5" /> <!-- Selected Jewel Coupon - Sealed -->
+		<production id="97598" count="1" /> <!-- Beryl Jewelry Box Lv. 1 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="97597" count="3" /> <!-- Selected Jewel Coupon - Sealed -->
+		<production id="97603" count="1" /> <!-- Onyx Jewelry Box Lv. 1 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="97597" count="3" /> <!-- Selected Jewel Coupon - Sealed -->
+		<production id="97608" count="1" /> <!-- Spinel Jewelry Box Lv. 1 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="97597" count="3" /> <!-- Selected Jewel Coupon - Sealed -->
+		<production id="97613" count="1" /> <!-- Zircon Jewelry Box Lv. 1 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="97597" count="2" /> <!-- Selected Jewel Coupon - Sealed -->
+		<production id="97618" count="1" /> <!-- Coral Jewelry Box Lv. 1 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="97597" count="2" /> <!-- Selected Jewel Coupon - Sealed -->
+		<production id="97623" count="1" /> <!-- Opal Jewelry Box Lv. 1 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="97597" count="1" /> <!-- Selected Jewel Coupon - Sealed -->
+		<production id="97628" count="1" /> <!-- Amber Jewelry Box Lv. 1 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="97597" count="1" /> <!-- Selected Jewel Coupon - Sealed -->
+		<production id="97633" count="1" /> <!-- Moonstone Jewelry Box Lv. 1 - Sealed -->
+	</item>
+</list>

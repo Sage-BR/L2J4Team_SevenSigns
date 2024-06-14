@@ -1,0 +1,53 @@
+/*
+ * This file is part of the L2J Mobius project.
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ */
+package org.l2jmobius.gameserver.network.serverpackets;
+
+import java.util.Map;
+import java.util.Map.Entry;
+
+import org.l2jmobius.commons.network.WritableBuffer;
+import org.l2jmobius.gameserver.instancemanager.events.ItemDeletionInfoManager;
+import org.l2jmobius.gameserver.network.GameClient;
+import org.l2jmobius.gameserver.network.ServerPackets;
+
+/**
+ * @author Index, Mobius
+ */
+public class ItemDeletionInfo extends ServerPacket
+{
+	public ItemDeletionInfo()
+	{
+	}
+	
+	@Override
+	public void writeImpl(GameClient client, WritableBuffer buffer)
+	{
+		ServerPackets.EX_ITEM_DELETION_INFO.writeId(this, buffer);
+		
+		// Items.
+		final Map<Integer, Integer> itemDates = ItemDeletionInfoManager.getInstance().getItemDates();
+		buffer.writeInt(itemDates.size());
+		for (Entry<Integer, Integer> info : itemDates.entrySet())
+		{
+			buffer.writeInt(info.getKey()); // item
+			buffer.writeInt(info.getValue()); // date
+		}
+		
+		// Skills.
+		buffer.writeInt(0);
+	}
+}

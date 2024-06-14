@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -653,8 +653,13 @@ public abstract class Summon extends Playable
 	public boolean useMagic(Skill skill, Item item, boolean forceUse, boolean dontMove)
 	{
 		// Null skill, dead summon or null owner are reasons to prevent casting.
+		if ((skill == null) || isDead() || (_owner == null))
+		{
+			return false;
+		}
+		
 		// Check if the skill is active
-		if ((skill == null) || isDead() || (_owner == null) || skill.isPassive())
+		if (skill.isPassive())
 		{
 			// just ignore the passive skill request. why does the client send it anyway ??
 			return false;
@@ -1003,7 +1008,12 @@ public abstract class Summon extends Playable
 	 */
 	public boolean canAttack(WorldObject target, boolean ctrlPressed)
 	{
-		if ((_owner == null) || (target == null) || (this == target) || (_owner == target))
+		if (_owner == null)
+		{
+			return false;
+		}
+		
+		if ((target == null) || (this == target) || (_owner == target))
 		{
 			return false;
 		}
@@ -1037,12 +1047,12 @@ public abstract class Summon extends Playable
 			return false;
 		}
 		
-		if (_owner.isSiegeFriend(target))
-		{
-			sendPacket(SystemMessageId.FORCE_ATTACK_IS_IMPOSSIBLE_AGAINST_A_TEMPORARY_ALLIED_MEMBER_DURING_A_SIEGE);
-			sendPacket(ActionFailed.STATIC_PACKET);
-			return false;
-		}
+		// if (_owner.isSiegeFriend(target))
+		// {
+		// sendPacket(SystemMessageId.FORCE_ATTACK_IS_IMPOSSIBLE_AGAINST_A_TEMPORARY_ALLIED_MEMBER_DURING_A_SIEGE);
+		// sendPacket(ActionFailed.STATIC_PACKET);
+		// return false;
+		// }
 		
 		if (!_owner.getAccessLevel().allowPeaceAttack() && _owner.isInsidePeaceZone(this, target))
 		{

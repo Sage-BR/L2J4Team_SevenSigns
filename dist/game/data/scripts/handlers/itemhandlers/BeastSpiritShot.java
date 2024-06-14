@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -100,7 +100,17 @@ public class BeastSpiritShot implements IItemHandler
 		}
 		
 		final long shotCount = item.getCount();
-		if ((shotCount < shotConsumption) || !activeOwner.destroyItemWithoutTrace("Consume", item.getObjectId(), shotConsumption, null, false))
+		if (shotCount < shotConsumption)
+		{
+			// Not enough SpiritShots to use.
+			if (!activeOwner.disableAutoShot(itemId))
+			{
+				activeOwner.sendPacket(SystemMessageId.YOU_DON_T_HAVE_ENOUGH_SPIRITSHOTS_FOR_THE_SERVITOR);
+			}
+			return false;
+		}
+		
+		if (!activeOwner.destroyItemWithoutTrace("Consume", item.getObjectId(), shotConsumption, null, false))
 		{
 			if (!activeOwner.disableAutoShot(itemId))
 			{

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/multisell.xsd">
+	<npcs>
+		<npc>-1</npc> <!-- Item Multisell -->
+	</npcs>
+	<!-- Boss' Accessory Fragment (Time-limited) - Sealed (94219) -->
+	<item>
+		<ingredient id="94219" count="124" /> <!-- Boss' Accessory Fragment (Time-limited) - Sealed -->
+		<production id="94386" count="1" /> <!-- Improved Scroll: Enchant Rare Accessories - Sealed -->
+	</item>
+	<item>
+		<ingredient id="94219" count="62" /> <!-- Boss' Accessory Fragment (Time-limited) - Sealed -->
+		<production id="94384" count="1" /> <!-- Scroll: Enchant Rare Accessories - Sealed -->
+	</item>
+	<item>
+		<ingredient id="94219" count="130" /> <!-- Boss' Accessory Fragment (Time-limited) - Sealed -->
+		<production id="95330" count="1" /> <!-- Baium's Ring - Sealed -->
+	</item>
+	<item>
+		<ingredient id="94219" count="105" /> <!-- Boss' Accessory Fragment (Time-limited) - Sealed -->
+		<production id="97074" count="1" /> <!-- Beleth' Ring - Sealed -->
+	</item>
+	<item>
+		<ingredient id="94219" count="80" /> <!-- Boss' Accessory Fragment (Time-limited) - Sealed -->
+		<production id="95331" count="1" /> <!-- Zaken's Earring - Sealed -->
+	</item>
+	<item>
+		<ingredient id="94219" count="1" /> <!-- Boss' Accessory Fragment (Time-limited) - Sealed -->
+		<production id="94218" count="1" /> <!-- Shining Accessory Pack (Time-limited) - Sealed -->
+	</item>
+</list>

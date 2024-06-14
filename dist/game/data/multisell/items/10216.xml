@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/multisell.xsd">
+	<npcs>
+		<npc>-1</npc> <!-- Item Multisell -->
+	</npcs>
+	<!-- Master's Book Coupon - Sealed (98075) -->
+	<item>
+		<ingredient id="98075" count="1" /> <!-- Master's Book Coupon - Sealed -->
+		<production id="95769" count="1" /> <!-- Master's Book: Berserker Spirit - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98075" count="1" /> <!-- Master's Book Coupon - Sealed -->
+		<production id="95517" count="1" /> <!-- Master's Book: Might - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98075" count="1" /> <!-- Master's Book Coupon - Sealed -->
+		<production id="95518" count="1" /> <!-- Master's Book: Shield - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98075" count="1" /> <!-- Master's Book Coupon - Sealed -->
+		<production id="95533" count="1" /> <!-- Master's Book: Empower - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98075" count="1" /> <!-- Master's Book Coupon - Sealed -->
+		<production id="95534" count="1" /> <!-- Master's Book: Magic Barrier - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98075" count="1" /> <!-- Master's Book Coupon - Sealed -->
+		<production id="95535" count="1" /> <!-- Master's Book: Focus - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98075" count="1" /> <!-- Master's Book Coupon - Sealed -->
+		<production id="95536" count="1" /> <!-- Master's Book: Death Whisper - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98075" count="1" /> <!-- Master's Book Coupon - Sealed -->
+		<production id="95537" count="1" /> <!-- Master's Book: Wind Walk - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98075" count="1" /> <!-- Master's Book Coupon - Sealed -->
+		<production id="95770" count="1" /> <!-- Master's Book: Clarity - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98075" count="1" /> <!-- Master's Book Coupon - Sealed -->
+		<production id="95771" count="1" /> <!-- Master's Book: Wild Magic - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98075" count="1" /> <!-- Master's Book Coupon - Sealed -->
+		<production id="95538" count="1" /> <!-- Master's Book: Haste - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98075" count="1" /> <!-- Master's Book Coupon - Sealed -->
+		<production id="95539" count="1" /> <!-- Master's Book: Acumen - Sealed -->
+	</item>
+</list>

@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,6 +18,7 @@ package org.l2j.gameserver.network.serverpackets;
 
 import static org.l2j.gameserver.data.xml.MultisellData.PAGE_SIZE;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.data.xml.ItemData;
 import org.l2j.gameserver.model.ItemInfo;
 import org.l2j.gameserver.model.actor.Player;
@@ -26,6 +27,7 @@ import org.l2j.gameserver.model.holders.MultisellEntryHolder;
 import org.l2j.gameserver.model.holders.PreparedMultisellListHolder;
 import org.l2j.gameserver.model.item.ItemTemplate;
 import org.l2j.gameserver.model.item.instance.Item;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 
 public class MultiSellList extends AbstractItemPacket
@@ -61,19 +63,19 @@ public class MultiSellList extends AbstractItemPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.MULTI_SELL_LIST.writeId(this);
-		writeByte(0); // Helios
-		writeInt(_list.getId()); // list id
-		writeByte(_type); // 196?
-		writeInt(1 + (_index / PAGE_SIZE)); // page started from 1
-		writeInt(_finished); // finished
-		writeInt(PAGE_SIZE); // size of pages
-		writeInt(_size); // list length
-		writeByte(0); // Grand Crusade
-		writeByte(_list.isChanceMultisell()); // new multisell window
-		writeInt(32); // Helios - Always 32
+		ServerPackets.MULTI_SELL_LIST.writeId(this, buffer);
+		buffer.writeByte(0); // Helios
+		buffer.writeInt(_list.getId()); // list id
+		buffer.writeByte(_type); // 196?
+		buffer.writeInt(1 + (_index / PAGE_SIZE)); // page started from 1
+		buffer.writeInt(_finished); // finished
+		buffer.writeInt(PAGE_SIZE); // size of pages
+		buffer.writeInt(_size); // list length
+		buffer.writeByte(0); // Grand Crusade
+		buffer.writeByte(_list.isChanceMultisell()); // new multisell window
+		buffer.writeInt(32); // Helios - Always 32
 		while (_size-- > 0)
 		{
 			ItemInfo itemEnchantment = _list.getItemEnchantment(_index);
@@ -90,39 +92,39 @@ public class MultiSellList extends AbstractItemPacket
 					}
 				}
 			}
-			writeInt(_index); // Entry ID. Start from 1.
-			writeByte(entry.isStackable());
+			buffer.writeInt(_index); // Entry ID. Start from 1.
+			buffer.writeByte(entry.isStackable());
 			// Those values will be passed down to MultiSellChoose packet.
-			writeShort(itemEnchantment != null ? itemEnchantment.getEnchantLevel() : 0); // enchant level
-			writeItemAugment(itemEnchantment);
-			writeItemElemental(itemEnchantment);
-			writeItemEnsoulOptions(itemEnchantment);
-			writeByte(0); // 286
-			writeShort(entry.getProducts().size());
-			writeShort(entry.getIngredients().size());
+			buffer.writeShort(itemEnchantment != null ? itemEnchantment.getEnchantLevel() : 0); // enchant level
+			writeItemAugment(itemEnchantment, buffer);
+			writeItemElemental(itemEnchantment, buffer);
+			writeItemEnsoulOptions(itemEnchantment, buffer);
+			buffer.writeByte(0); // 286
+			buffer.writeShort(entry.getProducts().size());
+			buffer.writeShort(entry.getIngredients().size());
 			for (ItemChanceHolder product : entry.getProducts())
 			{
 				final ItemTemplate template = ItemData.getInstance().getTemplate(product.getId());
 				final ItemInfo displayItemEnchantment = _list.isMaintainEnchantment() && (itemEnchantment != null) && (template != null) && template.getClass().equals(itemEnchantment.getItem().getClass()) ? itemEnchantment : null;
 				if (template != null)
 				{
-					writeInt(template.getDisplayId());
-					writeLong(template.getBodyPart());
-					writeShort(template.getType2());
+					buffer.writeInt(template.getDisplayId());
+					buffer.writeLong(template.getBodyPart());
+					buffer.writeShort(template.getType2());
 				}
 				else
 				{
-					writeInt(product.getId());
-					writeLong(0);
-					writeShort(65535);
+					buffer.writeInt(product.getId());
+					buffer.writeLong(0);
+					buffer.writeShort(65535);
 				}
-				writeLong(_list.getProductCount(product));
-				writeShort(product.getEnchantmentLevel() > 0 ? product.getEnchantmentLevel() : displayItemEnchantment != null ? displayItemEnchantment.getEnchantLevel() : 0); // enchant level
-				writeInt((int) (product.getChance() * 1000000)); // chance
-				writeItemAugment(displayItemEnchantment);
-				writeItemElemental(displayItemEnchantment);
-				writeItemEnsoulOptions(displayItemEnchantment);
-				writeByte(0); // 286
+				buffer.writeLong(_list.getProductCount(product));
+				buffer.writeShort(product.getEnchantmentLevel() > 0 ? product.getEnchantmentLevel() : displayItemEnchantment != null ? displayItemEnchantment.getEnchantLevel() : 0); // enchant level
+				buffer.writeInt((int) (product.getChance() * 1000000)); // chance
+				writeItemAugment(displayItemEnchantment, buffer);
+				writeItemElemental(displayItemEnchantment, buffer);
+				writeItemEnsoulOptions(displayItemEnchantment, buffer);
+				buffer.writeByte(0); // 286
 			}
 			for (ItemChanceHolder ingredient : entry.getIngredients())
 			{
@@ -130,20 +132,20 @@ public class MultiSellList extends AbstractItemPacket
 				final ItemInfo displayItemEnchantment = (itemEnchantment != null) && (template != null) && template.getClass().equals(itemEnchantment.getItem().getClass()) ? itemEnchantment : null;
 				if (template != null)
 				{
-					writeInt(template.getDisplayId());
-					writeShort(template.getType2());
+					buffer.writeInt(template.getDisplayId());
+					buffer.writeShort(template.getType2());
 				}
 				else
 				{
-					writeInt(ingredient.getId());
-					writeShort(65535);
+					buffer.writeInt(ingredient.getId());
+					buffer.writeShort(65535);
 				}
-				writeLong(_list.getIngredientCount(ingredient));
-				writeShort(ingredient.getEnchantmentLevel() > 0 ? ingredient.getEnchantmentLevel() : displayItemEnchantment != null ? displayItemEnchantment.getEnchantLevel() : 0); // enchant level
-				writeItemAugment(displayItemEnchantment);
-				writeItemElemental(displayItemEnchantment);
-				writeItemEnsoulOptions(displayItemEnchantment);
-				writeByte(0); // 286
+				buffer.writeLong(_list.getIngredientCount(ingredient));
+				buffer.writeShort(ingredient.getEnchantmentLevel() > 0 ? ingredient.getEnchantmentLevel() : displayItemEnchantment != null ? displayItemEnchantment.getEnchantLevel() : 0); // enchant level
+				writeItemAugment(displayItemEnchantment, buffer);
+				writeItemElemental(displayItemEnchantment, buffer);
+				writeItemEnsoulOptions(displayItemEnchantment, buffer);
+				buffer.writeByte(0); // 286
 			}
 		}
 	}

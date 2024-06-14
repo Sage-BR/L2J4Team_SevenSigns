@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,7 +16,9 @@
  */
 package org.l2j.gameserver.network.serverpackets;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.model.actor.Player;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 
 /**
@@ -51,15 +53,15 @@ public class ExCubeGameExtendedChangePoints extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_BLOCK_UP_SET_STATE.writeId(this);
-		writeInt(0);
-		writeInt(_timeLeft);
-		writeInt(_bluePoints);
-		writeInt(_redPoints);
-		writeInt(_isRedTeam);
-		writeInt(_player.getObjectId());
-		writeInt(_playerPoints);
+		ServerPackets.EX_BLOCK_UP_SET_STATE.writeId(this, buffer);
+		buffer.writeInt(0);
+		buffer.writeInt(_timeLeft);
+		buffer.writeInt(_bluePoints);
+		buffer.writeInt(_redPoints);
+		buffer.writeInt(_isRedTeam);
+		buffer.writeInt(_player.getObjectId());
+		buffer.writeInt(_playerPoints);
 	}
 }

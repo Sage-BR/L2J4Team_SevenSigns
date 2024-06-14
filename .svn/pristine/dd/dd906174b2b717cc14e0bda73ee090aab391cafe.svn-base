@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/teleporterData.xsd">
+	<npc id="34143">
+		<teleport type="OTHER">
+			<location x="131435" y="24184" z="-3728" /> <!-- Plains of Glory (south) -->
+			<location x="139103" y="-575" z="-4240" /> <!-- Plains of Glory (north) -->
+			<location x="132390" y="12644" z="-4040" /> <!-- Plains of Glory (west) -->
+		</teleport>
+	</npc>
+</list>

@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -35,14 +35,23 @@ public class ThreadPool
 {
 	private static final Logger LOGGER = Logger.getLogger(ThreadPool.class.getName());
 	
-	private static final ScheduledThreadPoolExecutor SCHEDULED_POOL = new ScheduledThreadPoolExecutor(Config.SCHEDULED_THREAD_POOL_SIZE, new ThreadProvider("L2J4TeamScheduledThread"), new ThreadPoolExecutor.CallerRunsPolicy());
-	private static final ThreadPoolExecutor INSTANT_POOL = new ThreadPoolExecutor(Config.INSTANT_THREAD_POOL_SIZE, Integer.MAX_VALUE, 1, TimeUnit.MINUTES, new LinkedBlockingQueue<>(), new ThreadProvider("L2J4TeamThread"));
+	private static final ScheduledThreadPoolExecutor SCHEDULED_POOL = new ScheduledThreadPoolExecutor(Config.SCHEDULED_THREAD_POOL_SIZE, new ThreadProvider("L2j4Team ScheduledThread"), new ThreadPoolExecutor.CallerRunsPolicy());
+	private static final ThreadPoolExecutor INSTANT_POOL = new ThreadPoolExecutor(Config.INSTANT_THREAD_POOL_SIZE, Integer.MAX_VALUE, 1, TimeUnit.MINUTES, new LinkedBlockingQueue<>(), new ThreadProvider("L2j4Team Thread"));
 	private static final long MAX_DELAY = 3155695200000L; // One hundred years.
 	private static final long MIN_DELAY = 0L;
+	
+	private static ScheduledThreadPoolExecutor HIGH_PRIORITY_SCHEDULED_POOL;
 	
 	public static void init()
 	{
 		LOGGER.info("ThreadPool: Initialized");
+		
+		// Configure High Priority ScheduledThreadPoolExecutor.
+		if (Config.HIGH_PRIORITY_SCHEDULED_THREAD_POOL_SIZE > 0)
+		{
+			HIGH_PRIORITY_SCHEDULED_POOL = new ScheduledThreadPoolExecutor(Config.HIGH_PRIORITY_SCHEDULED_THREAD_POOL_SIZE, new ThreadProvider("L2j4Team High Priority ScheduledThread", ThreadPriority.PRIORITY_8), new ThreadPoolExecutor.CallerRunsPolicy());
+			LOGGER.info("...scheduled pool executor with " + Config.HIGH_PRIORITY_SCHEDULED_THREAD_POOL_SIZE + " high priority threads.");
+		}
 		
 		// Configure ScheduledThreadPoolExecutor.
 		SCHEDULED_POOL.setRejectedExecutionHandler(new RejectedExecutionHandlerImpl());
@@ -81,7 +90,7 @@ public class ThreadPool
 		}
 		catch (Exception e)
 		{
-			LOGGER.warning(runnable.getClass().getSimpleName() + Config.EOL + e.getMessage() + Config.EOL + e.getStackTrace());
+			LOGGER.warning(runnable.getClass().getSimpleName() + System.lineSeparator() + e.getMessage() + System.lineSeparator() + e.getStackTrace());
 			return null;
 		}
 	}
@@ -101,7 +110,27 @@ public class ThreadPool
 		}
 		catch (Exception e)
 		{
-			LOGGER.warning(runnable.getClass().getSimpleName() + Config.EOL + e.getMessage() + Config.EOL + e.getStackTrace());
+			LOGGER.warning(runnable.getClass().getSimpleName() + System.lineSeparator() + e.getMessage() + System.lineSeparator() + e.getStackTrace());
+			return null;
+		}
+	}
+	
+	/**
+	 * Creates and executes a periodic action that becomes enabled first after the given initial delay, using a high priority scheduled thread pool. This method is similar to scheduleAtFixedRate but is designed for tasks requiring more immediate or high-priority execution.
+	 * @param runnable : the task to execute.
+	 * @param initialDelay : the time to delay first execution.
+	 * @param period : the period between successive executions.
+	 * @return a ScheduledFuture representing pending completion of the task and whose get() method will throw an exception upon cancellation.
+	 */
+	public static ScheduledFuture<?> schedulePriorityTaskAtFixedRate(Runnable runnable, long initialDelay, long period)
+	{
+		try
+		{
+			return HIGH_PRIORITY_SCHEDULED_POOL.scheduleAtFixedRate(new RunnableWrapper(runnable), validate(initialDelay), validate(period), TimeUnit.MILLISECONDS);
+		}
+		catch (Exception e)
+		{
+			LOGGER.warning(runnable.getClass().getSimpleName() + System.lineSeparator() + e.getMessage() + System.lineSeparator() + e.getStackTrace());
 			return null;
 		}
 	}
@@ -118,7 +147,7 @@ public class ThreadPool
 		}
 		catch (Exception e)
 		{
-			LOGGER.warning(runnable.getClass().getSimpleName() + Config.EOL + e.getMessage() + Config.EOL + e.getStackTrace());
+			LOGGER.warning(runnable.getClass().getSimpleName() + System.lineSeparator() + e.getMessage() + System.lineSeparator() + e.getStackTrace());
 		}
 	}
 	
@@ -141,33 +170,6 @@ public class ThreadPool
 			return MAX_DELAY;
 		}
 		return delay;
-	}
-	
-	public static String[] getStats()
-	{
-		final String[] stats = new String[20];
-		int pos = 0;
-		stats[pos++] = "Scheduled pool:";
-		stats[pos++] = " |- ActiveCount: ...... " + SCHEDULED_POOL.getActiveCount();
-		stats[pos++] = " |- CorePoolSize: ..... " + SCHEDULED_POOL.getCorePoolSize();
-		stats[pos++] = " |- PoolSize: ......... " + SCHEDULED_POOL.getPoolSize();
-		stats[pos++] = " |- LargestPoolSize: .. " + SCHEDULED_POOL.getLargestPoolSize();
-		stats[pos++] = " |- MaximumPoolSize: .. " + SCHEDULED_POOL.getMaximumPoolSize();
-		stats[pos++] = " |- CompletedTaskCount: " + SCHEDULED_POOL.getCompletedTaskCount();
-		stats[pos++] = " |- QueuedTaskCount: .. " + SCHEDULED_POOL.getQueue().size();
-		stats[pos++] = " |- TaskCount: ........ " + SCHEDULED_POOL.getTaskCount();
-		stats[pos++] = " | -------";
-		stats[pos++] = "Instant pool:";
-		stats[pos++] = " |- ActiveCount: ...... " + INSTANT_POOL.getActiveCount();
-		stats[pos++] = " |- CorePoolSize: ..... " + INSTANT_POOL.getCorePoolSize();
-		stats[pos++] = " |- PoolSize: ......... " + INSTANT_POOL.getPoolSize();
-		stats[pos++] = " |- LargestPoolSize: .. " + INSTANT_POOL.getLargestPoolSize();
-		stats[pos++] = " |- MaximumPoolSize: .. " + INSTANT_POOL.getMaximumPoolSize();
-		stats[pos++] = " |- CompletedTaskCount: " + INSTANT_POOL.getCompletedTaskCount();
-		stats[pos++] = " |- QueuedTaskCount: .. " + INSTANT_POOL.getQueue().size();
-		stats[pos++] = " |- TaskCount: ........ " + INSTANT_POOL.getTaskCount();
-		stats[pos] = " | -------";
-		return stats;
 	}
 	
 	/**

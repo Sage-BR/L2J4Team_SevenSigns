@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,7 +16,9 @@
  */
 package org.l2j.gameserver.network.serverpackets;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.model.actor.Summon;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 
 /**
@@ -32,11 +34,11 @@ public class ExPartyPetWindowDelete extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_PARTY_PET_WINDOW_DELETE.writeId(this);
-		writeInt(_summon.getObjectId());
-		writeByte(_summon.getSummonType());
-		writeInt(_summon.getOwner().getObjectId());
+		ServerPackets.EX_PARTY_PET_WINDOW_DELETE.writeId(this, buffer);
+		buffer.writeInt(_summon.getObjectId());
+		buffer.writeByte(_summon.getSummonType());
+		buffer.writeInt(_summon.getOwner().getObjectId());
 	}
 }

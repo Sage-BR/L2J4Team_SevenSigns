@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/multisell.xsd">
+	<npcs>
+		<npc>-1</npc> <!-- Item Multisell -->
+	</npcs>
+	<!-- +5 Special Armor Coupon (Sealed) (Time-limited) (100414) -->
+	<item>
+		<ingredient id="100414" count="1" /> <!-- +5 Special Armor Coupon (Sealed) (Time-limited) -->
+		<production id="96307" count="1" /> <!-- Package: +5 Leather Armor of Lightning - Sealed -->
+	</item>
+	<item>
+		<ingredient id="100414" count="1" /> <!-- +5 Special Armor Coupon (Sealed) (Time-limited) -->
+		<production id="96308" count="1" /> <!-- Package: +5 Leather Leggings of Lightning - Sealed -->
+	</item>
+	<item>
+		<ingredient id="100414" count="1" /> <!-- +5 Special Armor Coupon (Sealed) (Time-limited) -->
+		<production id="96309" count="1" /> <!-- Package: +5 Ice Crystal Breastplate - Sealed -->
+	</item>
+	<item>
+		<ingredient id="100414" count="1" /> <!-- +5 Special Armor Coupon (Sealed) (Time-limited) -->
+		<production id="96310" count="1" /> <!-- Package: +5 Ice Crystal Gaiters - Sealed -->
+	</item>
+	<item>
+		<ingredient id="100414" count="1" /> <!-- +5 Special Armor Coupon (Sealed) (Time-limited) -->
+		<production id="96311" count="1" /> <!-- Package: +5 Flaming Tunic - Sealed -->
+	</item>
+	<item>
+		<ingredient id="100414" count="1" /> <!-- +5 Special Armor Coupon (Sealed) (Time-limited) -->
+		<production id="96312" count="1" /> <!-- Package: +5 Flaming Stockings - Sealed -->
+	</item>
+	<item>
+		<ingredient id="100414" count="1" /> <!-- +5 Special Armor Coupon (Sealed) (Time-limited) -->
+		<production id="96313" count="1" /> <!-- Package: +5 Helmet of Mana - Sealed -->
+	</item>
+	<item>
+		<ingredient id="100414" count="1" /> <!-- +5 Special Armor Coupon (Sealed) (Time-limited) -->
+		<production id="96314" count="1" /> <!-- Package: +5 Boots of Evasion - Sealed -->
+	</item>
+	<item>
+		<ingredient id="100414" count="1" /> <!-- +5 Special Armor Coupon (Sealed) (Time-limited) -->
+		<production id="96315" count="1" /> <!-- Package: +5 Stun Gauntlets - Sealed -->
+	</item>
+</list>

@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -24,11 +24,17 @@ import org.l2j.gameserver.network.serverpackets.Ex2ndPasswordCheck;
  * Format: (ch)
  * @author mrTJO
  */
-public class RequestEx2ndPasswordCheck implements ClientPacket
+public class RequestEx2ndPasswordCheck extends ClientPacket
 {
 	@Override
-	public void run(GameClient client)
+	protected void readImpl()
 	{
+	}
+	
+	@Override
+	protected void runImpl()
+	{
+		final GameClient client = getClient();
 		if (!SecondaryAuthData.getInstance().isEnabled() || client.getSecondaryAuth().isAuthed())
 		{
 			client.sendPacket(new Ex2ndPasswordCheck(Ex2ndPasswordCheck.PASSWORD_OK));

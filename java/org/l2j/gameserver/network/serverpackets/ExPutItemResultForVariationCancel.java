@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,7 +16,9 @@
  */
 package org.l2j.gameserver.network.serverpackets;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.model.item.instance.Item;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 
 public class ExPutItemResultForVariationCancel extends ServerPacket
@@ -37,14 +39,14 @@ public class ExPutItemResultForVariationCancel extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_PUT_ITEM_RESULT_FOR_VARIATION_CANCEL.writeId(this);
-		writeInt(_itemObjId);
-		writeInt(_itemId);
-		writeInt(_itemAug1);
-		writeInt(_itemAug2);
-		writeLong(_price);
-		writeInt(1);
+		ServerPackets.EX_PUT_ITEM_RESULT_FOR_VARIATION_CANCEL.writeId(this, buffer);
+		buffer.writeInt(_itemObjId);
+		buffer.writeInt(_itemId);
+		buffer.writeInt(_itemAug1);
+		buffer.writeInt(_itemAug2);
+		buffer.writeLong(_price);
+		buffer.writeInt(1);
 	}
 }

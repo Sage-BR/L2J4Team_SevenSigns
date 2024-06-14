@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,7 +22,6 @@ import java.io.LineNumberReader;
 import java.sql.SQLException;
 import java.util.Map.Entry;
 
-import org.l2j.Config;
 import org.l2j.loginserver.GameServerTable;
 
 public class GameServerRegister extends BaseGameServerRegister
@@ -56,7 +55,7 @@ public class GameServerRegister extends BaseGameServerRegister
 		{
 			hr();
 			System.out.println("GSRegister");
-			System.out.println(Config.EOL);
+			System.out.println(System.lineSeparator());
 			System.out.println("1 - Register GameServer");
 			System.out.println("2 - List GameServers Names and IDs");
 			System.out.println("3 - Remove GameServer");
@@ -101,14 +100,14 @@ public class GameServerRegister extends BaseGameServerRegister
 						}
 						default:
 						{
-							System.out.printf("Invalid Choice: %s" + Config.EOL, choice);
+							System.out.printf("Invalid Choice: %s" + System.lineSeparator(), choice);
 							choiceOk = false;
 						}
 					}
 				}
 				catch (NumberFormatException nfe)
 				{
-					System.out.printf("Invalid Choice: %s" + Config.EOL, choice);
+					System.out.printf("Invalid Choice: %s" + System.lineSeparator(), choice);
 				}
 			}
 			while (!choiceOk);
@@ -120,7 +119,7 @@ public class GameServerRegister extends BaseGameServerRegister
 	 */
 	private void hr()
 	{
-		System.out.println("_____________________________________________________" + Config.EOL);
+		System.out.println("_____________________________________________________" + System.lineSeparator());
 	}
 	
 	/**
@@ -222,7 +221,7 @@ public class GameServerRegister extends BaseGameServerRegister
 				}
 				else
 				{
-					System.out.printf("Invalid Choice: %s" + Config.EOL, choice);
+					System.out.printf("Invalid Choice: %s" + System.lineSeparator(), choice);
 				}
 			}
 		}
@@ -247,7 +246,7 @@ public class GameServerRegister extends BaseGameServerRegister
 			}
 			catch (NumberFormatException e)
 			{
-				System.out.printf("Invalid Choice: %s" + Config.EOL, line);
+				System.out.printf("Invalid Choice: %s" + System.lineSeparator(), line);
 			}
 		}
 		while (id == Integer.MIN_VALUE);
@@ -255,15 +254,15 @@ public class GameServerRegister extends BaseGameServerRegister
 		final String name = GameServerTable.getInstance().getServerNameById(id);
 		if (name == null)
 		{
-			System.out.printf("No name for ID: %d" + Config.EOL, id);
+			System.out.printf("No name for ID: %d" + System.lineSeparator(), id);
 		}
 		else if (GameServerTable.getInstance().hasRegisteredGameServerOnId(id))
 		{
-			System.out.printf("Are you sure you want to remove GameServer %d - %s?" + Config.EOL, id, name);
+			System.out.printf("Are you sure you want to remove GameServer %d - %s?" + System.lineSeparator(), id, name);
 			try
 			{
 				BaseGameServerRegister.unregisterGameServer(id);
-				System.out.printf("GameServer ID: %d was successfully removed from LoginServer." + Config.EOL, id);
+				System.out.printf("GameServer ID: %d was successfully removed from LoginServer." + System.lineSeparator(), id);
 			}
 			catch (SQLException e)
 			{
@@ -272,7 +271,7 @@ public class GameServerRegister extends BaseGameServerRegister
 		}
 		else
 		{
-			System.out.printf("No GameServer is registered on ID: %d" + Config.EOL, id);
+			System.out.printf("No GameServer is registered on ID: %d" + System.lineSeparator(), id);
 		}
 	}
 	
@@ -291,14 +290,14 @@ public class GameServerRegister extends BaseGameServerRegister
 			}
 			catch (NumberFormatException e)
 			{
-				System.out.printf("Invalid Choice: %s" + Config.EOL, line);
+				System.out.printf("Invalid Choice: %s" + System.lineSeparator(), line);
 			}
 		}
 		while (id == Integer.MIN_VALUE);
 		
 		if (GameServerTable.getInstance().getServerNameById(id) == null)
 		{
-			System.out.printf("No name for ID: %d" + Config.EOL, id);
+			System.out.printf("No name for ID: %d" + System.lineSeparator(), id);
 		}
 		else if (GameServerTable.getInstance().hasRegisteredGameServerOnId(id))
 		{
@@ -320,6 +319,6 @@ public class GameServerRegister extends BaseGameServerRegister
 	@Override
 	public void showError(String msg, Throwable t)
 	{
-		System.out.println("Error: " + msg + Config.EOL + "Reason: " + t.getMessage());
+		System.out.println("Error: " + msg + System.lineSeparator() + "Reason: " + t.getMessage());
 	}
 }

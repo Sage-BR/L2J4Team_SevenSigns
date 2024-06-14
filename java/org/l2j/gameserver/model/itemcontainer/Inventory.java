@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -42,7 +42,6 @@ import org.l2j.gameserver.data.xml.ItemData;
 import org.l2j.gameserver.enums.ItemLocation;
 import org.l2j.gameserver.enums.ItemSkillType;
 import org.l2j.gameserver.enums.PlayerCondOverride;
-import org.l2j.gameserver.enums.PrivateStoreType;
 import org.l2j.gameserver.enums.SkillFinishType;
 import org.l2j.gameserver.model.ArmorSet;
 import org.l2j.gameserver.model.VariationInstance;
@@ -92,6 +91,7 @@ public abstract class Inventory extends ItemContainer
 	public static final int ELCYUM_CRYSTAL_ID = 36514;
 	public static final int LCOIN_ID = 91663;
 	public static final long MAX_ADENA = Config.MAX_ADENA;
+	public static final int CLAN_EXP = 94481;
 	public static final int SP_POUCH = 98232;
 	public static final int SP_POINTS = 15624;
 	
@@ -593,7 +593,12 @@ public abstract class Inventory extends ItemContainer
 				{
 					for (ItemSkillHolder holder : onEnchantSkills)
 					{
-						if ((playable.getSkillLevel(holder.getSkillId()) >= holder.getSkillLevel()) || (item.getEnchantLevel() < holder.getValue()))
+						if (playable.getSkillLevel(holder.getSkillId()) >= holder.getSkillLevel())
+						{
+							continue;
+						}
+						
+						if (item.getEnchantLevel() < holder.getValue())
 						{
 							continue;
 						}
@@ -639,7 +644,12 @@ public abstract class Inventory extends ItemContainer
 					{
 						for (ItemSkillHolder holder : onBlessingSkills)
 						{
-							if ((playable.getSkillLevel(holder.getSkillId()) >= holder.getSkillLevel()) || (item.getEnchantLevel() < holder.getValue()))
+							if (playable.getSkillLevel(holder.getSkillId()) >= holder.getSkillLevel())
+							{
+								continue;
+							}
+							
+							if (item.getEnchantLevel() < holder.getValue())
 							{
 								continue;
 							}
@@ -683,8 +693,13 @@ public abstract class Inventory extends ItemContainer
 						}
 						
 						final Skill skill = holder.getSkill();
+						if (skill == null)
+						{
+							continue;
+						}
+						
 						// Check passive skill conditions.
-						if ((skill == null) || (skill.isPassive() && !skill.checkConditions(SkillConditionScope.PASSIVE, playable, playable)))
+						if (skill.isPassive() && !skill.checkConditions(SkillConditionScope.PASSIVE, playable, playable))
 						{
 							continue;
 						}
@@ -745,7 +760,12 @@ public abstract class Inventory extends ItemContainer
 				{
 					for (ItemSkillHolder holder : otherEnchantSkills)
 					{
-						if ((playable.getSkillLevel(holder.getSkillId()) >= holder.getSkillLevel()) || (equipped.getEnchantLevel() < holder.getValue()))
+						if (playable.getSkillLevel(holder.getSkillId()) >= holder.getSkillLevel())
+						{
+							continue;
+						}
+						
+						if (equipped.getEnchantLevel() < holder.getValue())
 						{
 							continue;
 						}
@@ -796,8 +816,13 @@ public abstract class Inventory extends ItemContainer
 						if (equipped.isBlessed())
 						{
 							final Skill skill = holder.getSkill();
+							if (skill == null)
+							{
+								continue;
+							}
+							
 							// Check passive skill conditions.
-							if ((skill == null) || (skill.isPassive() && !skill.checkConditions(SkillConditionScope.PASSIVE, playable, playable)))
+							if (skill.isPassive() && !skill.checkConditions(SkillConditionScope.PASSIVE, playable, playable))
 							{
 								continue;
 							}
@@ -896,7 +921,7 @@ public abstract class Inventory extends ItemContainer
 		
 		private static boolean applySkills(Playable playable, Item item, ArmorSet armorSet, Function<Item, Integer> idProvider)
 		{
-			final long piecesCount = armorSet.getPiecesCount(playable, idProvider);
+			final long piecesCount = armorSet.getPieceCount(playable, idProvider);
 			if (piecesCount >= armorSet.getMinimumPieces())
 			{
 				// Applying all skills that matching the conditions
@@ -1521,8 +1546,18 @@ public abstract class Inventory extends ItemContainer
 		final Item item = _paperdoll[slot];
 		if (item != null)
 		{
+			if (Config.ENABLE_TRANSMOG)
+			{
+				final int transmogId = item.getTransmogId();
+				if (transmogId > 0)
+				{
+					return transmogId;
+				}
+			}
+			
 			return item.getId();
 		}
+		
 		return 0;
 	}
 	
@@ -1534,7 +1569,21 @@ public abstract class Inventory extends ItemContainer
 	public int getPaperdollItemDisplayId(int slot)
 	{
 		final Item item = _paperdoll[slot];
-		return (item != null) ? item.getDisplayId() : 0;
+		if (item != null)
+		{
+			if (Config.ENABLE_TRANSMOG)
+			{
+				final int transmogId = item.getTransmogId();
+				if (transmogId > 0)
+				{
+					return transmogId;
+				}
+			}
+			
+			return item.getDisplayId();
+		}
+		
+		return 0;
 	}
 	
 	/**
@@ -1595,6 +1644,7 @@ public abstract class Inventory extends ItemContainer
 	 */
 	public synchronized Item setPaperdollItem(int slot, Item item)
 	{
+		final Creature owner = getOwner();
 		final Item old = _paperdoll[slot];
 		if (old != item)
 		{
@@ -1632,25 +1682,26 @@ public abstract class Inventory extends ItemContainer
 				old.updateDatabase();
 				
 				// Remove agathion skills.
-				if ((slot >= PAPERDOLL_AGATHION1) && (slot <= PAPERDOLL_AGATHION5) && getOwner().isPlayer())
+				if ((slot >= PAPERDOLL_AGATHION1) && (slot <= PAPERDOLL_AGATHION5) && owner.isPlayer())
 				{
 					final AgathionSkillHolder agathionSkills = AgathionData.getInstance().getSkills(old.getId());
 					if (agathionSkills != null)
 					{
 						boolean update = false;
+						final Player player = owner.getActingPlayer();
 						for (Skill skill : agathionSkills.getMainSkills(old.getEnchantLevel()))
 						{
-							getOwner().getActingPlayer().removeSkill(skill, false, skill.isPassive());
+							player.removeSkill(skill, false, skill.isPassive());
 							update = true;
 						}
 						for (Skill skill : agathionSkills.getSubSkills(old.getEnchantLevel()))
 						{
-							getOwner().getActingPlayer().removeSkill(skill, false, skill.isPassive());
+							player.removeSkill(skill, false, skill.isPassive());
 							update = true;
 						}
 						if (update)
 						{
-							getOwner().getActingPlayer().sendSkillList();
+							player.sendSkillList();
 						}
 					}
 				}
@@ -1680,57 +1731,70 @@ public abstract class Inventory extends ItemContainer
 				item.updateDatabase();
 				
 				// Add agathion skills.
-				if ((slot >= PAPERDOLL_AGATHION1) && (slot <= PAPERDOLL_AGATHION5) && getOwner().isPlayer())
+				if ((slot >= PAPERDOLL_AGATHION1) && (slot <= PAPERDOLL_AGATHION5) && owner.isPlayer())
 				{
 					final AgathionSkillHolder agathionSkills = AgathionData.getInstance().getSkills(item.getId());
 					if (agathionSkills != null)
 					{
 						boolean update = false;
+						final Player player = owner.getActingPlayer();
 						if (slot == PAPERDOLL_AGATHION1)
 						{
 							for (Skill skill : agathionSkills.getMainSkills(item.getEnchantLevel()))
 							{
-								if (skill.isPassive() && !skill.checkConditions(SkillConditionScope.PASSIVE, getOwner().getActingPlayer(), getOwner().getActingPlayer()))
+								if (skill.isPassive() && !skill.checkConditions(SkillConditionScope.PASSIVE, player, player))
 								{
 									continue;
 								}
-								getOwner().getActingPlayer().addSkill(skill, false);
+								player.addSkill(skill, false);
 								update = true;
 							}
 						}
 						for (Skill skill : agathionSkills.getSubSkills(item.getEnchantLevel()))
 						{
-							if (skill.isPassive() && !skill.checkConditions(SkillConditionScope.PASSIVE, getOwner().getActingPlayer(), getOwner().getActingPlayer()))
+							if (skill.isPassive() && !skill.checkConditions(SkillConditionScope.PASSIVE, player, player))
 							{
 								continue;
 							}
-							getOwner().getActingPlayer().addSkill(skill, false);
+							player.addSkill(skill, false);
 							update = true;
 						}
 						if (update)
 						{
-							getOwner().getActingPlayer().sendSkillList();
+							player.sendSkillList();
 						}
 					}
 				}
 			}
 			
 			_paperdollCache.clearCachedStats();
-			getOwner().getStat().recalculateStats(!getOwner().isPlayer());
+			owner.getStat().recalculateStats(!owner.isPlayer());
 			
-			if (getOwner().isPlayer())
+			if (owner.isPlayer())
 			{
-				getOwner().sendPacket(new ExUserInfoEquipSlot(getOwner().getActingPlayer()));
+				owner.sendPacket(new ExUserInfoEquipSlot(owner.getActingPlayer()));
 			}
 		}
 		
-		// Notify to scripts
 		if (old != null)
 		{
-			final Creature owner = getOwner();
-			if ((owner != null) && owner.isPlayer() && EventDispatcher.getInstance().hasListener(EventType.ON_PLAYER_ITEM_UNEQUIP, old.getTemplate()))
+			if ((owner != null) && owner.isPlayer())
 			{
-				EventDispatcher.getInstance().notifyEventAsync(new OnPlayerItemUnequip(owner.getActingPlayer(), old), old.getTemplate());
+				// Proper talisman display on login.
+				final Player player = owner.getActingPlayer();
+				if ((slot == PAPERDOLL_RBRACELET) && !player.hasEnteredWorld())
+				{
+					for (ItemSkillHolder skill : old.getTemplate().getAllSkills())
+					{
+						player.addSkill(skill.getSkill(), false);
+					}
+				}
+				
+				// Notify to scripts.
+				if (EventDispatcher.getInstance().hasListener(EventType.ON_PLAYER_ITEM_UNEQUIP, old.getTemplate()))
+				{
+					EventDispatcher.getInstance().notifyEventAsync(new OnPlayerItemUnequip(player, old), old.getTemplate());
+				}
 			}
 		}
 		
@@ -2116,7 +2180,7 @@ public abstract class Inventory extends ItemContainer
 	{
 		if (getOwner().isPlayer())
 		{
-			if (((Player) getOwner()).getPrivateStoreType() != PrivateStoreType.NONE)
+			if (((Player) getOwner()).isInStoreMode())
 			{
 				return;
 			}
@@ -2688,15 +2752,15 @@ public abstract class Inventory extends ItemContainer
 		}
 	}
 	
-	public int getArmorMinEnchant()
+	public int getArmorSetEnchant()
 	{
-		if ((getOwner() == null) || !getOwner().isPlayable())
+		final Creature creature = getOwner();
+		if ((creature == null) || !creature.isPlayable())
 		{
 			return 0;
 		}
 		
-		final Playable player = (Playable) getOwner();
-		return _paperdollCache.getMaxSetEnchant(player);
+		return _paperdollCache.getArmorSetEnchant((Playable) creature);
 	}
 	
 	public int getWeaponEnchant()

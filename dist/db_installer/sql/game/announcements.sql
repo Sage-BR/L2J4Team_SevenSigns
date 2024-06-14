@@ -11,5 +11,5 @@ CREATE TABLE IF NOT EXISTS `announcements` (
 ) DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 INSERT INTO announcements (`type`, `author`, `content`) VALUES 
-(0, 'L2JAdmin', 'Thanks for using L2j4Team!'),
-(0, 'L2JAdmin', '[=http://forum.4teambr.com/=]');
+(0, 'Admin', 'Thanks for using L2j4Team!'),
+(0, 'Admin', '[=http://forum.4teambr.com/=]');

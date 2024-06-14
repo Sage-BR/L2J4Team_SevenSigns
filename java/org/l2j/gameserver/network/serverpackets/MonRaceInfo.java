@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,7 +16,9 @@
  */
 package org.l2j.gameserver.network.serverpackets;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.model.actor.Npc;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 
 public class MonRaceInfo extends ServerPacket
@@ -38,34 +40,34 @@ public class MonRaceInfo extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.MON_RACE_INFO.writeId(this);
-		writeInt(_unknown1);
-		writeInt(_unknown2);
-		writeInt(8);
+		ServerPackets.MON_RACE_INFO.writeId(this, buffer);
+		buffer.writeInt(_unknown1);
+		buffer.writeInt(_unknown2);
+		buffer.writeInt(8);
 		for (int i = 0; i < 8; i++)
 		{
-			writeInt(_monsters[i].getObjectId()); // npcObjectID
-			writeInt(_monsters[i].getTemplate().getDisplayId() + 1000000); // npcID
-			writeInt(14107); // origin X
-			writeInt(181875 + (58 * (7 - i))); // origin Y
-			writeInt(-3566); // origin Z
-			writeInt(12080); // end X
-			writeInt(181875 + (58 * (7 - i))); // end Y
-			writeInt(-3566); // end Z
-			writeDouble(_monsters[i].getTemplate().getFCollisionHeight()); // coll. height
-			writeDouble(_monsters[i].getTemplate().getFCollisionRadius()); // coll. radius
-			writeInt(120); // ?? unknown
+			buffer.writeInt(_monsters[i].getObjectId()); // npcObjectID
+			buffer.writeInt(_monsters[i].getTemplate().getDisplayId() + 1000000); // npcID
+			buffer.writeInt(14107); // origin X
+			buffer.writeInt(181875 + (58 * (7 - i))); // origin Y
+			buffer.writeInt(-3566); // origin Z
+			buffer.writeInt(12080); // end X
+			buffer.writeInt(181875 + (58 * (7 - i))); // end Y
+			buffer.writeInt(-3566); // end Z
+			buffer.writeDouble(_monsters[i].getTemplate().getCollisionHeight());
+			buffer.writeDouble(_monsters[i].getTemplate().getCollisionRadius());
+			buffer.writeInt(120); // ?? unknown
 			for (int j = 0; j < 20; j++)
 			{
 				if (_unknown1 == 0)
 				{
-					writeByte(_speeds[i][j]);
+					buffer.writeByte(_speeds[i][j]);
 				}
 				else
 				{
-					writeByte(0);
+					buffer.writeByte(0);
 				}
 			}
 		}

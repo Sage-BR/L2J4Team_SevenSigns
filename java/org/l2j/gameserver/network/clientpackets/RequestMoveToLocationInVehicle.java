@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,19 +17,17 @@
 package org.l2j.gameserver.network.clientpackets;
 
 import org.l2j.Config;
-import org.l2j.commons.network.ReadablePacket;
 import org.l2j.gameserver.instancemanager.BoatManager;
 import org.l2j.gameserver.model.Location;
 import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.model.actor.instance.Boat;
 import org.l2j.gameserver.model.item.type.WeaponType;
-import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.SystemMessageId;
 import org.l2j.gameserver.network.serverpackets.ActionFailed;
 import org.l2j.gameserver.network.serverpackets.MoveToLocationInVehicle;
 import org.l2j.gameserver.network.serverpackets.StopMoveInVehicle;
 
-public class RequestMoveToLocationInVehicle implements ClientPacket
+public class RequestMoveToLocationInVehicle extends ClientPacket
 {
 	private int _boatId;
 	private int _targetX;
@@ -40,21 +38,21 @@ public class RequestMoveToLocationInVehicle implements ClientPacket
 	private int _originZ;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_boatId = packet.readInt(); // objectId of boat
-		_targetX = packet.readInt();
-		_targetY = packet.readInt();
-		_targetZ = packet.readInt();
-		_originX = packet.readInt();
-		_originY = packet.readInt();
-		_originZ = packet.readInt();
+		_boatId = readInt(); // objectId of boat
+		_targetX = readInt();
+		_targetY = readInt();
+		_targetZ = readInt();
+		_originX = readInt();
+		_originY = readInt();
+		_originZ = readInt();
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
-		final Player player = client.getPlayer();
+		final Player player = getPlayer();
 		if (player == null)
 		{
 			return;

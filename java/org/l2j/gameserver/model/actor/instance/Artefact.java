@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,6 +21,7 @@ import org.l2j.gameserver.model.actor.Creature;
 import org.l2j.gameserver.model.actor.Npc;
 import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.model.actor.templates.NpcTemplate;
+import org.l2j.gameserver.model.siege.Castle;
 import org.l2j.gameserver.model.skill.Skill;
 import org.l2j.gameserver.network.serverpackets.ActionFailed;
 
@@ -50,7 +51,12 @@ public class Artefact extends Npc
 	public void onSpawn()
 	{
 		super.onSpawn();
-		getCastle().registerArtefact(this);
+		
+		final Castle castle = getCastle();
+		if (castle != null)
+		{
+			castle.registerArtefact(this);
+		}
 	}
 	
 	@Override

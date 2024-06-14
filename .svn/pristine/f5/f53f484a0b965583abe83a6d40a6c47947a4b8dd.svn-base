@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/multisell.xsd">
+	<npcs>
+		<npc>-1</npc> <!-- Item Multisell -->
+	</npcs>
+	<!-- Weekly Chest Ticket - Sealed (100184) -->
+	<item>
+		<ingredient id="100184" count="1" /> <!-- Weekly Chest Ticket - Sealed -->
+		<production id="100186" count="1" /> <!-- +6 ~ +9 Agathion Coupon Pack - Sealed -->
+	</item>
+	<item>
+		<ingredient id="100184" count="2" /> <!-- Weekly Chest Ticket - Sealed -->
+		<production id="100187" count="1" /> <!-- Lv. 4-7 Jewel Coupon Pack - Sealed -->
+	</item>
+	<item>
+		<ingredient id="100184" count="3" /> <!-- Weekly Chest Ticket - Sealed -->
+		<production id="100189" count="1" /> <!-- Elixir Powder Pack (5-50 pcs.) - Sealed -->
+	</item>
+	<item>
+		<ingredient id="100184" count="5" /> <!-- Weekly Chest Ticket - Sealed -->
+		<production id="100188" count="1" /> <!-- +5 ~ +8 Talisman Coupon Pack - Sealed -->
+	</item>
+	<item>
+		<ingredient id="100184" count="6" /> <!-- Weekly Chest Ticket - Sealed -->
+		<production id="100190" count="1" /> <!-- Sealed Doll Coupon Pack Lv. 2-3 (Time-limited) - Sealed -->
+	</item>
+</list>

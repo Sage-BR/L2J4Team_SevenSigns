@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,7 +16,6 @@
  */
 package org.l2j.gameserver.network.clientpackets.pledgeV3;
 
-import org.l2j.commons.network.ReadablePacket;
 import org.l2j.gameserver.data.sql.ClanTable;
 import org.l2j.gameserver.enums.ClanWarState;
 import org.l2j.gameserver.model.actor.Player;
@@ -24,7 +23,6 @@ import org.l2j.gameserver.model.clan.Clan;
 import org.l2j.gameserver.model.clan.ClanMember;
 import org.l2j.gameserver.model.clan.ClanPrivilege;
 import org.l2j.gameserver.model.clan.ClanWar;
-import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.SystemMessageId;
 import org.l2j.gameserver.network.clientpackets.ClientPacket;
 import org.l2j.gameserver.network.serverpackets.ActionFailed;
@@ -34,20 +32,20 @@ import org.l2j.gameserver.network.serverpackets.pledgeV3.ExPledgeEnemyInfoList;
 /**
  * @author Mobius
  */
-public class RequestExPledgeEnemyRegister implements ClientPacket
+public class RequestExPledgeEnemyRegister extends ClientPacket
 {
 	private String _pledgeName;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_pledgeName = packet.readSizedString();
+		_pledgeName = readSizedString();
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
-		final Player player = client.getPlayer();
+		final Player player = getPlayer();
 		if (player == null)
 		{
 			return;
@@ -61,44 +59,44 @@ public class RequestExPledgeEnemyRegister implements ClientPacket
 		
 		if (!player.hasClanPrivilege(ClanPrivilege.CL_PLEDGE_WAR))
 		{
-			client.sendPacket(SystemMessageId.YOU_ARE_NOT_AUTHORIZED_TO_DO_THAT);
-			client.sendPacket(ActionFailed.STATIC_PACKET);
+			player.sendPacket(SystemMessageId.YOU_ARE_NOT_AUTHORIZED_TO_DO_THAT);
+			player.sendPacket(ActionFailed.STATIC_PACKET);
 			return;
 		}
 		
 		if (playerClan.getWarCount() >= 30)
 		{
-			client.sendPacket(SystemMessageId.A_DECLARATION_OF_WAR_AGAINST_MORE_THAN_30_CLANS_CAN_T_BE_MADE_AT_THE_SAME_TIME);
-			client.sendPacket(ActionFailed.STATIC_PACKET);
+			player.sendPacket(SystemMessageId.A_DECLARATION_OF_WAR_AGAINST_MORE_THAN_30_CLANS_CAN_T_BE_MADE_AT_THE_SAME_TIME);
+			player.sendPacket(ActionFailed.STATIC_PACKET);
 			return;
 		}
 		
 		final Clan enemyClan = ClanTable.getInstance().getClanByName(_pledgeName);
 		if (enemyClan == null)
 		{
-			client.sendPacket(new SystemMessage(SystemMessageId.A_CLAN_WAR_CANNOT_BE_DECLARED_AGAINST_A_CLAN_THAT_DOES_NOT_EXIST));
-			client.sendPacket(ActionFailed.STATIC_PACKET);
+			player.sendPacket(new SystemMessage(SystemMessageId.A_CLAN_WAR_CANNOT_BE_DECLARED_AGAINST_A_CLAN_THAT_DOES_NOT_EXIST));
+			player.sendPacket(ActionFailed.STATIC_PACKET);
 			return;
 		}
 		
 		if (enemyClan == playerClan)
 		{
-			client.sendPacket(new SystemMessage(SystemMessageId.FOOL_YOU_CANNOT_DECLARE_WAR_AGAINST_YOUR_OWN_CLAN));
-			client.sendPacket(ActionFailed.STATIC_PACKET);
+			player.sendPacket(new SystemMessage(SystemMessageId.FOOL_YOU_CANNOT_DECLARE_WAR_AGAINST_YOUR_OWN_CLAN));
+			player.sendPacket(ActionFailed.STATIC_PACKET);
 			return;
 		}
 		
 		if ((playerClan.getAllyId() == enemyClan.getAllyId()) && (playerClan.getAllyId() != 0))
 		{
-			client.sendPacket(new SystemMessage(SystemMessageId.A_DECLARATION_OF_CLAN_WAR_AGAINST_AN_ALLIED_CLAN_CAN_T_BE_MADE));
-			client.sendPacket(ActionFailed.STATIC_PACKET);
+			player.sendPacket(new SystemMessage(SystemMessageId.A_DECLARATION_OF_CLAN_WAR_AGAINST_AN_ALLIED_CLAN_CAN_T_BE_MADE));
+			player.sendPacket(ActionFailed.STATIC_PACKET);
 			return;
 		}
 		
 		if (enemyClan.getDissolvingExpiryTime() > System.currentTimeMillis())
 		{
-			client.sendPacket(new SystemMessage(SystemMessageId.A_CLAN_WAR_CAN_NOT_BE_DECLARED_AGAINST_A_CLAN_THAT_IS_BEING_DISSOLVED));
-			client.sendPacket(ActionFailed.STATIC_PACKET);
+			player.sendPacket(new SystemMessage(SystemMessageId.A_CLAN_WAR_CAN_NOT_BE_DECLARED_AGAINST_A_CLAN_THAT_IS_BEING_DISSOLVED));
+			player.sendPacket(ActionFailed.STATIC_PACKET);
 			return;
 		}
 		
@@ -109,8 +107,8 @@ public class RequestExPledgeEnemyRegister implements ClientPacket
 			{
 				final SystemMessage sm = new SystemMessage(SystemMessageId.YOU_CAN_T_DECLARE_A_WAR_BECAUSE_THE_21_DAY_PERIOD_HASN_T_PASSED_AFTER_A_DEFEAT_DECLARATION_WITH_THE_S1_CLAN);
 				sm.addString(enemyClan.getName());
-				client.sendPacket(sm);
-				client.sendPacket(ActionFailed.STATIC_PACKET);
+				player.sendPacket(sm);
+				player.sendPacket(ActionFailed.STATIC_PACKET);
 				return;
 			}
 			
@@ -118,8 +116,8 @@ public class RequestExPledgeEnemyRegister implements ClientPacket
 			{
 				final SystemMessage sm = new SystemMessage(SystemMessageId.YOU_HAVE_ALREADY_BEEN_AT_WAR_WITH_THE_S1_CLAN_5_DAYS_MUST_PASS_BEFORE_YOU_CAN_DECLARE_WAR_AGAIN);
 				sm.addString(enemyClan.getName());
-				client.sendPacket(sm);
-				client.sendPacket(ActionFailed.STATIC_PACKET);
+				player.sendPacket(sm);
+				player.sendPacket(ActionFailed.STATIC_PACKET);
 				return;
 			}
 			

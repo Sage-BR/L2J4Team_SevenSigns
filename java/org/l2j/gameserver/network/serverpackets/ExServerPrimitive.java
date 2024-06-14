@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,7 +20,9 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.model.interfaces.ILocational;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 
 /**
@@ -381,44 +383,44 @@ public class ExServerPrimitive extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_SERVER_PRIMITIVE.writeId(this);
-		writeString(_name);
-		writeInt(_x);
-		writeInt(_y);
-		writeInt(_z);
-		writeInt(65535); // has to do something with display range and angle
-		writeInt(65535); // has to do something with display range and angle
-		writeInt(_points.size() + _lines.size());
+		ServerPackets.EX_SERVER_PRIMITIVE.writeId(this, buffer);
+		buffer.writeString(_name);
+		buffer.writeInt(_x);
+		buffer.writeInt(_y);
+		buffer.writeInt(_z);
+		buffer.writeInt(65535); // has to do something with display range and angle
+		buffer.writeInt(65535); // has to do something with display range and angle
+		buffer.writeInt(_points.size() + _lines.size());
 		for (Point point : _points)
 		{
-			writeByte(1); // Its the type in this case Point
-			writeString(point.getName());
+			buffer.writeByte(1); // Its the type in this case Point
+			buffer.writeString(point.getName());
 			final int color = point.getColor();
-			writeInt((color >> 16) & 0xFF); // R
-			writeInt((color >> 8) & 0xFF); // G
-			writeInt(color & 0xFF); // B
-			writeInt(point.isNameColored());
-			writeInt(point.getX());
-			writeInt(point.getY());
-			writeInt(point.getZ());
+			buffer.writeInt((color >> 16) & 0xFF); // R
+			buffer.writeInt((color >> 8) & 0xFF); // G
+			buffer.writeInt(color & 0xFF); // B
+			buffer.writeInt(point.isNameColored());
+			buffer.writeInt(point.getX());
+			buffer.writeInt(point.getY());
+			buffer.writeInt(point.getZ());
 		}
 		for (Line line : _lines)
 		{
-			writeByte(2); // Its the type in this case Line
-			writeString(line.getName());
+			buffer.writeByte(2); // Its the type in this case Line
+			buffer.writeString(line.getName());
 			final int color = line.getColor();
-			writeInt((color >> 16) & 0xFF); // R
-			writeInt((color >> 8) & 0xFF); // G
-			writeInt(color & 0xFF); // B
-			writeInt(line.isNameColored());
-			writeInt(line.getX());
-			writeInt(line.getY());
-			writeInt(line.getZ());
-			writeInt(line.getX2());
-			writeInt(line.getY2());
-			writeInt(line.getZ2());
+			buffer.writeInt((color >> 16) & 0xFF); // R
+			buffer.writeInt((color >> 8) & 0xFF); // G
+			buffer.writeInt(color & 0xFF); // B
+			buffer.writeInt(line.isNameColored());
+			buffer.writeInt(line.getX());
+			buffer.writeInt(line.getY());
+			buffer.writeInt(line.getZ());
+			buffer.writeInt(line.getX2());
+			buffer.writeInt(line.getY2());
+			buffer.writeInt(line.getZ2());
 		}
 	}
 	

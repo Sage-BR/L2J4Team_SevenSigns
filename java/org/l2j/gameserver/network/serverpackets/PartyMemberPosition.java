@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,9 +20,11 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.model.Location;
 import org.l2j.gameserver.model.Party;
 import org.l2j.gameserver.model.actor.Player;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 
 /**
@@ -51,17 +53,17 @@ public class PartyMemberPosition extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.PARTY_MEMBER_POSITION.writeId(this);
-		writeInt(locations.size());
+		ServerPackets.PARTY_MEMBER_POSITION.writeId(this, buffer);
+		buffer.writeInt(locations.size());
 		for (Entry<Integer, Location> entry : locations.entrySet())
 		{
 			final Location loc = entry.getValue();
-			writeInt(entry.getKey());
-			writeInt(loc.getX());
-			writeInt(loc.getY());
-			writeInt(loc.getZ());
+			buffer.writeInt(entry.getKey());
+			buffer.writeInt(loc.getX());
+			buffer.writeInt(loc.getY());
+			buffer.writeInt(loc.getZ());
 		}
 	}
 }

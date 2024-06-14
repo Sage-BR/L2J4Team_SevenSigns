@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,7 +17,6 @@
 package org.l2j.loginserver.network.clientpackets;
 
 import org.l2j.Config;
-import org.l2j.commons.network.ReadablePacket;
 import org.l2j.loginserver.LoginController;
 import org.l2j.loginserver.LoginServer;
 import org.l2j.loginserver.SessionKey;
@@ -35,26 +34,29 @@ import org.l2j.loginserver.network.serverpackets.PlayOk;
  * c: server ID
  * </pre>
  */
-public class RequestServerLogin implements LoginClientPacket
+public class RequestServerLogin extends LoginClientPacket
 {
 	private int _skey1;
 	private int _skey2;
 	private int _serverId;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected boolean readImpl()
 	{
-		if (packet.getRemainingLength() >= 9)
+		if (remaining() >= 9)
 		{
-			_skey1 = packet.readInt();
-			_skey2 = packet.readInt();
-			_serverId = packet.readByte();
+			_skey1 = readInt();
+			_skey2 = readInt();
+			_serverId = readByte();
+			return true;
 		}
+		return false;
 	}
 	
 	@Override
-	public void run(LoginClient client)
+	public void run()
 	{
+		final LoginClient client = getClient();
 		final SessionKey sk = client.getSessionKey();
 		
 		// If we didn't showed the license we can't check these values.

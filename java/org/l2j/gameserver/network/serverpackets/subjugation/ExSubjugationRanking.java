@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,7 +19,9 @@ package org.l2j.gameserver.network.serverpackets.subjugation;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.instancemanager.PurgeRankingManager;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 import org.l2j.gameserver.network.serverpackets.ServerPacket;
 
@@ -40,19 +42,19 @@ public class ExSubjugationRanking extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_SUBJUGATION_RANKING.writeId(this);
-		writeInt(_ranking.entrySet().size());
+		ServerPackets.EX_SUBJUGATION_RANKING.writeId(this, buffer);
+		buffer.writeInt(_ranking.entrySet().size());
 		int counter = 1;
 		for (Entry<String, Integer> data : _ranking.entrySet())
 		{
-			writeSizedString(data.getKey());
-			writeInt(data.getValue());
-			writeInt(counter++);
+			buffer.writeSizedString(data.getKey());
+			buffer.writeInt(data.getValue());
+			buffer.writeInt(counter++);
 		}
-		writeInt(_category);
-		writeInt(PurgeRankingManager.getInstance().getPlayerRating(_category, _objectId).getValue());
-		writeInt(PurgeRankingManager.getInstance().getPlayerRating(_category, _objectId).getKey());
+		buffer.writeInt(_category);
+		buffer.writeInt(PurgeRankingManager.getInstance().getPlayerRating(_category, _objectId).getValue());
+		buffer.writeInt(PurgeRankingManager.getInstance().getPlayerRating(_category, _objectId).getKey());
 	}
 }

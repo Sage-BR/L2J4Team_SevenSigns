@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,9 +17,7 @@
 package org.l2j.gameserver.network.clientpackets;
 
 import org.l2j.Config;
-import org.l2j.commons.network.ReadablePacket;
 import org.l2j.gameserver.enums.ItemLocation;
-import org.l2j.gameserver.enums.PrivateStoreType;
 import org.l2j.gameserver.instancemanager.MailManager;
 import org.l2j.gameserver.model.Message;
 import org.l2j.gameserver.model.World;
@@ -27,7 +25,6 @@ import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.model.item.instance.Item;
 import org.l2j.gameserver.model.itemcontainer.ItemContainer;
 import org.l2j.gameserver.model.zone.ZoneId;
-import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.SystemMessageId;
 import org.l2j.gameserver.network.serverpackets.ExChangePostState;
 import org.l2j.gameserver.network.serverpackets.InventoryUpdate;
@@ -37,21 +34,26 @@ import org.l2j.gameserver.util.Util;
 /**
  * @author Migi, DS
  */
-public class RequestCancelPostAttachment implements ClientPacket
+public class RequestCancelPostAttachment extends ClientPacket
 {
 	private int _msgId;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_msgId = packet.readInt();
+		_msgId = readInt();
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
-		final Player player = client.getPlayer();
-		if ((player == null) || !Config.ALLOW_MAIL || !Config.ALLOW_ATTACHMENTS || !client.getFloodProtectors().canPerformTransaction())
+		final Player player = getPlayer();
+		if ((player == null) || !Config.ALLOW_MAIL || !Config.ALLOW_ATTACHMENTS)
+		{
+			return;
+		}
+		
+		if (!getClient().getFloodProtectors().canPerformTransaction())
 		{
 			return;
 		}
@@ -85,7 +87,7 @@ public class RequestCancelPostAttachment implements ClientPacket
 			return;
 		}
 		
-		if (player.getPrivateStoreType() != PrivateStoreType.NONE)
+		if (player.isInStoreMode())
 		{
 			player.sendPacket(SystemMessageId.YOU_CANNOT_CANCEL_BECAUSE_THE_PRIVATE_STORE_OR_WORKSHOP_IS_IN_PROGRESS);
 			return;

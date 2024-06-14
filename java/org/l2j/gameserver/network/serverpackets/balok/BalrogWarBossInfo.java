@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,7 +16,9 @@
  */
 package org.l2j.gameserver.network.serverpackets.balok;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.instancemanager.BattleWithBalokManager;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 import org.l2j.gameserver.network.serverpackets.ServerPacket;
 
@@ -45,23 +47,23 @@ public class BalrogWarBossInfo extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_BALROGWAR_BOSSINFO.writeId(this);
+		ServerPackets.EX_BALROGWAR_BOSSINFO.writeId(this, buffer);
 		final long globalpoints = BattleWithBalokManager.getInstance().getGlobalPoints();
 		final int globalstage = BattleWithBalokManager.getInstance().getGlobalStage();
 		if ((globalpoints < 320000) && (globalstage <= 2))
 		{
-			writeInt(1);
-			writeInt(1);
-			writeInt(1);
-			writeInt(1);
-			writeInt(1);
-			writeInt(0);
-			writeInt(0);
-			writeInt(0);
-			writeInt(0);
-			writeInt(0);
+			buffer.writeInt(1);
+			buffer.writeInt(1);
+			buffer.writeInt(1);
+			buffer.writeInt(1);
+			buffer.writeInt(1);
+			buffer.writeInt(0);
+			buffer.writeInt(0);
+			buffer.writeInt(0);
+			buffer.writeInt(0);
+			buffer.writeInt(0);
 		}
 		else
 		{
@@ -76,18 +78,18 @@ public class BalrogWarBossInfo extends ServerPacket
 				bossId5 = 25960 + 1000000;
 			}
 			
-			writeInt(bossId1);
-			writeInt(bossId2);
-			writeInt(bossId3);
-			writeInt(bossId4);
-			writeInt(bossId5);
-			writeInt(_bossState1);
-			writeInt(_bossState2);
-			writeInt(_bossState3);
-			writeInt(_bossState4);
-			writeInt(_bossState5);
-			writeInt(_finalBossId);
-			writeInt(_finalState);
+			buffer.writeInt(bossId1);
+			buffer.writeInt(bossId2);
+			buffer.writeInt(bossId3);
+			buffer.writeInt(bossId4);
+			buffer.writeInt(bossId5);
+			buffer.writeInt(_bossState1);
+			buffer.writeInt(_bossState2);
+			buffer.writeInt(_bossState3);
+			buffer.writeInt(_bossState4);
+			buffer.writeInt(_bossState5);
+			buffer.writeInt(_finalBossId);
+			buffer.writeInt(_finalState);
 		}
 	}
 }

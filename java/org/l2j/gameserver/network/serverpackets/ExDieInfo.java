@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,9 +18,11 @@ package org.l2j.gameserver.network.serverpackets;
 
 import java.util.Collection;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.model.clan.Clan;
 import org.l2j.gameserver.model.holders.DamageTakenHolder;
 import org.l2j.gameserver.model.item.instance.Item;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 
 /**
@@ -38,35 +40,35 @@ public class ExDieInfo extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_DIE_INFO.writeId(this);
-		writeShort(_droppedItems.size());
+		ServerPackets.EX_DIE_INFO.writeId(this, buffer);
+		buffer.writeShort(_droppedItems.size());
 		for (Item item : _droppedItems)
 		{
-			writeInt(item.getId());
-			writeInt(item.getEnchantLevel());
-			writeInt((int) item.getCount());
+			buffer.writeInt(item.getId());
+			buffer.writeInt(item.getEnchantLevel());
+			buffer.writeInt((int) item.getCount());
 		}
-		writeShort(_lastDamageTaken.size());
+		buffer.writeShort(_lastDamageTaken.size());
 		for (DamageTakenHolder damageHolder : _lastDamageTaken)
 		{
 			if (damageHolder.getCreature().isNpc())
 			{
-				writeShort(1);
-				writeInt(damageHolder.getCreature().getId());
-				writeString("");
+				buffer.writeShort(1);
+				buffer.writeInt(damageHolder.getCreature().getId());
+				buffer.writeShort(0);
 			}
 			else
 			{
 				final Clan clan = damageHolder.getCreature().getClan();
-				writeShort(0);
-				writeString(damageHolder.getCreature().getName());
-				writeString(clan == null ? "" : clan.getName());
+				buffer.writeShort(2);
+				buffer.writeString(damageHolder.getCreature().getName());
+				buffer.writeString(clan == null ? "" : clan.getName());
 			}
-			writeInt(damageHolder.getSkillId());
-			writeDouble(damageHolder.getDamage());
-			writeShort(0); // damage type
+			buffer.writeInt(damageHolder.getSkillId());
+			buffer.writeDouble(damageHolder.getDamage());
+			buffer.writeShort(damageHolder.getClientId());
 		}
 	}
 }

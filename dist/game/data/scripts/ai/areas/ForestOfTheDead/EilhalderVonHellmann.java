@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -41,7 +41,7 @@ public class EilhalderVonHellmann extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onAdvEvent(String event, Npc npc, Player player)
+	public String onEvent(String event, Npc npc, Player player)
 	{
 		if (npc != null)
 		{
@@ -52,27 +52,32 @@ public class EilhalderVonHellmann extends AbstractNpcAI
 			else
 			{
 				npc.deleteMe();
+				_npcInstance = null;
 			}
 		}
-		return super.onAdvEvent(event, npc, player);
+		return super.onEvent(event, npc, player);
 	}
 	
 	@RegisterEvent(EventType.ON_DAY_NIGHT_CHANGE)
 	@RegisterType(ListenerRegisterType.GLOBAL)
 	public void onDayNightChange(OnDayNightChange event)
 	{
-		if (!event.isNight() && (_npcInstance != null) && !_npcInstance.isDead())
+		if (!event.isNight())
 		{
-			if (!_npcInstance.isInCombat())
+			if (_npcInstance != null)
 			{
-				_npcInstance.deleteMe();
-			}
-			else
-			{
-				startQuestTimer("despawn", 30000, _npcInstance, null);
+				if (!_npcInstance.isInCombat())
+				{
+					_npcInstance.deleteMe();
+					_npcInstance = null;
+				}
+				else
+				{
+					startQuestTimer("despawn", 30000, _npcInstance, null);
+				}
 			}
 		}
-		else if ((_npcInstance == null) || _npcInstance.isDead())
+		else if (_npcInstance == null)
 		{
 			_npcInstance = addSpawn(EILHALDER_VON_HELLMANN, SPAWN_LOCATION);
 		}

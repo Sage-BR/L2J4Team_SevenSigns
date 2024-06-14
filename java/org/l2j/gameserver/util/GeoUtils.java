@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -166,6 +166,53 @@ public class GeoUtils
 				exsp.addLine(col, x - 5, y - 3, z, x - 5, y + 3, z);
 				exsp.addLine(col, x - 4, y - 4, z, x - 4, y + 4, z);
 				
+				++iBlock;
+			}
+		}
+		
+		player.sendPacket(exsp);
+	}
+	
+	public static void hideDebugGrid(Player player)
+	{
+		final int geoRadius = 20;
+		final int blocksPerPacket = 40;
+		
+		int iBlock = blocksPerPacket;
+		int iPacket = 0;
+		
+		ExServerPrimitive exsp = null;
+		final GeoEngine ge = GeoEngine.getInstance();
+		final int playerGx = ge.getGeoX(player.getX());
+		final int playerGy = ge.getGeoY(player.getY());
+		for (int dx = -geoRadius; dx <= geoRadius; ++dx)
+		{
+			for (int dy = -geoRadius; dy <= geoRadius; ++dy)
+			{
+				if (iBlock >= blocksPerPacket)
+				{
+					iBlock = 0;
+					if (exsp != null)
+					{
+						++iPacket;
+						player.sendPacket(exsp);
+					}
+					exsp = new ExServerPrimitive("DebugGrid_" + iPacket, player.getX(), player.getY(), -16000);
+				}
+				
+				if (exsp == null)
+				{
+					throw new IllegalStateException();
+				}
+				
+				final int gx = playerGx + dx;
+				final int gy = playerGy + dy;
+				
+				final int x = ge.getWorldX(gx);
+				final int y = ge.getWorldY(gy);
+				
+				// Nothing.
+				exsp.addLine(Color.BLACK, x, y, -16000, x, y, -16000);
 				++iBlock;
 			}
 		}

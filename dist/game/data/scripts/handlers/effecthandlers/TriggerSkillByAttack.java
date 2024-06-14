@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -121,8 +121,13 @@ public class TriggerSkillByAttack extends AbstractEffect
 		}
 		
 		// Check if there is dependancy on critical.
+		if (_isCritical != event.isCritical())
+		{
+			return;
+		}
+		
 		// When no normal attacks are allowed.
-		if ((_isCritical != event.isCritical()) || (!_allowNormalAttack && (event.getSkill() == null)))
+		if (!_allowNormalAttack && (event.getSkill() == null))
 		{
 			return;
 		}

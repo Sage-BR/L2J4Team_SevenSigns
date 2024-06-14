@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -71,13 +71,13 @@ public class Zaken extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onAdvEvent(String event, Npc npc, Player player)
+	public String onEvent(String event, Npc npc, Player player)
 	{
 		if (event.equals("zaken_unlock"))
 		{
 			spawnBoss();
 		}
-		return super.onAdvEvent(event, npc, player);
+		return super.onEvent(event, npc, player);
 	}
 	
 	private void spawnBoss()
@@ -93,8 +93,10 @@ public class Zaken extends AbstractNpcAI
 	{
 		npc.broadcastPacket(new PlaySound(1, "BS02_D", 1, npc.getObjectId(), npc.getX(), npc.getY(), npc.getZ()));
 		GrandBossManager.getInstance().setStatus(ZAKEN, DEAD);
-		// Calculate Min and Max respawn times randomly.
-		final long respawnTime = (Config.ZAKEN_SPAWN_INTERVAL + getRandom(-Config.ZAKEN_SPAWN_RANDOM, Config.ZAKEN_SPAWN_RANDOM)) * 3600000;
+		
+		final long baseIntervalMillis = Config.ZAKEN_SPAWN_INTERVAL * 3600000;
+		final long randomRangeMillis = Config.ZAKEN_SPAWN_RANDOM * 3600000;
+		final long respawnTime = baseIntervalMillis + getRandom(-randomRangeMillis, randomRangeMillis);
 		startQuestTimer("zaken_unlock", respawnTime, null, null);
 		// also save the respawn time so that the info is maintained past reboots
 		final StatSet info = GrandBossManager.getInstance().getStatSet(ZAKEN);

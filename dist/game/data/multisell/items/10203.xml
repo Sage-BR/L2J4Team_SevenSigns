@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/multisell.xsd">
+	<npcs>
+		<npc>-1</npc> <!-- Item Multisell -->
+	</npcs>
+	<!-- Special Armor Change Coupon - Sealed (100399) -->
+	<item>
+		<ingredient id="93315" count="1" /> <!-- Leather Armor of Lightning -->
+		<ingredient id="92314" count="350" /> <!-- Giran Seal -->
+		<ingredient id="100399" count="1" /> <!-- Special Armor Change Coupon - Sealed -->
+		<production id="93139" count="1" /> <!-- Ice Crystal Breastplate -->
+	</item>
+	<item>
+		<ingredient id="93733" count="1" /> <!-- Flaming Tunic -->
+		<ingredient id="92314" count="350" /> <!-- Giran Seal -->
+		<ingredient id="100399" count="1" /> <!-- Special Armor Change Coupon - Sealed -->
+		<production id="93139" count="1" /> <!-- Ice Crystal Breastplate -->
+	</item>
+	<item>
+		<ingredient id="93139" count="1" /> <!-- Ice Crystal Breastplate -->
+		<ingredient id="92314" count="350" /> <!-- Giran Seal -->
+		<ingredient id="100399" count="1" /> <!-- Special Armor Change Coupon - Sealed -->
+		<production id="93315" count="1" /> <!-- Leather Armor of Lightning -->
+	</item>
+	<item>
+		<ingredient id="93733" count="1" /> <!-- Flaming Tunic -->
+		<ingredient id="92314" count="350" /> <!-- Giran Seal -->
+		<ingredient id="100399" count="1" /> <!-- Special Armor Change Coupon - Sealed -->
+		<production id="93315" count="1" /> <!-- Leather Armor of Lightning -->
+	</item>
+	<item>
+		<ingredient id="93139" count="1" /> <!-- Ice Crystal Breastplate -->
+		<ingredient id="92314" count="350" /> <!-- Giran Seal -->
+		<ingredient id="100399" count="1" /> <!-- Special Armor Change Coupon - Sealed -->
+		<production id="93733" count="1" /> <!-- Flaming Tunic -->
+	</item>
+	<item>
+		<ingredient id="93315" count="1" /> <!-- Leather Armor of Lightning -->
+		<ingredient id="92314" count="350" /> <!-- Giran Seal -->
+		<ingredient id="100399" count="1" /> <!-- Special Armor Change Coupon - Sealed -->
+		<production id="93733" count="1" /> <!-- Flaming Tunic -->
+	</item>
+	<item>
+		<ingredient id="93316" count="1" /> <!-- Leather Leggings of Lightning -->
+		<ingredient id="92314" count="350" /> <!-- Giran Seal -->
+		<ingredient id="100399" count="1" /> <!-- Special Armor Change Coupon - Sealed -->
+		<production id="93140" count="1" /> <!-- Ice Crystal Gaiters -->
+	</item>
+	<item>
+		<ingredient id="93734" count="1" /> <!-- Flaming Stockings -->
+		<ingredient id="92314" count="350" /> <!-- Giran Seal -->
+		<ingredient id="100399" count="1" /> <!-- Special Armor Change Coupon - Sealed -->
+		<production id="93140" count="1" /> <!-- Ice Crystal Gaiters -->
+	</item>
+	<item>
+		<ingredient id="93140" count="1" /> <!-- Ice Crystal Gaiters -->
+		<ingredient id="92314" count="350" /> <!-- Giran Seal -->
+		<ingredient id="100399" count="1" /> <!-- Special Armor Change Coupon - Sealed -->
+		<production id="93316" count="1" /> <!-- Leather Leggings of Lightning -->
+	</item>
+	<item>
+		<ingredient id="93734" count="1" /> <!-- Flaming Stockings -->
+		<ingredient id="92314" count="350" /> <!-- Giran Seal -->
+		<ingredient id="100399" count="1" /> <!-- Special Armor Change Coupon - Sealed -->
+		<production id="93316" count="1" /> <!-- Leather Leggings of Lightning -->
+	</item>
+	<item>
+		<ingredient id="93140" count="1" /> <!-- Ice Crystal Gaiters -->
+		<ingredient id="92314" count="350" /> <!-- Giran Seal -->
+		<ingredient id="100399" count="1" /> <!-- Special Armor Change Coupon - Sealed -->
+		<production id="93734" count="1" /> <!-- Flaming Stockings -->
+	</item>
+	<item>
+		<ingredient id="93316" count="1" /> <!-- Leather Leggings of Lightning -->
+		<ingredient id="92314" count="350" /> <!-- Giran Seal -->
+		<ingredient id="100399" count="1" /> <!-- Special Armor Change Coupon - Sealed -->
+		<production id="93734" count="1" /> <!-- Flaming Stockings -->
+	</item>
+	<item>
+		<ingredient id="94301" count="1" /> <!-- Shield of Vengeance -->
+		<ingredient id="92314" count="350" /> <!-- Giran Seal -->
+		<ingredient id="100399" count="1" /> <!-- Special Armor Change Coupon - Sealed -->
+		<production id="94299" count="1" /> <!-- Sigil of Inevitability -->
+	</item>
+	<item>
+		<ingredient id="94299" count="1" /> <!-- Sigil of Inevitability -->
+		<ingredient id="92314" count="350" /> <!-- Giran Seal -->
+		<ingredient id="100399" count="1" /> <!-- Special Armor Change Coupon - Sealed -->
+		<production id="94301" count="1" /> <!-- Shield of Vengeance -->
+	</item>
+</list>

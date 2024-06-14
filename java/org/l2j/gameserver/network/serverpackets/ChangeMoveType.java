@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,7 +16,9 @@
  */
 package org.l2j.gameserver.network.serverpackets;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.model.actor.Creature;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 
 public class ChangeMoveType extends ServerPacket
@@ -34,11 +36,11 @@ public class ChangeMoveType extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.CHANGE_MOVE_TYPE.writeId(this);
-		writeInt(_objectId);
-		writeInt(_running ? RUN : WALK);
-		writeInt(0); // c2
+		ServerPackets.CHANGE_MOVE_TYPE.writeId(this, buffer);
+		buffer.writeInt(_objectId);
+		buffer.writeInt(_running ? RUN : WALK);
+		buffer.writeInt(0); // c2
 	}
 }

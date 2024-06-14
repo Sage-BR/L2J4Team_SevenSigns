@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,11 +20,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 
 import org.l2j.commons.database.DatabaseFactory;
-import org.l2j.commons.network.ReadablePacket;
 import org.l2j.gameserver.data.sql.CharInfoTable;
 import org.l2j.gameserver.model.World;
 import org.l2j.gameserver.model.actor.Player;
-import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.PacketLogger;
 import org.l2j.gameserver.network.SystemMessageId;
 import org.l2j.gameserver.network.clientpackets.ClientPacket;
@@ -34,29 +32,37 @@ import org.l2j.gameserver.network.serverpackets.friend.FriendRemove;
 /**
  * @version $Revision: 1.3.4.2 $ $Date: 2005/03/27 15:29:30 $
  */
-public class RequestFriendDel implements ClientPacket
+public class RequestFriendDel extends ClientPacket
 {
 	private String _name;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_name = packet.readString();
+		_name = readString();
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
 		SystemMessage sm;
 		
-		final Player player = client.getPlayer();
+		final Player player = getPlayer();
 		if (player == null)
 		{
 			return;
 		}
 		
 		final int id = CharInfoTable.getInstance().getIdByName(_name);
-		if ((id == -1) || !player.getFriendList().contains(id))
+		if (id == -1)
+		{
+			sm = new SystemMessage(SystemMessageId.C1_IS_NOT_ON_YOUR_FRIEND_LIST);
+			sm.addString(_name);
+			player.sendPacket(sm);
+			return;
+		}
+		
+		if (!player.getFriendList().contains(id))
 		{
 			sm = new SystemMessage(SystemMessageId.C1_IS_NOT_ON_YOUR_FRIEND_LIST);
 			sm.addString(_name);

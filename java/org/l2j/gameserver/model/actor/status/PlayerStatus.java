@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -84,7 +84,12 @@ public class PlayerStatus extends PlayableStatus
 			return;
 		}
 		
-		if ((getActiveChar().isHpBlocked() && !(isDOT || isHPConsumption)) || (getActiveChar().isAffected(EffectFlag.DUELIST_FURY) && !attacker.isAffected(EffectFlag.FACEOFF)))
+		if (getActiveChar().isHpBlocked() && !(isDOT || isHPConsumption))
+		{
+			return;
+		}
+		
+		if (getActiveChar().isAffected(EffectFlag.DUELIST_FURY) && !attacker.isAffected(EffectFlag.FACEOFF))
 		{
 			return;
 		}
@@ -277,8 +282,6 @@ public class PlayerStatus extends PlayableStatus
 		
 		if (amount > 0)
 		{
-			getActiveChar().addDamageTaken(attacker, skill != null ? skill.getDisplayId() : 0, amount);
-			
 			double newHp = Math.max(getCurrentHp() - amount, getActiveChar().isUndying() ? 1 : 0);
 			if (newHp <= 0)
 			{

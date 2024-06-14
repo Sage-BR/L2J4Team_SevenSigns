@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -164,10 +164,10 @@ public class ArmorSet
 	 * @param playable
 	 * @return true if all parts of set are enchanted to +6 or more
 	 */
-	public int getLowestSetEnchant(Playable playable)
+	public int getSetEnchant(Playable playable)
 	{
 		// Playable don't have full set
-		if (getPiecesCountById(playable) < _minimumPieces)
+		if (getPieceCount(playable) < _minimumPieces)
 		{
 			return 0;
 		}
@@ -258,12 +258,12 @@ public class ArmorSet
 	 * @param idProvider
 	 * @return the amount of set visual items that playable has equipped
 	 */
-	public long getPiecesCount(Playable playable, Function<Item, Integer> idProvider)
+	public long getPieceCount(Playable playable, Function<Item, Integer> idProvider)
 	{
 		return playable.getInventory().getPaperdollItemCount(item -> CommonUtil.contains(_requiredItems, idProvider.apply(item)));
 	}
 	
-	public long getPiecesCountById(Playable playable)
+	public long getPieceCount(Playable playable)
 	{
 		return playable.getInventory().getPaperdollItemCount(item -> CommonUtil.contains(_requiredItems, item.getId()));
 	}

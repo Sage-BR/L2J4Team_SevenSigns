@@ -1,0 +1,407 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/multisell.xsd">
+	<npcs>
+		<npc>-1</npc> <!-- Item Multisell -->
+	</npcs>
+	<!-- Spellbook Coupon - 2 Stars - Sealed (72426) -->
+	<item>
+		<ingredient id="72426" count="1" /> <!-- Spellbook Coupon - 2 Stars - Sealed -->
+		<production id="99913" count="1" /> <!-- Spellbook: Stigma of Evil -->
+	</item>
+	<item>
+		<ingredient id="72426" count="1" /> <!-- Spellbook Coupon - 2 Stars - Sealed -->
+		<production id="99912" count="1" /> <!-- Spellbook: Rage Charge -->
+	</item>
+	<item>
+		<ingredient id="72426" count="1" /> <!-- Spellbook Coupon - 2 Stars - Sealed -->
+		<production id="98886" count="1" /> <!-- Spellbook: Saint's Burst -->
+	</item>
+	<item>
+		<ingredient id="72426" count="1" /> <!-- Spellbook Coupon - 2 Stars - Sealed -->
+		<production id="98870" count="1" /> <!-- Spellbook: Titans' Secrets -->
+	</item>
+	<item>
+		<ingredient id="72426" count="1" /> <!-- Spellbook Coupon - 2 Stars - Sealed -->
+		<production id="98871" count="1" /> <!-- Spellbook: Destructive Shriek -->
+	</item>
+	<item>
+		<ingredient id="72426" count="1" /> <!-- Spellbook Coupon - 2 Stars - Sealed -->
+		<production id="98553" count="1" /> <!-- Spellbook: Maximum Critical Lv. 3 -->
+	</item>
+	<item>
+		<ingredient id="72426" count="1" /> <!-- Spellbook Coupon - 2 Stars - Sealed -->
+		<production id="98488" count="1" /> <!-- Spellbook: Noda's Hidden Power -->
+	</item>
+	<item>
+		<ingredient id="72426" count="1" /> <!-- Spellbook Coupon - 2 Stars - Sealed -->
+		<production id="98489" count="1" /> <!-- Spellbook: Return Motion -->
+	</item>
+	<item>
+		<ingredient id="72426" count="1" /> <!-- Spellbook Coupon - 2 Stars - Sealed -->
+		<production id="98490" count="1" /> <!-- Spellbook: Shadow Boost -->
+	</item>
+	<item>
+		<ingredient id="72426" count="1" /> <!-- Spellbook Coupon - 2 Stars - Sealed -->
+		<production id="98257" count="1" /> <!-- Spellbook: Deadly Resilience -->
+	</item>
+	<item>
+		<ingredient id="72426" count="1" /> <!-- Spellbook Coupon - 2 Stars - Sealed -->
+		<production id="98258" count="1" /> <!-- Spellbook: Sounds of Muse -->
+	</item>
+	<item>
+		<ingredient id="72426" count="1" /> <!-- Spellbook Coupon - 2 Stars - Sealed -->
+		<production id="98259" count="1" /> <!-- Spellbook: Dancer's Play -->
+	</item>
+	<item>
+		<ingredient id="72426" count="1" /> <!-- Spellbook Coupon - 2 Stars - Sealed -->
+		<production id="98260" count="1" /> <!-- Spellbook: Spell of Power -->
+	</item>
+	<item>
+		<ingredient id="72426" count="1" /> <!-- Spellbook Coupon - 2 Stars - Sealed -->
+		<production id="98261" count="1" /> <!-- Spellbook: Spell of Fatality -->
+	</item>
+	<item>
+		<ingredient id="72426" count="1" /> <!-- Spellbook Coupon - 2 Stars - Sealed -->
+		<production id="98262" count="1" /> <!-- Spellbook: Splash Attack -->
+	</item>
+	<item>
+		<ingredient id="72426" count="1" /> <!-- Spellbook Coupon - 2 Stars - Sealed -->
+		<production id="98263" count="1" /> <!-- Spellbook: Titan Spirit -->
+	</item>
+	<item>
+		<ingredient id="72426" count="1" /> <!-- Spellbook Coupon - 2 Stars - Sealed -->
+		<production id="98264" count="1" /> <!-- Spellbook: Khavatari Spirit -->
+	</item>
+	<item>
+		<ingredient id="72426" count="1" /> <!-- Spellbook Coupon - 2 Stars - Sealed -->
+		<production id="98265" count="1" /> <!-- Spellbook: Instigator -->
+	</item>
+	<item>
+		<ingredient id="72426" count="1" /> <!-- Spellbook Coupon - 2 Stars - Sealed -->
+		<production id="98266" count="1" /> <!-- Spellbook: Long Range Attack Lv. 3 -->
+	</item>
+	<item>
+		<ingredient id="72426" count="1" /> <!-- Spellbook Coupon - 2 Stars - Sealed -->
+		<production id="98267" count="1" /> <!-- Spellbook: Mighty Children of Eva -->
+	</item>
+	<item>
+		<ingredient id="72426" count="1" /> <!-- Spellbook Coupon - 2 Stars - Sealed -->
+		<production id="99913" count="1" /> <!-- Spellbook: Stigma of Evil -->
+	</item>
+	<item>
+		<ingredient id="72426" count="1" /> <!-- Spellbook Coupon - 2 Stars - Sealed -->
+		<production id="99912" count="1" /> <!-- Spellbook: Rage Charge -->
+	</item>
+	<item>
+		<ingredient id="72426" count="1" /> <!-- Spellbook Coupon - 2 Stars - Sealed -->
+		<production id="98886" count="1" /> <!-- Spellbook: Saint's Burst -->
+	</item>
+	<item>
+		<ingredient id="72426" count="1" /> <!-- Spellbook Coupon - 2 Stars - Sealed -->
+		<production id="98870" count="1" /> <!-- Spellbook: Titans' Secrets -->
+	</item>
+	<item>
+		<ingredient id="72426" count="1" /> <!-- Spellbook Coupon - 2 Stars - Sealed -->
+		<production id="98871" count="1" /> <!-- Spellbook: Destructive Shriek -->
+	</item>
+	<item>
+		<ingredient id="72426" count="1" /> <!-- Spellbook Coupon - 2 Stars - Sealed -->
+		<production id="98553" count="1" /> <!-- Spellbook: Maximum Critical Lv. 3 -->
+	</item>
+	<item>
+		<ingredient id="72426" count="1" /> <!-- Spellbook Coupon - 2 Stars - Sealed -->
+		<production id="98488" count="1" /> <!-- Spellbook: Noda's Hidden Power -->
+	</item>
+	<item>
+		<ingredient id="72426" count="1" /> <!-- Spellbook Coupon - 2 Stars - Sealed -->
+		<production id="98489" count="1" /> <!-- Spellbook: Return Motion -->
+	</item>
+	<item>
+		<ingredient id="72426" count="1" /> <!-- Spellbook Coupon - 2 Stars - Sealed -->
+		<production id="98490" count="1" /> <!-- Spellbook: Shadow Boost -->
+	</item>
+	<item>
+		<ingredient id="72426" count="1" /> <!-- Spellbook Coupon - 2 Stars - Sealed -->
+		<production id="98257" count="1" /> <!-- Spellbook: Deadly Resilience -->
+	</item>
+	<item>
+		<ingredient id="72426" count="1" /> <!-- Spellbook Coupon - 2 Stars - Sealed -->
+		<production id="98258" count="1" /> <!-- Spellbook: Sounds of Muse -->
+	</item>
+	<item>
+		<ingredient id="72426" count="1" /> <!-- Spellbook Coupon - 2 Stars - Sealed -->
+		<production id="98259" count="1" /> <!-- Spellbook: Dancer's Play -->
+	</item>
+	<item>
+		<ingredient id="72426" count="1" /> <!-- Spellbook Coupon - 2 Stars - Sealed -->
+		<production id="98260" count="1" /> <!-- Spellbook: Spell of Power -->
+	</item>
+	<item>
+		<ingredient id="72426" count="1" /> <!-- Spellbook Coupon - 2 Stars - Sealed -->
+		<production id="98261" count="1" /> <!-- Spellbook: Spell of Fatality -->
+	</item>
+	<item>
+		<ingredient id="72426" count="1" /> <!-- Spellbook Coupon - 2 Stars - Sealed -->
+		<production id="98262" count="1" /> <!-- Spellbook: Splash Attack -->
+	</item>
+	<item>
+		<ingredient id="72426" count="1" /> <!-- Spellbook Coupon - 2 Stars - Sealed -->
+		<production id="98263" count="1" /> <!-- Spellbook: Titan Spirit -->
+	</item>
+	<item>
+		<ingredient id="72426" count="1" /> <!-- Spellbook Coupon - 2 Stars - Sealed -->
+		<production id="98264" count="1" /> <!-- Spellbook: Khavatari Spirit -->
+	</item>
+	<item>
+		<ingredient id="72426" count="1" /> <!-- Spellbook Coupon - 2 Stars - Sealed -->
+		<production id="98265" count="1" /> <!-- Spellbook: Instigator -->
+	</item>
+	<item>
+		<ingredient id="72426" count="1" /> <!-- Spellbook Coupon - 2 Stars - Sealed -->
+		<production id="98266" count="1" /> <!-- Spellbook: Long Range Attack Lv. 3 -->
+	</item>
+	<item>
+		<ingredient id="72426" count="1" /> <!-- Spellbook Coupon - 2 Stars - Sealed -->
+		<production id="98267" count="1" /> <!-- Spellbook: Mighty Children of Eva -->
+	</item>
+	<item>
+		<ingredient id="72426" count="1" /> <!-- Spellbook Coupon - 2 Stars - Sealed -->
+		<production id="99913" count="1" /> <!-- Spellbook: Stigma of Evil -->
+	</item>
+	<item>
+		<ingredient id="72426" count="1" /> <!-- Spellbook Coupon - 2 Stars - Sealed -->
+		<production id="99912" count="1" /> <!-- Spellbook: Rage Charge -->
+	</item>
+	<item>
+		<ingredient id="72426" count="1" /> <!-- Spellbook Coupon - 2 Stars - Sealed -->
+		<production id="98886" count="1" /> <!-- Spellbook: Saint's Burst -->
+	</item>
+	<item>
+		<ingredient id="72426" count="1" /> <!-- Spellbook Coupon - 2 Stars - Sealed -->
+		<production id="98870" count="1" /> <!-- Spellbook: Titans' Secrets -->
+	</item>
+	<item>
+		<ingredient id="72426" count="1" /> <!-- Spellbook Coupon - 2 Stars - Sealed -->
+		<production id="98871" count="1" /> <!-- Spellbook: Destructive Shriek -->
+	</item>
+	<item>
+		<ingredient id="72426" count="1" /> <!-- Spellbook Coupon - 2 Stars - Sealed -->
+		<production id="98553" count="1" /> <!-- Spellbook: Maximum Critical Lv. 3 -->
+	</item>
+	<item>
+		<ingredient id="72426" count="1" /> <!-- Spellbook Coupon - 2 Stars - Sealed -->
+		<production id="98488" count="1" /> <!-- Spellbook: Noda's Hidden Power -->
+	</item>
+	<item>
+		<ingredient id="72426" count="1" /> <!-- Spellbook Coupon - 2 Stars - Sealed -->
+		<production id="98489" count="1" /> <!-- Spellbook: Return Motion -->
+	</item>
+	<item>
+		<ingredient id="72426" count="1" /> <!-- Spellbook Coupon - 2 Stars - Sealed -->
+		<production id="98490" count="1" /> <!-- Spellbook: Shadow Boost -->
+	</item>
+	<item>
+		<ingredient id="72426" count="1" /> <!-- Spellbook Coupon - 2 Stars - Sealed -->
+		<production id="98257" count="1" /> <!-- Spellbook: Deadly Resilience -->
+	</item>
+	<item>
+		<ingredient id="72426" count="1" /> <!-- Spellbook Coupon - 2 Stars - Sealed -->
+		<production id="98258" count="1" /> <!-- Spellbook: Sounds of Muse -->
+	</item>
+	<item>
+		<ingredient id="72426" count="1" /> <!-- Spellbook Coupon - 2 Stars - Sealed -->
+		<production id="98259" count="1" /> <!-- Spellbook: Dancer's Play -->
+	</item>
+	<item>
+		<ingredient id="72426" count="1" /> <!-- Spellbook Coupon - 2 Stars - Sealed -->
+		<production id="98260" count="1" /> <!-- Spellbook: Spell of Power -->
+	</item>
+	<item>
+		<ingredient id="72426" count="1" /> <!-- Spellbook Coupon - 2 Stars - Sealed -->
+		<production id="98261" count="1" /> <!-- Spellbook: Spell of Fatality -->
+	</item>
+	<item>
+		<ingredient id="72426" count="1" /> <!-- Spellbook Coupon - 2 Stars - Sealed -->
+		<production id="98262" count="1" /> <!-- Spellbook: Splash Attack -->
+	</item>
+	<item>
+		<ingredient id="72426" count="1" /> <!-- Spellbook Coupon - 2 Stars - Sealed -->
+		<production id="98263" count="1" /> <!-- Spellbook: Titan Spirit -->
+	</item>
+	<item>
+		<ingredient id="72426" count="1" /> <!-- Spellbook Coupon - 2 Stars - Sealed -->
+		<production id="98264" count="1" /> <!-- Spellbook: Khavatari Spirit -->
+	</item>
+	<item>
+		<ingredient id="72426" count="1" /> <!-- Spellbook Coupon - 2 Stars - Sealed -->
+		<production id="98265" count="1" /> <!-- Spellbook: Instigator -->
+	</item>
+	<item>
+		<ingredient id="72426" count="1" /> <!-- Spellbook Coupon - 2 Stars - Sealed -->
+		<production id="98266" count="1" /> <!-- Spellbook: Long Range Attack Lv. 3 -->
+	</item>
+	<item>
+		<ingredient id="72426" count="1" /> <!-- Spellbook Coupon - 2 Stars - Sealed -->
+		<production id="98267" count="1" /> <!-- Spellbook: Mighty Children of Eva -->
+	</item>
+	<item>
+		<ingredient id="72426" count="1" /> <!-- Spellbook Coupon - 2 Stars - Sealed -->
+		<production id="99913" count="1" /> <!-- Spellbook: Stigma of Evil -->
+	</item>
+	<item>
+		<ingredient id="72426" count="1" /> <!-- Spellbook Coupon - 2 Stars - Sealed -->
+		<production id="99912" count="1" /> <!-- Spellbook: Rage Charge -->
+	</item>
+	<item>
+		<ingredient id="72426" count="1" /> <!-- Spellbook Coupon - 2 Stars - Sealed -->
+		<production id="98886" count="1" /> <!-- Spellbook: Saint's Burst -->
+	</item>
+	<item>
+		<ingredient id="72426" count="1" /> <!-- Spellbook Coupon - 2 Stars - Sealed -->
+		<production id="98870" count="1" /> <!-- Spellbook: Titans' Secrets -->
+	</item>
+	<item>
+		<ingredient id="72426" count="1" /> <!-- Spellbook Coupon - 2 Stars - Sealed -->
+		<production id="98871" count="1" /> <!-- Spellbook: Destructive Shriek -->
+	</item>
+	<item>
+		<ingredient id="72426" count="1" /> <!-- Spellbook Coupon - 2 Stars - Sealed -->
+		<production id="98553" count="1" /> <!-- Spellbook: Maximum Critical Lv. 3 -->
+	</item>
+	<item>
+		<ingredient id="72426" count="1" /> <!-- Spellbook Coupon - 2 Stars - Sealed -->
+		<production id="98488" count="1" /> <!-- Spellbook: Noda's Hidden Power -->
+	</item>
+	<item>
+		<ingredient id="72426" count="1" /> <!-- Spellbook Coupon - 2 Stars - Sealed -->
+		<production id="98489" count="1" /> <!-- Spellbook: Return Motion -->
+	</item>
+	<item>
+		<ingredient id="72426" count="1" /> <!-- Spellbook Coupon - 2 Stars - Sealed -->
+		<production id="98490" count="1" /> <!-- Spellbook: Shadow Boost -->
+	</item>
+	<item>
+		<ingredient id="72426" count="1" /> <!-- Spellbook Coupon - 2 Stars - Sealed -->
+		<production id="98257" count="1" /> <!-- Spellbook: Deadly Resilience -->
+	</item>
+	<item>
+		<ingredient id="72426" count="1" /> <!-- Spellbook Coupon - 2 Stars - Sealed -->
+		<production id="98258" count="1" /> <!-- Spellbook: Sounds of Muse -->
+	</item>
+	<item>
+		<ingredient id="72426" count="1" /> <!-- Spellbook Coupon - 2 Stars - Sealed -->
+		<production id="98259" count="1" /> <!-- Spellbook: Dancer's Play -->
+	</item>
+	<item>
+		<ingredient id="72426" count="1" /> <!-- Spellbook Coupon - 2 Stars - Sealed -->
+		<production id="98260" count="1" /> <!-- Spellbook: Spell of Power -->
+	</item>
+	<item>
+		<ingredient id="72426" count="1" /> <!-- Spellbook Coupon - 2 Stars - Sealed -->
+		<production id="98261" count="1" /> <!-- Spellbook: Spell of Fatality -->
+	</item>
+	<item>
+		<ingredient id="72426" count="1" /> <!-- Spellbook Coupon - 2 Stars - Sealed -->
+		<production id="98262" count="1" /> <!-- Spellbook: Splash Attack -->
+	</item>
+	<item>
+		<ingredient id="72426" count="1" /> <!-- Spellbook Coupon - 2 Stars - Sealed -->
+		<production id="98263" count="1" /> <!-- Spellbook: Titan Spirit -->
+	</item>
+	<item>
+		<ingredient id="72426" count="1" /> <!-- Spellbook Coupon - 2 Stars - Sealed -->
+		<production id="98264" count="1" /> <!-- Spellbook: Khavatari Spirit -->
+	</item>
+	<item>
+		<ingredient id="72426" count="1" /> <!-- Spellbook Coupon - 2 Stars - Sealed -->
+		<production id="98265" count="1" /> <!-- Spellbook: Instigator -->
+	</item>
+	<item>
+		<ingredient id="72426" count="1" /> <!-- Spellbook Coupon - 2 Stars - Sealed -->
+		<production id="98266" count="1" /> <!-- Spellbook: Long Range Attack Lv. 3 -->
+	</item>
+	<item>
+		<ingredient id="72426" count="1" /> <!-- Spellbook Coupon - 2 Stars - Sealed -->
+		<production id="98267" count="1" /> <!-- Spellbook: Mighty Children of Eva -->
+	</item>
+	<item>
+		<ingredient id="72426" count="1" /> <!-- Spellbook Coupon - 2 Stars - Sealed -->
+		<production id="99913" count="1" /> <!-- Spellbook: Stigma of Evil -->
+	</item>
+	<item>
+		<ingredient id="72426" count="1" /> <!-- Spellbook Coupon - 2 Stars - Sealed -->
+		<production id="99912" count="1" /> <!-- Spellbook: Rage Charge -->
+	</item>
+	<item>
+		<ingredient id="72426" count="1" /> <!-- Spellbook Coupon - 2 Stars - Sealed -->
+		<production id="98886" count="1" /> <!-- Spellbook: Saint's Burst -->
+	</item>
+	<item>
+		<ingredient id="72426" count="1" /> <!-- Spellbook Coupon - 2 Stars - Sealed -->
+		<production id="98870" count="1" /> <!-- Spellbook: Titans' Secrets -->
+	</item>
+	<item>
+		<ingredient id="72426" count="1" /> <!-- Spellbook Coupon - 2 Stars - Sealed -->
+		<production id="98871" count="1" /> <!-- Spellbook: Destructive Shriek -->
+	</item>
+	<item>
+		<ingredient id="72426" count="1" /> <!-- Spellbook Coupon - 2 Stars - Sealed -->
+		<production id="98553" count="1" /> <!-- Spellbook: Maximum Critical Lv. 3 -->
+	</item>
+	<item>
+		<ingredient id="72426" count="1" /> <!-- Spellbook Coupon - 2 Stars - Sealed -->
+		<production id="98488" count="1" /> <!-- Spellbook: Noda's Hidden Power -->
+	</item>
+	<item>
+		<ingredient id="72426" count="1" /> <!-- Spellbook Coupon - 2 Stars - Sealed -->
+		<production id="98489" count="1" /> <!-- Spellbook: Return Motion -->
+	</item>
+	<item>
+		<ingredient id="72426" count="1" /> <!-- Spellbook Coupon - 2 Stars - Sealed -->
+		<production id="98490" count="1" /> <!-- Spellbook: Shadow Boost -->
+	</item>
+	<item>
+		<ingredient id="72426" count="1" /> <!-- Spellbook Coupon - 2 Stars - Sealed -->
+		<production id="98257" count="1" /> <!-- Spellbook: Deadly Resilience -->
+	</item>
+	<item>
+		<ingredient id="72426" count="1" /> <!-- Spellbook Coupon - 2 Stars - Sealed -->
+		<production id="98258" count="1" /> <!-- Spellbook: Sounds of Muse -->
+	</item>
+	<item>
+		<ingredient id="72426" count="1" /> <!-- Spellbook Coupon - 2 Stars - Sealed -->
+		<production id="98259" count="1" /> <!-- Spellbook: Dancer's Play -->
+	</item>
+	<item>
+		<ingredient id="72426" count="1" /> <!-- Spellbook Coupon - 2 Stars - Sealed -->
+		<production id="98260" count="1" /> <!-- Spellbook: Spell of Power -->
+	</item>
+	<item>
+		<ingredient id="72426" count="1" /> <!-- Spellbook Coupon - 2 Stars - Sealed -->
+		<production id="98261" count="1" /> <!-- Spellbook: Spell of Fatality -->
+	</item>
+	<item>
+		<ingredient id="72426" count="1" /> <!-- Spellbook Coupon - 2 Stars - Sealed -->
+		<production id="98262" count="1" /> <!-- Spellbook: Splash Attack -->
+	</item>
+	<item>
+		<ingredient id="72426" count="1" /> <!-- Spellbook Coupon - 2 Stars - Sealed -->
+		<production id="98263" count="1" /> <!-- Spellbook: Titan Spirit -->
+	</item>
+	<item>
+		<ingredient id="72426" count="1" /> <!-- Spellbook Coupon - 2 Stars - Sealed -->
+		<production id="98264" count="1" /> <!-- Spellbook: Khavatari Spirit -->
+	</item>
+	<item>
+		<ingredient id="72426" count="1" /> <!-- Spellbook Coupon - 2 Stars - Sealed -->
+		<production id="98265" count="1" /> <!-- Spellbook: Instigator -->
+	</item>
+	<item>
+		<ingredient id="72426" count="1" /> <!-- Spellbook Coupon - 2 Stars - Sealed -->
+		<production id="98266" count="1" /> <!-- Spellbook: Long Range Attack Lv. 3 -->
+	</item>
+	<item>
+		<ingredient id="72426" count="1" /> <!-- Spellbook Coupon - 2 Stars - Sealed -->
+		<production id="98267" count="1" /> <!-- Spellbook: Mighty Children of Eva -->
+	</item>
+</list>

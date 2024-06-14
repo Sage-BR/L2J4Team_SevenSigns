@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,7 +17,6 @@
 package org.l2j.gameserver.network.clientpackets.blessing;
 
 import org.l2j.Config;
-import org.l2j.commons.network.ReadablePacket;
 import org.l2j.commons.util.Rnd;
 import org.l2j.gameserver.enums.ItemSkillType;
 import org.l2j.gameserver.model.actor.Player;
@@ -26,35 +25,32 @@ import org.l2j.gameserver.model.item.ItemTemplate;
 import org.l2j.gameserver.model.item.instance.Item;
 import org.l2j.gameserver.model.skill.CommonSkill;
 import org.l2j.gameserver.model.skill.Skill;
-import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.SystemMessageId;
 import org.l2j.gameserver.network.clientpackets.ClientPacket;
-import org.l2j.gameserver.network.serverpackets.ExItemAnnounce;
 import org.l2j.gameserver.network.serverpackets.MagicSkillUse;
 import org.l2j.gameserver.network.serverpackets.SystemMessage;
 import org.l2j.gameserver.network.serverpackets.blessing.ExBlessOptionEnchant;
 import org.l2j.gameserver.network.serverpackets.blessing.ExBlessOptionPutItem;
 import org.l2j.gameserver.network.serverpackets.enchant.EnchantResult;
-import org.l2j.gameserver.util.Broadcast;
 import org.l2j.gameserver.util.Util;
 
 /**
  * @author Horus
  */
-public class RequestBlessOptionEnchant implements ClientPacket
+public class RequestBlessOptionEnchant extends ClientPacket
 {
 	private int _itemObjId;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_itemObjId = packet.readInt();
+		_itemObjId = readInt();
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
-		final Player player = client.getPlayer();
+		final Player player = getPlayer();
 		if (player == null)
 		{
 			return;
@@ -76,7 +72,7 @@ public class RequestBlessOptionEnchant implements ClientPacket
 		request.setProcessing(true);
 		request.setTimestamp(System.currentTimeMillis());
 		
-		if (!player.isOnline() || client.isDetached())
+		if (!player.isOnline() || getClient().isDetached())
 		{
 			return;
 		}
@@ -98,7 +94,7 @@ public class RequestBlessOptionEnchant implements ClientPacket
 		// first validation check - also over enchant check
 		if (item.isBlessed())
 		{
-			client.sendPacket(SystemMessageId.AUGMENTATION_REQUIREMENTS_ARE_NOT_FULFILLED);
+			getClient().sendPacket(SystemMessageId.AUGMENTATION_REQUIREMENTS_ARE_NOT_FULFILLED);
 			player.sendPacket(new ExBlessOptionPutItem(0));
 			return;
 		}
@@ -113,7 +109,7 @@ public class RequestBlessOptionEnchant implements ClientPacket
 		// attempting to destroy scroll
 		if (player.getInventory().destroyItem("Blessing", targetScroll.getObjectId(), 1, player, item) == null)
 		{
-			client.sendPacket(SystemMessageId.INCORRECT_ITEM_COUNT_2);
+			getClient().sendPacket(SystemMessageId.INCORRECT_ITEM_COUNT_2);
 			Util.handleIllegalPlayerAction(player, player + " tried to bless with a scroll he doesn't have", Config.DEFAULT_PUNISH);
 			player.sendPacket(new ExBlessOptionEnchant(EnchantResult.ERROR));
 			return;
@@ -135,7 +131,7 @@ public class RequestBlessOptionEnchant implements ClientPacket
 				sm.addInt(item.getEnchantLevel());
 				sm.addItemName(item);
 				player.broadcastPacket(sm);
-				Broadcast.toAllOnlinePlayers(new ExItemAnnounce(player, item, ExItemAnnounce.ENCHANT));
+				// Broadcast.toAllOnlinePlayers(new ExItemAnnounce(player, item, ExItemAnnounce.ENCHANT));
 				
 				final Skill skill = CommonSkill.FIREWORK.getSkill();
 				if (skill != null)

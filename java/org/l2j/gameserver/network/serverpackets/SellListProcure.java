@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,10 +20,12 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.instancemanager.CastleManorManager;
 import org.l2j.gameserver.model.CropProcure;
 import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.model.item.instance.Item;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 
 public class SellListProcure extends ServerPacket
@@ -45,22 +47,22 @@ public class SellListProcure extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.SELL_LIST_PROCURE.writeId(this);
-		writeLong(_money); // money
-		writeInt(0); // lease ?
-		writeShort(_sellList.size()); // list size
+		ServerPackets.SELL_LIST_PROCURE.writeId(this, buffer);
+		buffer.writeLong(_money); // money
+		buffer.writeInt(0); // lease ?
+		buffer.writeShort(_sellList.size()); // list size
 		for (Entry<Item, Long> entry : _sellList.entrySet())
 		{
 			final Item item = entry.getKey();
-			writeShort(item.getTemplate().getType1());
-			writeInt(item.getObjectId());
-			writeInt(item.getDisplayId());
-			writeLong(entry.getValue()); // count
-			writeShort(item.getTemplate().getType2());
-			writeShort(0); // unknown
-			writeLong(0); // price, you should not get any adena for crops, only raw materials
+			buffer.writeShort(item.getTemplate().getType1());
+			buffer.writeInt(item.getObjectId());
+			buffer.writeInt(item.getDisplayId());
+			buffer.writeLong(entry.getValue()); // count
+			buffer.writeShort(item.getTemplate().getType2());
+			buffer.writeShort(0); // unknown
+			buffer.writeLong(0); // price, you should not get any adena for crops, only raw materials
 		}
 	}
 }

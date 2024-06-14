@@ -1,0 +1,11 @@
+<html><body>Additional Services' Researcher Hermin:<br>
+Aha, Elf! So you want to be an Elf. Now choose. <font color="LEVEL">class</font> for your character.<br>
+<Button ALIGN="LEFT" ICON="NORMAL" action="bypass -h Quest AdditionalServicesAdvisor choose_class 99"><font color="LEVEL">Eva's Templar</font></button>
+<Button ALIGN="LEFT" ICON="NORMAL" action="bypass -h Quest AdditionalServicesAdvisor choose_class 100"><font color="LEVEL">Sword Muse</font></button>
+ <Button ALIGN="LEFT" ICON="NORMAL" action="bypass -h Quest AdditionalServicesAdvisor choose_class 101"><font color="LEVEL">Wind Rider</font></button>
+<Button ALIGN="LEFT" ICON="NORMAL" action="bypass -h Quest AdditionalServicesAdvisor choose_class 102"><font color="LEVEL">Moonlight Sentinel</font></button>
+<Button ALIGN="LEFT" ICON="NORMAL" action="bypass -h Quest AdditionalServicesAdvisor choose_class 103"><font color="LEVEL">Mystic Muse</font></button>
+<Button ALIGN="LEFT" ICON="NORMAL" action="bypass -h Quest AdditionalServicesAdvisor choose_class 104"><font color="LEVEL">Elemental Master</font></button>
+<Button ALIGN="LEFT" ICON="NORMAL" action="bypass -h Quest AdditionalServicesAdvisor choose_class 105"><font color="LEVEL">Eva's Saint</font></button>
+<Button ALIGN="LEFT" ICON="NORMAL" action="bypass -h Quest AdditionalServicesAdvisor choose_class 203"><font color="LEVEL">Death Knight (Elf)</font></button>
+</body></html>

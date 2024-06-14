@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,31 +16,29 @@
  */
 package org.l2j.gameserver.network.clientpackets.pet;
 
-import org.l2j.commons.network.ReadablePacket;
 import org.l2j.gameserver.data.sql.PetNameTable;
 import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.model.actor.Summon;
-import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.SystemMessageId;
 import org.l2j.gameserver.network.clientpackets.ClientPacket;
 
 /**
  * @version $Revision: 1.3.4.4 $ $Date: 2005/04/06 16:13:48 $
  */
-public class RequestChangePetName implements ClientPacket
+public class RequestChangePetName extends ClientPacket
 {
 	private String _name;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_name = packet.readString();
+		_name = readString();
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
-		final Player player = client.getPlayer();
+		final Player player = getPlayer();
 		if (player == null)
 		{
 			return;
@@ -58,7 +56,7 @@ public class RequestChangePetName implements ClientPacket
 			return;
 		}
 		
-		if (pet.getName() != null)
+		if ((pet.getName() != null) && !pet.getName().equals(""))
 		{
 			player.sendPacket(SystemMessageId.YOU_CANNOT_SET_THE_NAME_OF_THE_PET);
 			return;

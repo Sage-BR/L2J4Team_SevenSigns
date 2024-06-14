@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,20 +16,14 @@
  */
 package org.l2j.loginserver.network.loginserverpackets;
 
-import org.l2j.commons.network.WritablePacket;
+import org.l2j.commons.network.base.BaseWritablePacket;
 import org.l2j.loginserver.LoginServer;
 
 /**
  * @author -Wooden-
  */
-public class InitLS extends WritablePacket
+public class InitLS extends BaseWritablePacket
 {
-	// ID 0x00
-	// format
-	// d proto rev
-	// d key size
-	// b key
-	
 	public InitLS(byte[] publickey)
 	{
 		writeByte(0x00);

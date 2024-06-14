@@ -1,0 +1,106 @@
+/*
+ * This file is part of the L2J Mobius project.
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ */
+package org.l2jmobius.gameserver.network.clientpackets.newhenna;
+
+import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.item.henna.Henna;
+import org.l2jmobius.gameserver.model.itemcontainer.Inventory;
+import org.l2jmobius.gameserver.network.PacketLogger;
+import org.l2jmobius.gameserver.network.SystemMessageId;
+import org.l2jmobius.gameserver.network.clientpackets.ClientPacket;
+import org.l2jmobius.gameserver.network.serverpackets.ActionFailed;
+import org.l2jmobius.gameserver.network.serverpackets.UserInfo;
+import org.l2jmobius.gameserver.network.serverpackets.newhenna.NewHennaUnequip;
+
+/**
+ * @author Index, Serenitty
+ */
+public class RequestNewHennaUnequip extends ClientPacket
+{
+	private int _slotId;
+	private int _itemId;
+	
+	@Override
+	protected void readImpl()
+	{
+		_slotId = readByte();
+		_itemId = readInt(); // CostItemId
+	}
+	
+	@Override
+	protected void runImpl()
+	{
+		final Player player = getPlayer();
+		if (player == null)
+		{
+			return;
+		}
+		
+		if (!getClient().getFloodProtectors().canPerformTransaction())
+		{
+			player.sendPacket(ActionFailed.STATIC_PACKET);
+			player.sendPacket(new NewHennaUnequip(_slotId, 0));
+			return;
+		}
+		
+		if (_slotId > player.getHennaPotenList().length)
+		{
+			return;
+		}
+		
+		final Henna henna = player.getHenna(_slotId);
+		if (henna == null)
+		{
+			PacketLogger.warning(getClass().getSimpleName() + ": " + player + " requested Henna Draw remove without any henna.");
+			player.sendPacket(ActionFailed.STATIC_PACKET);
+			player.sendPacket(new NewHennaUnequip(_slotId, 0));
+			return;
+		}
+		
+		int feeType = 0;
+		
+		if (_itemId == Inventory.ADENA_ID)
+		{
+			feeType = henna.getCancelFee();
+		}
+		else if (_itemId == Inventory.LCOIN_ID)
+		{
+			feeType = henna.getCancelL2CoinFee();
+		}
+		
+		if (player.destroyItemByItemId("FeeType", _itemId, feeType, player, false))
+		{
+			player.removeHenna(_slotId);
+			player.getStat().recalculateStats(true);
+			player.sendPacket(new NewHennaUnequip(_slotId, 1));
+			player.sendPacket(new UserInfo(player));
+		}
+		else
+		{
+			if (_itemId == Inventory.ADENA_ID)
+			{
+				player.sendPacket(SystemMessageId.YOU_DO_NOT_HAVE_ENOUGH_ADENA_TO_REGISTER_THE_ITEM);
+			}
+			else if (_itemId == Inventory.LCOIN_ID)
+			{
+				player.sendPacket(SystemMessageId.YOU_DO_NOT_HAVE_ENOUGH_L2_COINS_ADD_MORE_L2_COINS_AND_TRY_AGAIN);
+			}
+			player.sendPacket(ActionFailed.STATIC_PACKET);
+			player.sendPacket(new NewHennaUnequip(_slotId, 0));
+		}
+	}
+}

@@ -1,0 +1,80 @@
+/*
+ * This file is part of the L2J Mobius project.
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ */
+package org.l2jmobius.gameserver.network.clientpackets.worldexchange;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.enums.WorldExchangeItemSubType;
+import org.l2jmobius.gameserver.enums.WorldExchangeSortType;
+import org.l2jmobius.gameserver.instancemanager.WorldExchangeManager;
+import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.holders.WorldExchangeHolder;
+import org.l2jmobius.gameserver.network.clientpackets.ClientPacket;
+import org.l2jmobius.gameserver.network.serverpackets.worldexchange.WorldExchangeItemList;
+
+/**
+ * @author Index
+ */
+public class ExWorldExchangeItemList extends ClientPacket
+{
+	private int _category;
+	private int _sortType;
+	private final List<Integer> _itemIdList = new ArrayList<>();
+	
+	@Override
+	protected void readImpl()
+	{
+		_category = readShort();
+		_sortType = readByte();
+		readInt(); // page
+		int size = readInt();
+		for (int i = 0; i < size; i++)
+		{
+			_itemIdList.add(readInt());
+		}
+	}
+	
+	@Override
+	protected void runImpl()
+	{
+		if (!Config.ENABLE_WORLD_EXCHANGE)
+		{
+			return;
+		}
+		
+		final Player player = getPlayer();
+		if (player == null)
+		{
+			return;
+		}
+		
+		final String lang = Config.MULTILANG_ENABLE ? player.getLang() != null ? player.getLang() : Config.WORLD_EXCHANGE_DEFAULT_LANG : Config.WORLD_EXCHANGE_DEFAULT_LANG;
+		if (_itemIdList.isEmpty())
+		{
+			final List<WorldExchangeHolder> holders = WorldExchangeManager.getInstance().getItemBids(player.getObjectId(), WorldExchangeItemSubType.getWorldExchangeItemSubType(_category), WorldExchangeSortType.getWorldExchangeSortType(_sortType), lang);
+			player.sendPacket(new WorldExchangeItemList(holders, WorldExchangeItemSubType.getWorldExchangeItemSubType(_category)));
+		}
+		else
+		{
+			WorldExchangeManager.getInstance().addCategoryType(_itemIdList, _category);
+			final List<WorldExchangeHolder> holders = WorldExchangeManager.getInstance().getItemBids(_itemIdList, WorldExchangeSortType.getWorldExchangeSortType(_sortType), lang);
+			player.sendPacket(new WorldExchangeItemList(holders, WorldExchangeItemSubType.getWorldExchangeItemSubType(_category)));
+		}
+	}
+}

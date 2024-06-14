@@ -1,0 +1,21 @@
+<html><title>Offensive Auxiliary Magic</title><head><body scroll="no">
+<table border=0 cellpadding=0 cellspacing=0 width=292 height=358 >
+	<tr><td valign="top" align="center">	
+		<table border=0 cellpadding=0 cellspacing=0>
+			<tr><td height="15"></td></tr>	
+			<tr><td align=center><button action="bypass -h Quest TrainingZone get_buff 1" value="P. Atk. +1000" width=250 height=29 back="L2UI_NewTex.Button.Button29_Down" fore="L2UI_NewTex.Button.Button29_DF"></td></tr>
+			<tr><td align=center><button action="bypass -h Quest TrainingZone get_buff 2" value="M. Atk. +1000" width=250 height=29 back="L2UI_NewTex.Button.Button29_Down" fore="L2UI_NewTex.Button.Button29_DF"></td></tr>		
+			<tr><td align=center><button action="bypass -h Quest TrainingZone get_buff 3" value="Attack Speed. +24%" width=250 height=29 back="L2UI_NewTex.Button.Button29_Down" fore="L2UI_NewTex.Button.Button29_DF"></td></tr>
+			<tr><td align=center><button action="bypass -h Quest TrainingZone get_buff 4" value="Casting Speed. +24%" width=250 height=29 back="L2UI_NewTex.Button.Button29_Down" fore="L2UI_NewTex.Button.Button29_DF"></td></tr>		
+			<tr><td align=center><button action="bypass -h Quest TrainingZone get_buff 5" value="Physical Skills Critical Chance +11%" width=250 height=29 back="L2UI_NewTex.Button.Button29_Down" fore="L2UI_NewTex.Button.Button29_DF"></td></tr>
+			<tr><td align=center><button action="bypass -h Quest TrainingZone get_buff 6" value="Magical Skills Critical Chance +21%" width=250 height=29 back="L2UI_NewTex.Button.Button29_Down" fore="L2UI_NewTex.Button.Button29_DF"></td></tr>		
+			<tr><td align=center><button action="bypass -h Quest TrainingZone get_buff 7" value="All Critical Damage +500" width=250 height=29 back="L2UI_NewTex.Button.Button29_Down" fore="L2UI_NewTex.Button.Button29_DF"></td></tr>
+			<tr><td align=center><button action="bypass -h Quest TrainingZone get_buff 8" value="Soulshot/ Spiritshot Damage +10%" width=250 height=29 back="L2UI_NewTex.Button.Button29_Down" fore="L2UI_NewTex.Button.Button29_DF"></td></tr>							
+			<tr><td align=center><button action="bypass -h Quest TrainingZone get_buff 9" value="All Skill Power +10%" width=250 height=29 back="L2UI_NewTex.Button.Button29_Down" fore="L2UI_NewTex.Button.Button29_DF"></td></tr>			
+			<tr><td align=center><button action="bypass -h Quest TrainingZone get_buff 10" value="All Critical Damage +15%" width=250 height=29 back="L2UI_NewTex.Button.Button29_Down" fore="L2UI_NewTex.Button.Button29_DF"></td></tr>
+			<tr><td align=center><button action="bypass -h Quest TrainingZone get_buff 11" value="Transfers 3% inflicted damage to MP" width=250 height=29 back="L2UI_NewTex.Button.Button29_Down" fore="L2UI_NewTex.Button.Button29_DF"></td></tr>							
+			<tr><td align=center><button action="bypass -h Quest TrainingZone get_buff 12" value="Transfers 8% inflicted damage to HP" width=250 height=29 back="L2UI_NewTex.Button.Button29_Down" fore="L2UI_NewTex.Button.Button29_DF"></td></tr>
+		</table>
+	</td></tr>
+</table>
+</body></html>

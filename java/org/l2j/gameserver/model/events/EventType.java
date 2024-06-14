@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -30,6 +30,8 @@ import org.l2j.gameserver.model.events.impl.creature.OnCreatureDamageReceived;
 import org.l2j.gameserver.model.events.impl.creature.OnCreatureDeath;
 import org.l2j.gameserver.model.events.impl.creature.OnCreatureHpChange;
 import org.l2j.gameserver.model.events.impl.creature.OnCreatureKilled;
+import org.l2j.gameserver.model.events.impl.creature.OnCreatureMDefChange;
+import org.l2j.gameserver.model.events.impl.creature.OnCreaturePDefChange;
 import org.l2j.gameserver.model.events.impl.creature.OnCreatureSee;
 import org.l2j.gameserver.model.events.impl.creature.OnCreatureSkillFinishCast;
 import org.l2j.gameserver.model.events.impl.creature.OnCreatureSkillUse;
@@ -168,6 +170,8 @@ public enum EventType
 	ON_CREATURE_DAMAGE_RECEIVED(OnCreatureDamageReceived.class, void.class, DamageReturn.class),
 	ON_CREATURE_DAMAGE_DEALT(OnCreatureDamageDealt.class, void.class),
 	ON_CREATURE_HP_CHANGE(OnCreatureHpChange.class, void.class),
+	ON_CREATURE_MDEF_CHANGE(OnCreatureMDefChange.class, void.class),
+	ON_CREATURE_PDEF_CHANGE(OnCreaturePDefChange.class, void.class),
 	ON_CREATURE_DEATH(OnCreatureDeath.class, void.class),
 	ON_CREATURE_KILLED(OnCreatureKilled.class, void.class, TerminateReturn.class),
 	ON_CREATURE_SEE(OnCreatureSee.class, void.class),

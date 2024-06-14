@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/multisell.xsd">
+	<npcs>
+		<npc>-1</npc> <!-- Item Multisell -->
+	</npcs>
+	<!-- Mysterious Crystal (Time-limited) - Sealed (96685) -->
+	<item>
+		<ingredient id="96685" count="88" /> <!-- Mysterious Crystal (Time-limited) - Sealed -->
+		<production id="96652" count="1" /> <!-- Package: Antharas Doll Lv. 1 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="96685" count="48" /> <!-- Mysterious Crystal (Time-limited) - Sealed -->
+		<production id="94156" count="1" /> <!-- Package: Baium Doll Lv. 1 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="96685" count="48" /> <!-- Mysterious Crystal (Time-limited) - Sealed -->
+		<production id="94513" count="1" /> <!-- Package: Frintezza Doll Lv. 1 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="96685" count="48" /> <!-- Mysterious Crystal (Time-limited) - Sealed -->
+		<production id="94651" count="1" /> <!-- Package: Zaken Doll Lv. 1 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="96685" count="48" /> <!-- Mysterious Crystal (Time-limited) - Sealed -->
+		<production id="94654" count="1" /> <!-- Package: Core Doll Lv. 1 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="96685" count="32" /> <!-- Mysterious Crystal (Time-limited) - Sealed -->
+		<production id="94159" count="1" /> <!-- Package: Queen Ant Doll Lv. 1 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="96685" count="32" /> <!-- Mysterious Crystal (Time-limited) - Sealed -->
+		<production id="94162" count="1" /> <!-- Package: Orfen Doll Lv. 1 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="96685" count="8" /> <!-- Mysterious Crystal (Time-limited) - Sealed -->
+		<production id="97266" count="1" /> <!-- Enchant Kit: Piercing Mask - Sealed -->
+	</item>
+	<item>
+		<ingredient id="96685" count="7" /> <!-- Mysterious Crystal (Time-limited) - Sealed -->
+		<production id="94168" count="1" /> <!-- Enchant Kit: Circlet of Hero - Sealed -->
+	</item>
+	<item>
+		<ingredient id="96685" count="7" /> <!-- Mysterious Crystal (Time-limited) - Sealed -->
+		<production id="94258" count="1" /> <!-- Package: Einhasad's Pendant Lv. 1 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="96685" count="4" /> <!-- Mysterious Crystal (Time-limited) - Sealed -->
+		<production id="93330" count="1" /> <!-- Enchant Kit: Talisman of Authority - Sealed -->
+	</item>
+	<item>
+		<ingredient id="96685" count="2" /> <!-- Mysterious Crystal (Time-limited) - Sealed -->
+		<production id="91864" count="1" /> <!-- Dragon Belt Pack - Sealed -->
+	</item>
+	<item>
+		<ingredient id="96685" count="2" /> <!-- Mysterious Crystal (Time-limited) - Sealed -->
+		<production id="92020" count="1" /> <!-- Enchant Kit: Talisman of Eva - Sealed -->
+	</item>
+	<item>
+		<ingredient id="96685" count="2" /> <!-- Mysterious Crystal (Time-limited) - Sealed -->
+		<production id="93685" count="1" /> <!-- Enchant Kit: Talisman of Speed - Sealed -->
+	</item>
+	<item>
+		<ingredient id="96685" count="1" /> <!-- Mysterious Crystal (Time-limited) - Sealed -->
+		<production id="94732" count="1" /> <!-- Spirit Agathion Exchange Coupon - Sealed -->
+	</item>
+	<item>
+		<ingredient id="96685" count="1" /> <!-- Mysterious Crystal (Time-limited) - Sealed -->
+		<production id="93303" count="1" /> <!-- Package: Cloak of Protection - Sealed -->
+	</item>
+	<item>
+		<ingredient id="96685" count="300" /> <!-- Mysterious Crystal (Time-limited) - Sealed -->
+		<production id="94384" count="1" /> <!-- Scroll: Enchant Rare Accessories - Sealed -->
+	</item>
+	<item>
+		<ingredient id="96685" count="80" /> <!-- Mysterious Crystal (Time-limited) - Sealed -->
+		<production id="97449" count="1" /> <!-- Scroll: Enchant Talisman of Baium - Sealed -->
+	</item>
+	<item>
+		<ingredient id="96685" count="3" /> <!-- Mysterious Crystal (Time-limited) - Sealed -->
+		<production id="96983" count="2" /> <!-- Package: Agathion Summon Bracelet Lv. 3 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="96685" count="3" /> <!-- Mysterious Crystal (Time-limited) - Sealed -->
+		<production id="96984" count="2" /> <!-- Package: Talisman Bracelet Lv. 3 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="96685" count="88" /> <!-- Mysterious Crystal (Time-limited) - Sealed -->
+		<production id="96652" count="1" /> <!-- Package: Antharas Doll Lv. 1 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="96685" count="48" /> <!-- Mysterious Crystal (Time-limited) - Sealed -->
+		<production id="94156" count="1" /> <!-- Package: Baium Doll Lv. 1 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="96685" count="48" /> <!-- Mysterious Crystal (Time-limited) - Sealed -->
+		<production id="94513" count="1" /> <!-- Package: Frintezza Doll Lv. 1 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="96685" count="48" /> <!-- Mysterious Crystal (Time-limited) - Sealed -->
+		<production id="94651" count="1" /> <!-- Package: Zaken Doll Lv. 1 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="96685" count="48" /> <!-- Mysterious Crystal (Time-limited) - Sealed -->
+		<production id="94654" count="1" /> <!-- Package: Core Doll Lv. 1 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="96685" count="32" /> <!-- Mysterious Crystal (Time-limited) - Sealed -->
+		<production id="94159" count="1" /> <!-- Package: Queen Ant Doll Lv. 1 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="96685" count="32" /> <!-- Mysterious Crystal (Time-limited) - Sealed -->
+		<production id="94162" count="1" /> <!-- Package: Orfen Doll Lv. 1 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="96685" count="8" /> <!-- Mysterious Crystal (Time-limited) - Sealed -->
+		<production id="97266" count="1" /> <!-- Enchant Kit: Piercing Mask - Sealed -->
+	</item>
+	<item>
+		<ingredient id="96685" count="7" /> <!-- Mysterious Crystal (Time-limited) - Sealed -->
+		<production id="94168" count="1" /> <!-- Enchant Kit: Circlet of Hero - Sealed -->
+	</item>
+	<item>
+		<ingredient id="96685" count="7" /> <!-- Mysterious Crystal (Time-limited) - Sealed -->
+		<production id="94258" count="1" /> <!-- Package: Einhasad's Pendant Lv. 1 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="96685" count="4" /> <!-- Mysterious Crystal (Time-limited) - Sealed -->
+		<production id="93330" count="1" /> <!-- Enchant Kit: Talisman of Authority - Sealed -->
+	</item>
+	<item>
+		<ingredient id="96685" count="2" /> <!-- Mysterious Crystal (Time-limited) - Sealed -->
+		<production id="91864" count="1" /> <!-- Dragon Belt Pack - Sealed -->
+	</item>
+	<item>
+		<ingredient id="96685" count="2" /> <!-- Mysterious Crystal (Time-limited) - Sealed -->
+		<production id="92020" count="1" /> <!-- Enchant Kit: Talisman of Eva - Sealed -->
+	</item>
+	<item>
+		<ingredient id="96685" count="2" /> <!-- Mysterious Crystal (Time-limited) - Sealed -->
+		<production id="93685" count="1" /> <!-- Enchant Kit: Talisman of Speed - Sealed -->
+	</item>
+	<item>
+		<ingredient id="96685" count="1" /> <!-- Mysterious Crystal (Time-limited) - Sealed -->
+		<production id="94732" count="1" /> <!-- Spirit Agathion Exchange Coupon - Sealed -->
+	</item>
+	<item>
+		<ingredient id="96685" count="1" /> <!-- Mysterious Crystal (Time-limited) - Sealed -->
+		<production id="93303" count="1" /> <!-- Package: Cloak of Protection - Sealed -->
+	</item>
+	<item>
+		<ingredient id="96685" count="300" /> <!-- Mysterious Crystal (Time-limited) - Sealed -->
+		<production id="94384" count="1" /> <!-- Scroll: Enchant Rare Accessories - Sealed -->
+	</item>
+	<item>
+		<ingredient id="96685" count="80" /> <!-- Mysterious Crystal (Time-limited) - Sealed -->
+		<production id="97449" count="1" /> <!-- Scroll: Enchant Talisman of Baium - Sealed -->
+	</item>
+	<item>
+		<ingredient id="96685" count="3" /> <!-- Mysterious Crystal (Time-limited) - Sealed -->
+		<production id="96983" count="2" /> <!-- Package: Agathion Summon Bracelet Lv. 3 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="96685" count="3" /> <!-- Mysterious Crystal (Time-limited) - Sealed -->
+		<production id="96984" count="2" /> <!-- Package: Talisman Bracelet Lv. 3 - Sealed -->
+	</item>
+</list>

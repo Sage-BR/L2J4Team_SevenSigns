@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -149,7 +149,7 @@ public class AdminShowQuests implements IAdminCommandHandler
 	
 	private void showFirstQuestMenu(Player target, Player actor)
 	{
-		final StringBuilder replyMSG = new StringBuilder("<html><body><table width=270><tr><td width=45><button value=\"Main\" action=\"bypass -h admin_admin\" width=45 height=21 back=\"L2UI_ct1.button_df\" fore=\"L2UI_ct1.button_df\"></td><td width=180><center>Player: " + target.getName() + "</center></td><td width=45><button value=\"Back\" action=\"bypass -h admin_admin6\" width=45 height=21 back=\"L2UI_ct1.button_df\" fore=\"L2UI_ct1.button_df\"></td></tr></table>");
+		final StringBuilder replyMSG = new StringBuilder("<html><body><table width=270><tr><td width=45><button value=\"Main\" action=\"bypass admin_admin\" width=45 height=21 back=\"L2UI_ct1.button_df\" fore=\"L2UI_ct1.button_df\"></td><td width=180><center>Player: " + target.getName() + "</center></td><td width=45><button value=\"Back\" action=\"bypass admin_admin6\" width=45 height=21 back=\"L2UI_ct1.button_df\" fore=\"L2UI_ct1.button_df\"></td></tr></table>");
 		final NpcHtmlMessage adminReply = new NpcHtmlMessage(0, 1);
 		final int ID = target.getObjectId();
 		replyMSG.append("Quest Menu for <font color=\"LEVEL\">" + target.getName() + "</font> (ID:" + ID + ")<br><center>");
@@ -312,6 +312,21 @@ public class AdminShowQuests implements IAdminCommandHandler
 	private void setQuestVar(Player target, Player actor, String[] val)
 	{
 		QuestState qs = target.getQuestState(val[0]);
+		if ((qs == null) && val[2].equals("CREATE"))
+		{
+			final Quest quest = QuestManager.getInstance().getQuest(Integer.parseInt(val[0]));
+			if (quest != null)
+			{
+				qs = quest.newQuestState(target);
+				target.setQuestState(qs);
+			}
+		}
+		if (qs == null)
+		{
+			actor.sendMessage("Player has not created " + val[0]);
+			return;
+		}
+		
 		final String[] outval = new String[3];
 		qs.setSimulated(false);
 		

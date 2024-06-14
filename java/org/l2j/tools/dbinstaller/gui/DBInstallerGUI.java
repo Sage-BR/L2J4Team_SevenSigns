@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -41,7 +41,7 @@ public class DBInstallerGUI extends JFrame implements DBOutputInterface
 	
 	public DBInstallerGUI(Connection con)
 	{
-		super("4Team - DB Installer");
+		super("Mobius - DB Installer");
 		setLayout(new BorderLayout());
 		setDefaultLookAndFeelDecorated(true);
 		

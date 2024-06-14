@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -26,8 +26,8 @@ import java.util.logging.Logger;
 
 import org.l2j.Config;
 import org.l2j.commons.database.DatabaseFactory;
-import org.l2j.commons.network.EncryptionInterface;
-import org.l2j.commons.network.NetClient;
+import org.l2j.commons.network.Buffer;
+import org.l2j.commons.network.Client;
 import org.l2j.commons.threads.ThreadPool;
 import org.l2j.commons.util.CommonUtil;
 import org.l2j.gameserver.LoginServerThread;
@@ -59,14 +59,16 @@ import org.l2j.gameserver.util.FloodProtectors;
  * Represents a client connected on GameServer.
  * @author KenM
  */
-public class GameClient extends NetClient
+public class GameClient extends Client<org.l2j.commons.network.Connection<GameClient>>
 {
-	protected static final Logger LOGGER_ACCOUNTING = Logger.getLogger("accounting");
+	private static final Logger LOGGER = Logger.getLogger(GameClient.class.getName());
+	private static final Logger LOGGER_ACCOUNTING = Logger.getLogger("accounting");
 	
 	private final FloodProtectors _floodProtectors = new FloodProtectors(this);
 	private final ReentrantLock _playerLock = new ReentrantLock();
 	private ConnectionState _connectionState = ConnectionState.CONNECTED;
 	private Encryption _encryption = null;
+	private String _ip = "N/A";
 	private String _accountName;
 	private SessionKey _sessionKey;
 	private Player _player;
@@ -79,10 +81,16 @@ public class GameClient extends NetClient
 	private int _protocolVersion;
 	private int[][] _trace;
 	
-	@Override
-	public void onConnection()
+	public GameClient(org.l2j.commons.network.Connection<GameClient> connection)
 	{
-		LOGGER_ACCOUNTING.finer("Client connected: " + getIp());
+		super(connection);
+		_ip = connection.getRemoteAddress();
+	}
+	
+	@Override
+	public void onConnected()
+	{
+		LOGGER_ACCOUNTING.finer("Client connected: " + _ip);
 	}
 	
 	@Override
@@ -97,11 +105,36 @@ public class GameClient extends NetClient
 		_connectionState = ConnectionState.DISCONNECTED;
 	}
 	
+	@Override
+	public boolean encrypt(Buffer data, int offset, int size)
+	{
+		if (Config.PACKET_ENCRYPTION && (_encryption != null))
+		{
+			_encryption.encrypt(data, offset, size);
+		}
+		return true;
+	}
+	
+	@Override
+	public boolean decrypt(Buffer data, int offset, int size)
+	{
+		if (Config.PACKET_ENCRYPTION && (_encryption != null))
+		{
+			_encryption.decrypt(data, offset, size);
+		}
+		return true;
+	}
+	
+	public void closeNow()
+	{
+		disconnect();
+	}
+	
 	public void close(ServerPacket packet)
 	{
 		if (packet == null)
 		{
-			disconnect();
+			closeNow();
 		}
 		else
 		{
@@ -109,7 +142,7 @@ public class GameClient extends NetClient
 			sendPacket(packet);
 			
 			// Wait for packet to be sent.
-			ThreadPool.schedule(this::disconnect, 1000);
+			ThreadPool.schedule(this::closeNow, 1000);
 		}
 	}
 	
@@ -154,6 +187,11 @@ public class GameClient extends NetClient
 		return _isAuthedGG;
 	}
 	
+	public String getIp()
+	{
+		return _ip;
+	}
+	
 	public void setAccountName(String accountName)
 	{
 		_accountName = accountName;
@@ -180,15 +218,9 @@ public class GameClient extends NetClient
 	
 	public void sendPacket(ServerPacket packet)
 	{
-		if (_isDetached)
-		{
-			return;
-		}
-		
-		// TODO: TO BE REMOVED!
+		// Packet should never be null.
 		if (packet == null)
 		{
-			LOGGER.warning("REPORT ON FORUM!");
 			LOGGER.warning(CommonUtil.getStackTrace(new Exception()));
 			return;
 		}
@@ -199,11 +231,11 @@ public class GameClient extends NetClient
 			return;
 		}
 		
-		// Used by packet run() method and localization.
-		packet.setPlayer(_player);
-		
 		// Send the packet data.
-		super.sendPacket(packet);
+		writePacket(packet);
+		
+		// Run packet implementation.
+		packet.runImpl(_player);
 	}
 	
 	public void sendPacket(SystemMessageId systemMessageId)
@@ -580,8 +612,7 @@ public class GameClient extends NetClient
 		return _trace;
 	}
 	
-	@Override
-	public EncryptionInterface getEncryption()
+	public Encryption getEncryption()
 	{
 		return _encryption;
 	}

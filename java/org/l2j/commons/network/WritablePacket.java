@@ -1,287 +1,132 @@
+/*
+ * Copyright © 2019-2021 Async-mmocore
+ *
+ * This file is part of the Async-mmocore project.
+ *
+ * Async-mmocore is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Async-mmocore is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ */
 package org.l2j.commons.network;
 
-import java.nio.charset.StandardCharsets;
-import java.util.Arrays;
+import org.l2j.commons.network.internal.ArrayPacketBuffer;
+import org.l2j.commons.network.internal.InternalWritableBuffer;
+import org.l2j.commons.network.internal.NotWrittenBufferException;
 
 /**
- * Writable packet backed up by a byte array, with a maximum raw data size of 65533 bytes.
- * @author Pantelis Andrianakis
- * @since October 29th 2020
+ * Abstract class representing a packet that can be sent to clients.<br>
+ * All data sent must include a header with 2 bytes and an optional payload.<br>
+ * The first two bytes are a 16-bit integer indicating the size of the packet.
+ * @param <T> The type of Client associated with this packet.
+ * @author JoeAlisson
  */
-public abstract class WritablePacket
+public abstract class WritablePacket<T extends Client<Connection<T>>>
 {
-	private byte[] _data;
-	private byte[] _sendableBytes;
-	private int _position = 2; // Allocate space for size (max length 65535 - size header).
+	private volatile boolean _broadcast;
+	private ArrayPacketBuffer _broadcastCacheBuffer;
 	
-	/**
-	 * Construct a WritablePacket with an initial data size of 32 bytes.
-	 */
 	protected WritablePacket()
 	{
-		this(32);
 	}
 	
-	/**
-	 * Construct a WritablePacket with a given initial data size.
-	 * @param initialSize
-	 */
-	protected WritablePacket(int initialSize)
+	public InternalWritableBuffer writeData(T client) throws NotWrittenBufferException
 	{
-		_data = new byte[initialSize];
-	}
-	
-	public void write(byte value)
-	{
-		// Check current size.
-		if (_position < 65535)
+		if (_broadcast)
 		{
-			// Check capacity.
-			if (_position == _data.length)
-			{
-				_data = Arrays.copyOf(_data, _data.length * 2); // Double the capacity.
-			}
-			
-			// Set value.
-			_data[_position++] = value;
-			return;
+			return writeDataWithCache(client);
 		}
 		
-		throw new IndexOutOfBoundsException("Packet data exceeded the raw data size limit of 65533!");
+		return writeDataToBuffer(client);
 	}
 	
-	/**
-	 * Write <b>boolean</b> to the packet data.<br>
-	 * 8bit integer (00) or (01)
-	 * @param value
-	 */
-	public void writeBoolean(boolean value)
+	private synchronized InternalWritableBuffer writeDataWithCache(T client) throws NotWrittenBufferException
 	{
-		writeByte(value ? 1 : 0);
-	}
-	
-	/**
-	 * Write <b>String</b> to the packet data.
-	 * @param text
-	 */
-	public void writeString(String text)
-	{
-		if (text != null)
+		if (_broadcastCacheBuffer != null)
 		{
-			writeBytes(text.getBytes(StandardCharsets.UTF_16LE));
-		}
-		writeShort(0);
-	}
-	
-	/**
-	 * Write <b>String</b> with fixed size specified as (short size, char[size]) to the packet data.
-	 * @param text
-	 */
-	public void writeSizedString(String text)
-	{
-		if (text != null)
-		{
-			writeShort(text.length());
-			writeBytes(text.getBytes(StandardCharsets.UTF_16LE));
-		}
-		else
-		{
-			writeShort(0);
-		}
-	}
-	
-	/**
-	 * Write <b>byte[]</b> to the packet data.<br>
-	 * 8bit integer array (00...)
-	 * @param array
-	 */
-	public void writeBytes(byte[] array)
-	{
-		for (int i = 0; i < array.length; i++)
-		{
-			write(array[i]);
-		}
-	}
-	
-	/**
-	 * Write <b>byte</b> to the packet data.<br>
-	 * 8bit integer (00)
-	 * @param value
-	 */
-	public void writeByte(int value)
-	{
-		write((byte) (value & 0xff));
-	}
-	
-	/**
-	 * Write <b>boolean</b> to the packet data.<br>
-	 * 8bit integer (00) or (01)
-	 * @param value
-	 */
-	public void writeByte(boolean value)
-	{
-		writeByte(value ? 1 : 0);
-	}
-	
-	/**
-	 * Write <b>short</b> to the packet data.<br>
-	 * 16bit integer (00 00)
-	 * @param value
-	 */
-	public void writeShort(int value)
-	{
-		write((byte) (value & 0xff));
-		write((byte) ((value >> 8) & 0xff));
-	}
-	
-	/**
-	 * Write <b>boolean</b> to the packet data.<br>
-	 * 16bit integer (00 00)
-	 * @param value
-	 */
-	public void writeShort(boolean value)
-	{
-		writeShort(value ? 1 : 0);
-	}
-	
-	/**
-	 * Write <b>int</b> to the packet data.<br>
-	 * 32bit integer (00 00 00 00)
-	 * @param value
-	 */
-	public void writeInt(int value)
-	{
-		write((byte) (value & 0xff));
-		write((byte) ((value >> 8) & 0xff));
-		write((byte) ((value >> 16) & 0xff));
-		write((byte) ((value >> 24) & 0xff));
-	}
-	
-	/**
-	 * Write <b>boolean</b> to the packet data.<br>
-	 * 32bit integer (00 00 00 00)
-	 * @param value
-	 */
-	public void writeInt(boolean value)
-	{
-		writeInt(value ? 1 : 0);
-	}
-	
-	/**
-	 * Write <b>long</b> to the packet data.<br>
-	 * 64bit integer (00 00 00 00 00 00 00 00)
-	 * @param value
-	 */
-	public void writeLong(long value)
-	{
-		write((byte) (value & 0xff));
-		write((byte) ((value >> 8) & 0xff));
-		write((byte) ((value >> 16) & 0xff));
-		write((byte) ((value >> 24) & 0xff));
-		write((byte) ((value >> 32) & 0xff));
-		write((byte) ((value >> 40) & 0xff));
-		write((byte) ((value >> 48) & 0xff));
-		write((byte) ((value >> 56) & 0xff));
-	}
-	
-	/**
-	 * Write <b>boolean</b> to the packet data.<br>
-	 * 64bit integer (00 00 00 00 00 00 00 00)
-	 * @param value
-	 */
-	public void writeLong(boolean value)
-	{
-		writeLong(value ? 1 : 0);
-	}
-	
-	/**
-	 * Write <b>float</b> to the packet data.<br>
-	 * 32bit single precision float (00 00 00 00)
-	 * @param value
-	 */
-	public void writeFloat(float value)
-	{
-		writeInt(Float.floatToRawIntBits(value));
-	}
-	
-	/**
-	 * Write <b>double</b> to the packet data.<br>
-	 * 64bit double precision float (00 00 00 00 00 00 00 00)
-	 * @param value
-	 */
-	public void writeDouble(double value)
-	{
-		writeLong(Double.doubleToRawLongBits(value));
-	}
-	
-	/**
-	 * Can be overridden to write data after packet has initialized.<br>
-	 * Called when getSendableBytes generates data, ensures that the data are processed only once.
-	 */
-	public void write()
-	{
-		// Overridden by server implementation.
-	}
-	
-	/**
-	 * Method that runs after packet is sent.
-	 */
-	public void run()
-	{
-		// Overridden by server implementation.
-	}
-	
-	/**
-	 * @return <b>byte[]</b> of the sendable packet data, including a size header.
-	 */
-	public byte[] getSendableBytes()
-	{
-		return getSendableBytes(null);
-	}
-	
-	/**
-	 * @param encryption if EncryptionInterface is used.
-	 * @return <b>byte[]</b> of the sendable packet data, including a size header.
-	 */
-	public synchronized byte[] getSendableBytes(EncryptionInterface encryption)
-	{
-		// Generate sendable byte array.
-		if ((_sendableBytes == null /* Not processed */) || (encryption != null /* Encryption can change */))
-		{
-			// Write packet implementation (only once).
-			if (_position == 2)
-			{
-				write();
-			}
-			
-			// Check if data was written.
-			if (_position > 2)
-			{
-				// Trim array of data.
-				_sendableBytes = Arrays.copyOf(_data, _position);
-				
-				// Add size info at start (unsigned short - max size 65535).
-				_sendableBytes[0] = (byte) (_position & 0xff);
-				_sendableBytes[1] = (byte) ((_position >> 8) & 0xffff);
-				
-				// Encrypt data.
-				if (encryption != null)
-				{
-					encryption.encrypt(_sendableBytes, 2, _position - 2);
-				}
-			}
+			return InternalWritableBuffer.dynamicOf(_broadcastCacheBuffer, client.getResourcePool());
 		}
 		
-		// Return the data.
-		return _sendableBytes;
+		InternalWritableBuffer buffer = writeDataToBuffer(client);
+		if (buffer instanceof ArrayPacketBuffer)
+		{
+			_broadcastCacheBuffer = (ArrayPacketBuffer) buffer;
+			buffer = InternalWritableBuffer.dynamicOf(_broadcastCacheBuffer, client.getResourcePool());
+		}
+		
+		return buffer;
+	}
+	
+	private InternalWritableBuffer writeDataToBuffer(T client) throws NotWrittenBufferException
+	{
+		final InternalWritableBuffer buffer = choosePacketBuffer(client);
+		buffer.position(ConnectionConfig.HEADER_SIZE);
+		if (write(client, buffer))
+		{
+			buffer.mark();
+			return buffer;
+		}
+		
+		buffer.releaseResources();
+		throw new NotWrittenBufferException();
+	}
+	
+	private InternalWritableBuffer choosePacketBuffer(T client)
+	{
+		if (_broadcast)
+		{
+			return InternalWritableBuffer.arrayBacked(client.getResourcePool());
+		}
+		
+		return InternalWritableBuffer.dynamicOf(client.getResourcePool().getSegmentBuffer(), client.getResourcePool());
+	}
+	
+	public void writeHeader(InternalWritableBuffer buffer, int header)
+	{
+		buffer.writeShort(0, (short) header);
 	}
 	
 	/**
-	 * Take in consideration that data must be written first.
-	 * @return The length of the data (includes size header).
+	 * Mark this packet as broadcast. A broadcast packet is sent to more than one client.<br>
+	 * Caution: This method should be called before {@link Client#writePacket(WritablePacket)}.<br>
+	 * A broadcast packet will create a Buffer cache where the data is written once and only the copy is sent to the client. note: Each copy will be encrypted to each client
+	 * @param broadcast true if the packet is sent to more than one client
 	 */
-	public int getLength()
+	public void sendInBroadcast(boolean broadcast)
 	{
-		return _position;
+		_broadcast = broadcast;
+	}
+	
+	/**
+	 * If this method returns true, the packet will be considered disposable.
+	 * @param client client to send data to
+	 * @return if the packet is disposable or not.
+	 */
+	public boolean canBeDropped(T client)
+	{
+		return false;
+	}
+	
+	/**
+	 * Writes the data to the buffer for the specified client.<br>
+	 * This abstract method should be implemented in subclasses to define the specific packet writing logic.
+	 * @param client The client to whom the packet is being sent.
+	 * @param buffer The writable buffer where the packet data is written.
+	 * @return true if the packet was successfully written, false otherwise.
+	 */
+	protected abstract boolean write(T client, WritableBuffer buffer);
+	
+	@Override
+	public String toString()
+	{
+		return getClass().getSimpleName();
 	}
 }

@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,7 +16,6 @@
  */
 package org.l2j.gameserver.network.clientpackets;
 
-import org.l2j.commons.network.ReadablePacket;
 import org.l2j.gameserver.ai.CtrlIntention;
 import org.l2j.gameserver.instancemanager.AirShipManager;
 import org.l2j.gameserver.model.Location;
@@ -24,10 +23,9 @@ import org.l2j.gameserver.model.VehiclePathPoint;
 import org.l2j.gameserver.model.World;
 import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.model.actor.instance.AirShip;
-import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.SystemMessageId;
 
-public class MoveToLocationAirShip implements ClientPacket
+public class MoveToLocationAirShip extends ClientPacket
 {
 	public static final int MIN_Z = -895;
 	public static final int MAX_Z = 6105;
@@ -38,21 +36,26 @@ public class MoveToLocationAirShip implements ClientPacket
 	private int _param2 = 0;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_command = packet.readInt();
-		_param1 = packet.readInt();
-		if (packet.getRemainingLength() > 0)
+		_command = readInt();
+		_param1 = readInt();
+		if (remaining() > 0)
 		{
-			_param2 = packet.readInt();
+			_param2 = readInt();
 		}
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
-		final Player player = client.getPlayer();
-		if ((player == null) || !player.isInAirShip())
+		final Player player = getPlayer();
+		if (player == null)
+		{
+			return;
+		}
+		
+		if (!player.isInAirShip())
 		{
 			return;
 		}

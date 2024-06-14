@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/multisell.xsd">
+	<npcs>
+		<npc>-1</npc> <!-- Item Multisell -->
+	</npcs>
+	<!-- Supply Order (Time-limited) - Sealed (100305) -->
+	<item>
+		<ingredient id="100305" count="1" /> <!-- Supply Order (Time-limited) - Sealed -->
+		<production id="94269" count="2" /> <!-- Scroll: Boost Attack - Sealed -->
+	</item>
+	<item>
+		<ingredient id="100305" count="1" /> <!-- Supply Order (Time-limited) - Sealed -->
+		<production id="94271" count="2" /> <!-- Scroll: Boost Defense - Sealed -->
+	</item>
+	<item>
+		<ingredient id="100305" count="1" /> <!-- Supply Order (Time-limited) - Sealed -->
+		<production id="49674" count="2" /> <!-- XP Growth Scroll - Sealed -->
+	</item>
+	<item>
+		<ingredient id="100305" count="1" /> <!-- Supply Order (Time-limited) - Sealed -->
+		<production id="91690" count="50" /> <!-- Special HP Recovery Potion - Sealed -->
+	</item>
+	<item>
+		<ingredient id="100305" count="10" /> <!-- Supply Order (Time-limited) - Sealed -->
+		<production id="91757" count="1" /> <!-- Magic Lamp Charging Potion - Sealed -->
+	</item>
+	<item>
+		<ingredient id="100305" count="5" /> <!-- Supply Order (Time-limited) - Sealed -->
+		<production id="94780" count="1" /> <!-- Growth Rune Fragment - Sealed -->
+	</item>
+</list>

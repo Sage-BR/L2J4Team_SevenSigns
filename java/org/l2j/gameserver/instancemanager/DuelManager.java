@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -181,7 +181,11 @@ public class DuelManager
 			return;
 		}
 		final Duel duel = getDuel(player.getDuelId());
-		if ((duel == null) || (duel.getPlayerA() == null) || (duel.getPlayerB() == null))
+		if (duel == null)
+		{
+			return;
+		}
+		if ((duel.getPlayerA() == null) || (duel.getPlayerB() == null))
 		{
 			return;
 		}

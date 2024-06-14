@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,19 +20,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.l2j.Config;
-import org.l2j.commons.network.ReadablePacket;
 import org.l2j.gameserver.instancemanager.CastleManorManager;
 import org.l2j.gameserver.model.Seed;
 import org.l2j.gameserver.model.SeedProduction;
 import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.model.clan.ClanPrivilege;
-import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.serverpackets.ActionFailed;
 
 /**
  * @author l3x
  */
-public class RequestSetSeed implements ClientPacket
+public class RequestSetSeed extends ClientPacket
 {
 	private static final int BATCH_LENGTH = 20; // length of the one item
 	
@@ -40,11 +38,11 @@ public class RequestSetSeed implements ClientPacket
 	private List<SeedProduction> _items;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_manorId = packet.readInt();
-		final int count = packet.readInt();
-		if ((count <= 0) || (count > Config.MAX_ITEM_IN_PACKET) || ((count * BATCH_LENGTH) != packet.getRemainingLength()))
+		_manorId = readInt();
+		final int count = readInt();
+		if ((count <= 0) || (count > Config.MAX_ITEM_IN_PACKET) || ((count * BATCH_LENGTH) != remaining()))
 		{
 			return;
 		}
@@ -52,9 +50,9 @@ public class RequestSetSeed implements ClientPacket
 		_items = new ArrayList<>(count);
 		for (int i = 0; i < count; i++)
 		{
-			final int itemId = packet.readInt();
-			final long sales = packet.readLong();
-			final long price = packet.readLong();
+			final int itemId = readInt();
+			final long sales = readLong();
+			final long price = readLong();
 			if ((itemId < 1) || (sales < 0) || (price < 0))
 			{
 				_items.clear();
@@ -69,14 +67,14 @@ public class RequestSetSeed implements ClientPacket
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
 		if (_items.isEmpty())
 		{
 			return;
 		}
 		
-		final Player player = client.getPlayer();
+		final Player player = getPlayer();
 		if (player == null)
 		{
 			return;

@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,13 +18,11 @@ package org.l2j.gameserver.network.clientpackets.dailymission;
 
 import java.util.Collection;
 
-import org.l2j.commons.network.ReadablePacket;
 import org.l2j.commons.threads.ThreadPool;
 import org.l2j.gameserver.data.xml.DailyMissionData;
 import org.l2j.gameserver.model.DailyMissionDataHolder;
 import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.model.actor.request.RewardRequest;
-import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.clientpackets.ClientPacket;
 import org.l2j.gameserver.network.serverpackets.dailymission.ExConnectedTimeAndGettableReward;
 import org.l2j.gameserver.network.serverpackets.dailymission.ExOneDayReceiveRewardList;
@@ -32,26 +30,31 @@ import org.l2j.gameserver.network.serverpackets.dailymission.ExOneDayReceiveRewa
 /**
  * @author Sdw
  */
-public class RequestOneDayRewardReceive implements ClientPacket
+public class RequestOneDayRewardReceive extends ClientPacket
 {
 	private int _id;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_id = packet.readShort();
+		_id = readShort();
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
-		if (!client.getFloodProtectors().canPerformPlayerAction())
+		if (!getClient().getFloodProtectors().canPerformPlayerAction())
 		{
 			return;
 		}
 		
-		final Player player = client.getPlayer();
-		if ((player == null) || player.hasRequest(RewardRequest.class))
+		final Player player = getPlayer();
+		if (player == null)
+		{
+			return;
+		}
+		
+		if (player.hasRequest(RewardRequest.class))
 		{
 			return;
 		}

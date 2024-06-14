@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/multisell.xsd">
+	<npcs>
+		<npc>-1</npc> <!-- Item Multisell -->
+	</npcs>
+	<!-- Zenith Coin (Time-limited) - Sealed (72422) -->
+	<item>
+		<ingredient id="72422" count="4" /> <!-- Zenith Coin (Time-limited) - Sealed -->
+		<production id="92456" count="1" /> <!-- +6 Talisman of Eva Pack - Sealed -->
+	</item>
+	<item>
+		<ingredient id="72422" count="4" /> <!-- Zenith Coin (Time-limited) - Sealed -->
+		<production id="93289" count="1" /> <!-- +6 Talisman of Speed Pack - Sealed -->
+	</item>
+	<item>
+		<ingredient id="72422" count="4" /> <!-- Zenith Coin (Time-limited) - Sealed -->
+		<production id="93728" count="1" /> <!-- +6 Dragon Belt Pack - Sealed -->
+	</item>
+	<item>
+		<ingredient id="72422" count="4" /> <!-- Zenith Coin (Time-limited) - Sealed -->
+		<production id="94756" count="1" /> <!-- Kit: Onyx Lv. 5 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="72422" count="6" /> <!-- Zenith Coin (Time-limited) - Sealed -->
+		<production id="94314" count="1" /> <!-- Elixir - Sealed -->
+	</item>
+	<item>
+		<ingredient id="72422" count="1" /> <!-- Zenith Coin (Time-limited) - Sealed -->
+		<production id="94328" count="2" /> <!-- Elixir Powder - Sealed -->
+	</item>
+	<item>
+		<ingredient id="72422" count="1" /> <!-- Zenith Coin (Time-limited) - Sealed -->
+		<production id="93448" count="1" /> <!-- A-grade Weapon Coupon - Sealed -->
+	</item>
+	<item>
+		<ingredient id="72422" count="1" /> <!-- Zenith Coin (Time-limited) - Sealed -->
+		<production id="93449" count="1" /> <!-- A-grade Armor Coupon - Sealed -->
+	</item>
+	<item>
+		<ingredient id="72422" count="1" /> <!-- Zenith Coin (Time-limited) - Sealed -->
+		<production id="97233" count="1" /> <!-- +2 ~ +5 Talisman of Authority Pack - Sealed -->
+	</item>
+	<item>
+		<ingredient id="72422" count="1" /> <!-- Zenith Coin (Time-limited) - Sealed -->
+		<production id="97273" count="1" /> <!-- +2 ~ +5 Circlet of Hero Pack - Sealed -->
+	</item>
+	<item>
+		<ingredient id="72422" count="1" /> <!-- Zenith Coin (Time-limited) - Sealed -->
+		<production id="97357" count="1" /> <!-- +2 ~ +5 Dragon Belt Pack - Sealed -->
+	</item>
+	<item>
+		<ingredient id="72422" count="1" /> <!-- Zenith Coin (Time-limited) - Sealed -->
+		<production id="97414" count="1" /> <!-- +2 ~ +5 Talisman of Speed Pack - Sealed -->
+	</item>
+	<item>
+		<ingredient id="72422" count="1" /> <!-- Zenith Coin (Time-limited) - Sealed -->
+		<production id="93421" count="1" /> <!-- Valakas' Necklace - Sealed -->
+	</item>
+	<item>
+		<ingredient id="72422" count="1" /> <!-- Zenith Coin (Time-limited) - Sealed -->
+		<production id="72293" count="1" /> <!-- Antharas Doll (Event) - Sealed -->
+	</item>
+</list>

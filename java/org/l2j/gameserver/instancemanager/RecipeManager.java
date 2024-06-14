@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -200,7 +200,14 @@ public class RecipeManager
 				return;
 			}
 			
-			if (_target.isAlikeDead() || _target.isProcessingTransaction())
+			if (_target.isAlikeDead())
+			{
+				_target.sendPacket(ActionFailed.STATIC_PACKET);
+				abort();
+				return;
+			}
+			
+			if (_target.isProcessingTransaction())
 			{
 				_target.sendPacket(ActionFailed.STATIC_PACKET);
 				abort();

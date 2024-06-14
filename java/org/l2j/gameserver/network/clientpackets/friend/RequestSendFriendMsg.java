@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,10 +19,8 @@ package org.l2j.gameserver.network.clientpackets.friend;
 import java.util.logging.Logger;
 
 import org.l2j.Config;
-import org.l2j.commons.network.ReadablePacket;
 import org.l2j.gameserver.model.World;
 import org.l2j.gameserver.model.actor.Player;
-import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.SystemMessageId;
 import org.l2j.gameserver.network.clientpackets.ClientPacket;
 import org.l2j.gameserver.network.serverpackets.L2FriendSay;
@@ -31,7 +29,7 @@ import org.l2j.gameserver.network.serverpackets.L2FriendSay;
  * Recieve Private (Friend) Message - 0xCC Format: c SS S: Message S: Receiving Player
  * @author Tempy
  */
-public class RequestSendFriendMsg implements ClientPacket
+public class RequestSendFriendMsg extends ClientPacket
 {
 	private static Logger LOGGER_CHAT = Logger.getLogger("chat");
 	
@@ -39,17 +37,22 @@ public class RequestSendFriendMsg implements ClientPacket
 	private String _reciever;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_message = packet.readString();
-		_reciever = packet.readString();
+		_message = readString();
+		_reciever = readString();
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
-		final Player player = client.getPlayer();
-		if ((player == null) || (_message == null) || _message.isEmpty() || (_message.length() > 300))
+		final Player player = getPlayer();
+		if (player == null)
+		{
+			return;
+		}
+		
+		if ((_message == null) || _message.isEmpty() || (_message.length() > 300))
 		{
 			return;
 		}

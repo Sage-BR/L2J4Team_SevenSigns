@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -48,7 +48,7 @@ public class SinEater extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onAdvEvent(String event, Npc npc, Player player)
+	public String onEvent(String event, Npc npc, Player player)
 	{
 		if (event.equals("TALK") && (player != null) && (player.getPet() != null))
 		{
@@ -79,7 +79,7 @@ public class SinEater extends AbstractNpcAI
 			}
 			startQuestTimer("TALK", 60000, null, player);
 		}
-		return super.onAdvEvent(event, npc, player);
+		return super.onEvent(event, npc, player);
 	}
 	
 	@RegisterEvent(EventType.ON_CREATURE_DEATH)

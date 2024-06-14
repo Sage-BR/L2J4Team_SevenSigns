@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,7 +19,6 @@ package org.l2j.gameserver.network.clientpackets;
 import static org.l2j.gameserver.model.actor.Npc.INTERACTION_DISTANCE;
 
 import org.l2j.Config;
-import org.l2j.commons.network.ReadablePacket;
 import org.l2j.gameserver.data.xml.BuyListData;
 import org.l2j.gameserver.model.WorldObject;
 import org.l2j.gameserver.model.actor.Player;
@@ -27,7 +26,6 @@ import org.l2j.gameserver.model.actor.instance.Merchant;
 import org.l2j.gameserver.model.buylist.ProductList;
 import org.l2j.gameserver.model.item.ItemTemplate;
 import org.l2j.gameserver.model.item.instance.Item;
-import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.PacketLogger;
 import org.l2j.gameserver.network.SystemMessageId;
 import org.l2j.gameserver.network.serverpackets.ActionFailed;
@@ -38,7 +36,7 @@ import org.l2j.gameserver.util.Util;
 /**
  * RequestRefundItem client packet class.
  */
-public class RequestRefundItem implements ClientPacket
+public class RequestRefundItem extends ClientPacket
 {
 	private static final int BATCH_LENGTH = 4; // length of the one item
 	private static final int CUSTOM_CB_SELL_LIST = 423;
@@ -47,11 +45,11 @@ public class RequestRefundItem implements ClientPacket
 	private int[] _items = null;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_listId = packet.readInt();
-		final int count = packet.readInt();
-		if ((count <= 0) || (count > Config.MAX_ITEM_IN_PACKET) || ((count * BATCH_LENGTH) != packet.getRemainingLength()))
+		_listId = readInt();
+		final int count = readInt();
+		if ((count <= 0) || (count > Config.MAX_ITEM_IN_PACKET) || ((count * BATCH_LENGTH) != remaining()))
 		{
 			return;
 		}
@@ -59,20 +57,20 @@ public class RequestRefundItem implements ClientPacket
 		_items = new int[count];
 		for (int i = 0; i < count; i++)
 		{
-			_items[i] = packet.readInt();
+			_items[i] = readInt();
 		}
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
-		final Player player = client.getPlayer();
+		final Player player = getPlayer();
 		if (player == null)
 		{
 			return;
 		}
 		
-		if (!client.getFloodProtectors().canPerformTransaction())
+		if (!getClient().getFloodProtectors().canPerformTransaction())
 		{
 			player.sendMessage("You are using refund too fast.");
 			return;

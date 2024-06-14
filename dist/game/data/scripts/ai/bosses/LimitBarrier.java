@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -48,9 +48,9 @@ public class LimitBarrier extends AbstractNpcAI
 	// NPCs
 	private static final int[] RAID_BOSSES =
 	{
-		29001, // Queen Ant
-		29006, // Core
-		29014, // Orfen
+		// 29001, // Queen Ant
+		// 29006, // Core
+		// 29014, // Orfen
 		25010, // Furious Thiles
 		25013, // Ghose of Peasant Captain
 		25050, // Verfa
@@ -150,7 +150,7 @@ public class LimitBarrier extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onAdvEvent(String event, Npc npc, Player player)
+	public String onEvent(String event, Npc npc, Player player)
 	{
 		switch (event)
 		{
@@ -179,7 +179,7 @@ public class LimitBarrier extends AbstractNpcAI
 				break;
 			}
 		}
-		return super.onAdvEvent(event, npc, player);
+		return super.onEvent(event, npc, player);
 	}
 	
 	@Override

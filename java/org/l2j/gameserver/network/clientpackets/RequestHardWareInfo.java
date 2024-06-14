@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,14 +16,12 @@
  */
 package org.l2j.gameserver.network.clientpackets;
 
-import org.l2j.commons.network.ReadablePacket;
 import org.l2j.gameserver.model.holders.ClientHardwareInfoHolder;
-import org.l2j.gameserver.network.GameClient;
 
 /**
  * @author Mobius
  */
-public class RequestHardWareInfo implements ClientPacket
+public class RequestHardWareInfo extends ClientPacket
 {
 	private String _macAddress;
 	private int _windowsPlatformId;
@@ -46,36 +44,36 @@ public class RequestHardWareInfo implements ClientPacket
 	private String _vgaDriverVersion;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_macAddress = packet.readString();
-		_windowsPlatformId = packet.readInt();
-		_windowsMajorVersion = packet.readInt();
-		_windowsMinorVersion = packet.readInt();
-		_windowsBuildNumber = packet.readInt();
-		_directxVersion = packet.readInt();
-		_directxRevision = packet.readInt();
-		packet.readBytes(16);
-		_cpuName = packet.readString();
-		_cpuSpeed = packet.readInt();
-		_cpuCoreCount = packet.readByte();
-		packet.readInt();
-		_vgaCount = packet.readInt();
-		_vgaPcxSpeed = packet.readInt();
-		_physMemorySlot1 = packet.readInt();
-		_physMemorySlot2 = packet.readInt();
-		_physMemorySlot3 = packet.readInt();
-		packet.readByte();
-		_videoMemory = packet.readInt();
-		packet.readInt();
-		_vgaVersion = packet.readShort();
-		_vgaName = packet.readString();
-		_vgaDriverVersion = packet.readString();
+		_macAddress = readString();
+		_windowsPlatformId = readInt();
+		_windowsMajorVersion = readInt();
+		_windowsMinorVersion = readInt();
+		_windowsBuildNumber = readInt();
+		_directxVersion = readInt();
+		_directxRevision = readInt();
+		readBytes(16);
+		_cpuName = readString();
+		_cpuSpeed = readInt();
+		_cpuCoreCount = readByte();
+		readInt();
+		_vgaCount = readInt();
+		_vgaPcxSpeed = readInt();
+		_physMemorySlot1 = readInt();
+		_physMemorySlot2 = readInt();
+		_physMemorySlot3 = readInt();
+		readByte();
+		_videoMemory = readInt();
+		readInt();
+		_vgaVersion = readShort();
+		_vgaName = readString();
+		_vgaDriverVersion = readString();
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
-		client.setHardwareInfo(new ClientHardwareInfoHolder(_macAddress, _windowsPlatformId, _windowsMajorVersion, _windowsMinorVersion, _windowsBuildNumber, _directxVersion, _directxRevision, _cpuName, _cpuSpeed, _cpuCoreCount, _vgaCount, _vgaPcxSpeed, _physMemorySlot1, _physMemorySlot2, _physMemorySlot3, _videoMemory, _vgaVersion, _vgaName, _vgaDriverVersion));
+		getClient().setHardwareInfo(new ClientHardwareInfoHolder(_macAddress, _windowsPlatformId, _windowsMajorVersion, _windowsMinorVersion, _windowsBuildNumber, _directxVersion, _directxRevision, _cpuName, _cpuSpeed, _cpuCoreCount, _vgaCount, _vgaPcxSpeed, _physMemorySlot1, _physMemorySlot2, _physMemorySlot3, _videoMemory, _vgaVersion, _vgaName, _vgaDriverVersion));
 	}
 }

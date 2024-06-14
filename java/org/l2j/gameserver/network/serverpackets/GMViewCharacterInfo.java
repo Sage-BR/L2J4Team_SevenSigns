@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,10 +16,12 @@
  */
 package org.l2j.gameserver.network.serverpackets;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.data.xml.ExperienceData;
 import org.l2j.gameserver.enums.AttributeType;
 import org.l2j.gameserver.model.VariationInstance;
 import org.l2j.gameserver.model.actor.Player;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 
 public class GMViewCharacterInfo extends ServerPacket
@@ -46,124 +48,124 @@ public class GMViewCharacterInfo extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.GM_VIEW_CHARACTER_INFO.writeId(this);
-		writeInt(_player.getX());
-		writeInt(_player.getY());
-		writeInt(_player.getZ());
-		writeInt(_player.getHeading());
-		writeInt(_player.getObjectId());
-		writeString(_player.getName());
-		writeInt(_player.getRace().ordinal());
-		writeInt(_player.getAppearance().isFemale() ? 1 : 0);
-		writeInt(_player.getClassId().getId());
-		writeInt(_player.getLevel());
-		writeLong(_player.getExp());
-		writeDouble((float) (_player.getExp() - ExperienceData.getInstance().getExpForLevel(_player.getLevel())) / (ExperienceData.getInstance().getExpForLevel(_player.getLevel() + 1) - ExperienceData.getInstance().getExpForLevel(_player.getLevel()))); // High Five exp %
-		writeInt(_player.getSTR());
-		writeInt(_player.getDEX());
-		writeInt(_player.getCON());
-		writeInt(_player.getINT());
-		writeInt(_player.getWIT());
-		writeInt(_player.getMEN());
-		writeInt(0); // LUC
-		writeInt(0); // CHA
-		writeInt(_player.getMaxHp());
-		writeInt((int) _player.getCurrentHp());
-		writeInt(_player.getMaxMp());
-		writeInt((int) _player.getCurrentMp());
-		writeLong(_player.getSp());
-		writeInt(_player.getCurrentLoad());
-		writeInt(_player.getMaxLoad());
-		writeInt(_player.getPkKills());
+		ServerPackets.GM_VIEW_CHARACTER_INFO.writeId(this, buffer);
+		buffer.writeInt(_player.getX());
+		buffer.writeInt(_player.getY());
+		buffer.writeInt(_player.getZ());
+		buffer.writeInt(_player.getHeading());
+		buffer.writeInt(_player.getObjectId());
+		buffer.writeString(_player.getName());
+		buffer.writeInt(_player.getRace().ordinal());
+		buffer.writeInt(_player.getAppearance().isFemale() ? 1 : 0);
+		buffer.writeInt(_player.getClassId().getId());
+		buffer.writeInt(_player.getLevel());
+		buffer.writeLong(_player.getExp());
+		buffer.writeDouble((float) (_player.getExp() - ExperienceData.getInstance().getExpForLevel(_player.getLevel())) / (ExperienceData.getInstance().getExpForLevel(_player.getLevel() + 1) - ExperienceData.getInstance().getExpForLevel(_player.getLevel()))); // High Five exp %
+		buffer.writeInt(_player.getSTR());
+		buffer.writeInt(_player.getDEX());
+		buffer.writeInt(_player.getCON());
+		buffer.writeInt(_player.getINT());
+		buffer.writeInt(_player.getWIT());
+		buffer.writeInt(_player.getMEN());
+		buffer.writeInt(0); // LUC
+		buffer.writeInt(0); // CHA
+		buffer.writeInt(_player.getMaxHp());
+		buffer.writeInt((int) _player.getCurrentHp());
+		buffer.writeInt(_player.getMaxMp());
+		buffer.writeInt((int) _player.getCurrentMp());
+		buffer.writeLong(_player.getSp());
+		buffer.writeInt(_player.getCurrentLoad());
+		buffer.writeInt(_player.getMaxLoad());
+		buffer.writeInt(_player.getPkKills());
 		for (int slot : getPaperdollOrder())
 		{
-			writeInt(_player.getInventory().getPaperdollObjectId(slot));
+			buffer.writeInt(_player.getInventory().getPaperdollObjectId(slot));
 		}
 		for (int slot : getPaperdollOrder())
 		{
-			writeInt(_player.getInventory().getPaperdollItemDisplayId(slot));
+			buffer.writeInt(_player.getInventory().getPaperdollItemDisplayId(slot));
 		}
 		for (int slot = 0; slot < 11; slot++)
 		{
 			final VariationInstance augment = _player.getInventory().getPaperdollAugmentation(slot);
-			writeInt(augment != null ? augment.getOption1Id() : 0); // Confirmed
-			writeInt(augment != null ? augment.getOption2Id() : 0); // Confirmed
+			buffer.writeInt(augment != null ? augment.getOption1Id() : 0); // Confirmed
+			buffer.writeInt(augment != null ? augment.getOption2Id() : 0); // Confirmed
 		}
 		for (int index = 0; index < 98; index++)
 		{
-			writeInt(0); // unk
+			buffer.writeInt(0); // unk
 		}
-		writeByte(0); // unk
-		writeByte(0); // unk
-		writeByte(_player.getInventory().getTalismanSlots()); // CT2.3
-		writeByte(_player.getInventory().canEquipCloak() ? 1 : 0); // CT2.3
-		writeByte(0);
-		writeShort(0);
-		writeInt(_player.getPAtk());
-		writeInt(_player.getPAtkSpd());
-		writeInt(_player.getPDef());
-		writeInt(_player.getEvasionRate());
-		writeInt(_player.getAccuracy());
-		writeInt(_player.getCriticalHit());
-		writeInt(_player.getMAtk());
-		writeInt(_player.getMAtkSpd());
-		writeInt(_player.getPAtkSpd());
-		writeInt(_player.getMDef());
-		writeInt(_player.getMagicEvasionRate());
-		writeInt(_player.getMagicAccuracy());
-		writeInt(_player.getMCriticalHit());
-		writeInt(_player.getPvpFlag()); // 0-non-pvp 1-pvp = violett name
-		writeInt(_player.getReputation());
-		writeInt(_runSpd);
-		writeInt(_walkSpd);
-		writeInt(_swimRunSpd);
-		writeInt(_swimWalkSpd);
-		writeInt(_flyRunSpd);
-		writeInt(_flyWalkSpd);
-		writeInt(_flyRunSpd);
-		writeInt(_flyWalkSpd);
-		writeDouble(_moveMultiplier);
-		writeDouble(_player.getAttackSpeedMultiplier()); // 2.9); //
-		writeDouble(_player.getCollisionRadius()); // scale
-		writeDouble(_player.getCollisionHeight()); // y offset ??!? fem dwarf 4033
-		writeInt(_player.getAppearance().getHairStyle());
-		writeInt(_player.getAppearance().getHairColor());
-		writeInt(_player.getAppearance().getFace());
-		writeInt(_player.isGM() ? 1 : 0); // builder level
-		writeString(_player.getTitle());
-		writeInt(_player.getClanId()); // pledge id
-		writeInt(_player.getClanCrestId()); // pledge crest id
-		writeInt(_player.getAllyId()); // ally id
-		writeByte(_player.getMountType().ordinal()); // mount type
-		writeByte(_player.getPrivateStoreType().getId());
-		writeByte(_player.hasDwarvenCraft() ? 1 : 0);
-		writeInt(_player.getPkKills());
-		writeInt(_player.getPvpKills());
-		writeShort(_player.getRecomLeft());
-		writeShort(_player.getRecomHave()); // Blue value for name (0 = white, 255 = pure blue)
-		writeInt(_player.getClassId().getId());
-		writeInt(0); // special effects? circles around player...
-		writeInt(_player.getMaxCp());
-		writeInt((int) _player.getCurrentCp());
-		writeByte(_player.isRunning() ? 1 : 0); // changes the Speed display on Status Window
-		writeByte(321);
-		writeInt(_player.getPledgeClass()); // changes the text above CP on Status Window
-		writeByte(_player.isNoble() ? 1 : 0);
-		writeByte(_player.isHero() ? 1 : 0);
-		writeInt(_player.getAppearance().getNameColor());
-		writeInt(_player.getAppearance().getTitleColor());
+		buffer.writeByte(0); // unk
+		buffer.writeByte(0); // unk
+		buffer.writeByte(_player.getInventory().getTalismanSlots()); // CT2.3
+		buffer.writeByte(_player.getInventory().canEquipCloak() ? 1 : 0); // CT2.3
+		buffer.writeByte(0);
+		buffer.writeShort(0);
+		buffer.writeInt(_player.getPAtk());
+		buffer.writeInt(_player.getPAtkSpd());
+		buffer.writeInt(_player.getPDef());
+		buffer.writeInt(_player.getEvasionRate());
+		buffer.writeInt(_player.getAccuracy());
+		buffer.writeInt(_player.getCriticalHit());
+		buffer.writeInt(_player.getMAtk());
+		buffer.writeInt(_player.getMAtkSpd());
+		buffer.writeInt(_player.getPAtkSpd());
+		buffer.writeInt(_player.getMDef());
+		buffer.writeInt(_player.getMagicEvasionRate());
+		buffer.writeInt(_player.getMagicAccuracy());
+		buffer.writeInt(_player.getMCriticalHit());
+		buffer.writeInt(_player.getPvpFlag()); // 0-non-pvp 1-pvp = violett name
+		buffer.writeInt(_player.getReputation());
+		buffer.writeInt(_runSpd);
+		buffer.writeInt(_walkSpd);
+		buffer.writeInt(_swimRunSpd);
+		buffer.writeInt(_swimWalkSpd);
+		buffer.writeInt(_flyRunSpd);
+		buffer.writeInt(_flyWalkSpd);
+		buffer.writeInt(_flyRunSpd);
+		buffer.writeInt(_flyWalkSpd);
+		buffer.writeDouble(_moveMultiplier);
+		buffer.writeDouble(_player.getAttackSpeedMultiplier()); // 2.9); //
+		buffer.writeDouble(_player.getCollisionRadius()); // scale
+		buffer.writeDouble(_player.getCollisionHeight()); // y offset ??!? fem dwarf 4033
+		buffer.writeInt(_player.getAppearance().getHairStyle());
+		buffer.writeInt(_player.getAppearance().getHairColor());
+		buffer.writeInt(_player.getAppearance().getFace());
+		buffer.writeInt(_player.isGM() ? 1 : 0); // builder level
+		buffer.writeString(_player.getTitle());
+		buffer.writeInt(_player.getClanId()); // pledge id
+		buffer.writeInt(_player.getClanCrestId()); // pledge crest id
+		buffer.writeInt(_player.getAllyId()); // ally id
+		buffer.writeByte(_player.getMountType().ordinal()); // mount type
+		buffer.writeByte(_player.getPrivateStoreType().getId());
+		buffer.writeByte(_player.hasDwarvenCraft() ? 1 : 0);
+		buffer.writeInt(_player.getPkKills());
+		buffer.writeInt(_player.getPvpKills());
+		buffer.writeShort(_player.getRecomLeft());
+		buffer.writeShort(_player.getRecomHave()); // Blue value for name (0 = white, 255 = pure blue)
+		buffer.writeInt(_player.getClassId().getId());
+		buffer.writeInt(0); // special effects? circles around player...
+		buffer.writeInt(_player.getMaxCp());
+		buffer.writeInt((int) _player.getCurrentCp());
+		buffer.writeByte(_player.isRunning() ? 1 : 0); // changes the Speed display on Status Window
+		buffer.writeByte(321);
+		buffer.writeInt(_player.getPledgeClass()); // changes the text above CP on Status Window
+		buffer.writeByte(_player.isNoble() ? 1 : 0);
+		buffer.writeByte(_player.isHero() ? 1 : 0);
+		buffer.writeInt(_player.getAppearance().getNameColor());
+		buffer.writeInt(_player.getAppearance().getTitleColor());
 		final AttributeType attackAttribute = _player.getAttackElement();
-		writeShort(attackAttribute.getClientId());
-		writeShort(_player.getAttackElementValue(attackAttribute));
+		buffer.writeShort(attackAttribute.getClientId());
+		buffer.writeShort(_player.getAttackElementValue(attackAttribute));
 		for (AttributeType type : AttributeType.ATTRIBUTE_TYPES)
 		{
-			writeShort(_player.getDefenseElementValue(type));
+			buffer.writeShort(_player.getDefenseElementValue(type));
 		}
-		writeInt(_player.getFame());
-		writeInt(_player.getVitalityPoints());
-		writeInt(0);
-		writeInt(0);
+		buffer.writeInt(_player.getFame());
+		buffer.writeInt(_player.getVitalityPoints());
+		buffer.writeInt(0);
+		buffer.writeInt(0);
 	}
 }

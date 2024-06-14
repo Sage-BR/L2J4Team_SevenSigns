@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,21 +18,19 @@ package org.l2j.gameserver.network.clientpackets.commission;
 
 import java.util.function.Predicate;
 
-import org.l2j.commons.network.ReadablePacket;
 import org.l2j.gameserver.instancemanager.ItemCommissionManager;
 import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.model.commission.CommissionItemType;
 import org.l2j.gameserver.model.commission.CommissionTreeType;
 import org.l2j.gameserver.model.item.ItemTemplate;
 import org.l2j.gameserver.model.item.type.CrystalType;
-import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.clientpackets.ClientPacket;
 import org.l2j.gameserver.network.serverpackets.commission.ExCloseCommission;
 
 /**
  * @author NosBit
  */
-public class RequestCommissionList implements ClientPacket
+public class RequestCommissionList extends ClientPacket
 {
 	private int _treeViewDepth;
 	private int _itemType;
@@ -41,19 +39,19 @@ public class RequestCommissionList implements ClientPacket
 	private String _query;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_treeViewDepth = packet.readInt();
-		_itemType = packet.readInt();
-		_type = packet.readInt();
-		_grade = packet.readInt();
-		_query = packet.readString();
+		_treeViewDepth = readInt();
+		_itemType = readInt();
+		_type = readInt();
+		_grade = readInt();
+		_query = readString();
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
-		final Player player = client.getPlayer();
+		final Player player = getPlayer();
 		if (player == null)
 		{
 			return;

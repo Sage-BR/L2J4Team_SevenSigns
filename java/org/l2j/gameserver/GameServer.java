@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,16 +22,20 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.lang.management.ManagementFactory;
+import java.net.InetSocketAddress;
 import java.time.Duration;
 import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
+import javax.swing.UIManager;
+
 import org.l2j.Config;
 import org.l2j.commons.database.DatabaseFactory;
 import org.l2j.commons.enums.ServerMode;
-import org.l2j.commons.network.NetServer;
+import org.l2j.commons.network.ConnectionBuilder;
+import org.l2j.commons.network.ConnectionHandler;
 import org.l2j.commons.threads.ThreadPool;
 import org.l2j.commons.util.DeadLockDetector;
 import org.l2j.commons.util.PropertiesParser;
@@ -62,6 +66,7 @@ import org.l2j.gameserver.data.xml.CombinationItemsData;
 import org.l2j.gameserver.data.xml.CubicData;
 import org.l2j.gameserver.data.xml.DailyMissionData;
 import org.l2j.gameserver.data.xml.DoorData;
+import org.l2j.gameserver.data.xml.DynamicExpRateData;
 import org.l2j.gameserver.data.xml.ElementalAttributeData;
 import org.l2j.gameserver.data.xml.ElementalSpiritData;
 import org.l2j.gameserver.data.xml.EnchantChallengePointData;
@@ -89,6 +94,7 @@ import org.l2j.gameserver.data.xml.LimitShopClanData;
 import org.l2j.gameserver.data.xml.LimitShopCraftData;
 import org.l2j.gameserver.data.xml.LimitShopData;
 import org.l2j.gameserver.data.xml.LuckyGameData;
+import org.l2j.gameserver.data.xml.MableGameData;
 import org.l2j.gameserver.data.xml.MagicLampData;
 import org.l2j.gameserver.data.xml.MissionLevel;
 import org.l2j.gameserver.data.xml.MultisellData;
@@ -135,6 +141,7 @@ import org.l2j.gameserver.handler.SkillConditionHandler;
 import org.l2j.gameserver.instancemanager.AirShipManager;
 import org.l2j.gameserver.instancemanager.AntiFeedManager;
 import org.l2j.gameserver.instancemanager.BoatManager;
+import org.l2j.gameserver.instancemanager.CaptchaManager;
 import org.l2j.gameserver.instancemanager.CastleManager;
 import org.l2j.gameserver.instancemanager.CastleManorManager;
 import org.l2j.gameserver.instancemanager.ClanEntryManager;
@@ -147,7 +154,6 @@ import org.l2j.gameserver.instancemanager.FakePlayerChatManager;
 import org.l2j.gameserver.instancemanager.FortManager;
 import org.l2j.gameserver.instancemanager.FortSiegeManager;
 import org.l2j.gameserver.instancemanager.GlobalVariablesManager;
-import org.l2j.gameserver.instancemanager.GraciaSeedsManager;
 import org.l2j.gameserver.instancemanager.GrandBossManager;
 import org.l2j.gameserver.instancemanager.IdManager;
 import org.l2j.gameserver.instancemanager.InstanceManager;
@@ -174,11 +180,12 @@ import org.l2j.gameserver.instancemanager.ServerRestartManager;
 import org.l2j.gameserver.instancemanager.SharedTeleportManager;
 import org.l2j.gameserver.instancemanager.SiegeGuardManager;
 import org.l2j.gameserver.instancemanager.SiegeManager;
+import org.l2j.gameserver.instancemanager.TreasureManager;
 import org.l2j.gameserver.instancemanager.WalkingManager;
 import org.l2j.gameserver.instancemanager.WorldExchangeManager;
 import org.l2j.gameserver.instancemanager.ZoneManager;
 import org.l2j.gameserver.instancemanager.events.EventDropManager;
-import org.l2j.gameserver.instancemanager.games.MonsterRace;
+import org.l2j.gameserver.instancemanager.games.MonsterRaceManager;
 import org.l2j.gameserver.model.World;
 import org.l2j.gameserver.model.events.EventDispatcher;
 import org.l2j.gameserver.model.events.EventType;
@@ -187,8 +194,8 @@ import org.l2j.gameserver.model.olympiad.Hero;
 import org.l2j.gameserver.model.olympiad.Olympiad;
 import org.l2j.gameserver.model.vip.VipManager;
 import org.l2j.gameserver.network.GameClient;
+import org.l2j.gameserver.network.GamePacketHandler;
 import org.l2j.gameserver.network.NpcStringId;
-import org.l2j.gameserver.network.PacketHandler;
 import org.l2j.gameserver.network.SystemMessageId;
 import org.l2j.gameserver.scripting.ScriptEngineManager;
 import org.l2j.gameserver.taskmanager.GameTimeTaskManager;
@@ -228,6 +235,7 @@ public class GameServer
 		{
 			Config.DARK_THEME = interfaceConfig.getBoolean("DarkTheme", true);
 			System.out.println("GameServer: Running in GUI mode.");
+			UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
 			new Gui();
 		}
 		
@@ -272,6 +280,7 @@ public class GameServer
 		printSection("Data");
 		ActionData.getInstance();
 		CategoryData.getInstance();
+		DynamicExpRateData.getInstance();
 		SecondaryAuthData.getInstance();
 		SayuneData.getInstance();
 		ClanRewardData.getInstance();
@@ -332,6 +341,7 @@ public class GameServer
 		WorldExchangeManager.getInstance();
 		PrivateStoreHistoryManager.getInstance().restore();
 		LuckyGameData.getInstance();
+		MableGameData.getInstance();
 		AttendanceRewardData.getInstance();
 		MagicLampData.getInstance();
 		RandomCraftData.getInstance();
@@ -354,6 +364,7 @@ public class GameServer
 		PetExtractData.getInstance();
 		CubicData.getInstance();
 		CharSummonTable.getInstance().init();
+		CaptchaManager.getInstance();
 		BeautyShopData.getInstance();
 		MentorManager.getInstance();
 		VipManager.getInstance();
@@ -426,7 +437,6 @@ public class GameServer
 		BoatManager.getInstance();
 		AirShipManager.getInstance();
 		ShuttleData.getInstance();
-		GraciaSeedsManager.getInstance();
 		
 		try
 		{
@@ -449,29 +459,22 @@ public class GameServer
 		FortManager.getInstance().activateInstances();
 		FortSiegeManager.getInstance();
 		SiegeScheduleData.getInstance();
-		
 		CastleManorManager.getInstance();
 		SiegeGuardManager.getInstance();
 		QuestManager.getInstance().report();
-		
 		if (Config.SAVE_DROPPED_ITEM)
 		{
 			ItemsOnGroundManager.getInstance();
 		}
-		
 		if ((Config.AUTODESTROY_ITEM_AFTER > 0) || (Config.HERB_AUTO_DESTROY_TIME > 0))
 		{
 			ItemsAutoDestroyTaskManager.getInstance();
 		}
-		
-		MonsterRace.getInstance();
-		
+		MonsterRaceManager.getInstance();
 		TaskManager.getInstance();
-		
 		DailyTaskManager.getInstance();
-		
+		TreasureManager.getInstance();
 		AntiFeedManager.getInstance().registerEvent(AntiFeedManager.GAME_ID);
-		
 		if (Config.ALLOW_MAIL)
 		{
 			MailManager.getInstance();
@@ -480,31 +483,23 @@ public class GameServer
 		{
 			CustomMailManager.getInstance();
 		}
-		
 		if (EventDispatcher.getInstance().hasListener(EventType.ON_SERVER_START))
 		{
 			EventDispatcher.getInstance().notifyEventAsync(new OnServerStart());
-			
 		}
-		
-		VDSystemManager.getInstance();
-		
 		PunishmentManager.getInstance();
 		
 		Runtime.getRuntime().addShutdownHook(Shutdown.getInstance());
-		
 		LOGGER.info("IdManager: Free ObjectID's remaining: " + IdManager.getInstance().size());
 		
 		if ((Config.OFFLINE_TRADE_ENABLE || Config.OFFLINE_CRAFT_ENABLE) && Config.RESTORE_OFFLINERS)
 		{
 			OfflineTraderTable.getInstance().restoreOfflineTraders();
 		}
-		
 		if (Config.SERVER_RESTART_SCHEDULE_ENABLED)
 		{
 			ServerRestartManager.getInstance();
 		}
-		
 		if (Config.PRECAUTIONARY_RESTART_ENABLED)
 		{
 			PrecautionaryRestartManager.getInstance();
@@ -526,24 +521,15 @@ public class GameServer
 		{
 			_deadDetectThread = null;
 		}
+		
 		System.gc();
 		final long totalMem = Runtime.getRuntime().maxMemory() / 1048576;
 		LOGGER.info(getClass().getSimpleName() + ": Started, using " + getUsedMemoryMB() + " of " + totalMem + " MB total memory.");
 		LOGGER.info(getClass().getSimpleName() + ": Maximum number of connected players is " + Config.MAXIMUM_ONLINE_USERS + ".");
 		LOGGER.info(getClass().getSimpleName() + ": Server loaded in " + ((System.currentTimeMillis() - serverLoadStart) / 1000) + " seconds.");
 		
-		final NetServer<GameClient> server = new NetServer<>(Config.GAMESERVER_HOSTNAME, Config.PORT_GAME, new PacketHandler(), GameClient::new);
-		server.setName(getClass().getSimpleName());
-		server.getNetConfig().setReadPoolSize(Config.CLIENT_READ_POOL_SIZE);
-		server.getNetConfig().setSendPoolSize(Config.CLIENT_SEND_POOL_SIZE);
-		server.getNetConfig().setExecutePoolSize(Config.CLIENT_EXECUTE_POOL_SIZE);
-		server.getNetConfig().setPacketQueueLimit(Config.PACKET_QUEUE_LIMIT);
-		server.getNetConfig().setPacketFloodDisconnect(Config.PACKET_FLOOD_DISCONNECT);
-		server.getNetConfig().setPacketFloodDrop(Config.PACKET_FLOOD_DROP);
-		server.getNetConfig().setPacketFloodLogged(Config.PACKET_FLOOD_LOGGED);
-		server.getNetConfig().setFailedDecryptionLogged(Config.FAILED_DECRYPTION_LOGGED);
-		server.getNetConfig().setTcpNoDelay(Config.TCP_NO_DELAY);
-		server.start();
+		final ConnectionHandler<GameClient> connectionHandler = new ConnectionBuilder<>(new InetSocketAddress(Config.PORT_GAME), GameClient::new, new GamePacketHandler(), ThreadPool::execute).build();
+		connectionHandler.start();
 		
 		LoginServerThread.getInstance().start();
 		
@@ -571,6 +557,7 @@ public class GameServer
 	public static void main(String[] args) throws Exception
 	{
 		INSTANCE = new GameServer();
+		VDSystemManager.getInstance();
 	}
 	
 	private void printSection(String section)

@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -35,6 +35,7 @@ import java.util.logging.Logger;
 
 import org.l2j.Config;
 import org.l2j.commons.database.DatabaseFactory;
+import org.l2j.commons.threads.ThreadPool;
 import org.l2j.commons.util.CommonUtil;
 import org.l2j.commons.util.Rnd;
 import org.l2j.gameserver.cache.HtmCache;
@@ -76,7 +77,6 @@ import org.l2j.gameserver.model.quest.newquestdata.NewQuestCondition;
 import org.l2j.gameserver.model.quest.newquestdata.NewQuestReward;
 import org.l2j.gameserver.model.skill.Skill;
 import org.l2j.gameserver.model.skill.SkillCaster;
-import org.l2j.gameserver.model.zone.ZoneId;
 import org.l2j.gameserver.model.zone.ZoneType;
 import org.l2j.gameserver.network.NpcStringId;
 import org.l2j.gameserver.network.SystemMessageId;
@@ -84,6 +84,7 @@ import org.l2j.gameserver.network.serverpackets.ActionFailed;
 import org.l2j.gameserver.network.serverpackets.ExQuestNpcLogList;
 import org.l2j.gameserver.network.serverpackets.NpcHtmlMessage;
 import org.l2j.gameserver.network.serverpackets.NpcQuestHtmlMessage;
+import org.l2j.gameserver.network.serverpackets.quest.ExQuestDialog;
 import org.l2j.gameserver.util.Util;
 
 /**
@@ -295,7 +296,7 @@ public class Quest extends AbstractScript implements IIdentifiable
 	
 	/**
 	 * Add a timer to the quest (if it doesn't exist already) and start it.
-	 * @param name the name of the timer (also passed back as "event" in {@link #onAdvEvent(String, Npc, Player)})
+	 * @param name the name of the timer (also passed back as "event" in {@link #onEvent(String, Npc, Player)})
 	 * @param time time in ms for when to fire the timer
 	 * @param npc the NPC associated with this timer (can be null)
 	 * @param player the player associated with this timer (can be null)
@@ -317,7 +318,7 @@ public class Quest extends AbstractScript implements IIdentifiable
 	
 	/**
 	 * Add a timer to the quest (if it doesn't exist already) and start it.
-	 * @param name the name of the timer (also passed back as "event" in {@link #onAdvEvent(String, Npc, Player)})
+	 * @param name the name of the timer (also passed back as "event" in {@link #onEvent(String, Npc, Player)})
 	 * @param time time in ms for when to fire the timer
 	 * @param npc the NPC associated with this timer (can be null)
 	 * @param player the player associated with this timer (can be null)
@@ -608,7 +609,7 @@ public class Quest extends AbstractScript implements IIdentifiable
 			{
 				player.setSimulatedTalking(false);
 			}
-			res = onAdvEvent(event, npc, player);
+			res = onEvent(event, npc, player);
 		}
 		catch (Exception e)
 		{
@@ -1070,12 +1071,11 @@ public class Quest extends AbstractScript implements IIdentifiable
 	 */
 	public String onDeath(Creature killer, Creature victim, QuestState qs)
 	{
-		return onAdvEvent("", (killer instanceof Npc) ? (Npc) killer : null, qs.getPlayer());
+		return onEvent("", (killer instanceof Npc) ? (Npc) killer : null, qs.getPlayer());
 	}
 	
 	/**
 	 * This function is called whenever a player clicks on a link in a quest dialog and whenever a timer fires.<br>
-	 * If is not overridden by a subclass, then default to the returned value of the simpler (and older) {@link #onEvent(String, QuestState)} override.<br>
 	 * If the player has a quest state, use it as parameter in the next call, otherwise return null.
 	 * @param event this parameter contains a string identifier for the event.<br>
 	 *            Generally, this string is passed directly via the link.<br>
@@ -1094,35 +1094,7 @@ public class Quest extends AbstractScript implements IIdentifiable
 	 *            This parameter may be {@code null} in certain circumstances.
 	 * @return the text returned by the event (may be {@code null}, a filename or just text)
 	 */
-	public String onAdvEvent(String event, Npc npc, Player player)
-	{
-		if (player != null)
-		{
-			final QuestState qs = player.getQuestState(getName());
-			if (qs != null)
-			{
-				return onEvent(event, qs);
-			}
-		}
-		return null;
-	}
-	
-	/**
-	 * This function is called in place of {@link #onAdvEvent(String, Npc, Player)} if the former is not implemented.<br>
-	 * If a script contains both {@link #onAdvEvent(String, Npc, Player)} and this implementation, then this method will never be called unless the script's {@link #onAdvEvent(String, Npc, Player)} explicitly calls this method.
-	 * @param event this parameter contains a string identifier for the event.<br>
-	 *            Generally, this string is passed directly via the link.<br>
-	 *            For example:<br>
-	 *            <code>
-	 *            &lt;a action="bypass -h Quest 626_ADarkTwilight 31517-01.htm"&gt;hello&lt;/a&gt;
-	 *            </code><br>
-	 *            The above link sets the event variable to "31517-01.htm" for the quest 626_ADarkTwilight.<br>
-	 *            In the case of timers, this will be the name of the timer.<br>
-	 *            This parameter serves as a sort of identifier.
-	 * @param qs this parameter contains a reference to the quest state of the player who used the link or started the timer.
-	 * @return the text returned by the event (may be {@code null}, a filename or just text)
-	 */
-	public String onEvent(String event, QuestState qs)
+	public String onEvent(String event, Npc npc, Player player)
 	{
 		return null;
 	}
@@ -1823,7 +1795,7 @@ public class Quest extends AbstractScript implements IIdentifiable
 	
 	public void addFirstTalkId(int npcId)
 	{
-		setNpcFirstTalkId(event -> notifyFirstTalk(event.getNpc(), event.getActiveChar()), npcId);
+		setNpcFirstTalkId(event -> notifyFirstTalk(event.getNpc(), event.getPlayer()), npcId);
 	}
 	
 	public void addTalkId(int npcId)
@@ -1865,7 +1837,7 @@ public class Quest extends AbstractScript implements IIdentifiable
 	 */
 	public void addFirstTalkId(int... npcIds)
 	{
-		setNpcFirstTalkId(event -> notifyFirstTalk(event.getNpc(), event.getActiveChar()), npcIds);
+		setNpcFirstTalkId(event -> notifyFirstTalk(event.getNpc(), event.getPlayer()), npcIds);
 	}
 	
 	/**
@@ -1874,7 +1846,7 @@ public class Quest extends AbstractScript implements IIdentifiable
 	 */
 	public void addFirstTalkId(Collection<Integer> npcIds)
 	{
-		setNpcFirstTalkId(event -> notifyFirstTalk(event.getNpc(), event.getActiveChar()), npcIds);
+		setNpcFirstTalkId(event -> notifyFirstTalk(event.getNpc(), event.getPlayer()), npcIds);
 	}
 	
 	/**
@@ -1901,7 +1873,7 @@ public class Quest extends AbstractScript implements IIdentifiable
 	 */
 	public void addItemBypassEventId(int... itemIds)
 	{
-		setItemBypassEvenId(event -> notifyItemEvent(event.getItem(), event.getActiveChar(), event.getEvent()), itemIds);
+		setItemBypassEvenId(event -> notifyItemEvent(event.getItem(), event.getPlayer(), event.getEvent()), itemIds);
 	}
 	
 	/**
@@ -1910,7 +1882,7 @@ public class Quest extends AbstractScript implements IIdentifiable
 	 */
 	public void addItemBypassEventId(Collection<Integer> itemIds)
 	{
-		setItemBypassEvenId(event -> notifyItemEvent(event.getItem(), event.getActiveChar(), event.getEvent()), itemIds);
+		setItemBypassEvenId(event -> notifyItemEvent(event.getItem(), event.getPlayer(), event.getEvent()), itemIds);
 	}
 	
 	/**
@@ -1919,7 +1891,7 @@ public class Quest extends AbstractScript implements IIdentifiable
 	 */
 	public void addItemTalkId(int... itemIds)
 	{
-		setItemTalkId(event -> notifyItemTalk(event.getItem(), event.getActiveChar()), itemIds);
+		setItemTalkId(event -> notifyItemTalk(event.getItem(), event.getPlayer()), itemIds);
 	}
 	
 	/**
@@ -1928,7 +1900,7 @@ public class Quest extends AbstractScript implements IIdentifiable
 	 */
 	public void addItemTalkId(Collection<Integer> itemIds)
 	{
-		setItemTalkId(event -> notifyItemTalk(event.getItem(), event.getActiveChar()), itemIds);
+		setItemTalkId(event -> notifyItemTalk(event.getItem(), event.getPlayer()), itemIds);
 	}
 	
 	/**
@@ -2109,7 +2081,7 @@ public class Quest extends AbstractScript implements IIdentifiable
 	 */
 	public void addAggroRangeEnterId(int... npcIds)
 	{
-		setAttackableAggroRangeEnterId(event -> notifyAggroRangeEnter(event.getNpc(), event.getActiveChar(), event.isSummon()), npcIds);
+		setAttackableAggroRangeEnterId(event -> notifyAggroRangeEnter(event.getNpc(), event.getPlayer(), event.isSummon()), npcIds);
 	}
 	
 	/**
@@ -2118,7 +2090,7 @@ public class Quest extends AbstractScript implements IIdentifiable
 	 */
 	public void addAggroRangeEnterId(Collection<Integer> npcIds)
 	{
-		setAttackableAggroRangeEnterId(event -> notifyAggroRangeEnter(event.getNpc(), event.getActiveChar(), event.isSummon()), npcIds);
+		setAttackableAggroRangeEnterId(event -> notifyAggroRangeEnter(event.getNpc(), event.getPlayer(), event.isSummon()), npcIds);
 	}
 	
 	/**
@@ -2251,7 +2223,7 @@ public class Quest extends AbstractScript implements IIdentifiable
 	 */
 	public void addNpcHateId(int... npcIds)
 	{
-		addNpcHateId(event -> new TerminateReturn(!onNpcHate(event.getNpc(), event.getActiveChar(), event.isSummon()), false, false), npcIds);
+		addNpcHateId(event -> new TerminateReturn(!onNpcHate(event.getNpc(), event.getPlayer(), event.isSummon()), false, false), npcIds);
 	}
 	
 	/**
@@ -2260,7 +2232,7 @@ public class Quest extends AbstractScript implements IIdentifiable
 	 */
 	public void addNpcHateId(Collection<Integer> npcIds)
 	{
-		addNpcHateId(event -> new TerminateReturn(!onNpcHate(event.getNpc(), event.getActiveChar(), event.isSummon()), false, false), npcIds);
+		addNpcHateId(event -> new TerminateReturn(!onNpcHate(event.getNpc(), event.getPlayer(), event.isSummon()), false, false), npcIds);
 	}
 	
 	/**
@@ -2305,7 +2277,7 @@ public class Quest extends AbstractScript implements IIdentifiable
 	 */
 	public void addCanSeeMeId(int... npcIds)
 	{
-		addNpcHateId(event -> new TerminateReturn(!notifyOnCanSeeMe(event.getNpc(), event.getActiveChar()), false, false), npcIds);
+		addNpcHateId(event -> new TerminateReturn(!notifyOnCanSeeMe(event.getNpc(), event.getPlayer()), false, false), npcIds);
 	}
 	
 	/**
@@ -2314,7 +2286,7 @@ public class Quest extends AbstractScript implements IIdentifiable
 	 */
 	public void addCanSeeMeId(Collection<Integer> npcIds)
 	{
-		addNpcHateId(event -> new TerminateReturn(!notifyOnCanSeeMe(event.getNpc(), event.getActiveChar()), false, false), npcIds);
+		addNpcHateId(event -> new TerminateReturn(!notifyOnCanSeeMe(event.getNpc(), event.getPlayer()), false, false), npcIds);
 	}
 	
 	public void addOlympiadMatchFinishId()
@@ -3161,6 +3133,22 @@ public class Quest extends AbstractScript implements IIdentifiable
 		addCondStart(p -> classIds.contains(p.getClassId()), html);
 	}
 	
+	/**
+	 * Adds an item ID start condition to the quest.
+	 * @param itemId the item ID
+	 * @param pairs the HTML to display if the condition is not met per each npc
+	 */
+	@SafeVarargs
+	public final void addCondItemId(int itemId, KeyValuePair<Integer, String>... pairs)
+	{
+		addCondStart(p -> !p.getInventory().getAllItemsByItemId(itemId).isEmpty(), pairs);
+	}
+	
+	public void addCondPlayerKarma()
+	{
+		addCondStart(p -> p.getReputation() < 0);
+	}
+	
 	public void addNewQuestConditions(NewQuestCondition condition, String html)
 	{
 		if (!condition.getAllowedClassIds().isEmpty())
@@ -3296,13 +3284,13 @@ public class Quest extends AbstractScript implements IIdentifiable
 	{
 	}
 	
-	public void giveStoryBuffReward(Npc npc, Player player)
+	public void giveStoryBuffReward(Player player)
 	{
 		if (Config.ENABLE_STORY_QUEST_BUFF_REWARD)
 		{
 			for (SkillHolder holder : STORY_QUEST_BUFFS)
 			{
-				SkillCaster.triggerCast(npc, player, holder.getSkill());
+				SkillCaster.triggerCast(player, player, holder.getSkill());
 			}
 		}
 	}
@@ -3315,17 +3303,15 @@ public class Quest extends AbstractScript implements IIdentifiable
 	public void rewardPlayer(Player player)
 	{
 		final NewQuestReward reward = _questData.getRewards();
-		if (reward.getItems() != null)
+		final List<ItemHolder> rewardItems = reward.getItems();
+		if ((rewardItems != null) && !rewardItems.isEmpty())
 		{
-			if ((reward.getItems() != null) && !reward.getItems().isEmpty())
+			for (ItemHolder item : rewardItems)
 			{
-				for (ItemHolder item : reward.getItems())
-				{
-					giveItems(player, item);
-				}
+				rewardItems(player, item);
 			}
-			
 		}
+		
 		if (reward.getLevel() > 0)
 		{
 			final long playerExp = player.getExp();
@@ -3342,7 +3328,6 @@ public class Quest extends AbstractScript implements IIdentifiable
 		if (reward.getExp() > 0)
 		{
 			player.getStat().addExp(reward.getExp());
-			
 			player.broadcastUserInfo();
 		}
 		
@@ -3353,43 +3338,60 @@ public class Quest extends AbstractScript implements IIdentifiable
 		}
 	}
 	
-	public void teleportToQuestLocation(Player player, ILocational loc)
+	public boolean teleportToQuestLocation(Player player, ILocational loc)
 	{
 		if (loc == null)
 		{
-			return;
+			return false;
 		}
 		
 		if (player.isDead())
 		{
 			player.sendPacket(SystemMessageId.DEAD_CHARACTERS_CANNOT_USE_TELEPORTS);
-			return;
+			return false;
 		}
 		
 		// Players should not be able to teleport if in a special location.
-		if ((player.getMovieHolder() != null) || player.isFishing() || player.isInInstance() || player.isOnEvent() || player.isInOlympiadMode() || player.inObserverMode() || player.isInTraingCamp() || player.isInsideZone(ZoneId.TIMED_HUNTING))
+		if ((player.getMovieHolder() != null) || player.isFishing() || player.isInInstance() || player.isOnEvent() || player.isInOlympiadMode() || player.inObserverMode() || player.isInTraingCamp() || player.isInTimedHuntingZone())
 		{
 			player.sendPacket(SystemMessageId.YOU_CANNOT_TELEPORT_RIGHT_NOW);
-			return;
+			return false;
 		}
 		
 		// Teleport in combat configuration.
 		if (!Config.TELEPORT_WHILE_PLAYER_IN_COMBAT && (player.isInCombat() || player.isCastingNow()))
 		{
 			player.sendPacket(SystemMessageId.YOU_CANNOT_TELEPORT_WHILE_IN_COMBAT);
-			return;
+			return false;
 		}
 		
 		// Karma related configurations.
-		// Cannot escape effect.
-		if (((!Config.ALT_GAME_KARMA_PLAYER_CAN_TELEPORT || !Config.ALT_GAME_KARMA_PLAYER_CAN_USE_GK) && (player.getReputation() < 0)) || player.isAffected(EffectFlag.CANNOT_ESCAPE))
+		if ((!Config.ALT_GAME_KARMA_PLAYER_CAN_TELEPORT || !Config.ALT_GAME_KARMA_PLAYER_CAN_USE_GK) && (player.getReputation() < 0))
 		{
 			player.sendPacket(SystemMessageId.YOU_CANNOT_TELEPORT_RIGHT_NOW);
-			return;
+			return false;
+		}
+		
+		// Cannot escape effect.
+		if (player.isAffected(EffectFlag.CANNOT_ESCAPE))
+		{
+			player.sendPacket(SystemMessageId.YOU_CANNOT_TELEPORT_RIGHT_NOW);
+			return false;
 		}
 		
 		player.abortCast();
 		player.stopMove(null);
 		player.teleToLocation(loc);
+		return true;
+	}
+	
+	public void sendAcceptDialog(Player player)
+	{
+		ThreadPool.schedule(() -> player.sendPacket(new ExQuestDialog(getId(), QuestDialogType.ACCEPT)), 2000);
+	}
+	
+	public void sendEndDialog(Player player)
+	{
+		ThreadPool.schedule(() -> player.sendPacket(new ExQuestDialog(getId(), QuestDialogType.END)), 2000);
 	}
 }

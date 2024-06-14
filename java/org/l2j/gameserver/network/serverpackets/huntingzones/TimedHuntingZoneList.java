@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,12 +16,16 @@
  */
 package org.l2j.gameserver.network.serverpackets.huntingzones;
 
+import java.util.List;
+
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.data.xml.TimedHuntingZoneData;
 import org.l2j.gameserver.instancemanager.GlobalVariablesManager;
 import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.model.holders.TimedHuntingZoneHolder;
 import org.l2j.gameserver.model.variables.PlayerVariables;
 import org.l2j.gameserver.model.zone.ZoneId;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 import org.l2j.gameserver.network.serverpackets.ServerPacket;
 
@@ -40,43 +44,44 @@ public class TimedHuntingZoneList extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_TIME_RESTRICT_FIELD_LIST.writeId(this);
+		ServerPackets.EX_TIME_RESTRICT_FIELD_LIST.writeId(this, buffer);
 		final long currentTime = System.currentTimeMillis();
-		writeInt(TimedHuntingZoneData.getInstance().getSize()); // zone count
-		for (TimedHuntingZoneHolder holder : TimedHuntingZoneData.getInstance().getAllHuntingZones())
+		final List<TimedHuntingZoneHolder> timedHuntingZoneList = TimedHuntingZoneData.getInstance().getAllHuntingZones().stream().parallel().filter(t -> (t.isEvenWeek() == GlobalVariablesManager.getInstance().getBoolean(GlobalVariablesManager.IS_EVEN_WEEK, true)) || !t.isSwapWeek()).toList();
+		buffer.writeInt(timedHuntingZoneList.size()); // zone count
+		for (TimedHuntingZoneHolder holder : timedHuntingZoneList)
 		{
-			writeInt(holder.getEntryFee() != 0); // required item count
-			writeInt(holder.getEntryItemId());
-			writeLong(holder.getEntryFee());
-			writeInt(!holder.isWeekly()); // reset cycle
-			writeInt(holder.getZoneId());
-			writeInt(holder.getMinLevel());
-			writeInt(holder.getMaxLevel());
-			writeInt(holder.getInitialTime() / 1000); // remain time base
+			buffer.writeInt(holder.getEntryFee() != 0); // required item count
+			buffer.writeInt(holder.getEntryItemId());
+			buffer.writeLong(holder.getEntryFee());
+			buffer.writeInt(!holder.isWeekly()); // reset cycle
+			buffer.writeInt(holder.getZoneId());
+			buffer.writeInt(holder.getMinLevel());
+			buffer.writeInt(holder.getMaxLevel());
+			buffer.writeInt(holder.getInitialTime() / 1000); // remain time base
 			int remainingTime = _player.getTimedHuntingZoneRemainingTime(holder.getZoneId());
 			if ((remainingTime == 0) && ((_player.getTimedHuntingZoneInitialEntry(holder.getZoneId()) + holder.getResetDelay()) < currentTime))
 			{
 				remainingTime = holder.getInitialTime();
 			}
-			writeInt(remainingTime / 1000); // remain time
-			writeInt(holder.getMaximumAddedTime() / 1000);
-			writeInt(_player.getVariables().getInt(PlayerVariables.HUNTING_ZONE_REMAIN_REFILL + holder.getZoneId(), holder.getRemainRefillTime()));
-			writeInt(holder.getRefillTimeMax());
+			buffer.writeInt(remainingTime / 1000); // remain time
+			buffer.writeInt(holder.getMaximumAddedTime() / 1000);
+			buffer.writeInt(_player.getVariables().getInt(PlayerVariables.HUNTING_ZONE_REMAIN_REFILL + holder.getZoneId(), holder.getRemainRefillTime()));
+			buffer.writeInt(holder.getRefillTimeMax());
 			boolean isFieldActivated = !_isInTimedHuntingZone;
 			if ((holder.getZoneId() == 18) && !GlobalVariablesManager.getInstance().getBoolean("AvailableFrostLord", false))
 			{
 				isFieldActivated = false;
 			}
-			writeByte(isFieldActivated);
-			writeByte(0); // bUserBound
-			writeByte(0); // bCanReEnter
-			writeByte(holder.zonePremiumUserOnly()); // bIsInZonePCCafeUserOnly
-			writeByte(_player.hasPremiumStatus()); // bIsPCCafeUser
-			writeByte(holder.useWorldPrefix()); // bWorldInZone
-			writeByte(0); // bCanUseEntranceTicket
-			writeInt(0); // nEntranceCount
+			buffer.writeByte(isFieldActivated);
+			buffer.writeByte(0); // bUserBound
+			buffer.writeByte(0); // bCanReEnter
+			buffer.writeByte(holder.zonePremiumUserOnly()); // bIsInZonePCCafeUserOnly
+			buffer.writeByte(_player.hasPremiumStatus()); // bIsPCCafeUser
+			buffer.writeByte(holder.useWorldPrefix()); // bWorldInZone
+			buffer.writeByte(0); // bCanUseEntranceTicket
+			buffer.writeInt(0); // nEntranceCount
 		}
 	}
 }

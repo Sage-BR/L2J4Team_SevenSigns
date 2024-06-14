@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -26,7 +26,7 @@ import java.util.Collection;
 import java.util.logging.Logger;
 
 import org.l2j.commons.database.DatabaseFactory;
-import org.l2j.commons.network.ReadablePacket;
+import org.l2j.commons.network.base.BaseReadablePacket;
 import org.l2j.loginserver.GameServerTable;
 import org.l2j.loginserver.GameServerTable.GameServerInfo;
 import org.l2j.loginserver.GameServerThread;
@@ -34,22 +34,21 @@ import org.l2j.loginserver.GameServerThread;
 /**
  * @author Nik
  */
-public class ChangePassword extends ReadablePacket
+public class ChangePassword extends BaseReadablePacket
 {
 	protected static final Logger LOGGER = Logger.getLogger(ChangePassword.class.getName());
-	private static GameServerThread gst = null;
 	
 	public ChangePassword(byte[] decrypt)
 	{
 		super(decrypt);
-		readByte(); // id (already processed)
+		readByte(); // Packet id, it is already processed.
 		
 		final String accountName = readString();
 		final String characterName = readString();
 		final String curpass = readString();
 		final String newpass = readString();
 		
-		// get the GameServerThread
+		GameServerThread gst = null;
 		final Collection<GameServerInfo> serverList = GameServerTable.getInstance().getRegisteredGameServers().values();
 		for (GameServerInfo gsi : serverList)
 		{
@@ -66,7 +65,7 @@ public class ChangePassword extends ReadablePacket
 		
 		if ((curpass == null) || (newpass == null))
 		{
-			gst.changePasswordResponse((byte) 0, characterName, "Invalid password data! Try again.");
+			gst.changePasswordResponse(characterName, "Invalid password data! Try again.");
 		}
 		else
 		{
@@ -78,7 +77,6 @@ public class ChangePassword extends ReadablePacket
 				String pass = null;
 				int passUpdated = 0;
 				
-				// SQL connection
 				try (Connection con = DatabaseFactory.getConnection();
 					PreparedStatement ps = con.prepareStatement("SELECT password FROM accounts WHERE login=?"))
 				{
@@ -95,7 +93,6 @@ public class ChangePassword extends ReadablePacket
 				if (curpassEnc.equals(pass))
 				{
 					final byte[] password = md.digest(newpass.getBytes(StandardCharsets.UTF_8));
-					// SQL connection
 					try (Connection con = DatabaseFactory.getConnection();
 						PreparedStatement ps = con.prepareStatement("UPDATE accounts SET password=? WHERE login=?"))
 					{
@@ -107,16 +104,16 @@ public class ChangePassword extends ReadablePacket
 					LOGGER.info("The password for account " + accountName + " has been changed from " + curpassEnc + " to " + Base64.getEncoder().encodeToString(password));
 					if (passUpdated > 0)
 					{
-						gst.changePasswordResponse((byte) 1, characterName, "You have successfully changed your password!");
+						gst.changePasswordResponse(characterName, "You have successfully changed your password!");
 					}
 					else
 					{
-						gst.changePasswordResponse((byte) 0, characterName, "The password change was unsuccessful!");
+						gst.changePasswordResponse(characterName, "The password change was unsuccessful!");
 					}
 				}
 				else
 				{
-					gst.changePasswordResponse((byte) 0, characterName, "The typed current password doesn't match with your current one.");
+					gst.changePasswordResponse(characterName, "The typed current password doesn't match with your current one.");
 				}
 			}
 			catch (Exception e)

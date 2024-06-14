@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,8 +16,10 @@
  */
 package org.l2j.gameserver.network.serverpackets.magiclamp;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.model.stats.Stat;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 import org.l2j.gameserver.network.serverpackets.ServerPacket;
 
@@ -34,16 +36,16 @@ public class ExMagicLampInfo extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_MAGICLAMP_INFO.writeId(this);
+		ServerPackets.EX_MAGICLAMP_INFO.writeId(this, buffer);
 		
 		final int nExpPercentage = _player.getLampExp() / 10;
-		writeInt(nExpPercentage);
+		buffer.writeInt(nExpPercentage);
 		
 		final int count = (int) _player.getStat().getValue(Stat.LAMP_BONUS_EXP, 0);
 		final int bonus = (int) _player.getStat().getValue(Stat.LAMP_BONUS_BUFFS_COUNT, 0);
-		writeInt(bonus);
-		writeInt(count);
+		buffer.writeInt(bonus);
+		buffer.writeInt(count);
 	}
 }

@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,11 +18,13 @@ package org.l2j.gameserver.network.serverpackets.enchant.single;
 
 import static org.l2j.gameserver.model.stats.Stat.ENCHANT_RATE;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.data.xml.EnchantItemData;
 import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.model.actor.request.EnchantItemRequest;
 import org.l2j.gameserver.model.item.enchant.EnchantScroll;
 import org.l2j.gameserver.model.item.type.CrystalType;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 import org.l2j.gameserver.network.serverpackets.ServerPacket;
 
@@ -41,7 +43,7 @@ public class ChangedEnchantTargetItemProbabilityList extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
 		if (_player.getRequest(EnchantItemRequest.class) == null)
 		{
@@ -60,8 +62,8 @@ public class ChangedEnchantTargetItemProbabilityList extends ServerPacket
 			count = request.getMultiEnchantingItemsCount();
 		}
 		
-		ServerPackets.EX_CHANGED_ENCHANT_TARGET_ITEM_PROB_LIST.writeId(this);
-		writeInt(count);
+		ServerPackets.EX_CHANGED_ENCHANT_TARGET_ITEM_PROB_LIST.writeId(this, buffer);
+		buffer.writeInt(count);
 		for (int i = 1; i <= count; i++)
 		{
 			// 100,00 % = 10000, because last 2 numbers going after float comma.
@@ -90,22 +92,27 @@ public class ChangedEnchantTargetItemProbabilityList extends ServerPacket
 			}
 			if (!_isMulti)
 			{
-				writeInt(request.getEnchantingItem().getObjectId());
+				buffer.writeInt(request.getEnchantingItem().getObjectId());
 			}
 			else
 			{
-				writeInt(request.getMultiEnchantingItemsBySlot(i));
+				buffer.writeInt(request.getMultiEnchantingItemsBySlot(i));
 			}
-			writeInt((int) totalRate); // Total success.
-			writeInt((int) baseRate); // Base success.
-			writeInt((int) supportRate); // Support success.
-			writeInt((int) passiveBaseRate); // Passive success (items, skills).
+			buffer.writeInt((int) totalRate); // Total success.
+			buffer.writeInt((int) baseRate); // Base success.
+			buffer.writeInt((int) supportRate); // Support success.
+			buffer.writeInt((int) passiveBaseRate); // Passive success (items, skills).
 		}
 	}
 	
 	private int getBaseRate(EnchantItemRequest request, int iteration)
 	{
 		final EnchantScroll enchantScroll = EnchantItemData.getInstance().getEnchantScroll(request.getEnchantingScroll());
+		if (enchantScroll == null)
+		{
+			return 0;
+		}
+		
 		return (int) Math.min(100, enchantScroll.getChance(_player, _isMulti ? _player.getInventory().getItemByObjectId(request.getMultiEnchantingItemsBySlot(iteration)) : request.getEnchantingItem()) + enchantScroll.getBonusRate()) * 100;
 	}
 	

@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,36 +19,34 @@ package org.l2j.gameserver.network.clientpackets.newhenna;
 import java.util.Map.Entry;
 import java.util.Optional;
 
-import org.l2j.commons.network.ReadablePacket;
 import org.l2j.commons.util.Rnd;
 import org.l2j.gameserver.data.xml.HennaPatternPotentialData;
 import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.model.holders.ItemHolder;
 import org.l2j.gameserver.model.item.henna.DyePotentialFee;
 import org.l2j.gameserver.model.item.henna.HennaPoten;
-import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.clientpackets.ClientPacket;
 import org.l2j.gameserver.network.serverpackets.newhenna.NewHennaPotenEnchant;
 
 /**
  * @author Index, Serenitty
  */
-public class RequestNewHennaPotenEnchant implements ClientPacket
+public class RequestNewHennaPotenEnchant extends ClientPacket
 {
 	private int _slotId;
 	private int _costItemId;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_slotId = packet.readByte();
-		_costItemId = packet.readInt();
+		_slotId = readByte();
+		_costItemId = readInt();
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
-		final Player player = client.getPlayer();
+		final Player player = getPlayer();
 		if (player == null)
 		{
 			return;

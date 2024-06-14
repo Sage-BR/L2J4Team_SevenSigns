@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,10 +17,11 @@
 package org.l2j.gameserver.network.serverpackets;
 
 import java.util.Collection;
-import java.util.List;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.model.clan.Clan;
 import org.l2j.gameserver.model.skill.Skill;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 
 /**
@@ -29,7 +30,7 @@ import org.l2j.gameserver.network.ServerPackets;
 public class PledgeSkillList extends ServerPacket
 {
 	private final Collection<Skill> _skills;
-	private final List<SubPledgeSkill> _subSkills;
+	private final Collection<SubPledgeSkill> _subSkills;
 	
 	public static class SubPledgeSkill
 	{
@@ -52,23 +53,23 @@ public class PledgeSkillList extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.PLEDGE_SKILL_LIST.writeId(this);
-		writeInt(_skills.size());
-		writeInt(_subSkills.size()); // Squad skill length
+		ServerPackets.PLEDGE_SKILL_LIST.writeId(this, buffer);
+		buffer.writeInt(_skills.size());
+		buffer.writeInt(_subSkills.size()); // Squad skill length
 		for (Skill sk : _skills)
 		{
-			writeInt(sk.getDisplayId());
-			writeShort(sk.getDisplayLevel());
-			writeShort(0); // Sub level
+			buffer.writeInt(sk.getDisplayId());
+			buffer.writeShort(sk.getDisplayLevel());
+			buffer.writeShort(0); // Sub level
 		}
 		for (SubPledgeSkill sk : _subSkills)
 		{
-			writeInt(sk._subType); // Clan Sub-unit types
-			writeInt(sk._skillId);
-			writeShort(sk._skillLevel);
-			writeShort(0); // Sub level
+			buffer.writeInt(sk._subType); // Clan Sub-unit types
+			buffer.writeInt(sk._skillId);
+			buffer.writeShort(sk._skillLevel);
+			buffer.writeShort(0); // Sub level
 		}
 	}
 }

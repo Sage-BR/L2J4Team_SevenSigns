@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,7 +20,6 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 import org.l2j.Config;
-import org.l2j.commons.network.ReadablePacket;
 import org.l2j.commons.threads.ThreadPool;
 import org.l2j.gameserver.LoginServerThread;
 import org.l2j.gameserver.cache.HtmCache;
@@ -30,6 +29,7 @@ import org.l2j.gameserver.data.xml.AdminData;
 import org.l2j.gameserver.data.xml.BeautyShopData;
 import org.l2j.gameserver.data.xml.ClanHallData;
 import org.l2j.gameserver.data.xml.EnchantItemGroupsData;
+import org.l2j.gameserver.data.xml.MableGameData;
 import org.l2j.gameserver.data.xml.NewQuestData;
 import org.l2j.gameserver.data.xml.SkillTreeData;
 import org.l2j.gameserver.enums.CategoryType;
@@ -62,6 +62,7 @@ import org.l2j.gameserver.model.item.ItemTemplate;
 import org.l2j.gameserver.model.item.instance.Item;
 import org.l2j.gameserver.model.item.type.EtcItemType;
 import org.l2j.gameserver.model.itemcontainer.Inventory;
+import org.l2j.gameserver.model.olympiad.Olympiad;
 import org.l2j.gameserver.model.punishment.PunishmentAffect;
 import org.l2j.gameserver.model.punishment.PunishmentType;
 import org.l2j.gameserver.model.quest.Quest;
@@ -131,7 +132,9 @@ import org.l2j.gameserver.network.serverpackets.enchant.challengepoint.ExEnchant
 import org.l2j.gameserver.network.serverpackets.friend.L2FriendList;
 import org.l2j.gameserver.network.serverpackets.huntpass.HuntPassSimpleInfo;
 import org.l2j.gameserver.network.serverpackets.limitshop.ExBloodyCoinCount;
+import org.l2j.gameserver.network.serverpackets.mablegame.ExMableGameUILauncher;
 import org.l2j.gameserver.network.serverpackets.magiclamp.ExMagicLampInfo;
+import org.l2j.gameserver.network.serverpackets.olympiad.ExOlympiadInfo;
 import org.l2j.gameserver.network.serverpackets.pledgedonation.ExPledgeContributionList;
 import org.l2j.gameserver.network.serverpackets.quest.ExQuestDialog;
 import org.l2j.gameserver.network.serverpackets.quest.ExQuestNotificationAll;
@@ -151,33 +154,34 @@ import org.l2j.gameserver.util.Util;
  * packet format rev87 bddddbdcccccccccccccccccccc
  * <p>
  */
-public class EnterWorld implements ClientPacket
+public class EnterWorld extends ClientPacket
 {
 	private static final Map<String, ClientHardwareInfoHolder> TRACE_HWINFO = new ConcurrentHashMap<>();
 	
 	private final int[][] _tracert = new int[5][4];
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
 		for (int i = 0; i < 5; i++)
 		{
 			for (int o = 0; o < 4; o++)
 			{
-				_tracert[i][o] = packet.readByte();
+				_tracert[i][o] = readUnsignedByte();
 			}
 		}
-		packet.readInt(); // Unknown Value
-		packet.readInt(); // Unknown Value
-		packet.readInt(); // Unknown Value
-		packet.readInt(); // Unknown Value
-		packet.readBytes(64); // Unknown Byte Array
-		packet.readInt(); // Unknown Value
+		readInt(); // Unknown Value
+		readInt(); // Unknown Value
+		readInt(); // Unknown Value
+		readInt(); // Unknown Value
+		readBytes(64); // Unknown Byte Array
+		readInt(); // Unknown Value
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
+		final GameClient client = getClient();
 		final Player player = client.getPlayer();
 		if (player == null)
 		{
@@ -199,16 +203,16 @@ public class EnterWorld implements ClientPacket
 		
 		player.sendPacket(new UserInfo(player));
 		
-		// Restore to instanced area if enabled
+		// Restore to instanced area if enabled.
+		final PlayerVariables vars = player.getVariables();
 		if (Config.RESTORE_PLAYER_INSTANCE)
 		{
-			final PlayerVariables vars = player.getVariables();
 			final Instance instance = InstanceManager.getInstance().getPlayerInstance(player, false);
-			if ((instance != null) && (instance.getId() == vars.getInt("INSTANCE_RESTORE", 0)))
+			if ((instance != null) && (instance.getId() == vars.getInt(PlayerVariables.INSTANCE_RESTORE, 0)))
 			{
 				player.setInstance(instance);
 			}
-			vars.remove("INSTANCE_RESTORE");
+			vars.remove(PlayerVariables.INSTANCE_RESTORE);
 		}
 		
 		if (!player.isGM())
@@ -302,7 +306,6 @@ public class EnterWorld implements ClientPacket
 					player.setSiegeState((byte) 1);
 					player.setSiegeSide(siege.getCastle().getResidenceId());
 				}
-				
 				else if (siege.checkIsDefender(clan))
 				{
 					player.setSiegeState((byte) 2);
@@ -322,7 +325,6 @@ public class EnterWorld implements ClientPacket
 					player.setSiegeState((byte) 1);
 					player.setSiegeSide(siege.getFort().getResidenceId());
 				}
-				
 				else if (siege.checkIsDefender(clan))
 				{
 					player.setSiegeState((byte) 2);
@@ -350,6 +352,12 @@ public class EnterWorld implements ClientPacket
 			}
 			
 			showClanNotice = clan.isNoticeEnabled();
+		}
+		
+		// Mercenary Siege.
+		if (player.isMercenary())
+		{
+			player.updateMercenary();
 		}
 		
 		// Send time.
@@ -674,10 +682,16 @@ public class EnterWorld implements ClientPacket
 		}
 		
 		// Check if expoff is enabled.
-		if (player.getVariables().getBoolean("EXPOFF", false))
+		if (vars.getBoolean("EXPOFF", false))
 		{
 			player.disableExpGain();
 			player.sendMessage("Experience gain is disabled.");
+		}
+		
+		// Send packet that olympiad is opened.
+		if (Config.OLYMPIAD_ENABLED && Olympiad.getInstance().inCompPeriod())
+		{
+			player.sendPacket(new ExOlympiadInfo(1, Olympiad.getInstance().getRemainingTime()));
 		}
 		
 		player.broadcastUserInfo();
@@ -722,18 +736,18 @@ public class EnterWorld implements ClientPacket
 		{
 			// Send twice.
 			player.setDeathPoints(500);
-			player.setDeathPoints(player.getVariables().getInt(PlayerVariables.DEATH_POINT_COUNT, 0));
+			player.setDeathPoints(vars.getInt(PlayerVariables.DEATH_POINT_COUNT, 0));
 		}
 		// Vanguard beast points init.
 		else if (player.isVanguard())
 		{
 			player.setBeastPoints(1000);
-			player.setBeastPoints(player.getVariables().getInt(PlayerVariables.BEAST_POINT_COUNT, 1000));
+			player.setBeastPoints(vars.getInt(PlayerVariables.BEAST_POINT_COUNT, 1000));
 		}
 		// Assassin points init.
 		else if (player.isAssassin() && player.isInCategory(CategoryType.FOURTH_CLASS_GROUP))
 		{
-			player.setAssassinationPoints(player.getVariables().getInt(PlayerVariables.ASSASSINATION_POINT_COUNT, 0));
+			player.setAssassinationPoints(vars.getInt(PlayerVariables.ASSASSINATION_POINT_COUNT, 0));
 		}
 		
 		// Sayha's Grace.
@@ -793,6 +807,12 @@ public class EnterWorld implements ClientPacket
 		if ((leftHandItem != null) && ((leftHandItem.getItemType() == EtcItemType.ARROW) || (leftHandItem.getItemType() == EtcItemType.BOLT) || (leftHandItem.getItemType() == EtcItemType.ELEMENTAL_ORB)))
 		{
 			player.getInventory().unEquipItemInBodySlot(Inventory.PAPERDOLL_LHAND);
+		}
+		
+		// Mable event.
+		if (MableGameData.getInstance().isEnabled())
+		{
+			player.sendPacket(ExMableGameUILauncher.STATIC_PACKET);
 		}
 		
 		// World Trade.
@@ -929,6 +949,9 @@ public class EnterWorld implements ClientPacket
 		{
 			PcCafePointsManager.getInstance().run(player);
 		}
+		
+		// Remove variable used by hunting zone system.
+		player.getVariables().remove(PlayerVariables.LAST_HUNTING_ZONE_ID);
 	}
 	
 	/**

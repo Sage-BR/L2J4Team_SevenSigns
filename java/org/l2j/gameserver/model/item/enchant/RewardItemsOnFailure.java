@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -52,7 +52,17 @@ public class RewardItemsOnFailure
 	public boolean checkIfRewardUnavailable(CrystalType grade, int enchantLevel)
 	{
 		// reversed available
-		if ((_minEnchantLevel > enchantLevel) || (_maxEnchantLevel < enchantLevel) || !_rewards.containsKey(grade))
+		if (_minEnchantLevel > enchantLevel)
+		{
+			return true;
+		}
+		
+		if (_maxEnchantLevel < enchantLevel)
+		{
+			return true;
+		}
+		
+		if (!_rewards.containsKey(grade))
 		{
 			return true;
 		}

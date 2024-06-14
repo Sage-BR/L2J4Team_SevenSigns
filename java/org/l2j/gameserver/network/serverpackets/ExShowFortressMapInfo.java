@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,10 +18,12 @@ package org.l2j.gameserver.network.serverpackets;
 
 import java.util.List;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.instancemanager.FortSiegeManager;
 import org.l2j.gameserver.model.FortSiegeSpawn;
 import org.l2j.gameserver.model.Spawn;
 import org.l2j.gameserver.model.siege.Fort;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 
 /**
@@ -38,12 +40,12 @@ public class ExShowFortressMapInfo extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_SHOW_FORTRESS_MAP_INFO.writeId(this);
-		writeInt(_fortress.getResidenceId());
-		writeInt(_fortress.getSiege().isInProgress()); // fortress siege status
-		writeInt(_fortress.getFortSize()); // barracks count
+		ServerPackets.EX_SHOW_FORTRESS_MAP_INFO.writeId(this, buffer);
+		buffer.writeInt(_fortress.getResidenceId());
+		buffer.writeInt(_fortress.getSiege().isInProgress()); // fortress siege status
+		buffer.writeInt(_fortress.getFortSize()); // barracks count
 		final List<FortSiegeSpawn> commanders = FortSiegeManager.getInstance().getCommanderSpawnList(_fortress.getResidenceId());
 		if ((commanders != null) && !commanders.isEmpty() && _fortress.getSiege().isInProgress())
 		{
@@ -55,11 +57,11 @@ public class ExShowFortressMapInfo extends ServerPacket
 					{
 						if (isSpawned(spawn.getId()))
 						{
-							writeInt(0);
+							buffer.writeInt(0);
 						}
 						else
 						{
-							writeInt(1);
+							buffer.writeInt(1);
 						}
 					}
 					break;
@@ -72,15 +74,15 @@ public class ExShowFortressMapInfo extends ServerPacket
 						count++;
 						if (count == 4)
 						{
-							writeInt(1); // TODO: control room emulated
+							buffer.writeInt(1); // TODO: control room emulated
 						}
 						if (isSpawned(spawn.getId()))
 						{
-							writeInt(0);
+							buffer.writeInt(0);
 						}
 						else
 						{
-							writeInt(1);
+							buffer.writeInt(1);
 						}
 					}
 					break;
@@ -91,7 +93,7 @@ public class ExShowFortressMapInfo extends ServerPacket
 		{
 			for (int i = 0; i < _fortress.getFortSize(); i++)
 			{
-				writeInt(0);
+				buffer.writeInt(0);
 			}
 		}
 	}

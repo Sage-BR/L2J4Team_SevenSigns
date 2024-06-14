@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -74,7 +74,24 @@ public class DatabaseBackup
 		final String mysqldumpPath = System.getProperty("os.name").toLowerCase().contains("win") ? Config.MYSQL_BIN_PATH : "";
 		try
 		{
-			final Process process = Runtime.getRuntime().exec(mysqldumpPath + "mysqldump -u " + Config.DATABASE_LOGIN + (Config.DATABASE_PASSWORD.trim().isEmpty() ? "" : " -p" + Config.DATABASE_PASSWORD) + " " + Config.DATABASE_URL.replace("jdbc:mariadb://", "").replaceAll(".*\\/|\\?.*", "") + " -r " + Config.BACKUP_PATH + (Config.SERVER_MODE == ServerMode.GAME ? "game" : "login") + new SimpleDateFormat("_yyyy_MM_dd_HH_mm'.sql'").format(new Date()));
+			// Java 17
+			// final Process process = Runtime.getRuntime().exec(mysqldumpPath + "mysqldump -u " + Config.DATABASE_LOGIN + (Config.DATABASE_PASSWORD.trim().isEmpty() ? "" : " -p" + Config.DATABASE_PASSWORD) + " "
+			// + Config.DATABASE_URL.replace("jdbc:mariadb://", "").replaceAll(".*\\/|\\?.*", "") + " -r " + Config.BACKUP_PATH + (Config.SERVER_MODE == ServerMode.GAME ? "game" : "login") + new SimpleDateFormat("_yyyy_MM_dd_HH_mm'.sql'").format(new Date()));
+			// Java 18
+			final String backupFileName = Config.BACKUP_PATH + (Config.SERVER_MODE == ServerMode.GAME ? "game" : "login") + new SimpleDateFormat("_yyyy_MM_dd_HH_mm'.sql'").format(new Date());
+			final String databaseName = Config.DATABASE_URL.replace("jdbc:mariadb://", "").replaceAll(".*\\/|\\?.*", "");
+			final String[] command =
+			{
+				mysqldumpPath + "mysqldump",
+				"-u",
+				Config.DATABASE_LOGIN,
+				Config.DATABASE_PASSWORD.trim().isEmpty() ? "" : "-p" + Config.DATABASE_PASSWORD,
+				databaseName,
+				"-r",
+				backupFileName
+			};
+			
+			final Process process = Runtime.getRuntime().exec(command);
 			process.waitFor();
 		}
 		catch (Exception e)

@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,28 +16,26 @@
  */
 package org.l2j.gameserver.network.clientpackets;
 
-import org.l2j.commons.network.ReadablePacket;
 import org.l2j.gameserver.model.actor.Player;
-import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.serverpackets.ActionFailed;
 
 /**
  * @version $Revision: 1.2.2.1.2.4 $ $Date: 2005/03/27 15:29:30 $
  */
-public class RequestPrivateStoreManageSell implements ClientPacket
+public class RequestPrivateStoreManageSell extends ClientPacket
 {
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
 		// TODO: implement me properly
-		// packet.readInt();
-		// packet.readLong();
+		// readInt();
+		// readLong();
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
-		final Player player = client.getPlayer();
+		final Player player = getPlayer();
 		if (player == null)
 		{
 			return;

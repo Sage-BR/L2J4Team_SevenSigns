@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/multisell.xsd">
+	<npcs>
+		<npc>-1</npc> <!-- Item Multisell -->
+	</npcs>
+	<!-- +8 Talisman Coupon (Time-limited) - Sealed (98955) -->
+	<item>
+		<ingredient id="98955" count="1" /> <!-- +8 Talisman Coupon (Time-limited) - Sealed -->
+		<production id="92458" count="1" /> <!-- +8 Talisman of Eva Pack - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98955" count="1" /> <!-- +8 Talisman Coupon (Time-limited) - Sealed -->
+		<production id="92467" count="1" /> <!-- +8 Talisman of Speed Pack - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98955" count="2" /> <!-- +8 Talisman Coupon (Time-limited) - Sealed -->
+		<production id="97955" count="1" /> <!-- +8 Talisman of Authority Pack - Sealed -->
+	</item>
+</list>

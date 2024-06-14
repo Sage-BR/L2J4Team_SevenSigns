@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.l2j.Config;
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.instancemanager.CastleManager;
 import org.l2j.gameserver.instancemanager.FortManager;
 import org.l2j.gameserver.model.SiegeClan;
@@ -33,6 +34,7 @@ import org.l2j.gameserver.model.skill.BuffInfo;
 import org.l2j.gameserver.model.skill.CommonSkill;
 import org.l2j.gameserver.model.stats.Stat;
 import org.l2j.gameserver.model.variables.PlayerVariables;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 
 /**
@@ -113,52 +115,52 @@ public class Die extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.DIE.writeId(this);
-		writeInt(_objectId);
-		writeLong(_flags);
-		writeInt(_isSweepable);
-		writeInt(_delayFeather); // Feather item time.
-		writeByte(0); // Hide die animation.
-		writeInt(0);
+		ServerPackets.DIE.writeId(this, buffer);
+		buffer.writeInt(_objectId);
+		buffer.writeLong(_flags);
+		buffer.writeInt(_isSweepable);
+		buffer.writeInt(_delayFeather); // Feather item time.
+		buffer.writeByte(0); // Hide die animation.
+		buffer.writeInt(0);
 		if ((_player != null) && Config.RESURRECT_BY_PAYMENT_ENABLED)
 		{
 			int resurrectTimes = _player.getVariables().getInt(PlayerVariables.RESURRECT_BY_PAYMENT_COUNT, 0) + 1;
 			int originalValue = resurrectTimes - 1;
 			if (originalValue < Config.RESURRECT_BY_PAYMENT_MAX_FREE_TIMES)
 			{
-				writeInt(Config.RESURRECT_BY_PAYMENT_MAX_FREE_TIMES - originalValue); // free round resurrection
-				writeInt(0); // Adena resurrection
-				writeInt(0); // Adena count%
-				writeInt(0); // L-Coin resurrection
-				writeInt(0); // L-Coin count%
+				buffer.writeInt(Config.RESURRECT_BY_PAYMENT_MAX_FREE_TIMES - originalValue); // free round resurrection
+				buffer.writeInt(0); // Adena resurrection
+				buffer.writeInt(0); // Adena count%
+				buffer.writeInt(0); // L-Coin resurrection
+				buffer.writeInt(0); // L-Coin count%
 			}
 			else
 			{
-				writeInt(0);
-				getValues(_player, originalValue);
+				buffer.writeInt(0);
+				getValues(buffer, _player, originalValue);
 			}
 		}
 		else
 		{
-			writeInt(1); // free round resurrection
-			writeInt(0); // Adena resurrection
-			writeInt(-1); // Adena count%
-			writeInt(0); // L-Coin resurrection
-			writeInt(-1); // L-Coin count%
+			buffer.writeInt(1); // free round resurrection
+			buffer.writeInt(0); // Adena resurrection
+			buffer.writeInt(-1); // Adena count%
+			buffer.writeInt(0); // L-Coin resurrection
+			buffer.writeInt(-1); // L-Coin count%
 		}
-		writeInt(0);
+		buffer.writeInt(0);
 	}
 	
-	private void getValues(Player player, int originalValue)
+	private void getValues(WritableBuffer buffer, Player player, int originalValue)
 	{
 		if ((Config.RESURRECT_BY_PAYMENT_FIRST_RESURRECT_VALUES == null) || (Config.RESURRECT_BY_PAYMENT_SECOND_RESURRECT_VALUES == null))
 		{
-			writeInt(0); // Adena resurrection
-			writeInt(-1); // Adena count%
-			writeInt(0); // L-Coin resurrection
-			writeInt(-1); // L-Coin count%
+			buffer.writeInt(0); // Adena resurrection
+			buffer.writeInt(-1); // Adena count%
+			buffer.writeInt(0); // L-Coin resurrection
+			buffer.writeInt(-1); // L-Coin count%
 			return;
 		}
 		
@@ -168,8 +170,8 @@ public class Die extends ServerPacket
 		{
 			if (Config.RESURRECT_BY_PAYMENT_SECOND_RESURRECT_VALUES.isEmpty())
 			{
-				writeInt(0); // Adena resurrection
-				writeInt(-1); // Adena count%
+				buffer.writeInt(0); // Adena resurrection
+				buffer.writeInt(-1); // Adena count%
 				break;
 			}
 			
@@ -185,15 +187,23 @@ public class Die extends ServerPacket
 			}
 			catch (Exception e)
 			{
-				writeInt(0); // Adena resurrection
-				writeInt(-1); // Adena count%
+				buffer.writeInt(0); // Adena resurrection
+				buffer.writeInt(-1); // Adena count%
 				return;
 			}
 			
 			int getValue = maxResTime <= originalValue ? maxResTime : originalValue + 1;
-			ResurrectByPaymentHolder rbph = Config.RESURRECT_BY_PAYMENT_SECOND_RESURRECT_VALUES.get(level).get(getValue);
-			writeInt((int) (rbph.getAmount() * player.getStat().getValue(Stat.RESURRECTION_FEE_MODIFIER, 1))); // Adena resurrection
-			writeInt(Math.toIntExact(Math.round(rbph.getResurrectPercent()))); // Adena count%
+			final ResurrectByPaymentHolder rbph = Config.RESURRECT_BY_PAYMENT_SECOND_RESURRECT_VALUES.get(level).get(getValue);
+			if (rbph != null)
+			{
+				buffer.writeInt((int) (rbph.getAmount() * player.getStat().getValue(Stat.RESURRECTION_FEE_MODIFIER, 1))); // Adena resurrection
+				buffer.writeInt(Math.toIntExact(Math.round(rbph.getResurrectPercent()))); // Adena count%
+			}
+			else
+			{
+				buffer.writeInt(0);
+				buffer.writeInt(-1);
+			}
 			break;
 		}
 		
@@ -201,8 +211,8 @@ public class Die extends ServerPacket
 		{
 			if (Config.RESURRECT_BY_PAYMENT_FIRST_RESURRECT_VALUES.isEmpty())
 			{
-				writeInt(0); // L-Coin resurrection
-				writeInt(-1); // L-Coin count%
+				buffer.writeInt(0); // L-Coin resurrection
+				buffer.writeInt(-1); // L-Coin count%
 				break;
 			}
 			
@@ -218,15 +228,23 @@ public class Die extends ServerPacket
 			}
 			catch (Exception e)
 			{
-				writeInt(0); // L-Coin resurrection
-				writeInt(-1); // L-Coin count%
+				buffer.writeInt(0); // L-Coin resurrection
+				buffer.writeInt(-1); // L-Coin count%
 				return;
 			}
 			
 			final int getValue = maxResTime <= originalValue ? maxResTime : originalValue + 1;
-			ResurrectByPaymentHolder rbph = Config.RESURRECT_BY_PAYMENT_FIRST_RESURRECT_VALUES.get(level).get(getValue);
-			writeInt((int) (rbph.getAmount() * player.getStat().getValue(Stat.RESURRECTION_FEE_MODIFIER, 1))); // L-Coin resurrection
-			writeInt(Math.toIntExact(Math.round(rbph.getResurrectPercent()))); // L-Coin count%
+			final ResurrectByPaymentHolder rbph = Config.RESURRECT_BY_PAYMENT_FIRST_RESURRECT_VALUES.get(level).get(getValue);
+			if (rbph != null)
+			{
+				buffer.writeInt((int) (rbph.getAmount() * player.getStat().getValue(Stat.RESURRECTION_FEE_MODIFIER, 1))); // L-Coin resurrection
+				buffer.writeInt(Math.toIntExact(Math.round(rbph.getResurrectPercent()))); // L-Coin count%
+			}
+			else
+			{
+				buffer.writeInt(0);
+				buffer.writeInt(-1);
+			}
 			break;
 		}
 	}

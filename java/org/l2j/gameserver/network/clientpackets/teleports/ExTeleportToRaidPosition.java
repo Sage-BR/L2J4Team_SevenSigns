@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,7 +17,6 @@
 package org.l2j.gameserver.network.clientpackets.teleports;
 
 import org.l2j.Config;
-import org.l2j.commons.network.ReadablePacket;
 import org.l2j.gameserver.data.xml.NpcData;
 import org.l2j.gameserver.data.xml.RaidTeleportListData;
 import org.l2j.gameserver.enums.RaidBossStatus;
@@ -32,8 +31,6 @@ import org.l2j.gameserver.model.holders.TeleportListHolder;
 import org.l2j.gameserver.model.itemcontainer.Inventory;
 import org.l2j.gameserver.model.siege.Castle;
 import org.l2j.gameserver.model.skill.CommonSkill;
-import org.l2j.gameserver.model.zone.ZoneId;
-import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.PacketLogger;
 import org.l2j.gameserver.network.SystemMessageId;
 import org.l2j.gameserver.network.clientpackets.ClientPacket;
@@ -42,20 +39,20 @@ import org.l2j.gameserver.network.serverpackets.teleports.ExRaidTeleportInfo;
 /**
  * @author Gustavo Fonseca
  */
-public class ExTeleportToRaidPosition implements ClientPacket
+public class ExTeleportToRaidPosition extends ClientPacket
 {
 	private int _raidId;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_raidId = packet.readInt();
+		_raidId = readInt();
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
-		final Player player = client.getPlayer();
+		final Player player = getPlayer();
 		if (player == null)
 		{
 			return;
@@ -88,15 +85,21 @@ public class ExTeleportToRaidPosition implements ClientPacket
 		}
 		
 		// Players should not be able to teleport if in combat, or in a special location.
-		if (player.isCastingNow() || player.isInCombat() || player.isImmobilized() || player.isInInstance() || player.isOnEvent() || player.isInOlympiadMode() || player.inObserverMode() || player.isInTraingCamp() || player.isInsideZone(ZoneId.TIMED_HUNTING))
+		if (player.isCastingNow() || player.isInCombat() || player.isImmobilized() || player.isInInstance() || player.isOnEvent() || player.isInOlympiadMode() || player.inObserverMode() || player.isInTraingCamp() || player.isInTimedHuntingZone())
 		{
 			player.sendPacket(SystemMessageId.YOU_CANNOT_TELEPORT_RIGHT_NOW);
 			return;
 		}
 		
 		// Karma related configurations.
+		if ((!Config.ALT_GAME_KARMA_PLAYER_CAN_TELEPORT || !Config.ALT_GAME_KARMA_PLAYER_CAN_USE_GK) && (player.getReputation() < 0))
+		{
+			player.sendPacket(SystemMessageId.YOU_CANNOT_TELEPORT_RIGHT_NOW);
+			return;
+		}
+		
 		// Cannot escape effect.
-		if (((!Config.ALT_GAME_KARMA_PLAYER_CAN_TELEPORT || !Config.ALT_GAME_KARMA_PLAYER_CAN_USE_GK) && (player.getReputation() < 0)) || player.isAffected(EffectFlag.CANNOT_ESCAPE))
+		if (player.isAffected(EffectFlag.CANNOT_ESCAPE))
 		{
 			player.sendPacket(SystemMessageId.YOU_CANNOT_TELEPORT_RIGHT_NOW);
 			return;

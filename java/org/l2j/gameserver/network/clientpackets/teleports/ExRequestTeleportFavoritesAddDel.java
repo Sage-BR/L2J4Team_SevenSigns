@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,33 +19,31 @@ package org.l2j.gameserver.network.clientpackets.teleports;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.l2j.commons.network.ReadablePacket;
 import org.l2j.gameserver.data.xml.TeleportListData;
 import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.model.variables.PlayerVariables;
-import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.PacketLogger;
 import org.l2j.gameserver.network.clientpackets.ClientPacket;
 
 /**
  * @author Mobius
  */
-public class ExRequestTeleportFavoritesAddDel implements ClientPacket
+public class ExRequestTeleportFavoritesAddDel extends ClientPacket
 {
 	private boolean _enable;
 	private int _teleportId;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_enable = packet.readByte() == 1;
-		_teleportId = packet.readInt();
+		_enable = readByte() == 1;
+		_teleportId = readInt();
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
-		final Player player = client.getPlayer();
+		final Player player = getPlayer();
 		if (player == null)
 		{
 			return;

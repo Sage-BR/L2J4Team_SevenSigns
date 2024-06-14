@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,9 +23,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentSkipListMap;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -61,6 +63,7 @@ import org.l2j.gameserver.model.events.impl.creature.player.OnPlayerClanJoin;
 import org.l2j.gameserver.model.events.impl.creature.player.OnPlayerClanLeaderChange;
 import org.l2j.gameserver.model.events.impl.creature.player.OnPlayerClanLeft;
 import org.l2j.gameserver.model.events.impl.creature.player.OnPlayerClanLvlUp;
+import org.l2j.gameserver.model.holders.MercenaryPledgeHolder;
 import org.l2j.gameserver.model.interfaces.IIdentifiable;
 import org.l2j.gameserver.model.interfaces.INamable;
 import org.l2j.gameserver.model.itemcontainer.ClanWarehouse;
@@ -98,6 +101,9 @@ public class Clan implements IIdentifiable, INamable
 	// SQL queries
 	private static final String INSERT_CLAN_DATA = "INSERT INTO clan_data (clan_id,clan_name,clan_level,hasCastle,blood_alliance_count,blood_oath_count,ally_id,ally_name,leader_id,crest_id,crest_large_id,ally_crest_id,new_leader_id,exp) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 	private static final String SELECT_CLAN_DATA = "SELECT * FROM clan_data where clan_id=?";
+	
+	public static final String TAX_RATE_VAR = "TAX_RATE_";
+	public static final int MAX_TAX_RATE = 10;
 	
 	// Ally Penalty Types
 	/** Clan leaved ally */
@@ -147,6 +153,8 @@ public class Clan implements IIdentifiable, INamable
 	private int _bloodAllianceCount;
 	private int _bloodOathCount;
 	
+	private static int _mercenaryId = 1;
+	
 	private final ItemContainer _warehouse = new ClanWarehouse(this);
 	private final ConcurrentHashMap<Integer, ClanWar> _atWarWith = new ConcurrentHashMap<>();
 	
@@ -174,6 +182,8 @@ public class Clan implements IIdentifiable, INamable
 	
 	private volatile ClanVariables _vars;
 	
+	private final Map<Integer, MercenaryPledgeHolder> _mercenaries = new HashMap<>();
+	
 	/**
 	 * Called if a clan is referenced only by id. In this case all other data needs to be fetched from db
 	 * @param clanId A valid clan Id to create and restore
@@ -196,6 +206,8 @@ public class Clan implements IIdentifiable, INamable
 		{
 			_lastHuntingBonus = availableHuntingBonus;
 		}
+		
+		restoreMercenary();
 	}
 	
 	/**
@@ -1106,7 +1118,9 @@ public class Clan implements IIdentifiable, INamable
 						setAllyPenaltyExpiryTime(0, 0);
 					}
 					setCharPenaltyExpiryTime(clanData.getLong("char_penalty_expiry_time"));
-					if ((_charPenaltyExpiryTime + (Config.ALT_CLAN_JOIN_MINS * 60000)) < System.currentTimeMillis()) // 24*60*60*1000 = 60000
+					// if ((_charPenaltyExpiryTime + (Config.ALT_CLAN_JOIN_MINS * 60000)) < System.currentTimeMillis()) // 24*60*60*1000 = 60000
+					// Mercenary Siege
+					if ((_charPenaltyExpiryTime + (Config.ALT_CLAN_JOIN_MINS * 60000L)) < System.currentTimeMillis()) // 24*60*60*1000 = 60000
 					{
 						setCharPenaltyExpiryTime(0);
 					}
@@ -1310,10 +1324,6 @@ public class Clan implements IIdentifiable, INamable
 	 */
 	public Collection<Skill> getAllSkills()
 	{
-		if (_skills == null)
-		{
-			return Collections.emptyList();
-		}
 		return _skills.values();
 	}
 	
@@ -2154,7 +2164,7 @@ public class Clan implements IIdentifiable, INamable
 		return _reputationScore;
 	}
 	
-	public void setRank(int rank)
+	public synchronized void setRank(int rank)
 	{
 		_rank = rank;
 	}
@@ -2621,6 +2631,7 @@ public class Clan implements IIdentifiable, INamable
 		}
 		
 		setLevel(level);
+		setRank(ClanTable.getInstance().getClanRank(this));
 		
 		if (_leader.isOnline())
 		{
@@ -2766,8 +2777,12 @@ public class Clan implements IIdentifiable, INamable
 	{
 		Skill current = _subPledgeSkills.get(skillId);
 		// is next level?
+		if ((current != null) && ((current.getLevel() + 1) == skillLevel))
+		{
+			return true;
+		}
 		// is first level?
-		if (((current != null) && ((current.getLevel() + 1) == skillLevel)) || ((current == null) && (skillLevel == 1)))
+		if ((current == null) && (skillLevel == 1))
 		{
 			return true;
 		}
@@ -2813,8 +2828,12 @@ public class Clan implements IIdentifiable, INamable
 			current = _subPledges.get(subType).getSkill(id);
 		}
 		// is next level?
+		if ((current != null) && ((current.getLevel() + 1) == skill.getLevel()))
+		{
+			return true;
+		}
 		// is first level?
-		if (((current != null) && ((current.getLevel() + 1) == skill.getLevel())) || ((current == null) && (skill.getLevel() == 1)))
+		if ((current == null) && (skill.getLevel() == 1))
 		{
 			return true;
 		}
@@ -2822,7 +2841,7 @@ public class Clan implements IIdentifiable, INamable
 		return false;
 	}
 	
-	public List<SubPledgeSkill> getAllSubSkills()
+	public Collection<SubPledgeSkill> getAllSubSkills()
 	{
 		final List<SubPledgeSkill> list = new LinkedList<>();
 		for (Skill skill : _subPledgeSkills.values())
@@ -3118,5 +3137,132 @@ public class Clan implements IIdentifiable, INamable
 		setClanContributionWeekly(objId, contribution + value);
 		
 		updateClanInDB();
+	}
+	
+	// Mercenary Siege
+	private void restoreMercenary()
+	{
+		try (Connection con = DatabaseFactory.getConnection();
+			PreparedStatement stmt = con.prepareStatement("SELECT * FROM clan_mercenary WHERE clan_id=?"))
+		{
+			stmt.setInt(1, _clanId);
+			try (ResultSet rset = stmt.executeQuery())
+			{
+				while (rset.next())
+				{
+					int playerId = rset.getInt("player_id");
+					String name = rset.getString("player_name");
+					int classId = rset.getInt("classid");
+					_mercenaries.put(playerId, new MercenaryPledgeHolder(playerId, name, classId, _clanId));
+					int cur = Integer.parseInt(name.replace("***-", ""));
+					if (cur > _mercenaryId)
+					{
+						_mercenaryId = cur;
+					}
+				}
+			}
+		}
+		catch (SQLException e)
+		{
+			LOGGER.warning("Problem with Clan restoreMercenary : " + e.getMessage());
+		}
+	}
+	
+	public String createMercenary(int playerId, int classId)
+	{
+		final String name = "***-" + String.format("%03d", _mercenaryId);
+		_mercenaries.put(playerId, new MercenaryPledgeHolder(playerId, name, classId, _clanId));
+		try (Connection con = DatabaseFactory.getConnection();
+			PreparedStatement stmt = con.prepareStatement("INSERT INTO clan_mercenary (player_id, clan_id, player_name, classid) VALUES (?,?,?,?)"))
+		{
+			stmt.setInt(1, playerId);
+			stmt.setInt(2, _clanId);
+			stmt.setString(3, name);
+			stmt.setInt(4, classId);
+			stmt.execute();
+		}
+		catch (SQLException e)
+		{
+			LOGGER.warning("Problem with Clan createMercenary : " + e.getMessage());
+		}
+		_mercenaryId++;
+		return name;
+	}
+	
+	public void removeMercenaryByPlayerId(int playerId)
+	{
+		_mercenaries.remove(playerId);
+		try (Connection con = DatabaseFactory.getConnection();
+			PreparedStatement stmt = con.prepareStatement("DELETE FROM clan_mercenary WHERE player_id=?"))
+		{
+			stmt.setInt(1, playerId);
+			stmt.execute();
+		}
+		catch (SQLException e)
+		{
+			LOGGER.warning("Problem with Clan removeMercenaryByPlayerId : " + e.getMessage());
+		}
+	}
+	
+	public void removeMercenaryByClanId(int clanId)
+	{
+		for (Entry<Integer, MercenaryPledgeHolder> entry : _mercenaries.entrySet())
+		{
+			final Player player = World.getInstance().getPlayer(entry.getKey());
+			if (player != null)
+			{
+				player.setMercenary(false, clanId);
+			}
+			else
+			{
+				try (Connection con = DatabaseFactory.getConnection())
+				{
+					try (PreparedStatement ps = con.prepareStatement("DELETE FROM character_variables WHERE var=?"))
+					{
+						ps.setString(1, "isMercenary");
+						ps.execute();
+					}
+				}
+				catch (Exception e)
+				{
+					LOGGER.log(Level.SEVERE, getClass().getSimpleName() + ": Could not reset DailyMatchOlympiad: " + e);
+				}
+			}
+		}
+		try (Connection con = DatabaseFactory.getConnection();
+			PreparedStatement stmt = con.prepareStatement("DELETE FROM clan_mercenary WHERE clan_Id=?"))
+		{
+			stmt.setInt(1, clanId);
+			stmt.execute();
+		}
+		catch (SQLException e)
+		{
+			LOGGER.warning("Problem with Clan removeMercenaryByClanId : " + e.getMessage());
+		}
+	}
+	
+	public Map<Integer, MercenaryPledgeHolder> getMapMercenary()
+	{
+		return _mercenaries;
+	}
+	
+	public boolean isRecruitMercenary()
+	{
+		return _vars.getBoolean("recruitMercenary", false);
+	}
+	
+	public void setRecruitMercenary(boolean recruitMercenary)
+	{
+		_vars.set("recruitMercenary", recruitMercenary);
+	}
+	
+	public int getRewardMercenary()
+	{
+		return _vars.getInt("rewardMercenary", 0);
+	}
+	
+	public void setRewardMercenary(int rewardMercenary)
+	{
+		_vars.set("rewardMercenary", rewardMercenary);
 	}
 }

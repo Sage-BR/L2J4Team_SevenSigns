@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -32,6 +32,16 @@ public class NullRegion implements IRegion
 	}
 	
 	@Override
+	public void setNearestNswe(int geoX, int geoY, int worldZ, byte nswe)
+	{
+	}
+	
+	@Override
+	public void unsetNearestNswe(int geoX, int geoY, int worldZ, byte nswe)
+	{
+	}
+	
+	@Override
 	public int getNearestZ(int geoX, int geoY, int worldZ)
 	{
 		return worldZ;
@@ -51,6 +61,12 @@ public class NullRegion implements IRegion
 	
 	@Override
 	public boolean hasGeo()
+	{
+		return false;
+	}
+	
+	@Override
+	public boolean saveToFile(String fileName)
 	{
 		return false;
 	}

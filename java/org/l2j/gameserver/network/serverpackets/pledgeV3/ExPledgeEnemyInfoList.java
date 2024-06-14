@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,9 +19,11 @@ package org.l2j.gameserver.network.serverpackets.pledgeV3;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.enums.ClanWarState;
 import org.l2j.gameserver.model.clan.Clan;
 import org.l2j.gameserver.model.clan.ClanWar;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 import org.l2j.gameserver.network.serverpackets.ServerPacket;
 
@@ -40,18 +42,18 @@ public class ExPledgeEnemyInfoList extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_PLEDGE_ENEMY_INFO_LIST.writeId(this);
-		writeInt(_warList.size());
+		ServerPackets.EX_PLEDGE_ENEMY_INFO_LIST.writeId(this, buffer);
+		buffer.writeInt(_warList.size());
 		for (ClanWar war : _warList)
 		{
 			final Clan clan = war.getOpposingClan(_playerClan);
-			writeInt(clan.getRank());
-			writeInt(clan.getId());
-			writeSizedString(clan.getName());
-			writeSizedString(clan.getLeaderName());
-			writeInt((int) (war.getStartTime() / 1000)); // 430
+			buffer.writeInt(clan.getRank());
+			buffer.writeInt(clan.getId());
+			buffer.writeSizedString(clan.getName());
+			buffer.writeSizedString(clan.getLeaderName());
+			buffer.writeInt((int) (war.getStartTime() / 1000)); // 430
 		}
 	}
 }

@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,7 +16,6 @@
  */
 package org.l2j.gameserver.network.clientpackets;
 
-import org.l2j.commons.network.ReadablePacket;
 import org.l2j.gameserver.enums.QuestType;
 import org.l2j.gameserver.instancemanager.QuestManager;
 import org.l2j.gameserver.model.actor.Player;
@@ -26,26 +25,25 @@ import org.l2j.gameserver.model.events.EventType;
 import org.l2j.gameserver.model.events.impl.creature.player.OnPlayerQuestAbort;
 import org.l2j.gameserver.model.quest.Quest;
 import org.l2j.gameserver.model.quest.QuestState;
-import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.serverpackets.QuestList;
 
 /**
  * @version $Revision: 1.3.4.2 $ $Date: 2005/03/27 15:29:30 $
  */
-public class RequestQuestAbort implements ClientPacket
+public class RequestQuestAbort extends ClientPacket
 {
 	private int _questId;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_questId = packet.readInt();
+		_questId = readInt();
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
-		final Player player = client.getPlayer();
+		final Player player = getPlayer();
 		if (player == null)
 		{
 			return;

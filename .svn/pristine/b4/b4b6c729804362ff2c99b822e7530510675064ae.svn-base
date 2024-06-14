@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/multisell.xsd">
+	<npcs>
+		<npc>-1</npc> <!-- Item Multisell -->
+	</npcs>
+	<!-- Selected Jewel Coupon - Sealed (97597) -->
+	<item>
+		<ingredient id="97597" count="71" /> <!-- Selected Jewel Coupon - Sealed -->
+		<production id="99975" count="1" /> <!-- Ruby Jewelry Box Lv. 3 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="97597" count="53" /> <!-- Selected Jewel Coupon - Sealed -->
+		<production id="99967" count="1" /> <!-- Diamond Jewelry Box Lv. 3 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="97597" count="45" /> <!-- Selected Jewel Coupon - Sealed -->
+		<production id="97600" count="1" /> <!-- Beryl Jewelry Box Lv. 3 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="97597" count="27" /> <!-- Selected Jewel Coupon - Sealed -->
+		<production id="97605" count="1" /> <!-- Onyx Jewelry Box Lv. 3 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="97597" count="27" /> <!-- Selected Jewel Coupon - Sealed -->
+		<production id="97610" count="1" /> <!-- Spinel Jewelry Box Lv. 3 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="97597" count="27" /> <!-- Selected Jewel Coupon - Sealed -->
+		<production id="97615" count="1" /> <!-- Zircon Jewelry Box Lv. 3 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="97597" count="18" /> <!-- Selected Jewel Coupon - Sealed -->
+		<production id="97620" count="1" /> <!-- Coral Jewelry Box Lv. 3 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="97597" count="18" /> <!-- Selected Jewel Coupon - Sealed -->
+		<production id="97625" count="1" /> <!-- Opal Jewelry Box Lv. 3 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="97597" count="9" /> <!-- Selected Jewel Coupon - Sealed -->
+		<production id="97630" count="1" /> <!-- Amber Jewelry Box Lv. 3 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="97597" count="9" /> <!-- Selected Jewel Coupon - Sealed -->
+		<production id="97635" count="1" /> <!-- Moonstone Jewelry Box Lv. 3 - Sealed -->
+	</item>
+</list>

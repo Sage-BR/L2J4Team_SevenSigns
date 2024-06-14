@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,14 +16,11 @@
  */
 package org.l2j.gameserver.network.clientpackets.elementalspirits;
 
-import org.l2j.commons.network.ReadablePacket;
 import org.l2j.gameserver.enums.ElementalType;
-import org.l2j.gameserver.enums.PrivateStoreType;
 import org.l2j.gameserver.enums.UserInfoType;
 import org.l2j.gameserver.model.ElementalSpirit;
 import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.model.holders.ElementalSpiritAbsorbItemHolder;
-import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.SystemMessageId;
 import org.l2j.gameserver.network.clientpackets.ClientPacket;
 import org.l2j.gameserver.network.serverpackets.UserInfo;
@@ -32,25 +29,25 @@ import org.l2j.gameserver.network.serverpackets.elementalspirits.ElementalSpirit
 /**
  * @author JoeAlisson
  */
-public class ExElementalSpiritAbsorb implements ClientPacket
+public class ExElementalSpiritAbsorb extends ClientPacket
 {
 	private byte _type;
 	private int _itemId;
 	private int _amount;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_type = (byte) packet.readByte();
-		packet.readInt(); // items for now is always 1
-		_itemId = packet.readInt();
-		_amount = packet.readInt();
+		_type = readByte();
+		readInt(); // items for now is always 1
+		_itemId = readInt();
+		_amount = readInt();
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
-		final Player player = client.getPlayer();
+		final Player player = getPlayer();
 		if (player == null)
 		{
 			return;
@@ -59,7 +56,7 @@ public class ExElementalSpiritAbsorb implements ClientPacket
 		final ElementalSpirit spirit = player.getElementalSpirit(ElementalType.of(_type));
 		if (spirit == null)
 		{
-			client.sendPacket(SystemMessageId.NO_SPIRITS_ARE_AVAILABLE);
+			player.sendPacket(SystemMessageId.NO_SPIRITS_ARE_AVAILABLE);
 			return;
 		}
 		
@@ -73,18 +70,18 @@ public class ExElementalSpiritAbsorb implements ClientPacket
 		final boolean canAbsorb = checkConditions(player, spirit);
 		if (canAbsorb)
 		{
-			client.sendPacket(SystemMessageId.SUCCESSFUL_ABSORPTION);
+			player.sendPacket(SystemMessageId.SUCCESSFUL_ABSORPTION);
 			spirit.addExperience(absorbItem.getExperience() * _amount);
 			final UserInfo userInfo = new UserInfo(player);
 			userInfo.addComponentType(UserInfoType.ATT_SPIRITS);
-			client.sendPacket(userInfo);
+			player.sendPacket(userInfo);
 		}
-		client.sendPacket(new ElementalSpiritAbsorb(player, _type, canAbsorb));
+		player.sendPacket(new ElementalSpiritAbsorb(player, _type, canAbsorb));
 	}
 	
 	private boolean checkConditions(Player player, ElementalSpirit spirit)
 	{
-		if (player.getPrivateStoreType() != PrivateStoreType.NONE)
+		if (player.isInStoreMode())
 		{
 			player.sendPacket(SystemMessageId.CANNOT_EVOLVE_ABSORB_EXTRACT_WHILE_USING_THE_PRIVATE_STORE_WORKSHOP);
 			return false;

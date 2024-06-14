@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,19 +18,17 @@ package org.l2j.gameserver.network.clientpackets;
 
 import java.util.List;
 
-import org.l2j.commons.network.ReadablePacket;
 import org.l2j.gameserver.enums.ShortcutType;
 import org.l2j.gameserver.model.ShortCuts;
 import org.l2j.gameserver.model.Shortcut;
 import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.model.item.instance.Item;
 import org.l2j.gameserver.model.variables.PlayerVariables;
-import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.serverpackets.ShortCutRegister;
 import org.l2j.gameserver.network.serverpackets.autoplay.ExActivateAutoShortcut;
 import org.l2j.gameserver.taskmanager.AutoUseTaskManager;
 
-public class RequestShortCutReg implements ClientPacket
+public class RequestShortCutReg extends ClientPacket
 {
 	private ShortcutType _type;
 	private int _id;
@@ -42,31 +40,36 @@ public class RequestShortCutReg implements ClientPacket
 	private boolean _active;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		final int typeId = packet.readInt();
+		final int typeId = readInt();
 		_type = ShortcutType.values()[(typeId < 1) || (typeId > 6) ? 0 : typeId];
-		final int position = packet.readInt();
+		final int position = readInt();
 		_slot = position % ShortCuts.MAX_SHORTCUTS_PER_BAR;
 		_page = position / ShortCuts.MAX_SHORTCUTS_PER_BAR;
-		_active = packet.readByte() == 1; // 228
-		_id = packet.readInt();
-		_level = packet.readShort();
-		_subLevel = packet.readShort(); // Sublevel
-		_characterType = packet.readInt();
+		_active = readByte() == 1; // 228
+		_id = readInt();
+		_level = readShort();
+		_subLevel = readShort(); // Sublevel
+		_characterType = readInt();
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
-		final Player player = client.getPlayer();
-		if ((player == null) || (_page > 25) || (_page < 0))
+		final Player player = getPlayer();
+		if (player == null)
+		{
+			return;
+		}
+		
+		if ((_page > 25) || (_page < 0))
 		{
 			return;
 		}
 		
 		// Auto play checks.
-		if (_page == 22)
+		if ((_page == 22) || (_page == 24)) // Consumables.
 		{
 			if (_type != ShortcutType.ITEM)
 			{
@@ -74,17 +77,27 @@ public class RequestShortCutReg implements ClientPacket
 			}
 			
 			final Item item = player.getInventory().getItemByObjectId(_id);
-			if ((item != null) && item.isPotion())
+			if ((item == null) || item.isPotion())
 			{
 				return;
 			}
 		}
-		else if ((_page == 23) || (_page == 24))
+		else if (_page == 23)
 		{
-			final Item item = player.getInventory().getItemByObjectId(_id);
-			if (((item != null) && !item.isPotion()) || (_type == ShortcutType.ACTION))
+			if ((_slot == 0) || (_slot == 3)) // Macro.
 			{
-				return;
+				if (_type != ShortcutType.MACRO)
+				{
+					return;
+				}
+			}
+			else // Healing potion.
+			{
+				final Item item = player.getInventory().getItemByObjectId(_id);
+				if ((item == null) || !item.isPotion())
+				{
+					return;
+				}
 			}
 		}
 		
@@ -145,6 +158,7 @@ public class RequestShortCutReg implements ClientPacket
 		player.registerShortCut(sc);
 		player.sendPacket(new ShortCutRegister(sc, player));
 		player.sendPacket(new ExActivateAutoShortcut(sc, _active));
+		player.sendSkillList();
 		
 		// When id is not auto used, deactivate auto shortcuts.
 		if (!player.getAutoUseSettings().isAutoSkill(_id) && !player.getAutoUseSettings().getAutoSupplyItems().contains(_id))

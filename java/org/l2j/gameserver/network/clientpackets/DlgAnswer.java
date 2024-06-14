@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,7 +17,6 @@
 package org.l2j.gameserver.network.clientpackets;
 
 import org.l2j.Config;
-import org.l2j.commons.network.ReadablePacket;
 import org.l2j.gameserver.enums.PlayerAction;
 import org.l2j.gameserver.handler.AdminCommandHandler;
 import org.l2j.gameserver.model.actor.Player;
@@ -30,7 +29,6 @@ import org.l2j.gameserver.model.holders.SummonRequestHolder;
 import org.l2j.gameserver.model.olympiad.OlympiadManager;
 import org.l2j.gameserver.model.zone.ZoneId;
 import org.l2j.gameserver.network.Disconnection;
-import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.SystemMessageId;
 import org.l2j.gameserver.network.serverpackets.LeaveWorld;
 import org.l2j.gameserver.util.OfflineTradeUtil;
@@ -38,24 +36,24 @@ import org.l2j.gameserver.util.OfflineTradeUtil;
 /**
  * @author Dezmond_snz
  */
-public class DlgAnswer implements ClientPacket
+public class DlgAnswer extends ClientPacket
 {
 	private int _messageId;
 	private int _answer;
 	private int _requesterId;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_messageId = packet.readInt();
-		_answer = packet.readInt();
-		_requesterId = packet.readInt();
+		_messageId = readInt();
+		_answer = readInt();
+		_requesterId = readInt();
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
-		final Player player = client.getPlayer();
+		final Player player = getPlayer();
 		if (player == null)
 		{
 			return;
@@ -153,7 +151,7 @@ public class DlgAnswer implements ClientPacket
 			
 			if (!OfflineTradeUtil.enteredOfflineMode(player))
 			{
-				Disconnection.of(client, player).defaultSequence(LeaveWorld.STATIC_PACKET);
+				Disconnection.of(getClient(), player).defaultSequence(LeaveWorld.STATIC_PACKET);
 			}
 		}
 		else if ((_messageId == SystemMessageId.C1_IS_ATTEMPTING_TO_DO_A_RESURRECTION_THAT_RESTORES_S2_S3_XP_ACCEPT.getId()) || (_messageId == SystemMessageId.YOUR_CHARM_OF_COURAGE_IS_TRYING_TO_RESURRECT_YOU_WOULD_YOU_LIKE_TO_RESURRECT_NOW.getId()))

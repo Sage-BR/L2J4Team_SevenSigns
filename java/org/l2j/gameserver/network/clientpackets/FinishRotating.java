@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,52 +17,43 @@
 package org.l2j.gameserver.network.clientpackets;
 
 import org.l2j.Config;
-import org.l2j.commons.network.ReadablePacket;
 import org.l2j.gameserver.model.actor.Player;
-import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.serverpackets.StopRotation;
 
-/**
- * @version $Revision: 1.1.4.3 $ $Date: 2005/03/27 15:29:30 $
- */
-public class FinishRotating implements ClientPacket
+public class FinishRotating extends ClientPacket
 {
 	private int _degree;
-	@SuppressWarnings("unused")
-	private int _unknown;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_degree = packet.readInt();
-		_unknown = packet.readInt();
+		_degree = readInt();
+		readInt(); // Unknown.
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
 		if (!Config.ENABLE_KEYBOARD_MOVEMENT)
 		{
 			return;
 		}
 		
-		final Player player = client.getPlayer();
+		final Player player = getPlayer();
 		if (player == null)
 		{
 			return;
 		}
 		
-		StopRotation sr;
 		if (player.isInAirShip() && player.getAirShip().isCaptain(player))
 		{
 			player.getAirShip().setHeading(_degree);
-			sr = new StopRotation(player.getAirShip().getObjectId(), _degree, 0);
-			player.getAirShip().broadcastPacket(sr);
+			player.getAirShip().broadcastPacket(new StopRotation(player.getAirShip().getObjectId(), _degree, 0));
 		}
 		else
 		{
-			sr = new StopRotation(player.getObjectId(), _degree, 0);
-			player.broadcastPacket(sr);
+			player.setHeading(_degree);
+			player.broadcastPacket(new StopRotation(player.getObjectId(), _degree, 0));
 		}
 	}
 }

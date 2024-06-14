@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,7 +16,6 @@
  */
 package org.l2j.gameserver.network.clientpackets;
 
-import org.l2j.commons.network.ReadablePacket;
 import org.l2j.gameserver.data.xml.SecondaryAuthData;
 import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.serverpackets.Ex2ndPasswordAck;
@@ -26,31 +25,32 @@ import org.l2j.gameserver.security.SecondaryPasswordAuth;
  * (ch)cS{S} c: change pass? S: current password S: new password
  * @author mrTJO
  */
-public class RequestEx2ndPasswordReq implements ClientPacket
+public class RequestEx2ndPasswordReq extends ClientPacket
 {
 	private int _changePass;
 	private String _password;
 	private String _newPassword;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_changePass = packet.readByte();
-		_password = packet.readString();
+		_changePass = readByte();
+		_password = readString();
 		if (_changePass == 2)
 		{
-			_newPassword = packet.readString();
+			_newPassword = readString();
 		}
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
 		if (!SecondaryAuthData.getInstance().isEnabled())
 		{
 			return;
 		}
 		
+		final GameClient client = getClient();
 		final SecondaryPasswordAuth secondAuth = client.getSecondaryAuth();
 		boolean success = false;
 		if ((_changePass == 0) && !secondAuth.passwordExist())

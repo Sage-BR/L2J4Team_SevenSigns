@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,8 +16,10 @@
  */
 package org.l2j.gameserver.network.serverpackets;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.model.actor.Creature;
 import org.l2j.gameserver.model.actor.Npc;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 
 /**
@@ -51,24 +53,24 @@ public class ServerObjectInfo extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.SERVER_OBJECT_INFO.writeId(this);
-		writeInt(_activeChar.getObjectId());
-		writeInt(_displayId + 1000000);
-		writeString(_name); // name
-		writeInt(_isAttackable);
-		writeInt(_x);
-		writeInt(_y);
-		writeInt(_z);
-		writeInt(_heading);
-		writeDouble(1.0); // movement multiplier
-		writeDouble(1.0); // attack speed multiplier
-		writeDouble(_collisionRadius);
-		writeDouble(_collisionHeight);
-		writeInt((int) (_isAttackable ? _activeChar.getCurrentHp() : 0));
-		writeInt(_isAttackable ? _activeChar.getMaxHp() : 0);
-		writeInt(1); // object type
-		writeInt(0); // special effects
+		ServerPackets.SERVER_OBJECT_INFO.writeId(this, buffer);
+		buffer.writeInt(_activeChar.getObjectId());
+		buffer.writeInt(_displayId + 1000000);
+		buffer.writeString(_name); // name
+		buffer.writeInt(_isAttackable);
+		buffer.writeInt(_x);
+		buffer.writeInt(_y);
+		buffer.writeInt(_z);
+		buffer.writeInt(_heading);
+		buffer.writeDouble(1.0); // movement multiplier
+		buffer.writeDouble(1.0); // attack speed multiplier
+		buffer.writeDouble(_collisionRadius);
+		buffer.writeDouble(_collisionHeight);
+		buffer.writeInt((int) (_isAttackable ? _activeChar.getCurrentHp() : 0));
+		buffer.writeInt(_isAttackable ? _activeChar.getMaxHp() : 0);
+		buffer.writeInt(1); // object type
+		buffer.writeInt(0); // special effects
 	}
 }

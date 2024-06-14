@@ -1,0 +1,113 @@
+/*
+ * This file is part of the L2J Mobius project.
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ */
+package instances.ValakasTemple;
+
+import org.l2jmobius.gameserver.model.World;
+import org.l2jmobius.gameserver.model.actor.Npc;
+import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.instancezone.Instance;
+
+import ai.AbstractNpcAI;
+
+/**
+ * @author Index
+ */
+public class DummyIfrit extends AbstractNpcAI
+{
+	private final static int DUMMY_IFRIT_NPC_ID = 25966;
+	// private final static int BLAZING_DRAGON_NPC_ID = 25967;
+	
+	private DummyIfrit()
+	{
+		addSpawnId(DUMMY_IFRIT_NPC_ID);
+		addAttackId(DUMMY_IFRIT_NPC_ID);
+	}
+	
+	@Override
+	public String onEvent(String event, Npc npc, Player player)
+	{
+		final Instance world = npc.getInstanceWorld();
+		if ((world == null) || (world.getTemplateId() != ValakasTemple.VALAKAS_TEMPLE_INSTANCE_ID))
+		{
+			return super.onSpawn(npc);
+		}
+		
+		if (world.getStatus() == ValakasTemple.GOTO_DUMMY_IFRIT)
+		{
+			if (World.getInstance().getVisibleObjectsInRange(npc, Player.class, 400).isEmpty())
+			{
+				startQuestTimer("CHECK_STATUS", 2_000, npc, null);
+			}
+			else
+			{
+				world.setStatus(ValakasTemple.OPEN_GATE_TIMER);
+			}
+		}
+		
+		return super.onEvent(event, npc, player);
+	}
+	
+	@Override
+	public String onSpawn(Npc npc)
+	{
+		final Instance world = npc.getInstanceWorld();
+		if ((world == null) || (world.getTemplateId() != ValakasTemple.VALAKAS_TEMPLE_INSTANCE_ID))
+		{
+			return super.onSpawn(npc);
+		}
+		
+		if (world.getStatus() == ValakasTemple.GOTO_DUMMY_IFRIT)
+		{
+			npc.setImmobilized(true);
+			startQuestTimer("CHECK_STATUS", 10_000, npc, null);
+		}
+		else
+		{
+			npc.setImmobilized(false);
+			npc.setUndying(true);
+		}
+		
+		return super.onSpawn(npc);
+	}
+	
+	@Override
+	public String onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
+	{
+		final Instance world = npc.getInstanceWorld();
+		if ((world == null) || (world.getTemplateId() != ValakasTemple.VALAKAS_TEMPLE_INSTANCE_ID))
+		{
+			return super.onAttack(npc, attacker, damage, isSummon);
+		}
+		
+		if (npc.isUndying() && (npc.getCurrentHpPercent() <= 50))
+		{
+			npc.setUndying(false);
+			if (getRandom(100) < 15)
+			{
+				final Npc blazzingDragon = world.spawnGroup("blazzing_dragon").get(0);
+				blazzingDragon.addAttackerToAttackByList(attacker);
+			}
+		}
+		
+		return super.onAttack(npc, attacker, damage, isSummon);
+	}
+	
+	public static void main(String[] args)
+	{
+		new DummyIfrit();
+	}
+}

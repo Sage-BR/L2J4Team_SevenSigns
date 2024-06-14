@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -27,6 +27,6 @@ public class DefencePhysicalSkillCriticalDamage extends AbstractStatEffect
 {
 	public DefencePhysicalSkillCriticalDamage(StatSet params)
 	{
-		super(params, Stat.DEFENCE_PHYSICAL_SKILL_CRITICAL_DAMAGE, Stat.DEFENCE_PHYSICAL_SKILL_CRITICAL_DAMAGE_ADD);
+		super(params, Stat.DEFENCE_PHYSICAL_SKILL_CRITICAL_DAMAGE, Stat.DEFENCE_PHYSICAL_SKILL_CRITICAL_DAMAGE_ADD, true);
 	}
 }

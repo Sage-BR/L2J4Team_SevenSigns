@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,7 +19,7 @@ package org.l2j.gameserver.enums;
 import org.l2j.gameserver.model.stats.Stat;
 
 /**
- * @author JoeAlisson
+ * @author JoeAlisson, Mobius
  */
 public enum ElementalType
 {
@@ -131,6 +131,33 @@ public enum ElementalType
 			default:
 			{
 				return null;
+			}
+		}
+	}
+	
+	public String getName()
+	{
+		switch (this)
+		{
+			case FIRE:
+			{
+				return "Fire";
+			}
+			case WATER:
+			{
+				return "Water";
+			}
+			case WIND:
+			{
+				return "Wind";
+			}
+			case EARTH:
+			{
+				return "Earth";
+			}
+			default:
+			{
+				return "None";
 			}
 		}
 	}

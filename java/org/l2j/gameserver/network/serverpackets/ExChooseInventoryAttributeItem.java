@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,10 +19,12 @@ package org.l2j.gameserver.network.serverpackets;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.data.xml.ElementalAttributeData;
 import org.l2j.gameserver.enums.AttributeType;
 import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.model.item.instance.Item;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 
 /**
@@ -57,19 +59,19 @@ public class ExChooseInventoryAttributeItem extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_CHOOSE_INVENTORY_ATTRIBUTE_ITEM.writeId(this);
-		writeInt(_itemId);
-		writeLong(_count);
-		writeInt(_atribute == AttributeType.FIRE); // Fire
-		writeInt(_atribute == AttributeType.WATER); // Water
-		writeInt(_atribute == AttributeType.WIND); // Wind
-		writeInt(_atribute == AttributeType.EARTH); // Earth
-		writeInt(_atribute == AttributeType.HOLY); // Holy
-		writeInt(_atribute == AttributeType.DARK); // Unholy
-		writeInt(_level); // Item max attribute level
-		writeInt(_items.size());
-		_items.forEach(this::writeInt);
+		ServerPackets.EX_CHOOSE_INVENTORY_ATTRIBUTE_ITEM.writeId(this, buffer);
+		buffer.writeInt(_itemId);
+		buffer.writeLong(_count);
+		buffer.writeInt(_atribute == AttributeType.FIRE); // Fire
+		buffer.writeInt(_atribute == AttributeType.WATER); // Water
+		buffer.writeInt(_atribute == AttributeType.WIND); // Wind
+		buffer.writeInt(_atribute == AttributeType.EARTH); // Earth
+		buffer.writeInt(_atribute == AttributeType.HOLY); // Holy
+		buffer.writeInt(_atribute == AttributeType.DARK); // Unholy
+		buffer.writeInt(_level); // Item max attribute level
+		buffer.writeInt(_items.size());
+		_items.forEach(buffer::writeInt);
 	}
 }

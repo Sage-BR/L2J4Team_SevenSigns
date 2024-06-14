@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -52,7 +52,13 @@ public class FriendlyNpcAI extends AttackableAI
 	@Override
 	protected void onIntentionAttack(Creature target)
 	{
-		if ((target == null) || (getIntention() == AI_INTENTION_REST))
+		if (target == null)
+		{
+			clientActionFailed();
+			return;
+		}
+		
+		if (getIntention() == AI_INTENTION_REST)
 		{
 			clientActionFailed();
 			return;

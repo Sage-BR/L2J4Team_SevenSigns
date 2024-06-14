@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,10 +20,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.l2j.Config;
-import org.l2j.commons.network.ReadablePacket;
 import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.model.variables.PlayerVariables;
-import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.clientpackets.ClientPacket;
 import org.l2j.gameserver.network.serverpackets.autoplay.ExAutoPlaySettingSend;
 import org.l2j.gameserver.taskmanager.AutoPlayTaskManager;
@@ -31,7 +29,7 @@ import org.l2j.gameserver.taskmanager.AutoPlayTaskManager;
 /**
  * @author Mobius
  */
-public class ExAutoPlaySetting implements ClientPacket
+public class ExAutoPlaySetting extends ClientPacket
 {
 	private int _options;
 	private boolean _active;
@@ -44,23 +42,23 @@ public class ExAutoPlaySetting implements ClientPacket
 	private int _macroIndex;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_options = packet.readShort();
-		_active = packet.readByte() == 1;
-		_pickUp = packet.readByte() == 1;
-		_nextTargetMode = packet.readShort();
-		_shortRange = packet.readByte() == 1;
-		_potionPercent = packet.readInt();
-		_petPotionPercent = packet.readInt(); // 272
-		_respectfulHunting = packet.readByte() == 1;
-		_macroIndex = packet.readByte();
+		_options = readShort();
+		_active = readByte() == 1;
+		_pickUp = readByte() == 1;
+		_nextTargetMode = readShort();
+		_shortRange = readByte() == 1;
+		_potionPercent = readInt();
+		_petPotionPercent = readInt(); // 272
+		_respectfulHunting = readByte() == 1;
+		_macroIndex = readByte();
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
-		final Player player = client.getPlayer();
+		final Player player = getPlayer();
 		if (player == null)
 		{
 			return;
@@ -91,7 +89,7 @@ public class ExAutoPlaySetting implements ClientPacket
 		settings.add(5, _potionPercent);
 		settings.add(6, _respectfulHunting ? 1 : 0);
 		settings.add(7, _petPotionPercent);
-		settings.add(8, _macroIndex);
+		settings.add(8, _macroIndex); // Not used.
 		player.getVariables().setIntegerList(PlayerVariables.AUTO_USE_SETTINGS, settings);
 		
 		player.getAutoPlaySettings().setOptions(_options);
@@ -100,7 +98,6 @@ public class ExAutoPlaySetting implements ClientPacket
 		player.getAutoPlaySettings().setShortRange(_shortRange);
 		player.getAutoPlaySettings().setRespectfulHunting(_respectfulHunting);
 		player.getAutoPlaySettings().setAutoPetPotionPercent(_petPotionPercent);
-		player.getAutoPlaySettings().setMacroIndex(_macroIndex);
 		
 		if (_active)
 		{

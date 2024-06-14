@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/multisell.xsd">
+	<npcs>
+		<npc>-1</npc> <!-- Item Multisell -->
+	</npcs>
+	<!-- Hardin's Spellbook Coupon - 1 Star (Not Available) - Sealed (98855) -->
+	<item>
+		<ingredient id="98855" count="1" /> <!-- Hardin's Spellbook Coupon - 1 Star (Not Available) - Sealed -->
+		<production id="98705" count="1" /> <!-- Spellbook: Exciting Adventure Lv. 2 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98855" count="1" /> <!-- Hardin's Spellbook Coupon - 1 Star (Not Available) - Sealed -->
+		<production id="98706" count="1" /> <!-- Spellbook: Wind Riding Lv. 2 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98855" count="1" /> <!-- Hardin's Spellbook Coupon - 1 Star (Not Available) - Sealed -->
+		<production id="98707" count="1" /> <!-- Spellbook: Ghost Walking Lv. 2 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98855" count="1" /> <!-- Hardin's Spellbook Coupon - 1 Star (Not Available) - Sealed -->
+		<production id="98708" count="1" /> <!-- Spellbook: Hidden Dagger - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98855" count="1" /> <!-- Hardin's Spellbook Coupon - 1 Star (Not Available) - Sealed -->
+		<production id="98502" count="1" /> <!-- Spellbook: Blow Boost - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98855" count="1" /> <!-- Hardin's Spellbook Coupon - 1 Star (Not Available) - Sealed -->
+		<production id="98497" count="1" /> <!-- Spellbook: Erosion Lv. 2 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98855" count="1" /> <!-- Hardin's Spellbook Coupon - 1 Star (Not Available) - Sealed -->
+		<production id="98498" count="1" /> <!-- Spellbook: Murder Attempt Lv. 2 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98855" count="1" /> <!-- Hardin's Spellbook Coupon - 1 Star (Not Available) - Sealed -->
+		<production id="98539" count="1" /> <!-- Spellbook: Forward Move Lv. 2 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98855" count="1" /> <!-- Hardin's Spellbook Coupon - 1 Star (Not Available) - Sealed -->
+		<production id="97858" count="1" /> <!-- Spellbook: Improved Sleep - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98855" count="1" /> <!-- Hardin's Spellbook Coupon - 1 Star (Not Available) - Sealed -->
+		<production id="97114" count="1" /> <!-- Spellbook: Wild Charge - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98855" count="1" /> <!-- Hardin's Spellbook Coupon - 1 Star (Not Available) - Sealed -->
+		<production id="95508" count="1" /> <!-- Spellbook: Death Guard - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98855" count="1" /> <!-- Hardin's Spellbook Coupon - 1 Star (Not Available) - Sealed -->
+		<production id="95509" count="1" /> <!-- Spellbook: Bone Cage - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98855" count="1" /> <!-- Hardin's Spellbook Coupon - 1 Star (Not Available) - Sealed -->
+		<production id="95511" count="1" /> <!-- Spellbook: Drain Magic Energy - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98855" count="1" /> <!-- Hardin's Spellbook Coupon - 1 Star (Not Available) - Sealed -->
+		<production id="95528" count="1" /> <!-- Spellbook: Frantic Pace - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98855" count="1" /> <!-- Hardin's Spellbook Coupon - 1 Star (Not Available) - Sealed -->
+		<production id="95512" count="1" /> <!-- Spellbook: Amazing Thunder Storm Mastery - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98855" count="1" /> <!-- Hardin's Spellbook Coupon - 1 Star (Not Available) - Sealed -->
+		<production id="95515" count="1" /> <!-- Spellbook: Knight's Help - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98855" count="1" /> <!-- Hardin's Spellbook Coupon - 1 Star (Not Available) - Sealed -->
+		<production id="95516" count="1" /> <!-- Spellbook: Amazing Spike Thrust Mastery - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98855" count="1" /> <!-- Hardin's Spellbook Coupon - 1 Star (Not Available) - Sealed -->
+		<production id="95553" count="1" /> <!-- Spellbook: Pa'agrio's Cure - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98855" count="1" /> <!-- Hardin's Spellbook Coupon - 1 Star (Not Available) - Sealed -->
+		<production id="95560" count="1" /> <!-- Spellbook: Chant of Healing - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98855" count="1" /> <!-- Hardin's Spellbook Coupon - 1 Star (Not Available) - Sealed -->
+		<production id="96274" count="1" /> <!-- Spellbook: Masterpiece Shield - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98855" count="1" /> <!-- Hardin's Spellbook Coupon - 1 Star (Not Available) - Sealed -->
+		<production id="98705" count="1" /> <!-- Spellbook: Exciting Adventure Lv. 2 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98855" count="1" /> <!-- Hardin's Spellbook Coupon - 1 Star (Not Available) - Sealed -->
+		<production id="98706" count="1" /> <!-- Spellbook: Wind Riding Lv. 2 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98855" count="1" /> <!-- Hardin's Spellbook Coupon - 1 Star (Not Available) - Sealed -->
+		<production id="98707" count="1" /> <!-- Spellbook: Ghost Walking Lv. 2 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98855" count="1" /> <!-- Hardin's Spellbook Coupon - 1 Star (Not Available) - Sealed -->
+		<production id="98708" count="1" /> <!-- Spellbook: Hidden Dagger - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98855" count="1" /> <!-- Hardin's Spellbook Coupon - 1 Star (Not Available) - Sealed -->
+		<production id="98502" count="1" /> <!-- Spellbook: Blow Boost - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98855" count="1" /> <!-- Hardin's Spellbook Coupon - 1 Star (Not Available) - Sealed -->
+		<production id="98497" count="1" /> <!-- Spellbook: Erosion Lv. 2 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98855" count="1" /> <!-- Hardin's Spellbook Coupon - 1 Star (Not Available) - Sealed -->
+		<production id="98498" count="1" /> <!-- Spellbook: Murder Attempt Lv. 2 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98855" count="1" /> <!-- Hardin's Spellbook Coupon - 1 Star (Not Available) - Sealed -->
+		<production id="98539" count="1" /> <!-- Spellbook: Forward Move Lv. 2 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98855" count="1" /> <!-- Hardin's Spellbook Coupon - 1 Star (Not Available) - Sealed -->
+		<production id="97858" count="1" /> <!-- Spellbook: Improved Sleep - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98855" count="1" /> <!-- Hardin's Spellbook Coupon - 1 Star (Not Available) - Sealed -->
+		<production id="97114" count="1" /> <!-- Spellbook: Wild Charge - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98855" count="1" /> <!-- Hardin's Spellbook Coupon - 1 Star (Not Available) - Sealed -->
+		<production id="95508" count="1" /> <!-- Spellbook: Death Guard - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98855" count="1" /> <!-- Hardin's Spellbook Coupon - 1 Star (Not Available) - Sealed -->
+		<production id="95509" count="1" /> <!-- Spellbook: Bone Cage - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98855" count="1" /> <!-- Hardin's Spellbook Coupon - 1 Star (Not Available) - Sealed -->
+		<production id="95511" count="1" /> <!-- Spellbook: Drain Magic Energy - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98855" count="1" /> <!-- Hardin's Spellbook Coupon - 1 Star (Not Available) - Sealed -->
+		<production id="95528" count="1" /> <!-- Spellbook: Frantic Pace - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98855" count="1" /> <!-- Hardin's Spellbook Coupon - 1 Star (Not Available) - Sealed -->
+		<production id="95512" count="1" /> <!-- Spellbook: Amazing Thunder Storm Mastery - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98855" count="1" /> <!-- Hardin's Spellbook Coupon - 1 Star (Not Available) - Sealed -->
+		<production id="95515" count="1" /> <!-- Spellbook: Knight's Help - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98855" count="1" /> <!-- Hardin's Spellbook Coupon - 1 Star (Not Available) - Sealed -->
+		<production id="95516" count="1" /> <!-- Spellbook: Amazing Spike Thrust Mastery - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98855" count="1" /> <!-- Hardin's Spellbook Coupon - 1 Star (Not Available) - Sealed -->
+		<production id="95553" count="1" /> <!-- Spellbook: Pa'agrio's Cure - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98855" count="1" /> <!-- Hardin's Spellbook Coupon - 1 Star (Not Available) - Sealed -->
+		<production id="95560" count="1" /> <!-- Spellbook: Chant of Healing - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98855" count="1" /> <!-- Hardin's Spellbook Coupon - 1 Star (Not Available) - Sealed -->
+		<production id="96274" count="1" /> <!-- Spellbook: Masterpiece Shield - Sealed -->
+	</item>
+</list>

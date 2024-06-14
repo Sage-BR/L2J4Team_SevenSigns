@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,58 +16,64 @@
  */
 package org.l2j.gameserver.network.clientpackets.pet;
 
-import org.l2j.commons.network.ReadablePacket;
 import org.l2j.gameserver.ai.CtrlIntention;
 import org.l2j.gameserver.instancemanager.CastleManager;
 import org.l2j.gameserver.instancemanager.FortSiegeManager;
 import org.l2j.gameserver.instancemanager.SiegeGuardManager;
 import org.l2j.gameserver.model.World;
+import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.model.actor.instance.Pet;
 import org.l2j.gameserver.model.item.instance.Item;
 import org.l2j.gameserver.model.siege.Castle;
-import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.SystemMessageId;
 import org.l2j.gameserver.network.clientpackets.ClientPacket;
 import org.l2j.gameserver.network.serverpackets.ActionFailed;
 
-public class RequestPetGetItem implements ClientPacket
+public class RequestPetGetItem extends ClientPacket
 {
 	private int _objectId;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_objectId = packet.readInt();
+		_objectId = readInt();
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
 		final World world = World.getInstance();
 		final Item item = (Item) world.findObject(_objectId);
-		if ((item == null) || (client.getPlayer() == null) || !client.getPlayer().hasPet())
+		final Player player = getPlayer();
+		if ((item == null) || (player == null) || !player.hasPet())
 		{
-			client.sendPacket(ActionFailed.STATIC_PACKET);
+			getClient().sendPacket(ActionFailed.STATIC_PACKET);
 			return;
 		}
 		
 		final Castle castle = CastleManager.getInstance().getCastle(item);
-		if (((castle != null) && (SiegeGuardManager.getInstance().getSiegeGuardByItem(castle.getResidenceId(), item.getId()) != null)) || FortSiegeManager.getInstance().isCombat(item.getId()))
+		if ((castle != null) && (SiegeGuardManager.getInstance().getSiegeGuardByItem(castle.getResidenceId(), item.getId()) != null))
 		{
-			client.sendPacket(ActionFailed.STATIC_PACKET);
+			player.sendPacket(ActionFailed.STATIC_PACKET);
 			return;
 		}
 		
-		final Pet pet = client.getPlayer().getPet();
+		if (FortSiegeManager.getInstance().isCombat(item.getId()))
+		{
+			player.sendPacket(ActionFailed.STATIC_PACKET);
+			return;
+		}
+		
+		final Pet pet = player.getPet();
 		if (pet.isDead() || pet.isControlBlocked())
 		{
-			client.sendPacket(ActionFailed.STATIC_PACKET);
+			player.sendPacket(ActionFailed.STATIC_PACKET);
 			return;
 		}
 		
 		if (pet.isUncontrollable())
 		{
-			client.sendPacket(SystemMessageId.WHEN_YOUR_PET_S_SATIETY_REACHES_0_YOU_CANNOT_CONTROL_IT);
+			player.sendPacket(SystemMessageId.WHEN_YOUR_PET_S_SATIETY_REACHES_0_YOU_CANNOT_CONTROL_IT);
 			return;
 		}
 		

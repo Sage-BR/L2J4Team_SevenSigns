@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,7 +18,9 @@ package org.l2j.gameserver.network.serverpackets.limitshop;
 
 import java.util.Collection;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.model.holders.LimitShopRandomCraftReward;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 import org.l2j.gameserver.network.serverpackets.ServerPacket;
 
@@ -42,19 +44,19 @@ public class ExPurchaseLimitShopItemResult extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_PURCHASE_LIMIT_SHOP_ITEM_BUY.writeId(this);
-		writeByte(_isSuccess ? 0 : 1);
-		writeByte(_category);
-		writeInt(_productId);
-		writeInt(_rewards.size());
+		ServerPackets.EX_PURCHASE_LIMIT_SHOP_ITEM_BUY.writeId(this, buffer);
+		buffer.writeByte(_isSuccess ? 0 : 1);
+		buffer.writeByte(_category);
+		buffer.writeInt(_productId);
+		buffer.writeInt(_rewards.size());
 		for (LimitShopRandomCraftReward entry : _rewards)
 		{
-			writeByte(entry.getRewardIndex());
-			writeInt(entry.getItemId());
-			writeInt(entry.getCount().get());
+			buffer.writeByte(entry.getRewardIndex());
+			buffer.writeInt(entry.getItemId());
+			buffer.writeInt(entry.getCount().get());
 		}
-		writeInt(_remainingInfo);
+		buffer.writeInt(_remainingInfo);
 	}
 }

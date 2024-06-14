@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,8 +16,10 @@
  */
 package org.l2j.gameserver.network.serverpackets;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.model.Location;
 import org.l2j.gameserver.model.WorldObject;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 
 public class ValidateLocation extends ServerPacket
@@ -32,14 +34,14 @@ public class ValidateLocation extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.VALIDATE_LOCATION.writeId(this);
-		writeInt(_objectId);
-		writeInt(_loc.getX());
-		writeInt(_loc.getY());
-		writeInt(_loc.getZ());
-		writeInt(_loc.getHeading());
-		writeByte(0xff); // TODO: Find me!
+		ServerPackets.VALIDATE_LOCATION.writeId(this, buffer);
+		buffer.writeInt(_objectId);
+		buffer.writeInt(_loc.getX());
+		buffer.writeInt(_loc.getY());
+		buffer.writeInt(_loc.getZ());
+		buffer.writeInt(_loc.getHeading());
+		buffer.writeByte(0xff); // TODO: Find me!
 	}
 }

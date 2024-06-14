@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,8 +16,10 @@
  */
 package org.l2j.gameserver.network.serverpackets.pet;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.model.actor.instance.Pet;
 import org.l2j.gameserver.model.skill.Skill;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 import org.l2j.gameserver.network.serverpackets.ServerPacket;
 
@@ -36,18 +38,18 @@ public class ExPetSkillList extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_PET_SKILL_LIST.writeId(this);
-		writeByte(_onEnter);
-		writeInt(_pet.getAllSkills().size());
+		ServerPackets.EX_PET_SKILL_LIST.writeId(this, buffer);
+		buffer.writeByte(_onEnter);
+		buffer.writeInt(_pet.getAllSkills().size());
 		for (Skill sk : _pet.getAllSkills())
 		{
-			writeInt(sk.getDisplayId());
-			writeInt(sk.getDisplayLevel());
-			writeInt(sk.getReuseDelayGroup());
-			writeByte(0);
-			writeByte(0);
+			buffer.writeInt(sk.getDisplayId());
+			buffer.writeInt(sk.getDisplayLevel());
+			buffer.writeInt(sk.getReuseDelayGroup());
+			buffer.writeByte(0);
+			buffer.writeByte(0);
 		}
 	}
 }

@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list enabled="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../xsd/zones.xsd">
+	<!-- Complete Hellbound Island -->
+	<zone name="hellboud_island1" type="ScriptZone" shape="Cylinder" minZ="-16000" maxZ="16000" rad="20000">
+		<node X="-12499" Y="282346" />
+	</zone>
+	<!-- Ivory portals -->
+	<zone id="20211" name="ivory_portal_1" type="NoLandingZone" shape="Cylinder" maxZ="-3300" minZ="-3600" rad="170">
+		<node X="87864" Y="17627" />
+	</zone>
+	<zone id="20212" name="ivory_portal_2" type="NoLandingZone" shape="Cylinder" maxZ="-3300" minZ="-3600" rad="170">
+		<node X="87870" Y="14709" />
+	</zone>
+	<zone id="20213" name="ivory_portal_3" type="NoLandingZone" shape="Cylinder" maxZ="-3300" minZ="-3600" rad="170">
+		<node X="82790" Y="14717" />
+	</zone>
+	<zone id="20214" name="ivory_portal_4" type="NoLandingZone" shape="Cylinder" maxZ="-3300" minZ="-3600" rad="170">
+		<node X="82791" Y="17650" />
+	</zone>
+	<zone maxZ="-3300" minZ="-3600" shape="NPoly" type="NoRestartZone" name="Ivory Tower Camp">
+		<node X="89349" Y="16817" />
+		<node X="89031" Y="18053" />
+		<node X="88650" Y="18907" />
+		<node X="86042" Y="19116" />
+		<node X="84226" Y="18876" />
+		<node X="82881" Y="18672" />
+		<node X="82430" Y="18303" />
+		<node X="82052" Y="17676" />
+		<node X="81956" Y="15395" />
+		<node X="82179" Y="14055" />
+		<node X="83908" Y="13380" />
+		<node X="87478" Y="13672" />
+		<node X="88482" Y="14330" />
+		<node X="88592" Y="14932" />
+	</zone>
+	<zone id="202111" maxZ="-90" minZ="-3400" shape="NPoly" type="NoRestartZone" name="Ivory Tower Camp">
+		<node X="12167" Y="247267" /> <!--6-->
+		<node X="11080" Y="247224" /> <!--7-->
+		<node X="9736" Y="247832" /> <!--8-->
+		<node X="8824" Y="247688" /> <!--9-->
+		<node X="5032" Y="246984" /> <!--10-->
+		<node X="4616" Y="250520" /> <!--21-->
+		<node X="5976" Y="253000" /> <!--20-->
+		<node X="8344" Y="254040" /> <!--19-->
+		<node X="10801" Y="252469" /> <!--18-->
+		<node X="12040" Y="252136" /> <!--17-->
+		<node X="12200" Y="251864" /> <!--16-->
+		<node X="12392" Y="251384" /> <!--22-->
+		<node X="12456" Y="250408" /> <!--23-->
+		<node X="13004" Y="248748" /> <!--24-->
+		<node X="12349" Y="248060" /> <!--25-->
+	</zone>
+	<zone id="202112" maxZ="-90" minZ="-3400" shape="NPoly" type="NoRestartZone" name="Laboratory">
+		<node X="12167" Y="247267" /> <!--6-->
+		<node X="11080" Y="247224" /> <!--7-->
+		<node X="9736" Y="247832" /> <!--8-->
+		<node X="8824" Y="247688" /> <!--9-->
+		<node X="5032" Y="246984" /> <!--10-->
+		<node X="3128" Y="243784" /> <!--11-->
+		<node X="4840" Y="239912" /> <!--12-->
+		<node X="5928" Y="237896" /> <!--13-->
+		<node X="7256" Y="231320" /> <!--2-->
+		<node X="28874" Y="241009" /> <!--3-->
+		<node X="24888" Y="246008" /> <!--4-->
+		<node X="18392" Y="245832" /> <!--5-->
+	</zone>
+	<zone id="202113" maxZ="-90" minZ="-3400" shape="NPoly" type="NoRestartZone" name="Beleth">
+		<node X="5032" Y="246984" /> <!--10-->
+		<node X="3128" Y="243784" /> <!--11-->
+		<node X="4840" Y="239912" /> <!--12-->
+		<node X="5928" Y="237896" /> <!--13-->
+		<node X="7256" Y="231320" /> <!--2-->
+		<node X="-5256" Y="230392" /> <!--1-->
+		<node X="-2888" Y="258136" /> <!--14-->
+		<node X="11304" Y="258040" /> <!--15-->
+		<node X="12200" Y="251864" /> <!--16-->
+		<node X="12040" Y="252136" /> <!--17-->
+		<node X="10801" Y="252469" /> <!--18-->
+		<node X="8344" Y="254040" /> <!--19-->
+		<node X="5976" Y="253000" /> <!--20-->
+		<node X="4616" Y="250520" /> <!--21-->
+	</zone>
+	<zone id="202114" maxZ="-90" minZ="-3400" shape="NPoly" type="NoRestartZone" name="Otherworldly Tower West 1">
+		<node X="18392" Y="245832" /> <!--5-->
+		<node X="12167" Y="247267" /> <!--6-->
+		<node X="12349" Y="248060" /> <!--25-->
+		<node X="13004" Y="248748" /> <!--24-->
+		<node X="12456" Y="250408" /> <!--23-->
+		<node X="12392" Y="251384" /> <!--22-->
+		<node X="12200" Y="251864" /> <!--16-->
+		<node X="13880" Y="252488" /> <!--26-->
+		<node X="15416" Y="252744" /> <!--27-->
+		<node X="16552" Y="252696" /> <!--28-->
+		<node X="17920" Y="253035" /> <!--29-->
+	</zone>
+	<zone id="202115" maxZ="-90" minZ="-3400" shape="NPoly" type="NoRestartZone" name="Otherworldly Tower West 2">
+		<node X="12200" Y="251864" /> <!--16-->
+		<node X="13880" Y="252488" /> <!--26-->
+		<node X="15416" Y="252744" /> <!--27-->
+		<node X="16552" Y="252696" /> <!--28-->
+		<node X="17920" Y="253035" /> <!--29-->
+		<node X="19198" Y="259842" /> <!--30-->
+		<node X="11304" Y="258040" /> <!--15-->
+	</zone>
+	<zone id="202116" maxZ="-90" minZ="-3400" shape="NPoly" type="NoRestartZone" name="Otherworldly Tower East 1">
+		<node X="24888" Y="246008" /> <!--4-->
+		<node X="18392" Y="245832" /> <!--5-->
+		<node X="17920" Y="253035" /> <!--29-->
+		<node X="21160" Y="252952" /> <!--33-->
+		<node X="28472" Y="251224" /> <!--32-->
+	</zone>
+	<zone id="202117" maxZ="-90" minZ="-3400" shape="NPoly" type="NoRestartZone" name="Otherworldly Tower East 2">
+		<node X="17920" Y="253035" /> <!--29-->
+		<node X="19198" Y="259842" /> <!--30-->
+		<node X="27626" Y="258221" /> <!--31-->
+		<node X="28472" Y="251224" /> <!--32-->
+		<node X="21160" Y="252952" /> <!--33-->
+	</zone>
+</list>

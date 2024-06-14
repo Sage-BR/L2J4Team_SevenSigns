@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,11 +18,8 @@ package org.l2j.gameserver.network.clientpackets.ranking;
 
 import org.l2j.gameserver.instancemanager.GlobalVariablesManager;
 import org.l2j.gameserver.instancemanager.RankingPowerManager;
-import org.l2j.gameserver.model.World;
-import org.l2j.gameserver.model.actor.Creature;
 import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.model.zone.ZoneId;
-import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.SystemMessageId;
 import org.l2j.gameserver.network.clientpackets.ClientPacket;
 import org.l2j.gameserver.network.serverpackets.ranking.ExRankingBuffZoneNpcInfo;
@@ -31,14 +28,19 @@ import org.l2j.gameserver.network.serverpackets.ranking.ExRankingBuffZoneNpcPosi
 /**
  * @author Serenitty
  */
-public class RequestExRankingCharSpawnBuffzoneNpc implements ClientPacket
+public class RequestExRankingCharSpawnBuffzoneNpc extends ClientPacket
 {
 	private static final int COST = 20000000;
 	
 	@Override
-	public void run(GameClient client)
+	protected void readImpl()
 	{
-		final Player player = client.getPlayer();
+	}
+	
+	@Override
+	protected void runImpl()
+	{
+		final Player player = getPlayer();
 		if (player == null)
 		{
 			return;
@@ -50,18 +52,19 @@ public class RequestExRankingCharSpawnBuffzoneNpc implements ClientPacket
 			return;
 		}
 		
-		if (!player.destroyItemByItemId("Adena", 57, COST, player, true))
-		{
-			player.sendPacket(SystemMessageId.NOT_ENOUGH_MONEY_TO_USE_THE_FUNCTION);
-			return;
-		}
-		
-		if (!player.isInsideZone(ZoneId.PEACE) || player.isInStoreMode() || !World.getInstance().getVisibleObjectsInRange(player, Creature.class, 50).isEmpty())
+		if (!player.isInsideZone(ZoneId.PEACE) || player.isInStoreMode())
 		{
 			player.sendPacket(SystemMessageId.YOU_CANNOT_USE_LEADER_POWER_HERE);
 			return;
 		}
 		
+		if (player.getAdena() < COST)
+		{
+			player.sendPacket(SystemMessageId.NOT_ENOUGH_MONEY_TO_USE_THE_FUNCTION);
+			return;
+		}
+		
+		player.destroyItemByItemId("Adena", 57, COST, player, true);
 		RankingPowerManager.getInstance().activatePower(player);
 		player.sendPacket(new ExRankingBuffZoneNpcPosition());
 		player.sendPacket(new ExRankingBuffZoneNpcInfo());

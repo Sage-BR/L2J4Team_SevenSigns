@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -44,11 +44,14 @@ import org.l2j.gameserver.model.WorldObject;
 import org.l2j.gameserver.model.actor.Creature;
 import org.l2j.gameserver.model.actor.Npc;
 import org.l2j.gameserver.model.actor.Player;
+import org.l2j.gameserver.model.actor.request.CaptchaRequest;
 import org.l2j.gameserver.model.clan.Clan;
+import org.l2j.gameserver.model.skill.CommonSkill;
 import org.l2j.gameserver.model.skill.Skill;
 import org.l2j.gameserver.model.zone.ZoneId;
 import org.l2j.gameserver.network.SystemMessageId;
 import org.l2j.gameserver.network.serverpackets.SystemMessage;
+import org.l2j.gameserver.network.serverpackets.captcha.ReceiveBotCaptchaResult;
 
 /**
  * @author BiggBoss
@@ -355,6 +358,19 @@ public class BotReportTable
 				punishBot(bot, entry.getValue());
 			}
 		}
+		
+		// For every three reports request captcha (if player is not auto playing).
+		// if (!bot.isAutoPlaying() && ((rcd.getReportCount() % 3) == 0))
+		// {
+		// final Captcha captcha = CaptchaGenerator.getInstance().next();
+		// if (!bot.hasRequest(CaptchaRequest.class))
+		// {
+		// final CaptchaRequest request = new CaptchaRequest(bot, captcha);
+		// bot.addRequest(request);
+		// bot.sendPacket(new ReceiveBotCaptchaImage(captcha, request.getRemainingTime()));
+		// bot.sendPacket(SystemMessageId.PLEASE_ENTER_THE_AUTHENTICATION_CODE_IN_TIME_TO_CONTINUE_PLAYING);
+		// }
+		// }
 	}
 	
 	/**
@@ -376,6 +392,16 @@ public class BotReportTable
 				}
 			}
 		}
+	}
+	
+	public void punishBotDueUnsolvedCaptcha(Player bot)
+	{
+		CommonSkill.BOT_REPORT_STATUS.getSkill().applyEffects(bot, bot);
+		bot.removeRequest(CaptchaRequest.class);
+		final SystemMessage msg = new SystemMessage(SystemMessageId.IF_A_USER_ENTERS_A_WRONG_AUTHENTICATION_CODE_3_TIMES_IN_A_ROW_OR_DOES_NOT_ENTER_THE_CODE_IN_TIME_THE_SYSTEM_WILL_QUALIFY_HIM_AS_A_RULE_BREAKER_AND_CHARGE_HIS_ACCOUNT_WITH_A_PENALTY_S1);
+		msg.addSkillName(CommonSkill.BOT_REPORT_STATUS.getId());
+		bot.sendPacket(msg);
+		bot.sendPacket(ReceiveBotCaptchaResult.FAILED);
 	}
 	
 	/**
@@ -432,11 +458,6 @@ public class BotReportTable
 			ThreadPool.schedule(new ResetPointTask(), 24 * 3600 * 1000);
 			LOGGER.log(Level.WARNING, getClass().getSimpleName() + ": Could not properly schedule bot report points reset task. Scheduled in 24 hours.", e);
 		}
-	}
-	
-	public static BotReportTable getInstance()
-	{
-		return SingletonHolder.INSTANCE;
 	}
 	
 	/**
@@ -620,6 +641,11 @@ public class BotReportTable
 		{
 			resetPointsAndSchedule();
 		}
+	}
+	
+	public static BotReportTable getInstance()
+	{
+		return SingletonHolder.INSTANCE;
 	}
 	
 	private static class SingletonHolder

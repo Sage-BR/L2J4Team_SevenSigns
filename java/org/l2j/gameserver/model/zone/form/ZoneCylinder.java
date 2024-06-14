@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -61,7 +61,19 @@ public class ZoneCylinder extends ZoneForm
 		}
 		
 		// Any point of the rectangle intersecting the Circle?
-		if (((Math.pow(ax1 - _x, 2) + Math.pow(ay1 - _y, 2)) < _radS) || ((Math.pow(ax1 - _x, 2) + Math.pow(ay2 - _y, 2)) < _radS) || ((Math.pow(ax2 - _x, 2) + Math.pow(ay1 - _y, 2)) < _radS) || ((Math.pow(ax2 - _x, 2) + Math.pow(ay2 - _y, 2)) < _radS))
+		if ((Math.pow(ax1 - _x, 2) + Math.pow(ay1 - _y, 2)) < _radS)
+		{
+			return true;
+		}
+		if ((Math.pow(ax1 - _x, 2) + Math.pow(ay2 - _y, 2)) < _radS)
+		{
+			return true;
+		}
+		if ((Math.pow(ax2 - _x, 2) + Math.pow(ay1 - _y, 2)) < _radS)
+		{
+			return true;
+		}
+		if ((Math.pow(ax2 - _x, 2) + Math.pow(ay2 - _y, 2)) < _radS)
 		{
 			return true;
 		}

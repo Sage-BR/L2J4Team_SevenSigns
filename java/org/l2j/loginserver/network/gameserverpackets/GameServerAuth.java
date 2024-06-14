@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,7 +20,7 @@ import java.util.Arrays;
 import java.util.logging.Logger;
 
 import org.l2j.Config;
-import org.l2j.commons.network.ReadablePacket;
+import org.l2j.commons.network.base.BaseReadablePacket;
 import org.l2j.loginserver.GameServerTable;
 import org.l2j.loginserver.GameServerTable.GameServerInfo;
 import org.l2j.loginserver.GameServerThread;
@@ -43,32 +43,27 @@ import org.l2j.loginserver.network.loginserverpackets.LoginServerFail;
  * 
  * @author -Wooden-
  */
-public class GameServerAuth extends ReadablePacket
+public class GameServerAuth extends BaseReadablePacket
 {
 	protected static final Logger LOGGER = Logger.getLogger(GameServerAuth.class.getName());
+	
 	GameServerThread _server;
 	private final byte[] _hexId;
 	private final int _desiredId;
-	@SuppressWarnings("unused")
-	private final boolean _hostReserved;
 	private final boolean _acceptAlternativeId;
 	private final int _maxPlayers;
 	private final int _port;
 	private final String[] _hosts;
 	
-	/**
-	 * @param decrypt
-	 * @param server
-	 */
 	public GameServerAuth(byte[] decrypt, GameServerThread server)
 	{
 		super(decrypt);
-		readByte(); // id (already processed)
+		readByte(); // Packet id, it is already processed.
 		
 		_server = server;
 		_desiredId = readByte();
 		_acceptAlternativeId = readByte() != 0;
-		_hostReserved = readByte() != 0;
+		readByte(); // _hostReserved = readByte() != 0
 		_port = readShort();
 		_maxPlayers = readInt();
 		int size = readInt();
@@ -93,14 +88,15 @@ public class GameServerAuth extends ReadablePacket
 		final GameServerTable gameServerTable = GameServerTable.getInstance();
 		final int id = _desiredId;
 		final byte[] hexId = _hexId;
+		
+		// Is there a gameserver registered with this id?
 		GameServerInfo gsi = gameServerTable.getRegisteredGameServerById(id);
-		// is there a gameserver registered with this id?
 		if (gsi != null)
 		{
-			// does the hex id match?
+			// Does the hex id match?
 			if (Arrays.equals(gsi.getHexId(), hexId))
 			{
-				// check to see if this GS is already connected
+				// Check to see if this GS is already connected.
 				synchronized (gsi)
 				{
 					if (gsi.isAuthed())
@@ -113,8 +109,8 @@ public class GameServerAuth extends ReadablePacket
 			}
 			else
 			{
-				// there is already a server registered with the desired id and different hex id
-				// try to register this one with an alternative id
+				// There is already a server registered with the desired id and different hex id.
+				// Try to register this one with an alternative id.
 				if (Config.ACCEPT_NEW_GAMESERVER && _acceptAlternativeId)
 				{
 					gsi = new GameServerInfo(id, hexId, _server);
@@ -131,7 +127,7 @@ public class GameServerAuth extends ReadablePacket
 				}
 				else
 				{
-					// server id is already taken, and we cant get a new one for you
+					// Server id is already taken, and we cannot get a new one for you.
 					_server.forceClose(LoginServerFail.REASON_WRONG_HEXID);
 					return false;
 				}
@@ -139,7 +135,7 @@ public class GameServerAuth extends ReadablePacket
 		}
 		else
 		{
-			// can we register on this id?
+			// Can we register on this id?
 			if (Config.ACCEPT_NEW_GAMESERVER)
 			{
 				gsi = new GameServerInfo(id, hexId, _server);
@@ -150,7 +146,7 @@ public class GameServerAuth extends ReadablePacket
 				}
 				else
 				{
-					// some one took this ID meanwhile
+					// Some one took this ID meanwhile.
 					_server.forceClose(LoginServerFail.REASON_ID_RESERVED);
 					return false;
 				}

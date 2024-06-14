@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,6 +16,8 @@
  */
 package org.l2j.gameserver.network.serverpackets.equipmentupgrade;
 
+import org.l2j.commons.network.WritableBuffer;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 import org.l2j.gameserver.network.serverpackets.AbstractItemPacket;
 
@@ -34,10 +36,10 @@ public class ExUpgradeSystemResult extends AbstractItemPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_UPGRADE_SYSTEM_RESULT.writeId(this);
-		writeShort(_success);
-		writeInt(_objectId);
+		ServerPackets.EX_UPGRADE_SYSTEM_RESULT.writeId(this, buffer);
+		buffer.writeShort(_success);
+		buffer.writeInt(_objectId);
 	}
 }

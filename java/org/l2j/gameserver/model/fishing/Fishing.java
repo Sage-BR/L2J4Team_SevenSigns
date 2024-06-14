@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -184,7 +184,7 @@ public class Fishing
 		final Item rod = _player.getActiveWeaponInstance();
 		if ((rod == null) || (rod.getItemType() != WeaponType.FISHINGROD))
 		{
-			_player.sendPacket(SystemMessageId.YOU_DON_T_HAVE_A_FISHING_ROD_EQUIPPED);
+			_player.sendPacket(SystemMessageId.YOU_DO_NOT_HAVE_A_FISHING_ROD_EQUIPPED);
 			_player.sendPacket(ActionFailed.STATIC_PACKET);
 			stopFishing(FishingEndType.ERROR);
 			return;
@@ -193,7 +193,7 @@ public class Fishing
 		final FishingRod rodData = FishingData.getInstance().getRodData(rod.getId());
 		if (rodData == null)
 		{
-			_player.sendPacket(SystemMessageId.YOU_DON_T_HAVE_A_FISHING_ROD_EQUIPPED);
+			_player.sendPacket(SystemMessageId.YOU_DO_NOT_HAVE_A_FISHING_ROD_EQUIPPED);
 			_player.sendPacket(ActionFailed.STATIC_PACKET);
 			stopFishing(FishingEndType.ERROR);
 			return;
@@ -433,7 +433,12 @@ public class Fishing
 	 */
 	private static int computeBaitZ(Player player, int baitX, int baitY, FishingZone fishingZone, WaterZone waterZone)
 	{
-		if ((fishingZone == null) || (waterZone == null))
+		if ((fishingZone == null))
+		{
+			return Integer.MIN_VALUE;
+		}
+		
+		if ((waterZone == null))
 		{
 			return Integer.MIN_VALUE;
 		}

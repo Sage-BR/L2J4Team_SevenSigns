@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -376,6 +376,9 @@ public class Spawn extends Location implements IIdentifiable, INamable
 	 */
 	private Npc initializeNpc(Npc npc)
 	{
+		// Reset some variables
+		npc.onRespawn();
+		
 		int newlocx = 0;
 		int newlocy = 0;
 		int newlocz = -10000;
@@ -453,9 +456,6 @@ public class Spawn extends Location implements IIdentifiable, INamable
 		{
 			npc.setTitle(npc.getTemplate().getTitle());
 		}
-		
-		// Reset some variables
-		npc.onRespawn();
 		
 		// Link the Npc to this Spawn
 		npc.setSpawn(this);

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/multisell.xsd">
+	<npcs>
+		<npc>-1</npc> <!-- Item Multisell -->
+	</npcs>
+	<!-- Rabbit's Lucky Pouch for Bright Start (Time-limited) - Sealed (98739) -->
+	<item>
+		<ingredient id="98739" count="1" /> <!-- Rabbit's Lucky Pouch for Bright Start (Time-limited) - Sealed -->
+		<production id="98249" count="3" /> <!-- Scroll: PK (Time-limited) - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98739" count="1" /> <!-- Rabbit's Lucky Pouch for Bright Start (Time-limited) - Sealed -->
+		<production id="97438" count="2" /> <!-- Einhasad's Protection (Time-limited) - Sealed -->
+	</item>
+</list>

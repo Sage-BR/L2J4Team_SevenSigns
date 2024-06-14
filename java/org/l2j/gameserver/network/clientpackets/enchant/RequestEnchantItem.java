@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,7 +19,6 @@ package org.l2j.gameserver.network.clientpackets.enchant;
 import java.util.logging.Logger;
 
 import org.l2j.Config;
-import org.l2j.commons.network.ReadablePacket;
 import org.l2j.commons.util.Rnd;
 import org.l2j.gameserver.data.xml.EnchantChallengePointData;
 import org.l2j.gameserver.data.xml.EnchantChallengePointData.EnchantChallengePointsItemInfo;
@@ -39,7 +38,6 @@ import org.l2j.gameserver.model.item.enchant.EnchantSupportItem;
 import org.l2j.gameserver.model.item.instance.Item;
 import org.l2j.gameserver.model.skill.CommonSkill;
 import org.l2j.gameserver.model.skill.Skill;
-import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.SystemMessageId;
 import org.l2j.gameserver.network.clientpackets.ClientPacket;
 import org.l2j.gameserver.network.serverpackets.ExItemAnnounce;
@@ -51,23 +49,23 @@ import org.l2j.gameserver.network.serverpackets.enchant.challengepoint.ExEnchant
 import org.l2j.gameserver.util.Broadcast;
 import org.l2j.gameserver.util.Util;
 
-public class RequestEnchantItem implements ClientPacket
+public class RequestEnchantItem extends ClientPacket
 {
 	protected static final Logger LOGGER_ENCHANT = Logger.getLogger("enchant.items");
 	
 	private int _objectId;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_objectId = packet.readInt();
-		packet.readByte(); // Unknown boolean.
+		_objectId = readInt();
+		readByte(); // Unknown.
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
-		final Player player = client.getPlayer();
+		final Player player = getPlayer();
 		if (player == null)
 		{
 			return;
@@ -82,7 +80,7 @@ public class RequestEnchantItem implements ClientPacket
 		request.setEnchantingItem(_objectId);
 		request.setProcessing(true);
 		
-		if (!player.isOnline() || client.isDetached())
+		if (!player.isOnline() || getClient().isDetached())
 		{
 			player.removeRequest(request.getClass());
 			return;
@@ -124,7 +122,7 @@ public class RequestEnchantItem implements ClientPacket
 		}
 		
 		// First validation check, also over enchant check.
-		if (!scrollTemplate.isValid(item, supportTemplate) || (Config.DISABLE_OVER_ENCHANTING && ((item.getEnchantLevel() == scrollTemplate.getMaxEnchantLevel()) || (!(item.getTemplate().getEnchantLimit() == 0) && (item.getEnchantLevel() == item.getTemplate().getEnchantLimit())))))
+		if (!scrollTemplate.isValid(item, supportTemplate) || (Config.DISABLE_OVER_ENCHANTING && ((item.getEnchantLevel() == scrollTemplate.getMaxEnchantLevel()) || ((item.getTemplate().getEnchantLimit() != 0) && (item.getEnchantLevel() == item.getTemplate().getEnchantLimit())))))
 		{
 			player.sendPacket(SystemMessageId.AUGMENTATION_REQUIREMENTS_ARE_NOT_FULFILLED);
 			player.removeRequest(request.getClass());
@@ -202,7 +200,7 @@ public class RequestEnchantItem implements ClientPacket
 					if (scrollTemplate.isCursed())
 					{
 						// Blessed enchant: Enchant value down by 1.
-						client.sendPacket(SystemMessageId.THE_ENCHANT_VALUE_IS_DECREASED_BY_1);
+						player.sendPacket(SystemMessageId.THE_ENCHANT_VALUE_IS_DECREASED_BY_1);
 						item.setEnchantLevel(item.getEnchantLevel() - 1);
 					}
 					// Increase enchant level only if scroll's base template has chance, some armors can success over +20 but they shouldn't have increased.
@@ -421,7 +419,7 @@ public class RequestEnchantItem implements ClientPacket
 							// Blessed enchant: Enchant value down by 1.
 							if (scrollTemplate.isBlessedDown() || challengePointsBlessedDown || scrollTemplate.isCursed())
 							{
-								client.sendPacket(SystemMessageId.THE_ENCHANT_VALUE_IS_DECREASED_BY_1);
+								player.sendPacket(SystemMessageId.THE_ENCHANT_VALUE_IS_DECREASED_BY_1);
 								item.setEnchantLevel(Math.max(0, item.getEnchantLevel() - 1));
 							}
 							else // Blessed enchant: Clear enchant value.
@@ -512,10 +510,10 @@ public class RequestEnchantItem implements ClientPacket
 								player.sendPacket(sm);
 							}
 							
-							if (crystals != null)
-							{
-								iu.addItem(crystals);
-							}
+							// if (crystals != null)
+							// {
+							// iu.addItem(crystals); // FIXME: Packet never sent?
+							// }
 							
 							if ((crystalId == 0) || (count == 0))
 							{

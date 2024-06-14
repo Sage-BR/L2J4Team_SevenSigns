@@ -56,7 +56,7 @@ import hopzone.eu.vote.VDSystem;
  * @Author Nightwolf iToPz Discord: https://discord.gg/KkPms6B5aE
  * @Author Rationale Base structure credits goes on Rationale Discord: Rationale#7773
  *         <p>
- *         VDS Stands for: Vote Donation System Script website: https://itopz.com/ Partner website: https://hopzone.eu/ Script version: 1.8 Pack Support: 4Team Essence SevenSigns
+ *         VDS Stands for: Vote Donation System Script website: https://itopz.com/ Partner website: https://hopzone.eu/ Script version: 1.8 Pack Support: Mobius Essence 7.0 Assassin
  *         <p>
  *         Freemium Donate Panel V4: https://www.denart-designs.com/ Download: https://mega.nz/folder/6oxUyaIJ#qQDUXeoXlPvBjbPMDYzu-g Buy: https://shop.denart-designs.com/product/auto-donate-panel-v4/ Quick Guide: https://github.com/nightw0lv/VDSystem/tree/master/Guide
  */
@@ -168,7 +168,11 @@ public class VoteCMD implements IVoicedCommandHandler
 		final String TOPSITE = command.replace(".", "").toUpperCase();
 		
 		// check if allowed the individual command to run
-		if ((TOPSITE.equals("HOPZONE") && !Configurations.HOPZONE_EU_INDIVIDUAL_REWARD) || (TOPSITE.equals("ITOPZ") && !Configurations.ITOPZ_INDIVIDUAL_REWARD))
+		if (TOPSITE.equals("HOPZONE") && !Configurations.HOPZONE_EU_INDIVIDUAL_REWARD)
+		{
+			return false;
+		}
+		if (TOPSITE.equals("ITOPZ") && !Configurations.ITOPZ_INDIVIDUAL_REWARD)
 		{
 			return false;
 		}

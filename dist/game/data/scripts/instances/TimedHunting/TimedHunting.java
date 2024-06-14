@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -62,7 +62,6 @@ public class TimedHunting extends AbstractInstance
 	// Skill
 	private static final int BUFF = 45197;
 	private static final int BUFF_FOR_KAMAEL = 45198;
-	
 	// Misc
 	private static final int[] TEMPLATES =
 	{
@@ -131,6 +130,8 @@ public class TimedHunting extends AbstractInstance
 		SKILL_REPLACEMENTS.put(47806, 47893); // Shadow Scratch
 		SKILL_REPLACEMENTS.put(921, 47998); // Spike Thrust
 		SKILL_REPLACEMENTS.put(87006, 87018); // Fatal Crush
+		SKILL_REPLACEMENTS.put(87301, 87316); // Blow
+		SKILL_REPLACEMENTS.put(87310, 87316); // Enhanced Blow
 	}
 	
 	public TimedHunting()
@@ -141,7 +142,7 @@ public class TimedHunting extends AbstractInstance
 	}
 	
 	@Override
-	public String onAdvEvent(String event, Npc npc, Player player)
+	public String onEvent(String event, Npc npc, Player player)
 	{
 		if (event.startsWith("ENTER"))
 		{
@@ -181,6 +182,7 @@ public class TimedHunting extends AbstractInstance
 			final Instance world = player.getInstanceWorld();
 			if ((world != null) && CommonUtil.contains(TEMPLATES, world.getTemplateId()))
 			{
+				world.setReenterTime();
 				world.destroy();
 			}
 		}
@@ -223,8 +225,9 @@ public class TimedHunting extends AbstractInstance
 	protected void onEnter(Player player, Instance instance, boolean firstEnter)
 	{
 		super.onEnter(player, instance, firstEnter);
+		
 		instance.setParameter("PlayerIsOut", false);
-		if (!firstEnter)
+		if (!firstEnter && (player.getInstanceWorld().getTemplateId() != 228 /* Training Zone */))
 		{
 			replaceNormalSkills(player);
 			startEvent(player);

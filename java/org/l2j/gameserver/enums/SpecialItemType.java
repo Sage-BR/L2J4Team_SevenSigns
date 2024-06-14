@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -28,7 +28,7 @@ public enum SpecialItemType
 	RAIDBOSS_POINTS(-500),
 	HONOR_COINS(-700);
 	
-	private int _clientId;
+	private final int _clientId;
 	
 	private SpecialItemType(int clientId)
 	{

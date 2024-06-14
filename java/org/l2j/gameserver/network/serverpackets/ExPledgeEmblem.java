@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,7 +16,9 @@
  */
 package org.l2j.gameserver.network.serverpackets;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.Config;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 
 /**
@@ -40,22 +42,22 @@ public class ExPledgeEmblem extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_PLEDGE_EMBLEM.writeId(this);
-		writeInt(Config.SERVER_ID);
-		writeInt(_clanId);
-		writeInt(_crestId);
-		writeInt(_chunkId);
-		writeInt(TOTAL_SIZE);
+		ServerPackets.EX_PLEDGE_EMBLEM.writeId(this, buffer);
+		buffer.writeInt(Config.SERVER_ID);
+		buffer.writeInt(_clanId);
+		buffer.writeInt(_crestId);
+		buffer.writeInt(_chunkId);
+		buffer.writeInt(TOTAL_SIZE);
 		if (_data != null)
 		{
-			writeInt(_data.length);
-			writeBytes(_data);
+			buffer.writeInt(_data.length);
+			buffer.writeBytes(_data);
 		}
 		else
 		{
-			writeInt(0);
+			buffer.writeInt(0);
 		}
 	}
 }

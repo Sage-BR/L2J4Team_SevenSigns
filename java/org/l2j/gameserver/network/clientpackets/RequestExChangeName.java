@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,8 +16,6 @@
  */
 package org.l2j.gameserver.network.clientpackets;
 
-import org.l2j.commons.network.ReadablePacket;
-import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.PacketLogger;
 import org.l2j.gameserver.network.serverpackets.ExNeedToChangeName;
 
@@ -25,22 +23,22 @@ import org.l2j.gameserver.network.serverpackets.ExNeedToChangeName;
  * Reply for {@link ExNeedToChangeName}
  * @author JIV
  */
-public class RequestExChangeName implements ClientPacket
+public class RequestExChangeName extends ClientPacket
 {
 	private String _newName;
 	private int _type;
 	private int _charSlot;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_type = packet.readInt();
-		_newName = packet.readString();
-		_charSlot = packet.readInt();
+		_type = readInt();
+		_newName = readString();
+		_charSlot = readInt();
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
 		PacketLogger.info("Recieved " + getClass().getSimpleName() + " name: " + _newName + " type: " + _type + " CharSlot: " + _charSlot);
 	}

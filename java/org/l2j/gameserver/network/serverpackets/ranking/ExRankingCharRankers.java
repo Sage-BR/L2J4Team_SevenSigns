@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,9 +21,11 @@ import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
 import org.l2j.Config;
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.instancemanager.RankManager;
 import org.l2j.gameserver.model.StatSet;
 import org.l2j.gameserver.model.actor.Player;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 import org.l2j.gameserver.network.serverpackets.ServerPacket;
 
@@ -52,13 +54,13 @@ public class ExRankingCharRankers extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_RANKING_CHAR_RANKERS.writeId(this);
-		writeByte(_group);
-		writeByte(_scope);
-		writeInt(_race);
-		writeInt(_player.getClassId().getId());
+		ServerPackets.EX_RANKING_CHAR_RANKERS.writeId(this, buffer);
+		buffer.writeByte(_group);
+		buffer.writeByte(_scope);
+		buffer.writeInt(_race);
+		buffer.writeInt(_player.getClassId().getId());
 		if (!_playerList.isEmpty())
 		{
 			switch (_group)
@@ -68,17 +70,17 @@ public class ExRankingCharRankers extends ServerPacket
 					if (_scope == 0) // all
 					{
 						final int count = _playerList.size() > 150 ? 150 : _playerList.size();
-						writeInt(count);
+						buffer.writeInt(count);
 						for (Integer id : _playerList.keySet())
 						{
 							final StatSet player = _playerList.get(id);
-							writeSizedString(player.getString("name"));
-							writeSizedString(player.getString("clanName"));
-							writeInt(Config.SERVER_ID);
-							writeInt(player.getInt("level"));
-							writeInt(player.getInt("classId"));
-							writeInt(player.getInt("race"));
-							writeInt(id); // server rank
+							buffer.writeSizedString(player.getString("name"));
+							buffer.writeSizedString(player.getString("clanName"));
+							buffer.writeInt(Config.SERVER_ID);
+							buffer.writeInt(player.getInt("level"));
+							buffer.writeInt(player.getInt("classId"));
+							buffer.writeInt(player.getInt("race"));
+							buffer.writeInt(id); // server rank
 							if (!_snapshotList.isEmpty())
 							{
 								for (Integer id2 : _snapshotList.keySet())
@@ -86,17 +88,17 @@ public class ExRankingCharRankers extends ServerPacket
 									final StatSet snapshot = _snapshotList.get(id2);
 									if (player.getInt("charId") == snapshot.getInt("charId"))
 									{
-										writeInt(id2); // server rank snapshot
-										writeInt(snapshot.getInt("raceRank", 0)); // race rank snapshot
-										writeInt(snapshot.getInt("classRank", 0)); // nClassRank_Snapshot
+										buffer.writeInt(id2); // server rank snapshot
+										buffer.writeInt(snapshot.getInt("raceRank", 0)); // race rank snapshot
+										buffer.writeInt(snapshot.getInt("classRank", 0)); // nClassRank_Snapshot
 									}
 								}
 							}
 							else
 							{
-								writeInt(id);
-								writeInt(0);
-								writeInt(0);
+								buffer.writeInt(id);
+								buffer.writeInt(0);
+								buffer.writeInt(0);
 							}
 						}
 					}
@@ -113,22 +115,22 @@ public class ExRankingCharRankers extends ServerPacket
 								final int last = _playerList.size() >= (id + 10) ? id + 10 : id + (_playerList.size() - id);
 								if (first == 1)
 								{
-									writeInt(last - (first - 1));
+									buffer.writeInt(last - (first - 1));
 								}
 								else
 								{
-									writeInt(last - first);
+									buffer.writeInt(last - first);
 								}
 								for (int id2 = first; id2 <= last; id2++)
 								{
 									final StatSet plr = _playerList.get(id2);
-									writeSizedString(plr.getString("name"));
-									writeSizedString(plr.getString("clanName"));
-									writeInt(Config.SERVER_ID);
-									writeInt(plr.getInt("level"));
-									writeInt(plr.getInt("classId"));
-									writeInt(plr.getInt("race"));
-									writeInt(id2); // server rank
+									buffer.writeSizedString(plr.getString("name"));
+									buffer.writeSizedString(plr.getString("clanName"));
+									buffer.writeInt(Config.SERVER_ID);
+									buffer.writeInt(plr.getInt("level"));
+									buffer.writeInt(plr.getInt("classId"));
+									buffer.writeInt(plr.getInt("race"));
+									buffer.writeInt(id2); // server rank
 									if (!_snapshotList.isEmpty())
 									{
 										for (Integer id3 : _snapshotList.keySet())
@@ -136,9 +138,9 @@ public class ExRankingCharRankers extends ServerPacket
 											final StatSet snapshot = _snapshotList.get(id3);
 											if (player.getInt("charId") == snapshot.getInt("charId"))
 											{
-												writeInt(id3); // server rank snapshot
-												writeInt(snapshot.getInt("raceRank", 0));
-												writeInt(snapshot.getInt("classRank", 0)); // nClassRank_Snapshot
+												buffer.writeInt(id3); // server rank snapshot
+												buffer.writeInt(snapshot.getInt("raceRank", 0));
+												buffer.writeInt(snapshot.getInt("classRank", 0)); // nClassRank_Snapshot
 											}
 										}
 									}
@@ -147,7 +149,7 @@ public class ExRankingCharRankers extends ServerPacket
 						}
 						if (!found)
 						{
-							writeInt(0);
+							buffer.writeInt(0);
 						}
 					}
 					break;
@@ -165,20 +167,20 @@ public class ExRankingCharRankers extends ServerPacket
 								count++;
 							}
 						}
-						writeInt(count > 100 ? 100 : count);
+						buffer.writeInt(count > 100 ? 100 : count);
 						int i = 1;
 						for (Integer id : _playerList.keySet())
 						{
 							final StatSet player = _playerList.get(id);
 							if (_race == player.getInt("race"))
 							{
-								writeSizedString(player.getString("name"));
-								writeSizedString(player.getString("clanName"));
-								writeInt(Config.SERVER_ID);
-								writeInt(player.getInt("level"));
-								writeInt(player.getInt("classId"));
-								writeInt(player.getInt("race"));
-								writeInt(i); // server rank
+								buffer.writeSizedString(player.getString("name"));
+								buffer.writeSizedString(player.getString("clanName"));
+								buffer.writeInt(Config.SERVER_ID);
+								buffer.writeInt(player.getInt("level"));
+								buffer.writeInt(player.getInt("classId"));
+								buffer.writeInt(player.getInt("race"));
+								buffer.writeInt(i); // server rank
 								if (!_snapshotList.isEmpty())
 								{
 									final Map<Integer, StatSet> snapshotRaceList = new ConcurrentHashMap<>();
@@ -197,17 +199,17 @@ public class ExRankingCharRankers extends ServerPacket
 										final StatSet snapshot = snapshotRaceList.get(id2);
 										if (player.getInt("charId") == snapshot.getInt("charId"))
 										{
-											writeInt(id2); // server rank snapshot
-											writeInt(snapshot.getInt("raceRank", 0)); // race rank snapshot
-											writeInt(snapshot.getInt("classRank", 0)); // nClassRank_Snapshot
+											buffer.writeInt(id2); // server rank snapshot
+											buffer.writeInt(snapshot.getInt("raceRank", 0)); // race rank snapshot
+											buffer.writeInt(snapshot.getInt("classRank", 0)); // nClassRank_Snapshot
 										}
 									}
 								}
 								else
 								{
-									writeInt(i);
-									writeInt(i);
-									writeInt(i); // nClassRank_Snapshot
+									buffer.writeInt(i);
+									buffer.writeInt(i);
+									buffer.writeInt(i); // nClassRank_Snapshot
 								}
 								i++;
 							}
@@ -237,31 +239,31 @@ public class ExRankingCharRankers extends ServerPacket
 								final int last = raceList.size() >= (id + 10) ? id + 10 : id + (raceList.size() - id);
 								if (first == 1)
 								{
-									writeInt(last - (first - 1));
+									buffer.writeInt(last - (first - 1));
 								}
 								else
 								{
-									writeInt(last - first);
+									buffer.writeInt(last - first);
 								}
 								for (int id2 = first; id2 <= last; id2++)
 								{
 									final StatSet plr = raceList.get(id2);
-									writeSizedString(plr.getString("name"));
-									writeSizedString(plr.getString("clanName"));
-									writeInt(Config.SERVER_ID);
-									writeInt(plr.getInt("level"));
-									writeInt(plr.getInt("classId"));
-									writeInt(plr.getInt("race"));
-									writeInt(id2); // server rank
-									writeInt(id2);
-									writeInt(id2);
-									writeInt(id2); // nClassRank_Snapshot
+									buffer.writeSizedString(plr.getString("name"));
+									buffer.writeSizedString(plr.getString("clanName"));
+									buffer.writeInt(Config.SERVER_ID);
+									buffer.writeInt(plr.getInt("level"));
+									buffer.writeInt(plr.getInt("classId"));
+									buffer.writeInt(plr.getInt("race"));
+									buffer.writeInt(id2); // server rank
+									buffer.writeInt(id2);
+									buffer.writeInt(id2);
+									buffer.writeInt(id2); // nClassRank_Snapshot
 								}
 							}
 						}
 						if (!found)
 						{
-							writeInt(0);
+							buffer.writeInt(0);
 						}
 					}
 					break;
@@ -281,17 +283,17 @@ public class ExRankingCharRankers extends ServerPacket
 								i++;
 							}
 						}
-						writeInt(clanList.size());
+						buffer.writeInt(clanList.size());
 						for (Integer id : clanList.keySet())
 						{
 							final StatSet player = clanList.get(id);
-							writeSizedString(player.getString("name"));
-							writeSizedString(player.getString("clanName"));
-							writeInt(Config.SERVER_ID);
-							writeInt(player.getInt("level"));
-							writeInt(player.getInt("classId"));
-							writeInt(player.getInt("race"));
-							writeInt(id); // clan rank
+							buffer.writeSizedString(player.getString("name"));
+							buffer.writeSizedString(player.getString("clanName"));
+							buffer.writeInt(Config.SERVER_ID);
+							buffer.writeInt(player.getInt("level"));
+							buffer.writeInt(player.getInt("classId"));
+							buffer.writeInt(player.getInt("race"));
+							buffer.writeInt(id); // clan rank
 							if (!_snapshotList.isEmpty())
 							{
 								for (Integer id2 : _snapshotList.keySet())
@@ -299,23 +301,23 @@ public class ExRankingCharRankers extends ServerPacket
 									final StatSet snapshot = _snapshotList.get(id2);
 									if (player.getInt("charId") == snapshot.getInt("charId"))
 									{
-										writeInt(id2); // server rank snapshot
-										writeInt(snapshot.getInt("raceRank", 0)); // race rank snapshot
-										writeInt(snapshot.getInt("classRank", 0)); // nClassRank_Snapshot
+										buffer.writeInt(id2); // server rank snapshot
+										buffer.writeInt(snapshot.getInt("raceRank", 0)); // race rank snapshot
+										buffer.writeInt(snapshot.getInt("classRank", 0)); // nClassRank_Snapshot
 									}
 								}
 							}
 							else
 							{
-								writeInt(id);
-								writeInt(0);
-								writeInt(0);
+								buffer.writeInt(id);
+								buffer.writeInt(0);
+								buffer.writeInt(0);
 							}
 						}
 					}
 					else
 					{
-						writeInt(0);
+						buffer.writeInt(0);
 					}
 					break;
 				}
@@ -338,19 +340,19 @@ public class ExRankingCharRankers extends ServerPacket
 							}
 						}
 						friendList.add(_player.getObjectId());
-						writeInt(count);
+						buffer.writeInt(count);
 						for (int id : _playerList.keySet())
 						{
 							final StatSet player = _playerList.get(id);
 							if (friendList.contains(player.getInt("charId")))
 							{
-								writeSizedString(player.getString("name"));
-								writeSizedString(player.getString("clanName"));
-								writeInt(Config.SERVER_ID);
-								writeInt(player.getInt("level"));
-								writeInt(player.getInt("classId"));
-								writeInt(player.getInt("race"));
-								writeInt(id); // friend rank
+								buffer.writeSizedString(player.getString("name"));
+								buffer.writeSizedString(player.getString("clanName"));
+								buffer.writeInt(Config.SERVER_ID);
+								buffer.writeInt(player.getInt("level"));
+								buffer.writeInt(player.getInt("classId"));
+								buffer.writeInt(player.getInt("race"));
+								buffer.writeInt(id); // friend rank
 								if (!_snapshotList.isEmpty())
 								{
 									for (Integer id2 : _snapshotList.keySet())
@@ -358,38 +360,38 @@ public class ExRankingCharRankers extends ServerPacket
 										final StatSet snapshot = _snapshotList.get(id2);
 										if (player.getInt("charId") == snapshot.getInt("charId"))
 										{
-											writeInt(id2); // server rank snapshot
-											writeInt(snapshot.getInt("raceRank", 0)); // race rank snapshot
-											writeInt(snapshot.getInt("classRank", 0)); // nClassRank_Snapshot
+											buffer.writeInt(id2); // server rank snapshot
+											buffer.writeInt(snapshot.getInt("raceRank", 0)); // race rank snapshot
+											buffer.writeInt(snapshot.getInt("classRank", 0)); // nClassRank_Snapshot
 										}
 									}
 								}
 								else
 								{
-									writeInt(id);
-									writeInt(0);
-									writeInt(0);
+									buffer.writeInt(id);
+									buffer.writeInt(0);
+									buffer.writeInt(0);
 								}
 							}
 						}
 					}
 					else
 					{
-						writeInt(1);
-						writeSizedString(_player.getName());
+						buffer.writeInt(1);
+						buffer.writeSizedString(_player.getName());
 						if (_player.getClan() != null)
 						{
-							writeSizedString(_player.getClan().getName());
+							buffer.writeSizedString(_player.getClan().getName());
 						}
 						else
 						{
-							writeSizedString("");
+							buffer.writeSizedString("");
 						}
-						writeInt(Config.SERVER_ID);
-						writeInt(_player.getStat().getBaseLevel());
-						writeInt(_player.getBaseClass());
-						writeInt(_player.getRace().ordinal());
-						writeInt(1); // clan rank
+						buffer.writeInt(Config.SERVER_ID);
+						buffer.writeInt(_player.getStat().getBaseLevel());
+						buffer.writeInt(_player.getBaseClass());
+						buffer.writeInt(_player.getRace().ordinal());
+						buffer.writeInt(1); // clan rank
 						if (!_snapshotList.isEmpty())
 						{
 							for (Integer id : _snapshotList.keySet())
@@ -397,17 +399,17 @@ public class ExRankingCharRankers extends ServerPacket
 								final StatSet snapshot = _snapshotList.get(id);
 								if (_player.getObjectId() == snapshot.getInt("charId"))
 								{
-									writeInt(id); // server rank snapshot
-									writeInt(snapshot.getInt("raceRank", 0)); // race rank snapshot
-									writeInt(snapshot.getInt("classRank", 0)); // nClassRank_Snapshot
+									buffer.writeInt(id); // server rank snapshot
+									buffer.writeInt(snapshot.getInt("raceRank", 0)); // race rank snapshot
+									buffer.writeInt(snapshot.getInt("classRank", 0)); // nClassRank_Snapshot
 								}
 							}
 						}
 						else
 						{
-							writeInt(0);
-							writeInt(0);
-							writeInt(0);
+							buffer.writeInt(0);
+							buffer.writeInt(0);
+							buffer.writeInt(0);
 						}
 					}
 					break;
@@ -425,20 +427,20 @@ public class ExRankingCharRankers extends ServerPacket
 								count++;
 							}
 						}
-						writeInt(count > 100 ? 100 : count);
+						buffer.writeInt(count > 100 ? 100 : count);
 						int i = 1;
 						for (Integer id : _playerList.keySet())
 						{
 							final StatSet player = _playerList.get(id);
 							if (_class == player.getInt("classId"))
 							{
-								writeSizedString(player.getString("name"));
-								writeSizedString(player.getString("clanName"));
-								writeInt(Config.SERVER_ID);
-								writeInt(player.getInt("level"));
-								writeInt(player.getInt("classId"));
-								writeInt(player.getInt("race"));
-								writeInt(i); // server rank
+								buffer.writeSizedString(player.getString("name"));
+								buffer.writeSizedString(player.getString("clanName"));
+								buffer.writeInt(Config.SERVER_ID);
+								buffer.writeInt(player.getInt("level"));
+								buffer.writeInt(player.getInt("classId"));
+								buffer.writeInt(player.getInt("race"));
+								buffer.writeInt(i); // server rank
 								if (_snapshotList.size() > 0)
 								{
 									final Map<Integer, StatSet> snapshotClassList = new ConcurrentHashMap<>();
@@ -457,17 +459,17 @@ public class ExRankingCharRankers extends ServerPacket
 										final StatSet snapshot = snapshotClassList.get(id2);
 										if (player.getInt("charId") == snapshot.getInt("charId"))
 										{
-											writeInt(id2); // server rank snapshot
-											writeInt(snapshot.getInt("raceRank", 0)); // race rank snapshot
-											writeInt(snapshot.getInt("classRank", 0)); // nClassRank_Snapshot
+											buffer.writeInt(id2); // server rank snapshot
+											buffer.writeInt(snapshot.getInt("raceRank", 0)); // race rank snapshot
+											buffer.writeInt(snapshot.getInt("classRank", 0)); // nClassRank_Snapshot
 										}
 									}
 								}
 								else
 								{
-									writeInt(i);
-									writeInt(i);
-									writeInt(i); // nClassRank_Snapshot?
+									buffer.writeInt(i);
+									buffer.writeInt(i);
+									buffer.writeInt(i); // nClassRank_Snapshot?
 								}
 								i++;
 							}
@@ -499,31 +501,31 @@ public class ExRankingCharRankers extends ServerPacket
 								final int last = classList.size() >= (id + 10) ? id + 10 : id + (classList.size() - id);
 								if (first == 1)
 								{
-									writeInt(last - (first - 1));
+									buffer.writeInt(last - (first - 1));
 								}
 								else
 								{
-									writeInt(last - first);
+									buffer.writeInt(last - first);
 								}
 								for (int id2 = first; id2 <= last; id2++)
 								{
 									final StatSet plr = classList.get(id2);
-									writeSizedString(plr.getString("name"));
-									writeSizedString(plr.getString("clanName"));
-									writeInt(Config.SERVER_ID);
-									writeInt(plr.getInt("level"));
-									writeInt(plr.getInt("classId"));
-									writeInt(plr.getInt("race"));
-									writeInt(id2); // server rank
-									writeInt(id2);
-									writeInt(id2);
-									writeInt(id2); // nClassRank_Snapshot?
+									buffer.writeSizedString(plr.getString("name"));
+									buffer.writeSizedString(plr.getString("clanName"));
+									buffer.writeInt(Config.SERVER_ID);
+									buffer.writeInt(plr.getInt("level"));
+									buffer.writeInt(plr.getInt("classId"));
+									buffer.writeInt(plr.getInt("race"));
+									buffer.writeInt(id2); // server rank
+									buffer.writeInt(id2);
+									buffer.writeInt(id2);
+									buffer.writeInt(id2); // nClassRank_Snapshot?
 								}
 							}
 						}
 						if (!found)
 						{
-							writeInt(0);
+							buffer.writeInt(0);
 						}
 					}
 					break;
@@ -532,7 +534,7 @@ public class ExRankingCharRankers extends ServerPacket
 		}
 		else
 		{
-			writeInt(0);
+			buffer.writeInt(0);
 		}
 	}
 }

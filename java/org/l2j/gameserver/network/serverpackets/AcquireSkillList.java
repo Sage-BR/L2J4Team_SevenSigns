@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,14 +17,17 @@
 package org.l2j.gameserver.network.serverpackets;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.data.xml.SkillTreeData;
 import org.l2j.gameserver.model.SkillLearn;
 import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.model.holders.ItemHolder;
 import org.l2j.gameserver.model.skill.Skill;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 
 /**
@@ -37,43 +40,49 @@ public class AcquireSkillList extends ServerPacket
 	
 	public AcquireSkillList(Player player)
 	{
-		super(512);
-		
 		if (!player.isSubclassLocked()) // Changing class.
 		{
 			_player = player;
-			_learnable = SkillTreeData.getInstance().getAvailableSkills(player, player.getClassId(), false, false);
-			_learnable.addAll(SkillTreeData.getInstance().getNextAvailableSkills(player, player.getClassId(), false, false));
+			
+			if (player.isTransformed())
+			{
+				_learnable = Collections.emptyList();
+			}
+			else
+			{
+				_learnable = SkillTreeData.getInstance().getAvailableSkills(player, player.getClassId(), false, false);
+				_learnable.addAll(SkillTreeData.getInstance().getNextAvailableSkills(player, player.getClassId(), false, false));
+			}
 		}
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
 		if (_player == null)
 		{
 			return;
 		}
 		
-		ServerPackets.ACQUIRE_SKILL_LIST.writeId(this);
-		writeShort(_learnable.size());
+		ServerPackets.ACQUIRE_SKILL_LIST.writeId(this, buffer);
+		buffer.writeShort(_learnable.size());
 		for (SkillLearn skill : _learnable)
 		{
 			final int skillId = _player.getReplacementSkill(skill.getSkillId());
-			writeInt(skillId);
+			buffer.writeInt(skillId);
 			
-			writeInt(skill.getSkillLevel()); // 414 both Main and Essence writeInt.
-			writeLong(skill.getLevelUpSp());
-			writeByte(skill.getGetLevel());
-			writeByte(0); // Skill dual class level.
+			buffer.writeInt(skill.getSkillLevel()); // 414 both Main and Essence writeInt.
+			buffer.writeLong(skill.getLevelUpSp());
+			buffer.writeByte(skill.getGetLevel());
+			buffer.writeByte(0); // Skill dual class level.
 			
-			writeByte(_player.getKnownSkill(skillId) == null);
+			buffer.writeByte(_player.getKnownSkill(skillId) == null);
 			
-			writeByte(skill.getRequiredItems().size());
+			buffer.writeByte(skill.getRequiredItems().size());
 			for (List<ItemHolder> item : skill.getRequiredItems())
 			{
-				writeInt(item.get(0).getId());
-				writeLong(item.get(0).getCount());
+				buffer.writeInt(item.get(0).getId());
+				buffer.writeLong(item.get(0).getCount());
 			}
 			
 			final List<Skill> removeSkills = new LinkedList<>();
@@ -86,11 +95,11 @@ public class AcquireSkillList extends ServerPacket
 				}
 			}
 			
-			writeByte(removeSkills.size());
+			buffer.writeByte(removeSkills.size());
 			for (Skill removed : removeSkills)
 			{
-				writeInt(removed.getId());
-				writeInt(removed.getLevel()); // 414 both Main and Essence writeInt.
+				buffer.writeInt(removed.getId());
+				buffer.writeInt(removed.getLevel()); // 414 both Main and Essence writeInt.
 			}
 		}
 	}

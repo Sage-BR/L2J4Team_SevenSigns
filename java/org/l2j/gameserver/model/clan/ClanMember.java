@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -156,7 +156,11 @@ public class ClanMember
 	 */
 	public boolean isOnline()
 	{
-		if ((_player == null) || !_player.isOnline() || (_player.getClient() == null) || _player.getClient().isDetached())
+		if ((_player == null) || !_player.isOnline())
+		{
+			return false;
+		}
+		if ((_player.getClient() == null) || _player.getClient().isDetached())
 		{
 			return false;
 		}

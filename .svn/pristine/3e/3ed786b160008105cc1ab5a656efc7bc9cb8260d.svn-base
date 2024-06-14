@@ -1,0 +1,6 @@
+<html><body>Additional Services' Researcher Hermin:<br>
+So you want to be %class_name%. Now you have to choose the gender of the character. Unfortunately, <font color="LEVEL">gender selection is not available for the %class_name%</font>.
+<br>%class_name% can only be men. Now close your eyes and concentrate.
+<br>Imagine what it would be like to be %class_name%?
+<br><Button ALIGN="LEFT" ICON="NORMAL" action="bypass -h Quest AdditionalServicesAdvisor choose_gender %class_id% male"><font color="LEVEL">Select %class_name%</font></button>
+</body></html>

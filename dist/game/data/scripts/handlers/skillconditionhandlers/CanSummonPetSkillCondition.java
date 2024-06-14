@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,7 +18,6 @@ package handlers.skillconditionhandlers;
 
 import org.l2j.Config;
 import org.l2j.gameserver.data.sql.CharSummonTable;
-import org.l2j.gameserver.enums.PrivateStoreType;
 import org.l2j.gameserver.model.StatSet;
 import org.l2j.gameserver.model.WorldObject;
 import org.l2j.gameserver.model.actor.Creature;
@@ -57,7 +56,7 @@ public class CanSummonPetSkillCondition implements ISkillCondition
 			player.sendPacket(SystemMessageId.YOU_MAY_NOT_SUMMON_MULTIPLE_PETS_AT_THE_SAME_TIME);
 			canSummon = false;
 		}
-		else if ((player.getActiveTradeList() != null) || player.hasItemRequest() || (player.getPrivateStoreType() != PrivateStoreType.NONE))
+		else if ((player.getActiveTradeList() != null) || player.hasItemRequest() || player.isInStoreMode())
 		{
 			player.sendPacket(SystemMessageId.CANNOT_BE_SUMMONED_WHILE_TRADING);
 			canSummon = false;

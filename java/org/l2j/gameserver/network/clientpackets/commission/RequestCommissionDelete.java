@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,32 +16,30 @@
  */
 package org.l2j.gameserver.network.clientpackets.commission;
 
-import org.l2j.commons.network.ReadablePacket;
 import org.l2j.gameserver.instancemanager.ItemCommissionManager;
 import org.l2j.gameserver.model.actor.Player;
-import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.clientpackets.ClientPacket;
 import org.l2j.gameserver.network.serverpackets.commission.ExCloseCommission;
 
 /**
  * @author NosBit
  */
-public class RequestCommissionDelete implements ClientPacket
+public class RequestCommissionDelete extends ClientPacket
 {
 	private long _commissionId;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_commissionId = packet.readLong();
-		// packet.readInt(); // CommissionItemType
-		// packet.readInt(); // CommissionDurationType
+		_commissionId = readLong();
+		// readInt(); // CommissionItemType
+		// readInt(); // CommissionDurationType
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
-		final Player player = client.getPlayer();
+		final Player player = getPlayer();
 		if (player == null)
 		{
 			return;

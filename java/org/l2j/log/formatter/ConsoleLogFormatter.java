@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,7 +21,6 @@ import java.util.Date;
 import java.util.logging.Formatter;
 import java.util.logging.LogRecord;
 
-import org.l2j.Config;
 import org.l2j.commons.util.CommonUtil;
 import org.l2j.commons.util.StringUtil;
 
@@ -33,13 +32,13 @@ public class ConsoleLogFormatter extends Formatter
 	public String format(LogRecord record)
 	{
 		final StringBuilder output = new StringBuilder(500);
-		StringUtil.append(output, "[", dateFmt.format(new Date(record.getMillis())), "] " + record.getMessage(), Config.EOL);
+		StringUtil.append(output, "[", dateFmt.format(new Date(record.getMillis())), "] " + record.getMessage(), System.lineSeparator());
 		
 		if (record.getThrown() != null)
 		{
 			try
 			{
-				StringUtil.append(output, CommonUtil.getStackTrace(record.getThrown()), Config.EOL);
+				StringUtil.append(output, CommonUtil.getStackTrace(record.getThrown()), System.lineSeparator());
 			}
 			catch (Exception ex)
 			{

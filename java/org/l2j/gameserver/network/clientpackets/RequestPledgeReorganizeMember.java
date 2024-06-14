@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,18 +16,16 @@
  */
 package org.l2j.gameserver.network.clientpackets;
 
-import org.l2j.commons.network.ReadablePacket;
 import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.model.clan.Clan;
 import org.l2j.gameserver.model.clan.ClanMember;
 import org.l2j.gameserver.model.clan.ClanPrivilege;
-import org.l2j.gameserver.network.GameClient;
 
 /**
  * Format: (ch) dSdS
  * @author -Wooden-
  */
-public class RequestPledgeReorganizeMember implements ClientPacket
+public class RequestPledgeReorganizeMember extends ClientPacket
 {
 	private int _isMemberSelected;
 	private String _memberName;
@@ -35,30 +33,35 @@ public class RequestPledgeReorganizeMember implements ClientPacket
 	private String _selectedMember;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_isMemberSelected = packet.readInt();
-		_memberName = packet.readString();
-		_newPledgeType = packet.readInt();
-		_selectedMember = packet.readString();
+		_isMemberSelected = readInt();
+		_memberName = readString();
+		_newPledgeType = readInt();
+		_selectedMember = readString();
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
 		if (_isMemberSelected == 0)
 		{
 			return;
 		}
 		
-		final Player player = client.getPlayer();
+		final Player player = getPlayer();
 		if (player == null)
 		{
 			return;
 		}
 		
 		final Clan clan = player.getClan();
-		if ((clan == null) || !player.hasClanPrivilege(ClanPrivilege.CL_MANAGE_RANKS))
+		if (clan == null)
+		{
+			return;
+		}
+		
+		if (!player.hasClanPrivilege(ClanPrivilege.CL_MANAGE_RANKS))
 		{
 			return;
 		}

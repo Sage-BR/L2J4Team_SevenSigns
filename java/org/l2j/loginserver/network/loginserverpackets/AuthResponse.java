@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,13 +16,13 @@
  */
 package org.l2j.loginserver.network.loginserverpackets;
 
-import org.l2j.commons.network.WritablePacket;
+import org.l2j.commons.network.base.BaseWritablePacket;
 import org.l2j.loginserver.GameServerTable;
 
 /**
  * @author -Wooden-
  */
-public class AuthResponse extends WritablePacket
+public class AuthResponse extends BaseWritablePacket
 {
 	public AuthResponse(int serverId)
 	{

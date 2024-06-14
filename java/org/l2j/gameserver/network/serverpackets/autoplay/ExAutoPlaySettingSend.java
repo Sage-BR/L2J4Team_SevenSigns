@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,6 +16,8 @@
  */
 package org.l2j.gameserver.network.serverpackets.autoplay;
 
+import org.l2j.commons.network.WritableBuffer;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 import org.l2j.gameserver.network.serverpackets.ServerPacket;
 
@@ -46,16 +48,17 @@ public class ExAutoPlaySettingSend extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_AUTOPLAY_SETTING.writeId(this);
-		writeShort(_options);
-		writeByte(_active);
-		writeByte(_pickUp);
-		writeShort(_nextTargetMode);
-		writeByte(_shortRange);
-		writeInt(_potionPercent);
-		writeInt(_petPotionPercent); // 272
-		writeByte(_respectfulHunting);
+		ServerPackets.EX_AUTOPLAY_SETTING.writeId(this, buffer);
+		buffer.writeShort(_options);
+		buffer.writeByte(_active);
+		buffer.writeByte(_pickUp);
+		buffer.writeShort(_nextTargetMode);
+		buffer.writeByte(_shortRange);
+		buffer.writeInt(_potionPercent);
+		buffer.writeInt(_petPotionPercent); // 272
+		buffer.writeByte(_respectfulHunting);
+		buffer.writeByte(0); // Macro index.
 	}
 }

@@ -1,0 +1,25 @@
+<html><head><body scroll="no">
+	<table border=0 cellpadding=0 cellspacing=0 width=292 height=493
+		background="L2UI_CH3.refinewnd_back_Pattern">
+		<tr>
+			<td height=25></td>
+		</tr>
+		<tr>
+			<td valign="top" align="center">
+				<table border=0 cellpadding=0 cellspacing=0 width="250">
+					<tr>
+						<td align="center" height="15"><br>
+						<font color="af9878">Sealed Pet Necklace<br1>can be exchanged for Pet's Supply Pouch<br1>that contains items useful for Pets.</font></td>
+					</tr>
+				</table><br>
+				<table border=0 cellpadding=0 cellspacing=0 width="270">
+					<tr>
+						<td align="center">
+							<button action="bypass Quest GameAssistant Ex_Pets" value="Pet's Supply Pouch" width="210" height="31" back="L2UI_CT1.Button_DF_Down" fore="L2UI_CT1.Button_DF"></Button>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+</body></html>

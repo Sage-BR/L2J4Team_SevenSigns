@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,7 +19,6 @@ package org.l2j.gameserver.network.clientpackets;
 import java.util.Arrays;
 
 import org.l2j.Config;
-import org.l2j.commons.network.ReadablePacket;
 import org.l2j.gameserver.ai.CtrlIntention;
 import org.l2j.gameserver.data.xml.DoorData;
 import org.l2j.gameserver.enums.AdminTeleportType;
@@ -32,18 +31,16 @@ import org.l2j.gameserver.model.events.EventDispatcher;
 import org.l2j.gameserver.model.events.EventType;
 import org.l2j.gameserver.model.events.impl.creature.player.OnPlayerMoveRequest;
 import org.l2j.gameserver.model.events.returns.TerminateReturn;
-import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.SystemMessageId;
 import org.l2j.gameserver.network.serverpackets.ActionFailed;
 import org.l2j.gameserver.network.serverpackets.FlyToLocation;
 import org.l2j.gameserver.network.serverpackets.MagicSkillLaunched;
 import org.l2j.gameserver.network.serverpackets.MagicSkillUse;
-import org.l2j.gameserver.network.serverpackets.StopMove;
 import org.l2j.gameserver.network.serverpackets.sayune.ExFlyMove;
 import org.l2j.gameserver.network.serverpackets.sayune.ExFlyMoveBroadcast;
 import org.l2j.gameserver.util.Broadcast;
 
-public class MoveBackwardToLocation implements ClientPacket
+public class MoveBackwardToLocation extends ClientPacket
 {
 	private int _targetX;
 	private int _targetY;
@@ -54,21 +51,21 @@ public class MoveBackwardToLocation implements ClientPacket
 	private int _movementMode;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_targetX = packet.readInt();
-		_targetY = packet.readInt();
-		_targetZ = packet.readInt();
-		_originX = packet.readInt();
-		_originY = packet.readInt();
-		_originZ = packet.readInt();
-		_movementMode = packet.readInt(); // is 0 if cursor keys are used 1 if mouse is used
+		_targetX = readInt();
+		_targetY = readInt();
+		_targetZ = readInt();
+		_originX = readInt();
+		_originY = readInt();
+		_originZ = readInt();
+		_movementMode = readInt(); // is 0 if cursor keys are used 1 if mouse is used
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
-		final Player player = client.getPlayer();
+		final Player player = getPlayer();
 		if (player == null)
 		{
 			return;
@@ -83,7 +80,7 @@ public class MoveBackwardToLocation implements ClientPacket
 		
 		if ((_targetX == _originX) && (_targetY == _originY) && (_targetZ == _originZ))
 		{
-			player.sendPacket(new StopMove(player));
+			player.stopMove(player.getLocation());
 			player.sendPacket(ActionFailed.STATIC_PACKET);
 			return;
 		}

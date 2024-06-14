@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,10 +16,8 @@
  */
 package org.l2j.gameserver.network.clientpackets.autopeel;
 
-import org.l2j.commons.network.ReadablePacket;
 import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.model.actor.request.AutoPeelRequest;
-import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.clientpackets.ClientPacket;
 import org.l2j.gameserver.network.serverpackets.autopeel.ExReadyItemAutoPeel;
 import org.l2j.gameserver.network.serverpackets.autopeel.ExStopItemAutoPeel;
@@ -27,18 +25,18 @@ import org.l2j.gameserver.network.serverpackets.autopeel.ExStopItemAutoPeel;
 /**
  * @author Mobius
  */
-public class ExRequestStopItemAutoPeel implements ClientPacket
+public class ExRequestStopItemAutoPeel extends ClientPacket
 {
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		packet.readByte();
+		readByte();
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
-		final Player player = client.getPlayer();
+		final Player player = getPlayer();
 		if (player == null)
 		{
 			return;

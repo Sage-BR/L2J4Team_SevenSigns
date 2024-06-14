@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,6 +16,8 @@
  */
 package org.l2j.gameserver.network.serverpackets.dualinventory;
 
+import org.l2j.commons.network.WritableBuffer;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 import org.l2j.gameserver.network.serverpackets.ServerPacket;
 
@@ -32,23 +34,23 @@ public class ExDualInventorySwap extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_DUAL_INVENTORY_INFO.writeId(this);
-		writeByte(_slot);
-		writeByte(1); // Success.
-		writeByte(1); // Stable swapping.
+		ServerPackets.EX_DUAL_INVENTORY_INFO.writeId(this, buffer);
+		buffer.writeByte(_slot);
+		buffer.writeByte(1); // Success.
+		buffer.writeByte(1); // Stable swapping.
 		
 		// List SlotDBID.
-		writeByte(0);
-		writeInt(0); // Old object id?
-		writeInt(0); // New object id?
+		buffer.writeByte(0);
+		buffer.writeInt(0); // Old object id?
+		buffer.writeInt(0); // New object id?
 		
 		// List HennaPotenID.
-		writeByte(0);
-		writeInt(0);
-		writeInt(0);
-		writeByte(0);
-		writeByte(0);
+		buffer.writeByte(0);
+		buffer.writeInt(0);
+		buffer.writeInt(0);
+		buffer.writeByte(0);
+		buffer.writeByte(0);
 	}
 }

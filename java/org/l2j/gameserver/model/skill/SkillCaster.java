@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -158,7 +158,12 @@ public class SkillCaster implements Runnable
 	 */
 	public static SkillCaster castSkill(Creature caster, WorldObject worldObject, Skill skill, Item item, SkillCastingType castingType, boolean ctrlPressed, boolean shiftPressed, int castTime)
 	{
-		if ((caster == null) || (skill == null) || (castingType == null) || !checkUseConditions(caster, skill, castingType))
+		if ((caster == null) || (skill == null) || (castingType == null))
+		{
+			return null;
+		}
+		
+		if (!checkUseConditions(caster, skill, castingType))
 		{
 			return null;
 		}
@@ -360,7 +365,7 @@ public class SkillCaster implements Runnable
 			// Send a system message to the player.
 			if (!_skill.isHidingMessages())
 			{
-				caster.sendPacket(_skill.getId() != 2046 ? new SystemMessage(SystemMessageId.YOU_VE_USED_S1).addSkillName(_skill) : new SystemMessage(SystemMessageId.SUMMONING_YOUR_PET));
+				caster.sendPacket(_skill.getId() != 2046 ? new SystemMessage(SystemMessageId.YOU_HAVE_USED_S1).addSkillName(_skill) : new SystemMessage(SystemMessageId.SUMMONING_YOUR_PET));
 			}
 			
 			// Show the gauge bar for casting.
@@ -532,7 +537,11 @@ public class SkillCaster implements Runnable
 		if (caster.isPlayer())
 		{
 			// Consume Souls if necessary.
-			if (((_skill.getMaxLightSoulConsumeCount() > 0) && !caster.getActingPlayer().decreaseSouls(_skill.getMaxLightSoulConsumeCount(), SoulType.LIGHT)) || ((_skill.getMaxShadowSoulConsumeCount() > 0) && !caster.getActingPlayer().decreaseSouls(_skill.getMaxShadowSoulConsumeCount(), SoulType.SHADOW)))
+			if ((_skill.getMaxLightSoulConsumeCount() > 0) && !caster.getActingPlayer().decreaseSouls(_skill.getMaxLightSoulConsumeCount(), SoulType.LIGHT))
+			{
+				return false;
+			}
+			if ((_skill.getMaxShadowSoulConsumeCount() > 0) && !caster.getActingPlayer().decreaseSouls(_skill.getMaxShadowSoulConsumeCount(), SoulType.SHADOW))
 			{
 				return false;
 			}
@@ -594,8 +603,13 @@ public class SkillCaster implements Runnable
 		try
 		{
 			// Disabled characters should not be able to finish bad skills.
+			if (skill.isBad() && caster.isDisabled())
+			{
+				return;
+			}
+			
 			// Check if the toggle skill effects are already in progress on the Creature
-			if ((skill.isBad() && caster.isDisabled()) || (skill.isToggle() && caster.isAffectedBySkill(skill.getId())))
+			if (skill.isToggle() && caster.isAffectedBySkill(skill.getId()))
 			{
 				return;
 			}
@@ -891,6 +905,28 @@ public class SkillCaster implements Runnable
 	
 	public static void triggerCast(Creature creature, WorldObject target, Skill skill, Item item, boolean ignoreTargetType)
 	{
+		if (target == null)
+		{
+			creature.addTriggerCast(new TriggerCastInfo(creature, target, skill, item, ignoreTargetType));
+		}
+		else
+		{
+			target.addTriggerCast(new TriggerCastInfo(creature, target, skill, item, ignoreTargetType));
+		}
+	}
+	
+	/**
+	 * CAUTION! Do not use this method to trigger cast skills!
+	 * @param info the TriggerCastInfo
+	 */
+	public static void triggerCast(TriggerCastInfo info)
+	{
+		final Creature creature = info.getCreature();
+		final WorldObject target = info.getTarget();
+		final Skill skill = info.getSkill();
+		final Item item = info.getItem();
+		final boolean ignoreTargetType = info.isIgnoreTargetType();
+		
 		try
 		{
 			if ((creature == null) || (skill == null))
@@ -929,7 +965,7 @@ public class SkillCaster implements Runnable
 				
 				final WorldObject[] targets = skill.getTargetsAffected(creature, currentTarget).toArray(new WorldObject[0]);
 				
-				if (!skill.isNotBroadcastable())
+				if (!skill.isNotBroadcastable() && !creature.isChanneling())
 				{
 					creature.broadcastPacket(new MagicSkillUse(creature, currentTarget, skill.getDisplayId(), skill.getLevel(), 0, 0));
 				}

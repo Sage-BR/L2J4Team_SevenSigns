@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,14 +16,12 @@
  */
 package org.l2j.gameserver.network.clientpackets;
 
-import org.l2j.commons.network.ReadablePacket;
-import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.serverpackets.ExBrLoadEventTopRankers;
 
 /**
- * Halloween rank list client packet. Format: (ch)ddd
+ * Halloween rank list client  Format: (ch)ddd
  */
-public class BrEventRankerList implements ClientPacket
+public class BrEventRankerList extends ClientPacket
 {
 	private int _eventId;
 	private int _day;
@@ -31,20 +29,20 @@ public class BrEventRankerList implements ClientPacket
 	private int _ranking;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_eventId = packet.readInt();
-		_day = packet.readInt(); // 0 - current, 1 - previous
-		_ranking = packet.readInt();
+		_eventId = readInt();
+		_day = readInt(); // 0 - current, 1 - previous
+		_ranking = readInt();
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
 		// TODO count, bestScore, myScore
 		final int count = 0;
 		final int bestScore = 0;
 		final int myScore = 0;
-		client.sendPacket(new ExBrLoadEventTopRankers(_eventId, _day, count, bestScore, myScore));
+		getClient().sendPacket(new ExBrLoadEventTopRankers(_eventId, _day, count, bestScore, myScore));
 	}
 }

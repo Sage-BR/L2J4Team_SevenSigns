@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,16 +18,20 @@ package org.l2j.gameserver.network.clientpackets;
 
 import org.l2j.gameserver.enums.PrivateStoreType;
 import org.l2j.gameserver.model.actor.Player;
-import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.serverpackets.ActionFailed;
 import org.l2j.gameserver.network.serverpackets.RecipeShopManageList;
 
-public class RequestRecipeShopManageList implements ClientPacket
+public class RequestRecipeShopManageList extends ClientPacket
 {
 	@Override
-	public void run(GameClient client)
+	protected void readImpl()
 	{
-		final Player player = client.getPlayer();
+	}
+	
+	@Override
+	protected void runImpl()
+	{
+		final Player player = getPlayer();
 		if (player == null)
 		{
 			return;
@@ -39,7 +43,7 @@ public class RequestRecipeShopManageList implements ClientPacket
 			player.sendPacket(ActionFailed.STATIC_PACKET);
 			return;
 		}
-		if (player.getPrivateStoreType() != PrivateStoreType.NONE)
+		if (player.isInStoreMode())
 		{
 			player.setPrivateStoreType(PrivateStoreType.NONE);
 			player.broadcastUserInfo();

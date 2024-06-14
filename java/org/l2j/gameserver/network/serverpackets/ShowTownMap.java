@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,6 +16,8 @@
  */
 package org.l2j.gameserver.network.serverpackets;
 
+import org.l2j.commons.network.WritableBuffer;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 
 public class ShowTownMap extends ServerPacket
@@ -32,11 +34,11 @@ public class ShowTownMap extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.SHOW_TOWN_MAP.writeId(this);
-		writeString(_texture);
-		writeInt(_x);
-		writeInt(_y);
+		ServerPackets.SHOW_TOWN_MAP.writeId(this, buffer);
+		buffer.writeString(_texture);
+		buffer.writeInt(_x);
+		buffer.writeInt(_y);
 	}
 }

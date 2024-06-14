@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,16 +16,14 @@
  */
 package org.l2j.gameserver.network.clientpackets;
 
-import org.l2j.commons.network.ReadablePacket;
 import org.l2j.gameserver.enums.SkillEnchantType;
 import org.l2j.gameserver.model.actor.Player;
-import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.serverpackets.ExEnchantSkillInfoDetail;
 
 /**
  * @author -Wooden-
  */
-public class RequestExEnchantSkillInfoDetail implements ClientPacket
+public class RequestExEnchantSkillInfoDetail extends ClientPacket
 {
 	private SkillEnchantType _type;
 	private int _skillId;
@@ -33,23 +31,23 @@ public class RequestExEnchantSkillInfoDetail implements ClientPacket
 	private int _skillSubLevel;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_type = SkillEnchantType.values()[packet.readInt()];
-		_skillId = packet.readInt();
-		_skillLevel = packet.readShort();
-		_skillSubLevel = packet.readShort();
+		_type = SkillEnchantType.values()[readInt()];
+		_skillId = readInt();
+		_skillLevel = readShort();
+		_skillSubLevel = readShort();
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
 		if ((_skillId <= 0) || (_skillLevel <= 0) || (_skillSubLevel < 0))
 		{
 			return;
 		}
 		
-		final Player player = client.getPlayer();
+		final Player player = getPlayer();
 		if (player == null)
 		{
 			return;

@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -143,8 +143,13 @@ public class CreatureStatus
 	public void reduceHp(double value, Creature attacker, boolean awake, boolean isDOT, boolean isHPConsumption)
 	{
 		final Creature creature = _creature;
+		if (creature.isDead())
+		{
+			return;
+		}
+		
 		// invul handling
-		if (creature.isDead() || (creature.isHpBlocked() && !(isDOT || isHPConsumption)))
+		if (creature.isHpBlocked() && !(isDOT || isHPConsumption))
 		{
 			return;
 		}

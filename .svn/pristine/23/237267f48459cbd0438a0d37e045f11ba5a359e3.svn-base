@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/multisell.xsd">
+	<npcs>
+		<npc>-1</npc> <!-- Item Multisell -->
+	</npcs>
+	<!-- Jewel Coupon Lv. 7 - Sealed (100001) -->
+	<item>
+		<ingredient id="100001" count="1" /> <!-- Jewel Coupon Lv. 7 - Sealed -->
+		<production id="92071" count="1" /> <!-- Onyx Lv. 7 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="100001" count="1" /> <!-- Jewel Coupon Lv. 7 - Sealed -->
+		<production id="92091" count="1" /> <!-- Zircon Lv. 7 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="100001" count="1" /> <!-- Jewel Coupon Lv. 7 - Sealed -->
+		<production id="92061" count="1" /> <!-- Coral Lv. 7 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="100001" count="1" /> <!-- Jewel Coupon Lv. 7 - Sealed -->
+		<production id="92051" count="1" /> <!-- Opal Lv. 7 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="100001" count="1" /> <!-- Jewel Coupon Lv. 7 - Sealed -->
+		<production id="92041" count="1" /> <!-- Amber Lv. 7 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="100001" count="1" /> <!-- Jewel Coupon Lv. 7 - Sealed -->
+		<production id="92101" count="1" /> <!-- Moonstone Lv. 7 - Sealed -->
+	</item>
+</list>

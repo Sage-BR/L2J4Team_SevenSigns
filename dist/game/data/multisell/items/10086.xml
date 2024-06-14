@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/multisell.xsd">
+	<npcs>
+		<npc>-1</npc> <!-- Item Multisell -->
+	</npcs>
+	<!-- Dye Coupon Lv. 3 (Time-limited) - Sealed (97735) -->
+	<item>
+		<ingredient id="97735" count="1" /> <!-- Dye Coupon Lv. 3 (Time-limited) - Sealed -->
+		<production id="96357" count="1" /> <!-- STR Dye - Lv. 3 -->
+	</item>
+	<item>
+		<ingredient id="97735" count="1" /> <!-- Dye Coupon Lv. 3 (Time-limited) - Sealed -->
+		<production id="96377" count="1" /> <!-- CON Dye - Lv. 3 -->
+	</item>
+	<item>
+		<ingredient id="97735" count="1" /> <!-- Dye Coupon Lv. 3 (Time-limited) - Sealed -->
+		<production id="96397" count="1" /> <!-- DEX Dye - Lv. 3 -->
+	</item>
+	<item>
+		<ingredient id="97735" count="1" /> <!-- Dye Coupon Lv. 3 (Time-limited) - Sealed -->
+		<production id="96417" count="1" /> <!-- INT Dye - Lv. 3 -->
+	</item>
+	<item>
+		<ingredient id="97735" count="1" /> <!-- Dye Coupon Lv. 3 (Time-limited) - Sealed -->
+		<production id="96437" count="1" /> <!-- MEN Dye - Lv. 3 -->
+	</item>
+	<item>
+		<ingredient id="97735" count="1" /> <!-- Dye Coupon Lv. 3 (Time-limited) - Sealed -->
+		<production id="96457" count="1" /> <!-- WIT Dye - Lv. 3 -->
+	</item>
+</list>

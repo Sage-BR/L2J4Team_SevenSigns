@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -271,7 +271,7 @@ public class ExtractableItems implements IItemHandler
 			{
 				playerIU.addModifiedItem(i);
 			}
-			player.sendPacket(playerIU);
+			player.sendInventoryUpdate(playerIU);
 		}
 		
 		for (Entry<Item, Long> entry : extractedItems.entrySet())
@@ -318,7 +318,7 @@ public class ExtractableItems implements IItemHandler
 		final SystemMessage sm;
 		if (count > 1)
 		{
-			sm = new SystemMessage(SystemMessageId.YOU_VE_OBTAINED_S1_X_S2);
+			sm = new SystemMessage(SystemMessageId.YOU_HAVE_OBTAINED_S1_X_S2);
 			sm.addItemName(item);
 			sm.addLong(count);
 		}

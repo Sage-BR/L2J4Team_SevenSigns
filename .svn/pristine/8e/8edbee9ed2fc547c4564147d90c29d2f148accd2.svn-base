@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/multisell.xsd">
+	<npcs>
+		<npc>-1</npc> <!-- Item Multisell -->
+	</npcs>
+	<!-- Manager's +2 Rare Accessory Coupon (Time-limited) - Sealed (100078) -->
+	<item>
+		<ingredient id="100078" count="1" /> <!-- Sayha's +2 Rare Accessory Coupon (Time-limited) - Sealed -->
+		<production id="100011" count="1" /> <!-- Package: +2 Queen Ant's Ring (Sealed) - Sealed -->
+	</item>
+	<item>
+		<ingredient id="100078" count="1" /> <!-- Sayha's +2 Rare Accessory Coupon (Time-limited) - Sealed -->
+		<production id="100012" count="1" /> <!-- Package: +2 Orfen's Earring (Sealed) - Sealed -->
+	</item>
+	<item>
+		<ingredient id="100078" count="1" /> <!-- Sayha's +2 Rare Accessory Coupon (Time-limited) - Sealed -->
+		<production id="100010" count="1" /> <!-- Package: +2 Zaken's Earring (Sealed) - Sealed -->
+	</item>
+	<item>
+		<ingredient id="100078" count="1" /> <!-- Sayha's +2 Rare Accessory Coupon (Time-limited) - Sealed -->
+		<production id="100013" count="1" /> <!-- Package: +2 Ring of Core (Sealed) - Sealed -->
+	</item>
+</list>

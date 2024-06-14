@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,10 +19,12 @@ package org.l2j.gameserver.network.serverpackets;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.enums.SubclassInfoType;
 import org.l2j.gameserver.enums.SubclassType;
 import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.model.holders.SubClassHolder;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 
 /**
@@ -93,19 +95,19 @@ public class ExSubjobInfo extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_SUBJOB_INFO.writeId(this);
-		writeByte(_type);
-		writeInt(_currClassId);
-		writeInt(_currRace);
-		writeInt(_subs.size());
+		ServerPackets.EX_SUBJOB_INFO.writeId(this, buffer);
+		buffer.writeByte(_type);
+		buffer.writeInt(_currClassId);
+		buffer.writeInt(_currRace);
+		buffer.writeInt(_subs.size());
 		for (SubInfo sub : _subs)
 		{
-			writeInt(sub.getIndex());
-			writeInt(sub.getClassId());
-			writeInt(sub.getLevel());
-			writeByte(sub.getType());
+			buffer.writeInt(sub.getIndex());
+			buffer.writeInt(sub.getClassId());
+			buffer.writeInt(sub.getLevel());
+			buffer.writeByte(sub.getType());
 		}
 	}
 }

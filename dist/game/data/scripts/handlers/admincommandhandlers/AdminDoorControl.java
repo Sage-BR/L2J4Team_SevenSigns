@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,6 +17,10 @@
 package handlers.admincommandhandlers;
 
 import java.awt.Color;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.logging.Logger;
 
 import org.l2j.gameserver.data.xml.DoorData;
@@ -39,7 +43,7 @@ public class AdminDoorControl implements IAdminCommandHandler
 {
 	private static final Logger LOGGER = Logger.getLogger(AdminDoorControl.class.getName());
 	
-	private static DoorData _doorTable = DoorData.getInstance();
+	private static final Map<Player, Set<Integer>> PLAYER_SHOWN_DOORS = new ConcurrentHashMap<>();
 	
 	private static final String[] ADMIN_COMMANDS =
 	{
@@ -47,7 +51,7 @@ public class AdminDoorControl implements IAdminCommandHandler
 		"admin_close",
 		"admin_openall",
 		"admin_closeall",
-		"admin_showdoors"
+		"admin_showdoors",
 	};
 	
 	@Override
@@ -58,9 +62,10 @@ public class AdminDoorControl implements IAdminCommandHandler
 			if (command.startsWith("admin_open "))
 			{
 				final int doorId = Integer.parseInt(command.substring(11));
-				if (_doorTable.getDoor(doorId) != null)
+				final Door door = DoorData.getInstance().getDoor(doorId);
+				if (door != null)
 				{
-					_doorTable.getDoor(doorId).openMe();
+					door.openMe();
 				}
 				else
 				{
@@ -76,9 +81,10 @@ public class AdminDoorControl implements IAdminCommandHandler
 			else if (command.startsWith("admin_close "))
 			{
 				final int doorId = Integer.parseInt(command.substring(12));
-				if (_doorTable.getDoor(doorId) != null)
+				final Door door = DoorData.getInstance().getDoor(doorId);
+				if (door != null)
 				{
-					_doorTable.getDoor(doorId).closeMe();
+					door.closeMe();
 				}
 				else
 				{
@@ -93,7 +99,7 @@ public class AdminDoorControl implements IAdminCommandHandler
 			}
 			else if (command.equals("admin_closeall"))
 			{
-				for (Door door : _doorTable.getDoors())
+				for (Door door : DoorData.getInstance().getDoors())
 				{
 					door.closeMe();
 				}
@@ -107,7 +113,7 @@ public class AdminDoorControl implements IAdminCommandHandler
 			}
 			else if (command.equals("admin_openall"))
 			{
-				for (Door door : _doorTable.getDoors())
+				for (Door door : DoorData.getInstance().getDoors())
 				{
 					door.openMe();
 				}
@@ -143,31 +149,69 @@ public class AdminDoorControl implements IAdminCommandHandler
 					BuilderUtil.sendSysMessage(activeChar, "Incorrect target.");
 				}
 			}
-			else if (command.equals("admin_showdoors"))
+			else if (command.contains("admin_showdoors"))
 			{
-				World.getInstance().forEachVisibleObject(activeChar, Door.class, door ->
+				if (command.contains("off"))
 				{
-					final ExServerPrimitive packet = new ExServerPrimitive("door" + door.getId(), activeChar.getX(), activeChar.getY(), -16000);
-					final Color color = door.isOpen() ? Color.GREEN : Color.RED;
-					// box 1
-					packet.addLine(color, door.getX(0), door.getY(0), door.getZMin(), door.getX(1), door.getY(1), door.getZMin());
-					packet.addLine(color, door.getX(1), door.getY(1), door.getZMin(), door.getX(2), door.getY(2), door.getZMax());
-					packet.addLine(color, door.getX(2), door.getY(2), door.getZMax(), door.getX(3), door.getY(3), door.getZMax());
-					packet.addLine(color, door.getX(3), door.getY(3), door.getZMax(), door.getX(0), door.getY(0), door.getZMin());
-					// box 2
-					packet.addLine(color, door.getX(0), door.getY(0), door.getZMax(), door.getX(1), door.getY(1), door.getZMax());
-					packet.addLine(color, door.getX(1), door.getY(1), door.getZMax(), door.getX(2), door.getY(2), door.getZMin());
-					packet.addLine(color, door.getX(2), door.getY(2), door.getZMin(), door.getX(3), door.getY(3), door.getZMin());
-					packet.addLine(color, door.getX(3), door.getY(3), door.getZMin(), door.getX(0), door.getY(0), door.getZMax());
-					// diagonals
-					packet.addLine(color, door.getX(0), door.getY(0), door.getZMin(), door.getX(1), door.getY(1), door.getZMax());
-					packet.addLine(color, door.getX(2), door.getY(2), door.getZMin(), door.getX(3), door.getY(3), door.getZMax());
-					packet.addLine(color, door.getX(0), door.getY(0), door.getZMax(), door.getX(1), door.getY(1), door.getZMin());
-					packet.addLine(color, door.getX(2), door.getY(2), door.getZMax(), door.getX(3), door.getY(3), door.getZMin());
-					activeChar.sendPacket(packet);
-					// send message
-					BuilderUtil.sendSysMessage(activeChar, "Found door " + door.getId());
-				});
+					final Set<Integer> doorIds = PLAYER_SHOWN_DOORS.get(activeChar);
+					if (doorIds == null)
+					{
+						return true;
+					}
+					
+					for (int doorId : doorIds)
+					{
+						final ExServerPrimitive exsp = new ExServerPrimitive("Door" + doorId, activeChar.getX(), activeChar.getY(), -16000);
+						exsp.addLine(Color.BLACK, activeChar.getX(), activeChar.getY(), -16000, activeChar.getX(), activeChar.getY(), -16000);
+						activeChar.sendPacket(exsp);
+					}
+					
+					doorIds.clear();
+					PLAYER_SHOWN_DOORS.remove(activeChar);
+				}
+				else
+				{
+					final Set<Integer> doorIds;
+					if (PLAYER_SHOWN_DOORS.containsKey(activeChar))
+					{
+						doorIds = PLAYER_SHOWN_DOORS.get(activeChar);
+					}
+					else
+					{
+						doorIds = new HashSet<>();
+						PLAYER_SHOWN_DOORS.put(activeChar, doorIds);
+					}
+					
+					World.getInstance().forEachVisibleObject(activeChar, Door.class, door ->
+					{
+						if (doorIds.contains(door.getId()))
+						{
+							return;
+						}
+						doorIds.add(door.getId());
+						
+						final ExServerPrimitive packet = new ExServerPrimitive("Door" + door.getId(), activeChar.getX(), activeChar.getY(), -16000);
+						final Color color = door.isOpen() ? Color.GREEN : Color.RED;
+						// box 1
+						packet.addLine(color, door.getX(0), door.getY(0), door.getZMin(), door.getX(1), door.getY(1), door.getZMin());
+						packet.addLine(color, door.getX(1), door.getY(1), door.getZMin(), door.getX(2), door.getY(2), door.getZMax());
+						packet.addLine(color, door.getX(2), door.getY(2), door.getZMax(), door.getX(3), door.getY(3), door.getZMax());
+						packet.addLine(color, door.getX(3), door.getY(3), door.getZMax(), door.getX(0), door.getY(0), door.getZMin());
+						// box 2
+						packet.addLine(color, door.getX(0), door.getY(0), door.getZMax(), door.getX(1), door.getY(1), door.getZMax());
+						packet.addLine(color, door.getX(1), door.getY(1), door.getZMax(), door.getX(2), door.getY(2), door.getZMin());
+						packet.addLine(color, door.getX(2), door.getY(2), door.getZMin(), door.getX(3), door.getY(3), door.getZMin());
+						packet.addLine(color, door.getX(3), door.getY(3), door.getZMin(), door.getX(0), door.getY(0), door.getZMax());
+						// diagonals
+						packet.addLine(color, door.getX(0), door.getY(0), door.getZMin(), door.getX(1), door.getY(1), door.getZMax());
+						packet.addLine(color, door.getX(2), door.getY(2), door.getZMin(), door.getX(3), door.getY(3), door.getZMax());
+						packet.addLine(color, door.getX(0), door.getY(0), door.getZMax(), door.getX(1), door.getY(1), door.getZMin());
+						packet.addLine(color, door.getX(2), door.getY(2), door.getZMax(), door.getX(3), door.getY(3), door.getZMin());
+						activeChar.sendPacket(packet);
+						// send message
+						BuilderUtil.sendSysMessage(activeChar, "Found door " + door.getId());
+					});
+				}
 			}
 		}
 		catch (Exception e)

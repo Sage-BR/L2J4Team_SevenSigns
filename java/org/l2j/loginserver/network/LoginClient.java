@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,70 +16,143 @@
  */
 package org.l2j.loginserver.network;
 
-import java.io.OutputStream;
-import java.net.Socket;
+import java.io.IOException;
+import java.security.interfaces.RSAPrivateKey;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.crypto.SecretKey;
-
-import org.l2j.commons.network.EncryptionInterface;
-import org.l2j.commons.network.NetClient;
-import org.l2j.commons.network.WritablePacket;
+import org.l2j.commons.network.Buffer;
+import org.l2j.commons.network.Client;
+import org.l2j.commons.network.Connection;
 import org.l2j.commons.util.Rnd;
 import org.l2j.loginserver.LoginController;
 import org.l2j.loginserver.SessionKey;
+import org.l2j.loginserver.enums.AccountKickedReason;
 import org.l2j.loginserver.enums.LoginFailReason;
 import org.l2j.loginserver.enums.PlayFailReason;
+import org.l2j.loginserver.network.serverpackets.AccountKicked;
 import org.l2j.loginserver.network.serverpackets.Init;
 import org.l2j.loginserver.network.serverpackets.LoginFail;
+import org.l2j.loginserver.network.serverpackets.LoginServerPacket;
 import org.l2j.loginserver.network.serverpackets.PlayFail;
 
 /**
  * Represents a client connected into the LoginServer
  * @author KenM
  */
-public class LoginClient extends NetClient
+public class LoginClient extends Client<Connection<LoginClient>>
 {
-	private ScrambledKeyPair _scrambledPair;
-	private SecretKey _blowfishKey;
-	
+	private final LoginEncryption _encryption;
+	private final ScrambledKeyPair _scrambledPair;
+	private final byte[] _blowfishKey;
+	private String _ip = "N/A";
 	private String _account;
 	private int _accessLevel;
 	private int _lastServer;
 	private SessionKey _sessionKey;
-	private int _sessionId;
+	private final int _sessionId;
 	private boolean _joinedGS;
 	private Map<Integer, Integer> _charsOnServers;
 	private Map<Integer, long[]> _charsToDelete;
 	private ConnectionState _connectionState = ConnectionState.CONNECTED;
-	private long _connectionStartTime;
-	private final LoginEncryption _encryption = new LoginEncryption();
+	private final long _connectionStartTime;
 	
-	@Override
-	public void onConnection()
+	public LoginClient(Connection<LoginClient> connection)
 	{
-		_blowfishKey = LoginController.getInstance().generateBlowfishKey();
-		_encryption.setKey(_blowfishKey.getEncoded());
+		super(connection);
 		_scrambledPair = LoginController.getInstance().getScrambledRSAKeyPair();
+		_blowfishKey = LoginController.getInstance().getBlowfishKey();
+		_ip = connection.getRemoteAddress();
 		_sessionId = Rnd.nextInt();
 		_connectionStartTime = System.currentTimeMillis();
-		sendPacket(new Init(_scrambledPair.getScrambledModulus(), _blowfishKey.getEncoded(), _sessionId));
+		_encryption = new LoginEncryption();
+		_encryption.setKey(_blowfishKey);
 		
-		if (LoginController.getInstance().isBannedAddress(getIp()))
+		if (LoginController.getInstance().isBannedAddress(_ip))
 		{
-			sendPacket(new LoginFail(LoginFailReason.REASON_NOT_AUTHED));
-			disconnect();
+			close(LoginFailReason.REASON_NOT_AUTHED);
 		}
+	}
+	
+	@Override
+	public boolean encrypt(Buffer data, int offset, int size)
+	{
+		try
+		{
+			return _encryption.encrypt(data, offset, size);
+		}
+		catch (IOException e)
+		{
+			return false;
+		}
+	}
+	
+	@Override
+	public boolean decrypt(Buffer data, int offset, int size)
+	{
+		boolean decrypted;
+		try
+		{
+			decrypted = _encryption.decrypt(data, offset, size);
+		}
+		catch (IOException e)
+		{
+			close();
+			return false;
+		}
+		
+		if (!decrypted)
+		{
+			close();
+		}
+		
+		return decrypted;
+	}
+	
+	@Override
+	public void onConnected()
+	{
+		sendPacket(new Init(this));
 	}
 	
 	@Override
 	public void onDisconnection()
 	{
-		if (!_joinedGS || ((_connectionStartTime + LoginController.LOGIN_TIMEOUT) < System.currentTimeMillis()))
+		// Check if the client has joined the game server.
+		if (!_joinedGS)
 		{
-			LoginController.getInstance().removeAuthedLoginClient(getAccount());
+			// The client has not joined, remove it from the login authenticated clients immediately.
+			LoginController.getInstance().removeAuthedLoginClient(_account);
+			
+			// Give time to other threads to finish client actions.
+			try
+			{
+				Thread.sleep(1000);
+			}
+			catch (InterruptedException e)
+			{
+			}
 		}
+	}
+	
+	public byte[] getBlowfishKey()
+	{
+		return _blowfishKey;
+	}
+	
+	public byte[] getScrambledModulus()
+	{
+		return _scrambledPair.getScrambledModulus();
+	}
+	
+	public RSAPrivateKey getRSAPrivateKey()
+	{
+		return (RSAPrivateKey) _scrambledPair.getPrivateKey();
+	}
+	
+	public String getIp()
+	{
+		return _ip;
 	}
 	
 	public String getAccount()
@@ -147,36 +220,14 @@ public class LoginClient extends NetClient
 		return _connectionStartTime;
 	}
 	
-	@Override
-	public void sendPacket(WritablePacket packet)
+	public void sendPacket(LoginServerPacket packet)
 	{
-		final Socket socket = getSocket();
-		if ((socket != null) && socket.isConnected())
-		{
-			final byte[] sendableBytes = packet.getSendableBytes();
-			if (sendableBytes == null)
-			{
-				return;
-			}
-			
-			try
-			{
-				final OutputStream outputStream = getOutputStream();
-				synchronized (this)
-				{
-					outputStream.write(sendableBytes);
-					outputStream.flush();
-				}
-			}
-			catch (Exception ignored)
-			{
-			}
-		}
+		writePacket(packet);
 	}
 	
 	public void close(LoginFailReason reason)
 	{
-		close(new LoginFail(reason));
+		sendPacket(new LoginFail(reason));
 	}
 	
 	public void close(PlayFailReason reason)
@@ -184,15 +235,9 @@ public class LoginClient extends NetClient
 		close(new PlayFail(reason));
 	}
 	
-	public void close(WritablePacket packet)
+	public void close(AccountKickedReason reason)
 	{
-		sendPacket(packet);
-		closeNow();
-	}
-	
-	public void closeNow()
-	{
-		disconnect();
+		close(new AccountKicked(reason));
 	}
 	
 	public void setCharsOnServ(int servId, int chars)
@@ -234,15 +279,9 @@ public class LoginClient extends NetClient
 	}
 	
 	@Override
-	public EncryptionInterface getEncryption()
-	{
-		return _encryption;
-	}
-	
-	@Override
 	public String toString()
 	{
-		final String ip = getIp();
+		final String ip = getHostAddress();
 		final StringBuilder sb = new StringBuilder();
 		sb.append(getClass().getSimpleName());
 		sb.append(" [");
@@ -258,7 +297,7 @@ public class LoginClient extends NetClient
 				sb.append(" - ");
 			}
 			sb.append("IP: ");
-			sb.append(ip);
+			sb.append(ip.isEmpty() ? "disconnected" : ip);
 		}
 		sb.append("]");
 		return sb.toString();

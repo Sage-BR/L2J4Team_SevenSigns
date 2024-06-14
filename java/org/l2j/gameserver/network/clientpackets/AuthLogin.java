@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,7 +16,7 @@
  */
 package org.l2j.gameserver.network.clientpackets;
 
-import org.l2j.commons.network.ReadablePacket;
+
 import org.l2j.gameserver.LoginServerThread;
 import org.l2j.gameserver.LoginServerThread.SessionKey;
 import org.l2j.gameserver.network.GameClient;
@@ -24,7 +24,7 @@ import org.l2j.gameserver.network.GameClient;
 /**
  * @version $Revision: 1.9.2.3.2.4 $ $Date: 2005/03/27 15:29:30 $
  */
-public class AuthLogin implements ClientPacket
+public class AuthLogin extends ClientPacket
 {
 	// loginName + keys must match what the loginserver used.
 	private String _loginName;
@@ -34,21 +34,22 @@ public class AuthLogin implements ClientPacket
 	private int _loginKey2;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_loginName = packet.readString().toLowerCase();
-		_playKey2 = packet.readInt();
-		_playKey1 = packet.readInt();
-		_loginKey1 = packet.readInt();
-		_loginKey2 = packet.readInt();
+		_loginName = readString().toLowerCase();
+		_playKey2 = readInt();
+		_playKey1 = readInt();
+		_loginKey1 = readInt();
+		_loginKey2 = readInt();
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
+		final GameClient client = getClient();
 		if (_loginName.isEmpty() || !client.isProtocolOk())
 		{
-			client.disconnect();
+			client.closeNow();
 			return;
 		}
 		
@@ -65,7 +66,7 @@ public class AuthLogin implements ClientPacket
 			}
 			else
 			{
-				client.disconnect();
+				client.close(null);
 			}
 		}
 	}

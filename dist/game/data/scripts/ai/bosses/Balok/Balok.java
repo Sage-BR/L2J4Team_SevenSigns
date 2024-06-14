@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -340,17 +340,17 @@ public class Balok extends AbstractNpcAI
 		if (rnd < 5)
 		{
 			reward = 33809; // Improved Scroll: Enchant A-grade Weapon
-			BALOK_BATTLE_ZONE.broadcastPacket(new ExShowScreenMessage(NpcStringId.S1_RECEIVES_SCROLL_ENCHANT_WEAPON, ExShowScreenMessage.BOTTOM_RIGHT, 10000, false, player.getName()));
+			BALOK_BATTLE_ZONE.broadcastPacket(new ExShowScreenMessage(NpcStringId.S1_HAS_OBTAINED_SCROLL_ENCHANT_WEAPON, ExShowScreenMessage.BOTTOM_RIGHT, 10000, false, player.getName()));
 		}
 		else if (rnd < 15)
 		{
 			reward = 729; // Scroll: Enchant A-grade Weapon
-			BALOK_BATTLE_ZONE.broadcastPacket(new ExShowScreenMessage(NpcStringId.S1_RECEIVES_SCROLL_ENCHANT_WEAPON, ExShowScreenMessage.BOTTOM_RIGHT, 10000, false, player.getName()));
+			BALOK_BATTLE_ZONE.broadcastPacket(new ExShowScreenMessage(NpcStringId.S1_HAS_OBTAINED_SCROLL_ENCHANT_WEAPON, ExShowScreenMessage.BOTTOM_RIGHT, 10000, false, player.getName()));
 		}
 		else
 		{
 			reward = 730; // Scroll: Enchant A-grade Armor
-			BALOK_BATTLE_ZONE.broadcastPacket(new ExShowScreenMessage(NpcStringId.S1_RECEIVES_SCROLL_ENCHANT_ARMOR, ExShowScreenMessage.BOTTOM_RIGHT, 10000, false, player.getName()));
+			BALOK_BATTLE_ZONE.broadcastPacket(new ExShowScreenMessage(NpcStringId.S1_HAS_OBTAINED_SCROLL_ENCHANT_ARMOR, ExShowScreenMessage.BOTTOM_RIGHT, 10000, false, player.getName()));
 		}
 		player.addItem("Balok Last Hit Reward", reward, 1, player, true);
 	}
@@ -366,7 +366,7 @@ public class Balok extends AbstractNpcAI
 		{
 			player.addItem("Balok Last Hit Reward", reward, 1, player, true);
 		}
-		BALOK_BATTLE_ZONE.broadcastPacket(new ExShowScreenMessage(NpcStringId.S1_RECEIVES_SCROLL_ENCHANT_WEAPON, ExShowScreenMessage.BOTTOM_RIGHT, 10000, false, player.getName()));
+		BALOK_BATTLE_ZONE.broadcastPacket(new ExShowScreenMessage(NpcStringId.S1_HAS_OBTAINED_SCROLL_ENCHANT_WEAPON, ExShowScreenMessage.BOTTOM_RIGHT, 10000, false, player.getName()));
 	}
 	
 	private void setInProgress(boolean value)
@@ -633,7 +633,12 @@ public class Balok extends AbstractNpcAI
 	public void onPlayerLogin(OnPlayerLogin event)
 	{
 		final Player player = event.getPlayer();
-		if ((player == null) || !_inProgress)
+		if (player == null)
+		{
+			return;
+		}
+		
+		if (!_inProgress)
 		{
 			return;
 		}

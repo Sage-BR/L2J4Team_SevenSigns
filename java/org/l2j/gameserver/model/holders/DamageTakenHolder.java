@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,6 +16,7 @@
  */
 package org.l2j.gameserver.model.holders;
 
+import org.l2j.gameserver.enums.DamageTakenType;
 import org.l2j.gameserver.model.actor.Creature;
 
 /**
@@ -26,11 +27,28 @@ public class DamageTakenHolder
 	private final Creature _creature;
 	private final int _skillId;
 	private final double _damage;
+	private final DamageTakenType _damageTakenType;
 	
-	public DamageTakenHolder(Creature creature, int skillId, double damage)
+	public DamageTakenHolder(Creature creature, int skillId, double damage, boolean isDOT, boolean reflect)
 	{
 		_creature = creature;
 		_skillId = skillId;
+		if (isDOT)
+		{
+			_damageTakenType = DamageTakenType.POISON_FIELD;
+		}
+		else if (reflect)
+		{
+			_damageTakenType = DamageTakenType.REFLECTED_DAMAGE;
+		}
+		else if (skillId > 0)
+		{
+			_damageTakenType = DamageTakenType.OTHER_DAMAGE;
+		}
+		else
+		{
+			_damageTakenType = DamageTakenType.NORMAL_DAMAGE;
+		}
 		_damage = damage;
 	}
 	
@@ -47,5 +65,10 @@ public class DamageTakenHolder
 	public double getDamage()
 	{
 		return _damage;
+	}
+	
+	public int getClientId()
+	{
+		return _damageTakenType.getClientId();
 	}
 }

@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,8 +16,10 @@
  */
 package org.l2j.gameserver.network.serverpackets.enchant.challengepoint;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.model.holders.ChallengePointInfoHolder;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 import org.l2j.gameserver.network.serverpackets.ServerPacket;
 
@@ -34,20 +36,20 @@ public class ExEnchantChallengePointInfo extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_ENCHANT_CHALLENGE_POINT_INFO.writeId(this);
-		writeInt(_challengeinfo.length); // vCurrentPointInfo
+		ServerPackets.EX_ENCHANT_CHALLENGE_POINT_INFO.writeId(this, buffer);
+		buffer.writeInt(_challengeinfo.length); // vCurrentPointInfo
 		for (ChallengePointInfoHolder info : _challengeinfo)
 		{
-			writeInt(info.getPointGroupId()); // nPointGroupId
-			writeInt(info.getChallengePoint()); // nChallengePoint
-			writeInt(info.getTicketPointOpt1()); // nTicketPointOpt1
-			writeInt(info.getTicketPointOpt2()); // nTicketPointOpt2
-			writeInt(info.getTicketPointOpt3()); // nTicketPointOpt3
-			writeInt(info.getTicketPointOpt4()); // nTicketPointOpt4
-			writeInt(info.getTicketPointOpt5()); // nTicketPointOpt5
-			writeInt(info.getTicketPointOpt6()); // nTicketPointOpt6
+			buffer.writeInt(info.getPointGroupId()); // nPointGroupId
+			buffer.writeInt(info.getChallengePoint()); // nChallengePoint
+			buffer.writeInt(info.getTicketPointOpt1()); // nTicketPointOpt1
+			buffer.writeInt(info.getTicketPointOpt2()); // nTicketPointOpt2
+			buffer.writeInt(info.getTicketPointOpt3()); // nTicketPointOpt3
+			buffer.writeInt(info.getTicketPointOpt4()); // nTicketPointOpt4
+			buffer.writeInt(info.getTicketPointOpt5()); // nTicketPointOpt5
+			buffer.writeInt(info.getTicketPointOpt6()); // nTicketPointOpt6
 		}
 	}
 }

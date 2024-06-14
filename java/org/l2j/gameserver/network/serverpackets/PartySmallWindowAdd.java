@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,8 +16,10 @@
  */
 package org.l2j.gameserver.network.serverpackets;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.model.Party;
 import org.l2j.gameserver.model.actor.Player;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 
 public class PartySmallWindowAdd extends ServerPacket
@@ -32,24 +34,24 @@ public class PartySmallWindowAdd extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.PARTY_SMALL_WINDOW_ADD.writeId(this);
-		writeInt(_party.getLeaderObjectId()); // c3
-		writeInt(_party.getDistributionType().getId()); // c3
-		writeInt(_member.getObjectId());
-		writeString(_member.getName());
-		writeInt((int) _member.getCurrentCp()); // c4
-		writeInt(_member.getMaxCp()); // c4
-		writeInt((int) _member.getCurrentHp());
-		writeInt(_member.getMaxHp());
-		writeInt((int) _member.getCurrentMp());
-		writeInt(_member.getMaxMp());
-		writeInt(_member.getVitalityPoints());
-		writeByte(_member.getLevel());
-		writeShort(_member.getClassId().getId());
-		writeByte(0);
-		writeShort(_member.getRace().ordinal());
-		writeInt(0); // 228
+		ServerPackets.PARTY_SMALL_WINDOW_ADD.writeId(this, buffer);
+		buffer.writeInt(_party.getLeaderObjectId()); // c3
+		buffer.writeInt(_party.getDistributionType().getId()); // c3
+		buffer.writeInt(_member.getObjectId());
+		buffer.writeString(_member.getName());
+		buffer.writeInt((int) _member.getCurrentCp()); // c4
+		buffer.writeInt(_member.getMaxCp()); // c4
+		buffer.writeInt((int) _member.getCurrentHp());
+		buffer.writeInt(_member.getMaxHp());
+		buffer.writeInt((int) _member.getCurrentMp());
+		buffer.writeInt(_member.getMaxMp());
+		buffer.writeInt(_member.getVitalityPoints());
+		buffer.writeByte(_member.getLevel());
+		buffer.writeShort(_member.getClassId().getId());
+		buffer.writeByte(0);
+		buffer.writeShort(_member.getRace().ordinal());
+		buffer.writeInt(0); // 228
 	}
 }

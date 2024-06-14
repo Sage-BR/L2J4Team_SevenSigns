@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -64,7 +64,13 @@ public class ServitorShareSkills extends AbstractEffect
 		if (effected.isPlayer())
 		{
 			final Player player = effected.getActingPlayer();
-			if ((player.getClient().getConnectionState() != ConnectionState.IN_GAME) || (player.getClient() == null) || !effected.hasServitors())
+			if ((player.getClient().getConnectionState() != ConnectionState.IN_GAME) || (player.getClient() == null))
+			{
+				// ThreadPool.schedule(() -> onStart(effector, effected, skill, item), 1000);
+				return;
+			}
+			
+			if (!effected.hasServitors())
 			{
 				return;
 			}
@@ -93,7 +99,12 @@ public class ServitorShareSkills extends AbstractEffect
 	@Override
 	public void onExit(Creature effector, Creature effected, Skill skill)
 	{
-		if (!effected.isPlayer() || !effected.hasServitors())
+		if (!effected.isPlayer())
+		{
+			return;
+		}
+		
+		if (!effected.hasServitors())
 		{
 			return;
 		}

@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,6 +16,8 @@
  */
 package org.l2j.gameserver.network.serverpackets;
 
+import org.l2j.commons.network.WritableBuffer;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 
 /**
@@ -40,12 +42,12 @@ public class ExBrBuffEventState extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_BR_BUFF_EVENT_STATE.writeId(this);
-		writeInt(_type);
-		writeInt(_value);
-		writeInt(_state);
-		writeInt(_endtime);
+		ServerPackets.EX_BR_BUFF_EVENT_STATE.writeId(this, buffer);
+		buffer.writeInt(_type);
+		buffer.writeInt(_value);
+		buffer.writeInt(_state);
+		buffer.writeInt(_endtime);
 	}
 }

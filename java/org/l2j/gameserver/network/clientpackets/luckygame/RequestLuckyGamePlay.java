@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,7 +21,6 @@ import java.util.EnumMap;
 import java.util.List;
 import java.util.Map.Entry;
 
-import org.l2j.commons.network.ReadablePacket;
 import org.l2j.commons.util.CommonUtil;
 import org.l2j.commons.util.Rnd;
 import org.l2j.gameserver.data.xml.ItemData;
@@ -35,7 +34,6 @@ import org.l2j.gameserver.model.holders.ItemHolder;
 import org.l2j.gameserver.model.holders.LuckyGameDataHolder;
 import org.l2j.gameserver.model.item.instance.Item;
 import org.l2j.gameserver.model.variables.PlayerVariables;
-import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.SystemMessageId;
 import org.l2j.gameserver.network.clientpackets.ClientPacket;
 import org.l2j.gameserver.network.serverpackets.SystemMessage;
@@ -44,7 +42,7 @@ import org.l2j.gameserver.network.serverpackets.luckygame.ExBettingLuckyGameResu
 /**
  * @author Sdw
  */
-public class RequestLuckyGamePlay implements ClientPacket
+public class RequestLuckyGamePlay extends ClientPacket
 {
 	private static final int FORTUNE_READING_TICKET = 23767;
 	private static final int LUXURY_FORTUNE_READING_TICKET = 23768;
@@ -52,17 +50,17 @@ public class RequestLuckyGamePlay implements ClientPacket
 	private int _reading;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		final int type = CommonUtil.constrain(packet.readInt(), 0, LuckyGameType.values().length);
+		final int type = CommonUtil.constrain(readInt(), 0, LuckyGameType.values().length);
 		_type = LuckyGameType.values()[type];
-		_reading = CommonUtil.constrain(packet.readInt(), 0, 50); // max play is 50
+		_reading = CommonUtil.constrain(readInt(), 0, 50); // max play is 50
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
-		final Player player = client.getPlayer();
+		final Player player = getPlayer();
 		if (player == null)
 		{
 			return;

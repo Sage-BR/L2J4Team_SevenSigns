@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -85,7 +85,7 @@ public class Servitor extends Summon implements Runnable
 	public void onSpawn()
 	{
 		super.onSpawn();
-		if ((_lifeTime > 0) && (_summonLifeTask == null))
+		if (_summonLifeTask == null)
 		{
 			_summonLifeTask = ThreadPool.scheduleAtFixedRate(this, 0, 5000);
 		}
@@ -278,7 +278,12 @@ public class Servitor extends Summon implements Runnable
 	@Override
 	public void storeEffect(boolean storeEffects)
 	{
-		if (!Config.SUMMON_STORE_SKILL_COOLTIME || (getOwner() == null) || getOwner().isInOlympiadMode())
+		if (!Config.SUMMON_STORE_SKILL_COOLTIME)
+		{
+			return;
+		}
+		
+		if ((getOwner() == null) || getOwner().isInOlympiadMode())
 		{
 			return;
 		}
@@ -528,7 +533,11 @@ public class Servitor extends Summon implements Runnable
 	public void run()
 	{
 		final int usedtime = 5000;
-		_lifeTimeRemaining -= usedtime;
+		final boolean hasLifetime = _lifeTime > 0;
+		if (hasLifetime)
+		{
+			_lifeTimeRemaining -= usedtime;
+		}
 		if (isDead() || !isSpawned())
 		{
 			if (_summonLifeTask != null)
@@ -538,8 +547,8 @@ public class Servitor extends Summon implements Runnable
 			return;
 		}
 		
-		// check if the summon's lifetime has ran out
-		if (_lifeTimeRemaining < 0)
+		// check if the summon's lifetime has ran out.
+		if (hasLifetime && (_lifeTimeRemaining < 0))
 		{
 			sendPacket(SystemMessageId.YOUR_SERVITOR_PASSED_AWAY);
 			unSummon(getOwner());
@@ -550,7 +559,7 @@ public class Servitor extends Summon implements Runnable
 		{
 			_consumeItemIntervalRemaining -= usedtime;
 			
-			// check if it is time to consume another item
+			// check if it is time to consume another item.
 			if ((_consumeItemIntervalRemaining <= 0) && (_itemConsume.getCount() > 0) && (_itemConsume.getId() > 0) && !isDead())
 			{
 				if (destroyItemByItemId("Consume", _itemConsume.getId(), _itemConsume.getCount(), this, false))
@@ -570,9 +579,12 @@ public class Servitor extends Summon implements Runnable
 			}
 		}
 		
-		sendPacket(new SetSummonRemainTime(_lifeTime, _lifeTimeRemaining));
+		if (hasLifetime)
+		{
+			sendPacket(new SetSummonRemainTime(_lifeTime, _lifeTimeRemaining));
+		}
 		
-		// Using same task to check if owner is in visible range
+		// Using same task to check if owner is in visible range.
 		if (calculateDistance3D(getOwner()) > 2000)
 		{
 			getAI().setIntention(CtrlIntention.AI_INTENTION_FOLLOW, getOwner());

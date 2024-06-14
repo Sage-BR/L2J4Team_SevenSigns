@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,27 +17,25 @@
 package org.l2j.gameserver.network.clientpackets;
 
 import org.l2j.Config;
-import org.l2j.commons.network.ReadablePacket;
 import org.l2j.gameserver.handler.CommunityBoardHandler;
 import org.l2j.gameserver.model.actor.Player;
-import org.l2j.gameserver.network.GameClient;
 
 /**
  * RequestShowBoard client packet implementation.
  * @author Zoey76
  */
-public class RequestShowBoard implements ClientPacket
+public class RequestShowBoard extends ClientPacket
 {
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		packet.readInt(); // Unused.
+		readInt(); // Unused.
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
-		final Player player = client.getPlayer();
+		final Player player = getPlayer();
 		if (player == null)
 		{
 			return;

@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -194,6 +194,8 @@ public enum AbnormalType
 	STIGMA_A(-1),
 	STIGMA_OF_SILEN(-1),
 	STIGMA_OF_DEATH(-1),
+	FINAL_ATTACK_DEFENCE(-1),
+	KNIGHT_BUFF3(-1),
 	STORM_SIGN(-1),
 	SUBSTITUTE_BUFF(-1),
 	SUMMONER_LINK(-1),
@@ -288,7 +290,9 @@ public enum AbnormalType
 	SUPPRESSION(-1),
 	GIRAN_SEAL(-1),
 	SAYHA_GRACE(-1),
+	DANDY_CHANGE(-1),
 	PAAGRIO_GRACE(-1),
+	OVERLOAD_TELEPORT(-1),
 	GOOD_LUCK_BUFF(-1),
 	RANDOM_TRANSFORMATION_SCROLL(-1),
 	REGULAR_DISH(-1),
@@ -299,6 +303,7 @@ public enum AbnormalType
 	ELEMENTAL_DUST(-1),
 	ELEMENTAL_CARE(-1),
 	UNIQUE_SILENCE(-1),
+	EROSION(-1),
 	SPECIAL_CLASS_TRANSFORM(-1),
 	SEAL_OF_DAMAGE(-1),
 	MARK_OF_DEMISE(-1),
@@ -310,6 +315,13 @@ public enum AbnormalType
 	LIGHTNING_GRIP(-1),
 	BONEPRISON(-1),
 	EVENT_BUFF(-1),
+	DANCE_MASTERY(-1),
+	BLADE_ASSAULT(-1),
+	DEFENSE_MODE(-1),
+	CORE_POWER(-1),
+	STAT_SKILL(-1),
+	GLORIOUS_WARRIOR(-1),
+	TRANSFORM_SPECIAL(-1),
 	AB_HAWK_EYE(0),
 	ALL_ATTACK_DOWN(1),
 	ALL_ATTACK_UP(2),
@@ -612,7 +624,7 @@ public enum AbnormalType
 	BR_CLAN_XP(998),
 	BR_CLAN_ATTACK(999);
 	
-	private int _clientId;
+	private final int _clientId;
 	
 	protected static final Logger LOGGER = Logger.getLogger(AbnormalType.class.getName());
 	

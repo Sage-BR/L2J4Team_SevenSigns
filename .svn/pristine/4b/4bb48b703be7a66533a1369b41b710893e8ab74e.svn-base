@@ -1,0 +1,11 @@
+<html><body>Additional Services' Researcher Hermin:<br>
+Aha, the Dark Elf! So you want to be a Dark Elf. Now choose... <font color="LEVEL">class</font> for your character.<br>
+<Button ALIGN="LEFT" ICON="NORMAL" action="bypass -h Quest AdditionalServicesAdvisor choose_class 106"><font color="LEVEL">Shillien Templar</font></button>
+<Button ALIGN="LEFT" ICON="NORMAL" action="bypass -h Quest AdditionalServicesAdvisor choose_class 107"><font color="LEVEL">Spectral Dancer</font></button>
+<Button ALIGN="LEFT" ICON="NORMAL" action="bypass -h Quest AdditionalServicesAdvisor choose_class 108"><font color="LEVEL">Ghost Hunter</font></button>
+<Button ALIGN="LEFT" ICON="NORMAL" action="bypass -h Quest AdditionalServicesAdvisor choose_class 109"><font color="LEVEL">Ghost Sentinel</font></button>
+<Button ALIGN="LEFT" ICON="NORMAL" action="bypass -h Quest AdditionalServicesAdvisor choose_class 110"><font color="LEVEL">Storm Screamer</font></button>
+<Button ALIGN="LEFT" ICON="NORMAL" action="bypass -h Quest AdditionalServicesAdvisor choose_class 111"><font color="LEVEL">Spectral Master</font></button>
+<Button ALIGN="LEFT" ICON="NORMAL" action="bypass -h Quest AdditionalServicesAdvisor choose_class 112"><font color="LEVEL">Shillien Saint</font></button>
+<Button ALIGN="LEFT" ICON="NORMAL" action="bypass -h Quest AdditionalServicesAdvisor choose_class 207"><font color="LEVEL">Death Knight (Dark Elf)</font></button>
+</body></html>

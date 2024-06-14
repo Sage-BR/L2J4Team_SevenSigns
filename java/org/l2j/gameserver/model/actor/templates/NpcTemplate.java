@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -609,7 +609,7 @@ public class NpcTemplate extends CreatureTemplate implements IIdentifiable
 			return false;
 		}
 		
-		int clanId = NpcData.getInstance().getClanId("ALL");
+		int clanId = NpcData.getInstance().getGenericClanId();
 		if (clans.contains(clanId))
 		{
 			return true;
@@ -629,6 +629,7 @@ public class NpcTemplate extends CreatureTemplate implements IIdentifiable
 				return true;
 			}
 		}
+		
 		return false;
 	}
 	
@@ -645,7 +646,7 @@ public class NpcTemplate extends CreatureTemplate implements IIdentifiable
 			return false;
 		}
 		
-		final int clanId = NpcData.getInstance().getClanId("ALL");
+		final int clanId = NpcData.getInstance().getGenericClanId();
 		if (clanSet.contains(clanId))
 		{
 			return true;
@@ -658,12 +659,18 @@ public class NpcTemplate extends CreatureTemplate implements IIdentifiable
 				return true;
 			}
 		}
+		
 		return false;
 	}
 	
 	public Set<Integer> getIgnoreClanNpcIds()
 	{
 		return _ignoreClanNpcIds;
+	}
+	
+	public boolean hasIgnoreClanNpcIds()
+	{
+		return _ignoreClanNpcIds != null;
 	}
 	
 	/**
@@ -952,7 +959,11 @@ public class NpcTemplate extends CreatureTemplate implements IIdentifiable
 			// champion extra drop
 			if (victim.isChampion())
 			{
-				if (((victim.getLevel() < killer.getLevel()) && (Rnd.get(100) < Config.CHAMPION_REWARD_LOWER_LEVEL_ITEM_CHANCE)) || ((victim.getLevel() > killer.getLevel()) && (Rnd.get(100) < Config.CHAMPION_REWARD_HIGHER_LEVEL_ITEM_CHANCE)))
+				if ((victim.getLevel() < killer.getLevel()) && (Rnd.get(100) < Config.CHAMPION_REWARD_LOWER_LEVEL_ITEM_CHANCE))
+				{
+					return calculatedDrops;
+				}
+				if ((victim.getLevel() > killer.getLevel()) && (Rnd.get(100) < Config.CHAMPION_REWARD_HIGHER_LEVEL_ITEM_CHANCE))
 				{
 					return calculatedDrops;
 				}
@@ -1054,7 +1065,11 @@ public class NpcTemplate extends CreatureTemplate implements IIdentifiable
 		// champion extra drop
 		if (victim.isChampion())
 		{
-			if (((victim.getLevel() < killer.getLevel()) && (Rnd.get(100) < Config.CHAMPION_REWARD_LOWER_LEVEL_ITEM_CHANCE)) || ((victim.getLevel() > killer.getLevel()) && (Rnd.get(100) < Config.CHAMPION_REWARD_HIGHER_LEVEL_ITEM_CHANCE)))
+			if ((victim.getLevel() < killer.getLevel()) && (Rnd.get(100) < Config.CHAMPION_REWARD_LOWER_LEVEL_ITEM_CHANCE))
+			{
+				return calculatedDrops;
+			}
+			if ((victim.getLevel() > killer.getLevel()) && (Rnd.get(100) < Config.CHAMPION_REWARD_HIGHER_LEVEL_ITEM_CHANCE))
 			{
 				return calculatedDrops;
 			}

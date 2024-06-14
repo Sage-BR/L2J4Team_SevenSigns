@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,7 +19,6 @@ package org.l2j.gameserver.model.actor.templates;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.l2j.Config;
 import org.l2j.gameserver.model.StatSet;
 import org.l2j.gameserver.model.WorldObject;
 import org.l2j.gameserver.model.actor.Creature;
@@ -56,7 +55,7 @@ public class CubicTemplate extends CreatureTemplate implements ICubicConditionHo
 		_delay = set.getInt("delay");
 		_maxCount = set.getInt("maxCount");
 		_useUp = set.getInt("useUp");
-		_power = set.getDouble("power");
+		_power = set.getDouble("power") / 10;
 		_targetType = set.getEnum("targetType", CubicTargetType.class, CubicTargetType.TARGET);
 	}
 	
@@ -145,6 +144,6 @@ public class CubicTemplate extends CreatureTemplate implements ICubicConditionHo
 	@Override
 	public String toString()
 	{
-		return "Cubic id: " + _id + " level: " + _level + " slot: " + _slot + " duration: " + _duration + " delay: " + _delay + " maxCount: " + _maxCount + " useUp: " + _useUp + " power: " + _power + Config.EOL + "skills: " + _skills + Config.EOL + "conditions:" + _conditions + Config.EOL;
+		return "Cubic id: " + _id + " level: " + _level + " slot: " + _slot + " duration: " + _duration + " delay: " + _delay + " maxCount: " + _maxCount + " useUp: " + _useUp + " power: " + _power + System.lineSeparator() + "skills: " + _skills + System.lineSeparator() + "conditions:" + _conditions + System.lineSeparator();
 	}
 }

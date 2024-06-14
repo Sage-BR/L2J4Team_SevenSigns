@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,12 +20,12 @@ import org.l2j.gameserver.model.StatSet;
 import org.l2j.gameserver.model.stats.Stat;
 
 /**
- * @author quangnguyen
+ * @author quangnguyen, fruit
  */
 public class AreaOfEffectDamageDefence extends AbstractStatEffect
 {
 	public AreaOfEffectDamageDefence(StatSet params)
 	{
-		super(params, Stat.AREA_OF_EFFECT_DAMAGE_DEFENCE);
+		super(params, Stat.AREA_OF_EFFECT_DAMAGE_DEFENCE, Stat.AREA_OF_EFFECT_DAMAGE_DEFENCE_ADD, true);
 	}
 }

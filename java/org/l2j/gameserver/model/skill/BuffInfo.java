@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -244,7 +244,7 @@ public class BuffInfo
 			{
 				if (!_hideStartMessage && !_skill.isAura() && isDisplayedForEffected())
 				{
-					final SystemMessage sm = new SystemMessage(SystemMessageId.YOU_VE_USED_S1);
+					final SystemMessage sm = new SystemMessage(SystemMessageId.YOU_HAVE_USED_S1);
 					sm.addSkillName(_skill);
 					_effected.sendPacket(sm);
 				}
@@ -309,9 +309,9 @@ public class BuffInfo
 		}
 		
 		// When effects are initialized, the successfully landed.
-		if (!_hideStartMessage && _effected.isPlayer() && !_skill.isHidingMessages() && !_skill.isAura() && isDisplayedForEffected())
+		if (!_hideStartMessage && _effected.isPlayer() && (_effected.getActingPlayer().hasEnteredWorld() || Config.SHOW_EFFECT_MESSAGES_ON_LOGIN) && !_skill.isHidingMessages() && !_skill.isAura() && isDisplayedForEffected())
 		{
-			final SystemMessage sm = new SystemMessage(_skill.isToggle() ? SystemMessageId.YOU_VE_USED_S1 : SystemMessageId.YOU_FEEL_THE_S1_EFFECT);
+			final SystemMessage sm = new SystemMessage(_skill.isToggle() ? SystemMessageId.YOU_HAVE_USED_S1 : SystemMessageId.YOU_FEEL_THE_S1_EFFECT);
 			sm.addSkillName(_skill);
 			_effected.sendPacket(sm);
 		}

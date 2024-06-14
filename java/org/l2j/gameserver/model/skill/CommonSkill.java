@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -98,6 +98,7 @@ public enum CommonSkill
 	PURPLE_LAMP(52039, 1),
 	BLUE_LAMP(52040, 1),
 	GREEN_LAMP(52041, 1),
+	BOT_REPORT_STATUS(55031, 1),
 	EINHASAD_OVERSEEING(60002, 1),
 	TELEPORT(60018, 1),
 	BRUTALITY(87366, 1);

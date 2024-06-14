@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -39,6 +39,18 @@ public class FlatBlock implements IBlock
 	}
 	
 	@Override
+	public void setNearestNswe(int geoX, int geoY, int worldZ, byte nswe)
+	{
+		throw new RuntimeException("Cannot set NSWE on a flat block!");
+	}
+	
+	@Override
+	public void unsetNearestNswe(int geoX, int geoY, int worldZ, byte nswe)
+	{
+		throw new RuntimeException("Cannot unset NSWE on a flat block!");
+	}
+	
+	@Override
 	public int getNearestZ(int geoX, int geoY, int worldZ)
 	{
 		return _height;
@@ -54,5 +66,10 @@ public class FlatBlock implements IBlock
 	public int getNextHigherZ(int geoX, int geoY, int worldZ)
 	{
 		return _height >= worldZ ? _height : worldZ;
+	}
+	
+	public short getHeight()
+	{
+		return _height;
 	}
 }

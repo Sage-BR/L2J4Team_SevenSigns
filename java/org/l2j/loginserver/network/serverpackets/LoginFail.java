@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,14 +16,14 @@
  */
 package org.l2j.loginserver.network.serverpackets;
 
-import org.l2j.commons.network.WritablePacket;
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.loginserver.enums.LoginFailReason;
-import org.l2j.loginserver.network.LoginServerPackets;
+import org.l2j.loginserver.network.LoginClient;
 
 /**
  * Format: d d: the failure reason
  */
-public class LoginFail extends WritablePacket
+public class LoginFail extends LoginServerPacket
 {
 	private final LoginFailReason _reason;
 	
@@ -33,9 +33,9 @@ public class LoginFail extends WritablePacket
 	}
 	
 	@Override
-	public void write()
+	protected void writeImpl(LoginClient client, WritableBuffer buffer)
 	{
-		LoginServerPackets.LOGIN_FAIL.writeId(this);
-		writeByte(_reason.getCode());
+		buffer.writeByte(0x01);
+		buffer.writeByte(_reason.getCode());
 	}
 }

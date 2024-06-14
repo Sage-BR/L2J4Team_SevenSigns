@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,6 +16,8 @@
  */
 package org.l2j.gameserver.network.serverpackets;
 
+import org.l2j.commons.network.WritableBuffer;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 
 public class RadarControl extends ServerPacket
@@ -36,13 +38,13 @@ public class RadarControl extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.RADAR_CONTROL.writeId(this);
-		writeInt(_showRadar);
-		writeInt(_type); // maybe type
-		writeInt(_x);
-		writeInt(_y);
-		writeInt(_z);
+		ServerPackets.RADAR_CONTROL.writeId(this, buffer);
+		buffer.writeInt(_showRadar);
+		buffer.writeInt(_type); // maybe type
+		buffer.writeInt(_x);
+		buffer.writeInt(_y);
+		buffer.writeInt(_z);
 	}
 }

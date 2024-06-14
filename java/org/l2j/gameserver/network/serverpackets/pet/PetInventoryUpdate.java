@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,8 +18,10 @@ package org.l2j.gameserver.network.serverpackets.pet;
 
 import java.util.List;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.model.ItemInfo;
 import org.l2j.gameserver.model.item.instance.Item;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 import org.l2j.gameserver.network.serverpackets.AbstractInventoryUpdate;
 
@@ -43,9 +45,9 @@ public class PetInventoryUpdate extends AbstractInventoryUpdate
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.PET_INVENTORY_UPDATE.writeId(this);
-		writeItems();
+		ServerPackets.PET_INVENTORY_UPDATE.writeId(this, buffer);
+		writeItems(buffer);
 	}
 }

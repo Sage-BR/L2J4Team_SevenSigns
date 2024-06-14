@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,9 +18,11 @@ package org.l2j.gameserver.network.serverpackets;
 
 import java.util.Collection;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.model.quest.Quest;
 import org.l2j.gameserver.model.quest.QuestState;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 
 /**
@@ -38,18 +40,18 @@ public class GmViewQuestInfo extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.GM_VIEW_QUEST_INFO.writeId(this);
-		writeString(_player.getName());
-		writeShort(_questList.size()); // quest count
+		ServerPackets.GM_VIEW_QUEST_INFO.writeId(this, buffer);
+		buffer.writeString(_player.getName());
+		buffer.writeShort(_questList.size()); // quest count
 		for (Quest quest : _questList)
 		{
 			final QuestState qs = _player.getQuestState(quest.getName());
-			writeInt(quest.getId());
-			writeInt(qs == null ? 0 : qs.getCond());
+			buffer.writeInt(quest.getId());
+			buffer.writeInt(qs == null ? 0 : qs.getCond());
 		}
-		writeShort(0); // some size
+		buffer.writeShort(0); // some size
 		// for size; ddQQ
 	}
 }

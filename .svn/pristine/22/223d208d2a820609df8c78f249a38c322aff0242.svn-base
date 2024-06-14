@@ -1,0 +1,7 @@
+<html><body>Garden Guide Kugin:<br>
+You can only come here through Kiku in the Primeval Garden. Don't forget that you have to pay to go inside the hunting zones.<br>
+Once again, if you would like to go to a <font color="LEVEL">safe place</font>, I suggest you go through the access road.<br>
+<Button ALIGN=LEFT ICON="TELEPORT" action="bypass -h npc_%objectId%_teleport OTHER 0">|Recommended LV. 76| Entrance - 30,000 Adena</Button>
+<Button ALIGN=LEFT ICON="TELEPORT" action="bypass -h npc_%objectId%_teleport OTHER 1">|Recommended LV. 85| Entrance - 50,000 Adena</Button>
+<Button ALIGN=LEFT ICON="RETURN" action="bypass -h npc_%objectId%_Chat 0">Back</Button>
+</body></html>

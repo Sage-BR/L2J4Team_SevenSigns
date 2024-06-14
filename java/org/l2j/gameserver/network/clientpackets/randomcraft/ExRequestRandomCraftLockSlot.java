@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,12 +17,10 @@
 package org.l2j.gameserver.network.clientpackets.randomcraft;
 
 import org.l2j.Config;
-import org.l2j.commons.network.ReadablePacket;
 import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.model.item.instance.Item;
 import org.l2j.gameserver.model.itemcontainer.Inventory;
 import org.l2j.gameserver.model.itemcontainer.PlayerRandomCraft;
-import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.clientpackets.ClientPacket;
 import org.l2j.gameserver.network.serverpackets.randomcraft.ExCraftRandomInfo;
 import org.l2j.gameserver.network.serverpackets.randomcraft.ExCraftRandomLockSlot;
@@ -30,7 +28,7 @@ import org.l2j.gameserver.network.serverpackets.randomcraft.ExCraftRandomLockSlo
 /**
  * @author Mode
  */
-public class ExRequestRandomCraftLockSlot implements ClientPacket
+public class ExRequestRandomCraftLockSlot extends ClientPacket
 {
 	private static final int[] LOCK_PRICE =
 	{
@@ -42,20 +40,20 @@ public class ExRequestRandomCraftLockSlot implements ClientPacket
 	private int _id;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_id = packet.readInt();
+		_id = readInt();
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
 		if (!Config.ENABLE_RANDOM_CRAFT)
 		{
 			return;
 		}
 		
-		final Player player = client.getPlayer();
+		final Player player = getPlayer();
 		if (player == null)
 		{
 			return;

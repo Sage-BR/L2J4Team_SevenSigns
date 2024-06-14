@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,7 +17,9 @@
 package org.l2j.gameserver.network.serverpackets.teleports;
 
 import org.l2j.Config;
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.model.holders.SharedTeleportHolder;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 import org.l2j.gameserver.network.serverpackets.ServerPacket;
 
@@ -34,16 +36,16 @@ public class ExShowSharedLocationTeleportUi extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_SHARED_POSITION_TELEPORT_UI.writeId(this);
-		writeSizedString(_teleport.getName());
-		writeInt(_teleport.getId());
-		writeInt(_teleport.getCount());
-		writeShort(150);
-		writeInt(_teleport.getLocation().getX());
-		writeInt(_teleport.getLocation().getY());
-		writeInt(_teleport.getLocation().getZ());
-		writeLong(Config.TELEPORT_SHARE_LOCATION_COST);
+		ServerPackets.EX_SHARED_POSITION_TELEPORT_UI.writeId(this, buffer);
+		buffer.writeSizedString(_teleport.getName());
+		buffer.writeInt(_teleport.getId());
+		buffer.writeInt(_teleport.getCount());
+		buffer.writeShort(150);
+		buffer.writeInt(_teleport.getLocation().getX());
+		buffer.writeInt(_teleport.getLocation().getY());
+		buffer.writeInt(_teleport.getLocation().getZ());
+		buffer.writeLong(Config.TELEPORT_SHARE_LOCATION_COST);
 	}
 }

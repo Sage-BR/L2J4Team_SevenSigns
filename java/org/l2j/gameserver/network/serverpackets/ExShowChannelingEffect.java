@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,7 +16,9 @@
  */
 package org.l2j.gameserver.network.serverpackets;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.model.actor.Creature;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 
 /**
@@ -36,11 +38,11 @@ public class ExShowChannelingEffect extends AbstractItemPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_SHOW_CHANNELING_EFFECT.writeId(this);
-		writeInt(_caster.getObjectId());
-		writeInt(_target.getObjectId());
-		writeInt(_state);
+		ServerPackets.EX_SHOW_CHANNELING_EFFECT.writeId(this, buffer);
+		buffer.writeInt(_caster.getObjectId());
+		buffer.writeInt(_target.getObjectId());
+		buffer.writeInt(_state);
 	}
 }

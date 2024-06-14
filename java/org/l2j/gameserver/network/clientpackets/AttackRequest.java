@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,20 +16,17 @@
  */
 package org.l2j.gameserver.network.clientpackets;
 
-import org.l2j.commons.network.ReadablePacket;
 import org.l2j.gameserver.enums.PlayerCondOverride;
-import org.l2j.gameserver.enums.PrivateStoreType;
 import org.l2j.gameserver.model.World;
 import org.l2j.gameserver.model.WorldObject;
 import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.model.effects.AbstractEffect;
 import org.l2j.gameserver.model.skill.AbnormalType;
 import org.l2j.gameserver.model.skill.BuffInfo;
-import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.SystemMessageId;
 import org.l2j.gameserver.network.serverpackets.ActionFailed;
 
-public class AttackRequest implements ClientPacket
+public class AttackRequest extends ClientPacket
 {
 	// cddddc
 	private int _objectId;
@@ -43,24 +40,24 @@ public class AttackRequest implements ClientPacket
 	private int _attackId;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_objectId = packet.readInt();
-		_originX = packet.readInt();
-		_originY = packet.readInt();
-		_originZ = packet.readInt();
-		_attackId = packet.readByte(); // 0 for simple click 1 for shift-click
+		_objectId = readInt();
+		_originX = readInt();
+		_originY = readInt();
+		_originZ = readInt();
+		_attackId = readByte(); // 0 for simple click 1 for shift-click
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
-		if (!client.getFloodProtectors().canPerformPlayerAction())
+		if (!getClient().getFloodProtectors().canPerformPlayerAction())
 		{
 			return;
 		}
 		
-		final Player player = client.getPlayer();
+		final Player player = getPlayer();
 		if (player == null)
 		{
 			return;
@@ -129,7 +126,7 @@ public class AttackRequest implements ClientPacket
 		{
 			target.onAction(player);
 		}
-		else if ((target.getObjectId() != player.getObjectId()) && (player.getPrivateStoreType() == PrivateStoreType.NONE) && (player.getActiveRequester() == null))
+		else if ((target.getObjectId() != player.getObjectId()) && !player.isInStoreMode() && (player.getActiveRequester() == null))
 		{
 			target.onForcedAttack(player);
 		}

@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -342,8 +342,13 @@ public class TamedBeast extends FeedableBeast
 			return;
 		}
 		// if the owner is dead, do nothing...
+		if (_owner.isDead() || _isFreyaBeast)
+		{
+			return;
+		}
+		
 		// if the tamed beast is currently in the middle of casting, let it complete its skill...
-		if (_owner.isDead() || _isFreyaBeast || isCastingNow(SkillCaster::isAnyNormalType))
+		if (isCastingNow(SkillCaster::isAnyNormalType))
 		{
 			return;
 		}
@@ -507,8 +512,12 @@ public class TamedBeast extends FeedableBeast
 				return;
 			}
 			// if the owner is dead, do nothing...
+			if (owner.isDead())
+			{
+				return;
+			}
 			// if the tamed beast is currently casting a spell, do not interfere (do not attempt to cast anything new yet).
-			if (owner.isDead() || isCastingNow(SkillCaster::isAnyNormalType))
+			if (isCastingNow(SkillCaster::isAnyNormalType))
 			{
 				return;
 			}

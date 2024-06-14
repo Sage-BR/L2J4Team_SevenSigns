@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -122,8 +122,13 @@ public class DailyMissionDataHolder
 		}
 		
 		// Check if its dual class only.
+		if (isDualClassOnly() && !player.isDualClassActive())
+		{
+			return false;
+		}
+		
 		// Check for specific class restrictions
-		if ((isDualClassOnly() && !player.isDualClassActive()) || (!_classRestriction.isEmpty() && !_classRestriction.contains(player.getClassId())))
+		if (!_classRestriction.isEmpty() && !_classRestriction.contains(player.getClassId()))
 		{
 			return false;
 		}

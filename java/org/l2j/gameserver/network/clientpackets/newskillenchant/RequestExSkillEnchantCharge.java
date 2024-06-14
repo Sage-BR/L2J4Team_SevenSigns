@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,7 +19,6 @@ package org.l2j.gameserver.network.clientpackets.newskillenchant;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.l2j.commons.network.ReadablePacket;
 import org.l2j.gameserver.data.xml.SkillEnchantData;
 import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.model.holders.EnchantItemExpHolder;
@@ -28,7 +27,6 @@ import org.l2j.gameserver.model.holders.ItemHolder;
 import org.l2j.gameserver.model.holders.SkillEnchantHolder;
 import org.l2j.gameserver.model.item.instance.Item;
 import org.l2j.gameserver.model.skill.Skill;
-import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.PacketLogger;
 import org.l2j.gameserver.network.SystemMessageId;
 import org.l2j.gameserver.network.clientpackets.ClientPacket;
@@ -38,30 +36,33 @@ import org.l2j.gameserver.network.serverpackets.newskillenchant.ExSkillEnchantIn
 /**
  * @author Serenitty
  */
-public class RequestExSkillEnchantCharge implements ClientPacket
+public class RequestExSkillEnchantCharge extends ClientPacket
 {
 	private int _skillId;
 	private final List<ItemHolder> _itemList = new ArrayList<>();
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_skillId = packet.readInt();
-		packet.readInt(); // level
-		packet.readInt(); // sublevel
-		int size = packet.readInt();
+		_skillId = readInt();
+		readInt(); // level
+		readInt(); // sublevel
+		int size = readInt();
 		for (int i = 0; i < size; i++)
 		{
-			final int objectId = packet.readInt();
-			final long count = packet.readLong();
-			_itemList.add(new ItemHolder(objectId, count));
+			final int objectId = readInt();
+			final long count = readLong();
+			if (count > 0)
+			{
+				_itemList.add(new ItemHolder(objectId, count));
+			}
 		}
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
-		final Player player = client.getPlayer();
+		final Player player = getPlayer();
 		if (player != null)
 		{
 			final Skill skill = player.getKnownSkill(_skillId);

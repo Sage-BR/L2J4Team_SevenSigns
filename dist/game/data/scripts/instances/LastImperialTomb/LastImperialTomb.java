@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -165,7 +165,7 @@ public class LastImperialTomb extends AbstractInstance
 	}
 	
 	@Override
-	public String onAdvEvent(String event, Npc npc, Player player)
+	public String onEvent(String event, Npc npc, Player player)
 	{
 		switch (event)
 		{
@@ -180,22 +180,6 @@ public class LastImperialTomb extends AbstractInstance
 			case "FRINTEZZA_INTRO_1":
 			{
 				final Instance world = player.getInstanceWorld();
-				for (int doorId : FIRST_ROOM_DOORS)
-				{
-					world.openCloseDoor(doorId, false);
-				}
-				for (int doorId : FIRST_ROUTE_DOORS)
-				{
-					world.openCloseDoor(doorId, false);
-				}
-				for (int doorId : SECOND_ROOM_DOORS)
-				{
-					world.openCloseDoor(doorId, false);
-				}
-				for (int doorId : SECOND_ROUTE_DOORS)
-				{
-					world.openCloseDoor(doorId, false);
-				}
 				addSpawn(CUBE, -87904, -141296, -9168, 0, false, 0, false, world.getId());
 				break;
 			}
@@ -649,6 +633,29 @@ public class LastImperialTomb extends AbstractInstance
 				enablePlayers(world);
 				break;
 			}
+			case "ENTER":
+			{
+				enterInstance(player, npc, TEMPLATE_ID);
+				break;
+			}
+			case "TELEPORT_IN":
+			{
+				final Instance world = getPlayerInstance(player);
+				if (world != null)
+				{
+					player.teleToLocation(-87708, -151869, -9172, world);
+				}
+				break;
+			}
+			case "TELEPORT_OUT":
+			{
+				final Instance world = getPlayerInstance(player);
+				if (world != null)
+				{
+					teleportPlayerOut(player, world);
+				}
+				break;
+			}
 		}
 		return null;
 	}
@@ -662,11 +669,7 @@ public class LastImperialTomb extends AbstractInstance
 		}
 		else // Teleport Cube
 		{
-			final Instance world = getPlayerInstance(player);
-			if (world != null)
-			{
-				teleportPlayerOut(player, world);
-			}
+			return "31843.htm";
 		}
 		return null;
 	}
@@ -822,12 +825,13 @@ public class LastImperialTomb extends AbstractInstance
 	
 	private void playRandomSong(Instance world)
 	{
-		final Npc frintezza = world.getParameters().getObject("frintezza", Npc.class);
 		final boolean isPlayingSong = world.getParameters().getBoolean("isPlayingSong");
 		if (isPlayingSong)
 		{
 			return;
 		}
+		
+		final Npc frintezza = world.getParameters().getObject("frintezza", Npc.class);
 		world.setParameter("isPlayingSong", true);
 		final int random = getRandom(1, 5);
 		final SkillHolder skill = new SkillHolder(5007, random);

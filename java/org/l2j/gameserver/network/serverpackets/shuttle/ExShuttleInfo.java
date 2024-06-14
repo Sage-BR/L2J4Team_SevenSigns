@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,9 +18,11 @@ package org.l2j.gameserver.network.serverpackets.shuttle;
 
 import java.util.List;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.model.Location;
 import org.l2j.gameserver.model.actor.instance.Shuttle;
 import org.l2j.gameserver.model.shuttle.ShuttleStop;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 import org.l2j.gameserver.network.serverpackets.ServerPacket;
 
@@ -39,27 +41,27 @@ public class ExShuttleInfo extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_SHUTTLE_INFO.writeId(this);
-		writeInt(_shuttle.getObjectId());
-		writeInt(_shuttle.getX());
-		writeInt(_shuttle.getY());
-		writeInt(_shuttle.getZ());
-		writeInt(_shuttle.getHeading());
-		writeInt(_shuttle.getId());
-		writeInt(_stops.size());
+		ServerPackets.EX_SHUTTLE_INFO.writeId(this, buffer);
+		buffer.writeInt(_shuttle.getObjectId());
+		buffer.writeInt(_shuttle.getX());
+		buffer.writeInt(_shuttle.getY());
+		buffer.writeInt(_shuttle.getZ());
+		buffer.writeInt(_shuttle.getHeading());
+		buffer.writeInt(_shuttle.getId());
+		buffer.writeInt(_stops.size());
 		for (ShuttleStop stop : _stops)
 		{
-			writeInt(stop.getId());
+			buffer.writeInt(stop.getId());
 			for (Location loc : stop.getDimensions())
 			{
-				writeInt(loc.getX());
-				writeInt(loc.getY());
-				writeInt(loc.getZ());
+				buffer.writeInt(loc.getX());
+				buffer.writeInt(loc.getY());
+				buffer.writeInt(loc.getZ());
 			}
-			writeInt(stop.isDoorOpen());
-			writeInt(stop.hasDoorChanged());
+			buffer.writeInt(stop.isDoorOpen());
+			buffer.writeInt(stop.hasDoorChanged());
 		}
 	}
 }

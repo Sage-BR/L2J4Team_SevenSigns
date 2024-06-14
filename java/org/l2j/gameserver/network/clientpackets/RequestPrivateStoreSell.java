@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,27 +19,25 @@ package org.l2j.gameserver.network.clientpackets;
 import static org.l2j.gameserver.model.actor.Npc.INTERACTION_DISTANCE;
 
 import org.l2j.Config;
-import org.l2j.commons.network.ReadablePacket;
 import org.l2j.gameserver.data.sql.OfflineTraderTable;
 import org.l2j.gameserver.enums.PrivateStoreType;
 import org.l2j.gameserver.model.ItemRequest;
 import org.l2j.gameserver.model.TradeList;
 import org.l2j.gameserver.model.World;
 import org.l2j.gameserver.model.actor.Player;
-import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.PacketLogger;
 import org.l2j.gameserver.network.serverpackets.ActionFailed;
 
-public class RequestPrivateStoreSell implements ClientPacket
+public class RequestPrivateStoreSell extends ClientPacket
 {
 	private int _storePlayerId;
 	private ItemRequest[] _items = null;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_storePlayerId = packet.readInt();
-		final int itemsCount = packet.readInt();
+		_storePlayerId = readInt();
+		final int itemsCount = readInt();
 		if ((itemsCount <= 0) || (itemsCount > Config.MAX_ITEM_IN_PACKET))
 		{
 			return;
@@ -48,24 +46,24 @@ public class RequestPrivateStoreSell implements ClientPacket
 		_items = new ItemRequest[itemsCount];
 		for (int i = 0; i < itemsCount; i++)
 		{
-			final int slot = packet.readInt();
-			final int itemId = packet.readInt();
-			packet.readShort(); // TODO analyse this
-			packet.readShort(); // TODO analyse this
-			final long count = packet.readLong();
-			final long price = packet.readLong();
-			packet.readInt(); // visual id
-			packet.readInt(); // option 1
-			packet.readInt(); // option 2
-			final int soulCrystals = packet.readByte();
+			final int slot = readInt();
+			final int itemId = readInt();
+			readShort(); // TODO analyse this
+			readShort(); // TODO analyse this
+			final long count = readLong();
+			final long price = readLong();
+			readInt(); // visual id
+			readInt(); // option 1
+			readInt(); // option 2
+			final int soulCrystals = readByte();
 			for (int s = 0; s < soulCrystals; s++)
 			{
-				packet.readInt(); // soul crystal option
+				readInt(); // soul crystal option
 			}
-			final int soulCrystals2 = packet.readByte();
+			final int soulCrystals2 = readByte();
 			for (int s = 0; s < soulCrystals2; s++)
 			{
-				packet.readInt(); // sa effect
+				readInt(); // sa effect
 			}
 			if (/* (slot < 1) || */ (itemId < 1) || (count < 1) || (price < 0))
 			{
@@ -77,9 +75,9 @@ public class RequestPrivateStoreSell implements ClientPacket
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
-		final Player player = client.getPlayer();
+		final Player player = getPlayer();
 		if (player == null)
 		{
 			return;
@@ -97,14 +95,19 @@ public class RequestPrivateStoreSell implements ClientPacket
 			return;
 		}
 		
-		if (!client.getFloodProtectors().canPerformTransaction())
+		if (!getClient().getFloodProtectors().canPerformTransaction())
 		{
 			player.sendMessage("You are selling items too fast.");
 			return;
 		}
 		
 		final Player storePlayer = World.getInstance().getPlayer(_storePlayerId);
-		if ((storePlayer == null) || !player.isInsideRadius3D(storePlayer, INTERACTION_DISTANCE) || (player.getInstanceWorld() != storePlayer.getInstanceWorld()))
+		if ((storePlayer == null) || !player.isInsideRadius3D(storePlayer, INTERACTION_DISTANCE))
+		{
+			return;
+		}
+		
+		if (player.getInstanceWorld() != storePlayer.getInstanceWorld())
 		{
 			return;
 		}

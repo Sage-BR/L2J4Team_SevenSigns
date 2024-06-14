@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/multisell.xsd">
+	<npcs>
+		<npc>-1</npc> <!-- Item Multisell -->
+	</npcs>
+	<!-- Kit: Doll Lv. 2 (Time-limited) - Sealed (98918) -->
+	<item>
+		<ingredient id="98918" count="1" /> <!-- Kit: Doll Lv. 2 (Time-limited) - Sealed -->
+		<production id="98920" count="1" /> <!-- Kit: Doll Lv. 2 - Elixir Powder (Time-limited) - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98918" count="1" /> <!-- Kit: Doll Lv. 2 (Time-limited) - Sealed -->
+		<production id="98921" count="1" /> <!-- Kit: Doll Lv. 2 - Hidden Power (Time-limited) - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98918" count="1" /> <!-- Kit: Doll Lv. 2 (Time-limited) - Sealed -->
+		<production id="98922" count="1" /> <!-- Kit: Doll Lv. 2 - Special HP Recovery Potion (Time-limited) - Sealed -->
+	</item>
+</list>

@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -27,11 +27,11 @@ import org.l2j.gameserver.model.World;
 import org.l2j.gameserver.model.WorldObject;
 import org.l2j.gameserver.model.actor.Npc;
 import org.l2j.gameserver.model.actor.Player;
-import org.l2j.gameserver.model.actor.instance.BroadcastingTower;
 import org.l2j.gameserver.model.actor.instance.Fisherman;
 import org.l2j.gameserver.model.actor.instance.FlyTerrainObject;
 import org.l2j.gameserver.model.actor.instance.Guard;
 import org.l2j.gameserver.model.actor.instance.Merchant;
+import org.l2j.gameserver.model.actor.instance.BroadcastingTower;
 import org.l2j.gameserver.model.actor.instance.Warehouse;
 import org.l2j.gameserver.model.events.EventType;
 import org.l2j.gameserver.util.BuilderUtil;

@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,12 +19,14 @@ package org.l2j.gameserver.network.serverpackets.worldexchange;
 import java.util.Collections;
 import java.util.List;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.enums.AttributeType;
 import org.l2j.gameserver.enums.WorldExchangeItemSubType;
 import org.l2j.gameserver.model.VariationInstance;
 import org.l2j.gameserver.model.ensoul.EnsoulOption;
 import org.l2j.gameserver.model.holders.WorldExchangeHolder;
 import org.l2j.gameserver.model.item.instance.Item;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 import org.l2j.gameserver.network.serverpackets.ServerPacket;
 
@@ -45,80 +47,80 @@ public class WorldExchangeItemList extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
 		if (_holders.isEmpty())
 		{
-			writeShort(0); // Category
-			writeByte(0); // SortType
-			writeInt(0); // Page
-			writeInt(0); // ItemIDList
+			buffer.writeShort(0); // Category
+			buffer.writeByte(0); // SortType
+			buffer.writeInt(0); // Page
+			buffer.writeInt(0); // ItemIDList
 			return;
 		}
 		
-		ServerPackets.EX_WORLD_EXCHANGE_ITEM_LIST.writeId(this);
-		writeShort(_type.getId());
-		writeByte(0);
-		writeInt(0);
-		writeInt(_holders.size());
+		ServerPackets.EX_WORLD_EXCHANGE_ITEM_LIST.writeId(this, buffer);
+		buffer.writeShort(_type.getId());
+		buffer.writeByte(0);
+		buffer.writeInt(0);
+		buffer.writeInt(_holders.size());
 		for (WorldExchangeHolder holder : _holders)
 		{
-			getItemInfo(holder);
+			getItemInfo(buffer, holder);
 		}
 	}
 	
-	private void getItemInfo(WorldExchangeHolder holder)
+	private void getItemInfo(WritableBuffer buffer, WorldExchangeHolder holder)
 	{
-		writeLong(holder.getWorldExchangeId());
-		writeLong(holder.getPrice());
-		writeInt((int) (holder.getEndTime() / 1000L));
+		buffer.writeLong(holder.getWorldExchangeId());
+		buffer.writeLong(holder.getPrice());
+		buffer.writeInt((int) (holder.getEndTime() / 1000L));
 		Item item = holder.getItemInstance();
-		writeInt(item.getId());
-		writeLong(item.getCount());
-		writeInt(item.getEnchantLevel() < 1 ? 0 : item.getEnchantLevel());
+		buffer.writeInt(item.getId());
+		buffer.writeLong(item.getCount());
+		buffer.writeInt(item.getEnchantLevel() < 1 ? 0 : item.getEnchantLevel());
 		VariationInstance iv = item.getAugmentation();
-		writeInt(iv != null ? iv.getOption1Id() : 0);
-		writeInt(iv != null ? iv.getOption2Id() : 0);
-		writeInt(-1);
-		writeShort(item.getAttackAttribute() != null ? item.getAttackAttribute().getType().getClientId() : 0);
-		writeShort(item.getAttackAttribute() != null ? item.getAttackAttribute().getValue() : 0);
-		writeShort(item.getDefenceAttribute(AttributeType.FIRE));
-		writeShort(item.getDefenceAttribute(AttributeType.WATER));
-		writeShort(item.getDefenceAttribute(AttributeType.WIND));
-		writeShort(item.getDefenceAttribute(AttributeType.EARTH));
-		writeShort(item.getDefenceAttribute(AttributeType.HOLY));
-		writeShort(item.getDefenceAttribute(AttributeType.DARK));
-		writeInt(item.getVisualId());
+		buffer.writeInt(iv != null ? iv.getOption1Id() : 0);
+		buffer.writeInt(iv != null ? iv.getOption2Id() : 0);
+		buffer.writeInt(-1);
+		buffer.writeShort(item.getAttackAttribute() != null ? item.getAttackAttribute().getType().getClientId() : 0);
+		buffer.writeShort(item.getAttackAttribute() != null ? item.getAttackAttribute().getValue() : 0);
+		buffer.writeShort(item.getDefenceAttribute(AttributeType.FIRE));
+		buffer.writeShort(item.getDefenceAttribute(AttributeType.WATER));
+		buffer.writeShort(item.getDefenceAttribute(AttributeType.WIND));
+		buffer.writeShort(item.getDefenceAttribute(AttributeType.EARTH));
+		buffer.writeShort(item.getDefenceAttribute(AttributeType.HOLY));
+		buffer.writeShort(item.getDefenceAttribute(AttributeType.DARK));
+		buffer.writeInt(item.getVisualId());
 		
 		final List<EnsoulOption> soul = (List<EnsoulOption>) holder.getItemInfo().getSoulCrystalOptions();
 		try
 		{
-			writeInt(soul != null ? soul.get(0).getId() : 0);
+			buffer.writeInt(soul != null ? soul.get(0).getId() : 0);
 		}
 		catch (IndexOutOfBoundsException ignored)
 		{
-			writeInt(0);
+			buffer.writeInt(0);
 		}
 		
 		try
 		{
-			writeInt(soul != null ? soul.get(1).getId() : 0);
+			buffer.writeInt(soul != null ? soul.get(1).getId() : 0);
 		}
 		catch (IndexOutOfBoundsException ignored)
 		{
-			writeInt(0);
+			buffer.writeInt(0);
 		}
 		
 		final List<EnsoulOption> specialSoul = (List<EnsoulOption>) holder.getItemInfo().getSoulCrystalSpecialOptions();
 		try
 		{
-			writeInt(specialSoul != null ? specialSoul.get(0).getId() : 0);
+			buffer.writeInt(specialSoul != null ? specialSoul.get(0).getId() : 0);
 		}
 		catch (IndexOutOfBoundsException ignored)
 		{
-			writeInt(0);
+			buffer.writeInt(0);
 		}
 		
-		writeShort(item.isBlessed());
+		buffer.writeShort(item.isBlessed());
 	}
 }

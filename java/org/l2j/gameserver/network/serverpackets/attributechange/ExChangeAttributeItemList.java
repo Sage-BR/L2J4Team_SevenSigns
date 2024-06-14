@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,7 +18,9 @@ package org.l2j.gameserver.network.serverpackets.attributechange;
 
 import java.util.List;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.model.ItemInfo;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 import org.l2j.gameserver.network.serverpackets.AbstractItemPacket;
 
@@ -27,24 +29,27 @@ import org.l2j.gameserver.network.serverpackets.AbstractItemPacket;
  */
 public class ExChangeAttributeItemList extends AbstractItemPacket
 {
-	private final List<ItemInfo> _itemsList;
+	private final int _type;
 	private final int _itemId;
+	private final List<ItemInfo> _itemsList;
 	
-	public ExChangeAttributeItemList(int itemId, List<ItemInfo> itemList)
+	public ExChangeAttributeItemList(int type, int itemId, List<ItemInfo> itemList)
 	{
+		_type = type;
 		_itemId = itemId;
 		_itemsList = itemList;
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_CHANGE_ATTRIBUTE_ITEM_LIST.writeId(this);
-		writeInt(_itemId);
-		writeInt(_itemsList.size());
+		ServerPackets.EX_CHANGE_ATTRIBUTE_ITEM_LIST.writeId(this, buffer);
+		buffer.writeByte(_type);
+		buffer.writeInt(_itemId);
+		buffer.writeInt(_itemsList.size());
 		for (ItemInfo item : _itemsList)
 		{
-			writeItem(item);
+			writeItem(item, buffer);
 		}
 	}
 }

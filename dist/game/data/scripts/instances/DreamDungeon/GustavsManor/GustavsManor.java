@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -218,17 +218,17 @@ public class GustavsManor extends AbstractInstance
 				{
 					case 1:
 					{
-						instance.broadcastPacket(new ExShowScreenMessage(NpcStringId.DREAM_WATCHERS_DEATH_1_4, ExShowScreenMessage.BOTTOM_RIGHT, 10000, false));
+						instance.broadcastPacket(new ExShowScreenMessage(NpcStringId.DREAM_WATCHER_S_DEATH_1_4, ExShowScreenMessage.BOTTOM_RIGHT, 10000, false));
 						break;
 					}
 					case 2:
 					{
-						instance.broadcastPacket(new ExShowScreenMessage(NpcStringId.DREAM_WATCHERS_DEATH_2_4, ExShowScreenMessage.BOTTOM_RIGHT, 10000, false));
+						instance.broadcastPacket(new ExShowScreenMessage(NpcStringId.DREAM_WATCHER_S_DEATH_2_4, ExShowScreenMessage.BOTTOM_RIGHT, 10000, false));
 						break;
 					}
 					case 3:
 					{
-						instance.broadcastPacket(new ExShowScreenMessage(NpcStringId.DREAM_WATCHERS_DEATH_3_4, ExShowScreenMessage.BOTTOM_RIGHT, 10000, false));
+						instance.broadcastPacket(new ExShowScreenMessage(NpcStringId.DREAM_WATCHER_S_DEATH_3_4, ExShowScreenMessage.BOTTOM_RIGHT, 10000, false));
 						break;
 					}
 					case 4:

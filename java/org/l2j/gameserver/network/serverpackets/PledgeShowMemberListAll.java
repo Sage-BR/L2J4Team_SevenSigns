@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,12 +18,14 @@ package org.l2j.gameserver.network.serverpackets;
 
 import java.util.Collection;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.Config;
 import org.l2j.gameserver.data.sql.CharInfoTable;
 import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.model.clan.Clan;
 import org.l2j.gameserver.model.clan.Clan.SubPledge;
 import org.l2j.gameserver.model.clan.ClanMember;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 
 public class PledgeShowMemberListAll extends ServerPacket
@@ -61,54 +63,54 @@ public class PledgeShowMemberListAll extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.PLEDGE_SHOW_MEMBER_LIST_ALL.writeId(this);
-		writeInt(!_isSubPledge);
-		writeInt(_clan.getId());
-		writeInt(Config.SERVER_ID);
-		writeInt(_pledgeId);
-		writeString(_name);
-		writeString(_leaderName);
-		writeInt(_clan.getCrestId()); // crest id .. is used again
-		writeInt(_clan.getLevel());
-		writeInt(_clan.getCastleId());
-		writeInt(0);
-		writeInt(_clan.getHideoutId());
-		writeInt(_clan.getFortId());
-		writeInt(_clan.getRank());
-		writeInt(_clan.getReputationScore());
-		writeInt(0); // 0
-		writeInt(0); // 0
-		writeInt(_clan.getAllyId());
-		writeString(_clan.getAllyName());
-		writeInt(_clan.getAllyCrestId());
-		writeInt(_clan.isAtWar()); // new c3
-		writeInt(0); // Territory castle ID
-		writeInt(_clan.getSubPledgeMembersCount(_pledgeId));
+		ServerPackets.PLEDGE_SHOW_MEMBER_LIST_ALL.writeId(this, buffer);
+		buffer.writeInt(!_isSubPledge);
+		buffer.writeInt(_clan.getId());
+		buffer.writeInt(Config.SERVER_ID);
+		buffer.writeInt(_pledgeId);
+		buffer.writeString(_name);
+		buffer.writeString(_leaderName);
+		buffer.writeInt(_clan.getCrestId()); // crest id .. is used again
+		buffer.writeInt(_clan.getLevel());
+		buffer.writeInt(_clan.getCastleId());
+		buffer.writeInt(0);
+		buffer.writeInt(_clan.getHideoutId());
+		buffer.writeInt(_clan.getFortId());
+		buffer.writeInt(_clan.getRank());
+		buffer.writeInt(_clan.getReputationScore());
+		buffer.writeInt(0); // 0
+		buffer.writeInt(0); // 0
+		buffer.writeInt(_clan.getAllyId());
+		buffer.writeString(_clan.getAllyName());
+		buffer.writeInt(_clan.getAllyCrestId());
+		buffer.writeInt(_clan.isAtWar()); // new c3
+		buffer.writeInt(0); // Territory castle ID
+		buffer.writeInt(_clan.getSubPledgeMembersCount(_pledgeId));
 		for (ClanMember m : _members)
 		{
 			if (m.getPledgeType() != _pledgeId)
 			{
 				continue;
 			}
-			writeString(m.getName());
-			writeInt(m.getLevel());
-			writeInt(m.getClassId());
+			buffer.writeString(m.getName());
+			buffer.writeInt(m.getLevel());
+			buffer.writeInt(m.getClassId());
 			final Player player = m.getPlayer();
 			if (player != null)
 			{
-				writeInt(player.getAppearance().isFemale()); // no visible effect
-				writeInt(player.getRace().ordinal()); // writeInt(1);
+				buffer.writeInt(player.getAppearance().isFemale()); // no visible effect
+				buffer.writeInt(player.getRace().ordinal()); // buffer.writeInt(1);
 			}
 			else
 			{
-				writeInt(1); // no visible effect
-				writeInt(1); // writeInt(1);
+				buffer.writeInt(1); // no visible effect
+				buffer.writeInt(1); // buffer.writeInt(1);
 			}
-			writeInt(m.isOnline() ? m.getObjectId() : 0); // objectId = online 0 = offline
-			writeInt(m.getSponsor() != 0);
-			writeByte(m.getOnlineStatus());
+			buffer.writeInt(m.isOnline() ? m.getObjectId() : 0); // objectId = online 0 = offline
+			buffer.writeInt(m.getSponsor() != 0);
+			buffer.writeByte(m.getOnlineStatus());
 		}
 	}
 }

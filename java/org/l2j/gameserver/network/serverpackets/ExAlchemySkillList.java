@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,11 +19,13 @@ package org.l2j.gameserver.network.serverpackets;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.data.xml.SkillData;
 import org.l2j.gameserver.data.xml.SkillTreeData;
 import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.model.skill.CommonSkill;
 import org.l2j.gameserver.model.skill.Skill;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 
 /**
@@ -46,16 +48,16 @@ public class ExAlchemySkillList extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_ALCHEMY_SKILL_LIST.writeId(this);
-		writeInt(_skills.size());
+		ServerPackets.EX_ALCHEMY_SKILL_LIST.writeId(this, buffer);
+		buffer.writeInt(_skills.size());
 		for (Skill skill : _skills)
 		{
-			writeInt(skill.getId());
-			writeInt(skill.getLevel());
-			writeLong(0); // Always 0 on Naia, SP I guess?
-			writeByte(skill.getId() != CommonSkill.ALCHEMY_CUBE.getId()); // This is type in flash, visible or not
+			buffer.writeInt(skill.getId());
+			buffer.writeInt(skill.getLevel());
+			buffer.writeLong(0); // Always 0 on Naia, SP I guess?
+			buffer.writeByte(skill.getId() != CommonSkill.ALCHEMY_CUBE.getId()); // This is type in flash, visible or not
 		}
 	}
 }

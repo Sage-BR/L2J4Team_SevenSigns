@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -49,6 +49,7 @@ public class EnchantScrolls implements IItemHandler
 		
 		player.addRequest(new EnchantItemRequest(player, item.getObjectId()));
 		player.sendPacket(new ChooseInventoryItem(item.getId()));
+		player.sendPacket(SystemMessageId.SELECT_AN_ITEM_FOR_ENCHANTING);
 		return true;
 	}
 }

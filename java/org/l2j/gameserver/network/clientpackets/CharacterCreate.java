@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,7 +20,6 @@ import java.util.List;
 import java.util.logging.Logger;
 
 import org.l2j.Config;
-import org.l2j.commons.network.ReadablePacket;
 import org.l2j.gameserver.data.sql.CharInfoTable;
 import org.l2j.gameserver.data.xml.CategoryData;
 import org.l2j.gameserver.data.xml.FakePlayerData;
@@ -52,7 +51,7 @@ import org.l2j.gameserver.network.serverpackets.CharCreateOk;
 import org.l2j.gameserver.network.serverpackets.CharSelectionInfo;
 import org.l2j.gameserver.util.Util;
 
-public class CharacterCreate implements ClientPacket
+public class CharacterCreate extends ClientPacket
 {
 	protected static final Logger LOGGER_ACCOUNTING = Logger.getLogger("accounting");
 	
@@ -65,26 +64,28 @@ public class CharacterCreate implements ClientPacket
 	private byte _face;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_name = packet.readString();
-		packet.readInt(); // race
-		_isFemale = packet.readInt() != 0;
-		_classId = packet.readInt();
-		packet.readInt(); // _int
-		packet.readInt(); // _str
-		packet.readInt(); // _con
-		packet.readInt(); // _men
-		packet.readInt(); // _dex
-		packet.readInt(); // _wit
-		_hairStyle = (byte) packet.readInt();
-		_hairColor = (byte) packet.readInt();
-		_face = (byte) packet.readInt();
+		_name = readString();
+		readInt(); // race
+		_isFemale = readInt() != 0;
+		_classId = readInt();
+		readInt(); // _int
+		readInt(); // _str
+		readInt(); // _con
+		readInt(); // _men
+		readInt(); // _dex
+		readInt(); // _wit
+		_hairStyle = (byte) readInt();
+		_hairColor = (byte) readInt();
+		_face = (byte) readInt();
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
+		final GameClient client = getClient();
+		
 		// Last Verified: May 30, 2009 - Gracia Final - Players are able to create characters with names consisting of as little as 1,2,3 letter/number combinations.
 		if ((_name.length() < 1) || (_name.length() > 16))
 		{
@@ -104,8 +105,14 @@ public class CharacterCreate implements ClientPacket
 			}
 		}
 		
+		if (FakePlayerData.getInstance().getProperName(_name) != null)
+		{
+			client.sendPacket(new CharCreateFail(CharCreateFail.REASON_INCORRECT_NAME));
+			return;
+		}
+		
 		// Last Verified: May 30, 2009 - Gracia Final
-		if ((FakePlayerData.getInstance().getProperName(_name) != null) || !Util.isAlphaNumeric(_name) || !isValidName(_name))
+		if (!Util.isAlphaNumeric(_name) || !isValidName(_name))
 		{
 			client.sendPacket(new CharCreateFail(CharCreateFail.REASON_INCORRECT_NAME));
 			return;

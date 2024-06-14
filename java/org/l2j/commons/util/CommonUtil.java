@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -37,8 +37,6 @@ import java.util.StringJoiner;
 import java.util.StringTokenizer;
 import java.util.function.Predicate;
 import java.util.function.ToIntFunction;
-
-import org.l2j.Config;
 
 public class CommonUtil
 {
@@ -224,7 +222,7 @@ public class CommonUtil
 	
 	public static String getTraceString(StackTraceElement[] stackTraceElements)
 	{
-		final StringJoiner sj = new StringJoiner(Config.EOL);
+		final StringJoiner sj = new StringJoiner(System.lineSeparator());
 		for (StackTraceElement stackTraceElement : stackTraceElements)
 		{
 			sj.add(stackTraceElement.toString());

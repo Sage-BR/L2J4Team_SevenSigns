@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,8 +20,10 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.model.item.instance.Item;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.PacketLogger;
 import org.l2j.gameserver.network.ServerPackets;
 
@@ -71,29 +73,29 @@ public class WareHouseWithdrawalList extends AbstractItemPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.WAREHOUSE_WITHDRAW_LIST.writeId(this);
-		writeByte(_sendType);
+		ServerPackets.WAREHOUSE_WITHDRAW_LIST.writeId(this, buffer);
+		buffer.writeByte(_sendType);
 		if (_sendType == 2)
 		{
-			writeShort(0);
-			writeInt(_invSize);
-			writeInt(_items.size());
+			buffer.writeShort(0);
+			buffer.writeInt(_invSize);
+			buffer.writeInt(_items.size());
 			for (Item item : _items)
 			{
-				writeItem(item);
-				writeInt(item.getObjectId());
-				writeInt(0);
-				writeInt(0);
+				writeItem(item, buffer);
+				buffer.writeInt(item.getObjectId());
+				buffer.writeInt(0);
+				buffer.writeInt(0);
 			}
 		}
 		else
 		{
-			writeShort(_whType);
-			writeLong(_playerAdena);
-			writeInt(_invSize);
-			writeInt(_items.size());
+			buffer.writeShort(_whType);
+			buffer.writeLong(_playerAdena);
+			buffer.writeInt(_invSize);
+			buffer.writeInt(_items.size());
 		}
 	}
 }

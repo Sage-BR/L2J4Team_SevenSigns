@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,7 +16,9 @@
  */
 package org.l2j.gameserver.network.serverpackets;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.model.actor.Player;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 
 /**
@@ -38,12 +40,12 @@ public class ExShowBeautyMenu extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_SHOW_BEAUTY_MENU.writeId(this);
-		writeInt(_type);
-		writeInt(_player.getVisualHair());
-		writeInt(_player.getVisualHairColor());
-		writeInt(_player.getVisualFace());
+		ServerPackets.EX_SHOW_BEAUTY_MENU.writeId(this, buffer);
+		buffer.writeInt(_type);
+		buffer.writeInt(_player.getVisualHair());
+		buffer.writeInt(_player.getVisualHairColor());
+		buffer.writeInt(_player.getVisualFace());
 	}
 }

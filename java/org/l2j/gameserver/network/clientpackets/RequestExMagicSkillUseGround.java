@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,12 +16,10 @@
  */
 package org.l2j.gameserver.network.clientpackets;
 
-import org.l2j.commons.network.ReadablePacket;
 import org.l2j.gameserver.data.xml.SkillData;
 import org.l2j.gameserver.model.Location;
 import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.model.skill.Skill;
-import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.PacketLogger;
 import org.l2j.gameserver.network.serverpackets.ActionFailed;
 import org.l2j.gameserver.network.serverpackets.ValidateLocation;
@@ -32,7 +30,7 @@ import org.l2j.gameserver.util.Util;
  * Format:(ch) dddddc
  * @author -Wooden-
  */
-public class RequestExMagicSkillUseGround implements ClientPacket
+public class RequestExMagicSkillUseGround extends ClientPacket
 {
 	private int _x;
 	private int _y;
@@ -42,21 +40,21 @@ public class RequestExMagicSkillUseGround implements ClientPacket
 	private boolean _shiftPressed;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_x = packet.readInt();
-		_y = packet.readInt();
-		_z = packet.readInt();
-		_skillId = packet.readInt();
-		_ctrlPressed = packet.readInt() != 0;
-		_shiftPressed = packet.readByte() != 0;
+		_x = readInt();
+		_y = readInt();
+		_z = readInt();
+		_skillId = readInt();
+		_ctrlPressed = readInt() != 0;
+		_shiftPressed = readByte() != 0;
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
 		// Get the current Player of the player
-		final Player player = client.getPlayer();
+		final Player player = getPlayer();
 		if (player == null)
 		{
 			return;

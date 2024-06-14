@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,27 +16,25 @@
  */
 package org.l2j.gameserver.network.clientpackets.friend;
 
-import org.l2j.commons.network.ReadablePacket;
 import org.l2j.commons.threads.ThreadPool;
 import org.l2j.gameserver.data.xml.FakePlayerData;
 import org.l2j.gameserver.model.BlockList;
 import org.l2j.gameserver.model.ClientSettings;
 import org.l2j.gameserver.model.World;
 import org.l2j.gameserver.model.actor.Player;
-import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.SystemMessageId;
 import org.l2j.gameserver.network.clientpackets.ClientPacket;
 import org.l2j.gameserver.network.serverpackets.SystemMessage;
 import org.l2j.gameserver.network.serverpackets.friend.FriendAddRequest;
 
-public class RequestFriendInvite implements ClientPacket
+public class RequestFriendInvite extends ClientPacket
 {
 	private String _name;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_name = packet.readString();
+		_name = readString();
 	}
 	
 	private void scheduleDeny(Player player)
@@ -49,9 +47,9 @@ public class RequestFriendInvite implements ClientPacket
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
-		final Player player = client.getPlayer();
+		final Player player = getPlayer();
 		if (player == null)
 		{
 			return;

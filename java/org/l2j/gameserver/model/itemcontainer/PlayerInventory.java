@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -29,6 +29,7 @@ import java.util.logging.Logger;
 
 import org.l2j.Config;
 import org.l2j.commons.database.DatabaseFactory;
+import org.l2j.commons.threads.ThreadPool;
 import org.l2j.gameserver.data.xml.AgathionData;
 import org.l2j.gameserver.data.xml.ItemData;
 import org.l2j.gameserver.enums.InventoryBlockType;
@@ -37,6 +38,7 @@ import org.l2j.gameserver.enums.StatusUpdateType;
 import org.l2j.gameserver.model.TradeItem;
 import org.l2j.gameserver.model.TradeList;
 import org.l2j.gameserver.model.actor.Player;
+import org.l2j.gameserver.model.clan.Clan;
 import org.l2j.gameserver.model.events.EventDispatcher;
 import org.l2j.gameserver.model.events.EventType;
 import org.l2j.gameserver.model.events.impl.creature.player.OnPlayerItemAdd;
@@ -140,7 +142,11 @@ public class PlayerInventory extends Inventory
 		final List<Item> list = new LinkedList<>();
 		for (Item item : _items)
 		{
-			if ((!allowAdena && (item.getId() == ADENA_ID)) || (!allowAncientAdena && (item.getId() == ANCIENT_ADENA_ID)))
+			if (!allowAdena && (item.getId() == ADENA_ID))
+			{
+				continue;
+			}
+			if (!allowAncientAdena && (item.getId() == ANCIENT_ADENA_ID))
 			{
 				continue;
 			}
@@ -476,6 +482,17 @@ public class PlayerInventory extends Inventory
 			else if ((item.getId() == BEAUTY_TICKET_ID) && !item.equals(_beautyTickets))
 			{
 				_beautyTickets = item;
+			}
+			else if ((item.getId() == CLAN_EXP))
+			{
+				final long xpCount = item.getCount();
+				final Clan clan = actor.getClan();
+				if (clan != null)
+				{
+					clan.addExp(actor.getObjectId(), (int) xpCount);
+				}
+				ThreadPool.schedule(() -> actor.destroyItemByItemId("Clan Exp Item Consume", CLAN_EXP, xpCount, actor, false), 100);
+				return item;
 			}
 			
 			if (actor != null)
@@ -874,7 +891,7 @@ public class PlayerInventory extends Inventory
 					paperdoll[slot][0] = invdata.getInt("object_id");
 					paperdoll[slot][1] = invdata.getInt("item_id");
 					paperdoll[slot][2] = invdata.getInt("enchant_level");
-					paperdoll[slot][3] = vars.getInt(ItemVariables.VISUAL_ID, 0);
+					paperdoll[slot][3] = vars.getInt(ItemVariables.VISUAL_ID, Config.ENABLE_TRANSMOG ? vars.getInt(ItemVariables.TRANSMOG_ID, 0) : 0);
 					if (paperdoll[slot][3] > 0) // fix for hair appearance conflicting with original model
 					{
 						paperdoll[slot][1] = paperdoll[slot][3];
@@ -1176,7 +1193,12 @@ public class PlayerInventory extends Inventory
 			}
 		}
 		
-		if ((ammunition == null) || (ammunition.getItemType() != type) || ammunition.getEtcItem().isInfinite())
+		if ((ammunition == null) || (ammunition.getItemType() != type))
+		{
+			return;
+		}
+		
+		if (ammunition.getEtcItem().isInfinite())
 		{
 			return;
 		}

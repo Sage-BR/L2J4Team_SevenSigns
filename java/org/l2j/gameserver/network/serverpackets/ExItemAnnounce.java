@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,8 +16,10 @@
  */
 package org.l2j.gameserver.network.serverpackets;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.model.item.instance.Item;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 
 /**
@@ -55,9 +57,9 @@ public class ExItemAnnounce extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_ITEM_ANNOUNCE.writeId(this);
+		ServerPackets.EX_ITEM_ANNOUNCE.writeId(this, buffer);
 		// _type
 		// 0 - enchant
 		// 1 - item get from container
@@ -71,10 +73,10 @@ public class ExItemAnnounce extends ServerPacket
 		// 9 - item get from craft system but fancy
 		// 10 - item get from upgrade
 		// 11 and others - null item name by item_id and icon from chest.
-		writeByte(_type); // announce type
-		writeSizedString(_announceName); // name of player
-		writeInt(_item.getId()); // item id
-		writeByte(_item.getEnchantLevel()); // enchant level
-		writeInt(0); // chest item id
+		buffer.writeByte(_type); // announce type
+		buffer.writeSizedString(_announceName); // name of player
+		buffer.writeInt(_item.getId()); // item id
+		buffer.writeByte(_item.getEnchantLevel()); // enchant level
+		buffer.writeInt(0); // chest item id
 	}
 }

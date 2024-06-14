@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,12 +16,10 @@
  */
 package org.l2j.gameserver.network.clientpackets.elementalspirits;
 
-import org.l2j.commons.network.ReadablePacket;
 import org.l2j.gameserver.enums.ElementalType;
 import org.l2j.gameserver.enums.UserInfoType;
 import org.l2j.gameserver.model.ElementalSpirit;
 import org.l2j.gameserver.model.actor.Player;
-import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.SystemMessageId;
 import org.l2j.gameserver.network.clientpackets.ClientPacket;
 import org.l2j.gameserver.network.serverpackets.SystemMessage;
@@ -31,7 +29,7 @@ import org.l2j.gameserver.network.serverpackets.elementalspirits.ElementalSpirit
 /**
  * @author JoeAlisson
  */
-public class ExElementalSpiritSetTalent implements ClientPacket
+public class ExElementalSpiritSetTalent extends ClientPacket
 {
 	private byte _type;
 	private byte _attackPoints;
@@ -40,25 +38,25 @@ public class ExElementalSpiritSetTalent implements ClientPacket
 	private byte _critDamage;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_type = (byte) packet.readByte();
-		packet.readByte(); // Characteristics for now always 4
+		_type = readByte();
+		readByte(); // Characteristics for now always 4
 		
-		packet.readByte(); // attack id
-		_attackPoints = (byte) packet.readByte();
-		packet.readByte(); // defense id
-		_defensePoints = (byte) packet.readByte();
-		packet.readByte(); // crit rate id
-		_critRate = (byte) packet.readByte();
-		packet.readByte(); // crit damage id
-		_critDamage = (byte) packet.readByte();
+		readByte(); // attack id
+		_attackPoints = readByte();
+		readByte(); // defense id
+		_defensePoints = readByte();
+		readByte(); // crit rate id
+		_critRate = readByte();
+		readByte(); // crit damage id
+		_critDamage = readByte();
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
-		final Player player = client.getPlayer();
+		final Player player = getPlayer();
 		if (player == null)
 		{
 			return;
@@ -97,9 +95,9 @@ public class ExElementalSpiritSetTalent implements ClientPacket
 		{
 			final UserInfo userInfo = new UserInfo(player);
 			userInfo.addComponentType(UserInfoType.ATT_SPIRITS);
-			client.sendPacket(userInfo);
-			client.sendPacket(new SystemMessage(SystemMessageId.CHARACTERISTICS_WERE_APPLIED_SUCCESSFULLY));
+			player.sendPacket(userInfo);
+			player.sendPacket(new SystemMessage(SystemMessageId.CHARACTERISTICS_WERE_APPLIED_SUCCESSFULLY));
 		}
-		client.sendPacket(new ElementalSpiritSetTalent(player, _type, result));
+		player.sendPacket(new ElementalSpiritSetTalent(player, _type, result));
 	}
 }

@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -35,7 +35,7 @@ public class EnchantItemAttributeRequest extends AbstractRequest
 	
 	public Item getEnchantingItem()
 	{
-		return getActiveChar().getInventory().getItemByObjectId(_enchantingItemObjectId);
+		return getPlayer().getInventory().getItemByObjectId(_enchantingItemObjectId);
 	}
 	
 	public void setEnchantingItem(int objectId)
@@ -45,7 +45,7 @@ public class EnchantItemAttributeRequest extends AbstractRequest
 	
 	public Item getEnchantingStone()
 	{
-		return getActiveChar().getInventory().getItemByObjectId(_enchantingStoneObjectId);
+		return getPlayer().getInventory().getItemByObjectId(_enchantingStoneObjectId);
 	}
 	
 	public void setEnchantingStone(int objectId)

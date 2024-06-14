@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/multisell.xsd">
+	<npcs>
+		<npc>-1</npc> <!-- Item Multisell -->
+	</npcs>
+	<!-- Rare Collection Coupon (Time-limited) - Sealed (100303) -->
+	<item>
+		<ingredient id="100303" count="20" /> <!-- Rare Collection Coupon (Time-limited) - Sealed -->
+		<production id="98665" count="1" /> <!-- Stat Collection - Baium's Crystal (Time-limited) - Sealed -->
+	</item>
+	<item>
+		<ingredient id="100303" count="4" /> <!-- Rare Collection Coupon (Time-limited) - Sealed -->
+		<production id="98662" count="1" /> <!-- Stat Collection - Zaken's Crystal (Time-limited) - Sealed -->
+	</item>
+	<item>
+		<ingredient id="100303" count="2" /> <!-- Rare Collection Coupon (Time-limited) - Sealed -->
+		<production id="98664" count="1" /> <!-- Stat Collection - Core's Crystal (Time-limited) - Sealed -->
+	</item>
+	<item>
+		<ingredient id="100303" count="2" /> <!-- Rare Collection Coupon (Time-limited) - Sealed -->
+		<production id="98666" count="1" /> <!-- Stat Collection - Queen Ant's Crystal (Time-limited) - Sealed -->
+	</item>
+	<item>
+		<ingredient id="100303" count="2" /> <!-- Rare Collection Coupon (Time-limited) - Sealed -->
+		<production id="98663" count="1" /> <!-- Stat Collection - Orfen's Crystal (Time-limited) - Sealed -->
+	</item>
+	<item>
+		<ingredient id="100303" count="4" /> <!-- Rare Collection Coupon (Time-limited) - Sealed -->
+		<production id="98667" count="1" /> <!-- Stat Collection - Baium Doll Lv. 1 (Time-limited) - Sealed -->
+	</item>
+	<item>
+		<ingredient id="100303" count="4" /> <!-- Rare Collection Coupon (Time-limited) - Sealed -->
+		<production id="98670" count="1" /> <!-- Stat Collection - Frintezza Doll Lv. 1 (Time-limited) - Sealed -->
+	</item>
+	<item>
+		<ingredient id="100303" count="3" /> <!-- Rare Collection Coupon (Time-limited) - Sealed -->
+		<production id="98671" count="1" /> <!-- Stat Collection - Zaken Doll Lv. 1 (Time-limited) - Sealed -->
+	</item>
+	<item>
+		<ingredient id="100303" count="2" /> <!-- Rare Collection Coupon (Time-limited) - Sealed -->
+		<production id="98672" count="1" /> <!-- Stat Collection - Core Doll Lv. 1 (Time-limited) - Sealed -->
+	</item>
+	<item>
+		<ingredient id="100303" count="2" /> <!-- Rare Collection Coupon (Time-limited) - Sealed -->
+		<production id="98668" count="1" /> <!-- Stat Collection - Queen Ant Doll Lv. 1 (Time-limited) - Sealed -->
+	</item>
+	<item>
+		<ingredient id="100303" count="1" /> <!-- Rare Collection Coupon (Time-limited) - Sealed -->
+		<production id="98669" count="1" /> <!-- Stat Collection - Orfen Doll Lv. 1 (Time-limited) - Sealed -->
+	</item>
+	<item>
+		<ingredient id="100303" count="10" /> <!-- Rare Collection Coupon (Time-limited) - Sealed -->
+		<production id="99885" count="1" /> <!-- Rare Collection - Antharas' Earring (Time-limited) - Sealed -->
+	</item>
+	<item>
+		<ingredient id="100303" count="8" /> <!-- Rare Collection Coupon (Time-limited) - Sealed -->
+		<production id="99882" count="1" /> <!-- Rare Collection - Baium's Ring (Time-limited) - Sealed -->
+	</item>
+	<item>
+		<ingredient id="100303" count="3" /> <!-- Rare Collection Coupon (Time-limited) - Sealed -->
+		<production id="99884" count="1" /> <!-- Rare Collection - Zaken's Earring (Time-limited) - Sealed -->
+	</item>
+	<item>
+		<ingredient id="100303" count="2" /> <!-- Rare Collection Coupon (Time-limited) - Sealed -->
+		<production id="99883" count="1" /> <!-- Rare Collection - Orfen's Earring (Time-limited) - Sealed -->
+	</item>
+	<item>
+		<ingredient id="100303" count="2" /> <!-- Rare Collection Coupon (Time-limited) - Sealed -->
+		<production id="99881" count="1" /> <!-- Rare Collection - Queen Ant's Ring (Time-limited) - Sealed -->
+	</item>
+	<item>
+		<ingredient id="100303" count="1" /> <!-- Rare Collection Coupon (Time-limited) - Sealed -->
+		<production id="99880" count="1" /> <!-- Rare Collection - Ring of Core (Time-limited) - Sealed -->
+	</item>
+</list>

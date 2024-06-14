@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,6 +22,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import org.l2j.commons.threads.ThreadPool;
 import org.l2j.gameserver.geoengine.GeoEngine;
 import org.l2j.gameserver.instancemanager.CastleManager;
+import org.l2j.gameserver.model.Spawn;
 import org.l2j.gameserver.model.World;
 import org.l2j.gameserver.model.WorldObject;
 import org.l2j.gameserver.model.actor.Attackable;
@@ -29,6 +30,11 @@ import org.l2j.gameserver.model.actor.Creature;
 import org.l2j.gameserver.model.actor.Npc;
 import org.l2j.gameserver.model.actor.Playable;
 import org.l2j.gameserver.model.actor.Player;
+import org.l2j.gameserver.model.events.EventType;
+import org.l2j.gameserver.model.events.ListenerRegisterType;
+import org.l2j.gameserver.model.events.annotations.RegisterEvent;
+import org.l2j.gameserver.model.events.annotations.RegisterType;
+import org.l2j.gameserver.model.events.impl.sieges.OnCastleSiegeFinish;
 import org.l2j.gameserver.model.item.type.WeaponType;
 import org.l2j.gameserver.model.siege.Castle;
 import org.l2j.gameserver.model.siege.Fort;
@@ -66,8 +72,8 @@ public class SiegeGuards extends AbstractNpcAI
 	};
 	//@formatter:on
 	@SuppressWarnings("unchecked")
-	protected static final List<Npc>[] RESIDENCE_GUARD_MAP = new CopyOnWriteArrayList[122];
-	protected static final boolean[] RESIDENCE_WORKING = new boolean[122];
+	protected static final List<Npc>[] RESIDENCE_GUARD_MAP = new CopyOnWriteArrayList[123];
+	protected static final boolean[] RESIDENCE_WORKING = new boolean[123];
 	
 	public SiegeGuards()
 	{
@@ -124,10 +130,9 @@ public class SiegeGuards extends AbstractNpcAI
 					continue;
 				}
 				
-				// Remove dead guards.
+				// Ignore dead guards.
 				if (guard.isDead())
 				{
-					guards.remove(guard);
 					continue;
 				}
 				
@@ -182,6 +187,7 @@ public class SiegeGuards extends AbstractNpcAI
 			((Attackable) npc).stopHating(attacker);
 			return null;
 		}
+		
 		return super.onAttack(npc, attacker, damage, isSummon, skill);
 	}
 	
@@ -189,12 +195,7 @@ public class SiegeGuards extends AbstractNpcAI
 	public String onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final int residenceId = npc.getScriptValue();
-		final List<Npc> guardList = RESIDENCE_GUARD_MAP[residenceId];
-		if (guardList != null)
-		{
-			guardList.remove(npc);
-		}
-		else
+		if (residenceId == 0)
 		{
 			RESIDENCE_GUARD_MAP[0].remove(npc);
 		}
@@ -215,9 +216,12 @@ public class SiegeGuards extends AbstractNpcAI
 		final int residenceId = fortress != null ? fortress.getResidenceId() : (castle != null ? castle.getResidenceId() : 0);
 		npc.setScriptValue(residenceId);
 		final List<Npc> guardList = RESIDENCE_GUARD_MAP[residenceId];
-		if (guardList != null)
+		if ((residenceId > 0) && (guardList != null))
 		{
-			guardList.add(npc);
+			if (!guardList.contains(npc))
+			{
+				guardList.add(npc);
+			}
 		}
 		else // Residence id not found.
 		{
@@ -225,6 +229,34 @@ public class SiegeGuards extends AbstractNpcAI
 		}
 		
 		return super.onSpawn(npc);
+	}
+	
+	@RegisterEvent(EventType.ON_CASTLE_SIEGE_FINISH)
+	@RegisterType(ListenerRegisterType.GLOBAL)
+	public void onCastleSiegeFinish(OnCastleSiegeFinish event)
+	{
+		final Castle castle = event.getSiege().getCastle();
+		final int residenceId = castle != null ? castle.getResidenceId() : 0;
+		final List<Npc> guardList = RESIDENCE_GUARD_MAP[residenceId];
+		if (guardList == null)
+		{
+			return;
+		}
+		
+		for (Npc guard : guardList)
+		{
+			final Spawn spawn = guard.getSpawn();
+			if (spawn != null)
+			{
+				spawn.stopRespawn();
+			}
+			if (guard.isSpawned())
+			{
+				guard.deleteMe();
+			}
+		}
+		
+		guardList.clear();
 	}
 	
 	public static void main(String[] args)

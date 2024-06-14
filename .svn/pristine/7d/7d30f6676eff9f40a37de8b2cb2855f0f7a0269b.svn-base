@@ -1,0 +1,4 @@
+<html><body>Teleport:<br>
+Glad to see you! How can I help you?<br>
+<Button ALIGN=LEFT ICON="TELEPORT" action="bypass -h Quest CitadelTeleport teleport">Teleport me inside the Steel Citadel.</Button>
+</body></html>

@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -34,7 +34,7 @@ import org.l2j.gameserver.model.zone.AbstractZoneSettings;
 import org.l2j.gameserver.model.zone.ZoneId;
 import org.l2j.gameserver.model.zone.ZoneRespawn;
 import org.l2j.gameserver.network.SystemMessageId;
-import org.l2j.gameserver.network.serverpackets.ExOlympiadMatchEnd;
+import org.l2j.gameserver.network.serverpackets.olympiad.ExOlympiadMatchEnd;
 
 /**
  * An olympiad stadium

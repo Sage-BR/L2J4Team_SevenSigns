@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../xsd/buylist.xsd">
+	<npcs>
+		<npc>35363</npc> <!-- Chamberlain of Light -->
+	</npcs>
+	<item id="93125" price="550000" /> <!-- Circlet of Goddart -->
+	<item id="49087" price="22000" count="3" restock_delay="60" /> <!-- Improved Scroll of Escape -->
+	<item id="5595" price="1320000" count="10" restock_delay="60" /> <!-- SP Scroll (High-Grade) -->
+</list>

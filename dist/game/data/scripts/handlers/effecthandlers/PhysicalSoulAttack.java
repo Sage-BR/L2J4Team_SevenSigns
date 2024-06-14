@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -71,7 +71,12 @@ public class PhysicalSoulAttack extends AbstractEffect
 	@Override
 	public void instant(Creature effector, Creature effected, Skill skill, Item item)
 	{
-		if (!effector.isPlayer() || effector.isAlikeDead())
+		if (!effector.isPlayer())
+		{
+			return;
+		}
+		
+		if (effector.isAlikeDead())
 		{
 			return;
 		}

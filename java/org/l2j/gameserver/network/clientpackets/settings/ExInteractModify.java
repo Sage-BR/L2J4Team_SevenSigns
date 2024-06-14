@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,31 +16,29 @@
  */
 package org.l2j.gameserver.network.clientpackets.settings;
 
-import org.l2j.commons.network.ReadablePacket;
 import org.l2j.gameserver.model.ClientSettings;
 import org.l2j.gameserver.model.actor.Player;
-import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.clientpackets.ClientPacket;
 
 /**
  * @author Index
  */
-public class ExInteractModify implements ClientPacket
+public class ExInteractModify extends ClientPacket
 {
 	private int _type;
 	private int _settings;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_type = packet.readByte();
-		_settings = packet.readByte();
+		_type = readByte();
+		_settings = readByte();
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
-		final Player player = client.getPlayer();
+		final Player player = getPlayer();
 		if (player == null)
 		{
 			return;

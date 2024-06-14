@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -50,7 +50,12 @@ public class FishShots implements IItemHandler
 		final Player player = playable.getActingPlayer();
 		final Item weaponInst = player.getActiveWeaponInstance();
 		final Weapon weaponItem = player.getActiveWeaponItem();
-		if ((weaponInst == null) || (weaponItem.getItemType() != WeaponType.FISHINGROD) || player.isChargedShot(ShotType.FISH_SOULSHOTS))
+		if ((weaponInst == null) || (weaponItem.getItemType() != WeaponType.FISHINGROD))
+		{
+			return false;
+		}
+		
+		if (player.isChargedShot(ShotType.FISH_SOULSHOTS))
 		{
 			return false;
 		}

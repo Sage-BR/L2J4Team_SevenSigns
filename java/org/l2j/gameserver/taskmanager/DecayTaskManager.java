@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -151,12 +151,12 @@ public class DecayTaskManager implements Runnable
 	{
 		final StringBuilder ret = new StringBuilder();
 		ret.append("============= DecayTask Manager Report ============");
-		ret.append(Config.EOL);
+		ret.append(System.lineSeparator());
 		ret.append("Tasks count: ");
 		ret.append(DECAY_SCHEDULES.size());
-		ret.append(Config.EOL);
+		ret.append(System.lineSeparator());
 		ret.append("Tasks dump:");
-		ret.append(Config.EOL);
+		ret.append(System.lineSeparator());
 		
 		final long time = System.currentTimeMillis();
 		for (Entry<Creature, Long> entry : DECAY_SCHEDULES.entrySet())
@@ -167,7 +167,7 @@ public class DecayTaskManager implements Runnable
 			ret.append(entry.getKey().getName());
 			ret.append(" decay timer: ");
 			ret.append(entry.getValue().longValue() - time);
-			ret.append(Config.EOL);
+			ret.append(System.lineSeparator());
 		}
 		
 		return ret.toString();

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/multisell.xsd">
+	<npcs>
+		<npc>-1</npc> <!-- Item Multisell -->
+	</npcs>
+	<!-- Stat Collection - Doll Certificate (Time-limited) - Sealed (98905) -->
+	<item>
+		<ingredient id="98905" count="1" /> <!-- Stat Collection - Doll Certificate (Time-limited) - Sealed -->
+		<production id="98667" count="1" /> <!-- Stat Collection - Baium Doll Lv. 1 (Time-limited) - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98905" count="1" /> <!-- Stat Collection - Doll Certificate (Time-limited) - Sealed -->
+		<production id="98668" count="1" /> <!-- Stat Collection - Queen Ant Doll Lv. 1 (Time-limited) - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98905" count="1" /> <!-- Stat Collection - Doll Certificate (Time-limited) - Sealed -->
+		<production id="98669" count="1" /> <!-- Stat Collection - Orfen Doll Lv. 1 (Time-limited) - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98905" count="1" /> <!-- Stat Collection - Doll Certificate (Time-limited) - Sealed -->
+		<production id="98670" count="1" /> <!-- Stat Collection - Frintezza Doll Lv. 1 (Time-limited) - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98905" count="1" /> <!-- Stat Collection - Doll Certificate (Time-limited) - Sealed -->
+		<production id="98671" count="1" /> <!-- Stat Collection - Zaken Doll Lv. 1 (Time-limited) - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98905" count="1" /> <!-- Stat Collection - Doll Certificate (Time-limited) - Sealed -->
+		<production id="98672" count="1" /> <!-- Stat Collection - Core Doll Lv. 1 (Time-limited) - Sealed -->
+	</item>
+</list>

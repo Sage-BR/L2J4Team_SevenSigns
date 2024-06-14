@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,7 +16,9 @@
  */
 package org.l2j.gameserver.network.serverpackets;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.model.WorldObject;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 
 public class TeleportToLocation extends ServerPacket
@@ -37,15 +39,15 @@ public class TeleportToLocation extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.TELEPORT_TO_LOCATION.writeId(this);
-		writeInt(_targetObjId);
-		writeInt(_x);
-		writeInt(_y);
-		writeInt(_z);
-		writeInt(0); // Fade 0, Instant 1.
-		writeInt(_heading);
-		writeInt(0); // Unknown.
+		ServerPackets.TELEPORT_TO_LOCATION.writeId(this, buffer);
+		buffer.writeInt(_targetObjId);
+		buffer.writeInt(_x);
+		buffer.writeInt(_y);
+		buffer.writeInt(_z);
+		buffer.writeInt(0); // Fade 0, Instant 1.
+		buffer.writeInt(_heading);
+		buffer.writeInt(0); // Unknown.
 	}
 }

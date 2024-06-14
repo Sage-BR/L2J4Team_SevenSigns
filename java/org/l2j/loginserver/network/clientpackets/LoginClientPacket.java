@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,19 +16,32 @@
  */
 package org.l2j.loginserver.network.clientpackets;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import org.l2j.commons.network.ReadablePacket;
 import org.l2j.loginserver.network.LoginClient;
 
 /**
- * @author Mobius
+ * @author KenM
  */
-public abstract interface LoginClientPacket
+public abstract class LoginClientPacket extends ReadablePacket<LoginClient>
 {
-	default void read(ReadablePacket packet)
+	private static final Logger LOGGER = Logger.getLogger(LoginClientPacket.class.getName());
+	
+	@Override
+	protected boolean read()
 	{
+		try
+		{
+			return readImpl();
+		}
+		catch (Exception e)
+		{
+			LOGGER.log(Level.SEVERE, "ERROR READING: " + getClass().getSimpleName() + ": " + e.getMessage(), e);
+			return false;
+		}
 	}
 	
-	default void run(LoginClient client)
-	{
-	}
+	protected abstract boolean readImpl();
 }

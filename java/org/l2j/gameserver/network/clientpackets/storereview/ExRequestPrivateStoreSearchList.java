@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,7 +20,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import org.l2j.commons.network.ReadablePacket;
 import org.l2j.gameserver.data.xml.CollectionData;
 import org.l2j.gameserver.data.xml.EnsoulData;
 import org.l2j.gameserver.data.xml.HennaData;
@@ -38,7 +37,6 @@ import org.l2j.gameserver.model.holders.CollectionDataHolder;
 import org.l2j.gameserver.model.holders.ItemEnchantHolder;
 import org.l2j.gameserver.model.item.EtcItem;
 import org.l2j.gameserver.model.item.ItemTemplate;
-import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.clientpackets.ClientPacket;
 import org.l2j.gameserver.network.serverpackets.storereview.ExPrivateStoreSearchHistory;
 import org.l2j.gameserver.network.serverpackets.storereview.ExPrivateStoreSearchItem;
@@ -46,7 +44,7 @@ import org.l2j.gameserver.network.serverpackets.storereview.ExPrivateStoreSearch
 /**
  * @author Mobius
  */
-public class ExRequestPrivateStoreSearchList implements ClientPacket
+public class ExRequestPrivateStoreSearchList extends ClientPacket
 {
 	public static final int MAX_ITEM_PER_PAGE = 120;
 	
@@ -57,19 +55,19 @@ public class ExRequestPrivateStoreSearchList implements ClientPacket
 	private int _searchCollection;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_searchWord = packet.readSizedString();
-		_storeType = StoreType.findById(packet.readByte());
-		_itemType = StoreItemType.findById(packet.readByte());
-		_itemSubtype = StoreSubItemType.findById(packet.readByte());
-		_searchCollection = packet.readByte();
+		_searchWord = readSizedString();
+		_storeType = StoreType.findById(readByte());
+		_itemType = StoreItemType.findById(readByte());
+		_itemSubtype = StoreSubItemType.findById(readByte());
+		_searchCollection = readByte();
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
-		final Player player = client.getPlayer();
+		final Player player = getPlayer();
 		if (player == null)
 		{
 			return;

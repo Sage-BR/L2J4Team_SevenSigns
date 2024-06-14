@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -65,7 +65,7 @@ public class OlympiadManager
 		List<Set<Integer>> result = null;
 		for (Entry<Integer, Set<Integer>> classList : _classBasedRegisters.entrySet())
 		{
-			if ((classList.getValue() != null) && (classList.getValue().size() >= Config.ALT_OLY_CLASSED))
+			if ((classList.getValue() != null) && (classList.getValue().size() >= Config.OLYMPIAD_CLASSED))
 			{
 				if (result == null)
 				{
@@ -80,7 +80,7 @@ public class OlympiadManager
 	
 	protected final boolean hasEnoughRegisteredNonClassed()
 	{
-		return _nonClassBasedRegisters.size() >= Config.ALT_OLY_NONCLASSED;
+		return _nonClassBasedRegisters.size() >= Config.OLYMPIAD_NONCLASSED;
 	}
 	
 	protected void clearRegistered()

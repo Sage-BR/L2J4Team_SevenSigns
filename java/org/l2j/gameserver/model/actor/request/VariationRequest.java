@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -36,7 +36,7 @@ public class VariationRequest extends AbstractRequest
 	
 	public synchronized void setAugmentedItem(int objectId)
 	{
-		_augmented = getActiveChar().getInventory().getItemByObjectId(objectId);
+		_augmented = getPlayer().getInventory().getItemByObjectId(objectId);
 	}
 	
 	public synchronized Item getAugmentedItem()
@@ -46,7 +46,7 @@ public class VariationRequest extends AbstractRequest
 	
 	public synchronized void setMineralItem(int objectId)
 	{
-		_mineral = getActiveChar().getInventory().getItemByObjectId(objectId);
+		_mineral = getPlayer().getInventory().getItemByObjectId(objectId);
 	}
 	
 	public synchronized Item getMineralItem()

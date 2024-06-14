@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,6 +19,15 @@ package org.l2j.gameserver.network.clientpackets;
 /**
  * @author KenM
  */
-public class RequestPVPMatchRecord implements ClientPacket
+public class RequestPVPMatchRecord extends ClientPacket
 {
+	@Override
+	protected void readImpl()
+	{
+	}
+	
+	@Override
+	protected void runImpl()
+	{
+	}
 }

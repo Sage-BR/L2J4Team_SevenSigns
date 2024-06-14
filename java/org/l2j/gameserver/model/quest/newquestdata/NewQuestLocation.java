@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,11 +23,13 @@ public class NewQuestLocation
 {
 	private final int _startLocationId;
 	private final int _endLocationId;
+	private final int _questLocationId;
 	
-	public NewQuestLocation(int startLocationId, int endLocationId)
+	public NewQuestLocation(int startLocationId, int endLocationId, int questLocationId)
 	{
 		_startLocationId = startLocationId;
 		_endLocationId = endLocationId;
+		_questLocationId = questLocationId;
 	}
 	
 	public int getStartLocationId()
@@ -38,5 +40,10 @@ public class NewQuestLocation
 	public int getEndLocationId()
 	{
 		return _endLocationId;
+	}
+	
+	public int getQuestLocationId()
+	{
+		return _questLocationId;
 	}
 }

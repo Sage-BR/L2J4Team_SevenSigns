@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -78,7 +78,7 @@ public class Shutdown extends Thread
 	private int _shutdownMode;
 	
 	/**
-	 * This function starts a shutdown count down from Telnet (Copied from Function startShutdown())
+	 * This function starts a shutdown count down (Copied from Function startShutdown())
 	 * @param seconds seconds until shutdown
 	 */
 	private void sendServerQuit(int seconds)
@@ -116,7 +116,12 @@ public class Shutdown extends Thread
 	@Override
 	public void run()
 	{
-		if ((this == getInstance()) || _countdownFinished)
+		if (this == getInstance())
+		{
+			return;
+		}
+		
+		if (_countdownFinished)
 		{
 			return;
 		}

@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,7 +16,9 @@
  */
 package org.l2j.gameserver.network.serverpackets;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.model.clan.ClanMember;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 
 /**
@@ -32,11 +34,11 @@ public class PledgeReceivePowerInfo extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.PLEDGE_RECEIVE_POWER_INFO.writeId(this);
-		writeInt(_member.getPowerGrade()); // power grade
-		writeString(_member.getName());
-		writeInt(_member.getClan().getRankPrivs(_member.getPowerGrade()).getBitmask()); // privileges
+		ServerPackets.PLEDGE_RECEIVE_POWER_INFO.writeId(this, buffer);
+		buffer.writeInt(_member.getPowerGrade()); // power grade
+		buffer.writeString(_member.getName());
+		buffer.writeInt(_member.getClan().getRankPrivs(_member.getPowerGrade()).getBitmask()); // privileges
 	}
 }

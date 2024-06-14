@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -164,7 +164,7 @@ public class Baium extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onAdvEvent(String event, Npc npc, Player player)
+	public String onEvent(String event, Npc npc, Player player)
 	{
 		switch (event)
 		{
@@ -478,7 +478,7 @@ public class Baium extends AbstractNpcAI
 				break;
 			}
 		}
-		return super.onAdvEvent(event, npc, player);
+		return super.onEvent(event, npc, player);
 	}
 	
 	@Override
@@ -550,7 +550,10 @@ public class Baium extends AbstractNpcAI
 			setStatus(DEAD);
 			addSpawn(TELE_CUBE, TELEPORT_CUBIC_LOC, false, 900000);
 			zone.broadcastPacket(new PlaySound("BS01_D"));
-			final long respawnTime = Config.BAIUM_SPAWN_INTERVAL * 3600000;
+			
+			final long baseIntervalMillis = Config.BAIUM_SPAWN_INTERVAL * 3600000;
+			final long randomRangeMillis = Config.BAIUM_SPAWN_RANDOM * 3600000;
+			final long respawnTime = baseIntervalMillis + getRandom(-randomRangeMillis, randomRangeMillis);
 			setRespawn(respawnTime);
 			startQuestTimer("CLEAR_STATUS", respawnTime, null, null);
 			startQuestTimer("CLEAR_ZONE", 900000, null, null);

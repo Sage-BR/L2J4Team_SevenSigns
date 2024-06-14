@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,9 +18,11 @@ package org.l2j.gameserver.network.serverpackets;
 
 import java.util.Collection;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.data.sql.ClanTable;
 import org.l2j.gameserver.model.clan.Clan;
 import org.l2j.gameserver.model.clan.ClanInfo;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 import org.l2j.gameserver.network.clientpackets.RequestAllyInfo;
 
@@ -60,23 +62,23 @@ public class AllianceInfo extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.ALLIANCE_INFO.writeId(this);
-		writeString(_name);
-		writeInt(_total);
-		writeInt(_online);
-		writeString(_leaderC);
-		writeString(_leaderP);
-		writeInt(_allies.length);
+		ServerPackets.ALLIANCE_INFO.writeId(this, buffer);
+		buffer.writeString(_name);
+		buffer.writeInt(_total);
+		buffer.writeInt(_online);
+		buffer.writeString(_leaderC);
+		buffer.writeString(_leaderP);
+		buffer.writeInt(_allies.length);
 		for (ClanInfo aci : _allies)
 		{
-			writeString(aci.getClan().getName());
-			writeInt(0);
-			writeInt(aci.getClan().getLevel());
-			writeString(aci.getClan().getLeaderName());
-			writeInt(aci.getTotal());
-			writeInt(aci.getOnline());
+			buffer.writeString(aci.getClan().getName());
+			buffer.writeInt(0);
+			buffer.writeInt(aci.getClan().getLevel());
+			buffer.writeString(aci.getClan().getLeaderName());
+			buffer.writeInt(aci.getTotal());
+			buffer.writeInt(aci.getOnline());
 		}
 	}
 	

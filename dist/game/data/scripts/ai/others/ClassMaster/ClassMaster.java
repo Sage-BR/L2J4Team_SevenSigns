@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -232,7 +232,7 @@ public class ClassMaster extends AbstractNpcAI implements IXmlReader
 	}
 	
 	@Override
-	public String onAdvEvent(String eventValue, Npc npc, Player player)
+	public String onEvent(String eventValue, Npc npc, Player player)
 	{
 		if (!_isEnabled)
 		{
@@ -893,7 +893,7 @@ public class ClassMaster extends AbstractNpcAI implements IXmlReader
 	{
 		if (event.getCommand().startsWith("Quest ClassMaster "))
 		{
-			final String html = onAdvEvent(event.getCommand().substring(18), null, event.getPlayer());
+			final String html = onEvent(event.getCommand().substring(18), null, event.getPlayer());
 			event.getPlayer().sendPacket(TutorialCloseHtml.STATIC_PACKET);
 			showResult(event.getPlayer(), html);
 		}

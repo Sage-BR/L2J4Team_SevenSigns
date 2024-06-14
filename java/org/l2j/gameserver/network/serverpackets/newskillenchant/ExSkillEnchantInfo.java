@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,6 +16,7 @@
  */
 package org.l2j.gameserver.network.serverpackets.newskillenchant;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.data.xml.SkillEnchantData;
 import org.l2j.gameserver.model.ItemInfo;
 import org.l2j.gameserver.model.actor.Player;
@@ -23,6 +24,7 @@ import org.l2j.gameserver.model.holders.EnchantStarHolder;
 import org.l2j.gameserver.model.item.instance.Item;
 import org.l2j.gameserver.model.itemcontainer.Inventory;
 import org.l2j.gameserver.model.skill.Skill;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 import org.l2j.gameserver.network.serverpackets.AbstractItemPacket;
 
@@ -43,16 +45,16 @@ public class ExSkillEnchantInfo extends AbstractItemPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_SKILL_ENCHANT_INFO.writeId(this);
-		writeInt(_skill.getId());
-		writeInt(_skill.getSubLevel());
-		writeInt(_player.getSkillEnchantExp(_starHolder.getLevel()));
-		writeInt(_starHolder.getExpMax());
-		writeInt(SkillEnchantData.getInstance().getChanceEnchantMap(_skill) * 100);
-		writeShort(calculatePacketSize(new ItemInfo(new Item(Inventory.ADENA_ID))));
-		writeInt(Inventory.ADENA_ID);
-		writeLong(1000000);
+		ServerPackets.EX_SKILL_ENCHANT_INFO.writeId(this, buffer);
+		buffer.writeInt(_skill.getId());
+		buffer.writeInt(_skill.getSubLevel());
+		buffer.writeInt(_player.getSkillEnchantExp(_starHolder.getLevel()));
+		buffer.writeInt(_starHolder.getExpMax());
+		buffer.writeInt(SkillEnchantData.getInstance().getChanceEnchantMap(_skill) * 100);
+		buffer.writeShort(calculatePacketSize(new ItemInfo(new Item(Inventory.ADENA_ID))));
+		buffer.writeInt(Inventory.ADENA_ID);
+		buffer.writeLong(1000000);
 	}
 }

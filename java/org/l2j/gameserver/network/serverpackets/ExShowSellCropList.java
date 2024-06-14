@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,11 +19,13 @@ package org.l2j.gameserver.network.serverpackets;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.instancemanager.CastleManorManager;
 import org.l2j.gameserver.model.CropProcure;
 import org.l2j.gameserver.model.Seed;
 import org.l2j.gameserver.model.item.instance.Item;
 import org.l2j.gameserver.model.itemcontainer.PlayerInventory;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 
 /**
@@ -56,37 +58,37 @@ public class ExShowSellCropList extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_SHOW_SELL_CROP_LIST.writeId(this);
-		writeInt(_manorId); // manor id
-		writeInt(_cropsItems.size()); // size
+		ServerPackets.EX_SHOW_SELL_CROP_LIST.writeId(this, buffer);
+		buffer.writeInt(_manorId); // manor id
+		buffer.writeInt(_cropsItems.size()); // size
 		for (Item item : _cropsItems.values())
 		{
 			final Seed seed = CastleManorManager.getInstance().getSeedByCrop(item.getId());
-			writeInt(item.getObjectId()); // Object id
-			writeInt(item.getId()); // crop id
-			writeInt(seed.getLevel()); // seed level
-			writeByte(1);
-			writeInt(seed.getReward(1)); // reward 1 id
-			writeByte(1);
-			writeInt(seed.getReward(2)); // reward 2 id
+			buffer.writeInt(item.getObjectId()); // Object id
+			buffer.writeInt(item.getId()); // crop id
+			buffer.writeInt(seed.getLevel()); // seed level
+			buffer.writeByte(1);
+			buffer.writeInt(seed.getReward(1)); // reward 1 id
+			buffer.writeByte(1);
+			buffer.writeInt(seed.getReward(2)); // reward 2 id
 			if (_castleCrops.containsKey(item.getId()))
 			{
 				final CropProcure crop = _castleCrops.get(item.getId());
-				writeInt(_manorId); // manor
-				writeLong(crop.getAmount()); // buy residual
-				writeLong(crop.getPrice()); // buy price
-				writeByte(crop.getReward()); // reward
+				buffer.writeInt(_manorId); // manor
+				buffer.writeLong(crop.getAmount()); // buy residual
+				buffer.writeLong(crop.getPrice()); // buy price
+				buffer.writeByte(crop.getReward()); // reward
 			}
 			else
 			{
-				writeInt(0xFFFFFFFF); // manor
-				writeLong(0); // buy residual
-				writeLong(0); // buy price
-				writeByte(0); // reward
+				buffer.writeInt(0xFFFFFFFF); // manor
+				buffer.writeLong(0); // buy residual
+				buffer.writeLong(0); // buy price
+				buffer.writeByte(0); // reward
 			}
-			writeLong(item.getCount()); // my crops
+			buffer.writeLong(item.getCount()); // my crops
 		}
 	}
 }

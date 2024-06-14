@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,7 +18,9 @@ package org.l2j.gameserver.network.serverpackets;
 
 import java.util.Collection;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.model.RecipeList;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 
 public class RecipeBookItemList extends ServerPacket
@@ -39,23 +41,23 @@ public class RecipeBookItemList extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.RECIPE_BOOK_ITEM_LIST.writeId(this);
-		writeInt(!_isDwarvenCraft); // 0 = Dwarven - 1 = Common
-		writeInt(_maxMp);
+		ServerPackets.RECIPE_BOOK_ITEM_LIST.writeId(this, buffer);
+		buffer.writeInt(!_isDwarvenCraft); // 0 = Dwarven - 1 = Common
+		buffer.writeInt(_maxMp);
 		if (_recipes == null)
 		{
-			writeInt(0);
+			buffer.writeInt(0);
 		}
 		else
 		{
-			writeInt(_recipes.size()); // number of items in recipe book
+			buffer.writeInt(_recipes.size()); // number of items in recipe book
 			int count = 1;
 			for (RecipeList recipe : _recipes)
 			{
-				writeInt(recipe.getId());
-				writeInt(count++);
+				buffer.writeInt(recipe.getId());
+				buffer.writeInt(count++);
 			}
 		}
 	}

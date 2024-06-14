@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,7 +17,6 @@
 package org.l2j.gameserver.network.clientpackets;
 
 import org.l2j.Config;
-import org.l2j.commons.network.ReadablePacket;
 import org.l2j.gameserver.instancemanager.CastleManager;
 import org.l2j.gameserver.instancemanager.ClanEntryManager;
 import org.l2j.gameserver.instancemanager.FortManager;
@@ -26,7 +25,6 @@ import org.l2j.gameserver.model.clan.Clan;
 import org.l2j.gameserver.model.clan.entry.PledgeRecruitInfo;
 import org.l2j.gameserver.model.siege.Castle;
 import org.l2j.gameserver.model.siege.Fort;
-import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.SystemMessageId;
 import org.l2j.gameserver.network.serverpackets.ExPledgeCount;
 import org.l2j.gameserver.network.serverpackets.JoinPledge;
@@ -38,21 +36,21 @@ import org.l2j.gameserver.network.serverpackets.SystemMessage;
 /**
  * @author Mobius
  */
-public class RequestPledgeSignInForOpenJoiningMethod implements ClientPacket
+public class RequestPledgeSignInForOpenJoiningMethod extends ClientPacket
 {
 	private int _clanId;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_clanId = packet.readInt();
-		packet.readInt();
+		_clanId = readInt();
+		readInt();
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
-		final Player player = client.getPlayer();
+		final Player player = getPlayer();
 		if (player == null)
 		{
 			return;

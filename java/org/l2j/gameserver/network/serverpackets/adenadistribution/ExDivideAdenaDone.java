@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,6 +16,8 @@
  */
 package org.l2j.gameserver.network.serverpackets.adenadistribution;
 
+import org.l2j.commons.network.WritableBuffer;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 import org.l2j.gameserver.network.serverpackets.ServerPacket;
 
@@ -42,14 +44,14 @@ public class ExDivideAdenaDone extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_DIVIDE_ADENA_DONE.writeId(this);
-		writeByte(_isPartyLeader);
-		writeByte(_isCCLeader);
-		writeInt(_memberCount);
-		writeLong(_distributedAdenaCount);
-		writeLong(_adenaCount);
-		writeString(_distributorName);
+		ServerPackets.EX_DIVIDE_ADENA_DONE.writeId(this, buffer);
+		buffer.writeByte(_isPartyLeader);
+		buffer.writeByte(_isCCLeader);
+		buffer.writeInt(_memberCount);
+		buffer.writeLong(_distributedAdenaCount);
+		buffer.writeLong(_adenaCount);
+		buffer.writeString(_distributorName);
 	}
 }

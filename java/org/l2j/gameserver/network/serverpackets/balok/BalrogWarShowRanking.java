@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,8 +19,10 @@ package org.l2j.gameserver.network.serverpackets.balok;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.data.sql.CharInfoTable;
 import org.l2j.gameserver.instancemanager.BattleWithBalokManager;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 import org.l2j.gameserver.network.serverpackets.ServerPacket;
 
@@ -37,17 +39,17 @@ public class BalrogWarShowRanking extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_BALROGWAR_SHOW_RANKING.writeId(this);
-		writeInt(_rankingData.size());
+		ServerPackets.EX_BALROGWAR_SHOW_RANKING.writeId(this, buffer);
+		buffer.writeInt(_rankingData.size());
 		int rank = 0;
 		for (Entry<Integer, Integer> entry : _rankingData.entrySet())
 		{
 			rank++;
-			writeInt(rank); // Rank
-			writeSizedString(CharInfoTable.getInstance().getNameById(entry.getKey())); // Name
-			writeInt(entry.getValue()); // Score
+			buffer.writeInt(rank); // Rank
+			buffer.writeSizedString(CharInfoTable.getInstance().getNameById(entry.getKey())); // Name
+			buffer.writeInt(entry.getValue()); // Score
 		}
 	}
 }

@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -149,7 +149,7 @@ public class CallPc extends AbstractEffect
 			return false;
 		}
 		
-		if (target.isOnEvent() || target.isFlyingMounted() || target.isCombatFlagEquipped() || target.isInTraingCamp() || target.isInsideZone(ZoneId.TIMED_HUNTING) || effector.isInsideZone(ZoneId.TIMED_HUNTING))
+		if (target.isOnEvent() || target.isFlyingMounted() || target.isCombatFlagEquipped() || target.isInTraingCamp() || target.isInTimedHuntingZone() || effector.isInTimedHuntingZone())
 		{
 			effector.sendPacket(SystemMessageId.YOU_CANNOT_USE_SUMMONING_OR_TELEPORTING_IN_THIS_AREA);
 			return false;

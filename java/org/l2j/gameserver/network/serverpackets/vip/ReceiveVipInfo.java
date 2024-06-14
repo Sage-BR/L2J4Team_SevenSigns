@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,9 +19,11 @@ package org.l2j.gameserver.network.serverpackets.vip;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.Config;
 import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.model.vip.VipManager;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 import org.l2j.gameserver.network.serverpackets.ServerPacket;
 
@@ -35,7 +37,7 @@ public class ReceiveVipInfo extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
 		if (!Config.VIP_SYSTEM_ENABLED)
 		{
@@ -46,13 +48,13 @@ public class ReceiveVipInfo extends ServerPacket
 		final byte vipTier = _player.getVipTier();
 		final int vipDuration = (int) ChronoUnit.SECONDS.between(Instant.now(), Instant.ofEpochMilli(_player.getVipTierExpiration()));
 		
-		ServerPackets.RECIVE_VIP_INFO.writeId(this);
-		writeByte(vipTier);
-		writeLong(_player.getVipPoints());
-		writeInt(vipDuration);
-		writeLong(vipManager.getPointsToLevel((byte) (vipTier + 1)));
-		writeLong(vipManager.getPointsDepreciatedOnLevel(vipTier));
-		writeByte(vipTier);
-		writeLong(vipManager.getPointsToLevel(vipTier));
+		ServerPackets.RECIVE_VIP_INFO.writeId(this, buffer);
+		buffer.writeByte(vipTier);
+		buffer.writeLong(_player.getVipPoints());
+		buffer.writeInt(vipDuration);
+		buffer.writeLong(vipManager.getPointsToLevel((byte) (vipTier + 1)));
+		buffer.writeLong(vipManager.getPointsDepreciatedOnLevel(vipTier));
+		buffer.writeByte(vipTier);
+		buffer.writeLong(vipManager.getPointsToLevel(vipTier));
 	}
 }

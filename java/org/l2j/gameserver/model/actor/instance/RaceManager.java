@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,9 +22,9 @@ import java.util.Locale;
 import org.l2j.Config;
 import org.l2j.commons.util.StringUtil;
 import org.l2j.gameserver.instancemanager.IdManager;
-import org.l2j.gameserver.instancemanager.games.MonsterRace;
-import org.l2j.gameserver.instancemanager.games.MonsterRace.HistoryInfo;
-import org.l2j.gameserver.instancemanager.games.MonsterRace.RaceState;
+import org.l2j.gameserver.instancemanager.games.MonsterRaceManager;
+import org.l2j.gameserver.instancemanager.games.MonsterRaceManager.HistoryInfo;
+import org.l2j.gameserver.instancemanager.games.MonsterRaceManager.RaceState;
 import org.l2j.gameserver.model.actor.Npc;
 import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.model.actor.templates.NpcTemplate;
@@ -58,7 +58,7 @@ public class RaceManager extends Npc
 	{
 		if (command.startsWith("BuyTicket"))
 		{
-			if (!Config.ALLOW_RACE || (MonsterRace.getInstance().getCurrentRaceState() != RaceState.ACCEPTING_BETS))
+			if (!Config.ALLOW_RACE || (MonsterRaceManager.getInstance().getCurrentRaceState() != RaceState.ACCEPTING_BETS))
 			{
 				player.sendPacket(SystemMessageId.MONSTER_RACE_TICKETS_ARE_NO_LONGER_AVAILABLE);
 				super.onBypassFeedback(player, "Chat 0");
@@ -77,7 +77,8 @@ public class RaceManager extends Npc
 				val = 0;
 			}
 			
-			String search, replace;
+			String search;
+			String replace;
 			
 			final NpcHtmlMessage html = new NpcHtmlMessage(getObjectId());
 			if (val < 10)
@@ -87,7 +88,7 @@ public class RaceManager extends Npc
 				{
 					int n = i + 1;
 					search = "Mob" + n;
-					html.replace(search, MonsterRace.getInstance().getMonsters()[i].getTemplate().getName());
+					html.replace(search, MonsterRaceManager.getInstance().getMonsters()[i].getTemplate().getName());
 				}
 				search = "No1";
 				if (val == 0)
@@ -110,7 +111,7 @@ public class RaceManager extends Npc
 				html.setFile(player, getHtmlPath(getId(), 3, player));
 				html.replace("0place", player.getRaceTicket(0));
 				search = "Mob1";
-				replace = MonsterRace.getInstance().getMonsters()[player.getRaceTicket(0) - 1].getTemplate().getName();
+				replace = MonsterRaceManager.getInstance().getMonsters()[player.getRaceTicket(0) - 1].getTemplate().getName();
 				html.replace(search, replace);
 				search = "0adena";
 				if (val == 10)
@@ -133,7 +134,7 @@ public class RaceManager extends Npc
 				html.setFile(player, getHtmlPath(getId(), 4, player));
 				html.replace("0place", player.getRaceTicket(0));
 				search = "Mob1";
-				replace = MonsterRace.getInstance().getMonsters()[player.getRaceTicket(0) - 1].getTemplate().getName();
+				replace = MonsterRaceManager.getInstance().getMonsters()[player.getRaceTicket(0) - 1].getTemplate().getName();
 				html.replace(search, replace);
 				search = "0adena";
 				int price = TICKET_PRICES[player.getRaceTicket(1) - 1];
@@ -163,28 +164,28 @@ public class RaceManager extends Npc
 				player.setRaceTicket(1, 0);
 				Item item = new Item(IdManager.getInstance().getNextId(), 4443);
 				item.setCount(1);
-				item.setEnchantLevel(MonsterRace.getInstance().getRaceNumber());
+				item.setEnchantLevel(MonsterRaceManager.getInstance().getRaceNumber());
 				item.setCustomType1(ticket);
 				item.setCustomType2(TICKET_PRICES[priceId - 1] / 100);
 				player.addItem("Race", item, player, false);
 				final SystemMessage msg = new SystemMessage(SystemMessageId.YOU_VE_OBTAINED_S1_S2_2);
-				msg.addInt(MonsterRace.getInstance().getRaceNumber());
+				msg.addInt(MonsterRaceManager.getInstance().getRaceNumber());
 				msg.addItemName(4443);
 				player.sendPacket(msg);
 				
 				// Refresh lane bet.
-				MonsterRace.getInstance().setBetOnLane(ticket, TICKET_PRICES[priceId - 1], true);
+				MonsterRaceManager.getInstance().setBetOnLane(ticket, TICKET_PRICES[priceId - 1], true);
 				super.onBypassFeedback(player, "Chat 0");
 				return;
 			}
-			html.replace("1race", MonsterRace.getInstance().getRaceNumber());
+			html.replace("1race", MonsterRaceManager.getInstance().getRaceNumber());
 			html.replace("%objectId%", getObjectId());
 			player.sendPacket(html);
 			player.sendPacket(ActionFailed.STATIC_PACKET);
 		}
 		else if (command.equals("ShowOdds"))
 		{
-			if (!Config.ALLOW_RACE || (MonsterRace.getInstance().getCurrentRaceState() == RaceState.ACCEPTING_BETS))
+			if (!Config.ALLOW_RACE || (MonsterRaceManager.getInstance().getCurrentRaceState() == RaceState.ACCEPTING_BETS))
 			{
 				player.sendPacket(SystemMessageId.MONSTER_RACE_PAYOUT_INFORMATION_IS_NOT_AVAILABLE_WHILE_TICKETS_ARE_BEING_SOLD);
 				super.onBypassFeedback(player, "Chat 0");
@@ -196,13 +197,13 @@ public class RaceManager extends Npc
 			for (int i = 0; i < 8; i++)
 			{
 				final int n = i + 1;
-				html.replace("Mob" + n, MonsterRace.getInstance().getMonsters()[i].getTemplate().getName());
+				html.replace("Mob" + n, MonsterRaceManager.getInstance().getMonsters()[i].getTemplate().getName());
 				
 				// Odd
-				final double odd = MonsterRace.getInstance().getOdds().get(i);
+				final double odd = MonsterRaceManager.getInstance().getOdds().get(i);
 				html.replace("Odd" + n, (odd > 0D) ? String.format(Locale.ENGLISH, "%.1f", odd) : "&$804;");
 			}
-			html.replace("1race", MonsterRace.getInstance().getRaceNumber());
+			html.replace("1race", MonsterRaceManager.getInstance().getRaceNumber());
 			html.replace("%objectId%", getObjectId());
 			player.sendPacket(html);
 			player.sendPacket(ActionFailed.STATIC_PACKET);
@@ -220,7 +221,7 @@ public class RaceManager extends Npc
 			{
 				int n = i + 1;
 				String search = "Mob" + n;
-				html.replace(search, MonsterRace.getInstance().getMonsters()[i].getTemplate().getName());
+				html.replace(search, MonsterRaceManager.getInstance().getMonsters()[i].getTemplate().getName());
 			}
 			html.replace("%objectId%", getObjectId());
 			player.sendPacket(html);
@@ -241,7 +242,7 @@ public class RaceManager extends Npc
 			for (Item ticket : player.getInventory().getAllItemsByItemId(4443))
 			{
 				// Don't list current race tickets.
-				if (ticket.getEnchantLevel() == MonsterRace.getInstance().getRaceNumber())
+				if (ticket.getEnchantLevel() == MonsterRaceManager.getInstance().getRaceNumber())
 				{
 					continue;
 				}
@@ -279,7 +280,7 @@ public class RaceManager extends Npc
 			final int bet = ticket.getCustomType2() * 100;
 			
 			// Retrieve HistoryInfo for that race.
-			final HistoryInfo info = MonsterRace.getInstance().getHistory().get(raceId - 1);
+			final HistoryInfo info = MonsterRaceManager.getInstance().getHistory().get(raceId - 1);
 			if (info == null)
 			{
 				super.onBypassFeedback(player, "Chat 0");
@@ -291,8 +292,8 @@ public class RaceManager extends Npc
 			html.replace("%raceId%", raceId);
 			html.replace("%lane%", lane);
 			html.replace("%bet%", bet);
-			html.replace("%firstLane%", info.getFirst());
-			html.replace("%odd%", (lane == info.getFirst()) ? String.format(Locale.ENGLISH, "%.2f", info.getOddRate()) : "0.01");
+			html.replace("%firstLane%", info.getFirst() + 1);
+			html.replace("%odd%", (lane == (info.getFirst() + 1)) ? String.format(Locale.ENGLISH, "%.2f", info.getOddRate()) : "0.01");
 			html.replace("%objectId%", getObjectId());
 			html.replace("%ticketObjectId%", val);
 			player.sendPacket(html);
@@ -321,7 +322,7 @@ public class RaceManager extends Npc
 			final int bet = ticket.getCustomType2() * 100;
 			
 			// Retrieve HistoryInfo for that race.
-			final HistoryInfo info = MonsterRace.getInstance().getHistory().get(raceId - 1);
+			final HistoryInfo info = MonsterRaceManager.getInstance().getHistory().get(raceId - 1);
 			if (info == null)
 			{
 				super.onBypassFeedback(player, "Chat 0");
@@ -331,7 +332,7 @@ public class RaceManager extends Npc
 			// Destroy the ticket.
 			if (player.destroyItem("MonsterTrack", ticket, this, true))
 			{
-				player.addAdena("MonsterTrack", (int) (bet * ((lane == info.getFirst()) ? info.getOddRate() : 0.01)), this, true);
+				player.addAdena("MonsterTrack", (int) (bet * ((lane == (info.getFirst() + 1)) ? info.getOddRate() : 0.01)), this, true);
 			}
 			
 			super.onBypassFeedback(player, "Chat 0");
@@ -349,11 +350,11 @@ public class RaceManager extends Npc
 			final StringBuilder sb = new StringBuilder();
 			
 			// Use whole history, pickup from 'last element' and stop at 'latest element - 7'.
-			final List<HistoryInfo> history = MonsterRace.getInstance().getHistory();
+			final List<HistoryInfo> history = MonsterRaceManager.getInstance().getHistory();
 			for (int i = history.size() - 1; i >= Math.max(0, history.size() - 7); i--)
 			{
 				final HistoryInfo info = history.get(i);
-				StringUtil.append(sb, "<tr><td><font color=\"LEVEL\">", "" + info.getRaceId(), "</font> th</td><td><font color=\"LEVEL\">", "" + info.getFirst(), "</font> Lane </td><td><font color=\"LEVEL\">", "" + info.getSecond(), "</font> Lane</td><td align=right><font color=00ffff>", String.format(Locale.ENGLISH, "%.2f", info.getOddRate()), "</font> Times</td></tr>");
+				StringUtil.append(sb, "<tr><td><font color=\"LEVEL\">", "" + info.getRaceId(), "</font> th</td><td><font color=\"LEVEL\">", "" + (info.getFirst() + 1), "</font> Lane </td><td><font color=\"LEVEL\">", "" + (info.getSecond() + 1), "</font> Lane</td><td align=right><font color=00ffff>", String.format(Locale.ENGLISH, "%.2f", info.getOddRate()), "</font> Times</td></tr>");
 			}
 			
 			final NpcHtmlMessage html = new NpcHtmlMessage(getObjectId());

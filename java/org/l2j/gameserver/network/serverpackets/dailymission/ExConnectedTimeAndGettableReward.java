@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,8 +16,10 @@
  */
 package org.l2j.gameserver.network.serverpackets.dailymission;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.data.xml.DailyMissionData;
 import org.l2j.gameserver.model.actor.Player;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 import org.l2j.gameserver.network.serverpackets.ServerPacket;
 
@@ -34,25 +36,25 @@ public class ExConnectedTimeAndGettableReward extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
 		if (!DailyMissionData.getInstance().isAvailable())
 		{
 			return;
 		}
 		
-		ServerPackets.EX_CONNECTED_TIME_AND_GETTABLE_REWARD.writeId(this);
-		writeInt(0);
-		writeInt(_oneDayRewardAvailableCount);
-		writeInt(0);
-		writeInt(0);
-		writeInt(0);
-		writeInt(0);
-		writeInt(0);
-		writeInt(0);
-		writeInt(0);
-		writeInt(0);
-		writeInt(0);
-		writeInt(0);
+		ServerPackets.EX_CONNECTED_TIME_AND_GETTABLE_REWARD.writeId(this, buffer);
+		buffer.writeInt(0);
+		buffer.writeInt(_oneDayRewardAvailableCount);
+		buffer.writeInt(0);
+		buffer.writeInt(0);
+		buffer.writeInt(0);
+		buffer.writeInt(0);
+		buffer.writeInt(0);
+		buffer.writeInt(0);
+		buffer.writeInt(0);
+		buffer.writeInt(0);
+		buffer.writeInt(0);
+		buffer.writeInt(0);
 	}
 }

@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,9 +16,11 @@
  */
 package org.l2j.gameserver.network.serverpackets;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.enums.SoulType;
 import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.model.zone.ZoneId;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 
 /**
@@ -38,17 +40,17 @@ public class EtcStatusUpdate extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.ETC_STATUS_UPDATE.writeId(this);
-		writeByte(_player.getCharges()); // 1-7 increase force, level
-		writeInt(_player.getWeightPenalty()); // 1-4 weight penalty, level (1=50%, 2=66.6%, 3=80%, 4=100%)
-		writeByte(0); // Weapon Grade Penalty [1-4]
-		writeByte(0); // Armor Grade Penalty [1-4]
-		writeByte(0); // Death Penalty [1-15, 0 = disabled)], not used anymore in Ertheia
-		writeByte(0); // Old count for charged souls.
-		writeByte(_mask);
-		writeByte(_player.getChargedSouls(SoulType.SHADOW)); // Shadow souls
-		writeByte(_player.getChargedSouls(SoulType.LIGHT)); // Light souls
+		ServerPackets.ETC_STATUS_UPDATE.writeId(this, buffer);
+		buffer.writeByte(_player.getCharges()); // 1-7 increase force, level
+		buffer.writeInt(_player.getWeightPenalty()); // 1-4 weight penalty, level (1=50%, 2=66.6%, 3=80%, 4=100%)
+		buffer.writeByte(0); // Weapon Grade Penalty [1-4]
+		buffer.writeByte(0); // Armor Grade Penalty [1-4]
+		buffer.writeByte(0); // Death Penalty [1-15, 0 = disabled)], not used anymore in Ertheia
+		buffer.writeByte(0); // Old count for charged souls.
+		buffer.writeByte(_mask);
+		buffer.writeByte(_player.getChargedSouls(SoulType.SHADOW)); // Shadow souls
+		buffer.writeByte(_player.getChargedSouls(SoulType.LIGHT)); // Light souls
 	}
 }

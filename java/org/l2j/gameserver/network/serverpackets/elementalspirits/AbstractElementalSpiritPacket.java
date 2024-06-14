@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,6 +16,7 @@
  */
 package org.l2j.gameserver.network.serverpackets.elementalspirits;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.model.ElementalSpirit;
 import org.l2j.gameserver.network.serverpackets.ServerPacket;
 
@@ -24,29 +25,29 @@ import org.l2j.gameserver.network.serverpackets.ServerPacket;
  */
 abstract class AbstractElementalSpiritPacket extends ServerPacket
 {
-	void writeSpiritInfo(ElementalSpirit spirit)
+	void writeSpiritInfo(WritableBuffer buffer, ElementalSpirit spirit)
 	{
-		writeByte(spirit.getStage());
-		writeInt(spirit.getNpcId());
-		writeLong(spirit.getExperience());
-		writeLong(spirit.getExperienceToNextLevel());
-		writeLong(spirit.getExperienceToNextLevel());
-		writeInt(spirit.getLevel());
-		writeInt(spirit.getMaxLevel());
-		writeInt(spirit.getAvailableCharacteristicsPoints());
-		writeInt(spirit.getAttackPoints());
-		writeInt(spirit.getDefensePoints());
-		writeInt(spirit.getCriticalRatePoints());
-		writeInt(spirit.getCriticalDamagePoints());
-		writeInt(spirit.getMaxCharacteristics());
-		writeInt(spirit.getMaxCharacteristics());
-		writeInt(spirit.getMaxCharacteristics());
-		writeInt(spirit.getMaxCharacteristics());
-		writeByte(1); // unk
+		buffer.writeByte(spirit.getStage());
+		buffer.writeInt(spirit.getNpcId());
+		buffer.writeLong(spirit.getExperience());
+		buffer.writeLong(spirit.getExperienceToNextLevel());
+		buffer.writeLong(spirit.getExperienceToNextLevel());
+		buffer.writeInt(spirit.getLevel());
+		buffer.writeInt(spirit.getMaxLevel());
+		buffer.writeInt(spirit.getAvailableCharacteristicsPoints());
+		buffer.writeInt(spirit.getAttackPoints());
+		buffer.writeInt(spirit.getDefensePoints());
+		buffer.writeInt(spirit.getCriticalRatePoints());
+		buffer.writeInt(spirit.getCriticalDamagePoints());
+		buffer.writeInt(spirit.getMaxCharacteristics());
+		buffer.writeInt(spirit.getMaxCharacteristics());
+		buffer.writeInt(spirit.getMaxCharacteristics());
+		buffer.writeInt(spirit.getMaxCharacteristics());
+		buffer.writeByte(1); // unk
 		for (int j = 0; j < 1; j++)
 		{
-			writeShort(2);
-			writeLong(100);
+			buffer.writeShort(2);
+			buffer.writeLong(100);
 		}
 	}
 }

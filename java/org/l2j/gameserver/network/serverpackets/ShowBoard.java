@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,6 +18,8 @@ package org.l2j.gameserver.network.serverpackets;
 
 import java.util.List;
 
+import org.l2j.commons.network.WritableBuffer;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 
 public class ShowBoard extends ServerPacket
@@ -50,18 +52,18 @@ public class ShowBoard extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.SHOW_BOARD.writeId(this);
-		writeByte(_showBoard); // c4 1 to show community 00 to hide
-		writeString("bypass _bbshome"); // top
-		writeString("bypass _bbsgetfav"); // favorite
-		writeString("bypass _bbsloc"); // region
-		writeString("bypass _bbsclan"); // clan
-		writeString("bypass _bbsmemo"); // memo
-		writeString("bypass _bbsmail"); // mail
-		writeString("bypass _bbsfriends"); // friends
-		writeString("bypass bbs_add_fav"); // add fav.
-		writeString(_content);
+		ServerPackets.SHOW_BOARD.writeId(this, buffer);
+		buffer.writeByte(_showBoard); // c4 1 to show community 00 to hide
+		buffer.writeString("bypass _bbshome"); // top
+		buffer.writeString("bypass _bbsgetfav"); // favorite
+		buffer.writeString("bypass _bbsloc"); // region
+		buffer.writeString("bypass _bbsclan"); // clan
+		buffer.writeString("bypass _bbsmemo"); // memo
+		buffer.writeString("bypass _bbsmail"); // mail
+		buffer.writeString("bypass _bbsfriends"); // friends
+		buffer.writeString("bypass bbs_add_fav"); // add fav.
+		buffer.writeString(_content);
 	}
 }

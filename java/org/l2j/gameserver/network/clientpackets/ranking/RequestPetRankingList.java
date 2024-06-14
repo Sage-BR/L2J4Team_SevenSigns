@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,16 +16,14 @@
  */
 package org.l2j.gameserver.network.clientpackets.ranking;
 
-import org.l2j.commons.network.ReadablePacket;
 import org.l2j.gameserver.model.actor.Player;
-import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.clientpackets.ClientPacket;
 import org.l2j.gameserver.network.serverpackets.ranking.ExPetRankingList;
 
 /**
  * @author Mobius
  */
-public class RequestPetRankingList implements ClientPacket
+public class RequestPetRankingList extends ClientPacket
 {
 	private int _season;
 	private int _tabId;
@@ -33,18 +31,18 @@ public class RequestPetRankingList implements ClientPacket
 	private int _petItemObjectId;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_season = packet.readByte();
-		_tabId = packet.readByte();
-		_type = packet.readByte();
-		_petItemObjectId = packet.readInt();
+		_season = readByte();
+		_tabId = readByte();
+		_type = readByte();
+		_petItemObjectId = readInt();
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
-		final Player player = client.getPlayer();
+		final Player player = getPlayer();
 		if (player == null)
 		{
 			return;

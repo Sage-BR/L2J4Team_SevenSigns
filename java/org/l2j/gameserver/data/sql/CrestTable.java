@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -40,6 +40,9 @@ import org.l2j.gameserver.model.clan.Clan;
 public class CrestTable
 {
 	private static final Logger LOGGER = Logger.getLogger(CrestTable.class.getName());
+	
+	private static final int CLAN_CREST_PRESET_START = 2000000; // 2000001
+	private static final int CLAN_CREST_PRESET_END = 2001000; // 2000055
 	
 	private final Map<Integer, Crest> _crests = new ConcurrentHashMap<>();
 	private final AtomicInteger _nextId = new AtomicInteger(1);
@@ -112,7 +115,7 @@ public class CrestTable
 		
 		for (Clan clan : ClanTable.getInstance().getClans())
 		{
-			if ((clan.getCrestId() != 0) && (getCrest(clan.getCrestId()) == null))
+			if ((clan.getCrestId() != 0) && (getCrest(clan.getCrestId()) == null) && (clan.getCrestId() < CLAN_CREST_PRESET_START) && (clan.getCrestId() > CLAN_CREST_PRESET_END))
 			{
 				LOGGER.info("Removing non-existent crest for clan " + clan.getName() + " [" + clan.getId() + "], crestId:" + clan.getCrestId());
 				clan.setCrestId(0);
@@ -155,7 +158,7 @@ public class CrestTable
 		try (Connection con = DatabaseFactory.getConnection();
 			PreparedStatement statement = con.prepareStatement("INSERT INTO `crests`(`crest_id`, `data`, `type`) VALUES(?, ?, ?)"))
 		{
-			final Crest crest = new Crest(_nextId.getAndIncrement(), data, crestType);
+			final Crest crest = new Crest(getNextId(), data, crestType);
 			statement.setInt(1, crest.getId());
 			statement.setBytes(2, crest.getData());
 			statement.setInt(3, crest.getType().getId());
@@ -200,9 +203,15 @@ public class CrestTable
 	/**
 	 * @return The next crest id.
 	 */
-	public int getNextId()
+	public synchronized int getNextId()
 	{
-		return _nextId.getAndIncrement();
+		int nextId = _nextId.getAndIncrement();
+		if ((nextId >= CLAN_CREST_PRESET_START) && (nextId <= CLAN_CREST_PRESET_END))
+		{
+			nextId = CLAN_CREST_PRESET_END + 1;
+			_nextId.set(nextId);
+		}
+		return nextId;
 	}
 	
 	public static CrestTable getInstance()

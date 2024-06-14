@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,9 +18,11 @@ package org.l2j.gameserver.network.serverpackets.sayune;
 
 import java.util.List;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.enums.SayuneType;
 import org.l2j.gameserver.model.SayuneEntry;
 import org.l2j.gameserver.model.actor.Player;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 import org.l2j.gameserver.network.serverpackets.ServerPacket;
 
@@ -43,21 +45,21 @@ public class ExFlyMove extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_FLY_MOVE.writeId(this);
-		writeInt(_objectId);
-		writeInt(_type.ordinal());
-		writeInt(0); // ??
-		writeInt(_mapId);
-		writeInt(_locations.size());
+		ServerPackets.EX_FLY_MOVE.writeId(this, buffer);
+		buffer.writeInt(_objectId);
+		buffer.writeInt(_type.ordinal());
+		buffer.writeInt(0); // ??
+		buffer.writeInt(_mapId);
+		buffer.writeInt(_locations.size());
 		for (SayuneEntry loc : _locations)
 		{
-			writeInt(loc.getId());
-			writeInt(0); // ??
-			writeInt(loc.getX());
-			writeInt(loc.getY());
-			writeInt(loc.getZ());
+			buffer.writeInt(loc.getId());
+			buffer.writeInt(0); // ??
+			buffer.writeInt(loc.getX());
+			buffer.writeInt(loc.getY());
+			buffer.writeInt(loc.getZ());
 		}
 	}
 }

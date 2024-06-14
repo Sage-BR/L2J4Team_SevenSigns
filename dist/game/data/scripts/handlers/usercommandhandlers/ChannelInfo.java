@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -35,7 +35,12 @@ public class ChannelInfo implements IUserCommandHandler
 	@Override
 	public boolean useUserCommand(int id, Player player)
 	{
-		if ((id != COMMAND_IDS[0]) || (player.getParty() == null) || (player.getParty().getCommandChannel() == null))
+		if (id != COMMAND_IDS[0])
+		{
+			return false;
+		}
+		
+		if ((player.getParty() == null) || (player.getParty().getCommandChannel() == null))
 		{
 			return false;
 		}

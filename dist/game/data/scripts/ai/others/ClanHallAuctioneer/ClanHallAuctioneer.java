@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -64,7 +64,7 @@ public class ClanHallAuctioneer extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onAdvEvent(String event, Npc npc, Player player)
+	public String onEvent(String event, Npc npc, Player player)
 	{
 		String htmltext = null;
 		
@@ -94,7 +94,7 @@ public class ClanHallAuctioneer extends AbstractNpcAI
 				
 				if (!player.isClanLeader() || (clan.getLevel() < 2))
 				{
-					player.sendPacket(SystemMessageId.ONLY_A_CLAN_LEADER_WHOSE_CLAN_IS_OF_LEVEL_2_OR_ABOVE_IS_ALLOWED_TO_PARTICIPATE_IN_A_CLAN_HALL_AUCTION);
+					player.sendPacket(SystemMessageId.ONLY_CLANS_OF_LV_2_AND_HIGHER_ARE_ALLOWED_TO_PARTICIPATE_IN_THE_CLAN_HALL_AUCTION);
 					return htmltext;
 				}
 				
@@ -123,7 +123,7 @@ public class ClanHallAuctioneer extends AbstractNpcAI
 				
 				if (!player.isClanLeader() || (clan.getLevel() < 2))
 				{
-					player.sendPacket(SystemMessageId.ONLY_A_CLAN_LEADER_WHOSE_CLAN_IS_OF_LEVEL_2_OR_ABOVE_IS_ALLOWED_TO_PARTICIPATE_IN_A_CLAN_HALL_AUCTION);
+					player.sendPacket(SystemMessageId.ONLY_CLANS_OF_LV_2_AND_HIGHER_ARE_ALLOWED_TO_PARTICIPATE_IN_THE_CLAN_HALL_AUCTION);
 					return htmltext;
 				}
 				
@@ -175,7 +175,7 @@ public class ClanHallAuctioneer extends AbstractNpcAI
 				
 				if (!player.isClanLeader() || (clan.getLevel() < 2))
 				{
-					player.sendPacket(SystemMessageId.ONLY_A_CLAN_LEADER_WHOSE_CLAN_IS_OF_LEVEL_2_OR_ABOVE_IS_ALLOWED_TO_PARTICIPATE_IN_A_CLAN_HALL_AUCTION);
+					player.sendPacket(SystemMessageId.ONLY_CLANS_OF_LV_2_AND_HIGHER_ARE_ALLOWED_TO_PARTICIPATE_IN_THE_CLAN_HALL_AUCTION);
 					return htmltext;
 				}
 				
@@ -332,7 +332,7 @@ public class ClanHallAuctioneer extends AbstractNpcAI
 			
 			if (!player.isClanLeader() || (clan.getLevel() < 2))
 			{
-				player.sendPacket(SystemMessageId.ONLY_A_CLAN_LEADER_WHOSE_CLAN_IS_OF_LEVEL_2_OR_ABOVE_IS_ALLOWED_TO_PARTICIPATE_IN_A_CLAN_HALL_AUCTION);
+				player.sendPacket(SystemMessageId.ONLY_CLANS_OF_LV_2_AND_HIGHER_ARE_ALLOWED_TO_PARTICIPATE_IN_THE_CLAN_HALL_AUCTION);
 				return;
 			}
 			final ClanHall playerClanHall = ClanHallData.getInstance().getClanHallByClan(clan);

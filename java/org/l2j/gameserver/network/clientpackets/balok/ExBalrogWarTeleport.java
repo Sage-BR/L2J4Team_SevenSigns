@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,23 +20,26 @@ import org.l2j.gameserver.model.Location;
 import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.model.effects.EffectFlag;
 import org.l2j.gameserver.model.skill.CommonSkill;
-import org.l2j.gameserver.model.zone.ZoneId;
-import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.SystemMessageId;
 import org.l2j.gameserver.network.clientpackets.ClientPacket;
 
 /**
  * @author Serenitty
  */
-public class ExBalrogWarTeleport implements ClientPacket
+public class ExBalrogWarTeleport extends ClientPacket
 {
 	private static final Location BALOK_LOCATION = new Location(-18414, 180442, -3862);
 	private static final int TELEPORT_COST = 50000;
 	
 	@Override
-	public void run(GameClient client)
+	protected void readImpl()
 	{
-		final Player player = client.getPlayer();
+	}
+	
+	@Override
+	protected void runImpl()
+	{
+		final Player player = getPlayer();
 		if (player == null)
 		{
 			return;
@@ -50,7 +53,7 @@ public class ExBalrogWarTeleport implements ClientPacket
 		}
 		
 		// Players should not be able to teleport if in a special location.
-		if ((player.getMovieHolder() != null) || player.isFishing() || player.isInInstance() || player.isOnEvent() || player.isInOlympiadMode() || player.inObserverMode() || player.isInTraingCamp() || player.isInsideZone(ZoneId.TIMED_HUNTING))
+		if ((player.getMovieHolder() != null) || player.isFishing() || player.isInInstance() || player.isOnEvent() || player.isInOlympiadMode() || player.inObserverMode() || player.isInTraingCamp() || player.isInTimedHuntingZone())
 		{
 			player.sendPacket(SystemMessageId.YOU_CANNOT_TELEPORT_RIGHT_NOW);
 			return;

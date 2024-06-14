@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="rewards.xsd">
+	<configuration>
+		<param name="guaranteeRoll" value="200" />
+		<param name="showProbability" value="false" />
+	</configuration>
+	<rewards>
+		<!-- MINIMAL CHANCE VALUE IS 0.000001 -->
+		<reward rank="RANK_UR">
+			<item id="57" count="1" chance="90" /> <!-- Adena -->
+			<item id="2389" count="1" chance="20" /> <!-- Dark Crystal Leggings -->
+			<item id="2385" count="1" chance="20" /> <!-- Dark Crystal Leather Armor -->
+			<item id="641" count="1" chance="20" /> <!-- Dark Crystal Shield -->
+			<item id="2382" count="1" chance="20" /> <!-- Tallum Plate Armor -->
+		</reward>
+		<reward rank="RANK_SR">
+			<item id="5294" count="1" chance="20" /> <!-- Sealed Tallum Helmet -->
+			<item id="2393" count="1" chance="20" /> <!-- Tallum Leather Armor -->
+			<item id="2400" count="1" chance="20" /> <!-- Tallum Tunic -->
+			<item id="2405" count="1" chance="20" /> <!-- Tallum Stockings -->
+			<item id="5290" count="1" chance="20" /> <!-- Sealed Dark Crystal Gloves -->
+		</reward>
+		<reward rank="RANK_R">
+			<item id="5295" count="1" chance="20" /> <!-- Sealed Tallum Gloves -->
+			<item id="5291" count="1" chance="20" /> <!-- Sealed Dark Crystal Boots -->
+			<item id="5296" count="1" chance="20" /> <!-- Sealed Tallum Boots -->
+			<item id="6323" count="1" chance="20" /> <!-- Sealed Phoenix Necklace -->
+			<item id="6324" count="1" chance="20" /> <!-- Sealed Phoenix Earring -->
+		</reward>
+	</rewards>
+	<!-- Currency count sends from server side, it can be var or donate items. -->
+	<!-- You can change send count in UniqueGachaManager by method getCurrencyCount (Player player) -->
+	<roll currencyItemId="57">
+		<game gameCount="1" costCount="1000" />
+		<game gameCount="11" costCount="10000" />
+	</roll>
+</list>

@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,9 +21,11 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.data.xml.CollectionData;
 import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.model.holders.PlayerCollectionData;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 import org.l2j.gameserver.network.serverpackets.ServerPacket;
 
@@ -52,10 +54,10 @@ public class ExCollectionInfo extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_COLLECTION_INFO.writeId(this);
-		writeInt(_collectionIds.size()); // size
+		ServerPackets.EX_COLLECTION_INFO.writeId(this, buffer);
+		buffer.writeInt(_collectionIds.size()); // size
 		final List<PlayerCollectionData> currentCollection = new LinkedList<>();
 		for (int id : _collectionIds)
 		{
@@ -68,30 +70,30 @@ public class ExCollectionInfo extends ServerPacket
 				}
 			}
 			
-			writeInt(currentCollection.size());
+			buffer.writeInt(currentCollection.size());
 			for (PlayerCollectionData collection : currentCollection)
 			{
-				writeByte(collection.getIndex());
-				writeInt(collection.getItemId());
-				writeByte(CollectionData.getInstance().getCollection(id).getItems().get(collection.getIndex()).getEnchantLevel()); // enchant level
-				writeByte(0); // bless
-				writeByte(0); // bless Condition
-				writeInt(1); // amount
+				buffer.writeByte(collection.getIndex());
+				buffer.writeInt(collection.getItemId());
+				buffer.writeByte(CollectionData.getInstance().getCollection(id).getItems().get(collection.getIndex()).getEnchantLevel()); // enchant level
+				buffer.writeByte(0); // bless
+				buffer.writeByte(0); // bless Condition
+				buffer.writeInt(1); // amount
 			}
-			writeShort(id);
+			buffer.writeShort(id);
 		}
 		
 		// favoriteList
-		writeInt(_favoriteIds.size());
+		buffer.writeInt(_favoriteIds.size());
 		for (int id : _favoriteIds)
 		{
-			writeShort(id);
+			buffer.writeShort(id);
 		}
 		
 		// rewardList
-		writeInt(0);
+		buffer.writeInt(0);
 		
-		writeByte(_category);
-		writeShort(0);
+		buffer.writeByte(_category);
+		buffer.writeShort(0);
 	}
 }

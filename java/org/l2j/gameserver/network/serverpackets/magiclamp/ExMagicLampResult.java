@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,6 +16,8 @@
  */
 package org.l2j.gameserver.network.serverpackets.magiclamp;
 
+import org.l2j.commons.network.WritableBuffer;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 import org.l2j.gameserver.network.serverpackets.ServerPacket;
 
@@ -34,10 +36,10 @@ public class ExMagicLampResult extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_MAGICLAMP_RESULT.writeId(this);
-		writeLong(_exp);
-		writeInt(_grade);
+		ServerPackets.EX_MAGICLAMP_RESULT.writeId(this, buffer);
+		buffer.writeLong(_exp);
+		buffer.writeInt(_grade);
 	}
 }

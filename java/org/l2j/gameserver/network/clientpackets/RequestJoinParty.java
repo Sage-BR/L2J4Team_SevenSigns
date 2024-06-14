@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,7 +17,6 @@
 package org.l2j.gameserver.network.clientpackets;
 
 import org.l2j.Config;
-import org.l2j.commons.network.ReadablePacket;
 import org.l2j.commons.threads.ThreadPool;
 import org.l2j.gameserver.data.xml.FakePlayerData;
 import org.l2j.gameserver.enums.PartyDistributionType;
@@ -27,7 +26,6 @@ import org.l2j.gameserver.model.Party;
 import org.l2j.gameserver.model.World;
 import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.model.actor.request.PartyRequest;
-import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.SystemMessageId;
 import org.l2j.gameserver.network.serverpackets.ActionFailed;
 import org.l2j.gameserver.network.serverpackets.AskJoinParty;
@@ -37,16 +35,16 @@ import org.l2j.gameserver.network.serverpackets.SystemMessage;
  * sample 29 42 00 00 10 01 00 00 00 format cdd
  * @version $Revision: 1.7.4.4 $ $Date: 2005/03/27 15:29:30 $
  */
-public class RequestJoinParty implements ClientPacket
+public class RequestJoinParty extends ClientPacket
 {
 	private String _name;
 	private int _partyDistributionTypeId;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_name = packet.readString();
-		_partyDistributionTypeId = packet.readInt();
+		_name = readString();
+		_partyDistributionTypeId = readInt();
 	}
 	
 	private void scheduleDeny(Player player)
@@ -66,9 +64,9 @@ public class RequestJoinParty implements ClientPacket
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
-		final Player requestor = client.getPlayer();
+		final Player requestor = getPlayer();
 		if (requestor == null)
 		{
 			return;
@@ -120,7 +118,7 @@ public class RequestJoinParty implements ClientPacket
 		if (target.isPartyBanned())
 		{
 			final SystemMessage sm = new SystemMessage(SystemMessageId.C1_HAS_BEEN_REPORTED_AS_AN_ILLEGAL_PROGRAM_USER_AND_CANNOT_JOIN_A_PARTY);
-			sm.addString(target.getName());
+			sm.addString(target.getAppearance().getVisibleName());
 			requestor.sendPacket(sm);
 			return;
 		}
@@ -135,7 +133,7 @@ public class RequestJoinParty implements ClientPacket
 		if (target.isInParty())
 		{
 			sm = new SystemMessage(SystemMessageId.C1_IS_A_MEMBER_OF_ANOTHER_PARTY_AND_CANNOT_BE_INVITED);
-			sm.addString(target.getName());
+			sm.addString(target.getAppearance().getVisibleName());
 			requestor.sendPacket(sm);
 			return;
 		}
@@ -143,7 +141,7 @@ public class RequestJoinParty implements ClientPacket
 		if (BlockList.isBlocked(target, requestor))
 		{
 			sm = new SystemMessage(SystemMessageId.C1_HAS_ADDED_YOU_TO_THEIR_IGNORE_LIST);
-			sm.addString(target.getName());
+			sm.addString(target.getAppearance().getVisibleName());
 			requestor.sendPacket(sm);
 			return;
 		}
@@ -178,7 +176,7 @@ public class RequestJoinParty implements ClientPacket
 		}
 		
 		sm = new SystemMessage(SystemMessageId.C1_HAS_BEEN_INVITED_TO_THE_PARTY);
-		sm.addString(target.getName());
+		sm.addString(target.getAppearance().getVisibleName());
 		requestor.sendPacket(sm);
 		
 		if (!requestor.isInParty())
@@ -218,13 +216,13 @@ public class RequestJoinParty implements ClientPacket
 			request.scheduleTimeout(30 * 1000);
 			requestor.addRequest(request);
 			target.addRequest(request);
-			target.sendPacket(new AskJoinParty(requestor.getName(), party.getDistributionType()));
+			target.sendPacket(new AskJoinParty(requestor.getAppearance().getVisibleName(), party.getDistributionType()));
 			party.setPendingInvitation(true);
 		}
 		else
 		{
 			final SystemMessage sm = new SystemMessage(SystemMessageId.C1_IS_ON_ANOTHER_TASK_PLEASE_TRY_AGAIN_LATER);
-			sm.addString(target.getName());
+			sm.addString(target.getAppearance().getVisibleName());
 			requestor.sendPacket(sm);
 		}
 	}
@@ -249,7 +247,7 @@ public class RequestJoinParty implements ClientPacket
 			request.scheduleTimeout(30 * 1000);
 			requestor.addRequest(request);
 			target.addRequest(request);
-			target.sendPacket(new AskJoinParty(requestor.getName(), partyDistributionType));
+			target.sendPacket(new AskJoinParty(requestor.getAppearance().getVisibleName(), partyDistributionType));
 		}
 		else
 		{

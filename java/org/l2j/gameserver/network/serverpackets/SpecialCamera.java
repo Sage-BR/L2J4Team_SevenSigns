@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,7 +16,9 @@
  */
 package org.l2j.gameserver.network.serverpackets;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.model.actor.Creature;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 
 /**
@@ -106,19 +108,19 @@ public class SpecialCamera extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.SPECIAL_CAMERA.writeId(this);
-		writeInt(_id);
-		writeInt(_force);
-		writeInt(_angle1);
-		writeInt(_angle2);
-		writeInt(_time);
-		writeInt(_duration);
-		writeInt(_relYaw);
-		writeInt(_relPitch);
-		writeInt(_isWide);
-		writeInt(_relAngle);
-		writeInt(_unk);
+		ServerPackets.SPECIAL_CAMERA.writeId(this, buffer);
+		buffer.writeInt(_id);
+		buffer.writeInt(_force);
+		buffer.writeInt(_angle1);
+		buffer.writeInt(_angle2);
+		buffer.writeInt(_time);
+		buffer.writeInt(_duration);
+		buffer.writeInt(_relYaw);
+		buffer.writeInt(_relPitch);
+		buffer.writeInt(_isWide);
+		buffer.writeInt(_relAngle);
+		buffer.writeInt(_unk);
 	}
 }

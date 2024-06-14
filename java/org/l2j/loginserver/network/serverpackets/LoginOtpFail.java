@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,17 +16,17 @@
  */
 package org.l2j.loginserver.network.serverpackets;
 
-import org.l2j.commons.network.WritablePacket;
-import org.l2j.loginserver.network.LoginServerPackets;
+import org.l2j.commons.network.WritableBuffer;
+import org.l2j.loginserver.network.LoginClient;
 
 /**
  * @author UnAfraid
  */
-public class LoginOtpFail extends WritablePacket
+public class LoginOtpFail extends LoginServerPacket
 {
 	@Override
-	public void write()
+	protected void writeImpl(LoginClient client, WritableBuffer buffer)
 	{
-		LoginServerPackets.LOGIN_OPT_FAIL.writeId(this);
+		buffer.writeByte(0x0D);
 	}
 }

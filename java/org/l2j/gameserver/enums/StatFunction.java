@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -29,22 +29,22 @@ public enum StatFunction
 	SET("Set", 0),
 	SUB("Sub", 30);
 	
-	String name;
-	int order;
+	private final String _name;
+	private final int _order;
 	
 	StatFunction(String name, int order)
 	{
-		this.name = name;
-		this.order = order;
+		_name = name;
+		_order = order;
 	}
 	
 	public String getName()
 	{
-		return name;
+		return _name;
 	}
 	
 	public int getOrder()
 	{
-		return order;
+		return _order;
 	}
 }

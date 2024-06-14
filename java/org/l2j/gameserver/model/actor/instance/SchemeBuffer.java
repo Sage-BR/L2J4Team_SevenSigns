@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -265,8 +265,8 @@ public class SchemeBuffer extends Npc
 				sb.append("<font color=\"LEVEL\">" + scheme.getKey() + " [" + scheme.getValue().size() + " skill(s)]" + ((cost > 0) ? " - cost: " + NumberFormat.getInstance(Locale.ENGLISH).format(cost) : "") + "</font><br1>");
 				sb.append("<a action=\"bypass -h npc_%objectId%_givebuffs;" + scheme.getKey() + ";" + cost + "\">Use on Me</a>&nbsp;|&nbsp;");
 				sb.append("<a action=\"bypass -h npc_%objectId%_givebuffs;" + scheme.getKey() + ";" + cost + ";pet\">Use on Pet</a>&nbsp;|&nbsp;");
-				sb.append("<a action=\"bypass -h npc_%objectId%_editschemes;Buffs;" + scheme.getKey() + ";1\">Edit</a>&nbsp;|&nbsp;");
-				sb.append("<a action=\"bypass -h npc_%objectId%_deletescheme;" + scheme.getKey() + "\">Delete</a><br>");
+				sb.append("<a action=\"bypass npc_%objectId%_editschemes;Buffs;" + scheme.getKey() + ";1\">Edit</a>&nbsp;|&nbsp;");
+				sb.append("<a action=\"bypass npc_%objectId%_deletescheme;" + scheme.getKey() + "\">Delete</a><br>");
 			}
 		}
 		
@@ -335,11 +335,11 @@ public class SchemeBuffer extends Npc
 			final Skill skill = SkillData.getInstance().getSkill(skillId, 1);
 			if (schemeSkills.contains(skillId))
 			{
-				sb.append("<td height=40 width=40><img src=\"" + skill.getIcon() + "\" width=32 height=32></td><td width=190>" + skill.getName() + "<br1><font color=\"B09878\">" + SchemeBufferTable.getInstance().getAvailableBuff(skillId).getDescription() + "</font></td><td><button value=\" \" action=\"bypass -h npc_%objectId%_skillunselect;" + groupType + ";" + schemeName + ";" + skillId + ";" + page + "\" width=32 height=32 back=\"L2UI_CH3.mapbutton_zoomout2\" fore=\"L2UI_CH3.mapbutton_zoomout1\"></td>");
+				sb.append("<td height=40 width=40><img src=\"" + skill.getIcon() + "\" width=32 height=32></td><td width=190>" + skill.getName() + "<br1><font color=\"B09878\">" + SchemeBufferTable.getInstance().getAvailableBuff(skillId).getDescription() + "</font></td><td><button value=\" \" action=\"bypass npc_%objectId%_skillunselect;" + groupType + ";" + schemeName + ";" + skillId + ";" + page + "\" width=32 height=32 back=\"L2UI_CH3.mapbutton_zoomout2\" fore=\"L2UI_CH3.mapbutton_zoomout1\"></td>");
 			}
 			else
 			{
-				sb.append("<td height=40 width=40><img src=\"" + skill.getIcon() + "\" width=32 height=32></td><td width=190>" + skill.getName() + "<br1><font color=\"B09878\">" + SchemeBufferTable.getInstance().getAvailableBuff(skillId).getDescription() + "</font></td><td><button value=\" \" action=\"bypass -h npc_%objectId%_skillselect;" + groupType + ";" + schemeName + ";" + skillId + ";" + page + "\" width=32 height=32 back=\"L2UI_CH3.mapbutton_zoomin2\" fore=\"L2UI_CH3.mapbutton_zoomin1\"></td>");
+				sb.append("<td height=40 width=40><img src=\"" + skill.getIcon() + "\" width=32 height=32></td><td width=190>" + skill.getName() + "<br1><font color=\"B09878\">" + SchemeBufferTable.getInstance().getAvailableBuff(skillId).getDescription() + "</font></td><td><button value=\" \" action=\"bypass npc_%objectId%_skillselect;" + groupType + ";" + schemeName + ";" + skillId + ";" + page + "\" width=32 height=32 back=\"L2UI_CH3.mapbutton_zoomin2\" fore=\"L2UI_CH3.mapbutton_zoomin1\"></td>");
 			}
 			
 			sb.append("</tr></table><img src=\"L2UI.SquareGray\" width=277 height=1>");
@@ -350,7 +350,7 @@ public class SchemeBuffer extends Npc
 		sb.append("<br><img src=\"L2UI.SquareGray\" width=277 height=1><table width=\"100%\" bgcolor=000000><tr>");
 		if (page > 1)
 		{
-			sb.append("<td align=left width=70><a action=\"bypass -h npc_" + getObjectId() + "_editschemes;" + groupType + ";" + schemeName + ";" + (page - 1) + "\">Previous</a></td>");
+			sb.append("<td align=left width=70><a action=\"bypass npc_" + getObjectId() + "_editschemes;" + groupType + ";" + schemeName + ";" + (page - 1) + "\">Previous</a></td>");
 		}
 		else
 		{
@@ -360,7 +360,7 @@ public class SchemeBuffer extends Npc
 		sb.append("<td align=center width=100>Page " + page + "</td>");
 		if (page < max)
 		{
-			sb.append("<td align=right width=70><a action=\"bypass -h npc_" + getObjectId() + "_editschemes;" + groupType + ";" + schemeName + ";" + (page + 1) + "\">Next</a></td>");
+			sb.append("<td align=right width=70><a action=\"bypass npc_" + getObjectId() + "_editschemes;" + groupType + ";" + schemeName + ";" + (page + 1) + "\">Next</a></td>");
 		}
 		else
 		{
@@ -395,7 +395,7 @@ public class SchemeBuffer extends Npc
 			}
 			else
 			{
-				sb.append("<td width=65><a action=\"bypass -h npc_%objectId%_editschemes;" + type + ";" + schemeName + ";1\">" + type + "</a></td>");
+				sb.append("<td width=65><a action=\"bypass npc_%objectId%_editschemes;" + type + ";" + schemeName + ";1\">" + type + "</a></td>");
 			}
 			
 			count++;

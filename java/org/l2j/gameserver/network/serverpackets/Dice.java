@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,6 +16,8 @@
  */
 package org.l2j.gameserver.network.serverpackets;
 
+import org.l2j.commons.network.WritableBuffer;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 
 public class Dice extends ServerPacket
@@ -46,14 +48,14 @@ public class Dice extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.DICE.writeId(this);
-		writeInt(_objectId); // object id of player
-		writeInt(_itemId); // item id of dice (spade) 4625,4626,4627,4628
-		writeInt(_number); // number rolled
-		writeInt(_x); // x
-		writeInt(_y); // y
-		writeInt(_z); // z
+		ServerPackets.DICE.writeId(this, buffer);
+		buffer.writeInt(_objectId); // object id of player
+		buffer.writeInt(_itemId); // item id of dice (spade) 4625,4626,4627,4628
+		buffer.writeInt(_number); // number rolled
+		buffer.writeInt(_x); // x
+		buffer.writeInt(_y); // y
+		buffer.writeInt(_z); // z
 	}
 }

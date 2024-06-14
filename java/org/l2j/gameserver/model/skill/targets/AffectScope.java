@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,7 +23,7 @@ package org.l2j.gameserver.model.skill.targets;
 public enum AffectScope
 {
 	/** Affects Valakas. */
-	BALAKAS_SCOPE,
+	VALAKAS_SCOPE,
 	/** Affects dead clan mates. */
 	DEAD_PLEDGE,
 	/** Affects dead union (Command Channel?) members. */

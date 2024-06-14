@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,7 +16,9 @@
  */
 package org.l2j.gameserver.network.serverpackets;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.enums.HtmlActionScope;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 
 /**
@@ -95,14 +97,14 @@ public class NpcHtmlMessage extends AbstractHtmlPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.NPC_HTML_MESSAGE.writeId(this);
-		writeInt(getNpcObjId());
-		writeString(getHtml());
-		writeInt(_itemId);
-		writeInt(0); // play sound - 0 = enabled, 1 = disabled
-		writeByte(_size);
+		ServerPackets.NPC_HTML_MESSAGE.writeId(this, buffer);
+		buffer.writeInt(getNpcObjId());
+		buffer.writeString(getHtml());
+		buffer.writeInt(_itemId);
+		buffer.writeInt(0); // play sound - 0 = enabled, 1 = disabled
+		buffer.writeByte(_size);
 	}
 	
 	@Override

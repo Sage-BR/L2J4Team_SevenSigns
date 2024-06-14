@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.Config;
 import org.l2j.gameserver.enums.TaxType;
 import org.l2j.gameserver.instancemanager.CastleManager;
@@ -28,6 +29,7 @@ import org.l2j.gameserver.model.actor.Summon;
 import org.l2j.gameserver.model.buylist.Product;
 import org.l2j.gameserver.model.buylist.ProductList;
 import org.l2j.gameserver.model.item.instance.Item;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.PacketLogger;
 import org.l2j.gameserver.network.ServerPackets;
 
@@ -69,9 +71,6 @@ public class ExBuySellList extends AbstractItemPacket
 	
 	// buy type = unk
 	private int _unkType;
-	
-	// buy type - send tax
-	private boolean _applyTax;
 	
 	public ExBuySellList(ProductList list, Player player, double castleTaxRate)
 	{
@@ -116,30 +115,30 @@ public class ExBuySellList extends AbstractItemPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_BUY_SELL_LIST.writeId(this);
-		writeInt(_type);
+		ServerPackets.EX_BUY_SELL_LIST.writeId(this, buffer);
+		buffer.writeInt(_type);
 		switch (_type)
 		{
 			case BUY_SELL_LIST_BUY:
 			{
-				sendBuyList();
+				sendBuyList(buffer);
 				break;
 			}
 			case BUY_SELL_LIST_SELL:
 			{
-				sendSellList();
+				sendSellList(buffer);
 				break;
 			}
 			case BUY_SELL_LIST_UNK:
 			{
-				sendUnk();
+				sendUnk(buffer);
 				break;
 			}
 			case BUY_SELL_LIST_TAX:
 			{
-				sendCurrentTax();
+				sendCurrentTax(buffer);
 				break;
 			}
 			default:
@@ -150,74 +149,74 @@ public class ExBuySellList extends AbstractItemPacket
 		}
 	}
 	
-	private void sendBuyList()
+	private void sendBuyList(WritableBuffer buffer)
 	{
-		writeLong(_money); // current money
-		writeInt(_listId);
-		writeInt(_inventorySlots);
-		writeShort(_list.size());
+		buffer.writeLong(_money); // current money
+		buffer.writeInt(_listId);
+		buffer.writeInt(_inventorySlots);
+		buffer.writeShort(_list.size());
 		for (Product product : _list)
 		{
 			if ((product.getCount() > 0) || !product.hasLimitedStock())
 			{
-				writeItem(product);
-				writeLong((long) (product.getPrice() * (1.0 + _castleTaxRate + product.getBaseTaxRate())));
+				writeItem(product, buffer);
+				buffer.writeLong((long) (product.getPrice() * (1.0 + _castleTaxRate + product.getBaseTaxRate())));
 			}
 		}
 	}
 	
-	private void sendSellList()
+	private void sendSellList(WritableBuffer buffer)
 	{
-		writeInt(_inventorySlots);
+		buffer.writeInt(_inventorySlots);
 		if (!_sellList.isEmpty())
 		{
-			writeShort(_sellList.size());
+			buffer.writeShort(_sellList.size());
 			for (Item item : _sellList)
 			{
-				writeItem(item);
-				writeLong(Config.MERCHANT_ZERO_SELL_PRICE ? 0 : item.getTemplate().getReferencePrice() / 2);
+				writeItem(item, buffer);
+				buffer.writeLong(Config.MERCHANT_ZERO_SELL_PRICE ? 0 : item.getTemplate().getReferencePrice() / 2);
 			}
 		}
 		else
 		{
-			writeShort(0);
+			buffer.writeShort(0);
 		}
 		if (!_refundList.isEmpty())
 		{
-			writeShort(_refundList.size());
+			buffer.writeShort(_refundList.size());
 			int i = 0;
 			for (Item item : _refundList)
 			{
-				writeItem(item);
-				writeInt(i++);
-				writeLong(Config.MERCHANT_ZERO_SELL_PRICE ? 0 : (item.getTemplate().getReferencePrice() / 2) * item.getCount());
+				writeItem(item, buffer);
+				buffer.writeInt(i++);
+				buffer.writeLong(Config.MERCHANT_ZERO_SELL_PRICE ? 0 : (item.getTemplate().getReferencePrice() / 2) * item.getCount());
 			}
 		}
 		else
 		{
-			writeShort(0);
+			buffer.writeShort(0);
 		}
-		writeByte(_done ? 1 : 0);
+		buffer.writeByte(_done ? 1 : 0);
 	}
 	
-	private void sendUnk()
+	private void sendUnk(WritableBuffer buffer)
 	{
-		writeByte(_unkType);
+		buffer.writeByte(_unkType);
 	}
 	
-	private void sendCurrentTax()
+	private void sendCurrentTax(WritableBuffer buffer)
 	{
-		writeInt(CASTLES.length);
+		buffer.writeInt(CASTLES.length);
 		for (int id : CASTLES)
 		{
-			writeInt(id); // residence id
+			buffer.writeInt(id); // residence id
 			try
 			{
-				writeInt(_applyTax ? CastleManager.getInstance().getCastleById(id).getTaxPercent(TaxType.BUY) : 0); // residence tax
+				buffer.writeInt(CastleManager.getInstance().getCastleById(id).getTaxPercent(TaxType.BUY)); // residence tax
 			}
 			catch (NullPointerException ignored)
 			{
-				writeInt(0);
+				buffer.writeInt(0);
 			}
 		}
 	}

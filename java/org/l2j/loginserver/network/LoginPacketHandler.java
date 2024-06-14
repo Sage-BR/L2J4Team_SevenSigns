@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,66 +18,56 @@ package org.l2j.loginserver.network;
 
 import java.util.logging.Logger;
 
-import org.l2j.commons.network.PacketHandlerInterface;
+import org.l2j.commons.network.PacketHandler;
+import org.l2j.commons.network.ReadableBuffer;
 import org.l2j.commons.network.ReadablePacket;
 import org.l2j.commons.util.CommonUtil;
-import org.l2j.loginserver.network.clientpackets.LoginClientPacket;
+import org.l2j.loginserver.enums.LoginFailReason;
 
 /**
  * @author Mobius
  */
-public class LoginPacketHandler implements PacketHandlerInterface<LoginClient>
+public class LoginPacketHandler implements PacketHandler<LoginClient>
 {
-	protected static final Logger LOGGER = Logger.getLogger(LoginPacketHandler.class.getName());
+	private static final Logger LOGGER = Logger.getLogger(LoginPacketHandler.class.getName());
 	
 	@Override
-	public void handle(LoginClient client, ReadablePacket packet)
+	public ReadablePacket<LoginClient> handlePacket(ReadableBuffer buffer, LoginClient client)
 	{
 		// Read packet id.
 		final int packetId;
 		try
 		{
-			packetId = packet.readByte();
+			packetId = Byte.toUnsignedInt(buffer.readByte());
 		}
 		catch (Exception e)
 		{
 			LOGGER.warning("LoginPacketHandler: Problem receiving packet id from " + client);
 			LOGGER.warning(CommonUtil.getStackTrace(e));
-			client.disconnect();
-			return;
+			client.close(LoginFailReason.REASON_ACCESS_FAILED);
+			return null;
 		}
 		
 		// Check if packet id is within valid range.
 		if ((packetId < 0) || (packetId >= LoginClientPackets.PACKET_ARRAY.length))
 		{
-			return;
+			return null;
 		}
 		
 		// Find packet enum.
 		final LoginClientPackets packetEnum = LoginClientPackets.PACKET_ARRAY[packetId];
-		// Check connection state.
-		if ((packetEnum == null) || !packetEnum.getConnectionStates().contains(client.getConnectionState()))
+		if (packetEnum == null)
 		{
-			return;
+			return null;
+		}
+		
+		// Check connection state.
+		if (!packetEnum.getConnectionStates().contains(client.getConnectionState()))
+		{
+			return null;
 		}
 		
 		// Create new LoginClientPacket.
-		final LoginClientPacket newPacket = packetEnum.newPacket();
-		if (newPacket == null)
-		{
-			return;
-		}
-		
-		// Packet read and run.
-		try
-		{
-			newPacket.read(packet);
-			newPacket.run(client);
-		}
-		catch (Exception e)
-		{
-			LOGGER.warning("LoginPacketHandler: Problem with " + client + " [Packet: 0x" + Integer.toHexString(packetId).toUpperCase() + "]");
-			LOGGER.warning(CommonUtil.getStackTrace(e));
-		}
+		return packetEnum.newPacket();
 	}
 }

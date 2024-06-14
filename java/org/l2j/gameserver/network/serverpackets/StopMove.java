@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,7 +16,9 @@
  */
 package org.l2j.gameserver.network.serverpackets;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.model.actor.Creature;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 
 public class StopMove extends ServerPacket
@@ -49,13 +51,13 @@ public class StopMove extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.STOP_MOVE.writeId(this);
-		writeInt(_objectId);
-		writeInt(_x);
-		writeInt(_y);
-		writeInt(_z);
-		writeInt(_heading);
+		ServerPackets.STOP_MOVE.writeId(this, buffer);
+		buffer.writeInt(_objectId);
+		buffer.writeInt(_x);
+		buffer.writeInt(_y);
+		buffer.writeInt(_z);
+		buffer.writeInt(_heading);
 	}
 }

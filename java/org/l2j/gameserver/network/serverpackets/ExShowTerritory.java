@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,7 +19,9 @@ package org.l2j.gameserver.network.serverpackets;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.model.interfaces.ILocational;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 
 /**
@@ -44,16 +46,16 @@ public class ExShowTerritory extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_SHOW_TERRITORY.writeId(this);
-		writeInt(_vertices.size());
-		writeInt(_minZ);
-		writeInt(_maxZ);
+		ServerPackets.EX_SHOW_TERRITORY.writeId(this, buffer);
+		buffer.writeInt(_vertices.size());
+		buffer.writeInt(_minZ);
+		buffer.writeInt(_maxZ);
 		for (ILocational loc : _vertices)
 		{
-			writeInt(loc.getX());
-			writeInt(loc.getY());
+			buffer.writeInt(loc.getX());
+			buffer.writeInt(loc.getY());
 		}
 	}
 }

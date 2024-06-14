@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,7 +16,6 @@
  */
 package org.l2j.gameserver.network.clientpackets;
 
-import org.l2j.commons.network.ReadablePacket;
 import org.l2j.commons.threads.ThreadPool;
 import org.l2j.gameserver.data.xml.FakePlayerData;
 import org.l2j.gameserver.model.Party;
@@ -24,7 +23,6 @@ import org.l2j.gameserver.model.World;
 import org.l2j.gameserver.model.actor.Npc;
 import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.model.zone.ZoneId;
-import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.SystemMessageId;
 import org.l2j.gameserver.network.serverpackets.ExDuelAskStart;
 import org.l2j.gameserver.network.serverpackets.SystemMessage;
@@ -33,16 +31,16 @@ import org.l2j.gameserver.network.serverpackets.SystemMessage;
  * Format:(ch) Sd
  * @author -Wooden-
  */
-public class RequestDuelStart implements ClientPacket
+public class RequestDuelStart extends ClientPacket
 {
 	private String _player;
 	private int _partyDuel;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_player = packet.readString();
-		_partyDuel = packet.readInt();
+		_player = readString();
+		_partyDuel = readInt();
 	}
 	
 	private void scheduleDeny(Player player, String name)
@@ -57,9 +55,9 @@ public class RequestDuelStart implements ClientPacket
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
-		final Player player = client.getPlayer();
+		final Player player = getPlayer();
 		if (player == null)
 		{
 			return;
@@ -106,7 +104,12 @@ public class RequestDuelStart implements ClientPacket
 		}
 		
 		final Player targetChar = World.getInstance().getPlayer(_player);
-		if ((targetChar == null) || (player == targetChar))
+		if (targetChar == null)
+		{
+			player.sendPacket(SystemMessageId.THERE_IS_NO_OPPONENT_TO_RECEIVE_YOUR_CHALLENGE_FOR_A_DUEL);
+			return;
+		}
+		if (player == targetChar)
 		{
 			player.sendPacket(SystemMessageId.THERE_IS_NO_OPPONENT_TO_RECEIVE_YOUR_CHALLENGE_FOR_A_DUEL);
 			return;

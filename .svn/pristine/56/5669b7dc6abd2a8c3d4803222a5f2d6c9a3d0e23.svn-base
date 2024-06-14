@@ -1,0 +1,427 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/multisell.xsd">
+	<npcs>
+		<npc>-1</npc> <!-- Item Multisell -->
+	</npcs>
+	<!-- Dye Change Coupon - Sealed (100443) -->
+	<item>
+		<ingredient id="96365" count="1" /> <!-- STR Dye - Lv. 11 -->
+		<ingredient id="92314" count="47" /> <!-- Giran Seal -->
+		<ingredient id="57" count="2000000" /> <!-- Adena -->
+		<ingredient id="100443" count="1" /> <!-- Dye Change Coupon - Sealed -->
+		<production id="96405" count="1" /> <!-- DEX Dye - Lv. 11 -->
+	</item>
+	<item>
+		<ingredient id="96385" count="1" /> <!-- CON Dye - Lv. 11 -->
+		<ingredient id="92314" count="47" /> <!-- Giran Seal -->
+		<ingredient id="57" count="2000000" /> <!-- Adena -->
+		<ingredient id="100443" count="1" /> <!-- Dye Change Coupon - Sealed -->
+		<production id="96405" count="1" /> <!-- DEX Dye - Lv. 11 -->
+	</item>
+	<item>
+		<ingredient id="96425" count="1" /> <!-- INT Dye - Lv. 11 -->
+		<ingredient id="92314" count="47" /> <!-- Giran Seal -->
+		<ingredient id="57" count="2000000" /> <!-- Adena -->
+		<ingredient id="100443" count="1" /> <!-- Dye Change Coupon - Sealed -->
+		<production id="96405" count="1" /> <!-- DEX Dye - Lv. 11 -->
+	</item>
+	<item>
+		<ingredient id="96445" count="1" /> <!-- MEN Dye - Lv. 11 -->
+		<ingredient id="92314" count="47" /> <!-- Giran Seal -->
+		<ingredient id="57" count="2000000" /> <!-- Adena -->
+		<ingredient id="100443" count="1" /> <!-- Dye Change Coupon - Sealed -->
+		<production id="96405" count="1" /> <!-- DEX Dye - Lv. 11 -->
+	</item>
+	<item>
+		<ingredient id="96465" count="1" /> <!-- WIT Dye - Lv. 11 -->
+		<ingredient id="92314" count="47" /> <!-- Giran Seal -->
+		<ingredient id="57" count="2000000" /> <!-- Adena -->
+		<ingredient id="100443" count="1" /> <!-- Dye Change Coupon - Sealed -->
+		<production id="96405" count="1" /> <!-- DEX Dye - Lv. 11 -->
+	</item>
+	<item>
+		<ingredient id="96366" count="1" /> <!-- STR Dye - Lv. 12 -->
+		<ingredient id="92314" count="53" /> <!-- Giran Seal -->
+		<ingredient id="57" count="2000000" /> <!-- Adena -->
+		<ingredient id="100443" count="1" /> <!-- Dye Change Coupon - Sealed -->
+		<production id="96406" count="1" /> <!-- DEX Dye - Lv. 12 -->
+	</item>
+	<item>
+		<ingredient id="96386" count="1" /> <!-- CON Dye - Lv. 12 -->
+		<ingredient id="92314" count="53" /> <!-- Giran Seal -->
+		<ingredient id="57" count="2000000" /> <!-- Adena -->
+		<ingredient id="100443" count="1" /> <!-- Dye Change Coupon - Sealed -->
+		<production id="96406" count="1" /> <!-- DEX Dye - Lv. 12 -->
+	</item>
+	<item>
+		<ingredient id="96426" count="1" /> <!-- INT Dye - Lv. 12 -->
+		<ingredient id="92314" count="53" /> <!-- Giran Seal -->
+		<ingredient id="57" count="2000000" /> <!-- Adena -->
+		<ingredient id="100443" count="1" /> <!-- Dye Change Coupon - Sealed -->
+		<production id="96406" count="1" /> <!-- DEX Dye - Lv. 12 -->
+	</item>
+	<item>
+		<ingredient id="96446" count="1" /> <!-- MEN Dye - Lv. 12 -->
+		<ingredient id="92314" count="53" /> <!-- Giran Seal -->
+		<ingredient id="57" count="2000000" /> <!-- Adena -->
+		<ingredient id="100443" count="1" /> <!-- Dye Change Coupon - Sealed -->
+		<production id="96406" count="1" /> <!-- DEX Dye - Lv. 12 -->
+	</item>
+	<item>
+		<ingredient id="96466" count="1" /> <!-- WIT Dye - Lv. 12 -->
+		<ingredient id="92314" count="53" /> <!-- Giran Seal -->
+		<ingredient id="57" count="2000000" /> <!-- Adena -->
+		<ingredient id="100443" count="1" /> <!-- Dye Change Coupon - Sealed -->
+		<production id="96406" count="1" /> <!-- DEX Dye - Lv. 12 -->
+	</item>
+	<item>
+		<ingredient id="96367" count="1" /> <!-- STR Dye - Lv. 13 -->
+		<ingredient id="92314" count="75" /> <!-- Giran Seal -->
+		<ingredient id="57" count="3000000" /> <!-- Adena -->
+		<ingredient id="100443" count="1" /> <!-- Dye Change Coupon - Sealed -->
+		<production id="96407" count="1" /> <!-- DEX Dye - Lv. 13 -->
+	</item>
+	<item>
+		<ingredient id="96387" count="1" /> <!-- CON Dye - Lv. 13 -->
+		<ingredient id="92314" count="75" /> <!-- Giran Seal -->
+		<ingredient id="57" count="3000000" /> <!-- Adena -->
+		<ingredient id="100443" count="1" /> <!-- Dye Change Coupon - Sealed -->
+		<production id="96407" count="1" /> <!-- DEX Dye - Lv. 13 -->
+	</item>
+	<item>
+		<ingredient id="96427" count="1" /> <!-- INT Dye - Lv. 13 -->
+		<ingredient id="92314" count="75" /> <!-- Giran Seal -->
+		<ingredient id="57" count="3000000" /> <!-- Adena -->
+		<ingredient id="100443" count="1" /> <!-- Dye Change Coupon - Sealed -->
+		<production id="96407" count="1" /> <!-- DEX Dye - Lv. 13 -->
+	</item>
+	<item>
+		<ingredient id="96447" count="1" /> <!-- MEN Dye - Lv. 13 -->
+		<ingredient id="92314" count="75" /> <!-- Giran Seal -->
+		<ingredient id="57" count="3000000" /> <!-- Adena -->
+		<ingredient id="100443" count="1" /> <!-- Dye Change Coupon - Sealed -->
+		<production id="96407" count="1" /> <!-- DEX Dye - Lv. 13 -->
+	</item>
+	<item>
+		<ingredient id="96467" count="1" /> <!-- WIT Dye - Lv. 13 -->
+		<ingredient id="92314" count="75" /> <!-- Giran Seal -->
+		<ingredient id="57" count="3000000" /> <!-- Adena -->
+		<ingredient id="100443" count="1" /> <!-- Dye Change Coupon - Sealed -->
+		<production id="96407" count="1" /> <!-- DEX Dye - Lv. 13 -->
+	</item>
+	<item>
+		<ingredient id="96368" count="1" /> <!-- STR Dye - Lv. 14 -->
+		<ingredient id="92314" count="148" /> <!-- Giran Seal -->
+		<ingredient id="57" count="6000000" /> <!-- Adena -->
+		<ingredient id="100443" count="1" /> <!-- Dye Change Coupon - Sealed -->
+		<production id="96408" count="1" /> <!-- DEX Dye - Lv. 14 -->
+	</item>
+	<item>
+		<ingredient id="96388" count="1" /> <!-- CON Dye - Lv. 14 -->
+		<ingredient id="92314" count="148" /> <!-- Giran Seal -->
+		<ingredient id="57" count="6000000" /> <!-- Adena -->
+		<ingredient id="100443" count="1" /> <!-- Dye Change Coupon - Sealed -->
+		<production id="96408" count="1" /> <!-- DEX Dye - Lv. 14 -->
+	</item>
+	<item>
+		<ingredient id="96428" count="1" /> <!-- INT Dye - Lv. 14 -->
+		<ingredient id="92314" count="148" /> <!-- Giran Seal -->
+		<ingredient id="57" count="6000000" /> <!-- Adena -->
+		<ingredient id="100443" count="1" /> <!-- Dye Change Coupon - Sealed -->
+		<production id="96408" count="1" /> <!-- DEX Dye - Lv. 14 -->
+	</item>
+	<item>
+		<ingredient id="96448" count="1" /> <!-- MEN Dye - Lv. 14 -->
+		<ingredient id="92314" count="148" /> <!-- Giran Seal -->
+		<ingredient id="57" count="6000000" /> <!-- Adena -->
+		<ingredient id="100443" count="1" /> <!-- Dye Change Coupon - Sealed -->
+		<production id="96408" count="1" /> <!-- DEX Dye - Lv. 14 -->
+	</item>
+	<item>
+		<ingredient id="96468" count="1" /> <!-- WIT Dye - Lv. 14 -->
+		<ingredient id="92314" count="148" /> <!-- Giran Seal -->
+		<ingredient id="57" count="6000000" /> <!-- Adena -->
+		<ingredient id="100443" count="1" /> <!-- Dye Change Coupon - Sealed -->
+		<production id="96408" count="1" /> <!-- DEX Dye - Lv. 14 -->
+	</item>
+	<item>
+		<ingredient id="96365" count="1" /> <!-- STR Dye - Lv. 11 -->
+		<ingredient id="92314" count="47" /> <!-- Giran Seal -->
+		<ingredient id="57" count="2000000" /> <!-- Adena -->
+		<ingredient id="100443" count="1" /> <!-- Dye Change Coupon - Sealed -->
+		<production id="96405" count="1" /> <!-- DEX Dye - Lv. 11 -->
+	</item>
+	<item>
+		<ingredient id="96385" count="1" /> <!-- CON Dye - Lv. 11 -->
+		<ingredient id="92314" count="47" /> <!-- Giran Seal -->
+		<ingredient id="57" count="2000000" /> <!-- Adena -->
+		<ingredient id="100443" count="1" /> <!-- Dye Change Coupon - Sealed -->
+		<production id="96405" count="1" /> <!-- DEX Dye - Lv. 11 -->
+	</item>
+	<item>
+		<ingredient id="96425" count="1" /> <!-- INT Dye - Lv. 11 -->
+		<ingredient id="92314" count="47" /> <!-- Giran Seal -->
+		<ingredient id="57" count="2000000" /> <!-- Adena -->
+		<ingredient id="100443" count="1" /> <!-- Dye Change Coupon - Sealed -->
+		<production id="96405" count="1" /> <!-- DEX Dye - Lv. 11 -->
+	</item>
+	<item>
+		<ingredient id="96445" count="1" /> <!-- MEN Dye - Lv. 11 -->
+		<ingredient id="92314" count="47" /> <!-- Giran Seal -->
+		<ingredient id="57" count="2000000" /> <!-- Adena -->
+		<ingredient id="100443" count="1" /> <!-- Dye Change Coupon - Sealed -->
+		<production id="96405" count="1" /> <!-- DEX Dye - Lv. 11 -->
+	</item>
+	<item>
+		<ingredient id="96465" count="1" /> <!-- WIT Dye - Lv. 11 -->
+		<ingredient id="92314" count="47" /> <!-- Giran Seal -->
+		<ingredient id="57" count="2000000" /> <!-- Adena -->
+		<ingredient id="100443" count="1" /> <!-- Dye Change Coupon - Sealed -->
+		<production id="96405" count="1" /> <!-- DEX Dye - Lv. 11 -->
+	</item>
+	<item>
+		<ingredient id="96366" count="1" /> <!-- STR Dye - Lv. 12 -->
+		<ingredient id="92314" count="53" /> <!-- Giran Seal -->
+		<ingredient id="57" count="2000000" /> <!-- Adena -->
+		<ingredient id="100443" count="1" /> <!-- Dye Change Coupon - Sealed -->
+		<production id="96406" count="1" /> <!-- DEX Dye - Lv. 12 -->
+	</item>
+	<item>
+		<ingredient id="96386" count="1" /> <!-- CON Dye - Lv. 12 -->
+		<ingredient id="92314" count="53" /> <!-- Giran Seal -->
+		<ingredient id="57" count="2000000" /> <!-- Adena -->
+		<ingredient id="100443" count="1" /> <!-- Dye Change Coupon - Sealed -->
+		<production id="96406" count="1" /> <!-- DEX Dye - Lv. 12 -->
+	</item>
+	<item>
+		<ingredient id="96426" count="1" /> <!-- INT Dye - Lv. 12 -->
+		<ingredient id="92314" count="53" /> <!-- Giran Seal -->
+		<ingredient id="57" count="2000000" /> <!-- Adena -->
+		<ingredient id="100443" count="1" /> <!-- Dye Change Coupon - Sealed -->
+		<production id="96406" count="1" /> <!-- DEX Dye - Lv. 12 -->
+	</item>
+	<item>
+		<ingredient id="96446" count="1" /> <!-- MEN Dye - Lv. 12 -->
+		<ingredient id="92314" count="53" /> <!-- Giran Seal -->
+		<ingredient id="57" count="2000000" /> <!-- Adena -->
+		<ingredient id="100443" count="1" /> <!-- Dye Change Coupon - Sealed -->
+		<production id="96406" count="1" /> <!-- DEX Dye - Lv. 12 -->
+	</item>
+	<item>
+		<ingredient id="96466" count="1" /> <!-- WIT Dye - Lv. 12 -->
+		<ingredient id="92314" count="53" /> <!-- Giran Seal -->
+		<ingredient id="57" count="2000000" /> <!-- Adena -->
+		<ingredient id="100443" count="1" /> <!-- Dye Change Coupon - Sealed -->
+		<production id="96406" count="1" /> <!-- DEX Dye - Lv. 12 -->
+	</item>
+	<item>
+		<ingredient id="96367" count="1" /> <!-- STR Dye - Lv. 13 -->
+		<ingredient id="92314" count="75" /> <!-- Giran Seal -->
+		<ingredient id="57" count="3000000" /> <!-- Adena -->
+		<ingredient id="100443" count="1" /> <!-- Dye Change Coupon - Sealed -->
+		<production id="96407" count="1" /> <!-- DEX Dye - Lv. 13 -->
+	</item>
+	<item>
+		<ingredient id="96387" count="1" /> <!-- CON Dye - Lv. 13 -->
+		<ingredient id="92314" count="75" /> <!-- Giran Seal -->
+		<ingredient id="57" count="3000000" /> <!-- Adena -->
+		<ingredient id="100443" count="1" /> <!-- Dye Change Coupon - Sealed -->
+		<production id="96407" count="1" /> <!-- DEX Dye - Lv. 13 -->
+	</item>
+	<item>
+		<ingredient id="96427" count="1" /> <!-- INT Dye - Lv. 13 -->
+		<ingredient id="92314" count="75" /> <!-- Giran Seal -->
+		<ingredient id="57" count="3000000" /> <!-- Adena -->
+		<ingredient id="100443" count="1" /> <!-- Dye Change Coupon - Sealed -->
+		<production id="96407" count="1" /> <!-- DEX Dye - Lv. 13 -->
+	</item>
+	<item>
+		<ingredient id="96447" count="1" /> <!-- MEN Dye - Lv. 13 -->
+		<ingredient id="92314" count="75" /> <!-- Giran Seal -->
+		<ingredient id="57" count="3000000" /> <!-- Adena -->
+		<ingredient id="100443" count="1" /> <!-- Dye Change Coupon - Sealed -->
+		<production id="96407" count="1" /> <!-- DEX Dye - Lv. 13 -->
+	</item>
+	<item>
+		<ingredient id="96467" count="1" /> <!-- WIT Dye - Lv. 13 -->
+		<ingredient id="92314" count="75" /> <!-- Giran Seal -->
+		<ingredient id="57" count="3000000" /> <!-- Adena -->
+		<ingredient id="100443" count="1" /> <!-- Dye Change Coupon - Sealed -->
+		<production id="96407" count="1" /> <!-- DEX Dye - Lv. 13 -->
+	</item>
+	<item>
+		<ingredient id="96368" count="1" /> <!-- STR Dye - Lv. 14 -->
+		<ingredient id="92314" count="148" /> <!-- Giran Seal -->
+		<ingredient id="57" count="6000000" /> <!-- Adena -->
+		<ingredient id="100443" count="1" /> <!-- Dye Change Coupon - Sealed -->
+		<production id="96408" count="1" /> <!-- DEX Dye - Lv. 14 -->
+	</item>
+	<item>
+		<ingredient id="96388" count="1" /> <!-- CON Dye - Lv. 14 -->
+		<ingredient id="92314" count="148" /> <!-- Giran Seal -->
+		<ingredient id="57" count="6000000" /> <!-- Adena -->
+		<ingredient id="100443" count="1" /> <!-- Dye Change Coupon - Sealed -->
+		<production id="96408" count="1" /> <!-- DEX Dye - Lv. 14 -->
+	</item>
+	<item>
+		<ingredient id="96428" count="1" /> <!-- INT Dye - Lv. 14 -->
+		<ingredient id="92314" count="148" /> <!-- Giran Seal -->
+		<ingredient id="57" count="6000000" /> <!-- Adena -->
+		<ingredient id="100443" count="1" /> <!-- Dye Change Coupon - Sealed -->
+		<production id="96408" count="1" /> <!-- DEX Dye - Lv. 14 -->
+	</item>
+	<item>
+		<ingredient id="96448" count="1" /> <!-- MEN Dye - Lv. 14 -->
+		<ingredient id="92314" count="148" /> <!-- Giran Seal -->
+		<ingredient id="57" count="6000000" /> <!-- Adena -->
+		<ingredient id="100443" count="1" /> <!-- Dye Change Coupon - Sealed -->
+		<production id="96408" count="1" /> <!-- DEX Dye - Lv. 14 -->
+	</item>
+	<item>
+		<ingredient id="96468" count="1" /> <!-- WIT Dye - Lv. 14 -->
+		<ingredient id="92314" count="148" /> <!-- Giran Seal -->
+		<ingredient id="57" count="6000000" /> <!-- Adena -->
+		<ingredient id="100443" count="1" /> <!-- Dye Change Coupon - Sealed -->
+		<production id="96408" count="1" /> <!-- DEX Dye - Lv. 14 -->
+	</item>
+	<item>
+		<ingredient id="96365" count="1" /> <!-- STR Dye - Lv. 11 -->
+		<ingredient id="92314" count="47" /> <!-- Giran Seal -->
+		<ingredient id="57" count="2000000" /> <!-- Adena -->
+		<ingredient id="100443" count="1" /> <!-- Dye Change Coupon - Sealed -->
+		<production id="96405" count="1" /> <!-- DEX Dye - Lv. 11 -->
+	</item>
+	<item>
+		<ingredient id="96385" count="1" /> <!-- CON Dye - Lv. 11 -->
+		<ingredient id="92314" count="47" /> <!-- Giran Seal -->
+		<ingredient id="57" count="2000000" /> <!-- Adena -->
+		<ingredient id="100443" count="1" /> <!-- Dye Change Coupon - Sealed -->
+		<production id="96405" count="1" /> <!-- DEX Dye - Lv. 11 -->
+	</item>
+	<item>
+		<ingredient id="96425" count="1" /> <!-- INT Dye - Lv. 11 -->
+		<ingredient id="92314" count="47" /> <!-- Giran Seal -->
+		<ingredient id="57" count="2000000" /> <!-- Adena -->
+		<ingredient id="100443" count="1" /> <!-- Dye Change Coupon - Sealed -->
+		<production id="96405" count="1" /> <!-- DEX Dye - Lv. 11 -->
+	</item>
+	<item>
+		<ingredient id="96445" count="1" /> <!-- MEN Dye - Lv. 11 -->
+		<ingredient id="92314" count="47" /> <!-- Giran Seal -->
+		<ingredient id="57" count="2000000" /> <!-- Adena -->
+		<ingredient id="100443" count="1" /> <!-- Dye Change Coupon - Sealed -->
+		<production id="96405" count="1" /> <!-- DEX Dye - Lv. 11 -->
+	</item>
+	<item>
+		<ingredient id="96465" count="1" /> <!-- WIT Dye - Lv. 11 -->
+		<ingredient id="92314" count="47" /> <!-- Giran Seal -->
+		<ingredient id="57" count="2000000" /> <!-- Adena -->
+		<ingredient id="100443" count="1" /> <!-- Dye Change Coupon - Sealed -->
+		<production id="96405" count="1" /> <!-- DEX Dye - Lv. 11 -->
+	</item>
+	<item>
+		<ingredient id="96366" count="1" /> <!-- STR Dye - Lv. 12 -->
+		<ingredient id="92314" count="53" /> <!-- Giran Seal -->
+		<ingredient id="57" count="2000000" /> <!-- Adena -->
+		<ingredient id="100443" count="1" /> <!-- Dye Change Coupon - Sealed -->
+		<production id="96406" count="1" /> <!-- DEX Dye - Lv. 12 -->
+	</item>
+	<item>
+		<ingredient id="96386" count="1" /> <!-- CON Dye - Lv. 12 -->
+		<ingredient id="92314" count="53" /> <!-- Giran Seal -->
+		<ingredient id="57" count="2000000" /> <!-- Adena -->
+		<ingredient id="100443" count="1" /> <!-- Dye Change Coupon - Sealed -->
+		<production id="96406" count="1" /> <!-- DEX Dye - Lv. 12 -->
+	</item>
+	<item>
+		<ingredient id="96426" count="1" /> <!-- INT Dye - Lv. 12 -->
+		<ingredient id="92314" count="53" /> <!-- Giran Seal -->
+		<ingredient id="57" count="2000000" /> <!-- Adena -->
+		<ingredient id="100443" count="1" /> <!-- Dye Change Coupon - Sealed -->
+		<production id="96406" count="1" /> <!-- DEX Dye - Lv. 12 -->
+	</item>
+	<item>
+		<ingredient id="96446" count="1" /> <!-- MEN Dye - Lv. 12 -->
+		<ingredient id="92314" count="53" /> <!-- Giran Seal -->
+		<ingredient id="57" count="2000000" /> <!-- Adena -->
+		<ingredient id="100443" count="1" /> <!-- Dye Change Coupon - Sealed -->
+		<production id="96406" count="1" /> <!-- DEX Dye - Lv. 12 -->
+	</item>
+	<item>
+		<ingredient id="96466" count="1" /> <!-- WIT Dye - Lv. 12 -->
+		<ingredient id="92314" count="53" /> <!-- Giran Seal -->
+		<ingredient id="57" count="2000000" /> <!-- Adena -->
+		<ingredient id="100443" count="1" /> <!-- Dye Change Coupon - Sealed -->
+		<production id="96406" count="1" /> <!-- DEX Dye - Lv. 12 -->
+	</item>
+	<item>
+		<ingredient id="96367" count="1" /> <!-- STR Dye - Lv. 13 -->
+		<ingredient id="92314" count="75" /> <!-- Giran Seal -->
+		<ingredient id="57" count="3000000" /> <!-- Adena -->
+		<ingredient id="100443" count="1" /> <!-- Dye Change Coupon - Sealed -->
+		<production id="96407" count="1" /> <!-- DEX Dye - Lv. 13 -->
+	</item>
+	<item>
+		<ingredient id="96387" count="1" /> <!-- CON Dye - Lv. 13 -->
+		<ingredient id="92314" count="75" /> <!-- Giran Seal -->
+		<ingredient id="57" count="3000000" /> <!-- Adena -->
+		<ingredient id="100443" count="1" /> <!-- Dye Change Coupon - Sealed -->
+		<production id="96407" count="1" /> <!-- DEX Dye - Lv. 13 -->
+	</item>
+	<item>
+		<ingredient id="96427" count="1" /> <!-- INT Dye - Lv. 13 -->
+		<ingredient id="92314" count="75" /> <!-- Giran Seal -->
+		<ingredient id="57" count="3000000" /> <!-- Adena -->
+		<ingredient id="100443" count="1" /> <!-- Dye Change Coupon - Sealed -->
+		<production id="96407" count="1" /> <!-- DEX Dye - Lv. 13 -->
+	</item>
+	<item>
+		<ingredient id="96447" count="1" /> <!-- MEN Dye - Lv. 13 -->
+		<ingredient id="92314" count="75" /> <!-- Giran Seal -->
+		<ingredient id="57" count="3000000" /> <!-- Adena -->
+		<ingredient id="100443" count="1" /> <!-- Dye Change Coupon - Sealed -->
+		<production id="96407" count="1" /> <!-- DEX Dye - Lv. 13 -->
+	</item>
+	<item>
+		<ingredient id="96467" count="1" /> <!-- WIT Dye - Lv. 13 -->
+		<ingredient id="92314" count="75" /> <!-- Giran Seal -->
+		<ingredient id="57" count="3000000" /> <!-- Adena -->
+		<ingredient id="100443" count="1" /> <!-- Dye Change Coupon - Sealed -->
+		<production id="96407" count="1" /> <!-- DEX Dye - Lv. 13 -->
+	</item>
+	<item>
+		<ingredient id="96368" count="1" /> <!-- STR Dye - Lv. 14 -->
+		<ingredient id="92314" count="148" /> <!-- Giran Seal -->
+		<ingredient id="57" count="6000000" /> <!-- Adena -->
+		<ingredient id="100443" count="1" /> <!-- Dye Change Coupon - Sealed -->
+		<production id="96408" count="1" /> <!-- DEX Dye - Lv. 14 -->
+	</item>
+	<item>
+		<ingredient id="96388" count="1" /> <!-- CON Dye - Lv. 14 -->
+		<ingredient id="92314" count="148" /> <!-- Giran Seal -->
+		<ingredient id="57" count="6000000" /> <!-- Adena -->
+		<ingredient id="100443" count="1" /> <!-- Dye Change Coupon - Sealed -->
+		<production id="96408" count="1" /> <!-- DEX Dye - Lv. 14 -->
+	</item>
+	<item>
+		<ingredient id="96428" count="1" /> <!-- INT Dye - Lv. 14 -->
+		<ingredient id="92314" count="148" /> <!-- Giran Seal -->
+		<ingredient id="57" count="6000000" /> <!-- Adena -->
+		<ingredient id="100443" count="1" /> <!-- Dye Change Coupon - Sealed -->
+		<production id="96408" count="1" /> <!-- DEX Dye - Lv. 14 -->
+	</item>
+	<item>
+		<ingredient id="96448" count="1" /> <!-- MEN Dye - Lv. 14 -->
+		<ingredient id="92314" count="148" /> <!-- Giran Seal -->
+		<ingredient id="57" count="6000000" /> <!-- Adena -->
+		<ingredient id="100443" count="1" /> <!-- Dye Change Coupon - Sealed -->
+		<production id="96408" count="1" /> <!-- DEX Dye - Lv. 14 -->
+	</item>
+	<item>
+		<ingredient id="96468" count="1" /> <!-- WIT Dye - Lv. 14 -->
+		<ingredient id="92314" count="148" /> <!-- Giran Seal -->
+		<ingredient id="57" count="6000000" /> <!-- Adena -->
+		<ingredient id="100443" count="1" /> <!-- Dye Change Coupon - Sealed -->
+		<production id="96408" count="1" /> <!-- DEX Dye - Lv. 14 -->
+	</item>
+</list>

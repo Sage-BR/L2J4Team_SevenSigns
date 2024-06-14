@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,6 +16,8 @@
  */
 package org.l2j.gameserver.network.serverpackets;
 
+import org.l2j.commons.network.WritableBuffer;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 
 public class ExPutItemResultForVariationMake extends ServerPacket
@@ -30,11 +32,11 @@ public class ExPutItemResultForVariationMake extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_PUT_ITEM_RESULT_FOR_VARIATION_MAKE.writeId(this);
-		writeInt(_itemObjId);
-		writeInt(_itemId);
-		writeInt(1);
+		ServerPackets.EX_PUT_ITEM_RESULT_FOR_VARIATION_MAKE.writeId(this, buffer);
+		buffer.writeInt(_itemObjId);
+		buffer.writeInt(_itemId);
+		buffer.writeInt(1);
 	}
 }

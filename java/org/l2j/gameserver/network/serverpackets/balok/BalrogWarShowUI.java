@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,9 +16,11 @@
  */
 package org.l2j.gameserver.network.serverpackets.balok;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.instancemanager.BattleWithBalokManager;
 import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.model.variables.PlayerVariables;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 import org.l2j.gameserver.network.serverpackets.ServerPacket;
 
@@ -35,15 +37,15 @@ public class BalrogWarShowUI extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_BALROGWAR_SHOW_UI.writeId(this);
+		ServerPackets.EX_BALROGWAR_SHOW_UI.writeId(this, buffer);
 		final int personalPoints = BattleWithBalokManager.getInstance().getMonsterPoints(_player);
-		writeInt(personalPoints < 1 ? 0 : BattleWithBalokManager.getInstance().getPlayerRank(_player)); // personal rank
-		writeInt(personalPoints); // personal points
-		writeLong(BattleWithBalokManager.getInstance().getGlobalPoints()); // total points of players
-		writeInt(_player.getVariables().getInt(PlayerVariables.BALOK_AVAILABLE_REWARD, 0)); // reward activated or not
-		writeInt(BattleWithBalokManager.getInstance().getReward()); // RewardItemID
-		writeLong(1); // unknown
+		buffer.writeInt(personalPoints < 1 ? 0 : BattleWithBalokManager.getInstance().getPlayerRank(_player)); // personal rank
+		buffer.writeInt(personalPoints); // personal points
+		buffer.writeLong(BattleWithBalokManager.getInstance().getGlobalPoints()); // total points of players
+		buffer.writeInt(_player.getVariables().getInt(PlayerVariables.BALOK_AVAILABLE_REWARD, 0)); // reward activated or not
+		buffer.writeInt(BattleWithBalokManager.getInstance().getReward()); // RewardItemID
+		buffer.writeLong(1); // unknown
 	}
 }

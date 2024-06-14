@@ -1,0 +1,627 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/spawns.xsd">
+	<spawn name="Prime Time Pagan Temple" spawnByDefault="false">
+		<group name="NPC">
+			<npc id="34379" x="-16364" y="-40790" z="-10702" heading="49151" respawnTime="5sec" /> <!-- Eli -->
+		</group>
+		<group name="Prime Spawn First hall">
+			<npc id="22701" x="-17856" y="-42032" z="-10733" heading="16565" respawnTime="5sec" /> <!-- Royal Archon -->
+			<npc id="22701" x="-17379" y="-42235" z="-10733" heading="61086" respawnTime="5sec" /> <!-- Royal Archon -->
+			<npc id="22701" x="-17203" y="-41881" z="-10733" heading="7784" respawnTime="5sec" /> <!-- Royal Archon -->
+			<npc id="22701" x="-16927" y="-42165" z="-10733" heading="27375" respawnTime="5sec" /> <!-- Royal Archon -->
+			<npc id="22701" x="-17723" y="-41586" z="-10733" heading="20102" respawnTime="5sec" /> <!-- Royal Archon -->
+			<npc id="22701" x="-17560" y="-41284" z="-10733" heading="10381" respawnTime="5sec" /> <!-- Royal Archon -->
+			<npc id="22701" x="-17874" y="-41047" z="-10733" heading="24496" respawnTime="5sec" /> <!-- Royal Archon -->
+			<npc id="22701" x="-17645" y="-40820" z="-10733" heading="8157" respawnTime="5sec" /> <!-- Royal Archon -->
+			<npc id="22701" x="-17857" y="-40516" z="-10733" heading="24313" respawnTime="5sec" /> <!-- Royal Archon -->
+			<npc id="22701" x="-17772" y="-40125" z="-10733" heading="3597" respawnTime="5sec" /> <!-- Royal Archon -->
+			<npc id="22701" x="-17748" y="-39890" z="-10733" heading="21015" respawnTime="5sec" /> <!-- Royal Archon -->
+			<npc id="22701" x="-17930" y="-39657" z="-10733" heading="20416" respawnTime="5sec" /> <!-- Royal Archon -->
+			<npc id="22701" x="-17910" y="-39318" z="-10733" heading="18416" respawnTime="5sec" /> <!-- Royal Archon -->
+			<npc id="22701" x="-17657" y="-39378" z="-10733" heading="59132" respawnTime="5sec" /> <!-- Royal Archon -->
+			<npc id="22701" x="-17324" y="-39352" z="-10733" heading="7693" respawnTime="5sec" /> <!-- Royal Archon -->
+			<npc id="22701" x="-16862" y="-39549" z="-10733" heading="59756" respawnTime="5sec" /> <!-- Royal Archon -->
+			<npc id="22701" x="-16608" y="-39396" z="-10733" heading="9940" respawnTime="5sec" /> <!-- Royal Archon -->
+			<npc id="22701" x="-16364" y="-39323" z="-10733" heading="61601" respawnTime="5sec" /> <!-- Royal Archon -->
+			<npc id="22701" x="-16069" y="-39615" z="-10733" heading="55262" respawnTime="5sec" /> <!-- Royal Archon -->
+			<npc id="22701" x="-15683" y="-39743" z="-10733" heading="64507" respawnTime="5sec" /> <!-- Royal Archon -->
+			<npc id="22701" x="-15587" y="-39382" z="-10733" heading="17661" respawnTime="5sec" /> <!-- Royal Archon -->
+			<npc id="22701" x="-15340" y="-39198" z="-10733" heading="1012" respawnTime="5sec" /> <!-- Royal Archon -->
+			<npc id="22701" x="-14887" y="-39336" z="-10733" heading="64912" respawnTime="5sec" /> <!-- Royal Archon -->
+			<npc id="22701" x="-15012" y="-39505" z="-10733" heading="41815" respawnTime="5sec" /> <!-- Royal Archon -->
+			<npc id="22701" x="-14894" y="-39775" z="-10733" heading="57932" respawnTime="5sec" /> <!-- Royal Archon -->
+			<npc id="22701" x="-14971" y="-40053" z="-10733" heading="45313" respawnTime="5sec" /> <!-- Royal Archon -->
+			<npc id="22701" x="-14865" y="-40310" z="-10733" heading="57104" respawnTime="5sec" /> <!-- Royal Archon -->
+			<npc id="22701" x="-14909" y="-40560" z="-10733" heading="39619" respawnTime="5sec" /> <!-- Royal Archon -->
+			<npc id="22701" x="-14788" y="-40861" z="-10733" heading="59077" respawnTime="5sec" /> <!-- Royal Archon -->
+			<npc id="22701" x="-15154" y="-41044" z="-10733" heading="48630" respawnTime="5sec" /> <!-- Royal Archon -->
+			<npc id="22701" x="-14999" y="-41293" z="-10733" heading="59215" respawnTime="5sec" /> <!-- Royal Archon -->
+			<npc id="22701" x="-14884" y="-41504" z="-10733" heading="48581" respawnTime="5sec" /> <!-- Royal Archon -->
+			<npc id="22701" x="-14805" y="-42026" z="-10733" heading="49680" respawnTime="5sec" /> <!-- Royal Archon -->
+			<npc id="22701" x="-15036" y="-42259" z="-10733" heading="36666" respawnTime="5sec" /> <!-- Royal Archon -->
+			<npc id="22701" x="-15187" y="-41979" z="-10733" heading="21066" respawnTime="5sec" /> <!-- Royal Archon -->
+			<npc id="22701" x="-15548" y="-41936" z="-10733" heading="32589" respawnTime="5sec" /> <!-- Royal Archon -->
+			<npc id="22701" x="-15616" y="-42317" z="-10733" heading="45579" respawnTime="5sec" /> <!-- Royal Archon -->
+			<npc id="22700" x="-15403" y="-42181" z="-10733" heading="28567" respawnTime="5sec" /> <!-- Old Aristocrat's Soldier -->
+			<npc id="22700" x="-15385" y="-41876" z="-10733" heading="8860" respawnTime="5sec" /> <!-- Old Aristocrat's Soldier -->
+			<npc id="22700" x="-14800" y="-42133" z="-10733" heading="63129" respawnTime="5sec" /> <!-- Old Aristocrat's Soldier -->
+			<npc id="22700" x="-14966" y="-41620" z="-10733" heading="18623" respawnTime="5sec" /> <!-- Old Aristocrat's Soldier -->
+			<npc id="22700" x="-14738" y="-41331" z="-10733" heading="7314" respawnTime="5sec" /> <!-- Old Aristocrat's Soldier -->
+			<npc id="22700" x="-14920" y="-41073" z="-10733" heading="26056" respawnTime="5sec" /> <!-- Old Aristocrat's Soldier -->
+			<npc id="22700" x="-15044" y="-40786" z="-10733" heading="22903" respawnTime="5sec" /> <!-- Old Aristocrat's Soldier -->
+			<npc id="22700" x="-15155" y="-40373" z="-10733" heading="22192" respawnTime="5sec" /> <!-- Old Aristocrat's Soldier -->
+			<npc id="22700" x="-14845" y="-40164" z="-10733" heading="7418" respawnTime="5sec" /> <!-- Old Aristocrat's Soldier -->
+			<npc id="22700" x="-15119" y="-39899" z="-10733" heading="28336" respawnTime="5sec" /> <!-- Old Aristocrat's Soldier -->
+			<npc id="22700" x="-14962" y="-39748" z="-10733" heading="8349" respawnTime="5sec" /> <!-- Old Aristocrat's Soldier -->
+			<npc id="22700" x="-14738" y="-39369" z="-10733" heading="12793" respawnTime="5sec" /> <!-- Old Aristocrat's Soldier -->
+			<npc id="22700" x="-15071" y="-39264" z="-10733" heading="31885" respawnTime="5sec" /> <!-- Old Aristocrat's Soldier -->
+			<npc id="22700" x="-15349" y="-39450" z="-10733" heading="43747" respawnTime="5sec" /> <!-- Old Aristocrat's Soldier -->
+			<npc id="22700" x="-15582" y="-39623" z="-10733" heading="32958" respawnTime="5sec" /> <!-- Old Aristocrat's Soldier -->
+			<npc id="22700" x="-15854" y="-39410" z="-10733" heading="22988" respawnTime="5sec" /> <!-- Old Aristocrat's Soldier -->
+			<npc id="22700" x="-16137" y="-39211" z="-10733" heading="28382" respawnTime="5sec" /> <!-- Old Aristocrat's Soldier -->
+			<npc id="22700" x="-16394" y="-39359" z="-10733" heading="41999" respawnTime="5sec" /> <!-- Old Aristocrat's Soldier -->
+			<npc id="22700" x="-16699" y="-39542" z="-10733" heading="34826" respawnTime="5sec" /> <!-- Old Aristocrat's Soldier -->
+			<npc id="22700" x="-16955" y="-39170" z="-10733" heading="18380" respawnTime="5sec" /> <!-- Old Aristocrat's Soldier -->
+			<npc id="22700" x="-17291" y="-39623" z="-10733" heading="44112" respawnTime="5sec" /> <!-- Old Aristocrat's Soldier -->
+			<npc id="22700" x="-17808" y="-39289" z="-10733" heading="27602" respawnTime="5sec" /> <!-- Old Aristocrat's Soldier -->
+			<npc id="22700" x="-17776" y="-39641" z="-10733" heading="56133" respawnTime="5sec" /> <!-- Old Aristocrat's Soldier -->
+			<npc id="22700" x="-17807" y="-39944" z="-10733" heading="40671" respawnTime="5sec" /> <!-- Old Aristocrat's Soldier -->
+			<npc id="22700" x="-17997" y="-40005" z="-10733" heading="22122" respawnTime="5sec" /> <!-- Old Aristocrat's Soldier -->
+			<npc id="22700" x="-17779" y="-40372" z="-10733" heading="55388" respawnTime="5sec" /> <!-- Old Aristocrat's Soldier -->
+			<npc id="22700" x="-17545" y="-40359" z="-10733" heading="5008" respawnTime="5sec" /> <!-- Old Aristocrat's Soldier -->
+			<npc id="22700" x="-17909" y="-40882" z="-10733" heading="44577" respawnTime="5sec" /> <!-- Old Aristocrat's Soldier -->
+			<npc id="22700" x="-17575" y="-41142" z="-10733" heading="57626" respawnTime="5sec" /> <!-- Old Aristocrat's Soldier -->
+			<npc id="22700" x="-17887" y="-41549" z="-10733" heading="35156" respawnTime="5sec" /> <!-- Old Aristocrat's Soldier -->
+			<npc id="22700" x="-17577" y="-41759" z="-10733" heading="63947" respawnTime="5sec" /> <!-- Old Aristocrat's Soldier -->
+			<npc id="22700" x="-17764" y="-42051" z="-10733" heading="41657" respawnTime="5sec" /> <!-- Old Aristocrat's Soldier -->
+			<npc id="22700" x="-17524" y="-42447" z="-10733" heading="61258" respawnTime="5sec" /> <!-- Old Aristocrat's Soldier -->
+			<npc id="22700" x="-17362" y="-42165" z="-10733" heading="12035" respawnTime="5sec" /> <!-- Old Aristocrat's Soldier -->
+			<npc id="22700" x="-17002" y="-42036" z="-10733" heading="47059" respawnTime="5sec" /> <!-- Old Aristocrat's Soldier -->
+			<npc id="22702" x="-15579" y="-42269" z="-10733" heading="59940" respawnTime="5sec" /> <!-- Forgotten Victim -->
+			<npc id="22702" x="-15427" y="-42238" z="-10733" heading="5817" respawnTime="5sec" /> <!-- Forgotten Victim -->
+			<npc id="22702" x="-15058" y="-42250" z="-10733" heading="58995" respawnTime="5sec" /> <!-- Forgotten Victim -->
+			<npc id="22702" x="-14701" y="-41925" z="-10733" heading="15771" respawnTime="5sec" /> <!-- Forgotten Victim -->
+			<npc id="22702" x="-15046" y="-41672" z="-10733" heading="24870" respawnTime="5sec" /> <!-- Forgotten Victim -->
+			<npc id="22702" x="-14926" y="-41287" z="-10733" heading="11307" respawnTime="5sec" /> <!-- Forgotten Victim -->
+			<npc id="22702" x="-14751" y="-40839" z="-10733" heading="4722" respawnTime="5sec" /> <!-- Forgotten Victim -->
+			<npc id="22702" x="-14970" y="-40684" z="-10733" heading="26869" respawnTime="5sec" /> <!-- Forgotten Victim -->
+			<npc id="22702" x="-15178" y="-40347" z="-10733" heading="21360" respawnTime="5sec" /> <!-- Forgotten Victim -->
+			<npc id="22702" x="-15044" y="-40177" z="-10733" heading="7597" respawnTime="5sec" /> <!-- Forgotten Victim -->
+			<npc id="22702" x="-14755" y="-39436" z="-10733" heading="14438" respawnTime="5sec" /> <!-- Forgotten Victim -->
+			<npc id="22702" x="-15179" y="-39648" z="-10733" heading="33380" respawnTime="5sec" /> <!-- Forgotten Victim -->
+			<npc id="22702" x="-15490" y="-39286" z="-10733" heading="27755" respawnTime="5sec" /> <!-- Forgotten Victim -->
+			<npc id="22702" x="-15758" y="-39533" z="-10733" heading="43085" respawnTime="5sec" /> <!-- Forgotten Victim -->
+			<npc id="22702" x="-15992" y="-39630" z="-10733" heading="32195" respawnTime="5sec" /> <!-- Forgotten Victim -->
+			<npc id="22702" x="-16319" y="-39252" z="-10733" heading="22634" respawnTime="5sec" /> <!-- Forgotten Victim -->
+			<npc id="22702" x="-16657" y="-39179" z="-10733" heading="29252" respawnTime="5sec" /> <!-- Forgotten Victim -->
+			<npc id="22702" x="-16831" y="-39445" z="-10733" heading="42317" respawnTime="5sec" /> <!-- Forgotten Victim -->
+			<npc id="22702" x="-16916" y="-39614" z="-10733" heading="44443" respawnTime="5sec" /> <!-- Forgotten Victim -->
+			<npc id="22702" x="-17323" y="-39472" z="-10733" heading="27413" respawnTime="5sec" /> <!-- Forgotten Victim -->
+			<npc id="22702" x="-17461" y="-39163" z="-10733" heading="20407" respawnTime="5sec" /> <!-- Forgotten Victim -->
+			<npc id="22702" x="-17899" y="-39430" z="-10733" heading="44250" respawnTime="5sec" /> <!-- Forgotten Victim -->
+			<npc id="22702" x="-17774" y="-39757" z="-10733" heading="54165" respawnTime="5sec" /> <!-- Forgotten Victim -->
+			<npc id="22702" x="-17507" y="-40088" z="-10733" heading="53530" respawnTime="5sec" /> <!-- Forgotten Victim -->
+			<npc id="22702" x="-17822" y="-40194" z="-10733" heading="11647" respawnTime="5sec" /> <!-- Forgotten Victim -->
+			<npc id="22702" x="-17896" y="-40515" z="-10733" heading="49382" respawnTime="5sec" /> <!-- Forgotten Victim -->
+			<npc id="22702" x="-17581" y="-40614" z="-10733" heading="63549" respawnTime="5sec" /> <!-- Forgotten Victim -->
+			<npc id="22702" x="-17636" y="-40923" z="-10733" heading="49391" respawnTime="5sec" /> <!-- Forgotten Victim -->
+			<npc id="22702" x="-17938" y="-41274" z="-10733" heading="46685" respawnTime="5sec" /> <!-- Forgotten Victim -->
+			<npc id="22702" x="-17692" y="-41452" z="-10733" heading="55850" respawnTime="5sec" /> <!-- Forgotten Victim -->
+			<npc id="22702" x="-17496" y="-41650" z="-10733" heading="58964" respawnTime="5sec" /> <!-- Forgotten Victim -->
+			<npc id="22702" x="-17626" y="-41808" z="-10733" heading="39170" respawnTime="5sec" /> <!-- Forgotten Victim -->
+			<npc id="22702" x="-17948" y="-42116" z="-10733" heading="42232" respawnTime="5sec" /> <!-- Forgotten Victim -->
+			<npc id="22702" x="-17323" y="-42322" z="-10733" heading="3902" respawnTime="5sec" /> <!-- Forgotten Victim -->
+			<npc id="22702" x="-17028" y="-41967" z="-10733" heading="5714" respawnTime="5sec" /> <!-- Forgotten Victim -->
+		</group>
+		<group name="Left_first_rooms_in_the_first_hall">
+			<npc id="22701" x="-19570" y="-37740" z="-10746" heading="10044" respawnTime="5sec" /> <!-- Royal Archon -->
+			<npc id="22701" x="-19615" y="-37916" z="-10757" heading="45342" respawnTime="5sec" /> <!-- Royal Archon -->
+			<npc id="22701" x="-19601" y="-38052" z="-10757" heading="52625" respawnTime="5sec" /> <!-- Royal Archon -->
+			<npc id="22701" x="-19737" y="-38124" z="-10751" heading="38437" respawnTime="5sec" /> <!-- Royal Archon -->
+			<npc id="22701" x="-19889" y="-38107" z="-10746" heading="29426" respawnTime="5sec" /> <!-- Royal Archon -->
+			<npc id="22701" x="-20036" y="-37941" z="-10749" heading="25808" respawnTime="5sec" /> <!-- Royal Archon -->
+			<npc id="22701" x="-20311" y="-37833" z="-10760" heading="34297" respawnTime="5sec" /> <!-- Royal Archon -->
+			<npc id="22700" x="-20290" y="-38005" z="-10766" heading="50240" respawnTime="5sec" /> <!-- Old Aristocrat's Soldier -->
+			<npc id="22700" x="-20202" y="-38139" z="-10754" heading="60110" respawnTime="5sec" /> <!-- Old Aristocrat's Soldier -->
+			<npc id="22700" x="-20098" y="-38005" z="-10752" heading="10463" respawnTime="5sec" /> <!-- Old Aristocrat's Soldier -->
+			<npc id="22700" x="-19942" y="-37862" z="-10758" heading="4296" respawnTime="5sec" /> <!-- Old Aristocrat's Soldier -->
+			<npc id="22700" x="-19782" y="-37964" z="-10766" heading="52142" respawnTime="5sec" /> <!-- Old Aristocrat's Soldier -->
+			<npc id="22700" x="-19721" y="-38091" z="-10763" heading="55259" respawnTime="5sec" /> <!-- Old Aristocrat's Soldier -->
+			<npc id="22700" x="-19583" y="-38017" z="-10754" heading="13400" respawnTime="5sec" /> <!-- Old Aristocrat's Soldier -->
+			<npc id="22702" x="-19730" y="-37909" z="-10752" heading="29467" respawnTime="5sec" /> <!-- Forgotten Victim -->
+			<npc id="22702" x="-19863" y="-37790" z="-10759" heading="29382" respawnTime="5sec" /> <!-- Forgotten Victim -->
+			<npc id="22702" x="-20059" y="-37780" z="-10760" heading="31195" respawnTime="5sec" /> <!-- Forgotten Victim -->
+			<npc id="22702" x="-20186" y="-37880" z="-10760" heading="39838" respawnTime="5sec" /> <!-- Forgotten Victim -->
+			<npc id="22702" x="-20342" y="-37934" z="-10760" heading="37355" respawnTime="5sec" /> <!-- Forgotten Victim -->
+			<npc id="22702" x="-20247" y="-38081" z="-10754" heading="47429" respawnTime="5sec" /> <!-- Forgotten Victim -->
+			<npc id="22702" x="-19908" y="-38135" z="-10763" heading="65407" respawnTime="5sec" /> <!-- Forgotten Victim -->
+			<npc id="22701" x="-20445" y="-39655" z="-10736" heading="48864" respawnTime="5sec" /> <!-- Royal Archon -->
+			<npc id="22701" x="-20308" y="-39835" z="-10756" heading="60162" respawnTime="5sec" /> <!-- Royal Archon -->
+			<npc id="22701" x="-20156" y="-39874" z="-10756" heading="58686" respawnTime="5sec" /> <!-- Royal Archon -->
+			<npc id="22701" x="-20030" y="-39734" z="-10756" heading="11650" respawnTime="5sec" /> <!-- Royal Archon -->
+			<npc id="22701" x="-19882" y="-39805" z="-10756" heading="53960" respawnTime="5sec" /> <!-- Royal Archon -->
+			<npc id="22701" x="-19770" y="-39952" z="-10756" heading="58575" respawnTime="5sec" /> <!-- Royal Archon -->
+			<npc id="22701" x="-19639" y="-39737" z="-10758" heading="12945" respawnTime="5sec" /> <!-- Royal Archon -->
+			<npc id="22700" x="-19803" y="-39705" z="-10761" heading="31450" respawnTime="5sec" /> <!-- Old Aristocrat's Soldier -->
+			<npc id="22700" x="-19795" y="-39851" z="-10762" heading="37560" respawnTime="5sec" /> <!-- Old Aristocrat's Soldier -->
+			<npc id="22700" x="-19909" y="-39960" z="-10762" heading="45482" respawnTime="5sec" /> <!-- Old Aristocrat's Soldier -->
+			<npc id="22700" x="-20019" y="-39847" z="-10765" heading="22861" respawnTime="5sec" /> <!-- Old Aristocrat's Soldier -->
+			<npc id="22700" x="-20078" y="-39686" z="-10759" heading="21016" respawnTime="5sec" /> <!-- Old Aristocrat's Soldier -->
+			<npc id="22700" x="-20325" y="-39672" z="-10758" heading="33581" respawnTime="5sec" /> <!-- Old Aristocrat's Soldier -->
+			<npc id="22700" x="-20358" y="-39923" z="-10759" heading="49475" respawnTime="5sec" /> <!-- Old Aristocrat's Soldier -->
+			<npc id="22702" x="-20252" y="-39972" z="-10765" heading="63590" respawnTime="5sec" /> <!-- Forgotten Victim -->
+			<npc id="22702" x="-20037" y="-39977" z="-10765" heading="59023" respawnTime="5sec" /> <!-- Forgotten Victim -->
+			<npc id="22702" x="-20022" y="-39809" z="-10764" heading="17732" respawnTime="5sec" /> <!-- Forgotten Victim -->
+			<npc id="22702" x="-19917" y="-39684" z="-10764" heading="12496" respawnTime="5sec" /> <!-- Forgotten Victim -->
+			<npc id="22702" x="-19730" y="-39641" z="-10762" heading="64968" respawnTime="5sec" /> <!-- Forgotten Victim -->
+			<npc id="22702" x="-19612" y="-39840" z="-10762" heading="51644" respawnTime="5sec" /> <!-- Forgotten Victim -->
+			<npc id="22702" x="-19699" y="-39985" z="-10755" heading="36597" respawnTime="5sec" /> <!-- Forgotten Victim -->
+			<npc id="22701" x="-19600" y="-41525" z="-10761" heading="32767" respawnTime="5sec" /> <!-- Royal Archon -->
+			<npc id="22701" x="-19567" y="-41703" z="-10752" heading="49710" respawnTime="5sec" /> <!-- Royal Archon -->
+			<npc id="22701" x="-19655" y="-41861" z="-10761" heading="38749" respawnTime="5sec" /> <!-- Royal Archon -->
+			<npc id="22701" x="-19726" y="-41770" z="-10765" heading="21768" respawnTime="5sec" /> <!-- Royal Archon -->
+			<npc id="22701" x="-19750" y="-41659" z="-10765" heading="20352" respawnTime="5sec" /> <!-- Royal Archon -->
+			<npc id="22701" x="-19841" y="-41548" z="-10757" heading="22116" respawnTime="5sec" /> <!-- Royal Archon -->
+			<npc id="22701" x="-20021" y="-41536" z="-10752" heading="35374" respawnTime="5sec" /> <!-- Royal Archon -->
+			<npc id="22700" x="-20087" y="-41692" z="-10756" heading="46339" respawnTime="5sec" /> <!-- Old Aristocrat's Soldier -->
+			<npc id="22700" x="-20165" y="-41814" z="-10760" heading="31646" respawnTime="5sec" /> <!-- Old Aristocrat's Soldier -->
+			<npc id="22700" x="-20299" y="-41682" z="-10760" heading="22859" respawnTime="5sec" /> <!-- Old Aristocrat's Soldier -->
+			<npc id="22700" x="-20007" y="-41781" z="-10761" heading="59745" respawnTime="5sec" /> <!-- Old Aristocrat's Soldier -->
+			<npc id="22700" x="-19840" y="-41853" z="-10758" heading="63047" respawnTime="5sec" /> <!-- Old Aristocrat's Soldier -->
+			<npc id="22700" x="-19785" y="-41733" z="-10758" heading="11743" respawnTime="5sec" /> <!-- Old Aristocrat's Soldier -->
+			<npc id="22700" x="-19662" y="-41594" z="-10758" heading="64146" respawnTime="5sec" /> <!-- Old Aristocrat's Soldier -->
+			<npc id="22702" x="-19728" y="-41562" z="-10759" heading="26008" respawnTime="5sec" /> <!-- Forgotten Victim -->
+			<npc id="22702" x="-19829" y="-41607" z="-10763" heading="44342" respawnTime="5sec" /> <!-- Forgotten Victim -->
+			<npc id="22702" x="-19944" y="-41633" z="-10763" heading="33818" respawnTime="5sec" /> <!-- Forgotten Victim -->
+			<npc id="22702" x="-19968" y="-41759" z="-10763" heading="49313" respawnTime="5sec" /> <!-- Forgotten Victim -->
+			<npc id="22702" x="-20103" y="-41787" z="-10763" heading="32919" respawnTime="5sec" /> <!-- Forgotten Victim -->
+			<npc id="22702" x="-20247" y="-41829" z="-10765" heading="33820" respawnTime="5sec" /> <!-- Forgotten Victim -->
+			<npc id="22702" x="-20359" y="-41766" z="-10759" heading="19033" respawnTime="5sec" /> <!-- Forgotten Victim -->
+			<npc id="22701" x="-20415" y="-43663" z="-10745" heading="47787" respawnTime="5sec" /> <!-- Royal Archon -->
+			<npc id="22701" x="-20287" y="-43574" z="-10765" heading="18227" respawnTime="5sec" /> <!-- Royal Archon -->
+			<npc id="22701" x="-20258" y="-43442" z="-10763" heading="8586" respawnTime="5sec" /> <!-- Royal Archon -->
+			<npc id="22701" x="-20114" y="-43441" z="-10761" heading="54" respawnTime="5sec" /> <!-- Royal Archon -->
+			<npc id="22701" x="-20001" y="-43558" z="-10761" heading="53954" respawnTime="5sec" /> <!-- Royal Archon -->
+			<npc id="22701" x="-19868" y="-43695" z="-10761" heading="59081" respawnTime="5sec" /> <!-- Royal Archon -->
+			<npc id="22701" x="-19674" y="-43610" z="-10761" heading="6846" respawnTime="5sec" /> <!-- Royal Archon -->
+			<npc id="22700" x="-19642" y="-43480" z="-10763" heading="16383" respawnTime="5sec" /> <!-- Old Aristocrat's Soldier -->
+			<npc id="22700" x="-19801" y="-43454" z="-10765" heading="33935" respawnTime="5sec" /> <!-- Old Aristocrat's Soldier -->
+			<npc id="22700" x="-19907" y="-43614" z="-10765" heading="43874" respawnTime="5sec" /> <!-- Old Aristocrat's Soldier -->
+			<npc id="22700" x="-20066" y="-43692" z="-10765" heading="37217" respawnTime="5sec" /> <!-- Old Aristocrat's Soldier -->
+			<npc id="22700" x="-20254" y="-43675" z="-10765" heading="30731" respawnTime="5sec" /> <!-- Old Aristocrat's Soldier -->
+			<npc id="22700" x="-20207" y="-43502" z="-10765" heading="12285" respawnTime="5sec" /> <!-- Old Aristocrat's Soldier -->
+			<npc id="22700" x="-20158" y="-43345" z="-10745" heading="5769" respawnTime="5sec" /> <!-- Old Aristocrat's Soldier -->
+			<npc id="22702" x="-20001" y="-43428" z="-10753" heading="56527" respawnTime="5sec" /> <!-- Forgotten Victim -->
+			<npc id="22702" x="-19868" y="-43510" z="-10760" heading="61685" respawnTime="5sec" /> <!-- Forgotten Victim -->
+			<npc id="22702" x="-19737" y="-43637" z="-10761" heading="53988" respawnTime="5sec" /> <!-- Forgotten Victim -->
+			<npc id="22702" x="-19562" y="-43748" z="-10750" heading="60587" respawnTime="5sec" /> <!-- Forgotten Victim -->
+			<npc id="22702" x="-19796" y="-43622" z="-10762" heading="22954" respawnTime="5sec" /> <!-- Forgotten Victim -->
+			<npc id="22702" x="-20156" y="-43633" z="-10766" heading="22284" respawnTime="5sec" /> <!-- Forgotten Victim -->
+			<npc id="22702" x="-20249" y="-43691" z="-10765" heading="36303" respawnTime="5sec" /> <!-- Forgotten Victim -->
+		</group>
+		<group name="Left_second_rooms_in_the_first_hall">
+			<npc id="22705" x="-22683" y="-43461" z="-10957" heading="33346" respawnTime="5sec" /> <!-- Ritual Offering -->
+			<npc id="22705" x="-22783" y="-43461" z="-10957" heading="33346" respawnTime="5sec" /> <!-- Ritual Offering -->
+			<npc id="22705" x="-22883" y="-43461" z="-10957" heading="33346" respawnTime="5sec" /> <!-- Ritual Offering -->
+			<npc id="22705" x="-22983" y="-43461" z="-10957" heading="33346" respawnTime="5sec" /> <!-- Ritual Offering -->
+			<npc id="22705" x="-23083" y="-43461" z="-10957" heading="33346" respawnTime="5sec" /> <!-- Ritual Offering -->
+			<npc id="22703" x="-22683" y="-43561" z="-10957" heading="33346" respawnTime="5sec" /> <!-- Ritual Sacrifice -->
+			<npc id="22703" x="-22783" y="-43561" z="-10957" heading="33346" respawnTime="5sec" /> <!-- Ritual Sacrifice -->
+			<npc id="22703" x="-22883" y="-43561" z="-10957" heading="33346" respawnTime="5sec" /> <!-- Ritual Sacrifice -->
+			<npc id="22703" x="-22983" y="-43561" z="-10957" heading="33346" respawnTime="5sec" /> <!-- Ritual Sacrifice -->
+			<npc id="22703" x="-23083" y="-43561" z="-10957" heading="33346" respawnTime="5sec" /> <!-- Ritual Sacrifice -->
+			<npc id="22704" x="-22683" y="-43661" z="-10957" heading="33346" respawnTime="5sec" /> <!-- Solemn Servitor -->
+			<npc id="22704" x="-22783" y="-43661" z="-10957" heading="33346" respawnTime="5sec" /> <!-- Solemn Servitor -->
+			<npc id="22704" x="-22883" y="-43661" z="-10957" heading="33346" respawnTime="5sec" /> <!-- Solemn Servitor -->
+			<npc id="22704" x="-22983" y="-43661" z="-10957" heading="33346" respawnTime="5sec" /> <!-- Solemn Servitor -->
+			<npc id="22704" x="-23083" y="-43661" z="-10957" heading="33346" respawnTime="5sec" /> <!-- Solemn Servitor -->
+			<npc id="22705" x="-22683" y="-41597" z="-10957" heading="33346" respawnTime="5sec" /> <!-- Ritual Offering -->
+			<npc id="22705" x="-22783" y="-41597" z="-10957" heading="33346" respawnTime="5sec" /> <!-- Ritual Offering -->
+			<npc id="22705" x="-22883" y="-41597" z="-10957" heading="33346" respawnTime="5sec" /> <!-- Ritual Offering -->
+			<npc id="22705" x="-22983" y="-41597" z="-10957" heading="33346" respawnTime="5sec" /> <!-- Ritual Offering -->
+			<npc id="22705" x="-23083" y="-41597" z="-10957" heading="33346" respawnTime="5sec" /> <!-- Ritual Offering -->
+			<npc id="22703" x="-22683" y="-41697" z="-10957" heading="33346" respawnTime="5sec" /> <!-- Ritual Sacrifice -->
+			<npc id="22703" x="-22783" y="-41697" z="-10957" heading="33346" respawnTime="5sec" /> <!-- Ritual Sacrifice -->
+			<npc id="22703" x="-22883" y="-41697" z="-10957" heading="33346" respawnTime="5sec" /> <!-- Ritual Sacrifice -->
+			<npc id="22703" x="-22983" y="-41697" z="-10957" heading="33346" respawnTime="5sec" /> <!-- Ritual Sacrifice -->
+			<npc id="22703" x="-23083" y="-41697" z="-10957" heading="33346" respawnTime="5sec" /> <!-- Ritual Sacrifice -->
+			<npc id="22704" x="-22683" y="-41797" z="-10957" heading="33346" respawnTime="5sec" /> <!-- Solemn Servitor -->
+			<npc id="22704" x="-22783" y="-41797" z="-10957" heading="33346" respawnTime="5sec" /> <!-- Solemn Servitor -->
+			<npc id="22704" x="-22883" y="-41797" z="-10957" heading="33346" respawnTime="5sec" /> <!-- Solemn Servitor -->
+			<npc id="22704" x="-22983" y="-41797" z="-10957" heading="33346" respawnTime="5sec" /> <!-- Solemn Servitor -->
+			<npc id="22704" x="-23083" y="-41797" z="-10957" heading="33346" respawnTime="5sec" /> <!-- Solemn Servitor -->
+			<npc id="22705" x="-22683" y="-39724" z="-10957" heading="33346" respawnTime="5sec" /> <!-- Ritual Offering -->
+			<npc id="22705" x="-22783" y="-39724" z="-10957" heading="33346" respawnTime="5sec" /> <!-- Ritual Offering -->
+			<npc id="22705" x="-22883" y="-39724" z="-10957" heading="33346" respawnTime="5sec" /> <!-- Ritual Offering -->
+			<npc id="22705" x="-22983" y="-39724" z="-10957" heading="33346" respawnTime="5sec" /> <!-- Ritual Offering -->
+			<npc id="22705" x="-23083" y="-39724" z="-10957" heading="33346" respawnTime="5sec" /> <!-- Ritual Offering -->
+			<npc id="22703" x="-22683" y="-39824" z="-10957" heading="33346" respawnTime="5sec" /> <!-- Ritual Sacrifice -->
+			<npc id="22703" x="-22783" y="-39824" z="-10957" heading="33346" respawnTime="5sec" /> <!-- Ritual Sacrifice -->
+			<npc id="22703" x="-22883" y="-39824" z="-10957" heading="33346" respawnTime="5sec" /> <!-- Ritual Sacrifice -->
+			<npc id="22703" x="-22983" y="-39824" z="-10957" heading="33346" respawnTime="5sec" /> <!-- Ritual Sacrifice -->
+			<npc id="22703" x="-23083" y="-39824" z="-10957" heading="33346" respawnTime="5sec" /> <!-- Ritual Sacrifice -->
+			<npc id="22704" x="-22683" y="-39924" z="-10957" heading="33346" respawnTime="5sec" /> <!-- Solemn Servitor -->
+			<npc id="22704" x="-22783" y="-39924" z="-10957" heading="33346" respawnTime="5sec" /> <!-- Solemn Servitor -->
+			<npc id="22704" x="-22883" y="-39924" z="-10957" heading="33346" respawnTime="5sec" /> <!-- Solemn Servitor -->
+			<npc id="22704" x="-22983" y="-39924" z="-10957" heading="33346" respawnTime="5sec" /> <!-- Solemn Servitor -->
+			<npc id="22704" x="-23083" y="-39924" z="-10957" heading="33346" respawnTime="5sec" /> <!-- Solemn Servitor -->
+			<npc id="22705" x="-22683" y="-37855" z="-10957" heading="33346" respawnTime="5sec" /> <!-- Ritual Offering -->
+			<npc id="22705" x="-22783" y="-37855" z="-10957" heading="33346" respawnTime="5sec" /> <!-- Ritual Offering -->
+			<npc id="22705" x="-22883" y="-37855" z="-10957" heading="33346" respawnTime="5sec" /> <!-- Ritual Offering -->
+			<npc id="22705" x="-22983" y="-37855" z="-10957" heading="33346" respawnTime="5sec" /> <!-- Ritual Offering -->
+			<npc id="22705" x="-23083" y="-37855" z="-10957" heading="33346" respawnTime="5sec" /> <!-- Ritual Offering -->
+			<npc id="22703" x="-22689" y="-37955" z="-10957" heading="33346" respawnTime="5sec" /> <!-- Ritual Sacrifice -->
+			<npc id="22703" x="-22789" y="-37955" z="-10957" heading="33346" respawnTime="5sec" /> <!-- Ritual Sacrifice -->
+			<npc id="22703" x="-22889" y="-37955" z="-10957" heading="33346" respawnTime="5sec" /> <!-- Ritual Sacrifice -->
+			<npc id="22703" x="-22989" y="-37955" z="-10957" heading="33346" respawnTime="5sec" /> <!-- Ritual Sacrifice -->
+			<npc id="22703" x="-23089" y="-37955" z="-10957" heading="33346" respawnTime="5sec" /> <!-- Ritual Sacrifice -->
+			<npc id="22704" x="-22683" y="-38055" z="-10957" heading="33346" respawnTime="5sec" /> <!-- Solemn Servitor -->
+			<npc id="22704" x="-22783" y="-38055" z="-10957" heading="33346" respawnTime="5sec" /> <!-- Solemn Servitor -->
+			<npc id="22704" x="-22883" y="-38055" z="-10957" heading="33346" respawnTime="5sec" /> <!-- Solemn Servitor -->
+			<npc id="22704" x="-22983" y="-38055" z="-10957" heading="33346" respawnTime="5sec" /> <!-- Solemn Servitor -->
+			<npc id="22704" x="-23083" y="-38055" z="-10957" heading="33346" respawnTime="5sec" /> <!-- Solemn Servitor -->
+		</group>
+		<group name="Right_first_rooms_in_the_first_hall">
+			<npc id="22701" x="-12420" y="-41793" z="-10759" heading="29361" respawnTime="5sec" /> <!-- Royal Archon -->
+			<npc id="22701" x="-12416" y="-41784" z="-10759" heading="36972" respawnTime="5sec" /> <!-- Royal Archon -->
+			<npc id="22701" x="-12588" y="-41919" z="-10732" heading="42382" respawnTime="5sec" /> <!-- Royal Archon -->
+			<npc id="22701" x="-12824" y="-41888" z="-10748" heading="32511" respawnTime="5sec" /> <!-- Royal Archon -->
+			<npc id="22701" x="-12950" y="-41632" z="-10759" heading="20193" respawnTime="5sec" /> <!-- Royal Archon -->
+			<npc id="22701" x="-13132" y="-41479" z="-10742" heading="22382" respawnTime="5sec" /> <!-- Royal Archon -->
+			<npc id="22701" x="-13065" y="-41874" z="-10755" heading="44870" respawnTime="5sec" /> <!-- Royal Archon -->
+			<npc id="22700" x="-12986" y="-41869" z="-10755" heading="595" respawnTime="5sec" /> <!-- Old Aristocrat's Soldier -->
+			<npc id="22700" x="-12869" y="-41698" z="-10759" heading="15374" respawnTime="5sec" /> <!-- Old Aristocrat's Soldier -->
+			<npc id="22700" x="-12884" y="-41658" z="-10759" heading="5911" respawnTime="5sec" /> <!-- Old Aristocrat's Soldier -->
+			<npc id="22700" x="-12531" y="-41834" z="-10759" heading="60407" respawnTime="5sec" /> <!-- Old Aristocrat's Soldier -->
+			<npc id="22700" x="-12307" y="-41878" z="-10744" heading="63477" respawnTime="5sec" /> <!-- Old Aristocrat's Soldier -->
+			<npc id="22700" x="-12276" y="-41690" z="-10736" heading="16512" respawnTime="5sec" /> <!-- Old Aristocrat's Soldier -->
+			<npc id="22700" x="-12560" y="-41742" z="-10754" heading="36148" respawnTime="5sec" /> <!-- Old Aristocrat's Soldier -->
+			<npc id="22702" x="-12550" y="-41497" z="-10751" heading="14648" respawnTime="5sec" /> <!-- Forgotten Victim -->
+			<npc id="22702" x="-12751" y="-41463" z="-10734" heading="28929" respawnTime="5sec" /> <!-- Forgotten Victim -->
+			<npc id="22702" x="-12804" y="-41328" z="-10734" heading="45116" respawnTime="5sec" /> <!-- Forgotten Victim -->
+			<npc id="22702" x="-12926" y="-41787" z="-10759" heading="52019" respawnTime="5sec" /> <!-- Forgotten Victim -->
+			<npc id="22702" x="-12475" y="-41809" z="-10759" heading="64206" respawnTime="5sec" /> <!-- Forgotten Victim -->
+			<npc id="22702" x="-12280" y="-41836" z="-10737" heading="4027" respawnTime="5sec" /> <!-- Forgotten Victim -->
+			<npc id="22702" x="-12693" y="-41689" z="-10759" heading="22517" respawnTime="5sec" /> <!-- Forgotten Victim -->
+			<npc id="22701" x="-13193" y="-40021" z="-10739" heading="45679" respawnTime="5sec" /> <!-- Royal Archon -->
+			<npc id="22701" x="-12760" y="-40006" z="-10745" heading="334" respawnTime="5sec" /> <!-- Royal Archon -->
+			<npc id="22701" x="-12366" y="-40006" z="-10749" heading="422" respawnTime="5sec" /> <!-- Royal Archon -->
+			<npc id="22701" x="-12323" y="-39788" z="-10748" heading="17512" respawnTime="5sec" /> <!-- Royal Archon -->
+			<npc id="22701" x="-12463" y="-39580" z="-10730" heading="33954" respawnTime="5sec" /> <!-- Royal Archon -->
+			<npc id="22701" x="-12689" y="-39675" z="-10755" heading="23289" respawnTime="5sec" /> <!-- Royal Archon -->
+			<npc id="22701" x="-13045" y="-39586" z="-10735" heading="30800" respawnTime="5sec" /> <!-- Royal Archon -->
+			<npc id="22700" x="-13052" y="-39838" z="-10760" heading="54341" respawnTime="5sec" /> <!-- Old Aristocrat's Soldier -->
+			<npc id="22700" x="-13117" y="-40006" z="-10752" heading="40481" respawnTime="5sec" /> <!-- Old Aristocrat's Soldier -->
+			<npc id="22700" x="-13211" y="-39643" z="-10734" heading="19627" respawnTime="5sec" /> <!-- Old Aristocrat's Soldier -->
+			<npc id="22700" x="-12900" y="-39650" z="-10744" heading="241" respawnTime="5sec" /> <!-- Old Aristocrat's Soldier -->
+			<npc id="22700" x="-12607" y="-39651" z="-10751" heading="1131" respawnTime="5sec" /> <!-- Old Aristocrat's Soldier -->
+			<npc id="22700" x="-12556" y="-39799" z="-10756" heading="45062" respawnTime="5sec" /> <!-- Old Aristocrat's Soldier -->
+			<npc id="22700" x="-12465" y="-39993" z="-10744" heading="53099" respawnTime="5sec" /> <!-- Old Aristocrat's Soldier -->
+			<npc id="22702" x="-12683" y="-39842" z="-10760" heading="25461" respawnTime="5sec" /> <!-- Forgotten Victim -->
+			<npc id="22702" x="-12638" y="-39695" z="-10760" heading="22795" respawnTime="5sec" /> <!-- Forgotten Victim -->
+			<npc id="22702" x="-12893" y="-39645" z="-10760" heading="3829" respawnTime="5sec" /> <!-- Forgotten Victim -->
+			<npc id="22702" x="-12984" y="-39735" z="-10760" heading="41572" respawnTime="5sec" /> <!-- Forgotten Victim -->
+			<npc id="22702" x="-13086" y="-39719" z="-10756" heading="31341" respawnTime="5sec" /> <!-- Forgotten Victim -->
+			<npc id="22702" x="-13112" y="-39641" z="-10758" heading="18884" respawnTime="5sec" /> <!-- Forgotten Victim -->
+			<npc id="22702" x="-12817" y="-39933" z="-10754" heading="55401" respawnTime="5sec" /> <!-- Forgotten Victim -->
+			<npc id="22701" x="-12418" y="-37814" z="-10761" heading="21220" respawnTime="5sec" /> <!-- Royal Archon -->
+			<npc id="22701" x="-12394" y="-38086" z="-10761" heading="55013" respawnTime="5sec" /> <!-- Royal Archon -->
+			<npc id="22701" x="-12493" y="-38015" z="-10761" heading="30709" respawnTime="5sec" /> <!-- Royal Archon -->
+			<npc id="22701" x="-12712" y="-37827" z="-10761" heading="26397" respawnTime="5sec" /> <!-- Royal Archon -->
+			<npc id="22701" x="-13052" y="-37813" z="-10761" heading="30675" respawnTime="5sec" /> <!-- Royal Archon -->
+			<npc id="22701" x="-13121" y="-38009" z="-10752" heading="44175" respawnTime="5sec" /> <!-- Royal Archon -->
+			<npc id="22701" x="-13189" y="-37964" z="-10737" heading="17906" respawnTime="5sec" /> <!-- Royal Archon -->
+			<npc id="22700" x="-13053" y="-37931" z="-10744" heading="62924" respawnTime="5sec" /> <!-- Old Aristocrat's Soldier -->
+			<npc id="22700" x="-13115" y="-38104" z="-10747" heading="38334" respawnTime="5sec" /> <!-- Old Aristocrat's Soldier -->
+			<npc id="22700" x="-13137" y="-37797" z="-10746" heading="16605" respawnTime="5sec" /> <!-- Old Aristocrat's Soldier -->
+			<npc id="22700" x="-12762" y="-37772" z="-10756" heading="65192" respawnTime="5sec" /> <!-- Old Aristocrat's Soldier -->
+			<npc id="22700" x="-12420" y="-37774" z="-10760" heading="63383" respawnTime="5sec" /> <!-- Old Aristocrat's Soldier -->
+			<npc id="22700" x="-12274" y="-38150" z="-10737" heading="45409" respawnTime="5sec" /> <!-- Old Aristocrat's Soldier -->
+			<npc id="22700" x="-12262" y="-37853" z="-10733" heading="22998" respawnTime="5sec" /> <!-- Old Aristocrat's Soldier -->
+			<npc id="22702" x="-12560" y="-37860" z="-10755" heading="39050" respawnTime="5sec" /> <!-- Forgotten Victim -->
+			<npc id="22702" x="-12739" y="-37844" z="-10760" heading="20264" respawnTime="5sec" /> <!-- Forgotten Victim -->
+			<npc id="22702" x="-12767" y="-37747" z="-10748" heading="32767" respawnTime="5sec" /> <!-- Forgotten Victim -->
+			<npc id="22702" x="-13000" y="-37752" z="-10753" heading="33046" respawnTime="5sec" /> <!-- Forgotten Victim -->
+			<npc id="22702" x="-13153" y="-38022" z="-10747" heading="48431" respawnTime="5sec" /> <!-- Forgotten Victim -->
+			<npc id="22702" x="-12689" y="-38196" z="-10726" heading="61803" respawnTime="5sec" /> <!-- Forgotten Victim -->
+			<npc id="22702" x="-12288" y="-38038" z="-10733" heading="2108" respawnTime="5sec" /> <!-- Forgotten Victim -->
+			<npc id="22701" x="-13114" y="-43725" z="-10758" heading="59734" respawnTime="5sec" /> <!-- Royal Archon -->
+			<npc id="22701" x="-13160" y="-43369" z="-10746" heading="24575" respawnTime="5sec" /> <!-- Royal Archon -->
+			<npc id="22701" x="-12448" y="-43382" z="-10760" heading="64055" respawnTime="5sec" /> <!-- Royal Archon -->
+			<npc id="22701" x="-12657" y="-43757" z="-10743" heading="32509" respawnTime="5sec" /> <!-- Royal Archon -->
+			<npc id="22701" x="-12681" y="-43464" z="-10760" heading="39866" respawnTime="5sec" /> <!-- Royal Archon -->
+			<npc id="22701" x="-12935" y="-43679" z="-10760" heading="62180" respawnTime="5sec" /> <!-- Royal Archon -->
+			<npc id="22700" x="-12462" y="-43647" z="-10760" heading="33807" respawnTime="5sec" /> <!-- Old Aristocrat's Soldier -->
+			<npc id="22700" x="-12368" y="-43389" z="-10760" heading="39662" respawnTime="5sec" /> <!-- Old Aristocrat's Soldier -->
+			<npc id="22700" x="-13239" y="-43669" z="-10727" heading="26634" respawnTime="5sec" /> <!-- Old Aristocrat's Soldier -->
+			<npc id="22700" x="-12933" y="-43454" z="-10760" heading="26056" respawnTime="5sec" /> <!-- Old Aristocrat's Soldier -->
+			<npc id="22700" x="-12912" y="-43347" z="-10749" heading="23645" respawnTime="5sec" /> <!-- Old Aristocrat's Soldier -->
+			<npc id="22700" x="-12716" y="-43769" z="-10736" heading="10250" respawnTime="5sec" /> <!-- Old Aristocrat's Soldier -->
+			<npc id="22700" x="-12750" y="-43555" z="-10760" heading="22966" respawnTime="5sec" /> <!-- Old Aristocrat's Soldier -->
+			<npc id="22702" x="-12571" y="-43449" z="-10760" heading="28281" respawnTime="5sec" /> <!-- Forgotten Victim -->
+			<npc id="22702" x="-12879" y="-43584" z="-10760" heading="31332" respawnTime="5sec" /> <!-- Forgotten Victim -->
+			<npc id="22702" x="-13072" y="-43689" z="-10760" heading="59782" respawnTime="5sec" /> <!-- Forgotten Victim -->
+			<npc id="22702" x="-13099" y="-43717" z="-10760" heading="50632" respawnTime="5sec" /> <!-- Forgotten Victim -->
+			<npc id="22702" x="-13101" y="-43716" z="-10760" heading="10662" respawnTime="5sec" /> <!-- Forgotten Victim -->
+			<npc id="22702" x="-12386" y="-43451" z="-10760" heading="40959" respawnTime="5sec" /> <!-- Forgotten Victim -->
+			<npc id="22702" x="-12688" y="-43467" z="-10760" heading="41654" respawnTime="5sec" /> <!-- Forgotten Victim -->
+		</group>
+		<group name="Right_second_rooms_in_the_first_hall">
+			<npc id="22705" x="-10045" y="-43645" z="-10957" respawnTime="5sec" /> <!-- Ritual Offering -->
+			<npc id="22705" x="-9945" y="-43645" z="-10957" respawnTime="5sec" /> <!-- Ritual Offering -->
+			<npc id="22705" x="-9845" y="-43645" z="-10957" respawnTime="5sec" /> <!-- Ritual Offering -->
+			<npc id="22705" x="-9745" y="-43645" z="-10957" respawnTime="5sec" /> <!-- Ritual Offering -->
+			<npc id="22705" x="-9645" y="-43645" z="-10957" respawnTime="5sec" /> <!-- Ritual Offering -->
+			<npc id="22703" x="-10045" y="-43545" z="-10957" respawnTime="5sec" /> <!-- Ritual Sacrifice -->
+			<npc id="22703" x="-9945" y="-43545" z="-10957" respawnTime="5sec" /> <!-- Ritual Sacrifice -->
+			<npc id="22703" x="-9845" y="-43545" z="-10957" respawnTime="5sec" /> <!-- Ritual Sacrifice -->
+			<npc id="22703" x="-9745" y="-43545" z="-10957" respawnTime="5sec" /> <!-- Ritual Sacrifice -->
+			<npc id="22703" x="-9645" y="-43545" z="-10957" respawnTime="5sec" /> <!-- Ritual Sacrifice -->
+			<npc id="22704" x="-10045" y="-43445" z="-10957" respawnTime="5sec" /> <!-- Solemn Servitor -->
+			<npc id="22704" x="-9945" y="-43445" z="-10957" respawnTime="5sec" /> <!-- Solemn Servitor -->
+			<npc id="22704" x="-9845" y="-43445" z="-10957" respawnTime="5sec" /> <!-- Solemn Servitor -->
+			<npc id="22704" x="-9745" y="-43445" z="-10957" respawnTime="5sec" /> <!-- Solemn Servitor -->
+			<npc id="22704" x="-9645" y="-43445" z="-10957" respawnTime="5sec" /> <!-- Solemn Servitor -->
+			<npc id="22705" x="-10045" y="-41788" z="-10957" respawnTime="5sec" /> <!-- Ritual Offering -->
+			<npc id="22705" x="-9945" y="-41788" z="-10957" respawnTime="5sec" /> <!-- Ritual Offering -->
+			<npc id="22705" x="-9845" y="-41788" z="-10957" respawnTime="5sec" /> <!-- Ritual Offering -->
+			<npc id="22705" x="-9745" y="-41788" z="-10957" respawnTime="5sec" /> <!-- Ritual Offering -->
+			<npc id="22705" x="-9645" y="-41788" z="-10957" respawnTime="5sec" /> <!-- Ritual Offering -->
+			<npc id="22703" x="-10045" y="-41688" z="-10957" respawnTime="5sec" /> <!-- Ritual Sacrifice -->
+			<npc id="22703" x="-9945" y="-41688" z="-10957" respawnTime="5sec" /> <!-- Ritual Sacrifice -->
+			<npc id="22703" x="-9845" y="-41688" z="-10957" respawnTime="5sec" /> <!-- Ritual Sacrifice -->
+			<npc id="22703" x="-9745" y="-41688" z="-10957" respawnTime="5sec" /> <!-- Ritual Sacrifice -->
+			<npc id="22703" x="-9645" y="-41688" z="-10957" respawnTime="5sec" /> <!-- Ritual Sacrifice -->
+			<npc id="22704" x="-10045" y="-41588" z="-10957" respawnTime="5sec" /> <!-- Solemn Servitor -->
+			<npc id="22704" x="-9945" y="-41588" z="-10957" respawnTime="5sec" /> <!-- Solemn Servitor -->
+			<npc id="22704" x="-9845" y="-41588" z="-10957" respawnTime="5sec" /> <!-- Solemn Servitor -->
+			<npc id="22704" x="-9745" y="-41588" z="-10957" respawnTime="5sec" /> <!-- Solemn Servitor -->
+			<npc id="22704" x="-9645" y="-41588" z="-10957" respawnTime="5sec" /> <!-- Solemn Servitor -->
+			<npc id="22705" x="-10045" y="-39919" z="-10957" respawnTime="5sec" /> <!-- Ritual Offering -->
+			<npc id="22705" x="-9945" y="-39919" z="-10957" respawnTime="5sec" /> <!-- Ritual Offering -->
+			<npc id="22705" x="-9845" y="-39919" z="-10957" respawnTime="5sec" /> <!-- Ritual Offering -->
+			<npc id="22705" x="-9745" y="-39919" z="-10957" respawnTime="5sec" /> <!-- Ritual Offering -->
+			<npc id="22705" x="-9645" y="-39919" z="-10957" respawnTime="5sec" /> <!-- Ritual Offering -->
+			<npc id="22703" x="-10045" y="-39819" z="-10957" respawnTime="5sec" /> <!-- Ritual Sacrifice -->
+			<npc id="22703" x="-9945" y="-39819" z="-10957" respawnTime="5sec" /> <!-- Ritual Sacrifice -->
+			<npc id="22703" x="-9845" y="-39819" z="-10957" respawnTime="5sec" /> <!-- Ritual Sacrifice -->
+			<npc id="22703" x="-9745" y="-39819" z="-10957" respawnTime="5sec" /> <!-- Ritual Sacrifice -->
+			<npc id="22703" x="-9645" y="-39819" z="-10957" respawnTime="5sec" /> <!-- Ritual Sacrifice -->
+			<npc id="22704" x="-10045" y="-39719" z="-10957" respawnTime="5sec" /> <!-- Solemn Servitor -->
+			<npc id="22704" x="-9945" y="-39719" z="-10957" respawnTime="5sec" /> <!-- Solemn Servitor -->
+			<npc id="22704" x="-9845" y="-39719" z="-10957" respawnTime="5sec" /> <!-- Solemn Servitor -->
+			<npc id="22704" x="-9745" y="-39719" z="-10957" respawnTime="5sec" /> <!-- Solemn Servitor -->
+			<npc id="22704" x="-9645" y="-39719" z="-10957" respawnTime="5sec" /> <!-- Solemn Servitor -->
+			<npc id="22705" x="-10045" y="-39919" z="-10957" respawnTime="5sec" /> <!-- Ritual Offering -->
+			<npc id="22705" x="-9945" y="-39919" z="-10957" respawnTime="5sec" /> <!-- Ritual Offering -->
+			<npc id="22705" x="-9845" y="-39919" z="-10957" respawnTime="5sec" /> <!-- Ritual Offering -->
+			<npc id="22705" x="-9745" y="-39919" z="-10957" respawnTime="5sec" /> <!-- Ritual Offering -->
+			<npc id="22705" x="-9645" y="-39919" z="-10957" respawnTime="5sec" /> <!-- Ritual Offering -->
+			<npc id="22703" x="-10045" y="-39819" z="-10957" respawnTime="5sec" /> <!-- Ritual Sacrifice -->
+			<npc id="22703" x="-9945" y="-39819" z="-10957" respawnTime="5sec" /> <!-- Ritual Sacrifice -->
+			<npc id="22703" x="-9845" y="-39819" z="-10957" respawnTime="5sec" /> <!-- Ritual Sacrifice -->
+			<npc id="22703" x="-9745" y="-39819" z="-10957" respawnTime="5sec" /> <!-- Ritual Sacrifice -->
+			<npc id="22703" x="-9645" y="-39819" z="-10957" respawnTime="5sec" /> <!-- Ritual Sacrifice -->
+			<npc id="22704" x="-10045" y="-39719" z="-10957" respawnTime="5sec" /> <!-- Solemn Servitor -->
+			<npc id="22704" x="-9945" y="-39719" z="-10957" respawnTime="5sec" /> <!-- Solemn Servitor -->
+			<npc id="22704" x="-9845" y="-39719" z="-10957" respawnTime="5sec" /> <!-- Solemn Servitor -->
+			<npc id="22704" x="-9745" y="-39719" z="-10957" respawnTime="5sec" /> <!-- Solemn Servitor -->
+			<npc id="22704" x="-9645" y="-39719" z="-10957" respawnTime="5sec" /> <!-- Solemn Servitor -->
+			<npc id="22705" x="-10045" y="-38043" z="-10957" respawnTime="5sec" /> <!-- Ritual Offering -->
+			<npc id="22705" x="-9945" y="-38043" z="-10957" respawnTime="5sec" /> <!-- Ritual Offering -->
+			<npc id="22705" x="-9845" y="-38043" z="-10957" respawnTime="5sec" /> <!-- Ritual Offering -->
+			<npc id="22705" x="-9745" y="-38043" z="-10957" respawnTime="5sec" /> <!-- Ritual Offering -->
+			<npc id="22705" x="-9645" y="-38043" z="-10957" respawnTime="5sec" /> <!-- Ritual Offering -->
+			<npc id="22703" x="-10045" y="-37943" z="-10957" respawnTime="5sec" /> <!-- Ritual Sacrifice -->
+			<npc id="22703" x="-9945" y="-37943" z="-10957" respawnTime="5sec" /> <!-- Ritual Sacrifice -->
+			<npc id="22703" x="-9845" y="-37943" z="-10957" respawnTime="5sec" /> <!-- Ritual Sacrifice -->
+			<npc id="22703" x="-9745" y="-37943" z="-10957" respawnTime="5sec" /> <!-- Ritual Sacrifice -->
+			<npc id="22703" x="-9645" y="-37943" z="-10957" respawnTime="5sec" /> <!-- Ritual Sacrifice -->
+			<npc id="22704" x="-10045" y="-37843" z="-10957" respawnTime="5sec" /> <!-- Solemn Servitor -->
+			<npc id="22704" x="-9945" y="-37843" z="-10957" respawnTime="5sec" /> <!-- Solemn Servitor -->
+			<npc id="22704" x="-9845" y="-37843" z="-10957" respawnTime="5sec" /> <!-- Solemn Servitor -->
+			<npc id="22704" x="-9745" y="-37843" z="-10957" respawnTime="5sec" /> <!-- Solemn Servitor -->
+			<npc id="22704" x="-9645" y="-37843" z="-10957" respawnTime="5sec" /> <!-- Solemn Servitor -->
+		</group>
+		<group name="Prime Spawn Second hall">
+			<npc id="22654" x="-16743" y="-44710" z="-10733" heading="49151" respawnTime="5sec" /> <!-- Triol's Apostle -->
+			<npc id="22654" x="-16743" y="-44886" z="-10733" heading="49151" respawnTime="5sec" /> <!-- Triol's Apostle -->
+			<npc id="22654" x="-16743" y="-45072" z="-10733" heading="49151" respawnTime="5sec" /> <!-- Triol's Apostle -->
+			<npc id="22654" x="-16743" y="-45251" z="-10733" heading="49151" respawnTime="5sec" /> <!-- Triol's Apostle -->
+			<npc id="22654" x="-16743" y="-45433" z="-10733" heading="49151" respawnTime="5sec" /> <!-- Triol's Apostle -->
+			<npc id="22654" x="-16565" y="-44710" z="-10733" heading="49151" respawnTime="5sec" /> <!-- Triol's Apostle -->
+			<npc id="22654" x="-16565" y="-44886" z="-10733" heading="49151" respawnTime="5sec" /> <!-- Triol's Apostle -->
+			<npc id="22654" x="-16565" y="-45072" z="-10733" heading="49151" respawnTime="5sec" /> <!-- Triol's Apostle -->
+			<npc id="22654" x="-16565" y="-45251" z="-10733" heading="49151" respawnTime="5sec" /> <!-- Triol's Apostle -->
+			<npc id="22654" x="-16565" y="-45433" z="-10733" heading="49151" respawnTime="5sec" /> <!-- Triol's Apostle -->
+			<npc id="22654" x="-16202" y="-44710" z="-10733" heading="49151" respawnTime="5sec" /> <!-- Triol's Apostle -->
+			<npc id="22654" x="-16202" y="-44886" z="-10733" heading="49151" respawnTime="5sec" /> <!-- Triol's Apostle -->
+			<npc id="22654" x="-16202" y="-45072" z="-10733" heading="49151" respawnTime="5sec" /> <!-- Triol's Apostle -->
+			<npc id="22654" x="-16202" y="-45251" z="-10733" heading="49151" respawnTime="5sec" /> <!-- Triol's Apostle -->
+			<npc id="22654" x="-16202" y="-45433" z="-10733" heading="49151" respawnTime="5sec" /> <!-- Triol's Apostle -->
+			<npc id="22654" x="-16020" y="-44710" z="-10733" heading="49151" respawnTime="5sec" /> <!-- Triol's Apostle -->
+			<npc id="22654" x="-16020" y="-44886" z="-10733" heading="49151" respawnTime="5sec" /> <!-- Triol's Apostle -->
+			<npc id="22654" x="-16020" y="-45072" z="-10733" heading="49151" respawnTime="5sec" /> <!-- Triol's Apostle -->
+			<npc id="22654" x="-16020" y="-45251" z="-10733" heading="49151" respawnTime="5sec" /> <!-- Triol's Apostle -->
+			<npc id="22654" x="-16020" y="-45433" z="-10733" heading="49151" respawnTime="5sec" /> <!-- Triol's Apostle -->
+			<npc id="22656" x="-16109" y="-46615" z="-10829" heading="49151" respawnTime="5sec" /> <!-- Triol's Priest -->
+			<npc id="22656" x="-16109" y="-46795" z="-10829" heading="49151" respawnTime="5sec" /> <!-- Triol's Priest -->
+			<npc id="22656" x="-16109" y="-46965" z="-10829" heading="49151" respawnTime="5sec" /> <!-- Triol's Priest -->
+			<npc id="22656" x="-16109" y="-47135" z="-10829" heading="49151" respawnTime="5sec" /> <!-- Triol's Priest -->
+			<npc id="22656" x="-16109" y="-47305" z="-10829" heading="49151" respawnTime="5sec" /> <!-- Triol's Priest -->
+			<npc id="22656" x="-16109" y="-47475" z="-10829" heading="49151" respawnTime="5sec" /> <!-- Triol's Priest -->
+			<npc id="22656" x="-16109" y="-48606" z="-10925" heading="49151" respawnTime="5sec" /> <!-- Triol's Priest -->
+			<npc id="22656" x="-16109" y="-48786" z="-10925" heading="49151" respawnTime="5sec" /> <!-- Triol's Priest -->
+			<npc id="22656" x="-16109" y="-48966" z="-10925" heading="49151" respawnTime="5sec" /> <!-- Triol's Priest -->
+			<npc id="22656" x="-16109" y="-49146" z="-10925" heading="49151" respawnTime="5sec" /> <!-- Triol's Priest -->
+			<npc id="22656" x="-16109" y="-49326" z="-10925" heading="49151" respawnTime="5sec" /> <!-- Triol's Priest -->
+			<npc id="22656" x="-16109" y="-49506" z="-10925" heading="49151" respawnTime="5sec" /> <!-- Triol's Priest -->
+			<npc id="22656" x="-16654" y="-46615" z="-10829" heading="49151" respawnTime="5sec" /> <!-- Triol's Priest -->
+			<npc id="22656" x="-16654" y="-46795" z="-10829" heading="49151" respawnTime="5sec" /> <!-- Triol's Priest -->
+			<npc id="22656" x="-16654" y="-46965" z="-10829" heading="49151" respawnTime="5sec" /> <!-- Triol's Priest -->
+			<npc id="22656" x="-16654" y="-47135" z="-10829" heading="49151" respawnTime="5sec" /> <!-- Triol's Priest -->
+			<npc id="22656" x="-16654" y="-47305" z="-10829" heading="49151" respawnTime="5sec" /> <!-- Triol's Priest -->
+			<npc id="22656" x="-16654" y="-47475" z="-10829" heading="49151" respawnTime="5sec" /> <!-- Triol's Priest -->
+			<npc id="22656" x="-16654" y="-48606" z="-10925" heading="49151" respawnTime="5sec" /> <!-- Triol's Priest -->
+			<npc id="22656" x="-16654" y="-48786" z="-10925" heading="49151" respawnTime="5sec" /> <!-- Triol's Priest -->
+			<npc id="22656" x="-16654" y="-48966" z="-10925" heading="49151" respawnTime="5sec" /> <!-- Triol's Priest -->
+			<npc id="22656" x="-16654" y="-49146" z="-10925" heading="49151" respawnTime="5sec" /> <!-- Triol's Priest -->
+			<npc id="22656" x="-16654" y="-49326" z="-10925" heading="49151" respawnTime="5sec" /> <!-- Triol's Priest -->
+			<npc id="22656" x="-16654" y="-49506" z="-10925" heading="49151" respawnTime="5sec" /> <!-- Triol's Priest -->
+		</group>
+		<group name="Left_side_of_the_second_room">
+			<npc id="22655" x="-17287" y="-44717" z="-10733" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22653" x="-17287" y="-44891" z="-10733" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22655" x="-17287" y="-45073" z="-10733" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22652" x="-17287" y="-45259" z="-10733" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22655" x="-17287" y="-45436" z="-10733" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22655" x="-17468" y="-44717" z="-10733" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22653" x="-17468" y="-44891" z="-10733" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22655" x="-17468" y="-45073" z="-10733" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22652" x="-17468" y="-45259" z="-10733" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22655" x="-17468" y="-45436" z="-10733" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22655" x="-17647" y="-44717" z="-10733" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22653" x="-17647" y="-44891" z="-10733" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22655" x="-17647" y="-45073" z="-10733" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22652" x="-17647" y="-45259" z="-10733" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22655" x="-17647" y="-45436" z="-10733" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22655" x="-17829" y="-44717" z="-10733" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22653" x="-17829" y="-44891" z="-10733" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22655" x="-17829" y="-45073" z="-10733" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22652" x="-17829" y="-45259" z="-10733" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22655" x="-17829" y="-45436" z="-10733" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22655" x="-18009" y="-44717" z="-10733" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22653" x="-18009" y="-44891" z="-10733" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22655" x="-18009" y="-45073" z="-10733" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22652" x="-18009" y="-45259" z="-10733" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22655" x="-18009" y="-45436" z="-10733" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22655" x="-17285" y="-46704" z="-10829" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22653" x="-17285" y="-46880" z="-10829" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22655" x="-17285" y="-47067" z="-10829" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22652" x="-17285" y="-47251" z="-10829" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22655" x="-17285" y="-47430" z="-10829" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22655" x="-17468" y="-46704" z="-10829" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22653" x="-17468" y="-46880" z="-10829" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22655" x="-17468" y="-47067" z="-10829" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22652" x="-17468" y="-47251" z="-10829" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22655" x="-17468" y="-47430" z="-10829" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22655" x="-17650" y="-46704" z="-10829" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22653" x="-17650" y="-46880" z="-10829" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22655" x="-17650" y="-47067" z="-10829" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22652" x="-17650" y="-47251" z="-10829" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22655" x="-17650" y="-47430" z="-10829" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22655" x="-17828" y="-46704" z="-10829" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22653" x="-17828" y="-46880" z="-10829" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22655" x="-17828" y="-47067" z="-10829" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22652" x="-17828" y="-47251" z="-10829" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22655" x="-17828" y="-47430" z="-10829" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22655" x="-18012" y="-46704" z="-10829" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22653" x="-18012" y="-46880" z="-10829" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22655" x="-18012" y="-47067" z="-10829" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22652" x="-18012" y="-47251" z="-10829" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22655" x="-18012" y="-47430" z="-10829" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22655" x="-17287" y="-48691" z="-10925" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22653" x="-17287" y="-48872" z="-10925" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22655" x="-17287" y="-49059" z="-10925" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22652" x="-17287" y="-49241" z="-10925" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22655" x="-17287" y="-49421" z="-10925" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22655" x="-17469" y="-48691" z="-10925" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22653" x="-17469" y="-48872" z="-10925" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22655" x="-17469" y="-49059" z="-10925" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22652" x="-17469" y="-49241" z="-10925" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22655" x="-17469" y="-49421" z="-10925" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22655" x="-17648" y="-48691" z="-10925" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22653" x="-17648" y="-48872" z="-10925" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22655" x="-17648" y="-49059" z="-10925" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22652" x="-17648" y="-49241" z="-10925" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22655" x="-17648" y="-49421" z="-10925" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22655" x="-17830" y="-48691" z="-10925" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22653" x="-17830" y="-48872" z="-10925" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22655" x="-17830" y="-49059" z="-10925" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22652" x="-17830" y="-49241" z="-10925" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22655" x="-17830" y="-49421" z="-10925" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22655" x="-18009" y="-48691" z="-10925" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22653" x="-18009" y="-48872" z="-10925" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22655" x="-18009" y="-49059" z="-10925" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22652" x="-18009" y="-49241" z="-10925" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22655" x="-18009" y="-49421" z="-10925" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+		</group>
+		<group name="Right_side_of_the_second_room">
+			<npc id="22655" x="-15480" y="-44715" z="-10733" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22653" x="-15480" y="-44895" z="-10733" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22655" x="-15480" y="-45075" z="-10733" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22652" x="-15480" y="-45259" z="-10733" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22655" x="-15480" y="-45440" z="-10733" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22655" x="-15298" y="-44715" z="-10733" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22653" x="-15298" y="-44895" z="-10733" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22655" x="-15298" y="-45075" z="-10733" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22652" x="-15298" y="-45259" z="-10733" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22655" x="-15298" y="-45440" z="-10733" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22655" x="-15114" y="-44715" z="-10733" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22653" x="-15114" y="-44895" z="-10733" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22655" x="-15114" y="-45075" z="-10733" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22652" x="-15114" y="-45259" z="-10733" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22655" x="-15114" y="-45440" z="-10733" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22655" x="-14937" y="-44715" z="-10733" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22653" x="-14937" y="-44895" z="-10733" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22655" x="-14937" y="-45075" z="-10733" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22652" x="-14937" y="-45259" z="-10733" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22655" x="-14937" y="-45440" z="-10733" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22655" x="-14755" y="-44715" z="-10733" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22653" x="-14755" y="-44895" z="-10733" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22655" x="-14755" y="-45075" z="-10733" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22652" x="-14755" y="-45259" z="-10733" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22655" x="-14755" y="-45440" z="-10733" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22655" x="-15657" y="-46705" z="-10829" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22653" x="-15657" y="-46887" z="-10829" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22655" x="-15657" y="-47056" z="-10829" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22652" x="-15657" y="-47240" z="-10829" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22655" x="-15657" y="-47418" z="-10829" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22655" x="-15478" y="-46705" z="-10829" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22653" x="-15478" y="-46887" z="-10829" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22655" x="-15478" y="-47056" z="-10829" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22652" x="-15478" y="-47240" z="-10829" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22655" x="-15478" y="-47418" z="-10829" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22655" x="-15298" y="-46705" z="-10829" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22653" x="-15298" y="-46887" z="-10829" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22655" x="-15298" y="-47056" z="-10829" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22652" x="-15298" y="-47240" z="-10829" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22655" x="-15298" y="-47418" z="-10829" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22655" x="-15114" y="-46705" z="-10829" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22653" x="-15114" y="-46887" z="-10829" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22655" x="-15114" y="-47056" z="-10829" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22652" x="-15114" y="-47240" z="-10829" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22655" x="-15114" y="-47418" z="-10829" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22655" x="-14935" y="-46705" z="-10829" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22653" x="-14935" y="-46887" z="-10829" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22655" x="-14935" y="-47056" z="-10829" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22652" x="-14935" y="-47240" z="-10829" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22655" x="-14935" y="-47418" z="-10829" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22655" x="-15655" y="-48691" z="-10925" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22653" x="-15655" y="-48871" z="-10925" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22655" x="-15655" y="-49044" z="-10925" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22652" x="-15655" y="-49230" z="-10925" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22655" x="-15655" y="-49419" z="-10925" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22655" x="-15476" y="-48691" z="-10925" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22653" x="-15476" y="-48871" z="-10925" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22655" x="-15476" y="-49044" z="-10925" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22652" x="-15476" y="-49230" z="-10925" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22655" x="-15476" y="-49419" z="-10925" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22655" x="-15298" y="-48691" z="-10925" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22653" x="-15298" y="-48871" z="-10925" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22655" x="-15298" y="-49044" z="-10925" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22652" x="-15298" y="-49230" z="-10925" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22655" x="-15298" y="-49419" z="-10925" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22655" x="-15115" y="-48691" z="-10925" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22653" x="-15115" y="-48871" z="-10925" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22655" x="-15115" y="-49044" z="-10925" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22652" x="-15115" y="-49230" z="-10925" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22655" x="-15115" y="-49419" z="-10925" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22655" x="-14935" y="-48691" z="-10925" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22653" x="-14935" y="-48871" z="-10925" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22655" x="-14935" y="-49044" z="-10925" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22652" x="-14935" y="-49230" z="-10925" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+			<npc id="22655" x="-14935" y="-49419" z="-10925" heading="49151" respawnTime="5sec" /> <!-- Triol's Believer -->
+		</group>
+	</spawn>
+</list>

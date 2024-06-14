@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,10 +19,12 @@ package org.l2j.gameserver.network.serverpackets;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.model.SkillLearn;
 import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.model.holders.ItemHolder;
 import org.l2j.gameserver.model.skill.Skill;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 
 /**
@@ -65,25 +67,25 @@ public class ExAcquireSkillInfo extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_ACQUIRE_SKILL_INFO.writeId(this);
-		writeInt(_player.getReplacementSkill(_id));
-		writeInt(_level);
-		writeLong(_spCost);
-		writeShort(_minLevel);
-		writeShort(_dualClassLevel);
-		writeInt(_itemReq.size());
+		ServerPackets.EX_ACQUIRE_SKILL_INFO.writeId(this, buffer);
+		buffer.writeInt(_player.getReplacementSkill(_id));
+		buffer.writeInt(_level);
+		buffer.writeLong(_spCost);
+		buffer.writeShort(_minLevel);
+		buffer.writeShort(_dualClassLevel);
+		buffer.writeInt(_itemReq.size());
 		for (List<ItemHolder> holder : _itemReq)
 		{
-			writeInt(holder.get(0).getId());
-			writeLong(holder.get(0).getCount());
+			buffer.writeInt(holder.get(0).getId());
+			buffer.writeLong(holder.get(0).getCount());
 		}
-		writeInt(_skillRem.size());
+		buffer.writeInt(_skillRem.size());
 		for (Skill skill : _skillRem)
 		{
-			writeInt(skill.getId());
-			writeInt(skill.getLevel());
+			buffer.writeInt(skill.getId());
+			buffer.writeInt(skill.getLevel());
 		}
 	}
 }

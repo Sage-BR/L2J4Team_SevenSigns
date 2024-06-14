@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -38,7 +38,12 @@ public class Wear implements IBypassHandler
 	@Override
 	public boolean useBypass(String command, Player player, Creature target)
 	{
-		if (!target.isNpc() || !Config.ALLOW_WEAR)
+		if (!target.isNpc())
+		{
+			return false;
+		}
+		
+		if (!Config.ALLOW_WEAR)
 		{
 			return false;
 		}

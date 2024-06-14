@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -303,6 +303,7 @@ public class ClanBoard implements IWriteBoardHandler
 		if ((clan != null) && player.isClanLeader())
 		{
 			clan.setNotice(arg3);
+			player.sendPacket(SystemMessageId.YOUR_CLAN_NOTICE_HAS_BEEN_SAVED);
 		}
 		return true;
 	}

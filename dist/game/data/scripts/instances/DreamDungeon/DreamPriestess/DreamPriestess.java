@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -53,6 +53,7 @@ public class DreamPriestess extends AbstractInstance
 		addFirstTalkId(DREAM_PRIESTESS);
 		addStartNpc(DREAM_PRIESTESS);
 		addTalkId(DREAM_PRIESTESS);
+		addInstanceCreatedId(INSTANCE_IDS);
 	}
 	
 	@Override
@@ -62,11 +63,11 @@ public class DreamPriestess extends AbstractInstance
 	}
 	
 	@Override
-	public String onAdvEvent(String event, Npc npc, Player player)
+	public String onEvent(String event, Npc npc, Player player)
 	{
 		if (player == null)
 		{
-			return super.onAdvEvent(event, npc, null);
+			return super.onEvent(event, npc, null);
 		}
 		
 		if (event.startsWith("enter_dream_dungeon"))
@@ -97,7 +98,7 @@ public class DreamPriestess extends AbstractInstance
 				{
 					enterInstance(player, npc, DraconidFortress.INSTANCE_ID);
 					ThreadPool.schedule(() -> CatGuildsLair.startCatLairInstance(player), 5000);
-					return super.onAdvEvent(event, npc, player);
+					return super.onEvent(event, npc, player);
 				}
 				
 				if (!INSTANCE_IDS.contains(dungeonId))
@@ -154,7 +155,7 @@ public class DreamPriestess extends AbstractInstance
 			}
 			return DREAM_PRIESTESS + "-gm.htm";
 		}
-		return super.onAdvEvent(event, npc, player);
+		return super.onEvent(event, npc, player);
 	}
 	
 	private static boolean checkRequirementsForEnter(Player requestor)
@@ -212,13 +213,26 @@ public class DreamPriestess extends AbstractInstance
 				return true;
 			}
 			
-			if ((InstanceManager.getInstance().getPlayerInstance(player, true) != null) || (InstanceManager.getInstance().getPlayerInstance(player, false) != null))
+			if (InstanceManager.getInstance().getPlayerInstance(player, true) != null)
+			{
+				player.sendPacket(new SystemMessage(SystemMessageId.YOU_CANNOT_ENTER_AS_C1_IS_IN_ANOTHER_INSTANCE_ZONE).addString(player.getName()));
+				return true;
+			}
+			
+			if (InstanceManager.getInstance().getPlayerInstance(player, false) != null)
 			{
 				player.sendPacket(new SystemMessage(SystemMessageId.YOU_CANNOT_ENTER_AS_C1_IS_IN_ANOTHER_INSTANCE_ZONE).addString(player.getName()));
 				return true;
 			}
 		}
 		return false;
+	}
+	
+	@Override
+	public void onInstanceCreated(Instance instance, Player player)
+	{
+		super.onInstanceCreated(instance, player);
+		instance.setStatus(0);
 	}
 	
 	public static void main(String[] args)

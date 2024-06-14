@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,21 +18,21 @@ package org.l2j.loginserver.network.gameserverpackets;
 
 import java.util.logging.Logger;
 
-import org.l2j.commons.network.ReadablePacket;
+import org.l2j.commons.network.base.BaseReadablePacket;
 import org.l2j.loginserver.GameServerThread;
 import org.l2j.loginserver.LoginController;
 
 /**
  * @author -Wooden-
  */
-public class ChangeAccessLevel extends ReadablePacket
+public class ChangeAccessLevel extends BaseReadablePacket
 {
 	protected static final Logger LOGGER = Logger.getLogger(ChangeAccessLevel.class.getName());
 	
 	public ChangeAccessLevel(byte[] decrypt, GameServerThread server)
 	{
 		super(decrypt);
-		readByte(); // id (already processed)
+		readByte(); // Packet id, it is already processed.
 		
 		final int level = readInt();
 		final String account = readString();

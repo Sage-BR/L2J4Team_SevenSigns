@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,7 +18,6 @@ package handlers.admincommandhandlers;
 
 import java.util.StringTokenizer;
 
-import org.l2j.commons.threads.ThreadPool;
 import org.l2j.gameserver.data.xml.SkillData;
 import org.l2j.gameserver.handler.IAdminCommandHandler;
 import org.l2j.gameserver.model.WorldObject;
@@ -35,21 +34,13 @@ public class AdminTest implements IAdminCommandHandler
 {
 	private static final String[] ADMIN_COMMANDS =
 	{
-		"admin_stats",
 		"admin_skill_test"
 	};
 	
 	@Override
 	public boolean useAdminCommand(String command, Player activeChar)
 	{
-		if (command.equals("admin_stats"))
-		{
-			for (String line : ThreadPool.getStats())
-			{
-				activeChar.sendMessage(line);
-			}
-		}
-		else if (command.startsWith("admin_skill_test"))
+		if (command.startsWith("admin_skill_test"))
 		{
 			try
 			{

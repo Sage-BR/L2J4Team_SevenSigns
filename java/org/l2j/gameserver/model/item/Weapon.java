@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -39,6 +39,7 @@ public class Weapon extends ItemTemplate
 {
 	private WeaponType _type;
 	private boolean _isMagicWeapon;
+	private boolean _isImmortalityWeapon;
 	private int _soulShotCount;
 	private int _spiritShotCount;
 	private int _mpConsume;
@@ -74,6 +75,7 @@ public class Weapon extends ItemTemplate
 		_type1 = ItemTemplate.TYPE1_WEAPON_RING_EARRING_NECKLACE;
 		_type2 = ItemTemplate.TYPE2_WEAPON;
 		_isMagicWeapon = set.getBoolean("is_magic_weapon", false);
+		_isImmortalityWeapon = set.getBoolean("is_immortality_weapon", false);
 		_soulShotCount = set.getInt("soulshots", 0);
 		_spiritShotCount = set.getInt("spiritshots", 0);
 		_mpConsume = set.getInt("mp_consume", 0);
@@ -143,6 +145,14 @@ public class Weapon extends ItemTemplate
 	public boolean isMagicWeapon()
 	{
 		return _isMagicWeapon;
+	}
+	
+	/**
+	 * @return {@code true} if the weapon is an Immortality weapon, {@code false} otherwise.
+	 */
+	public boolean isImmortalityWeapon()
+	{
+		return _isImmortalityWeapon;
 	}
 	
 	/**
@@ -267,10 +277,19 @@ public class Weapon extends ItemTemplate
 			if (type == ItemSkillType.ON_MAGIC_SKILL)
 			{
 				// Trigger only if both are good or bad magic.
+				if (trigger.isBad() != skill.isBad())
+				{
+					return;
+				}
 				
 				// No Trigger if not Magic Skill or is toggle
+				if (trigger.isMagic() != skill.isMagic())
+				{
+					return;
+				}
+				
 				// No Trigger if skill is toggle
-				if ((trigger.isBad() != skill.isBad()) || (trigger.isMagic() != skill.isMagic()) || trigger.isToggle())
+				if (trigger.isToggle())
 				{
 					return;
 				}

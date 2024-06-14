@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,16 +16,14 @@
  */
 package org.l2j.gameserver.network.clientpackets;
 
-import org.l2j.commons.network.ReadablePacket;
 import org.l2j.gameserver.data.xml.DoorData;
 import org.l2j.gameserver.geoengine.GeoEngine;
 import org.l2j.gameserver.model.World;
 import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.model.zone.ZoneId;
-import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.serverpackets.ValidateLocation;
 
-public class ValidatePosition implements ClientPacket
+public class ValidatePosition extends ClientPacket
 {
 	private int _x;
 	private int _y;
@@ -33,19 +31,19 @@ public class ValidatePosition implements ClientPacket
 	private int _heading;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_x = packet.readInt();
-		_y = packet.readInt();
-		_z = packet.readInt();
-		_heading = packet.readInt();
-		packet.readInt(); // vehicle id
+		_x = readInt();
+		_y = readInt();
+		_z = readInt();
+		_heading = readInt();
+		readInt(); // vehicle id
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
-		final Player player = client.getPlayer();
+		final Player player = getPlayer();
 		if ((player == null) || player.isTeleporting() || player.inObserverMode() || player.isCastingNow())
 		{
 			return;
@@ -54,7 +52,12 @@ public class ValidatePosition implements ClientPacket
 		final int realX = player.getX();
 		final int realY = player.getY();
 		int realZ = player.getZ();
-		if (((_x == 0) && (_y == 0) && (realX != 0)) || player.isInVehicle())
+		if ((_x == 0) && (_y == 0) && (realX != 0))
+		{
+			return;
+		}
+		
+		if (player.isInVehicle())
 		{
 			return;
 		}

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/multisell.xsd">
+	<npcs>
+		<npc>-1</npc> <!-- Item Multisell -->
+	</npcs>
+	<!-- Selected Jewel Coupon - Sealed (97597) -->
+	<item>
+		<ingredient id="97597" count="274" /> <!-- Selected Jewel Coupon - Sealed -->
+		<production id="99974" count="1" /> <!-- Ruby Jewelry Box Lv. 4 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="97597" count="206" /> <!-- Selected Jewel Coupon - Sealed -->
+		<production id="99966" count="1" /> <!-- Diamond Jewelry Box Lv. 4 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="97597" count="172" /> <!-- Selected Jewel Coupon - Sealed -->
+		<production id="97601" count="1" /> <!-- Beryl Jewelry Box Lv. 4 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="97597" count="103" /> <!-- Selected Jewel Coupon - Sealed -->
+		<production id="97606" count="1" /> <!-- Onyx Jewelry Box Lv. 4 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="97597" count="103" /> <!-- Selected Jewel Coupon - Sealed -->
+		<production id="97611" count="1" /> <!-- Spinel Jewelry Box Lv. 4 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="97597" count="103" /> <!-- Selected Jewel Coupon - Sealed -->
+		<production id="97616" count="1" /> <!-- Zircon Jewelry Box Lv. 4 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="97597" count="69" /> <!-- Selected Jewel Coupon - Sealed -->
+		<production id="97621" count="1" /> <!-- Coral Jewelry Box Lv. 4 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="97597" count="69" /> <!-- Selected Jewel Coupon - Sealed -->
+		<production id="97626" count="1" /> <!-- Opal Jewelry Box Lv. 4 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="97597" count="34" /> <!-- Selected Jewel Coupon - Sealed -->
+		<production id="97631" count="1" /> <!-- Amber Jewelry Box Lv. 4 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="97597" count="34" /> <!-- Selected Jewel Coupon - Sealed -->
+		<production id="97636" count="1" /> <!-- Moonstone Jewelry Box Lv. 4 - Sealed -->
+	</item>
+</list>

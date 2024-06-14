@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -15,6 +15,9 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 package handlers.effecthandlers;
+
+import java.util.HashSet;
+import java.util.Set;
 
 import org.l2j.commons.threads.ThreadPool;
 import org.l2j.commons.util.Rnd;
@@ -39,11 +42,22 @@ public class CallSkill extends AbstractEffect
 	private final int _skillLevelScaleTo;
 	private final int _chance;
 	
+	private final Set<Integer> _targetCheckSkillIds = new HashSet<>();
+	private final int _targetCheckSkillLevel;
+	
 	public CallSkill(StatSet params)
 	{
 		_skill = new SkillHolder(params.getInt("skillId"), params.getInt("skillLevel", 1), params.getInt("skillSubLevel", 0));
 		_skillLevelScaleTo = params.getInt("skillLevelScaleTo", 0);
 		_chance = params.getInt("chance", 100);
+		for (String skill : params.getString("targetCheckSkillId", "").split(","))
+		{
+			if (!skill.isEmpty())
+			{
+				_targetCheckSkillIds.add(Integer.parseInt(skill));
+			}
+		}
+		_targetCheckSkillLevel = params.getInt("targetCheckSkillLevel", 1);
 	}
 	
 	@Override
@@ -55,6 +69,18 @@ public class CallSkill extends AbstractEffect
 	@Override
 	public void instant(Creature effector, Creature effected, Skill skill, Item item)
 	{
+		if (!_targetCheckSkillIds.isEmpty())
+		{
+			for (Integer skillId : _targetCheckSkillIds)
+			{
+				final BuffInfo checkSkill = effected.getEffectList().getBuffInfoBySkillId(skillId);
+				if ((checkSkill != null) && (_targetCheckSkillLevel >= checkSkill.getSkill().getLevel()))
+				{
+					return;
+				}
+			}
+		}
+		
 		if ((_chance < 100) && (Rnd.get(100) > _chance))
 		{
 			return;

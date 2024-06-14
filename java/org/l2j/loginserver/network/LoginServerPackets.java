@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,7 +16,7 @@
  */
 package org.l2j.loginserver.network;
 
-import org.l2j.commons.network.WritablePacket;
+import org.l2j.commons.network.base.BaseWritablePacket;
 
 /**
  * @author Mobius
@@ -36,26 +36,15 @@ public enum LoginServerPackets
 	GG_AUTH(0x0b),
 	LOGIN_OPT_FAIL(0x0D);
 	
-	private final int _id1;
-	private final int _id2;
+	private final int _id;
 	
-	LoginServerPackets(int id1)
+	LoginServerPackets(int id)
 	{
-		this(id1, -1);
+		_id = id;
 	}
 	
-	LoginServerPackets(int id1, int id2)
+	public void writeId(BaseWritablePacket packet)
 	{
-		_id1 = id1;
-		_id2 = id2;
-	}
-	
-	public void writeId(WritablePacket packet)
-	{
-		packet.writeByte(_id1);
-		if (_id2 > 0)
-		{
-			packet.writeShort(_id2);
-		}
+		packet.writeByte(_id);
 	}
 }

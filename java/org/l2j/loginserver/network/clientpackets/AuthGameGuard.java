@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,53 +16,44 @@
  */
 package org.l2j.loginserver.network.clientpackets;
 
-import org.l2j.commons.network.ReadablePacket;
 import org.l2j.loginserver.enums.LoginFailReason;
 import org.l2j.loginserver.network.ConnectionState;
-import org.l2j.loginserver.network.LoginClient;
 import org.l2j.loginserver.network.serverpackets.GGAuth;
 
 /**
  * Format: ddddd
  * @author -Wooden-
  */
-public class AuthGameGuard implements LoginClientPacket
+public class AuthGameGuard extends LoginClientPacket
 {
 	private int _sessionId;
 	
-	@SuppressWarnings("unused")
-	private int _data1;
-	@SuppressWarnings("unused")
-	private int _data2;
-	@SuppressWarnings("unused")
-	private int _data3;
-	@SuppressWarnings("unused")
-	private int _data4;
-	
 	@Override
-	public void read(ReadablePacket packet)
+	protected boolean readImpl()
 	{
-		if (packet.getRemainingLength() >= 20)
+		if (remaining() >= 20)
 		{
-			_sessionId = packet.readInt();
-			_data1 = packet.readInt();
-			_data2 = packet.readInt();
-			_data3 = packet.readInt();
-			_data4 = packet.readInt();
+			_sessionId = readInt();
+			readInt(); // data1
+			readInt(); // data2
+			readInt(); // data3
+			readInt(); // data4
+			return true;
 		}
+		return false;
 	}
 	
 	@Override
-	public void run(LoginClient client)
+	public void run()
 	{
-		if (_sessionId == client.getSessionId())
+		if (_sessionId == getClient().getSessionId())
 		{
-			client.setConnectionState(ConnectionState.AUTHED_GG);
-			client.sendPacket(new GGAuth(client.getSessionId()));
+			getClient().setConnectionState(ConnectionState.AUTHED_GG);
+			getClient().sendPacket(new GGAuth(getClient().getSessionId()));
 		}
 		else
 		{
-			client.close(LoginFailReason.REASON_ACCESS_FAILED);
+			getClient().close(LoginFailReason.REASON_ACCESS_FAILED);
 		}
 	}
 }

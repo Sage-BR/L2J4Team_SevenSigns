@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/multisell.xsd">
+	<npcs>
+		<npc>-1</npc> <!-- Item Multisell -->
+	</npcs>
+	<!-- Doll Coupon Lv. 5 - Sealed (98824) -->
+	<item>
+		<ingredient id="98824" count="1" /> <!-- Doll Coupon Lv. 5 - Sealed -->
+		<production id="98817" count="1" /> <!-- Queen Ant Doll Lv. 5 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98824" count="1" /> <!-- Doll Coupon Lv. 5 - Sealed -->
+		<production id="98819" count="1" /> <!-- Orfen Doll Lv. 5 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98824" count="1" /> <!-- Doll Coupon Lv. 5 - Sealed -->
+		<production id="98820" count="1" /> <!-- Zaken Doll Lv. 5 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98824" count="1" /> <!-- Doll Coupon Lv. 5 - Sealed -->
+		<production id="98821" count="1" /> <!-- Core Doll Lv. 5 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98824" count="1" /> <!-- Doll Coupon Lv. 5 - Sealed -->
+		<production id="98818" count="1" /> <!-- Baium Doll Lv. 5 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98824" count="1" /> <!-- Doll Coupon Lv. 5 - Sealed -->
+		<production id="98822" count="1" /> <!-- Frintezza Doll Lv. 5 - Sealed -->
+	</item>
+</list>

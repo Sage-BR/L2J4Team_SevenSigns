@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,18 +16,18 @@
  */
 package org.l2j.loginserver.network.gameserverpackets;
 
-import org.l2j.commons.network.ReadablePacket;
+import org.l2j.commons.network.base.BaseReadablePacket;
 import org.l2j.loginserver.GameServerThread;
 
 /**
  * @author -Wooden-
  */
-public class PlayerInGame extends ReadablePacket
+public class PlayerInGame extends BaseReadablePacket
 {
 	public PlayerInGame(byte[] decrypt, GameServerThread server)
 	{
 		super(decrypt);
-		readByte(); // id (already processed)
+		readByte(); // Packet id, it is already processed.
 		
 		final int size = readShort();
 		for (int i = 0; i < size; i++)

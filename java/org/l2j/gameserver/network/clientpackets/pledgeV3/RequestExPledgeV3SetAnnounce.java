@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,38 +16,36 @@
  */
 package org.l2j.gameserver.network.clientpackets.pledgeV3;
 
-import org.l2j.commons.network.ReadablePacket;
 import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.model.clan.Clan;
-import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.clientpackets.ClientPacket;
 import org.l2j.gameserver.network.serverpackets.pledgeV3.ExPledgeV3Info;
 
 /**
  * @author Berezkin Nikolay
  */
-public class RequestExPledgeV3SetAnnounce implements ClientPacket
+public class RequestExPledgeV3SetAnnounce extends ClientPacket
 {
 	private String _announce;
 	private boolean _enterWorldShow;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_announce = packet.readSizedString();
-		_enterWorldShow = packet.readByte() == 1;
+		_announce = readSizedString();
+		_enterWorldShow = readByte() == 1;
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
-		final Player activeChar = client.getPlayer();
-		if (activeChar == null)
+		final Player player = getPlayer();
+		if (player == null)
 		{
 			return;
 		}
 		
-		final Clan clan = activeChar.getClan();
+		final Clan clan = player.getClan();
 		if (clan == null)
 		{
 			return;

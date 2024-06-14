@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,10 +16,9 @@
  */
 package org.l2j.gameserver.network.clientpackets.newhenna;
 
-import org.l2j.commons.network.ReadablePacket;
 import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.model.item.henna.Henna;
-import org.l2j.gameserver.network.GameClient;
+import org.l2j.gameserver.model.itemcontainer.Inventory;
 import org.l2j.gameserver.network.PacketLogger;
 import org.l2j.gameserver.network.SystemMessageId;
 import org.l2j.gameserver.network.clientpackets.ClientPacket;
@@ -30,28 +29,28 @@ import org.l2j.gameserver.network.serverpackets.newhenna.NewHennaUnequip;
 /**
  * @author Index, Serenitty
  */
-public class RequestNewHennaUnequip implements ClientPacket
+public class RequestNewHennaUnequip extends ClientPacket
 {
 	private int _slotId;
 	private int _itemId;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_slotId = packet.readByte();
-		_itemId = packet.readInt(); // CostItemId
+		_slotId = readByte();
+		_itemId = readInt(); // CostItemId
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
-		final Player player = client.getPlayer();
+		final Player player = getPlayer();
 		if (player == null)
 		{
 			return;
 		}
 		
-		if (!client.getFloodProtectors().canPerformTransaction())
+		if (!getClient().getFloodProtectors().canPerformTransaction())
 		{
 			player.sendPacket(ActionFailed.STATIC_PACKET);
 			player.sendPacket(new NewHennaUnequip(_slotId, 0));
@@ -74,11 +73,11 @@ public class RequestNewHennaUnequip implements ClientPacket
 		
 		int feeType = 0;
 		
-		if (_itemId == 57)
+		if (_itemId == Inventory.ADENA_ID)
 		{
 			feeType = henna.getCancelFee();
 		}
-		else if (_itemId == 91663)
+		else if (_itemId == Inventory.LCOIN_ID)
 		{
 			feeType = henna.getCancelL2CoinFee();
 		}
@@ -92,11 +91,11 @@ public class RequestNewHennaUnequip implements ClientPacket
 		}
 		else
 		{
-			if (_itemId == 57)
+			if (_itemId == Inventory.ADENA_ID)
 			{
 				player.sendPacket(SystemMessageId.YOU_DO_NOT_HAVE_ENOUGH_ADENA_TO_REGISTER_THE_ITEM);
 			}
-			else if (_itemId == 91663)
+			else if (_itemId == Inventory.LCOIN_ID)
 			{
 				player.sendPacket(SystemMessageId.YOU_DO_NOT_HAVE_ENOUGH_L2_COINS_ADD_MORE_L2_COINS_AND_TRY_AGAIN);
 			}

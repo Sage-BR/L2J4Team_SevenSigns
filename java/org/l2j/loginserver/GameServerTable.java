@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -29,6 +29,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
 
@@ -50,11 +51,11 @@ public class GameServerTable implements IXmlReader
 {
 	private static final Logger LOGGER = Logger.getLogger(GameServerTable.class.getName());
 	
-	// Server Names
+	// Map for storing server names with their corresponding IDs.
 	private static final Map<Integer, String> SERVER_NAMES = new HashMap<>();
-	// Game Server Table
+	// Table for storing game server information.
 	private static final Map<Integer, GameServerInfo> GAME_SERVER_TABLE = new HashMap<>();
-	// RSA Config
+	// Configuration for RSA key pairs.
 	private static final int KEYS_SIZE = 10;
 	private KeyPair[] _keyPairs;
 	
@@ -169,7 +170,7 @@ public class GameServerTable implements IXmlReader
 	 */
 	public boolean registerWithFirstAvailableId(GameServerInfo gsi)
 	{
-		// avoid two servers registering with the same "free" id
+		// Avoid two servers registering with the same "free" id.
 		synchronized (GAME_SERVER_TABLE)
 		{
 			for (Integer serverId : SERVER_NAMES.keySet())
@@ -193,7 +194,7 @@ public class GameServerTable implements IXmlReader
 	 */
 	public boolean register(int id, GameServerInfo gsi)
 	{
-		// avoid two servers registering with the same id
+		// Avoid two servers registering with the same id.
 		synchronized (GAME_SERVER_TABLE)
 		{
 			if (!GAME_SERVER_TABLE.containsKey(id))
@@ -294,17 +295,17 @@ public class GameServerTable implements IXmlReader
 	 */
 	public static class GameServerInfo
 	{
-		// auth
+		// Authentication fields.
 		private int _id;
 		private final byte[] _hexId;
 		private boolean _isAuthed;
-		// status
+		// Status information.
 		private GameServerThread _gst;
 		private int _status;
-		// network
-		private final ArrayList<GameServerAddress> _addrs = new ArrayList<>(5);
+		// Network configuration.
+		private final List<GameServerAddress> _addrs = new ArrayList<>(5);
 		private int _port;
-		// config
+		// Configuration settings.
 		private static final boolean IS_PVP = true;
 		private int _serverType;
 		private int _ageLimit;
@@ -364,7 +365,7 @@ public class GameServerTable implements IXmlReader
 		
 		public String getName()
 		{
-			// this value can't be stored in a private variable because the ID can be changed by setId()
+			// This value can't be stored in a private variable because the ID can be changed by setId().
 			return getInstance().getServerNameById(_id);
 		}
 		
@@ -652,7 +653,7 @@ public class GameServerTable implements IXmlReader
 					return a.getServerAddress();
 				}
 			}
-			return null; // should not happen
+			return null; // Should not happen.
 		}
 		
 		/**

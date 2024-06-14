@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,8 +18,10 @@ package org.l2j.gameserver.network.serverpackets;
 
 import java.util.List;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.instancemanager.CastleManorManager;
 import org.l2j.gameserver.model.Seed;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 
 /**
@@ -37,21 +39,21 @@ public class ExShowManorDefaultInfo extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_SHOW_MANOR_DEFAULT_INFO.writeId(this);
-		writeByte(_hideButtons); // Hide "Seed Purchase" and "Crop Sales" buttons
-		writeInt(_crops.size());
+		ServerPackets.EX_SHOW_MANOR_DEFAULT_INFO.writeId(this, buffer);
+		buffer.writeByte(_hideButtons); // Hide "Seed Purchase" and "Crop Sales" buttons
+		buffer.writeInt(_crops.size());
 		for (Seed crop : _crops)
 		{
-			writeInt(crop.getCropId()); // crop Id
-			writeInt(crop.getLevel()); // level
-			writeInt(crop.getSeedReferencePrice()); // seed price
-			writeInt(crop.getCropReferencePrice()); // crop price
-			writeByte(1); // Reward 1 type
-			writeInt(crop.getReward(1)); // Reward 1 itemId
-			writeByte(1); // Reward 2 type
-			writeInt(crop.getReward(2)); // Reward 2 itemId
+			buffer.writeInt(crop.getCropId()); // crop Id
+			buffer.writeInt(crop.getLevel()); // level
+			buffer.writeInt(crop.getSeedReferencePrice()); // seed price
+			buffer.writeInt(crop.getCropReferencePrice()); // crop price
+			buffer.writeByte(1); // Reward 1 type
+			buffer.writeInt(crop.getReward(1)); // Reward 1 itemId
+			buffer.writeByte(1); // Reward 2 type
+			buffer.writeInt(crop.getReward(2)); // Reward 2 itemId
 		}
 	}
 }

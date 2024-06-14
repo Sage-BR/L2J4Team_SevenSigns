@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,9 +18,11 @@ package org.l2j.gameserver.network.serverpackets;
 
 import java.util.Collection;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.model.buylist.Product;
 import org.l2j.gameserver.model.buylist.ProductList;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 
 public class BuyList extends AbstractItemPacket
@@ -41,20 +43,20 @@ public class BuyList extends AbstractItemPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_BUY_SELL_LIST.writeId(this);
-		writeInt(0); // Type BUY
-		writeLong(_money); // current money
-		writeInt(_listId);
-		writeInt(_inventorySlots);
-		writeShort(_list.size());
+		ServerPackets.EX_BUY_SELL_LIST.writeId(this, buffer);
+		buffer.writeInt(0); // Type BUY
+		buffer.writeLong(_money); // current money
+		buffer.writeInt(_listId);
+		buffer.writeInt(_inventorySlots);
+		buffer.writeShort(_list.size());
 		for (Product product : _list)
 		{
 			if ((product.getCount() > 0) || !product.hasLimitedStock())
 			{
-				writeItem(product);
-				writeLong((long) (product.getPrice() * (1.0 + _castleTaxRate + product.getBaseTaxRate())));
+				writeItem(product, buffer);
+				buffer.writeLong((long) (product.getPrice() * (1.0 + _castleTaxRate + product.getBaseTaxRate())));
 			}
 		}
 	}

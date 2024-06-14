@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@ public enum BonusExpType
 	BUFFS(2),
 	PASSIVE(3);
 	
-	private int _id;
+	private final int _id;
 	
 	private BonusExpType(int id)
 	{

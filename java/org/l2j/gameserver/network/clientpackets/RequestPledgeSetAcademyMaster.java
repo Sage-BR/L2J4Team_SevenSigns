@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,12 +16,10 @@
  */
 package org.l2j.gameserver.network.clientpackets;
 
-import org.l2j.commons.network.ReadablePacket;
 import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.model.clan.Clan;
 import org.l2j.gameserver.model.clan.ClanMember;
 import org.l2j.gameserver.model.clan.ClanPrivilege;
-import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.SystemMessageId;
 import org.l2j.gameserver.network.serverpackets.SystemMessage;
 
@@ -29,24 +27,24 @@ import org.l2j.gameserver.network.serverpackets.SystemMessage;
  * Format: (ch) dSS
  * @author -Wooden-
  */
-public class RequestPledgeSetAcademyMaster implements ClientPacket
+public class RequestPledgeSetAcademyMaster extends ClientPacket
 {
 	private String _currPlayerName;
 	private int _set; // 1 set, 0 delete
 	private String _targetPlayerName;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_set = packet.readInt();
-		_currPlayerName = packet.readString();
-		_targetPlayerName = packet.readString();
+		_set = readInt();
+		_currPlayerName = readString();
+		_targetPlayerName = readString();
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
-		final Player player = client.getPlayer();
+		final Player player = getPlayer();
 		final Clan clan = player.getClan();
 		if (clan == null)
 		{

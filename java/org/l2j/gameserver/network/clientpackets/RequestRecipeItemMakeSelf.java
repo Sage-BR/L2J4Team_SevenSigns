@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,35 +16,37 @@
  */
 package org.l2j.gameserver.network.clientpackets;
 
-import org.l2j.commons.network.ReadablePacket;
-import org.l2j.gameserver.enums.PrivateStoreType;
 import org.l2j.gameserver.instancemanager.RecipeManager;
 import org.l2j.gameserver.model.actor.Player;
-import org.l2j.gameserver.network.GameClient;
 
 /**
  * @author Administrator
  */
-public class RequestRecipeItemMakeSelf implements ClientPacket
+public class RequestRecipeItemMakeSelf extends ClientPacket
 {
 	private int _id;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_id = packet.readInt();
+		_id = readInt();
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
-		final Player player = client.getPlayer();
-		if ((player == null) || !client.getFloodProtectors().canManufacture())
+		final Player player = getPlayer();
+		if (player == null)
 		{
 			return;
 		}
 		
-		if (player.getPrivateStoreType() != PrivateStoreType.NONE)
+		if (!getClient().getFloodProtectors().canManufacture())
+		{
+			return;
+		}
+		
+		if (player.isInStoreMode())
 		{
 			player.sendMessage("You cannot create items while trading.");
 			return;

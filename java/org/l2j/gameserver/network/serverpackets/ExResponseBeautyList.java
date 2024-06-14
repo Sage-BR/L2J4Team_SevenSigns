@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,9 +18,11 @@ package org.l2j.gameserver.network.serverpackets;
 
 import java.util.Map;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.data.xml.BeautyShopData;
 import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.model.beautyshop.BeautyItem;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 
 /**
@@ -50,18 +52,18 @@ public class ExResponseBeautyList extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_RESPONSE_BEAUTY_LIST.writeId(this);
-		writeLong(_player.getAdena());
-		writeLong(_player.getBeautyTickets());
-		writeInt(_type);
-		writeInt(_beautyItem.size());
+		ServerPackets.EX_RESPONSE_BEAUTY_LIST.writeId(this, buffer);
+		buffer.writeLong(_player.getAdena());
+		buffer.writeLong(_player.getBeautyTickets());
+		buffer.writeInt(_type);
+		buffer.writeInt(_beautyItem.size());
 		for (BeautyItem item : _beautyItem.values())
 		{
-			writeInt(item.getId());
-			writeInt(1); // Limit
+			buffer.writeInt(item.getId());
+			buffer.writeInt(1); // Limit
 		}
-		writeInt(0);
+		buffer.writeInt(0);
 	}
 }

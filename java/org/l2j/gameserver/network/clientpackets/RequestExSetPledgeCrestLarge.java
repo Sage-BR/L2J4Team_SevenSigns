@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,46 +16,44 @@
  */
 package org.l2j.gameserver.network.clientpackets;
 
-import org.l2j.commons.network.ReadablePacket;
 import org.l2j.gameserver.data.sql.CrestTable;
 import org.l2j.gameserver.enums.CrestType;
 import org.l2j.gameserver.model.Crest;
 import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.model.clan.Clan;
 import org.l2j.gameserver.model.clan.ClanPrivilege;
-import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.SystemMessageId;
 
 /**
  * Format : chdb c (id) 0xD0 h (subid) 0x11 d data size b raw data (picture i think ;) )
  * @author -Wooden-
  */
-public class RequestExSetPledgeCrestLarge implements ClientPacket
+public class RequestExSetPledgeCrestLarge extends ClientPacket
 {
 	private int _length;
 	private byte[] _data = null;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_length = packet.readInt();
+		_length = readInt();
 		if (_length > 2176)
 		{
 			return;
 		}
 		
-		_data = packet.readBytes(_length);
+		_data = readBytes(_length);
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
 		if (_data == null)
 		{
 			return;
 		}
 		
-		final Player player = client.getPlayer();
+		final Player player = getPlayer();
 		if (player == null)
 		{
 			return;

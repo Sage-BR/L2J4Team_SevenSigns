@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,8 +20,10 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.enums.StatusUpdateType;
 import org.l2j.gameserver.model.WorldObject;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 
 public class StatusUpdate extends ServerPacket
@@ -72,17 +74,23 @@ public class StatusUpdate extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.STATUS_UPDATE.writeId(this);
-		writeInt(_objectId); // casterId
-		writeInt(_isVisible ? _casterObjectId : 0);
-		writeByte(_isVisible);
-		writeByte(_updates.size());
+		ServerPackets.STATUS_UPDATE.writeId(this, buffer);
+		buffer.writeInt(_objectId); // casterId
+		buffer.writeInt(_isVisible ? _casterObjectId : 0);
+		buffer.writeByte(_isVisible);
+		buffer.writeByte(_updates.size());
 		for (Entry<StatusUpdateType, Integer> entry : _updates.entrySet())
 		{
-			writeByte(entry.getKey().getClientId());
-			writeInt(entry.getValue());
+			buffer.writeByte(entry.getKey().getClientId());
+			buffer.writeInt(entry.getValue());
 		}
+	}
+	
+	@Override
+	public boolean canBeDropped(GameClient client)
+	{
+		return true;
 	}
 }

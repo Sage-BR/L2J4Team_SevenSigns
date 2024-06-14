@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,11 +18,13 @@ package org.l2j.gameserver.network.serverpackets.elementalspirits;
 
 import java.util.List;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.commons.util.CommonUtil;
 import org.l2j.gameserver.enums.ElementalType;
 import org.l2j.gameserver.model.ElementalSpirit;
 import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.model.holders.ElementalSpiritAbsorbItemHolder;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 import org.l2j.gameserver.network.serverpackets.ServerPacket;
 
@@ -41,31 +43,31 @@ public class ElementalSpiritAbsorbInfo extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_ELEMENTAL_SPIRIT_ABSORB_INFO.writeId(this);
+		ServerPackets.EX_ELEMENTAL_SPIRIT_ABSORB_INFO.writeId(this, buffer);
 		final ElementalSpirit spirit = _player.getElementalSpirit(ElementalType.of(_type));
 		if (spirit == null)
 		{
-			writeByte(0);
-			writeByte(0);
+			buffer.writeByte(0);
+			buffer.writeByte(0);
 			return;
 		}
-		writeByte(1);
-		writeByte(_type);
-		writeByte(spirit.getStage());
-		writeLong(spirit.getExperience());
-		writeLong(spirit.getExperienceToNextLevel()); // NextExp
-		writeLong(spirit.getExperienceToNextLevel()); // MaxExp
-		writeInt(spirit.getLevel());
-		writeInt(spirit.getMaxLevel());
+		buffer.writeByte(1);
+		buffer.writeByte(_type);
+		buffer.writeByte(spirit.getStage());
+		buffer.writeLong(spirit.getExperience());
+		buffer.writeLong(spirit.getExperienceToNextLevel()); // NextExp
+		buffer.writeLong(spirit.getExperienceToNextLevel()); // MaxExp
+		buffer.writeInt(spirit.getLevel());
+		buffer.writeInt(spirit.getMaxLevel());
 		final List<ElementalSpiritAbsorbItemHolder> absorbItems = spirit.getAbsorbItems();
-		writeInt(absorbItems.size()); // AbsorbCount
+		buffer.writeInt(absorbItems.size()); // AbsorbCount
 		for (ElementalSpiritAbsorbItemHolder absorbItem : absorbItems)
 		{
-			writeInt(absorbItem.getId());
-			writeInt(CommonUtil.zeroIfNullOrElse(_player.getInventory().getItemByItemId(absorbItem.getId()), item -> (int) item.getCount()));
-			writeInt(absorbItem.getExperience());
+			buffer.writeInt(absorbItem.getId());
+			buffer.writeInt(CommonUtil.zeroIfNullOrElse(_player.getInventory().getItemByItemId(absorbItem.getId()), item -> (int) item.getCount()));
+			buffer.writeInt(absorbItem.getExperience());
 		}
 	}
 }

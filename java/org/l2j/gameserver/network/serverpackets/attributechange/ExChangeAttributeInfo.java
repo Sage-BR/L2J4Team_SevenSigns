@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,8 +19,10 @@ package org.l2j.gameserver.network.serverpackets.attributechange;
 import java.util.EnumMap;
 import java.util.Map;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.enums.AttributeType;
 import org.l2j.gameserver.model.item.instance.Item;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 import org.l2j.gameserver.network.serverpackets.ServerPacket;
 
@@ -58,11 +60,11 @@ public class ExChangeAttributeInfo extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_CHANGE_ATTRIBUTE_INFO.writeId(this);
-		writeInt(_crystalItemId);
-		writeInt(_attributes);
-		writeInt(_itemObjId);
+		ServerPackets.EX_CHANGE_ATTRIBUTE_INFO.writeId(this, buffer);
+		buffer.writeInt(_crystalItemId);
+		buffer.writeInt(_attributes);
+		buffer.writeInt(_itemObjId);
 	}
 }

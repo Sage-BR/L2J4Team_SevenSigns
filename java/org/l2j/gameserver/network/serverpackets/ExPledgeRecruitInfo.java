@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,9 +18,11 @@ package org.l2j.gameserver.network.serverpackets;
 
 import java.util.Collection;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.data.sql.ClanTable;
 import org.l2j.gameserver.model.clan.Clan;
 import org.l2j.gameserver.model.clan.Clan.SubPledge;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 
 /**
@@ -36,19 +38,19 @@ public class ExPledgeRecruitInfo extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_PLEDGE_RECRUIT_INFO.writeId(this);
+		ServerPackets.EX_PLEDGE_RECRUIT_INFO.writeId(this, buffer);
 		final Collection<SubPledge> subPledges = _clan.getAllSubPledges();
-		writeString(_clan.getName());
-		writeString(_clan.getLeaderName());
-		writeInt(_clan.getLevel());
-		writeInt(_clan.getMembersCount());
-		writeInt(subPledges.size());
+		buffer.writeString(_clan.getName());
+		buffer.writeString(_clan.getLeaderName());
+		buffer.writeInt(_clan.getLevel());
+		buffer.writeInt(_clan.getMembersCount());
+		buffer.writeInt(subPledges.size());
 		for (SubPledge subPledge : subPledges)
 		{
-			writeInt(subPledge.getId());
-			writeString(subPledge.getName());
+			buffer.writeInt(subPledge.getId());
+			buffer.writeString(subPledge.getName());
 		}
 	}
 }

@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,14 +16,16 @@
  */
 package org.l2j.loginserver.network;
 
-import org.l2j.commons.crypt.NewCrypt;
-import org.l2j.commons.network.EncryptionInterface;
+import java.io.IOException;
+
+import org.l2j.commons.network.Buffer;
 import org.l2j.commons.util.Rnd;
+import org.l2j.loginserver.crypt.NewCrypt;
 
 /**
  * @author KenM
  */
-public class LoginEncryption implements EncryptionInterface
+public class LoginEncryption
 {
 	private static final byte[] STATIC_BLOWFISH_KEY =
 	{
@@ -46,77 +48,44 @@ public class LoginEncryption implements EncryptionInterface
 	};
 	
 	private static final NewCrypt _STATIC_CRYPT = new NewCrypt(STATIC_BLOWFISH_KEY);
+	
 	private NewCrypt _crypt = null;
 	private boolean _static = true;
 	
-	/**
-	 * Method to initialize the the blowfish cipher with dynamic key.
-	 * @param key the blowfish key to initialize the dynamic blowfish cipher with
-	 */
 	public void setKey(byte[] key)
 	{
 		_crypt = new NewCrypt(key);
 	}
 	
-	/**
-	 * Method to decrypt an incoming login client packet.
-	 * @param raw array with encrypted data
-	 * @param offset offset where the encrypted data is located
-	 * @param size number of bytes of encrypted data
-	 */
-	@Override
-	public void decrypt(byte[] raw, int offset, int size)
+	public boolean decrypt(Buffer data, final int offset, final int size) throws IOException
 	{
-		if ((size % 8) != 0)
-		{
-			// throw new IOException("size have to be multiple of 8");
-		}
-		if ((offset + size) > raw.length)
-		{
-			// throw new IOException("raw array too short for size starting from offset");
-		}
-		
-		_crypt.decrypt(raw, offset, size);
+		_crypt.decrypt(data, offset, size);
+		return NewCrypt.verifyChecksum(data, offset, size);
 	}
 	
-	/**
-	 * Method to encrypt an outgoing packet to login client.<br>
-	 * Performs padding and resizing of data array.
-	 * @param raw array with plain data
-	 * @param offset offset where the plain data is located
-	 * @param length number of bytes of plain data
-	 */
-	@Override
-	public void encrypt(byte[] raw, int offset, int length)
+	public int encryptedSize(int dataSize)
 	{
-		// reserve checksum
-		int size = length + 4;
-		
+		dataSize += _static ? 8 : 4;
+		dataSize += 8 - (dataSize % 8);
+		dataSize += 8;
+		return dataSize;
+	}
+	
+	public boolean encrypt(Buffer data, final int offset, int size) throws IOException
+	{
+		final int encryptedSize = offset + encryptedSize(size);
+		data.limit(encryptedSize);
 		if (_static)
 		{
-			// reserve for XOR "key"
-			size += 4;
-			
-			// padding
-			size += 8 - (size % 8);
-			if ((offset + size) > raw.length)
-			{
-				// throw new IOException("packet too long");
-			}
-			NewCrypt.encXORPass(raw, offset, size, Rnd.nextInt());
-			_STATIC_CRYPT.crypt(raw, offset, size);
+			NewCrypt.encXORPass(data, offset, encryptedSize, Rnd.nextInt());
+			_STATIC_CRYPT.crypt(data, offset, encryptedSize);
 			_static = false;
 		}
 		else
 		{
-			// padding
-			size += 8 - (size % 8);
-			if ((offset + size) > raw.length)
-			{
-				// throw new IOException("packet too long");
-			}
-			NewCrypt.appendChecksum(raw, offset, size);
-			_crypt.crypt(raw, offset, size);
+			NewCrypt.appendChecksum(data, offset, encryptedSize);
+			_crypt.crypt(data, offset, encryptedSize);
 		}
+		return true;
 	}
 }

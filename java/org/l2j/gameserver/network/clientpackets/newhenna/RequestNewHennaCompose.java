@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,7 +16,6 @@
  */
 package org.l2j.gameserver.network.clientpackets.newhenna;
 
-import org.l2j.commons.network.ReadablePacket;
 import org.l2j.commons.util.Rnd;
 import org.l2j.gameserver.data.xml.HennaCombinationData;
 import org.l2j.gameserver.data.xml.HennaData;
@@ -27,7 +26,6 @@ import org.l2j.gameserver.model.item.henna.CombinationHenna;
 import org.l2j.gameserver.model.item.henna.CombinationHennaReward;
 import org.l2j.gameserver.model.item.henna.Henna;
 import org.l2j.gameserver.model.itemcontainer.Inventory;
-import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.PacketLogger;
 import org.l2j.gameserver.network.clientpackets.ClientPacket;
 import org.l2j.gameserver.network.serverpackets.InventoryUpdate;
@@ -36,24 +34,24 @@ import org.l2j.gameserver.network.serverpackets.newhenna.NewHennaPotenCompose;
 /**
  * @author Index, Serenitty
  */
-public class RequestNewHennaCompose implements ClientPacket
+public class RequestNewHennaCompose extends ClientPacket
 {
 	private int _slotOneIndex;
 	private int _slotOneItemId;
 	private int _slotTwoItemId;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_slotOneIndex = packet.readInt();
-		_slotOneItemId = packet.readInt();
-		_slotTwoItemId = packet.readInt();
+		_slotOneIndex = readInt();
+		_slotOneItemId = readInt();
+		_slotTwoItemId = readInt();
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
-		final Player player = client.getPlayer();
+		final Player player = getPlayer();
 		if (player == null)
 		{
 			return;

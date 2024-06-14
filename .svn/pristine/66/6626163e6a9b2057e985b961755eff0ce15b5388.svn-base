@@ -1,0 +1,8 @@
+<html><body>Antharas' Tracker Herphah:<br>
+Shh, be quiet! Antharas' lair is nearby.<br>
+However, we can't be certain if he is even in there.<br>
+It's strange, but I sense the Dimensional Vortex nearby. If Antharas used it to move to another place, that's not good for us.<br>
+I'm going through the Vortex to fight Antharas. Are you with me?<br>
+<Button ALIGN="LEFT" ICON="TELEPORT" action="bypass -h Quest Antharas TELEPORT_INSIDE_LIST">Step into the Dimensional Vortex</button>
+<Button ALIGN="LEFT" ICON="NORMAL" action="bypass -h Quest Antharas TELEPORT_GIRAN">Say you'll come back later and go to Giran</button>
+</body></html>

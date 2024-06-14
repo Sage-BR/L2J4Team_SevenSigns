@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -35,7 +35,7 @@ public class AutoPotionTaskManager implements Runnable
 	
 	protected AutoPotionTaskManager()
 	{
-		ThreadPool.scheduleAtFixedRate(this, 0, 1000);
+		ThreadPool.schedulePriorityTaskAtFixedRate(this, 0, 1000);
 	}
 	
 	@Override

@@ -18,13 +18,11 @@
  */
 package org.l2j.gameserver.network.clientpackets.compound;
 
-import org.l2j.commons.network.ReadablePacket;
 import org.l2j.gameserver.data.xml.CombinationItemsData;
 import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.model.actor.request.CompoundRequest;
 import org.l2j.gameserver.model.item.combination.CombinationItem;
 import org.l2j.gameserver.model.item.instance.Item;
-import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.SystemMessageId;
 import org.l2j.gameserver.network.clientpackets.ClientPacket;
 import org.l2j.gameserver.network.serverpackets.compound.ExEnchantRetryToPutItemFail;
@@ -33,22 +31,22 @@ import org.l2j.gameserver.network.serverpackets.compound.ExEnchantRetryToPutItem
 /**
  * @author Sdw
  */
-public class RequestNewEnchantRetryToPutItems implements ClientPacket
+public class RequestNewEnchantRetryToPutItems extends ClientPacket
 {
 	private int _firstItemObjectId;
 	private int _secondItemObjectId;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_firstItemObjectId = packet.readInt();
-		_secondItemObjectId = packet.readInt();
+		_firstItemObjectId = readInt();
+		_secondItemObjectId = readInt();
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
-		final Player player = client.getPlayer();
+		final Player player = getPlayer();
 		if (player == null)
 		{
 			return;
@@ -56,22 +54,22 @@ public class RequestNewEnchantRetryToPutItems implements ClientPacket
 		
 		if (player.isInStoreMode())
 		{
-			client.sendPacket(SystemMessageId.YOU_CANNOT_DO_THAT_WHILE_IN_A_PRIVATE_STORE_OR_PRIVATE_WORKSHOP);
-			client.sendPacket(ExEnchantRetryToPutItemFail.STATIC_PACKET);
+			player.sendPacket(SystemMessageId.YOU_CANNOT_DO_THAT_WHILE_IN_A_PRIVATE_STORE_OR_PRIVATE_WORKSHOP);
+			player.sendPacket(ExEnchantRetryToPutItemFail.STATIC_PACKET);
 			return;
 		}
 		
 		if (player.isProcessingTransaction() || player.isProcessingRequest())
 		{
-			client.sendPacket(SystemMessageId.YOU_CANNOT_USE_THIS_SYSTEM_DURING_TRADING_PRIVATE_STORE_AND_WORKSHOP_SETUP);
-			client.sendPacket(ExEnchantRetryToPutItemFail.STATIC_PACKET);
+			player.sendPacket(SystemMessageId.YOU_CANNOT_USE_THIS_SYSTEM_DURING_TRADING_PRIVATE_STORE_AND_WORKSHOP_SETUP);
+			player.sendPacket(ExEnchantRetryToPutItemFail.STATIC_PACKET);
 			return;
 		}
 		
 		final CompoundRequest request = new CompoundRequest(player);
 		if (!player.addRequest(request))
 		{
-			client.sendPacket(ExEnchantRetryToPutItemFail.STATIC_PACKET);
+			player.sendPacket(ExEnchantRetryToPutItemFail.STATIC_PACKET);
 			return;
 		}
 		
@@ -80,7 +78,7 @@ public class RequestNewEnchantRetryToPutItems implements ClientPacket
 		final Item itemOne = request.getItemOne();
 		if (itemOne == null)
 		{
-			client.sendPacket(ExEnchantRetryToPutItemFail.STATIC_PACKET);
+			player.sendPacket(ExEnchantRetryToPutItemFail.STATIC_PACKET);
 			player.removeRequest(request.getClass());
 			return;
 		}
@@ -90,7 +88,7 @@ public class RequestNewEnchantRetryToPutItems implements ClientPacket
 		final Item itemTwo = request.getItemTwo();
 		if (itemTwo == null)
 		{
-			client.sendPacket(ExEnchantRetryToPutItemFail.STATIC_PACKET);
+			player.sendPacket(ExEnchantRetryToPutItemFail.STATIC_PACKET);
 			player.removeRequest(request.getClass());
 			return;
 		}
@@ -99,11 +97,11 @@ public class RequestNewEnchantRetryToPutItems implements ClientPacket
 		final CombinationItem combinationItem = CombinationItemsData.getInstance().getItemsBySlots(itemOne.getId(), itemOne.getEnchantLevel(), itemTwo.getId(), itemTwo.getEnchantLevel());
 		if (combinationItem == null)
 		{
-			client.sendPacket(ExEnchantRetryToPutItemFail.STATIC_PACKET);
+			player.sendPacket(ExEnchantRetryToPutItemFail.STATIC_PACKET);
 			player.removeRequest(request.getClass());
 			return;
 		}
 		
-		client.sendPacket(ExEnchantRetryToPutItemOk.STATIC_PACKET);
+		player.sendPacket(ExEnchantRetryToPutItemOk.STATIC_PACKET);
 	}
 }

@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,6 +16,8 @@
  */
 package org.l2j.gameserver.network.serverpackets;
 
+import org.l2j.commons.network.WritableBuffer;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 
 public class ExRegenMax extends ServerPacket
@@ -32,12 +34,12 @@ public class ExRegenMax extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_REGEN_MAX.writeId(this);
-		writeInt(1);
-		writeInt(_time);
-		writeInt(_tickInterval);
-		writeDouble(_amountPerTick);
+		ServerPackets.EX_REGEN_MAX.writeId(this, buffer);
+		buffer.writeInt(1);
+		buffer.writeInt(_time);
+		buffer.writeInt(_tickInterval);
+		buffer.writeDouble(_amountPerTick);
 	}
 }

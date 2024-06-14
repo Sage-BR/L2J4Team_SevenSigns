@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,11 +16,13 @@
  */
 package org.l2j.gameserver.network.serverpackets;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.enums.ExManagePartyRoomMemberType;
 import org.l2j.gameserver.enums.MatchingMemberType;
 import org.l2j.gameserver.instancemanager.MapRegionManager;
 import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.model.matching.CommandChannelMatchingRoom;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 
 /**
@@ -40,15 +42,15 @@ public class ExManageMpccRoomMember extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_MANAGE_PARTY_ROOM_MEMBER.writeId(this);
-		writeInt(_type.ordinal());
-		writeInt(_player.getObjectId());
-		writeString(_player.getName());
-		writeInt(_player.getClassId().getId());
-		writeInt(_player.getLevel());
-		writeInt(MapRegionManager.getInstance().getBBs(_player.getLocation()));
-		writeInt(_memberType.ordinal());
+		ServerPackets.EX_MANAGE_PARTY_ROOM_MEMBER.writeId(this, buffer);
+		buffer.writeInt(_type.ordinal());
+		buffer.writeInt(_player.getObjectId());
+		buffer.writeString(_player.getName());
+		buffer.writeInt(_player.getClassId().getId());
+		buffer.writeInt(_player.getLevel());
+		buffer.writeInt(MapRegionManager.getInstance().getBBs(_player.getLocation()));
+		buffer.writeInt(_memberType.ordinal());
 	}
 }

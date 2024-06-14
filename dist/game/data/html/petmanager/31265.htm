@@ -1,17 +1,19 @@
-<html><body>Pet Manager Annette:<br>
-<!-- People too easily ignore the benefits Striders have provided to civilization. Think about it! Because of Striders, battle tactics for siege warfare and large-scale blood alliance wars have changed greatly. And transportation of goods between towns has become easier, helping accelerate the flow of trade.<br>
-Perhaps I should write a book, eh? "The Impact of Striders on the History of the Continent." Heh!<br>
-<Button ALIGN=LEFT ICON="NORMAL" action="bypass -h npc_%objectId%_Link petmanager/instructions.htm">"Tell me how to raise a pet."</Button>
-<Button ALIGN=LEFT ICON="NORMAL" action="bypass -h npc_%objectId%_Buy 3126500">"Let's trade pet items."</Button>
-<Button ALIGN=LEFT ICON="NORMAL" action="bypass -h npc_%objectId%_exc_multisell 1000">"I want to exchange pet equipment for higher grade equipment."</Button>
-<Button ALIGN=LEFT ICON="NORMAL" action="bypass -h npc_%objectId%_multisell 999">"I'd like to exchange Hatchling equipment for Strider equipment."</Button>
-<Button ALIGN=LEFT ICON="NORMAL" action="bypass -h npc_%objectId%_Link petmanager/evolve.htm">"I want to evolve a pet."</Button>
-<Button ALIGN=LEFT ICON="NORMAL" action="bypass -h npc_%objectId%_Link petmanager/exchange.htm">"Here is a Pet Coupon. Give me a pet."</Button>
-<Button ALIGN=LEFT ICON="NORMAL" action="bypass -h npc_%objectId%_TerritoryStatus">"Can you tell me about the local lord and tax rate?"</Button>
-<Button ALIGN=LEFT ICON="QUEST" action="bypass -h npc_%objectId%_Quest">Quest</Button> -->
-The Pet Manager Association is always happy to assist you and your pet.<br>
-<Button ALIGN=LEFT ICON="NORMAL" action="bypass -h npc_%objectId%_pet_extract_window">Pet Extraction</Button>
-<Button ALIGN=LEFT ICON="NORMAL" action="bypass -h npc_%objectId%_Buy 100">Buy pet and servitor equipment</Button>
-<Button ALIGN=LEFT ICON="QUEST" action="bypass -h npc_%objectId%_Quest">Quest</Button>
-<Button ALIGN=LEFT ICON="NORMAL" action="bypass -h npc_%objectId%_Link petmanager/instructions.htm">Learn about pets</Button>
+<html><head><body scroll="no">
+<table border=0 cellpadding=0 cellspacing=0 width=292 height=358 background="L2UI_CH3.refinewnd_back_Pattern">
+<tr><td valign="top" align="center">
+ <!-- Invitation Emblem -->
+ <table border=0 cellpadding=0 cellspacing=0>
+  <tr><td width=276 height=185 background="L2UI_EPIC.HtmlWnd.HtmlWnd_PetDialogWnd_IMG"></td></tr>
+ </table>
+ <!-- //Invitation Emblem -->
+	<table border=0 cellpadding=0 cellspacing=0 width="272">
+		<tr><td align="center" height="30"><font color="af9878">The Pet Manager Association is always happy to assist you and your pet.</font></td></tr>
+		<tr><td height="10"></td></tr>
+		<tr><td align=center><button action="bypass -h npc_%objectId%_pet_extract_window" value="Pet power extraction" width=200 height=31 back="L2UI_CT1.HtmlWnd_DF_Awake_Down" fore="L2UI_CT1.HtmlWnd_DF_Awake"></td></tr>
+		<tr><td align=center><button action="bypass -h npc_%objectId%_Buy 100" value="Pet supplies" width=200 height=31 back="L2UI_CT1.OlympiadWnd.OlympiadWnd_DF_BuyEtc_Down" fore="L2UI_CT1.OlympiadWnd.OlympiadWnd_DF_BuyEtc"></td></tr>
+		<tr><td align=center><button action="bypass -h npc_%objectId%_Multisell 100" value="Sealed Pet Necklace" width=200 height=31 back="L2UI_CT1.OlympiadWnd.OlympiadWnd_DF_BuyEtc_Down" fore="L2UI_CT1.OlympiadWnd.OlympiadWnd_DF_BuyEtc"></td></tr>
+		<tr><td align=center><button action="bypass npc_%objectId%_Link petmanager/instructions1.htm" value="Learn about pets" width=200 height=31 back="BranchSys3.icon2.ArmyTrainingInfo_down" fore="BranchSys3.icon2.ArmyTrainingInfo"></td></tr>
+		<tr><td height="10"></td></tr>
+	</table>
+</td></tr></table>
 </body></html>

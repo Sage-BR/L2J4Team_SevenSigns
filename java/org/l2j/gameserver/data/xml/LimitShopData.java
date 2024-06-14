@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -108,7 +108,8 @@ public class LimitShopData implements IXmlReader
 							ingredientEnchants[4] = 0;
 							int productionId = 0;
 							int accountDailyLimit = 0;
-							int accountMontlyLimit = 0;
+							int accountWeeklyLimit = 0;
+							int accountMonthlyLimit = 0;
 							int accountBuyLimit = 0;
 							for (Node b = d.getFirstChild(); b != null; b = b.getNextSibling())
 							{
@@ -122,11 +123,16 @@ public class LimitShopData implements IXmlReader
 									
 									if (ingredientId > 0)
 									{
-										final ItemTemplate item = ItemData.getInstance().getTemplate(ingredientId);
-										if (item == null)
+										final ItemTemplate template = ItemData.getInstance().getTemplate(ingredientId);
+										if (template == null)
 										{
 											LOGGER.severe(getClass().getSimpleName() + ": Item template null for itemId: " + productionId + " productId: " + id);
 											continue;
+										}
+										
+										if ((ingredientQuantity > 1) && !template.isStackable() && !template.isEquipable())
+										{
+											LOGGER.warning(getClass().getSimpleName() + ": Item template for itemId: " + ingredientId + " should be stackable!");
 										}
 									}
 									
@@ -197,7 +203,8 @@ public class LimitShopData implements IXmlReader
 								{
 									productionId = parseInteger(attrs, "id");
 									accountDailyLimit = parseInteger(attrs, "accountDailyLimit", 0);
-									accountMontlyLimit = parseInteger(attrs, "accountMontlyLimit", 0);
+									accountWeeklyLimit = parseInteger(attrs, "accountWeeklyLimit", 0);
+									accountMonthlyLimit = parseInteger(attrs, "accountMonthlyLimit", 0);
 									accountBuyLimit = parseInteger(attrs, "accountBuyLimit", 0);
 									
 									final ItemTemplate item = ItemData.getInstance().getTemplate(productionId);
@@ -209,7 +216,7 @@ public class LimitShopData implements IXmlReader
 								}
 							}
 							
-							_products.add(new LimitShopProductHolder(id, category, minLevel, maxLevel, ingredientIds, ingredientQuantities, ingredientEnchants, productionId, 1, 100, false, 0, 0, 0, 0, false, 0, 0, 0, false, 0, 0, 0, false, 0, 0, false, accountDailyLimit, accountMontlyLimit, accountBuyLimit));
+							_products.add(new LimitShopProductHolder(id, category, minLevel, maxLevel, ingredientIds, ingredientQuantities, ingredientEnchants, productionId, 1, 100, false, 0, 0, 0, 0, false, 0, 0, 0, false, 0, 0, 0, false, 0, 0, false, accountDailyLimit, accountWeeklyLimit, accountMonthlyLimit, accountBuyLimit));
 						}
 					}
 				}

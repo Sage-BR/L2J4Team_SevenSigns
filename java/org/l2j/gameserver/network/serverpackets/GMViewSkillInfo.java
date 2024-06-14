@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,8 +18,10 @@ package org.l2j.gameserver.network.serverpackets;
 
 import java.util.Collection;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.model.skill.Skill;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 
 public class GMViewSkillInfo extends ServerPacket
@@ -34,21 +36,21 @@ public class GMViewSkillInfo extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.GM_VIEW_SKILL_INFO.writeId(this);
-		writeString(_player.getName());
-		writeInt(_skills.size());
+		ServerPackets.GM_VIEW_SKILL_INFO.writeId(this, buffer);
+		buffer.writeString(_player.getName());
+		buffer.writeInt(_skills.size());
 		final boolean isDisabled = (_player.getClan() != null) && (_player.getClan().getReputationScore() < 0);
 		for (Skill skill : _skills)
 		{
-			writeInt(skill.isPassive());
-			writeShort(skill.getDisplayLevel());
-			writeShort(skill.getSubLevel());
-			writeInt(skill.getDisplayId());
-			writeInt(0);
-			writeByte(isDisabled && skill.isClanSkill());
-			writeByte(skill.isEnchantable());
+			buffer.writeInt(skill.isPassive());
+			buffer.writeShort(skill.getDisplayLevel());
+			buffer.writeShort(skill.getSubLevel());
+			buffer.writeInt(skill.getDisplayId());
+			buffer.writeInt(0);
+			buffer.writeByte(isDisabled && skill.isClanSkill());
+			buffer.writeByte(skill.isEnchantable());
 		}
 	}
 }

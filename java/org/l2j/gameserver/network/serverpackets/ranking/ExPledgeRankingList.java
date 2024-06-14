@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,10 +23,12 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.stream.Collectors;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.data.sql.ClanTable;
 import org.l2j.gameserver.instancemanager.RankManager;
 import org.l2j.gameserver.model.StatSet;
 import org.l2j.gameserver.model.actor.Player;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 import org.l2j.gameserver.network.serverpackets.ServerPacket;
 
@@ -49,46 +51,46 @@ public class ExPledgeRankingList extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_PLEDGE_RANKING_LIST.writeId(this);
-		writeByte(_category);
+		ServerPackets.EX_PLEDGE_RANKING_LIST.writeId(this, buffer);
+		buffer.writeByte(_category);
 		if (!_rankingClanList.isEmpty())
 		{
-			writeScopeData(_category == 0, new ArrayList<>(_rankingClanList.entrySet()), new ArrayList<>(_snapshotClanList.entrySet()));
+			writeScopeData(buffer, _category == 0, new ArrayList<>(_rankingClanList.entrySet()), new ArrayList<>(_snapshotClanList.entrySet()));
 		}
 		else
 		{
-			writeInt(0);
+			buffer.writeInt(0);
 		}
 	}
 	
-	private void writeScopeData(boolean isTop150, List<Entry<Integer, StatSet>> list, List<Entry<Integer, StatSet>> snapshot)
+	private void writeScopeData(WritableBuffer buffer, boolean isTop150, List<Entry<Integer, StatSet>> list, List<Entry<Integer, StatSet>> snapshot)
 	{
 		Entry<Integer, StatSet> playerData = list.stream().filter(it -> it.getValue().getInt("clan_id", 0) == _player.getClanId()).findFirst().orElse(null);
 		final int indexOf = list.indexOf(playerData);
 		final List<Entry<Integer, StatSet>> limited = isTop150 ? list.stream().limit(150).collect(Collectors.toList()) : playerData == null ? Collections.emptyList() : list.subList(Math.max(0, indexOf - 10), Math.min(list.size(), indexOf + 10));
-		writeInt(limited.size());
+		buffer.writeInt(limited.size());
 		int rank = 1;
 		for (Entry<Integer, StatSet> data : limited.stream().sorted(Entry.comparingByKey()).collect(Collectors.toList()))
 		{
 			int curRank = rank++;
 			final StatSet player = data.getValue();
-			writeInt(!isTop150 ? data.getKey() : curRank);
+			buffer.writeInt(!isTop150 ? data.getKey() : curRank);
 			for (Entry<Integer, StatSet> ssData : snapshot.stream().sorted(Entry.comparingByKey()).collect(Collectors.toList()))
 			{
 				final StatSet snapshotData = ssData.getValue();
 				if (player.getInt("clan_id") == snapshotData.getInt("clan_id"))
 				{
-					writeInt(!isTop150 ? ssData.getKey() : curRank); // server rank snapshot
+					buffer.writeInt(!isTop150 ? ssData.getKey() : curRank); // server rank snapshot
 				}
 			}
-			writeSizedString(player.getString("clan_name"));
-			writeInt(player.getInt("clan_level"));
-			writeSizedString(player.getString("char_name"));
-			writeInt(player.getInt("level"));
-			writeInt(ClanTable.getInstance().getClan(player.getInt("clan_id")) != null ? ClanTable.getInstance().getClan(player.getInt("clan_id")).getMembersCount() : 0);
-			writeInt((int) Math.min(Integer.MAX_VALUE, player.getLong("exp")));
+			buffer.writeSizedString(player.getString("clan_name"));
+			buffer.writeInt(player.getInt("clan_level"));
+			buffer.writeSizedString(player.getString("char_name"));
+			buffer.writeInt(player.getInt("level"));
+			buffer.writeInt(ClanTable.getInstance().getClan(player.getInt("clan_id")) != null ? ClanTable.getInstance().getClan(player.getInt("clan_id")).getMembersCount() : 0);
+			buffer.writeInt((int) Math.min(Integer.MAX_VALUE, player.getLong("exp")));
 		}
 	}
 }

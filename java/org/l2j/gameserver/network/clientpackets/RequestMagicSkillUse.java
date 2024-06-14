@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,36 +16,34 @@
  */
 package org.l2j.gameserver.network.clientpackets;
 
-import org.l2j.commons.network.ReadablePacket;
 import org.l2j.gameserver.data.xml.SkillData;
 import org.l2j.gameserver.model.actor.Playable;
 import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.model.actor.Summon;
 import org.l2j.gameserver.model.skill.CommonSkill;
 import org.l2j.gameserver.model.skill.Skill;
-import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.SystemMessageId;
 import org.l2j.gameserver.network.serverpackets.ActionFailed;
 
-public class RequestMagicSkillUse implements ClientPacket
+public class RequestMagicSkillUse extends ClientPacket
 {
 	private int _magicId;
 	private boolean _ctrlPressed;
 	private boolean _shiftPressed;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_magicId = packet.readInt(); // Identifier of the used skill
-		_ctrlPressed = packet.readInt() != 0; // True if it's a ForceAttack : Ctrl pressed
-		_shiftPressed = packet.readByte() != 0; // True if Shift pressed
+		_magicId = readInt(); // Identifier of the used skill
+		_ctrlPressed = readInt() != 0; // True if it's a ForceAttack : Ctrl pressed
+		_shiftPressed = readByte() != 0; // True if Shift pressed
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
 		// Get the current Player of the player
-		final Player player = client.getPlayer();
+		final Player player = getPlayer();
 		if (player == null)
 		{
 			return;

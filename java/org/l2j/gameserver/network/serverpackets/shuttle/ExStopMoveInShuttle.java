@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,8 +16,10 @@
  */
 package org.l2j.gameserver.network.serverpackets.shuttle;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.model.Location;
 import org.l2j.gameserver.model.actor.Player;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 import org.l2j.gameserver.network.serverpackets.ServerPacket;
 
@@ -40,14 +42,14 @@ public class ExStopMoveInShuttle extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_STOP_MOVE_IN_SHUTTLE.writeId(this);
-		writeInt(_objectId);
-		writeInt(_boatId);
-		writeInt(_pos.getX());
-		writeInt(_pos.getY());
-		writeInt(_pos.getZ());
-		writeInt(_heading);
+		ServerPackets.EX_STOP_MOVE_IN_SHUTTLE.writeId(this, buffer);
+		buffer.writeInt(_objectId);
+		buffer.writeInt(_boatId);
+		buffer.writeInt(_pos.getX());
+		buffer.writeInt(_pos.getY());
+		buffer.writeInt(_pos.getZ());
+		buffer.writeInt(_heading);
 	}
 }

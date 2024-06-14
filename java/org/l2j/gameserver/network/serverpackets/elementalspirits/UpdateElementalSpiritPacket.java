@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,6 +16,7 @@
  */
 package org.l2j.gameserver.network.serverpackets.elementalspirits;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.enums.ElementalType;
 import org.l2j.gameserver.model.ElementalSpirit;
 import org.l2j.gameserver.model.actor.Player;
@@ -36,10 +37,10 @@ public abstract class UpdateElementalSpiritPacket extends AbstractElementalSpiri
 		_update = update;
 	}
 	
-	protected void writeUpdate()
+	protected void writeUpdate(WritableBuffer buffer)
 	{
-		writeByte(_update);
-		writeByte(_type);
+		buffer.writeByte(_update);
+		buffer.writeByte(_type);
 		if (_update)
 		{
 			final ElementalSpirit spirit = _player.getElementalSpirit(ElementalType.of(_type));
@@ -47,8 +48,8 @@ public abstract class UpdateElementalSpiritPacket extends AbstractElementalSpiri
 			{
 				return;
 			}
-			writeByte(_type);
-			writeSpiritInfo(spirit);
+			buffer.writeByte(_type);
+			writeSpiritInfo(buffer, spirit);
 		}
 	}
 }

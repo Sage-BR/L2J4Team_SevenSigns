@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:element name="list" type="listType" />
+	<xs:complexType name="paramType">
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute type="xs:string" name="name" use="optional" />
+				<xs:attribute type="xs:string" name="value" use="optional" />
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="configurationType">
+		<xs:sequence>
+			<xs:element type="paramType" name="param" maxOccurs="unbounded" minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="itemType">
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute type="xs:int" name="id" use="optional" />
+				<xs:attribute type="xs:string" name="count" use="optional" />
+				<xs:attribute type="xs:double" name="chance" use="optional" />
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="rewardType">
+		<xs:sequence>
+			<xs:element type="itemType" name="item" maxOccurs="unbounded" minOccurs="0" />
+		</xs:sequence>
+		<xs:attribute type="RarityType" name="rank" use="optional" />
+	</xs:complexType>
+	<xs:complexType name="rewardsType">
+		<xs:sequence>
+			<xs:element type="rewardType" name="reward" maxOccurs="unbounded" minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="gameType">
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute type="xs:int" name="gameCount" use="optional" />
+				<xs:attribute type="xs:string" name="costCount" use="optional" />
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="rollType">
+		<xs:sequence>
+			<xs:element type="gameType" name="game" maxOccurs="unbounded" minOccurs="0" />
+		</xs:sequence>
+		<xs:attribute type="xs:int" name="currencyItemId" />
+	</xs:complexType>
+	<xs:complexType name="listType">
+		<xs:sequence>
+			<xs:element type="configurationType" name="configuration" />
+			<xs:element type="rewardsType" name="rewards" />
+			<xs:element type="rollType" name="roll" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="RarityType" final="restriction" >
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="RANK_UR" />
+			<xs:enumeration value="RANK_SR" />
+			<xs:enumeration value="RANK_R" />
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

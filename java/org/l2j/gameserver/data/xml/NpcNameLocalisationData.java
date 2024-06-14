@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -58,7 +58,7 @@ public class NpcNameLocalisationData implements IXmlReader
 					continue;
 				}
 				
-				NPC_NAME_LOCALISATIONS.put(lang, new ConcurrentHashMap<Integer, String[]>());
+				NPC_NAME_LOCALISATIONS.put(lang, new ConcurrentHashMap<>());
 				_lang = lang;
 				parseDatapackFile("data/lang/" + lang + "/NpcNameLocalisation.xml");
 				final int count = NPC_NAME_LOCALISATIONS.get(lang).values().size();

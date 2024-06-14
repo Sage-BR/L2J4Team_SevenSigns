@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,8 +18,10 @@ package org.l2j.gameserver.network.serverpackets;
 
 import java.util.Collection;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.enums.AcquireSkillType;
 import org.l2j.gameserver.model.SkillLearn;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 
 /**
@@ -37,22 +39,22 @@ public class ExAcquirableSkillListByClass extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_ACQUIRABLE_SKILL_LIST_BY_CLASS.writeId(this);
-		writeShort(_type.getId());
-		writeShort(_learnable.size());
+		ServerPackets.EX_ACQUIRABLE_SKILL_LIST_BY_CLASS.writeId(this, buffer);
+		buffer.writeShort(_type.getId());
+		buffer.writeShort(_learnable.size());
 		for (SkillLearn skill : _learnable)
 		{
-			writeInt(skill.getSkillId());
-			writeShort(skill.getSkillLevel());
-			writeShort(skill.getSkillLevel());
-			writeByte(skill.getGetLevel());
-			writeLong(skill.getLevelUpSp());
-			writeByte(skill.getRequiredItems().size());
+			buffer.writeInt(skill.getSkillId());
+			buffer.writeShort(skill.getSkillLevel());
+			buffer.writeShort(skill.getSkillLevel());
+			buffer.writeByte(skill.getGetLevel());
+			buffer.writeLong(skill.getLevelUpSp());
+			buffer.writeByte(skill.getRequiredItems().size());
 			if (_type == AcquireSkillType.SUBPLEDGE)
 			{
-				writeShort(0);
+				buffer.writeShort(0);
 			}
 		}
 	}

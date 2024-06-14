@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,10 +20,12 @@ import java.time.LocalDate;
 import java.util.Collection;
 import java.util.Collections;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.commons.time.SchedulingPattern;
 import org.l2j.gameserver.data.xml.DailyMissionData;
 import org.l2j.gameserver.model.DailyMissionDataHolder;
 import org.l2j.gameserver.model.actor.Player;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 import org.l2j.gameserver.network.serverpackets.ServerPacket;
 
@@ -52,29 +54,29 @@ public class ExOneDayReceiveRewardList extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
 		if (!DailyMissionData.getInstance().isAvailable())
 		{
 			return;
 		}
 		
-		ServerPackets.EX_ONE_DAY_RECEIVE_REWARD_LIST.writeId(this);
-		writeInt(_dayRemainTime);
-		writeInt(_weekRemainTime);
-		writeInt(_monthRemainTime);
-		writeByte(0x17);
-		writeInt(_player.getClassId().getId());
-		writeInt(LocalDate.now().getDayOfWeek().ordinal()); // Day of week
-		writeInt(_rewards.size());
+		ServerPackets.EX_ONE_DAY_RECEIVE_REWARD_LIST.writeId(this, buffer);
+		buffer.writeInt(_dayRemainTime);
+		buffer.writeInt(_weekRemainTime);
+		buffer.writeInt(_monthRemainTime);
+		buffer.writeByte(0x17);
+		buffer.writeInt(_player.getClassId().getId());
+		buffer.writeInt(LocalDate.now().getDayOfWeek().ordinal()); // Day of week
+		buffer.writeInt(_rewards.size());
 		for (DailyMissionDataHolder reward : _rewards)
 		{
-			writeShort(reward.getId());
+			buffer.writeShort(reward.getId());
 			final int status = reward.getStatus(_player);
-			writeByte(status);
-			writeByte(reward.getRequiredCompletions() > 1);
-			writeInt(reward.getParams().getInt("level", -1) == -1 ? (status == 1 ? 0 : reward.getProgress(_player)) : _player.getLevel());
-			writeInt(reward.getRequiredCompletions());
+			buffer.writeByte(status);
+			buffer.writeByte(reward.getRequiredCompletions() > 1);
+			buffer.writeInt(reward.getParams().getInt("level", -1) == -1 ? (status == 1 ? 0 : reward.getProgress(_player)) : _player.getLevel());
+			buffer.writeInt(reward.getRequiredCompletions());
 		}
 	}
 }

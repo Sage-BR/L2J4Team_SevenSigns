@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/multisell.xsd">
+	<npcs>
+		<npc>-1</npc> <!-- Item Multisell -->
+	</npcs>
+	<!-- +8 Armor of Protection Coupon (Sealed) (Time-limited) - Sealed (100155) -->
+	<item>
+		<ingredient id="100155" count="1" /> <!-- +8 Armor of Protection Coupon (Sealed) (Time-limited) - Sealed -->
+		<production id="100144" count="1" /> <!-- Package: +8 Breastplate of Protection (Sealed) - Sealed -->
+	</item>
+	<item>
+		<ingredient id="100155" count="1" /> <!-- +8 Armor of Protection Coupon (Sealed) (Time-limited) - Sealed -->
+		<production id="100145" count="1" /> <!-- Package: +8 Gaiters of Protection (Sealed) - Sealed -->
+	</item>
+	<item>
+		<ingredient id="100155" count="1" /> <!-- +8 Armor of Protection Coupon (Sealed) (Time-limited) - Sealed -->
+		<production id="100146" count="1" /> <!-- Package: +8 Leather Armor of Protection (Sealed) - Sealed -->
+	</item>
+	<item>
+		<ingredient id="100155" count="1" /> <!-- +8 Armor of Protection Coupon (Sealed) (Time-limited) - Sealed -->
+		<production id="100147" count="1" /> <!-- Package: +8 Leather Leggings of Protection (Sealed) - Sealed -->
+	</item>
+	<item>
+		<ingredient id="100155" count="1" /> <!-- +8 Armor of Protection Coupon (Sealed) (Time-limited) - Sealed -->
+		<production id="100148" count="1" /> <!-- Package: +8 Tunic of Protection (Sealed) - Sealed -->
+	</item>
+	<item>
+		<ingredient id="100155" count="1" /> <!-- +8 Armor of Protection Coupon (Sealed) (Time-limited) - Sealed -->
+		<production id="100149" count="1" /> <!-- Package: +8 Stockings of Protection (Sealed) - Sealed -->
+	</item>
+	<item>
+		<ingredient id="100155" count="1" /> <!-- +8 Armor of Protection Coupon (Sealed) (Time-limited) - Sealed -->
+		<production id="100150" count="1" /> <!-- Package: +8 Gauntlets of Protection (Sealed) - Sealed -->
+	</item>
+	<item>
+		<ingredient id="100155" count="1" /> <!-- +8 Armor of Protection Coupon (Sealed) (Time-limited) - Sealed -->
+		<production id="100151" count="1" /> <!-- Package: +8 Helmet of Protection (Sealed) - Sealed -->
+	</item>
+	<item>
+		<ingredient id="100155" count="1" /> <!-- +8 Armor of Protection Coupon (Sealed) (Time-limited) - Sealed -->
+		<production id="100152" count="1" /> <!-- Package: +8 Boots of Protection (Sealed) - Sealed -->
+	</item>
+</list>

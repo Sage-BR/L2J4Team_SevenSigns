@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,14 +16,11 @@
  */
 package org.l2j.gameserver.network.clientpackets;
 
-import org.l2j.commons.network.ReadablePacket;
-import org.l2j.gameserver.network.GameClient;
-
 /**
  * Format: (c) ddd d: dx d: dy d: dz
  * @author -Wooden-
  */
-public class MoveWithDelta implements ClientPacket
+public class MoveWithDelta extends ClientPacket
 {
 	@SuppressWarnings("unused")
 	private int _dx;
@@ -33,15 +30,15 @@ public class MoveWithDelta implements ClientPacket
 	private int _dz;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_dx = packet.readInt();
-		_dy = packet.readInt();
-		_dz = packet.readInt();
+		_dx = readInt();
+		_dy = readInt();
+		_dz = readInt();
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
 		// TODO this
 	}

@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,8 +16,11 @@
  */
 package org.l2j.commons.util;
 
+import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.time.temporal.ChronoUnit;
+import java.util.Calendar;
+import java.util.Date;
 
 /**
  * @author UnAfraid
@@ -121,5 +124,78 @@ public class TimeUtil
 		{
 			throw new IllegalStateException("Incorrect time format given: " + datePattern + " val: " + datePattern.substring(0, index));
 		}
+	}
+	
+	public static Calendar getCloseNextDay(int dayOfWeek, int hour, int minute)
+	{
+		final Calendar calendar = Calendar.getInstance(); // Today, now
+		if (calendar.get(Calendar.DAY_OF_WEEK) != dayOfWeek)
+		{
+			calendar.add(Calendar.DAY_OF_MONTH, ((dayOfWeek + 7) - calendar.get(Calendar.DAY_OF_WEEK)) % 7);
+		}
+		else
+		{
+			final int minOfDay = (calendar.get(Calendar.HOUR_OF_DAY) * 60) + calendar.get(Calendar.MINUTE);
+			if (minOfDay >= ((hour * 60) + minute))
+			{
+				calendar.add(Calendar.DAY_OF_MONTH, 7); // Bump to next week
+			}
+		}
+		calendar.set(Calendar.HOUR_OF_DAY, hour);
+		calendar.set(Calendar.MINUTE, minute);
+		calendar.set(Calendar.SECOND, 0);
+		calendar.set(Calendar.MILLISECOND, 0);
+		return calendar;
+	}
+	
+	/**
+	 * Formats the given date using the specified format.
+	 * @param date the date to format
+	 * @param format the format pattern to use
+	 * @return a string representation of the formatted date, or {@code null} if the date is {@code null}
+	 */
+	public static String formatDate(Date date, String format)
+	{
+		return date == null ? null : (new SimpleDateFormat(format)).format(date);
+	}
+	
+	/**
+	 * Formats the given date to a string representation in the "dd/MM/yyyy" format.
+	 * @param date the date to format
+	 * @return a string representation of the formatted date
+	 */
+	public static String getDateString(Date date)
+	{
+		return formatDate(date, "dd/MM/yyyy");
+	}
+	
+	/**
+	 * Formats the given date to a string representation in the "dd/MM/yyyy HH:mm:ss" format.
+	 * @param date the date to format
+	 * @return a string representation of the formatted date
+	 */
+	public static String getDateTimeString(Date date)
+	{
+		return formatDate(date, "dd/MM/yyyy HH:mm:ss");
+	}
+	
+	/**
+	 * Formats the date represented by the given milliseconds since the epoch to a string representation in the "dd/MM/yyyy" format.
+	 * @param timeMillis the milliseconds since the epoch to format
+	 * @return a string representation of the formatted date
+	 */
+	public static String getDateString(long timeMillis)
+	{
+		return getDateString(new Date(timeMillis));
+	}
+	
+	/**
+	 * Formats the date and time represented by the given milliseconds since the epoch to a string representation in the "dd/MM/yyyy HH:mm:ss" format.
+	 * @param timeMillis the milliseconds since the epoch to format
+	 * @return a string representation of the formatted date and time
+	 */
+	public static String getDateTimeString(long timeMillis)
+	{
+		return getDateTimeString(new Date(timeMillis));
 	}
 }

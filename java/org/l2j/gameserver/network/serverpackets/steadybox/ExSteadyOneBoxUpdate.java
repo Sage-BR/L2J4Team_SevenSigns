@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,9 +16,11 @@
  */
 package org.l2j.gameserver.network.serverpackets.steadybox;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.model.AchievementBox;
 import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.model.holders.AchievementBoxHolder;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 import org.l2j.gameserver.network.serverpackets.ServerPacket;
 
@@ -37,16 +39,16 @@ public class ExSteadyOneBoxUpdate extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_STEADY_ONE_BOX_UPDATE.writeId(this);
-		writeInt(_achievementBox.getMonsterPoints());
-		writeInt(_achievementBox.getPvpPoints());
+		ServerPackets.EX_STEADY_ONE_BOX_UPDATE.writeId(this, buffer);
+		buffer.writeInt(_achievementBox.getMonsterPoints());
+		buffer.writeInt(_achievementBox.getPvpPoints());
 		final AchievementBoxHolder boxholder = _achievementBox.getAchievementBox().get(_slotId - 1);
-		writeInt(_slotId);
-		writeInt(boxholder.getState().ordinal());
-		writeInt(boxholder.getType().ordinal());
+		buffer.writeInt(_slotId);
+		buffer.writeInt(boxholder.getState().ordinal());
+		buffer.writeInt(boxholder.getType().ordinal());
 		final int rewardTimeStage = ((int) ((_achievementBox.getBoxOpenTime() - System.currentTimeMillis()) / 1000));
-		writeInt(rewardTimeStage > 0 ? rewardTimeStage : 0);
+		buffer.writeInt(rewardTimeStage > 0 ? rewardTimeStage : 0);
 	}
 }

@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -33,16 +33,19 @@ import org.l2j.Config;
 public abstract class FloodProtectedListener extends Thread
 {
 	private static final Logger LOGGER = Logger.getLogger(FloodProtectedListener.class.getName());
+	
 	private final Map<String, ForeignConnection> _floodProtection = new ConcurrentHashMap<>();
+	
 	private ServerSocket _serverSocket;
 	
 	public FloodProtectedListener(String listenIp, int port) throws IOException
 	{
+		// If listening IP is "*", listen on all interfaces.
 		if (listenIp.equals("*"))
 		{
 			_serverSocket = new ServerSocket(port);
 		}
-		else
+		else // Else, listen on the specified IP.
 		{
 			_serverSocket = new ServerSocket(port, 50, InetAddress.getByName(listenIp));
 		}
@@ -52,15 +55,16 @@ public abstract class FloodProtectedListener extends Thread
 	public void run()
 	{
 		Socket connection = null;
-		while (!isInterrupted())
+		while (!isInterrupted()) // Continue until the thread is interrupted.
 		{
 			try
 			{
-				connection = _serverSocket.accept();
+				connection = _serverSocket.accept(); // Accept incoming connections.
 				if (Config.FLOOD_PROTECTION)
 				{
+					// Check for flood protection on the connection.
 					ForeignConnection fConnection = _floodProtection.get(connection.getInetAddress().getHostAddress());
-					if (fConnection != null)
+					if (fConnection != null) // If there's an existing connection from this IP.
 					{
 						fConnection.connectionNumber += 1;
 						if (((fConnection.connectionNumber > Config.FAST_CONNECTION_LIMIT) && ((System.currentTimeMillis() - fConnection.lastConnection) < Config.NORMAL_CONNECTION_TIME)) || ((System.currentTimeMillis() - fConnection.lastConnection) < Config.FAST_CONNECTION_TIME) || (fConnection.connectionNumber > Config.MAX_CONNECTION_PER_IP))
@@ -82,20 +86,23 @@ public abstract class FloodProtectedListener extends Thread
 						}
 						fConnection.lastConnection = System.currentTimeMillis();
 					}
-					else
+					else // If it's a new connection.
 					{
+						// Initialize flood protection for the new connection.
 						fConnection = new ForeignConnection(System.currentTimeMillis());
 						_floodProtection.put(connection.getInetAddress().getHostAddress(), fConnection);
 					}
 				}
 				
+				// Add client connection for further processing (implementation in subclasses).
 				addClient(connection);
 			}
 			catch (Exception e)
 			{
+				// Handle exceptions and potential thread interruption.
 				if (isInterrupted())
 				{
-					// shutdown?
+					// Close server socket and break the loop on thread interruption.
 					try
 					{
 						_serverSocket.close();
@@ -116,11 +123,9 @@ public abstract class FloodProtectedListener extends Thread
 		public long lastConnection;
 		public boolean isFlooding = false;
 		
-		/**
-		 * @param time
-		 */
 		public ForeignConnection(long time)
 		{
+			// Initialize a new foreign connection.
 			lastConnection = time;
 			connectionNumber = 1;
 		}
@@ -130,10 +135,12 @@ public abstract class FloodProtectedListener extends Thread
 	
 	public void removeFloodProtection(String ip)
 	{
+		// Only proceed if flood protection is enabled.
 		if (!Config.FLOOD_PROTECTION)
 		{
 			return;
 		}
+		// Decrement connection count or remove if no more connections exist.
 		final ForeignConnection fConnection = _floodProtection.get(ip);
 		if (fConnection != null)
 		{

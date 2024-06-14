@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -56,7 +56,11 @@ public class PointBlank implements IAffectScopeHandler
 			}
 			if (affectObject != null)
 			{
-				if ((c.isDead() && (skill.getAffectObject() != AffectObject.OBJECT_DEAD_NPC_BODY)) || !affectObject.checkAffectedObject(creature, c))
+				if (c.isDead() && (skill.getAffectObject() != AffectObject.OBJECT_DEAD_NPC_BODY))
+				{
+					return false;
+				}
+				if (!affectObject.checkAffectedObject(creature, c))
 				{
 					return false;
 				}

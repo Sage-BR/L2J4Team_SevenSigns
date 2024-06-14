@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,14 +22,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.l2j.Config;
-import org.l2j.commons.network.ReadablePacket;
 import org.l2j.gameserver.model.actor.Npc;
 import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.model.holders.ItemHolder;
 import org.l2j.gameserver.model.item.instance.Item;
 import org.l2j.gameserver.model.itemcontainer.ItemContainer;
 import org.l2j.gameserver.model.itemcontainer.PlayerWarehouse;
-import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.PacketLogger;
 import org.l2j.gameserver.network.SystemMessageId;
 import org.l2j.gameserver.network.serverpackets.InventoryUpdate;
@@ -38,17 +36,17 @@ import org.l2j.gameserver.util.Util;
 /**
  * SendWareHouseDepositList client packet class.
  */
-public class SendWareHouseDepositList implements ClientPacket
+public class SendWareHouseDepositList extends ClientPacket
 {
 	private static final int BATCH_LENGTH = 12;
 	
 	private List<ItemHolder> _items = null;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		final int size = packet.readInt();
-		if ((size <= 0) || (size > Config.MAX_ITEM_IN_PACKET) || ((size * BATCH_LENGTH) != packet.getRemainingLength()))
+		final int size = readInt();
+		if ((size <= 0) || (size > Config.MAX_ITEM_IN_PACKET) || ((size * BATCH_LENGTH) != remaining()))
 		{
 			return;
 		}
@@ -56,9 +54,9 @@ public class SendWareHouseDepositList implements ClientPacket
 		_items = new ArrayList<>(size);
 		for (int i = 0; i < size; i++)
 		{
-			final int objId = packet.readInt();
-			final long count = packet.readLong();
-			if ((objId < 1) || (count < 0))
+			final int objId = readInt();
+			final long count = readLong();
+			if ((objId < 1) || (count < 1))
 			{
 				_items = null;
 				return;
@@ -68,20 +66,20 @@ public class SendWareHouseDepositList implements ClientPacket
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
 		if (_items == null)
 		{
 			return;
 		}
 		
-		final Player player = client.getPlayer();
+		final Player player = getPlayer();
 		if (player == null)
 		{
 			return;
 		}
 		
-		if (!client.getFloodProtectors().canPerformTransaction())
+		if (!getClient().getFloodProtectors().canPerformTransaction())
 		{
 			player.sendMessage("You are depositing items too fast.");
 			return;
@@ -96,6 +94,7 @@ public class SendWareHouseDepositList implements ClientPacket
 		final Npc manager = player.getLastFolkNPC();
 		if (((manager == null) || !manager.isWarehouse() || !manager.canInteract(player)) && !player.isGM())
 		{
+			player.sendPacket(SystemMessageId.YOU_FAILED_AT_SENDING_THE_PACKAGE_BECAUSE_YOU_ARE_TOO_FAR_FROM_THE_WAREHOUSE);
 			return;
 		}
 		

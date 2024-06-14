@@ -24,8 +24,10 @@ import java.util.Map;
 import java.util.StringTokenizer;
 import java.util.TimeZone;
 import java.util.TreeMap;
+import java.util.concurrent.TimeUnit;
 
 import org.l2j.commons.util.Rnd;
+import org.l2j.commons.util.TimeUtil;
 
 /**
  * <p>
@@ -843,6 +845,25 @@ public class SchedulingPattern
 		{
 			return value == getLastDayOfMonth(month, isLeapYear);
 		}
+	}
+	
+	/**
+	 * It returns the next matching moment as a long.
+	 * @return The next matching moment as a long.
+	 */
+	public long getDelayToNextFromNow()
+	{
+		return next(System.currentTimeMillis()) - System.currentTimeMillis();
+	}
+	
+	public long getOffsettedDelayToNextFromNow(int offsetInMinutes)
+	{
+		return Math.max(0, getDelayToNextFromNow() - TimeUnit.MINUTES.toMillis(offsetInMinutes));
+	}
+	
+	public String getNextAsFormattedDateString()
+	{
+		return TimeUtil.getDateTimeString(next(System.currentTimeMillis()));
 	}
 	
 	/**

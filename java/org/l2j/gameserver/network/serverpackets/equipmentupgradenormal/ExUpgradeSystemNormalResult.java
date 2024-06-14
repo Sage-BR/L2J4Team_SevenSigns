@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,7 +19,9 @@ package org.l2j.gameserver.network.serverpackets.equipmentupgradenormal;
 import java.util.Collections;
 import java.util.List;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.model.holders.UniqueItemEnchantHolder;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 import org.l2j.gameserver.network.serverpackets.AbstractItemPacket;
 
@@ -46,28 +48,28 @@ public class ExUpgradeSystemNormalResult extends AbstractItemPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_UPGRADE_SYSTEM_NORMAL_RESULT.writeId(this);
-		writeShort(_result); // Result ID
-		writeInt(_upgradeId); // Upgrade ID
-		writeByte(_success); // Success
-		writeInt(_resultItems.size()); // Array of result items (success/failure) start.
+		ServerPackets.EX_UPGRADE_SYSTEM_NORMAL_RESULT.writeId(this, buffer);
+		buffer.writeShort(_result); // Result ID
+		buffer.writeInt(_upgradeId); // Upgrade ID
+		buffer.writeByte(_success); // Success
+		buffer.writeInt(_resultItems.size()); // Array of result items (success/failure) start.
 		for (UniqueItemEnchantHolder item : _resultItems)
 		{
-			writeInt(item.getObjectId());
-			writeInt(item.getId());
-			writeInt(item.getEnchantLevel());
-			writeInt(Math.toIntExact(item.getCount()));
+			buffer.writeInt(item.getObjectId());
+			buffer.writeInt(item.getId());
+			buffer.writeInt(item.getEnchantLevel());
+			buffer.writeInt(Math.toIntExact(item.getCount()));
 		}
-		writeByte(0); // Is bonus? Do not see any effect.
-		writeInt(_bonusItems.size()); // Array of bonus items start.
+		buffer.writeByte(0); // Is bonus? Do not see any effect.
+		buffer.writeInt(_bonusItems.size()); // Array of bonus items start.
 		for (UniqueItemEnchantHolder bonus : _bonusItems)
 		{
-			writeInt(bonus.getObjectId());
-			writeInt(bonus.getId());
-			writeInt(bonus.getEnchantLevel());
-			writeInt(Math.toIntExact(bonus.getCount()));
+			buffer.writeInt(bonus.getObjectId());
+			buffer.writeInt(bonus.getId());
+			buffer.writeInt(bonus.getEnchantLevel());
+			buffer.writeInt(Math.toIntExact(bonus.getCount()));
 		}
 	}
 }

@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -900,10 +900,19 @@ public class Duel
 		else if (!_partyDuel)
 		{
 			// Duel was interrupted e.g.: player was attacked by mobs / other players
+			if ((_playerA.getDuelState() == DUELSTATE_INTERRUPTED) || (_playerB.getDuelState() == DUELSTATE_INTERRUPTED))
+			{
+				return DuelResult.CANCELED;
+			}
 			
 			// Are the players too far apart?
+			if (!_playerA.isInsideRadius2D(_playerB, 1600))
+			{
+				return DuelResult.CANCELED;
+			}
+			
 			// Did one of the players engage in PvP combat?
-			if ((_playerA.getDuelState() == DUELSTATE_INTERRUPTED) || (_playerB.getDuelState() == DUELSTATE_INTERRUPTED) || !_playerA.isInsideRadius2D(_playerB, 1600) || isDuelistInPvp(true))
+			if (isDuelistInPvp(true))
 			{
 				return DuelResult.CANCELED;
 			}

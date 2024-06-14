@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,40 +16,38 @@
  */
 package org.l2j.gameserver.network.clientpackets;
 
-import org.l2j.commons.network.ReadablePacket;
 import org.l2j.gameserver.instancemanager.ItemAuctionManager;
 import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.model.itemauction.ItemAuction;
 import org.l2j.gameserver.model.itemauction.ItemAuctionInstance;
 import org.l2j.gameserver.model.itemcontainer.Inventory;
-import org.l2j.gameserver.network.GameClient;
 
 /**
  * @author Forsaiken
  */
-public class RequestBidItemAuction implements ClientPacket
+public class RequestBidItemAuction extends ClientPacket
 {
 	private int _instanceId;
 	private long _bid;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_instanceId = packet.readInt();
-		_bid = packet.readLong();
+		_instanceId = readInt();
+		_bid = readLong();
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
-		final Player player = client.getPlayer();
+		final Player player = getPlayer();
 		if (player == null)
 		{
 			return;
 		}
 		
-		// can't use auction fp here
-		if (!client.getFloodProtectors().canPerformTransaction())
+		// Can't perform transaction here.
+		if (!getClient().getFloodProtectors().canPerformTransaction())
 		{
 			player.sendMessage("You are bidding too fast.");
 			return;

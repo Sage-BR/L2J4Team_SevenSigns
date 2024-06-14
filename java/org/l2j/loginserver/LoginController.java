@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,6 +20,7 @@ import java.nio.charset.StandardCharsets;
 import java.security.GeneralSecurityException;
 import java.security.KeyPairGenerator;
 import java.security.MessageDigest;
+import java.security.interfaces.RSAPrivateKey;
 import java.security.spec.RSAKeyGenParameterSpec;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -28,17 +29,19 @@ import java.util.ArrayList;
 import java.util.Base64;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import javax.crypto.KeyGenerator;
-import javax.crypto.SecretKey;
+import javax.crypto.Cipher;
 
 import org.l2j.Config;
 import org.l2j.commons.database.DatabaseFactory;
+import org.l2j.commons.threads.ThreadPool;
 import org.l2j.commons.util.Rnd;
 import org.l2j.loginserver.GameServerTable.GameServerInfo;
 import org.l2j.loginserver.enums.LoginFailReason;
@@ -51,21 +54,7 @@ public class LoginController
 {
 	protected static final Logger LOGGER = Logger.getLogger(LoginController.class.getName());
 	
-	private static LoginController _instance;
-	
-	/** Time before kicking the client if he didn't logged yet */
-	public static final int LOGIN_TIMEOUT = 60 * 1000;
-	
-	/** Authed Clients on LoginServer */
-	protected Map<String, LoginClient> _loginServerClients = new ConcurrentHashMap<>();
-	
-	private final Map<String, Integer> _failedLoginAttemps = new HashMap<>();
-	private final Map<String, Long> _bannedIps = new ConcurrentHashMap<>();
-	
-	private final ScrambledKeyPair[] _keyPairs;
-	private final KeyGenerator _blowfishKeyGenerator;
-	
-	// SQL Queries
+	// SQL Queries.
 	private static final String USER_INFO_SELECT = "SELECT login, password, IF(? > value OR value IS NULL, accessLevel, -1) AS accessLevel, lastServer FROM accounts LEFT JOIN (account_data) ON (account_data.account_name=accounts.login AND account_data.var=\"ban_temp\") WHERE login=?";
 	private static final String AUTOCREATE_ACCOUNTS_INSERT = "INSERT INTO accounts (login, password, lastactive, accessLevel, lastIP) values (?, ?, ?, ?, ?)";
 	private static final String ACCOUNT_INFO_UPDATE = "UPDATE accounts SET lastactive = ?, lastIP = ? WHERE login = ?";
@@ -74,30 +63,79 @@ public class LoginController
 	private static final String ACCOUNT_IPS_UPDATE = "UPDATE accounts SET pcIp = ?, hop1 = ?, hop2 = ?, hop3 = ?, hop4 = ? WHERE login = ?";
 	private static final String ACCOUNT_IPAUTH_SELECT = "SELECT * FROM accounts_ipauth WHERE login = ?";
 	
+	/** Time before kicking the client if he didn't logged yet */
+	public static final int LOGIN_TIMEOUT = 5 * 60 * 1000; // 5 minutes.
+	
+	private static final int BLOWFISH_KEYS = 20;
+	protected byte[][] _blowfishKeys;
+	protected ScrambledKeyPair[] _keyPairs;
+	
+	/** Authed Clients on LoginServer */
+	protected Map<String, LoginClient> _loginServerClients = new ConcurrentHashMap<>();
+	
+	private final Map<String, Integer> _failedLoginAttemps = new HashMap<>();
+	private final Map<String, Long> _bannedIps = new ConcurrentHashMap<>();
+	
+	private static LoginController INSTANCE;
+	
 	private LoginController() throws GeneralSecurityException
 	{
 		LOGGER.info("Loading LoginController...");
 		_keyPairs = new ScrambledKeyPair[10];
-		_blowfishKeyGenerator = KeyGenerator.getInstance("Blowfish");
-		final KeyPairGenerator rsaKeyPairGenerator = KeyPairGenerator.getInstance("RSA");
+		
+		final KeyPairGenerator keygen = KeyPairGenerator.getInstance("RSA");
 		final RSAKeyGenParameterSpec spec = new RSAKeyGenParameterSpec(1024, RSAKeyGenParameterSpec.F4);
-		rsaKeyPairGenerator.initialize(spec);
+		keygen.initialize(spec);
 		
-		for (int i = 0; i < _keyPairs.length; i++)
+		// Generate the initial set of keys.
+		for (int i = 0; i < 10; i++)
 		{
-			_keyPairs[i] = new ScrambledKeyPair(rsaKeyPairGenerator.generateKeyPair());
+			_keyPairs[i] = new ScrambledKeyPair(keygen.generateKeyPair());
 		}
-		
 		LOGGER.info("Cached 10 KeyPairs for RSA communication.");
 		
-		final Thread purge = new PurgeThread();
-		purge.setDaemon(true);
-		purge.start();
+		testCipher((RSAPrivateKey) _keyPairs[0].getPrivateKey());
+		
+		// Store keys for blowfish communication.
+		generateBlowFishKeys();
+		
+		// Start the client purge task.
+		ThreadPool.scheduleAtFixedRate(this::purge, LOGIN_TIMEOUT, LOGIN_TIMEOUT);
 	}
 	
-	public SecretKey generateBlowfishKey()
+	/**
+	 * This is mostly to force the initialization of the Crypto Implementation, avoiding it being done on runtime when its first needed.<BR>
+	 * In short it avoids the worst-case execution time on runtime by doing it on loading.
+	 * @param key Any private RSA Key just for testing purposes.
+	 * @throws GeneralSecurityException if a underlying exception was thrown by the Cipher
+	 */
+	private void testCipher(RSAPrivateKey key) throws GeneralSecurityException
 	{
-		return _blowfishKeyGenerator.generateKey();
+		// Avoid worst-case execution.
+		final Cipher rsaCipher = Cipher.getInstance("RSA/ECB/nopadding");
+		rsaCipher.init(Cipher.DECRYPT_MODE, key);
+	}
+	
+	private void generateBlowFishKeys()
+	{
+		_blowfishKeys = new byte[BLOWFISH_KEYS][16];
+		
+		for (int i = 0; i < BLOWFISH_KEYS; i++)
+		{
+			for (int j = 0; j < _blowfishKeys[i].length; j++)
+			{
+				_blowfishKeys[i][j] = (byte) (Rnd.get(0, 255));
+			}
+		}
+		LOGGER.info("Stored " + _blowfishKeys.length + " keys for Blowfish communication.");
+	}
+	
+	/**
+	 * @return Returns a random key.
+	 */
+	public byte[] getBlowfishKey()
+	{
+		return _blowfishKeys[(int) (Math.random() * BLOWFISH_KEYS)];
 	}
 	
 	public SessionKey assignSessionKeyToClient(String account, LoginClient client)
@@ -114,11 +152,7 @@ public class LoginController
 			return;
 		}
 		
-		final LoginClient removed = _loginServerClients.remove(account);
-		if (removed != null)
-		{
-			removed.disconnect();
-		}
+		_loginServerClients.remove(account);
 	}
 	
 	public LoginClient getAuthedClient(String account)
@@ -134,8 +168,7 @@ public class LoginController
 	private void recordFailedLoginAttemp(String addr)
 	{
 		// We need to synchronize this!
-		// When multiple connections from the same address fail to login at the
-		// same time, unexpected behavior can happen.
+		// When multiple connections from the same address fail to login at the same time, unexpected behavior can happen.
 		Integer failedLoginAttemps;
 		synchronized (_failedLoginAttemps)
 		{
@@ -155,7 +188,7 @@ public class LoginController
 		if (failedLoginAttemps >= Config.LOGIN_TRY_BEFORE_BAN)
 		{
 			addBanForAddress(addr, Config.LOGIN_BLOCK_AFTER_BAN * 1000);
-			// we need to clear the failed login attempts here, so after the ip ban is over the client has another 5 attempts
+			// We need to clear the failed login attempts here, so after the IP ban is over the client has another 5 attempts.
 			clearFailedLoginAttemps(addr);
 			LOGGER.warning("Added banned address " + addr + "! Too many login attempts.");
 		}
@@ -189,7 +222,7 @@ public class LoginController
 						final AccountInfo info = new AccountInfo(rset.getString("login"), rset.getString("password"), rset.getInt("accessLevel"), rset.getInt("lastServer"));
 						if (!info.checkPassHash(hashBase64))
 						{
-							// wrong password
+							// Wrong password.
 							recordFailedLoginAttemp(clientAddr);
 							return null;
 						}
@@ -202,7 +235,7 @@ public class LoginController
 			
 			if (!autoCreateIfEnabled || !Config.AUTO_CREATE_ACCOUNTS)
 			{
-				// account does not exist and auto create account is not desired
+				// Account does not exist and auto create account is not desired.
 				recordFailedLoginAttemp(clientAddr);
 				return null;
 			}
@@ -241,14 +274,14 @@ public class LoginController
 		}
 		
 		LoginResult ret = LoginResult.INVALID_PASSWORD;
-		// check auth
+		// Check auth.
 		if (canCheckin(client, address, info))
 		{
-			// login was successful, verify presence on Gameservers
+			// Login was successful, verify presence on Gameservers.
 			ret = LoginResult.ALREADY_ON_GS;
 			if (!isAccountInAnyGameServer(info.getLogin()))
 			{
-				// account isnt on any GS verify LS itself
+				// Account is not on any GS verify LS itself.
 				ret = LoginResult.ALREADY_ON_LS;
 				if (_loginServerClients.putIfAbsent(info.getLogin(), client) == null)
 				{
@@ -300,8 +333,10 @@ public class LoginController
 				LOGGER.info("Removed expired ip address ban " + address + ".");
 				return false;
 			}
+			
 			return true;
 		}
+		
 		return false;
 	}
 	
@@ -369,11 +404,6 @@ public class LoginController
 		}
 	}
 	
-	/**
-	 * @param client
-	 * @param serverId
-	 * @return
-	 */
 	public boolean isLoginPossible(LoginClient client, int serverId)
 	{
 		final GameServerInfo gsi = GameServerTable.getInstance().getRegisteredGameServerById(serverId);
@@ -453,9 +483,7 @@ public class LoginController
 	}
 	
 	/**
-	 * <p>
 	 * This method returns one of the cached {@link ScrambledKeyPair ScrambledKeyPairs} for communication with Login Clients.
-	 * </p>
 	 * @return a scrambled keypair
 	 */
 	public ScrambledKeyPair getScrambledRSAKeyPair()
@@ -503,7 +531,7 @@ public class LoginController
 				}
 			}
 			
-			// Check IP
+			// Check IP.
 			if (!ipWhiteList.isEmpty() || !ipBlackList.isEmpty())
 			{
 				if (!ipWhiteList.isEmpty() && !ipWhiteList.contains(address))
@@ -558,13 +586,33 @@ public class LoginController
 		return true;
 	}
 	
+	private void purge()
+	{
+		if (_loginServerClients.isEmpty())
+		{
+			return;
+		}
+		
+		final long currentTime = System.currentTimeMillis();
+		final Iterator<Entry<String, LoginClient>> iterator = _loginServerClients.entrySet().iterator();
+		while (iterator.hasNext())
+		{
+			final LoginClient client = iterator.next().getValue();
+			if ((!client.hasJoinedGS() && ((client.getConnectionStartTime() + LOGIN_TIMEOUT) <= currentTime)) || !client.isConnected())
+			{
+				client.close(LoginFailReason.REASON_ACCESS_FAILED);
+				iterator.remove();
+			}
+		}
+	}
+	
 	public static void load() throws GeneralSecurityException
 	{
 		synchronized (LoginController.class)
 		{
-			if (_instance == null)
+			if (INSTANCE == null)
 			{
-				_instance = new LoginController();
+				INSTANCE = new LoginController();
 			}
 			else
 			{
@@ -575,42 +623,6 @@ public class LoginController
 	
 	public static LoginController getInstance()
 	{
-		return _instance;
-	}
-	
-	class PurgeThread extends Thread
-	{
-		public PurgeThread()
-		{
-			setName("PurgeThread");
-		}
-		
-		@Override
-		public void run()
-		{
-			while (!isInterrupted())
-			{
-				for (LoginClient client : _loginServerClients.values())
-				{
-					if (client == null)
-					{
-						continue;
-					}
-					if ((client.getConnectionStartTime() + LOGIN_TIMEOUT) < System.currentTimeMillis())
-					{
-						client.close(LoginFailReason.REASON_ACCESS_FAILED);
-					}
-				}
-				
-				try
-				{
-					Thread.sleep(LOGIN_TIMEOUT / 2);
-				}
-				catch (Exception e)
-				{
-					// Ignore.
-				}
-			}
-		}
+		return INSTANCE;
 	}
 }

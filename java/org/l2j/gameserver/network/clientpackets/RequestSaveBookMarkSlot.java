@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,39 +16,36 @@
  */
 package org.l2j.gameserver.network.clientpackets;
 
-import org.l2j.commons.network.ReadablePacket;
 import org.l2j.gameserver.model.actor.Player;
-import org.l2j.gameserver.model.zone.ZoneId;
-import org.l2j.gameserver.network.GameClient;
 
 /**
  * @author ShanSoft
  * @structure chdSdS
  */
-public class RequestSaveBookMarkSlot implements ClientPacket
+public class RequestSaveBookMarkSlot extends ClientPacket
 {
 	private int icon;
 	private String name;
 	private String tag;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		name = packet.readString();
-		icon = packet.readInt();
-		tag = packet.readString();
+		name = readString();
+		icon = readInt();
+		tag = readString();
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
-		final Player player = client.getPlayer();
+		final Player player = getPlayer();
 		if (player == null)
 		{
 			return;
 		}
 		
-		if (player.isInsideZone(ZoneId.TIMED_HUNTING))
+		if (player.isInTimedHuntingZone())
 		{
 			player.sendMessage("You cannot bookmark this location.");
 			return;

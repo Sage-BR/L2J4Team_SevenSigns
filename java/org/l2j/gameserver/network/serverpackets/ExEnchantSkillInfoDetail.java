@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,11 +18,13 @@ package org.l2j.gameserver.network.serverpackets;
 
 import java.util.Set;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.data.xml.EnchantSkillGroupsData;
 import org.l2j.gameserver.enums.SkillEnchantType;
 import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.model.holders.EnchantSkillHolder;
 import org.l2j.gameserver.model.holders.ItemHolder;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 
 /**
@@ -46,23 +48,23 @@ public class ExEnchantSkillInfoDetail extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_ENCHANT_SKILL_INFO_DETAIL.writeId(this);
-		writeInt(_type.ordinal());
-		writeInt(_skillId);
-		writeShort(_skillLevel);
-		writeShort(_skillSubLevel);
+		ServerPackets.EX_ENCHANT_SKILL_INFO_DETAIL.writeId(this, buffer);
+		buffer.writeInt(_type.ordinal());
+		buffer.writeInt(_skillId);
+		buffer.writeShort(_skillLevel);
+		buffer.writeShort(_skillSubLevel);
 		if (_enchantSkillHolder != null)
 		{
-			writeLong(_enchantSkillHolder.getSp(_type));
-			writeInt(_enchantSkillHolder.getChance(_type));
+			buffer.writeLong(_enchantSkillHolder.getSp(_type));
+			buffer.writeInt(_enchantSkillHolder.getChance(_type));
 			final Set<ItemHolder> holders = _enchantSkillHolder.getRequiredItems(_type);
-			writeInt(holders.size());
+			buffer.writeInt(holders.size());
 			holders.forEach(holder ->
 			{
-				writeInt(holder.getId());
-				writeInt((int) holder.getCount());
+				buffer.writeInt(holder.getId());
+				buffer.writeInt((int) holder.getCount());
 			});
 		}
 	}

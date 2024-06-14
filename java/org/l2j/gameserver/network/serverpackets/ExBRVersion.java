@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,7 +16,9 @@
  */
 package org.l2j.gameserver.network.serverpackets;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.Config;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 
 /**
@@ -29,14 +31,14 @@ public class ExBRVersion extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
 		if (!Config.ENABLE_WORLD_EXCHANGE)
 		{
 			return;
 		}
 		
-		ServerPackets.EX_BR_VERSION.writeId(this);
-		writeByte(1);
+		ServerPackets.EX_BR_VERSION.writeId(this, buffer);
+		buffer.writeByte(1);
 	}
 }

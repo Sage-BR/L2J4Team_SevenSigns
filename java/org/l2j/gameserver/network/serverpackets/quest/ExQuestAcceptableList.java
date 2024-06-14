@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,12 +20,14 @@ import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.data.xml.NewQuestData;
 import org.l2j.gameserver.instancemanager.QuestManager;
 import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.model.quest.Quest;
 import org.l2j.gameserver.model.quest.QuestState;
 import org.l2j.gameserver.model.quest.newquestdata.NewQuest;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 import org.l2j.gameserver.network.serverpackets.ServerPacket;
 
@@ -42,9 +44,9 @@ public class ExQuestAcceptableList extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_QUEST_ACCEPTABLE_LIST.writeId(this);
+		ServerPackets.EX_QUEST_ACCEPTABLE_LIST.writeId(this, buffer);
 		
 		final List<Quest> availableQuests = new LinkedList<>();
 		final Collection<NewQuest> newQuests = NewQuestData.getInstance().getQuests();
@@ -63,7 +65,7 @@ public class ExQuestAcceptableList extends ServerPacket
 			}
 		}
 		
-		writeInt(availableQuests.size());
-		availableQuests.forEach(quest -> writeInt(quest.getId()));
+		buffer.writeInt(availableQuests.size());
+		availableQuests.forEach(quest -> buffer.writeInt(quest.getId()));
 	}
 }

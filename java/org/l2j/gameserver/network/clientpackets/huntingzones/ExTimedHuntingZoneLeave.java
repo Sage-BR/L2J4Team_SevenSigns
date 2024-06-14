@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,7 +22,6 @@ import org.l2j.gameserver.model.Location;
 import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.model.holders.TimedHuntingZoneHolder;
 import org.l2j.gameserver.model.instancezone.Instance;
-import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.SystemMessageId;
 import org.l2j.gameserver.network.clientpackets.ClientPacket;
 import org.l2j.gameserver.network.serverpackets.SystemMessage;
@@ -31,12 +30,17 @@ import org.l2j.gameserver.network.serverpackets.huntingzones.TimedHuntingZoneExi
 /**
  * @author Mobius
  */
-public class ExTimedHuntingZoneLeave implements ClientPacket
+public class ExTimedHuntingZoneLeave extends ClientPacket
 {
 	@Override
-	public void run(GameClient client)
+	protected void readImpl()
 	{
-		final Player player = client.getPlayer();
+	}
+	
+	@Override
+	protected void runImpl()
+	{
+		final Player player = getPlayer();
 		if (player == null)
 		{
 			return;

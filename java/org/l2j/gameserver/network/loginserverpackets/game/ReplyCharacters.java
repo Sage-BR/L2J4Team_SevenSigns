@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,12 +18,12 @@ package org.l2j.gameserver.network.loginserverpackets.game;
 
 import java.util.List;
 
-import org.l2j.commons.network.WritablePacket;
+import org.l2j.commons.network.base.BaseWritablePacket;
 
 /**
  * @author mrTJO Thanks to mochitto
  */
-public class ReplyCharacters extends WritablePacket
+public class ReplyCharacters extends BaseWritablePacket
 {
 	public ReplyCharacters(String account, int chars, List<Long> timeToDel)
 	{

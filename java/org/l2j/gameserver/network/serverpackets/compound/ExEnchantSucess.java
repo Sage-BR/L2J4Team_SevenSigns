@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,25 +16,30 @@
  */
 package org.l2j.gameserver.network.serverpackets.compound;
 
+import org.l2j.commons.network.WritableBuffer;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 import org.l2j.gameserver.network.serverpackets.ServerPacket;
 
 /**
- * @author UnAfraid
+ * @author UnAfraid, nasseka
  */
 public class ExEnchantSucess extends ServerPacket
 {
 	private final int _itemId;
+	private final int _enchantLevel;
 	
-	public ExEnchantSucess(int itemId)
+	public ExEnchantSucess(int itemId, int enchantLevel)
 	{
 		_itemId = itemId;
+		_enchantLevel = enchantLevel;
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_ENCHANT_SUCESS.writeId(this);
-		writeInt(_itemId);
+		ServerPackets.EX_ENCHANT_SUCESS.writeId(this, buffer);
+		buffer.writeInt(_itemId);
+		buffer.writeInt(_enchantLevel);
 	}
 }

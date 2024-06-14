@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,9 +19,11 @@ package org.l2j.gameserver.network.serverpackets;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.data.xml.SkillData;
 import org.l2j.gameserver.model.TimeStamp;
 import org.l2j.gameserver.model.actor.Player;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 
 /**
@@ -44,19 +46,19 @@ public class SkillCoolTime extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.SKILL_COOL_TIME.writeId(this);
-		writeInt(_reuseTimestamps.size());
+		ServerPackets.SKILL_COOL_TIME.writeId(this, buffer);
+		buffer.writeInt(_reuseTimestamps.size());
 		for (TimeStamp ts : _reuseTimestamps)
 		{
 			final long reuse = ts.getReuse();
 			final long remaining = ts.getRemaining();
 			final int sharedReuseGroup = ts.getSharedReuseGroup();
-			writeInt(sharedReuseGroup > 0 ? sharedReuseGroup : ts.getSkillId());
-			writeInt(ts.getSkillLevel());
-			writeInt((int) (reuse > 0 ? reuse : remaining) / 1000);
-			writeInt((int) remaining / 1000);
+			buffer.writeInt(sharedReuseGroup > 0 ? sharedReuseGroup : ts.getSkillId());
+			buffer.writeInt(ts.getSkillLevel());
+			buffer.writeInt((int) (reuse > 0 ? reuse : remaining) / 1000);
+			buffer.writeInt((int) remaining / 1000);
 		}
 	}
 }

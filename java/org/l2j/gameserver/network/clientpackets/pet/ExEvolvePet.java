@@ -14,18 +14,22 @@ import org.l2j.gameserver.model.actor.instance.Pet;
 import org.l2j.gameserver.model.actor.templates.NpcTemplate;
 import org.l2j.gameserver.model.holders.SkillHolder;
 import org.l2j.gameserver.model.item.instance.Item;
-import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.clientpackets.ClientPacket;
 
 /**
  * @author Berezkin Nikolay, Mobius
  */
-public class ExEvolvePet implements ClientPacket
+public class ExEvolvePet extends ClientPacket
 {
 	@Override
-	public void run(GameClient client)
+	protected void readImpl()
 	{
-		final Player activeChar = client.getPlayer();
+	}
+	
+	@Override
+	protected void runImpl()
+	{
+		final Player activeChar = getPlayer();
 		if (activeChar == null)
 		{
 			return;

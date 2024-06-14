@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,17 +19,14 @@ package org.l2j.gameserver.network.clientpackets;
 import java.util.logging.Logger;
 
 import org.l2j.Config;
-import org.l2j.commons.network.ReadablePacket;
 import org.l2j.commons.util.Rnd;
 import org.l2j.gameserver.data.xml.SkillData;
 import org.l2j.gameserver.data.xml.SkillEnchantData;
-import org.l2j.gameserver.enums.PrivateStoreType;
 import org.l2j.gameserver.enums.SkillEnchantType;
 import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.model.holders.EnchantStarHolder;
 import org.l2j.gameserver.model.holders.SkillEnchantHolder;
 import org.l2j.gameserver.model.skill.Skill;
-import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.PacketLogger;
 import org.l2j.gameserver.network.SystemMessageId;
 import org.l2j.gameserver.network.serverpackets.ExEnchantSkillResult;
@@ -39,7 +36,7 @@ import org.l2j.gameserver.network.serverpackets.newskillenchant.ExSkillEnchantIn
 /**
  * @author -Wooden-
  */
-public class RequestExEnchantSkill implements ClientPacket
+public class RequestExEnchantSkill extends ClientPacket
 {
 	private static final Logger LOGGER = Logger.getLogger(RequestExEnchantSkill.class.getName());
 	private static final Logger LOGGER_ENCHANT = Logger.getLogger("enchant.skills");
@@ -50,9 +47,9 @@ public class RequestExEnchantSkill implements ClientPacket
 	private int _skillSubLevel;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		final int type = packet.readInt();
+		final int type = readInt();
 		if ((type < 0) || (type >= SkillEnchantType.values().length))
 		{
 			PacketLogger.warning("Client send incorrect type " + type + " on packet: " + getClass().getSimpleName());
@@ -60,20 +57,20 @@ public class RequestExEnchantSkill implements ClientPacket
 		}
 		
 		_type = SkillEnchantType.values()[type];
-		_skillId = packet.readInt();
-		_skillLevel = packet.readShort();
-		_skillSubLevel = packet.readShort();
+		_skillId = readInt();
+		_skillLevel = readShort();
+		_skillSubLevel = readShort();
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
-		if (!client.getFloodProtectors().canPerformPlayerAction())
+		if (!getClient().getFloodProtectors().canPerformPlayerAction())
 		{
 			return;
 		}
 		
-		final Player player = client.getPlayer();
+		final Player player = getPlayer();
 		if (player == null)
 		{
 			return;
@@ -85,7 +82,22 @@ public class RequestExEnchantSkill implements ClientPacket
 			return;
 		}
 		
-		if (!player.isAllowedToEnchantSkills() || player.isSellingBuffs() || player.isInOlympiadMode() || (player.getPrivateStoreType() != PrivateStoreType.NONE))
+		if (!player.isAllowedToEnchantSkills())
+		{
+			return;
+		}
+		
+		if (player.isSellingBuffs())
+		{
+			return;
+		}
+		
+		if (player.isInOlympiadMode())
+		{
+			return;
+		}
+		
+		if (player.isInStoreMode())
 		{
 			return;
 		}
@@ -114,13 +126,13 @@ public class RequestExEnchantSkill implements ClientPacket
 				final int group2 = (skill.getSubLevel() % 1000);
 				if (group1 != group2)
 				{
-					LOGGER.warning(getClass().getSimpleName() + ": Client: " + client + " send incorrect sub level group: " + group1 + " expected: " + group2 + " for skill " + _skillId);
+					LOGGER.warning(getClass().getSimpleName() + ": Client: " + getClient() + " send incorrect sub level group: " + group1 + " expected: " + group2 + " for skill " + _skillId);
 					return;
 				}
 			}
 			else if ((skill.getSubLevel() + 1) != _skillSubLevel)
 			{
-				LOGGER.warning(getClass().getSimpleName() + ": Client: " + client + " send incorrect sub level: " + _skillSubLevel + " expected: " + (skill.getSubLevel() + 1) + " for skill " + _skillId);
+				LOGGER.warning(getClass().getSimpleName() + ": Client: " + getClient() + " send incorrect sub level: " + _skillSubLevel + " expected: " + (skill.getSubLevel() + 1) + " for skill " + _skillId);
 				return;
 			}
 		}
@@ -152,10 +164,18 @@ public class RequestExEnchantSkill implements ClientPacket
 				final StringBuilder sb = new StringBuilder();
 				LOGGER_ENCHANT.info(sb.append("Success, Character:").append(player.getName()).append(" [").append(player.getObjectId()).append("] Account:").append(player.getAccountName()).append(" IP:").append(player.getIPAddress()).append(", +").append(enchantedSkill.getLevel()).append(" ").append(enchantedSkill.getSubLevel()).append(" - ").append(enchantedSkill.getName()).append(" (").append(enchantedSkill.getId()).append("), ").toString());
 			}
+			
+			final long reuse = player.getSkillRemainingReuseTime(skill.getReuseHashCode());
+			if (reuse > 0)
+			{
+				player.addTimeStamp(enchantedSkill, reuse);
+			}
 			player.addSkill(enchantedSkill, true);
+			
 			final SystemMessage sm = new SystemMessage(SystemMessageId.SKILL_ENCHANT_WAS_SUCCESSFUL_S1_HAS_BEEN_ENCHANTED);
 			sm.addSkillName(_skillId);
 			player.sendPacket(sm);
+			
 			// player.setSkillEnchantExp(starHolder.getLvl(), 0);
 			player.setSkillEnchantExp(starLevel, 0);
 			player.sendPacket(ExEnchantSkillResult.STATIC_PACKET_TRUE);

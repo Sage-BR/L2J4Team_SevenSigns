@@ -1,0 +1,68 @@
+/*
+ * This file is part of the L2J Mobius project.
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ */
+package org.l2jmobius.gameserver.network.serverpackets.castlewar;
+
+import java.util.Map;
+import java.util.Map.Entry;
+
+import org.l2jmobius.commons.network.WritableBuffer;
+import org.l2jmobius.gameserver.data.sql.ClanTable;
+import org.l2jmobius.gameserver.model.World;
+import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.holders.MercenaryPledgeHolder;
+import org.l2jmobius.gameserver.network.GameClient;
+import org.l2jmobius.gameserver.network.ServerPackets;
+import org.l2jmobius.gameserver.network.serverpackets.ServerPacket;
+
+public class MercenaryPledgeMemberList extends ServerPacket
+{
+	private final int _castleId;
+	private final int _clanId;
+	
+	public MercenaryPledgeMemberList(int castleId, int clanId)
+	{
+		_castleId = castleId;
+		_clanId = clanId;
+	}
+	
+	@Override
+	public void writeImpl(GameClient client, WritableBuffer buffer)
+	{
+		ServerPackets.EX_PLEDGE_MERCENARY_MEMBER_LIST.writeId(this, buffer);
+		buffer.writeInt(_castleId);
+		buffer.writeInt(_clanId);
+		
+		final Map<Integer, MercenaryPledgeHolder> list = ClanTable.getInstance().getClan(_clanId).getMapMercenary();
+		buffer.writeInt(list.size());
+		for (Entry<Integer, MercenaryPledgeHolder> entry : list.entrySet())
+		{
+			final Player player = World.getInstance().getPlayer(entry.getKey());
+			final MercenaryPledgeHolder mercenary = entry.getValue();
+			buffer.writeInt(entry.getKey() == mercenary.getPlayerId());
+			if (player == null)
+			{
+				buffer.writeInt(0);
+			}
+			else
+			{
+				buffer.writeInt(player.isOnline());
+			}
+			buffer.writeSizedString(mercenary.getName());
+			buffer.writeInt(mercenary.getClassId());
+		}
+	}
+}

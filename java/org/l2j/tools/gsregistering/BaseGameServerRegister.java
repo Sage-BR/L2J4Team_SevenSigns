@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -96,7 +96,7 @@ public abstract class BaseGameServerRegister
 					}
 					catch (NumberFormatException e)
 					{
-						System.out.printf("wrong argument for GameServer removal, specify a numeric ID or \"all\" without quotes to remove all." + Config.EOL, gsId);
+						System.out.printf("wrong argument for GameServer removal, specify a numeric ID or \"all\" without quotes to remove all." + System.lineSeparator(), gsId);
 						System.exit(1);
 					}
 				}
@@ -148,10 +148,7 @@ public abstract class BaseGameServerRegister
 			"\t\t\t\t\tYou can provide a negative value for <id> to register under the first available ID.",
 			"\t\t\t\t\tNothing is done if <id> is already in use, unless --force or --fallback is used.",
 			"",
-			"-u, --unregister <id>|all\t\tRemoves the GameServer specified by <id>, use \"all\" to remove all currently registered GameServers.",
-			"",
-			"© 2008-2009 L2J Team. All rights reserved.",
-			"Bug Reports: http://www.l2jserver.com"
+			"-u, --unregister <id>|all\t\tRemoves the GameServer specified by <id>, use \"all\" to remove all currently registered GameServers."
 		};
 		
 		for (String str : help)
@@ -313,12 +310,12 @@ public abstract class BaseGameServerRegister
 			if (_bundle != null)
 			{
 				title = _bundle.getString("error");
-				msg += Config.EOL + _bundle.getString("reason") + ' ' + t.getLocalizedMessage();
+				msg += System.lineSeparator() + _bundle.getString("reason") + ' ' + t.getLocalizedMessage();
 			}
 			else
 			{
 				title = "Error";
-				msg += Config.EOL + "Cause: " + t.getLocalizedMessage();
+				msg += System.lineSeparator() + "Cause: " + t.getLocalizedMessage();
 			}
 			System.out.println(title + ": " + msg);
 		}
@@ -375,21 +372,21 @@ public abstract class BaseGameServerRegister
 					}
 					else
 					{
-						System.out.printf(_bundle.getString("registrationOk") + Config.EOL, registeredId);
+						System.out.printf(_bundle.getString("registrationOk") + System.lineSeparator(), registeredId);
 					}
 				}
 				else
 				{
-					System.out.printf(_bundle.getString("checkingIdInUse") + Config.EOL, _id);
+					System.out.printf(_bundle.getString("checkingIdInUse") + System.lineSeparator(), _id);
 					if (GameServerTable.getInstance().hasRegisteredGameServerOnId(_id))
 					{
 						System.out.println(_bundle.getString("yes"));
 						if (_force)
 						{
-							System.out.printf(_bundle.getString("forcingRegistration") + Config.EOL, _id);
+							System.out.printf(_bundle.getString("forcingRegistration") + System.lineSeparator(), _id);
 							unregisterGameServer(_id);
 							registerGameServer(_id, _outDir);
-							System.out.printf(_bundle.getString("registrationOk") + Config.EOL, _id);
+							System.out.printf(_bundle.getString("registrationOk") + System.lineSeparator(), _id);
 						}
 						else if (_fallback)
 						{
@@ -401,7 +398,7 @@ public abstract class BaseGameServerRegister
 							}
 							else
 							{
-								System.out.printf(_bundle.getString("registrationOk") + Config.EOL, registeredId);
+								System.out.printf(_bundle.getString("registrationOk") + System.lineSeparator(), registeredId);
 							}
 						}
 						else
@@ -446,7 +443,7 @@ public abstract class BaseGameServerRegister
 		@Override
 		public void run()
 		{
-			System.out.printf(_bundle.getString("removingGsId") + Config.EOL, _id);
+			System.out.printf(_bundle.getString("removingGsId") + System.lineSeparator(), _id);
 			try
 			{
 				unregisterGameServer(_id);

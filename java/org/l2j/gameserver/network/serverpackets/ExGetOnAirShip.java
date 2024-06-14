@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,9 +16,11 @@
  */
 package org.l2j.gameserver.network.serverpackets;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.model.Location;
 import org.l2j.gameserver.model.actor.Creature;
 import org.l2j.gameserver.model.actor.Player;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 
 public class ExGetOnAirShip extends ServerPacket
@@ -35,13 +37,13 @@ public class ExGetOnAirShip extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_GET_ON_AIR_SHIP.writeId(this);
-		writeInt(_playerId);
-		writeInt(_airShipId);
-		writeInt(_pos.getX());
-		writeInt(_pos.getY());
-		writeInt(_pos.getZ());
+		ServerPackets.EX_GET_ON_AIR_SHIP.writeId(this, buffer);
+		buffer.writeInt(_playerId);
+		buffer.writeInt(_airShipId);
+		buffer.writeInt(_pos.getX());
+		buffer.writeInt(_pos.getY());
+		buffer.writeInt(_pos.getZ());
 	}
 }

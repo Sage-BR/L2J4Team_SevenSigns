@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,7 +19,9 @@ package org.l2j.gameserver.network.serverpackets.mentoring;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.model.actor.Player;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 import org.l2j.gameserver.network.serverpackets.ServerPacket;
 
@@ -46,26 +48,26 @@ public class ListMenteeWaiting extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.LIST_MENTEE_WAITING.writeId(this);
-		writeInt(1); // always 1 in retail
+		ServerPackets.LIST_MENTEE_WAITING.writeId(this, buffer);
+		buffer.writeInt(1); // always 1 in retail
 		if (_possibleCandiates.isEmpty())
 		{
-			writeInt(0);
-			writeInt(0);
+			buffer.writeInt(0);
+			buffer.writeInt(0);
 			return;
 		}
 		
-		writeInt(_possibleCandiates.size());
-		writeInt(_possibleCandiates.size() % PLAYERS_PER_PAGE);
+		buffer.writeInt(_possibleCandiates.size());
+		buffer.writeInt(_possibleCandiates.size() % PLAYERS_PER_PAGE);
 		for (Player player : _possibleCandiates)
 		{
 			if ((1 <= (PLAYERS_PER_PAGE * _page)) && (1 > (PLAYERS_PER_PAGE * (_page - 1))))
 			{
-				writeString(player.getName());
-				writeInt(player.getActiveClass());
-				writeInt(player.getLevel());
+				buffer.writeString(player.getName());
+				buffer.writeInt(player.getActiveClass());
+				buffer.writeInt(player.getLevel());
 			}
 		}
 	}

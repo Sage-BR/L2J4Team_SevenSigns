@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,13 +19,15 @@ package org.l2j.gameserver.network.clientpackets;
 import java.util.logging.Logger;
 
 import org.l2j.Config;
-import org.l2j.commons.network.ReadablePacket;
 import org.l2j.gameserver.data.sql.CharInfoTable;
 import org.l2j.gameserver.data.xml.AdminData;
 import org.l2j.gameserver.data.xml.SecondaryAuthData;
+import org.l2j.gameserver.enums.TeleportWhereType;
 import org.l2j.gameserver.instancemanager.AntiFeedManager;
+import org.l2j.gameserver.instancemanager.MapRegionManager;
 import org.l2j.gameserver.instancemanager.PunishmentManager;
 import org.l2j.gameserver.model.CharSelectInfoPackage;
+import org.l2j.gameserver.model.Location;
 import org.l2j.gameserver.model.World;
 import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.model.events.Containers;
@@ -33,8 +35,10 @@ import org.l2j.gameserver.model.events.EventDispatcher;
 import org.l2j.gameserver.model.events.EventType;
 import org.l2j.gameserver.model.events.impl.creature.player.OnPlayerSelect;
 import org.l2j.gameserver.model.events.returns.TerminateReturn;
+import org.l2j.gameserver.model.holders.TimedHuntingZoneHolder;
 import org.l2j.gameserver.model.punishment.PunishmentAffect;
 import org.l2j.gameserver.model.punishment.PunishmentType;
+import org.l2j.gameserver.model.variables.PlayerVariables;
 import org.l2j.gameserver.network.ConnectionState;
 import org.l2j.gameserver.network.Disconnection;
 import org.l2j.gameserver.network.GameClient;
@@ -46,7 +50,7 @@ import org.l2j.gameserver.network.serverpackets.ServerClose;
 /**
  * @version $Revision: 1.5.2.1.2.5 $ $Date: 2005/03/27 15:29:30 $
  */
-public class CharacterSelect implements ClientPacket
+public class CharacterSelect extends ClientPacket
 {
 	protected static final Logger LOGGER_ACCOUNTING = Logger.getLogger("accounting");
 	
@@ -63,18 +67,19 @@ public class CharacterSelect implements ClientPacket
 	private int _unk4; // new in C4
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_charSlot = packet.readInt();
-		_unk1 = packet.readShort();
-		_unk2 = packet.readInt();
-		_unk3 = packet.readInt();
-		_unk4 = packet.readInt();
+		_charSlot = readInt();
+		_unk1 = readShort();
+		_unk2 = readInt();
+		_unk3 = readInt();
+		_unk4 = readInt();
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
+		final GameClient client = getClient();
 		if (!client.getFloodProtectors().canSelectCharacter())
 		{
 			return;
@@ -110,10 +115,16 @@ public class CharacterSelect implements ClientPacket
 					}
 					
 					// Banned?
-					// Selected character is banned (compatibility with previous versions).
 					if (PunishmentManager.getInstance().hasPunishment(info.getObjectId(), PunishmentAffect.CHARACTER, PunishmentType.BAN) //
 						|| PunishmentManager.getInstance().hasPunishment(client.getAccountName(), PunishmentAffect.ACCOUNT, PunishmentType.BAN) //
-						|| PunishmentManager.getInstance().hasPunishment(client.getIp(), PunishmentAffect.IP, PunishmentType.BAN) || (info.getAccessLevel() < 0))
+						|| PunishmentManager.getInstance().hasPunishment(client.getIp(), PunishmentAffect.IP, PunishmentType.BAN))
+					{
+						client.close(ServerClose.STATIC_PACKET);
+						return;
+					}
+					
+					// Selected character is banned (compatibility with previous versions).
+					if (info.getAccessLevel() < 0)
 					{
 						client.close(ServerClose.STATIC_PACKET);
 						return;
@@ -163,6 +174,26 @@ public class CharacterSelect implements ClientPacket
 					if (cha.isGM() && Config.GM_STARTUP_INVISIBLE && AdminData.getInstance().hasAccess("admin_invisible", cha.getAccessLevel()))
 					{
 						cha.setInvisible(true);
+					}
+					
+					// Restore player location.
+					final PlayerVariables vars = cha.getVariables();
+					final String restore = vars.getString(PlayerVariables.RESTORE_LOCATION, "");
+					if (!restore.isEmpty())
+					{
+						final String[] split = restore.split(";");
+						cha.setXYZ(Integer.parseInt(split[0]), Integer.parseInt(split[1]), Integer.parseInt(split[2]));
+						vars.remove(PlayerVariables.RESTORE_LOCATION);
+					}
+					else
+					{
+						final TimedHuntingZoneHolder zone = cha.getTimedHuntingZone();
+						if (zone != null)
+						{
+							final Location exit = zone.getExitLocation();
+							cha.setXYZ(exit != null ? exit : MapRegionManager.getInstance().getTeleToLocation(cha, TeleportWhereType.TOWN));
+							vars.remove(PlayerVariables.LAST_HUNTING_ZONE_ID);
+						}
 					}
 					
 					cha.setClient(client);

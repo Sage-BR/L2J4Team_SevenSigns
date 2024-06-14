@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -127,7 +127,8 @@ public class LimitShopCraftData implements IXmlReader
 							boolean announce5 = false;
 							int enchant = 0;
 							int accountDailyLimit = 0;
-							int accountMontlyLimit = 0;
+							int accountWeeklyLimit = 0;
+							int accountMonthlyLimit = 0;
 							int accountBuyLimit = 0;
 							for (Node b = d.getFirstChild(); b != null; b = b.getNextSibling())
 							{
@@ -141,11 +142,16 @@ public class LimitShopCraftData implements IXmlReader
 									
 									if (ingredientId > 0)
 									{
-										final ItemTemplate item = ItemData.getInstance().getTemplate(ingredientId);
-										if (item == null)
+										final ItemTemplate template = ItemData.getInstance().getTemplate(ingredientId);
+										if (template == null)
 										{
 											LOGGER.severe(getClass().getSimpleName() + ": Item template null for itemId: " + productionId + " productId: " + id);
 											continue;
+										}
+										
+										if ((ingredientQuantity > 1) && !template.isStackable() && !template.isEquipable())
+										{
+											LOGGER.warning(getClass().getSimpleName() + ": Item template for itemId: " + ingredientId + " should be stackable!");
 										}
 									}
 									
@@ -235,19 +241,101 @@ public class LimitShopCraftData implements IXmlReader
 									count5 = parseLong(attrs, "count5", 1L);
 									announce5 = parseBoolean(attrs, "announce5", false);
 									accountDailyLimit = parseInteger(attrs, "accountDailyLimit", 0);
-									accountMontlyLimit = parseInteger(attrs, "accountMontlyLimit", 0);
+									accountWeeklyLimit = parseInteger(attrs, "accountWeeklyLimit", 0);
+									accountMonthlyLimit = parseInteger(attrs, "accountMonthlyLimit", 0);
 									accountBuyLimit = parseInteger(attrs, "accountBuyLimit", 0);
 									
-									final ItemTemplate item = ItemData.getInstance().getTemplate(productionId);
-									if (item == null)
+									if (productionId > 0)
 									{
-										LOGGER.severe(getClass().getSimpleName() + ": Item template null for itemId: " + productionId + " productId: " + id);
-										continue;
+										final ItemTemplate template = ItemData.getInstance().getTemplate(productionId);
+										if (template == null)
+										{
+											LOGGER.severe(getClass().getSimpleName() + ": Item template null for itemId: " + productionId + " productId: " + id);
+											continue;
+										}
+										
+										if ((count > 1) && !template.isStackable() && !template.isEquipable())
+										{
+											LOGGER.warning(getClass().getSimpleName() + ": Item template for itemId: " + productionId + " should be stackable!");
+										}
+									}
+									if (productionId2 > 0)
+									{
+										final ItemTemplate template = ItemData.getInstance().getTemplate(productionId2);
+										if (template == null)
+										{
+											LOGGER.severe(getClass().getSimpleName() + ": Item template null for itemId: " + productionId2 + " productId: " + id);
+											continue;
+										}
+										
+										if ((count2 > 1) && !template.isStackable() && !template.isEquipable())
+										{
+											LOGGER.warning(getClass().getSimpleName() + ": Item template for itemId: " + productionId2 + " should be stackable!");
+										}
+									}
+									if (productionId3 > 0)
+									{
+										final ItemTemplate template = ItemData.getInstance().getTemplate(productionId3);
+										if (template == null)
+										{
+											LOGGER.severe(getClass().getSimpleName() + ": Item template null for itemId: " + productionId3 + " productId: " + id);
+											continue;
+										}
+										
+										if ((count3 > 1) && !template.isStackable() && !template.isEquipable())
+										{
+											LOGGER.warning(getClass().getSimpleName() + ": Item template for itemId: " + productionId3 + " should be stackable!");
+										}
+									}
+									if (productionId4 > 0)
+									{
+										final ItemTemplate template = ItemData.getInstance().getTemplate(productionId4);
+										if (template == null)
+										{
+											LOGGER.severe(getClass().getSimpleName() + ": Item template null for itemId: " + productionId4 + " productId: " + id);
+											continue;
+										}
+										
+										if ((count4 > 1) && !template.isStackable() && !template.isEquipable())
+										{
+											LOGGER.warning(getClass().getSimpleName() + ": Item template for itemId: " + productionId4 + " should be stackable!");
+										}
+									}
+									if (productionId5 > 0)
+									{
+										final ItemTemplate template = ItemData.getInstance().getTemplate(productionId5);
+										if (template == null)
+										{
+											LOGGER.severe(getClass().getSimpleName() + ": Item template null for itemId: " + productionId5 + " productId: " + id);
+											continue;
+										}
+										
+										if ((count5 > 1) && !template.isStackable() && !template.isEquipable())
+										{
+											LOGGER.warning(getClass().getSimpleName() + ": Item template for itemId: " + productionId5 + " should be stackable!");
+										}
+									}
+									
+									if (productionId2 == 0)
+									{
+										chance = 100;
+									}
+									if (productionId3 == 0)
+									{
+										chance2 = 100;
+									}
+									if (productionId4 == 0)
+									{
+										chance3 = 100;
+									}
+									if (productionId5 == 0)
+									{
+										chance4 = 100;
 									}
 								}
 							}
 							
-							_products.add(new LimitShopProductHolder(id, category, minLevel, maxLevel, ingredientIds, ingredientQuantities, ingredientEnchants, productionId, count, chance, announce, enchant, productionId2, count2, chance2, announce2, productionId3, count3, chance3, announce3, productionId4, count4, chance4, announce4, productionId5, count5, announce5, accountDailyLimit, accountMontlyLimit, accountBuyLimit));
+							_products.add(new LimitShopProductHolder(id, category, minLevel, maxLevel, ingredientIds, ingredientQuantities, ingredientEnchants, productionId, count, chance, announce, enchant, productionId2, count2, chance2, announce2, productionId3, count3, chance3, announce3, productionId4, count4, chance4, announce4, productionId5, count5, announce5, accountDailyLimit, accountWeeklyLimit, accountMonthlyLimit, accountBuyLimit));
 						}
 					}
 				}

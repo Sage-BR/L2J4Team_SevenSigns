@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,7 +16,6 @@
  */
 package handlers.skillconditionhandlers;
 
-import org.l2j.gameserver.enums.PrivateStoreType;
 import org.l2j.gameserver.model.StatSet;
 import org.l2j.gameserver.model.WorldObject;
 import org.l2j.gameserver.model.actor.Creature;
@@ -35,6 +34,6 @@ public class OpCannotUseTargetWithPrivateStoreSkillCondition implements ISkillCo
 	@Override
 	public boolean canUse(Creature caster, Skill skill, WorldObject target)
 	{
-		return (target == null) || !target.isPlayer() || (target.getActingPlayer().getPrivateStoreType() == PrivateStoreType.NONE);
+		return (target == null) || !target.isPlayer() || !target.getActingPlayer().isInStoreMode();
 	}
 }

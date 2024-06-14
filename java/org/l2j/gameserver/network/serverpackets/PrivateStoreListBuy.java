@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,8 +18,10 @@ package org.l2j.gameserver.network.serverpackets;
 
 import java.util.Collection;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.model.TradeItem;
 import org.l2j.gameserver.model.actor.Player;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 
 /**
@@ -40,22 +42,22 @@ public class PrivateStoreListBuy extends AbstractItemPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.PRIVATE_STORE_BUY_LIST.writeId(this);
-		writeInt(_objId);
-		writeLong(_playerAdena);
-		writeInt(0); // Viewer's item count?
-		writeInt(_items.size());
+		ServerPackets.PRIVATE_STORE_BUY_LIST.writeId(this, buffer);
+		buffer.writeInt(_objId);
+		buffer.writeLong(_playerAdena);
+		buffer.writeInt(0); // Viewer's item count?
+		buffer.writeInt(_items.size());
 		int slotNumber = 0;
 		for (TradeItem item : _items)
 		{
 			slotNumber++;
-			writeItem(item);
-			writeInt(slotNumber); // Slot in shop
-			writeLong(item.getPrice());
-			writeLong(item.getItem().getReferencePrice() * 2);
-			writeLong(item.getStoreCount());
+			writeItem(item, buffer);
+			buffer.writeInt(slotNumber); // Slot in shop
+			buffer.writeLong(item.getPrice());
+			buffer.writeLong(item.getItem().getReferencePrice() * 2);
+			buffer.writeLong(item.getStoreCount());
 		}
 	}
 }

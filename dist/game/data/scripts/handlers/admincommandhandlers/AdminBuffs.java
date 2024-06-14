@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -337,6 +337,9 @@ public class AdminBuffs implements IAdminCommandHandler
 			html.replace("%pages%", "");
 		}
 		
+		html.replace("%buffsText%", passive ? "Hide Passives" : "Show Passives");
+		html.replace("%passives%", passive ? "" : "_ps");
+		
 		html.replace("%targetName%", target.getName());
 		html.replace("%targetObjId%", target.getObjectId());
 		html.replace("%buffs%", result.getBodyTemplate().toString());
@@ -419,7 +422,7 @@ public class AdminBuffs implements IAdminCommandHandler
 			final Set<AbnormalType> blockedAbnormals = target.getEffectList().getBlockedAbnormalTypes();
 			final int blockedAbnormalsSize = blockedAbnormals != null ? blockedAbnormals.size() : 0;
 			final StringBuilder html = new StringBuilder(500 + (blockedAbnormalsSize * 50));
-			html.append("<html><table width=\"100%\"><tr><td width=45><button value=\"Main\" action=\"bypass -h admin_admin\" width=45 height=21 back=\"L2UI_ct1.button_df\" fore=\"L2UI_ct1.button_df\"></td><td width=180><center><font color=\"LEVEL\">Blocked effects of ");
+			html.append("<html><table width=\"100%\"><tr><td width=45><button value=\"Main\" action=\"bypass admin_admin\" width=45 height=21 back=\"L2UI_ct1.button_df\" fore=\"L2UI_ct1.button_df\"></td><td width=180><center><font color=\"LEVEL\">Blocked effects of ");
 			html.append(target.getName());
 			html.append("</font></td><td width=45><button value=\"Back\" action=\"bypass -h admin_getbuffs" + (target.isPlayer() ? (" " + target.getName()) : "") + "\" width=45 height=21 back=\"L2UI_ct1.button_df\" fore=\"L2UI_ct1.button_df\"></td></tr></table><br>");
 			if ((blockedAbnormals != null) && !blockedAbnormals.isEmpty())

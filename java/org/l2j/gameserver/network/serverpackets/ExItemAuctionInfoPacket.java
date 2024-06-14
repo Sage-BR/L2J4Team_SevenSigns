@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,9 +16,11 @@
  */
 package org.l2j.gameserver.network.serverpackets;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.model.itemauction.ItemAuction;
 import org.l2j.gameserver.model.itemauction.ItemAuctionBid;
 import org.l2j.gameserver.model.itemauction.ItemAuctionState;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 
 /**
@@ -51,20 +53,20 @@ public class ExItemAuctionInfoPacket extends AbstractItemPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_ITEM_AUCTION_INFO.writeId(this);
-		writeByte(!_refresh);
-		writeInt(_currentAuction.getInstanceId());
+		ServerPackets.EX_ITEM_AUCTION_INFO.writeId(this, buffer);
+		buffer.writeByte(!_refresh);
+		buffer.writeInt(_currentAuction.getInstanceId());
 		final ItemAuctionBid highestBid = _currentAuction.getHighestBid();
-		writeLong(highestBid != null ? highestBid.getLastBid() : _currentAuction.getAuctionInitBid());
-		writeInt(_timeRemaining);
-		writeItem(_currentAuction.getItemInfo());
+		buffer.writeLong(highestBid != null ? highestBid.getLastBid() : _currentAuction.getAuctionInitBid());
+		buffer.writeInt(_timeRemaining);
+		writeItem(_currentAuction.getItemInfo(), buffer);
 		if (_nextAuction != null)
 		{
-			writeLong(_nextAuction.getAuctionInitBid());
-			writeInt((int) (_nextAuction.getStartingTime() / 1000)); // unix time in seconds
-			writeItem(_nextAuction.getItemInfo());
+			buffer.writeLong(_nextAuction.getAuctionInitBid());
+			buffer.writeInt((int) (_nextAuction.getStartingTime() / 1000)); // unix time in seconds
+			writeItem(_nextAuction.getItemInfo(), buffer);
 		}
 	}
 }

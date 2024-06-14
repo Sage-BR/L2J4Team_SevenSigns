@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,6 +20,7 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicBoolean;
 
+import org.l2j.commons.threads.ThreadPool;
 import org.l2j.gameserver.model.StatSet;
 import org.l2j.gameserver.model.actor.Creature;
 import org.l2j.gameserver.model.events.EventType;
@@ -94,13 +95,13 @@ abstract class AbstractConditionalHpEffect extends AbstractStatEffect
 			if (update.get())
 			{
 				update.set(false);
-				creature.getStat().recalculateStats(true);
+				ThreadPool.execute(() -> creature.getStat().recalculateStats(true));
 			}
 		}
 		else if (!update.get())
 		{
 			update.set(true);
-			creature.getStat().recalculateStats(true);
+			ThreadPool.execute(() -> creature.getStat().recalculateStats(true));
 		}
 	}
 }

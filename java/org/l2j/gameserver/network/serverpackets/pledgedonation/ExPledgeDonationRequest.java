@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,6 +16,8 @@
  */
 package org.l2j.gameserver.network.serverpackets.pledgedonation;
 
+import org.l2j.commons.network.WritableBuffer;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 import org.l2j.gameserver.network.serverpackets.ServerPacket;
 
@@ -36,16 +38,16 @@ public class ExPledgeDonationRequest extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_PLEDGE_DONATION_REQUEST.writeId(this);
-		writeByte(_type);
-		writeInt(_success);
-		writeShort(0);
-		writeInt(3);
-		writeInt(14);
-		writeLong(0);
-		writeShort(0);
-		writeInt(_curPoints);
+		ServerPackets.EX_PLEDGE_DONATION_REQUEST.writeId(this, buffer);
+		buffer.writeByte(_type);
+		buffer.writeInt(_success);
+		buffer.writeShort(0);
+		buffer.writeInt(3);
+		buffer.writeInt(14);
+		buffer.writeLong(0);
+		buffer.writeShort(0);
+		buffer.writeInt(_curPoints);
 	}
 }

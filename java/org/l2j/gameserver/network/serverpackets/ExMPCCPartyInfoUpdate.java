@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,7 +16,9 @@
  */
 package org.l2j.gameserver.network.serverpackets;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.model.Party;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 
 /**
@@ -42,12 +44,12 @@ public class ExMPCCPartyInfoUpdate extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_MPCCPARTY_INFO_UPDATE.writeId(this);
-		writeString(_name);
-		writeInt(_LeaderOID);
-		writeInt(_memberCount);
-		writeInt(_mode); // mode 0 = Remove Party, 1 = AddParty, maybe more...
+		ServerPackets.EX_MPCCPARTY_INFO_UPDATE.writeId(this, buffer);
+		buffer.writeString(_name);
+		buffer.writeInt(_LeaderOID);
+		buffer.writeInt(_memberCount);
+		buffer.writeInt(_mode); // mode 0 = Remove Party, 1 = AddParty, maybe more...
 	}
 }

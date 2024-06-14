@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -32,47 +32,34 @@ import java.util.logging.Logger;
 
 import javax.tools.Diagnostic;
 import javax.tools.DiagnosticCollector;
+import javax.tools.JavaCompiler;
 import javax.tools.JavaFileObject;
+import javax.tools.ToolProvider;
 
 import org.l2j.gameserver.scripting.annotations.Disabled;
 
 /**
  * @author HorridoJoho
  */
-public class JavaExecutionContext extends JavaScriptingEngine
+public class JavaExecutionContext
 {
 	private static final Logger LOGGER = Logger.getLogger(JavaExecutionContext.class.getName());
 	
-	private static final List<String> _options = new ArrayList<>();
+	private static final JavaCompiler COMPILER = ToolProvider.getSystemJavaCompiler();
+	private static final ClassLoader CLASS_LOADER = ClassLoader.getSystemClassLoader();
+	private static final List<String> OPTIONS = new ArrayList<>();
+	
 	private static Path _currentExecutingScript;
 	
-	JavaExecutionContext()
+	public JavaExecutionContext()
 	{
-		// Set options.
-		addOptionIfNotNull(_options, getProperty("source"), "-source");
-		addOptionIfNotNull(_options, getProperty("sourcepath"), "-sourcepath");
-		addOptionIfNotNull(_options, getProperty("g"), "-g:");
-		
-		// We always set the target JVM to the current running version.
-		final String targetVersion = System.getProperty("java.specification.version");
-		if (!targetVersion.contains("."))
-		{
-			_options.add("-target");
-			_options.add(targetVersion);
-		}
-		else
-		{
-			final String[] versionSplit = targetVersion.split("\\.");
-			if (versionSplit.length > 1)
-			{
-				_options.add("-target");
-				_options.add(versionSplit[0] + '.' + versionSplit[1]);
-			}
-			else
-			{
-				throw new RuntimeException("Could not determine target version!");
-			}
-		}
+		// The Java version is hardcoded to "1.8" for both the source and target options in the compiler settings.
+		// This decision is primarily driven by compatibility considerations with the scripting environment.
+		addOptionIfNotNull(OPTIONS, "1.8", "-source");
+		addOptionIfNotNull(OPTIONS, "data/scripts", "-sourcepath");
+		addOptionIfNotNull(OPTIONS, "source,lines,vars", "-g:");
+		OPTIONS.add("-target");
+		OPTIONS.add("1.8");
 	}
 	
 	private boolean addOptionIfNotNull(List<String> list, String nullChecked, String before)
@@ -95,83 +82,29 @@ public class JavaExecutionContext extends JavaScriptingEngine
 		return true;
 	}
 	
-	private ClassLoader determineScriptParentClassloader()
-	{
-		final String classloader = getProperty("classloader");
-		if (classloader == null)
-		{
-			return ClassLoader.getSystemClassLoader();
-		}
-		
-		switch (classloader)
-		{
-			case "ThreadContext":
-			{
-				return Thread.currentThread().getContextClassLoader();
-			}
-			case "System":
-			{
-				return ClassLoader.getSystemClassLoader();
-			}
-			default:
-			{
-				try
-				{
-					return Class.forName(classloader).getClassLoader();
-				}
-				catch (ClassNotFoundException e)
-				{
-					return ClassLoader.getSystemClassLoader();
-				}
-			}
-		}
-	}
-	
 	public Map<Path, Throwable> executeScripts(Iterable<Path> sourcePaths) throws Exception
 	{
 		final DiagnosticCollector<JavaFileObject> fileManagerDiagnostics = new DiagnosticCollector<>();
 		final DiagnosticCollector<JavaFileObject> compilationDiagnostics = new DiagnosticCollector<>();
 		
-		try (ScriptingFileManager fileManager = new ScriptingFileManager(getCompiler().getStandardFileManager(fileManagerDiagnostics, null, StandardCharsets.UTF_8)))
+		try (ScriptingFileManager fileManager = new ScriptingFileManager(COMPILER.getStandardFileManager(fileManagerDiagnostics, null, StandardCharsets.UTF_8)))
 		{
 			// We really need an iterable of files or strings.
 			final List<String> sourcePathStrings = new ArrayList<>();
 			for (Path sourcePath : sourcePaths)
 			{
-				sourcePathStrings.add(sourcePath.toString());
+				sourcePathStrings.add(sourcePath.toAbsolutePath().toString());
 			}
 			
 			final StringWriter strOut = new StringWriter();
 			final PrintWriter out = new PrintWriter(strOut);
-			final boolean compilationSuccess = getCompiler().getTask(out, fileManager, compilationDiagnostics, _options, null, fileManager.getJavaFileObjectsFromStrings(sourcePathStrings)).call();
+			final boolean compilationSuccess = COMPILER.getTask(out, fileManager, compilationDiagnostics, OPTIONS, null, fileManager.getJavaFileObjectsFromStrings(sourcePathStrings)).call();
 			if (!compilationSuccess)
 			{
-				out.println();
-				out.println("----------------");
-				out.println("File diagnostics");
-				out.println("----------------");
-				for (Diagnostic<? extends JavaFileObject> diagnostic : fileManagerDiagnostics.getDiagnostics())
-				{
-					out.println("\t" + diagnostic.getKind() + ": " + diagnostic.getSource().getName() + ", Line " + diagnostic.getLineNumber() + ", Column " + diagnostic.getColumnNumber());
-					out.println("\t\tcode: " + diagnostic.getCode());
-					out.println("\t\tmessage: " + diagnostic.getMessage(null));
-				}
-				
-				out.println();
-				out.println("-----------------------");
-				out.println("Compilation diagnostics");
-				out.println("-----------------------");
-				for (Diagnostic<? extends JavaFileObject> diagnostic : compilationDiagnostics.getDiagnostics())
-				{
-					out.println("\t" + diagnostic.getKind() + ": " + diagnostic.getSource().getName() + ", Line " + diagnostic.getLineNumber() + ", Column " + diagnostic.getColumnNumber());
-					out.println("\t\tcode: " + diagnostic.getCode());
-					out.println("\t\tmessage: " + diagnostic.getMessage(null));
-				}
-				
+				logDiagnostics(out, fileManagerDiagnostics, compilationDiagnostics);
 				throw new RuntimeException(strOut.toString());
 			}
 			
-			final ClassLoader parentClassLoader = determineScriptParentClassloader();
 			final Map<Path, Throwable> executionFailures = new HashMap<>();
 			final Iterable<ScriptingOutputFileObject> compiledClasses = fileManager.getCompiledClasses();
 			for (Path sourcePath : sourcePaths)
@@ -180,7 +113,7 @@ public class JavaExecutionContext extends JavaScriptingEngine
 				for (ScriptingOutputFileObject compiledClass : compiledClasses)
 				{
 					final Path compiledSourcePath = compiledClass.getSourcePath();
-					// sourePath can be relative, so we have to use endsWith
+					// sourcePath can be relative, so we have to use endsWith
 					if ((compiledSourcePath != null) && (compiledSourcePath.equals(sourcePath) || compiledSourcePath.endsWith(sourcePath)))
 					{
 						final String javaName = compiledClass.getJavaName();
@@ -193,24 +126,9 @@ public class JavaExecutionContext extends JavaScriptingEngine
 						_currentExecutingScript = compiledSourcePath;
 						try
 						{
-							final ScriptingClassLoader loader = new ScriptingClassLoader(parentClassLoader, compiledClasses);
+							final ScriptingClassLoader loader = new ScriptingClassLoader(CLASS_LOADER, compiledClasses);
 							final Class<?> javaClass = loader.loadClass(javaName);
-							Method mainMethod = null;
-							for (Method m : javaClass.getMethods())
-							{
-								if (m.getName().equals("main") && Modifier.isStatic(m.getModifiers()) && (m.getParameterCount() == 1) && (m.getParameterTypes()[0] == String[].class))
-								{
-									mainMethod = m;
-									break;
-								}
-							}
-							if ((mainMethod != null) && !javaClass.isAnnotationPresent(Disabled.class))
-							{
-								mainMethod.invoke(null, (Object) new String[]
-								{
-									compiledSourcePath.toString()
-								});
-							}
+							executeMainMethod(javaClass, compiledSourcePath);
 						}
 						catch (Exception e)
 						{
@@ -226,11 +144,60 @@ public class JavaExecutionContext extends JavaScriptingEngine
 				
 				if (!found)
 				{
-					LOGGER.severe("Compilation successfull, but class coresponding to " + sourcePath.toString() + " not found!");
+					LOGGER.severe("Compilation successful, but class corresponding to " + sourcePath.toString() + " not found!");
 				}
 			}
 			
 			return executionFailures;
+		}
+	}
+	
+	private void logDiagnostics(PrintWriter out, DiagnosticCollector<JavaFileObject> fileManagerDiagnostics, DiagnosticCollector<JavaFileObject> compilationDiagnostics)
+	{
+		out.println();
+		out.println("----------------");
+		out.println("File diagnostics");
+		out.println("----------------");
+		for (Diagnostic<? extends JavaFileObject> diagnostic : fileManagerDiagnostics.getDiagnostics())
+		{
+			logDiagnostic(out, diagnostic);
+		}
+		
+		out.println();
+		out.println("-----------------------");
+		out.println("Compilation diagnostics");
+		out.println("-----------------------");
+		for (Diagnostic<? extends JavaFileObject> diagnostic : compilationDiagnostics.getDiagnostics())
+		{
+			logDiagnostic(out, diagnostic);
+		}
+	}
+	
+	private void logDiagnostic(PrintWriter out, Diagnostic<? extends JavaFileObject> diagnostic)
+	{
+		String sourceName = (diagnostic.getSource() != null) ? diagnostic.getSource().getName() : "Unknown Source";
+		out.println("\t" + diagnostic.getKind() + ": " + sourceName + ", Line " + diagnostic.getLineNumber() + ", Column " + diagnostic.getColumnNumber());
+		out.println("\t\tcode: " + diagnostic.getCode());
+		out.println("\t\tmessage: " + diagnostic.getMessage(null));
+	}
+	
+	private void executeMainMethod(Class<?> javaClass, Path compiledSourcePath) throws Exception
+	{
+		if (javaClass.isAnnotationPresent(Disabled.class))
+		{
+			return;
+		}
+		
+		for (Method method : javaClass.getMethods())
+		{
+			if (method.getName().equals("main") && Modifier.isStatic(method.getModifiers()) && (method.getParameterCount() == 1) && (method.getParameterTypes()[0] == String[].class))
+			{
+				method.invoke(null, (Object) new String[]
+				{
+					compiledSourcePath.toString()
+				});
+				break;
+			}
 		}
 	}
 	

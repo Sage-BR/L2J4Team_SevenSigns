@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -28,7 +28,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.logging.Logger;
 
 import org.l2j.commons.crypt.NewCrypt;
-import org.l2j.commons.network.WritablePacket;
+import org.l2j.commons.network.base.BaseWritablePacket;
 import org.l2j.commons.util.CommonUtil;
 import org.l2j.loginserver.GameServerTable.GameServerInfo;
 import org.l2j.loginserver.network.GameServerPacketHandler;
@@ -51,7 +51,7 @@ public class GameServerThread extends Thread
 	/** Authed Clients on GameServer */
 	private final Set<String> _accountsOnGameServer = ConcurrentHashMap.newKeySet();
 	
-	private final Socket _connection;
+	private final Socket _socket;
 	private InputStream _in;
 	private OutputStream _out;
 	private final RSAPublicKey _publicKey;
@@ -65,12 +65,12 @@ public class GameServerThread extends Thread
 	@Override
 	public void run()
 	{
-		_connectionIPAddress = _connection.getInetAddress().getHostAddress();
+		_connectionIPAddress = _socket.getInetAddress().getHostAddress();
 		if (isBannedGameserverIP(_connectionIPAddress))
 		{
 			LOGGER.info("GameServerRegistration: IP Address " + _connectionIPAddress + " is on Banned IP list.");
 			forceClose(LoginServerFail.REASON_IP_BANNED);
-			// ensure no further processing for this connection
+			// Ensure no further processing for this connection.
 			return;
 		}
 		
@@ -88,7 +88,7 @@ public class GameServerThread extends Thread
 				lengthLo = _in.read();
 				lengthHi = _in.read();
 				length = (lengthHi * 256) + lengthLo;
-				if ((lengthHi < 0) || _connection.isClosed())
+				if ((lengthHi < 0) || _socket.isClosed())
 				{
 					LOGGER.finer("LoginServerThread: Login terminated the connection.");
 					break;
@@ -111,7 +111,7 @@ public class GameServerThread extends Thread
 					break;
 				}
 				
-				// decrypt if we have a key
+				// Decrypt if we have a key.
 				_blowfish.decrypt(data, 0, data.length);
 				checksumOk = NewCrypt.verifyChecksum(data);
 				if (!checksumOk)
@@ -181,7 +181,7 @@ public class GameServerThread extends Thread
 		
 		try
 		{
-			_connection.close();
+			_socket.close();
 		}
 		catch (IOException e)
 		{
@@ -200,13 +200,13 @@ public class GameServerThread extends Thread
 	
 	public GameServerThread(Socket con)
 	{
-		_connection = con;
+		_socket = con;
 		_connectionIp = con.getInetAddress().getHostAddress();
 		
 		try
 		{
-			_in = _connection.getInputStream();
-			_out = new BufferedOutputStream(_connection.getOutputStream());
+			_in = _socket.getInputStream();
+			_out = new BufferedOutputStream(_socket.getOutputStream());
 		}
 		catch (IOException e)
 		{
@@ -217,18 +217,27 @@ public class GameServerThread extends Thread
 		_privateKey = (RSAPrivateKey) pair.getPrivateKey();
 		_publicKey = (RSAPublicKey) pair.getPublicKey();
 		_blowfish = new NewCrypt("_;v.]05-31!|+-%xT!^[$\00");
-		setName(getClass().getSimpleName() + "-" + getId() + "@" + _connectionIp);
+		// Java 18
+		// setName(getClass().getSimpleName() + "-" + getId() + "@" + _connectionIp);
+		// Java 19
+		setName(getClass().getSimpleName() + "-" + threadId() + "@" + _connectionIp);
+		
 		start();
 	}
 	
-	public void sendPacket(WritablePacket packet)
+	public void sendPacket(BaseWritablePacket packet)
 	{
+		if ((_blowfish == null) || (_socket == null) || _socket.isClosed())
+		{
+			return;
+		}
+		
 		try
 		{
-			packet.write(); // write initial data
-			packet.writeInt(0); // reserved for checksum
-			int size = packet.getLength() - 2; // size without header
-			final int padding = size % 8; // padding of 8 bytes
+			packet.write(); // Write initial data.
+			packet.writeInt(0); // Reserved for checksum.
+			int size = packet.getLength() - 2; // Size without header.
+			final int padding = size % 8; // Padding of 8 bytes.
 			if (padding != 0)
 			{
 				for (int i = padding; i < 8; i++)
@@ -237,11 +246,11 @@ public class GameServerThread extends Thread
 				}
 			}
 			
-			// size header + encrypted[data + checksum (int) + padding]
+			// Size header + encrypted[data + checksum (int) + padding].
 			final byte[] data = packet.getSendableBytes();
 			
-			// encrypt
-			size = data.length - 2; // data size without header
+			// Encrypt.
+			size = data.length - 2; // Data size without header.
 			
 			synchronized (_out)
 			{
@@ -276,9 +285,9 @@ public class GameServerThread extends Thread
 		sendPacket(new RequestCharacters(account));
 	}
 	
-	public void changePasswordResponse(byte successful, String characterName, String msgToSend)
+	public void changePasswordResponse(String characterName, String msgToSend)
 	{
-		sendPacket(new ChangePasswordResponse(successful, characterName, msgToSend));
+		sendPacket(new ChangePasswordResponse(characterName, msgToSend));
 	}
 	
 	/**
@@ -307,7 +316,7 @@ public class GameServerThread extends Thread
 	}
 	
 	/**
-	 * @return Returns the isAuthed.
+	 * @return Returns if game server is authed.
 	 */
 	public boolean isAuthed()
 	{
@@ -350,7 +359,7 @@ public class GameServerThread extends Thread
 		return _privateKey;
 	}
 	
-	public void SetBlowFish(NewCrypt blowfish)
+	public void setBlowFish(NewCrypt blowfish)
 	{
 		_blowfish = blowfish;
 	}
@@ -358,6 +367,7 @@ public class GameServerThread extends Thread
 	public void addAccountOnGameServer(String account)
 	{
 		_accountsOnGameServer.add(account);
+		LoginController.getInstance().removeAuthedLoginClient(account);
 	}
 	
 	public void removeAccountOnGameServer(String account)

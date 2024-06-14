@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -30,12 +30,16 @@ public interface IRegion
 	
 	/** Cells in a region on the x axis. */
 	int REGION_CELLS_X = REGION_BLOCKS_X * IBlock.BLOCK_CELLS_X;
-	/** Cells in a regioin on the y axis. */
+	/** Cells in a region on the y axis. */
 	int REGION_CELLS_Y = REGION_BLOCKS_Y * IBlock.BLOCK_CELLS_Y;
 	/** Cells in a region. */
 	int REGION_CELLS = REGION_CELLS_X * REGION_CELLS_Y;
 	
 	boolean checkNearestNswe(int geoX, int geoY, int worldZ, int nswe);
+	
+	void setNearestNswe(int geoX, int geoY, int worldZ, byte nswe);
+	
+	void unsetNearestNswe(int geoX, int geoY, int worldZ, byte nswe);
 	
 	int getNearestZ(int geoX, int geoY, int worldZ);
 	
@@ -44,4 +48,6 @@ public interface IRegion
 	int getNextHigherZ(int geoX, int geoY, int worldZ);
 	
 	boolean hasGeo();
+	
+	boolean saveToFile(String fileName);
 }

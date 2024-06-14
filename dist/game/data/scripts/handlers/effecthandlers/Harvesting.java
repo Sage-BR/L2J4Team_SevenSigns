@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -78,7 +78,7 @@ public class Harvesting extends AbstractEffect
 					}
 					else
 					{
-						sm = new SystemMessage(SystemMessageId.YOU_VE_OBTAINED_S1_X_S2);
+						sm = new SystemMessage(SystemMessageId.YOU_HAVE_OBTAINED_S1_X_S2);
 						sm.addItemName(item.getId());
 						sm.addLong(harvestedItem.getCount());
 					}

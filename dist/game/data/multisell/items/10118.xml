@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/multisell.xsd">
+	<npcs>
+		<npc>-1</npc> <!-- Item Multisell -->
+	</npcs>
+	<!-- Magic Lamp Holiday Selection Ticket (Time-limited) - Sealed (98859) -->
+	<item>
+		<ingredient id="98859" count="1" /> <!-- Magic Lamp Holiday Selection Ticket (Time-limited) - Sealed -->
+		<production id="98860" count="1" /> <!-- Kit: Sayha's Storm (Time-limited) - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98859" count="1" /> <!-- Magic Lamp Holiday Selection Ticket (Time-limited) - Sealed -->
+		<production id="98861" count="1" /> <!-- Kit: Magic Lamp Charging Potion - Sealed -->
+	</item>
+</list>

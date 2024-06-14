@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,8 +16,10 @@
  */
 package org.l2j.gameserver.network.serverpackets.friend;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.data.sql.CharInfoTable;
 import org.l2j.gameserver.model.World;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 import org.l2j.gameserver.network.serverpackets.ServerPacket;
 
@@ -46,13 +48,13 @@ public class L2Friend extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.L2_FRIEND.writeId(this);
-		writeInt(_action ? 1 : 3); // 1-add 3-remove
-		writeInt(_objid);
-		writeString(_name);
-		writeInt(_online);
-		writeInt(_online ? _objid : 0);
+		ServerPackets.L2_FRIEND.writeId(this, buffer);
+		buffer.writeInt(_action ? 1 : 3); // 1-add 3-remove
+		buffer.writeInt(_objid);
+		buffer.writeString(_name);
+		buffer.writeInt(_online);
+		buffer.writeInt(_online ? _objid : 0);
 	}
 }

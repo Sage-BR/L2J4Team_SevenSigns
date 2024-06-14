@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -317,38 +317,28 @@ public class AdminCreateItem implements IAdminCommandHandler
 	
 	private int getCoinId(String name)
 	{
-		int id;
-		if (name.equalsIgnoreCase("adena"))
+		final int id;
+		switch (name)
 		{
-			id = 57;
-		}
-		else if (name.equalsIgnoreCase("ancientadena"))
-		{
-			id = 97145;
-		}
-		else if (name.equalsIgnoreCase("blueeva"))
-		{
-			id = 4355;
-		}
-		else if (name.equalsIgnoreCase("goldeinhasad"))
-		{
-			id = 4356;
-		}
-		else if (name.equalsIgnoreCase("silvershilen"))
-		{
-			id = 4357;
-		}
-		else if (name.equalsIgnoreCase("bloodypaagrio"))
-		{
-			id = 4358;
-		}
-		else if (name.equalsIgnoreCase("lcoin"))
-		{
-			id = 91663;
-		}
-		else
-		{
-			id = 0;
+			case "Adena":
+			{
+				id = 57;
+				break;
+			}
+			case "AncientAdena":
+			{
+				id = 97145;
+				break;
+			}
+			case "LCoin":
+			{
+				id = 91663;
+				break;
+			}
+			default:
+			{
+				id = 0;
+			}
 		}
 		return id;
 	}

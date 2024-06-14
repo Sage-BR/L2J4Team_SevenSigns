@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,11 +16,13 @@
  */
 package org.l2j.gameserver.network.serverpackets.pledgebonus;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.data.xml.ClanRewardData;
 import org.l2j.gameserver.enums.ClanRewardType;
 import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.model.clan.Clan;
 import org.l2j.gameserver.model.clan.ClanRewardBonus;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.PacketLogger;
 import org.l2j.gameserver.network.ServerPackets;
 import org.l2j.gameserver.network.serverpackets.ServerPacket;
@@ -38,7 +40,7 @@ public class ExPledgeBonusOpen extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
 		final Clan clan = _player.getClan();
 		if (clan == null)
@@ -72,20 +74,20 @@ public class ExPledgeBonusOpen extends ServerPacket
 		}
 		
 		// General OP Code
-		ServerPackets.EX_PLEDGE_BONUS_OPEN.writeId(this);
+		ServerPackets.EX_PLEDGE_BONUS_OPEN.writeId(this, buffer);
 		// Members online bonus
-		writeInt(highestMembersOnlineBonus.getRequiredAmount());
-		writeInt(clan.getMaxOnlineMembers());
-		writeByte(2); // 140
-		writeInt(membersOnlineBonus != null ? highestMembersOnlineBonus.getSkillReward().getSkillId() : 0);
-		writeByte(membersOnlineBonus != null ? membersOnlineBonus.getLevel() : 0);
-		writeByte(clan.canClaimBonusReward(_player, ClanRewardType.MEMBERS_ONLINE));
+		buffer.writeInt(highestMembersOnlineBonus.getRequiredAmount());
+		buffer.writeInt(clan.getMaxOnlineMembers());
+		buffer.writeByte(2); // 140
+		buffer.writeInt(membersOnlineBonus != null ? highestMembersOnlineBonus.getSkillReward().getSkillId() : 0);
+		buffer.writeByte(membersOnlineBonus != null ? membersOnlineBonus.getLevel() : 0);
+		buffer.writeByte(clan.canClaimBonusReward(_player, ClanRewardType.MEMBERS_ONLINE));
 		// Hunting bonus
-		writeInt(highestHuntingBonus.getRequiredAmount());
-		writeInt(clan.getHuntingPoints());
-		writeByte(2); // 140
-		writeInt(huntingBonus != null ? highestHuntingBonus.getSkillReward().getSkillId() : 0);
-		writeByte(huntingBonus != null ? huntingBonus.getLevel() : 0);
-		writeByte(clan.canClaimBonusReward(_player, ClanRewardType.HUNTING_MONSTERS));
+		buffer.writeInt(highestHuntingBonus.getRequiredAmount());
+		buffer.writeInt(clan.getHuntingPoints());
+		buffer.writeByte(2); // 140
+		buffer.writeInt(huntingBonus != null ? highestHuntingBonus.getSkillReward().getSkillId() : 0);
+		buffer.writeByte(huntingBonus != null ? huntingBonus.getLevel() : 0);
+		buffer.writeByte(clan.canClaimBonusReward(_player, ClanRewardType.HUNTING_MONSTERS));
 	}
 }

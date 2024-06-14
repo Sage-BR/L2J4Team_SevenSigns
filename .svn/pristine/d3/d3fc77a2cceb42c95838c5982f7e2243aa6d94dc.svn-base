@@ -1,0 +1,8 @@
+<html><body>Additional Services' Researcher Hermin:<br>
+Your choice of <font color="LEVEL">class</font> - <font color="LEVEL">%class_name%</font>.<br>
+The character will be <font color="LEVEL">%sex%</font>.<br>Are you sure about your decision?<br>
+After <font color="LEVEL">confirmations</font> the character will get <font color="LEVEL">selected race and gender</font>, as well as <font color="LEVEL">will change to the class of your choice</font>.<br>
+<font color="LEVEL">After agreeing, you will be briefly disconnected from the game</font>. Are you confirming your choice?<br>
+<Button ALIGN="LEFT" ICON="NORMAL" action="bypass -h Quest AdditionalServicesAdvisor confirm_class %class_id% %sex%"><font color="LEVEL">Confirm choice</font></button>
+<Button ALIGN=LEFT ICON="NORMAL" action="bypass -h Quest AdditionalServicesAdvisor 34153.htm">Select other</Button>
+</body></html>

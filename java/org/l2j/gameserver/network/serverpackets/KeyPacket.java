@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,6 +17,8 @@
 package org.l2j.gameserver.network.serverpackets;
 
 import org.l2j.Config;
+import org.l2j.commons.network.WritableBuffer;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 
 public class KeyPacket extends ServerPacket
@@ -31,18 +33,31 @@ public class KeyPacket extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.VERSION_CHECK.writeId(this);
-		writeByte(_result); // 0 - wrong protocol, 1 - protocol ok
+		ServerPackets.VERSION_CHECK.writeId(this, buffer);
+		buffer.writeByte(_result); // 0 - wrong protocol, 1 - protocol ok
 		for (int i = 0; i < 8; i++)
 		{
-			writeByte(_key[i]); // key
+			buffer.writeByte(_key[i]); // key
 		}
-		writeInt(Config.PACKET_ENCRYPTION); // use blowfish encryption
-		writeInt(Config.SERVER_ID); // server id
-		writeByte(1);
-		writeInt(0); // obfuscation key
-		writeByte((Config.SERVER_LIST_TYPE & 0x400) == 0x400 ? 4 : 0); // isClassic
+		buffer.writeInt(Config.PACKET_ENCRYPTION); // use blowfish encryption
+		buffer.writeInt(Config.SERVER_ID); // server id
+		buffer.writeByte(1);
+		buffer.writeInt(0); // obfuscation key
+		if ((Config.SERVER_LIST_TYPE & 0x1000) == 0x1000)
+		{
+			buffer.writeByte(4); // Aden
+		}
+		else if ((Config.SERVER_LIST_TYPE & 0x400) == 0x400)
+		{
+			buffer.writeByte(1); // Classic
+		}
+		else
+		{
+			buffer.writeByte(0); // Live
+		}
+		buffer.writeByte(0);
+		buffer.writeByte(0);
 	}
 }

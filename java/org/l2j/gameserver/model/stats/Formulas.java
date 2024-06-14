@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -202,6 +202,11 @@ public class Formulas
 		if (skill.isBad() && (skill.getAffectLimit() > 0))
 		{
 			damage *= Math.max((attacker.getStat().getMul(Stat.AREA_OF_EFFECT_DAMAGE_MODIFY, 1) - target.getStat().getValue(Stat.AREA_OF_EFFECT_DAMAGE_DEFENCE, 0)), 0.01);
+			damage -= target.getStat().getValue(Stat.AREA_OF_EFFECT_DAMAGE_DEFENCE_ADD, 0);
+			if (damage < 1)
+			{
+				damage = 1;
+			}
 		}
 		
 		return damage;
@@ -421,8 +426,13 @@ public class Formulas
 	 */
 	public static boolean calcAtkBreak(Creature target, double dmg)
 	{
+		if (target.isChanneling())
+		{
+			return false;
+		}
+		
 		// Cannot interrupt targets affected by Burst or Superior Burst Casting.
-		if (target.isChanneling() || target.hasAbnormalType(AbnormalType.DC_MOD))
+		if (target.hasAbnormalType(AbnormalType.DC_MOD))
 		{
 			return false;
 		}
@@ -1127,6 +1137,12 @@ public class Formulas
 	{
 		final int chance = (int) (rate + ((cancelMagicLvl - info.getSkill().getMagicLevel()) * 2) + ((info.getAbnormalTime() / 120) * target.getStat().getValue(Stat.RESIST_DISPEL_BUFF, 1)));
 		return Rnd.get(100) < CommonUtil.constrain(chance, 25, 75); // TODO: i_dispel_by_slot_probability min = 40, max = 95.
+	}
+	
+	public static boolean calcCancelSuccess(int rate, Creature caster, Creature target)
+	{
+		final int chance = (int) (rate + ((caster.getLevel() - target.getLevel()) * 2) + (target.getStat().getValue(Stat.RESIST_DISPEL_BUFF, 1)));
+		return Rnd.get(100) < chance;
 	}
 	
 	/**

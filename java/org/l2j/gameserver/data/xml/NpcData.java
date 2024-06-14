@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -62,6 +62,7 @@ public class NpcData implements IXmlReader
 	private final Map<Integer, NpcTemplate> _npcs = new ConcurrentHashMap<>();
 	private final Map<String, Integer> _clans = new ConcurrentHashMap<>();
 	private static final Collection<Integer> _masterMonsterIDs = ConcurrentHashMap.newKeySet();
+	private static Integer _genericClanId = null;
 	
 	protected NpcData()
 	{
@@ -759,6 +760,26 @@ public class NpcData implements IXmlReader
 	{
 		final Integer id = _clans.get(clanName);
 		return id != null ? id : -1;
+	}
+	
+	public int getGenericClanId()
+	{
+		if (_genericClanId != null)
+		{
+			return _genericClanId;
+		}
+		
+		synchronized (this)
+		{
+			_genericClanId = _clans.get("ALL");
+			
+			if (_genericClanId == null)
+			{
+				_genericClanId = -1;
+			}
+		}
+		
+		return _genericClanId;
 	}
 	
 	public Set<String> getClansByIds(Set<Integer> clanIds)

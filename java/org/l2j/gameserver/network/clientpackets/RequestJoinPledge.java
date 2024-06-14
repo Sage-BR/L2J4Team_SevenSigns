@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,13 +16,11 @@
  */
 package org.l2j.gameserver.network.clientpackets;
 
-import org.l2j.commons.network.ReadablePacket;
 import org.l2j.commons.threads.ThreadPool;
 import org.l2j.gameserver.data.xml.FakePlayerData;
 import org.l2j.gameserver.model.World;
 import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.model.clan.Clan;
-import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.SystemMessageId;
 import org.l2j.gameserver.network.serverpackets.AskJoinPledge;
 import org.l2j.gameserver.network.serverpackets.SystemMessage;
@@ -30,16 +28,16 @@ import org.l2j.gameserver.network.serverpackets.SystemMessage;
 /**
  * @version $Revision: 1.3.4.4 $ $Date: 2005/03/27 15:29:30 $
  */
-public class RequestJoinPledge implements ClientPacket
+public class RequestJoinPledge extends ClientPacket
 {
 	private int _target;
 	private int _pledgeType;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_target = packet.readInt();
-		_pledgeType = packet.readInt();
+		_target = readInt();
+		_pledgeType = readInt();
 	}
 	
 	private void scheduleDeny(Player player, String name)
@@ -54,9 +52,9 @@ public class RequestJoinPledge implements ClientPacket
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
-		final Player player = client.getPlayer();
+		final Player player = getPlayer();
 		if (player == null)
 		{
 			return;
@@ -98,7 +96,12 @@ public class RequestJoinPledge implements ClientPacket
 			return;
 		}
 		
-		if (!clan.checkClanJoinCondition(player, target, _pledgeType) || !player.getRequest().setRequest(target, this))
+		if (!clan.checkClanJoinCondition(player, target, _pledgeType))
+		{
+			return;
+		}
+		
+		if (!player.getRequest().setRequest(target, this))
 		{
 			return;
 		}

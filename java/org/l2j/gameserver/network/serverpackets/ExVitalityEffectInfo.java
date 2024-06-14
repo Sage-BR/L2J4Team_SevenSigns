@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,8 +16,10 @@
  */
 package org.l2j.gameserver.network.serverpackets;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.Config;
 import org.l2j.gameserver.model.actor.Player;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 
 /**
@@ -37,13 +39,13 @@ public class ExVitalityEffectInfo extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_VITALITY_EFFECT_INFO.writeId(this);
-		writeInt(_points);
-		writeInt(_vitalityBonus); // Vitality Bonus
-		writeShort(0); // Vitality additional bonus in %
-		writeShort(_vitalityItemsRemaining); // How much vitality items remaining for use
-		writeShort(Config.VITALITY_MAX_ITEMS_ALLOWED); // Max number of items for use
+		ServerPackets.EX_VITALITY_EFFECT_INFO.writeId(this, buffer);
+		buffer.writeInt(_points);
+		buffer.writeInt(_vitalityBonus); // Vitality Bonus
+		buffer.writeShort(0); // Vitality additional bonus in %
+		buffer.writeShort(_vitalityItemsRemaining); // How much vitality items remaining for use
+		buffer.writeShort(Config.VITALITY_MAX_ITEMS_ALLOWED); // Max number of items for use
 	}
 }

@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,8 +19,10 @@ package org.l2j.gameserver.network.serverpackets;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.model.item.instance.Item;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 
 public class ItemList extends AbstractItemPacket
@@ -43,25 +45,25 @@ public class ItemList extends AbstractItemPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.ITEM_LIST.writeId(this);
+		ServerPackets.ITEM_LIST.writeId(this, buffer);
 		if (_sendType == 2)
 		{
-			writeByte(_sendType);
-			writeInt(_items.size());
-			writeInt(_items.size());
+			buffer.writeByte(_sendType);
+			buffer.writeInt(_items.size());
+			buffer.writeInt(_items.size());
 			for (Item item : _items)
 			{
-				writeItem(item);
+				writeItem(item, buffer);
 			}
 		}
 		else
 		{
-			writeByte(1); // _showWindow
-			writeInt(0);
-			writeInt(_items.size());
+			buffer.writeByte(1); // _showWindow
+			buffer.writeInt(0);
+			buffer.writeInt(_items.size());
 		}
-		writeInventoryBlock(_player.getInventory());
+		writeInventoryBlock(_player.getInventory(), buffer);
 	}
 }

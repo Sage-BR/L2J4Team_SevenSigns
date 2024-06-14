@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -36,7 +36,8 @@ public class SitDownTask implements Runnable
 	{
 		if (_player != null)
 		{
-			_player.setBlockActions(false);
+			_player.setBlockActions(true);
+			_player.setSittingProgress(false);
 		}
 	}
 }

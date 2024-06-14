@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -85,7 +85,12 @@ public class TriggerSkillBySkillAttack extends AbstractEffect
 			return;
 		}
 		
-		if ((event.getSkill() == null) || (event.getSkill().getId() != _attackSkill.getSkillId()))
+		if (event.getSkill() == null)
+		{
+			return;
+		}
+		
+		if (event.getSkill().getId() != _attackSkill.getSkillId())
 		{
 			return;
 		}

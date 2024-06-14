@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -133,7 +133,11 @@ public class World
 			}
 		}
 		
-		LOGGER.info(getClass().getSimpleName() + ": (" + REGIONS_X + " by " + REGIONS_Y + ") World Region Grid set up.");
+		// When GUI is enabled World is called early. So we need to skip this log.
+		if (!Config.ENABLE_GUI)
+		{
+			LOGGER.info(getClass().getSimpleName() + ": (" + REGIONS_X + " by " + REGIONS_Y + ") World Region Grid set up.");
+		}
 	}
 	
 	/**
@@ -319,6 +323,23 @@ public class World
 	public void removePet(int ownerId)
 	{
 		_petsInstance.remove(ownerId);
+	}
+	
+	/**
+	 * This operation is quite heave as it iterates all world visible objects.
+	 * @param npcId the id of the NPC to find.
+	 * @return the first NPC found corresponding to the given id.
+	 */
+	public Npc getNpc(int npcId)
+	{
+		for (WorldObject wo : getVisibleObjects())
+		{
+			if (wo.isNpc() && (wo.getId() == npcId))
+			{
+				return (Npc) wo;
+			}
+		}
+		return null;
 	}
 	
 	/**
@@ -652,7 +673,12 @@ public class World
 			
 			for (WorldObject wo : visibleObjects)
 			{
-				if ((wo == object) || !clazz.isInstance(wo) || (wo.getInstanceWorld() != object.getInstanceWorld()))
+				if ((wo == object) || !clazz.isInstance(wo))
+				{
+					continue;
+				}
+				
+				if (wo.getInstanceWorld() != object.getInstanceWorld())
 				{
 					continue;
 				}
@@ -706,7 +732,12 @@ public class World
 			
 			for (WorldObject wo : visibleObjects)
 			{
-				if ((wo == object) || !clazz.isInstance(wo) || (wo.getInstanceWorld() != object.getInstanceWorld()))
+				if ((wo == object) || !clazz.isInstance(wo))
+				{
+					continue;
+				}
+				
+				if (wo.getInstanceWorld() != object.getInstanceWorld())
 				{
 					continue;
 				}

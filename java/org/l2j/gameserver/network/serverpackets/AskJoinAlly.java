@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,30 +16,35 @@
  */
 package org.l2j.gameserver.network.serverpackets;
 
+import org.l2j.commons.network.WritableBuffer;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 
 public class AskJoinAlly extends ServerPacket
 {
 	private final String _requestorName;
+	private final String _requestorAllyName;
 	private final int _requestorObjId;
 	
 	/**
 	 * @param requestorObjId
 	 * @param requestorName
+	 * @param requestorAllyName
 	 */
-	public AskJoinAlly(int requestorObjId, String requestorName)
+	public AskJoinAlly(int requestorObjId, String requestorName, String requestorAllyName)
 	{
 		_requestorName = requestorName;
 		_requestorObjId = requestorObjId;
+		_requestorAllyName = requestorAllyName;
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.ASK_JOIN_ALLIANCE.writeId(this);
-		writeInt(_requestorObjId);
-		writeString(null); // Ally Name ?
-		writeString(null); // TODO: Find me!
-		writeString(_requestorName);
+		ServerPackets.ASK_JOIN_ALLIANCE.writeId(this, buffer);
+		buffer.writeInt(_requestorObjId);
+		buffer.writeString(_requestorAllyName);
+		buffer.writeString(null); // TODO: Find me!
+		buffer.writeString(_requestorName);
 	}
 }

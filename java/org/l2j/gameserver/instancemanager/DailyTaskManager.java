@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -29,9 +29,11 @@ import java.util.logging.Logger;
 import org.l2j.Config;
 import org.l2j.commons.database.DatabaseFactory;
 import org.l2j.commons.threads.ThreadPool;
+import org.l2j.commons.util.TimeUtil;
 import org.l2j.gameserver.data.sql.ClanTable;
 import org.l2j.gameserver.data.xml.DailyMissionData;
 import org.l2j.gameserver.data.xml.LimitShopData;
+import org.l2j.gameserver.data.xml.MableGameData;
 import org.l2j.gameserver.data.xml.PrimeShopData;
 import org.l2j.gameserver.data.xml.SkillData;
 import org.l2j.gameserver.data.xml.TimedHuntingZoneData;
@@ -45,6 +47,7 @@ import org.l2j.gameserver.model.holders.LimitShopProductHolder;
 import org.l2j.gameserver.model.holders.SubClassHolder;
 import org.l2j.gameserver.model.holders.TimedHuntingZoneHolder;
 import org.l2j.gameserver.model.item.instance.Item;
+import org.l2j.gameserver.model.itemcontainer.Inventory;
 import org.l2j.gameserver.model.olympiad.Olympiad;
 import org.l2j.gameserver.model.primeshop.PrimeShopGroup;
 import org.l2j.gameserver.model.skill.Skill;
@@ -120,6 +123,7 @@ public class DailyTaskManager
 			resetTimedHuntingZonesWeekly();
 			resetVitalityWeekly();
 			resetPrivateStoreHistory();
+			resetWeeklyLimitShopData();
 		}
 		else // All days, except Wednesday.
 		{
@@ -133,7 +137,7 @@ public class DailyTaskManager
 		
 		if (calendar.get(Calendar.DAY_OF_MONTH) == 1)
 		{
-			resetMontlyLimitShopData();
+			resetMonthlyLimitShopData();
 		}
 		
 		// Daily tasks.
@@ -141,6 +145,7 @@ public class DailyTaskManager
 		resetClanContributionList();
 		resetClanDonationPoints();
 		resetDailyHennaPattern();
+		resetDailyPouchExtract();
 		resetDailySkills();
 		resetDailyItems();
 		resetDailyPrimeShopData();
@@ -154,6 +159,19 @@ public class DailyTaskManager
 		resetAttendanceRewards();
 		resetVip();
 		resetResurrectionByPayment();
+		checkWeekSwap();
+	}
+	
+	private void checkWeekSwap()
+	{
+		final long nextEvenWeekSwap = GlobalVariablesManager.getInstance().getLong(GlobalVariablesManager.NEXT_EVEN_WEEK_SWAP, 0);
+		if (nextEvenWeekSwap < System.currentTimeMillis())
+		{
+			final boolean isEvenWeek = GlobalVariablesManager.getInstance().getBoolean(GlobalVariablesManager.IS_EVEN_WEEK, true);
+			GlobalVariablesManager.getInstance().set(GlobalVariablesManager.IS_EVEN_WEEK, !isEvenWeek);
+			final Calendar calendar = TimeUtil.getCloseNextDay(Calendar.WEDNESDAY, 6, 25);
+			GlobalVariablesManager.getInstance().set(GlobalVariablesManager.NEXT_EVEN_WEEK_SWAP, calendar.getTimeInMillis());
+		}
 	}
 	
 	private void onSave()
@@ -172,6 +190,8 @@ public class DailyTaskManager
 			Olympiad.getInstance().saveOlympiadStatus();
 			LOGGER.info("Olympiad System: Data updated.");
 		}
+		
+		MableGameData.getInstance().save();
 	}
 	
 	private void clanLeaderApply()
@@ -693,7 +713,7 @@ public class DailyTaskManager
 		LOGGER.info("LimitShopData has been reset.");
 	}
 	
-	private void resetMontlyLimitShopData()
+	private void resetWeeklyLimitShopData()
 	{
 		for (LimitShopProductHolder holder : LimitShopData.getInstance().getProducts())
 		{
@@ -701,7 +721,7 @@ public class DailyTaskManager
 			try (Connection con = DatabaseFactory.getConnection();
 				PreparedStatement ps = con.prepareStatement("DELETE FROM account_gsdata WHERE var=?"))
 			{
-				ps.setString(1, AccountVariables.LCOIN_SHOP_PRODUCT_MONTLY_COUNT + holder.getProductionId());
+				ps.setString(1, AccountVariables.LCOIN_SHOP_PRODUCT_WEEKLY_COUNT + holder.getProductionId());
 				ps.executeUpdate();
 			}
 			catch (Exception e)
@@ -711,7 +731,32 @@ public class DailyTaskManager
 			// Update data for online players.
 			for (Player player : World.getInstance().getPlayers())
 			{
-				player.getAccountVariables().remove(AccountVariables.LCOIN_SHOP_PRODUCT_MONTLY_COUNT + holder.getProductionId());
+				player.getAccountVariables().remove(AccountVariables.LCOIN_SHOP_PRODUCT_WEEKLY_COUNT + holder.getProductionId());
+				player.getAccountVariables().storeMe();
+			}
+		}
+		LOGGER.info("LimitShopData has been reset.");
+	}
+	
+	private void resetMonthlyLimitShopData()
+	{
+		for (LimitShopProductHolder holder : LimitShopData.getInstance().getProducts())
+		{
+			// Update data for offline players.
+			try (Connection con = DatabaseFactory.getConnection();
+				PreparedStatement ps = con.prepareStatement("DELETE FROM account_gsdata WHERE var=?"))
+			{
+				ps.setString(1, AccountVariables.LCOIN_SHOP_PRODUCT_MONTHLY_COUNT + holder.getProductionId());
+				ps.executeUpdate();
+			}
+			catch (Exception e)
+			{
+				LOGGER.log(Level.SEVERE, getClass().getSimpleName() + ": Could not reset LimitShopData: " + e);
+			}
+			// Update data for online players.
+			for (Player player : World.getInstance().getPlayers())
+			{
+				player.getAccountVariables().remove(AccountVariables.LCOIN_SHOP_PRODUCT_MONTHLY_COUNT + holder.getProductionId());
 				player.getAccountVariables().storeMe();
 			}
 		}
@@ -829,6 +874,32 @@ public class DailyTaskManager
 		}
 		
 		LOGGER.info("MorgosMilitaryBase has been reset.");
+	}
+	
+	private void resetDailyPouchExtract()
+	{
+		// Update data for offline players.
+		try (Connection con = DatabaseFactory.getConnection())
+		{
+			try (PreparedStatement ps = con.prepareStatement("DELETE FROM character_variables WHERE var=?"))
+			{
+				ps.setString(1, PlayerVariables.DAILY_EXTRACT_ITEM + Inventory.SP_POUCH);
+				ps.execute();
+			}
+		}
+		catch (Exception e)
+		{
+			LOGGER.log(Level.SEVERE, getClass().getSimpleName() + ": Could not reset Daily Pouch Extract: " + e);
+		}
+		
+		// Update data for online players.
+		for (Player player : World.getInstance().getPlayers())
+		{
+			player.getVariables().remove(PlayerVariables.DAILY_EXTRACT_ITEM + Inventory.SP_POUCH);
+			player.getVariables().storeMe();
+		}
+		
+		LOGGER.info("Daily Pouch Extract Count has been reset.");
 	}
 	
 	public static DailyTaskManager getInstance()

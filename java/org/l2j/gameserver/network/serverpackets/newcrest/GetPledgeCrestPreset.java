@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,6 +16,8 @@
  */
 package org.l2j.gameserver.network.serverpackets.newcrest;
 
+import org.l2j.commons.network.WritableBuffer;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 import org.l2j.gameserver.network.serverpackets.ServerPacket;
 
@@ -34,11 +36,11 @@ public class GetPledgeCrestPreset extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_GET_PLEDGE_CREST_PRESET.writeId(this);
-		writeInt(1);
-		writeInt(_clanId);
-		writeInt(_emblemId);
+		ServerPackets.EX_GET_PLEDGE_CREST_PRESET.writeId(this, buffer);
+		buffer.writeInt(1);
+		buffer.writeInt(_clanId);
+		buffer.writeInt(_emblemId);
 	}
 }

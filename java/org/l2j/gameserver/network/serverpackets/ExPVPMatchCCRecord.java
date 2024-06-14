@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,7 +19,9 @@ package org.l2j.gameserver.network.serverpackets;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.model.actor.Player;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 
 /**
@@ -41,11 +43,11 @@ public class ExPVPMatchCCRecord extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_PVP_MATCH_CCRECORD.writeId(this);
-		writeInt(_state); // 0 - initialize, 1 - update, 2 - finish
-		writeInt(Math.min(_players.size(), 25));
+		ServerPackets.EX_PVP_MATCH_CCRECORD.writeId(this, buffer);
+		buffer.writeInt(_state); // 0 - initialize, 1 - update, 2 - finish
+		buffer.writeInt(Math.min(_players.size(), 25));
 		int counter = 0;
 		for (Entry<Player, Integer> entry : _players.entrySet())
 		{
@@ -54,8 +56,8 @@ public class ExPVPMatchCCRecord extends ServerPacket
 			{
 				break;
 			}
-			writeString(entry.getKey().getName());
-			writeInt(entry.getValue());
+			buffer.writeString(entry.getKey().getName());
+			buffer.writeInt(entry.getValue());
 		}
 	}
 }

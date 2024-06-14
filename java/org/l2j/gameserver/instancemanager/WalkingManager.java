@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -326,8 +326,13 @@ public class WalkingManager implements IXmlReader
 				if (_activeRoutes.containsKey(npc.getObjectId()) && ((npc.getAI().getIntention() == CtrlIntention.AI_INTENTION_ACTIVE) || (npc.getAI().getIntention() == CtrlIntention.AI_INTENTION_IDLE)))
 				{
 					final WalkInfo walk = _activeRoutes.get(npc.getObjectId());
+					if (walk == null)
+					{
+						return;
+					}
+					
 					// Prevent call simultaneously from scheduled task and onArrived() or temporarily stop walking for resuming in future
-					if ((walk == null) || walk.isBlocked() || walk.isSuspended())
+					if (walk.isBlocked() || walk.isSuspended())
 					{
 						return;
 					}

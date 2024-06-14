@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -389,7 +389,7 @@ public class WorldExchangeManager implements IXmlReader
 			return;
 		}
 		
-		player.sendPacket(iu);
+		player.sendInventoryUpdate(iu);
 		player.getInventory().reduceAdena("World Exchange Registration", feePrice, player, null);
 		final long endTime = calculateDate(Config.WORLD_EXCHANGE_ITEM_SELL_PERIOD);
 		_itemBids.put(freeId, new WorldExchangeHolder(freeId, itemInstance, new ItemInfo(itemInstance), priceForEach, player.getObjectId(), WorldExchangeItemStatusType.WORLD_EXCHANGE_REGISTERED, category, System.currentTimeMillis(), endTime, true));
@@ -465,7 +465,23 @@ public class WorldExchangeManager implements IXmlReader
 			return;
 		}
 		
-		if ((worldExchangeItem.getStoreType() == WorldExchangeItemStatusType.WORLD_EXCHANGE_NONE) || !_itemBids.containsKey(worldExchangeItem.getWorldExchangeId()) || (_itemBids.get(worldExchangeItem.getWorldExchangeId()) != worldExchangeItem))
+		if (worldExchangeItem.getStoreType() == WorldExchangeItemStatusType.WORLD_EXCHANGE_NONE)
+		{
+			player.sendPacket(new WorldExchangeSettleList(player));
+			player.sendPacket(new SystemMessage(SystemMessageId.THE_ITEM_IS_NOT_FOUND));
+			player.sendPacket(WorldExchangeSettleRecvResult.FAIL);
+			return;
+		}
+		
+		if (!_itemBids.containsKey(worldExchangeItem.getWorldExchangeId()))
+		{
+			player.sendPacket(new WorldExchangeSettleList(player));
+			player.sendPacket(new SystemMessage(SystemMessageId.THE_ITEM_IS_NOT_FOUND));
+			player.sendPacket(WorldExchangeSettleRecvResult.FAIL);
+			return;
+		}
+		
+		if (_itemBids.get(worldExchangeItem.getWorldExchangeId()) != worldExchangeItem)
 		{
 			player.sendPacket(new WorldExchangeSettleList(player));
 			player.sendPacket(new SystemMessage(SystemMessageId.THE_ITEM_IS_NOT_FOUND));
@@ -511,7 +527,23 @@ public class WorldExchangeManager implements IXmlReader
 			return;
 		}
 		
-		if ((worldExchangeItem.getStoreType() == WorldExchangeItemStatusType.WORLD_EXCHANGE_NONE) || !_itemBids.containsKey(worldExchangeItem.getWorldExchangeId()) || (_itemBids.get(worldExchangeItem.getWorldExchangeId()) != worldExchangeItem))
+		if (worldExchangeItem.getStoreType() == WorldExchangeItemStatusType.WORLD_EXCHANGE_NONE)
+		{
+			player.sendPacket(new WorldExchangeSettleList(player));
+			player.sendPacket(new SystemMessage(SystemMessageId.THE_ITEM_IS_NOT_FOUND));
+			player.sendPacket(WorldExchangeSettleRecvResult.FAIL);
+			return;
+		}
+		
+		if (!_itemBids.containsKey(worldExchangeItem.getWorldExchangeId()))
+		{
+			player.sendPacket(new WorldExchangeSettleList(player));
+			player.sendPacket(new SystemMessage(SystemMessageId.THE_ITEM_IS_NOT_FOUND));
+			player.sendPacket(WorldExchangeSettleRecvResult.FAIL);
+			return;
+		}
+		
+		if (_itemBids.get(worldExchangeItem.getWorldExchangeId()) != worldExchangeItem)
 		{
 			player.sendPacket(new WorldExchangeSettleList(player));
 			player.sendPacket(new SystemMessage(SystemMessageId.THE_ITEM_IS_NOT_FOUND));
@@ -570,7 +602,15 @@ public class WorldExchangeManager implements IXmlReader
 			return;
 		}
 		
-		if ((worldExchangeItem.getStoreType() == WorldExchangeItemStatusType.WORLD_EXCHANGE_NONE) || !_itemBids.containsKey(worldExchangeItem.getWorldExchangeId()))
+		if (worldExchangeItem.getStoreType() == WorldExchangeItemStatusType.WORLD_EXCHANGE_NONE)
+		{
+			player.sendPacket(new WorldExchangeSettleList(player));
+			player.sendPacket(new SystemMessage(SystemMessageId.THE_ITEM_IS_NOT_FOUND));
+			player.sendPacket(WorldExchangeSettleRecvResult.FAIL);
+			return;
+		}
+		
+		if (!_itemBids.containsKey(worldExchangeItem.getWorldExchangeId()))
 		{
 			player.sendPacket(new WorldExchangeSettleList(player));
 			player.sendPacket(new SystemMessage(SystemMessageId.THE_ITEM_IS_NOT_FOUND));
@@ -692,7 +732,7 @@ public class WorldExchangeManager implements IXmlReader
 		}
 		else
 		{
-			sm = new SystemMessage(SystemMessageId.YOU_VE_OBTAINED_S1_X_S2);
+			sm = new SystemMessage(SystemMessageId.YOU_HAVE_OBTAINED_S1_X_S2);
 			sm.addItemName(receivedItem);
 			sm.addLong(receivedItem.getCount());
 		}
@@ -753,7 +793,12 @@ public class WorldExchangeManager implements IXmlReader
 		final List<WorldExchangeHolder> returnList = new ArrayList<>();
 		for (WorldExchangeHolder holder : _itemBids.values())
 		{
-			if ((holder.getStoreType() == WorldExchangeItemStatusType.WORLD_EXCHANGE_NONE) || (holder.getOldOwnerId() == ownerId) || (holder.getCategory() != type))
+			if (holder.getStoreType() == WorldExchangeItemStatusType.WORLD_EXCHANGE_NONE)
+			{
+				continue;
+			}
+			
+			if ((holder.getOldOwnerId() == ownerId) || (holder.getCategory() != type))
 			{
 				continue;
 			}
@@ -902,7 +947,12 @@ public class WorldExchangeManager implements IXmlReader
 		final List<WorldExchangeHolder> outTime = new ArrayList<>();
 		for (WorldExchangeHolder holder : _itemBids.values())
 		{
-			if ((holder.getStoreType() == WorldExchangeItemStatusType.WORLD_EXCHANGE_NONE) || (holder.getOldOwnerId() != ownerId))
+			if (holder.getStoreType() == WorldExchangeItemStatusType.WORLD_EXCHANGE_NONE)
+			{
+				continue;
+			}
+			
+			if (holder.getOldOwnerId() != ownerId)
 			{
 				continue;
 			}
@@ -943,7 +993,14 @@ public class WorldExchangeManager implements IXmlReader
 		
 		for (int itemId : itemIds)
 		{
-			_itemCategories.putIfAbsent(itemId, WorldExchangeItemSubType.getWorldExchangeItemSubType(category));
+			final WorldExchangeItemSubType type = WorldExchangeItemSubType.getWorldExchangeItemSubType(category);
+			if (type == null)
+			{
+				LOGGER.warning(getClass().getSimpleName() + ": Non existent category type [" + category + "] for item id " + itemId + "!");
+				continue;
+			}
+			
+			_itemCategories.putIfAbsent(itemId, type);
 		}
 	}
 	

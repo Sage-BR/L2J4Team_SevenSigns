@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -30,7 +30,6 @@ import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.TimeUnit;
 
-import org.l2j.Config;
 import org.l2j.commons.threads.ThreadPool;
 import org.l2j.gameserver.enums.ItemLocation;
 import org.l2j.gameserver.geoengine.GeoEngine;
@@ -40,7 +39,6 @@ import org.l2j.gameserver.model.WorldObject;
 import org.l2j.gameserver.model.WorldRegion;
 import org.l2j.gameserver.model.actor.Creature;
 import org.l2j.gameserver.model.actor.Npc;
-import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.model.actor.templates.NpcTemplate;
 import org.l2j.gameserver.model.effects.EffectType;
 import org.l2j.gameserver.model.events.EventDispatcher;
@@ -244,7 +242,13 @@ public class CreatureAI extends AbstractAI
 	@Override
 	protected void onIntentionAttack(Creature target)
 	{
-		if ((target == null) || !target.isTargetable() || (getIntention() == AI_INTENTION_REST))
+		if ((target == null) || !target.isTargetable())
+		{
+			clientActionFailed();
+			return;
+		}
+		
+		if (getIntention() == AI_INTENTION_REST)
 		{
 			// Cancel action client side by sending Server->Client packet ActionFailed to the Player actor
 			clientActionFailed();
@@ -361,7 +365,14 @@ public class CreatureAI extends AbstractAI
 	@Override
 	protected void onIntentionMoveTo(ILocational loc)
 	{
-		if ((getIntention() == AI_INTENTION_REST) || _actor.isAllSkillsDisabled() || _actor.isCastingNow())
+		if (getIntention() == AI_INTENTION_REST)
+		{
+			// Cancel action client side by sending Server->Client packet ActionFailed to the Player actor
+			clientActionFailed();
+			return;
+		}
+		
+		if (_actor.isAllSkillsDisabled() || _actor.isCastingNow())
 		{
 			// Cancel action client side by sending Server->Client packet ActionFailed to the Player actor
 			clientActionFailed();
@@ -394,7 +405,14 @@ public class CreatureAI extends AbstractAI
 	@Override
 	protected void onIntentionFollow(Creature target)
 	{
-		if ((getIntention() == AI_INTENTION_REST) || _actor.isAllSkillsDisabled() || _actor.isCastingNow())
+		if (getIntention() == AI_INTENTION_REST)
+		{
+			// Cancel action client side by sending Server->Client packet ActionFailed to the Player actor
+			clientActionFailed();
+			return;
+		}
+		
+		if (_actor.isAllSkillsDisabled() || _actor.isCastingNow())
 		{
 			// Cancel action client side by sending Server->Client packet ActionFailed to the Player actor
 			clientActionFailed();
@@ -445,7 +463,14 @@ public class CreatureAI extends AbstractAI
 	@Override
 	protected void onIntentionPickUp(WorldObject object)
 	{
-		if ((getIntention() == AI_INTENTION_REST) || _actor.isAllSkillsDisabled() || _actor.isCastingNow())
+		if (getIntention() == AI_INTENTION_REST)
+		{
+			// Cancel action client side by sending Server->Client packet ActionFailed to the Player actor
+			clientActionFailed();
+			return;
+		}
+		
+		if (_actor.isAllSkillsDisabled() || _actor.isCastingNow())
 		{
 			// Cancel action client side by sending Server->Client packet ActionFailed to the Player actor
 			clientActionFailed();
@@ -490,7 +515,14 @@ public class CreatureAI extends AbstractAI
 	@Override
 	protected void onIntentionInteract(WorldObject object)
 	{
-		if ((getIntention() == AI_INTENTION_REST) || _actor.isAllSkillsDisabled() || _actor.isCastingNow())
+		if (getIntention() == AI_INTENTION_REST)
+		{
+			// Cancel action client side by sending Server->Client packet ActionFailed to the Player actor
+			clientActionFailed();
+			return;
+		}
+		
+		if (_actor.isAllSkillsDisabled() || _actor.isCastingNow())
 		{
 			// Cancel action client side by sending Server->Client packet ActionFailed to the Player actor
 			clientActionFailed();
@@ -874,7 +906,13 @@ public class CreatureAI extends AbstractAI
 	
 	protected boolean maybeMoveToPosition(ILocational worldPosition, int offset)
 	{
-		if ((worldPosition == null) || (offset < 0))
+		if (worldPosition == null)
+		{
+			// LOGGER.warning("maybeMoveToPosition: worldPosition == NULL!");
+			return false;
+		}
+		
+		if (offset < 0)
 		{
 			return false; // skill radius -1
 		}
@@ -938,7 +976,12 @@ public class CreatureAI extends AbstractAI
 	protected boolean maybeMoveToPawn(WorldObject target, int offsetValue)
 	{
 		// Get the distance between the current position of the Creature and the target (x,y)
-		if ((target == null) || (offsetValue < 0))
+		if (target == null)
+		{
+			// LOGGER.warning("maybeMoveToPawn: target == NULL!");
+			return false;
+		}
+		if (offsetValue < 0)
 		{
 			return false; // skill radius -1
 		}
@@ -1039,19 +1082,12 @@ public class CreatureAI extends AbstractAI
 	 */
 	protected boolean checkTargetLostOrDead(Creature target)
 	{
-		if ((target == null) || target.isAlikeDead())
+		if ((target == null) || target.isDead())
 		{
-			// check if player is fakedeath
-			if ((target != null) && target.isPlayer() && ((Player) target).isFakeDeath() && Config.FAKE_DEATH_DAMAGE_STAND)
-			{
-				target.stopFakeDeath(true);
-				return false;
-			}
-			
-			// Set the Intention of this AbstractAI to AI_INTENTION_ACTIVE
 			setIntention(AI_INTENTION_ACTIVE);
 			return true;
 		}
+		
 		return false;
 	}
 	
@@ -1074,13 +1110,6 @@ public class CreatureAI extends AbstractAI
 	 */
 	protected boolean checkTargetLost(WorldObject target)
 	{
-		// Check if player is fakedeath.
-		if ((target != null) && target.isPlayer() && target.getActingPlayer().isFakeDeath() && Config.FAKE_DEATH_DAMAGE_STAND)
-		{
-			target.getActingPlayer().stopFakeDeath(true);
-			return false;
-		}
-		
 		if ((target == null) || ((_actor != null) && (_skill != null) && _skill.isBad() && (_skill.getAffectRange() > 0) && (_actor.isPlayer() && _actor.isMoving() ? !GeoEngine.getInstance().canMoveToTarget(_actor, target) : !GeoEngine.getInstance().canSeeTarget(_actor, target))))
 		{
 			setIntention(AI_INTENTION_ACTIVE);
@@ -1254,7 +1283,7 @@ public class CreatureAI extends AbstractAI
 					hasLongRangeDamageSkill = true;
 				}
 				
-				if (castRange > 70)
+				if (castRange > 150)
 				{
 					hasLongRangeSkills = true;
 					if (hasLongRangeDamageSkill)

@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,7 +16,9 @@
  */
 package org.l2j.gameserver.network.serverpackets;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.model.TradeItem;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 
 /**
@@ -34,15 +36,15 @@ public class TradeOwnAdd extends AbstractItemPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.TRADE_OWN_ADD.writeId(this);
-		writeByte(_sendType);
+		ServerPackets.TRADE_OWN_ADD.writeId(this, buffer);
+		buffer.writeByte(_sendType);
 		if (_sendType == 2)
 		{
-			writeInt(1);
+			buffer.writeInt(1);
 		}
-		writeInt(1);
-		writeItem(_item);
+		buffer.writeInt(1);
+		writeItem(_item, buffer);
 	}
 }

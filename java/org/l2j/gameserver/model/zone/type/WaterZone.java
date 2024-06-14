@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -36,7 +36,11 @@ public class WaterZone extends ZoneType
 	@Override
 	protected void onEnter(Creature creature)
 	{
-		creature.setInsideZone(ZoneId.WATER, true);
+		// Tempfix for remaining in water zones on exit.
+		if (!creature.isInsideZone(ZoneId.WATER))
+		{
+			creature.setInsideZone(ZoneId.WATER, true);
+		}
 		
 		// TODO: update to only send speed status when that packet is known
 		if (creature.isPlayer())
@@ -74,7 +78,11 @@ public class WaterZone extends ZoneType
 	@Override
 	protected void onExit(Creature creature)
 	{
-		creature.setInsideZone(ZoneId.WATER, false);
+		// Tempfix for remaining in water zones on exit.
+		if (creature.isInsideZone(ZoneId.WATER))
+		{
+			creature.setInsideZone(ZoneId.WATER, false);
+		}
 		
 		// TODO: update to only send speed status when that packet is known
 		if (creature.isPlayer())

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/spawns.xsd">
+	<spawn name="23_17_npc">
+		<group>
+			<npc id="34390" x="127215" y="-9720" z="-3740" heading="58005" respawnTime="60sec" /> <!-- Maron - Adventurers' Guildsman -->
+		</group>
+	</spawn>
+	<spawn name="23_17_monsters">
+		<group>
+			<npc id="22679" x="128008" y="-11297" z="-3679" respawnTime="60sec" /> <!-- Bloody Priest - Invader of the Ancient Battleground -->
+			<npc id="22677" x="128110" y="-11274" z="-3678" respawnTime="60sec" /> <!-- Ghostly Warrior -->
+			<npc id="22677" x="128108" y="-11105" z="-3685" respawnTime="60sec" /> <!-- Ghostly Warrior -->
+			<npc id="22678" x="127996" y="-11088" z="-3685" respawnTime="60sec" /> <!-- Nihil Invader -->
+			<npc id="22676" x="127991" y="-11096" z="-3686" respawnTime="60sec" /> <!-- Knight of the Past -->
+			<npc id="22676" x="127819" y="-11172" z="-3687" respawnTime="60sec" /> <!-- Knight of the Past -->
+			<npc id="22676" x="128072" y="-11483" z="-3672" respawnTime="60sec" /> <!-- Knight of the Past -->
+			<npc id="22679" x="129181" y="-9273" z="-3596" respawnTime="60sec" /> <!-- Bloody Priest - Invader of the Ancient Battleground -->
+			<npc id="22677" x="129232" y="-9252" z="-3599" respawnTime="60sec" /> <!-- Ghostly Warrior -->
+			<npc id="22677" x="129036" y="-9171" z="-3595" respawnTime="60sec" /> <!-- Ghostly Warrior -->
+			<npc id="22678" x="129237" y="-9127" z="-3600" respawnTime="60sec" /> <!-- Nihil Invader -->
+			<npc id="22676" x="129222" y="-9422" z="-3595" respawnTime="60sec" /> <!-- Knight of the Past -->
+			<npc id="22678" x="128962" y="-9089" z="-3595" respawnTime="60sec" /> <!-- Nihil Invader -->
+			<npc id="22679" x="129706" y="-10347" z="-3619" respawnTime="60sec" /> <!-- Bloody Priest - Invader of the Ancient Battleground -->
+			<npc id="22677" x="129707" y="-10226" z="-3615" respawnTime="60sec" /> <!-- Ghostly Warrior -->
+			<npc id="22678" x="129519" y="-10246" z="-3614" respawnTime="60sec" /> <!-- Nihil Invader -->
+			<npc id="22676" x="129593" y="-10447" z="-3630" respawnTime="60sec" /> <!-- Knight of the Past -->
+			<npc id="22677" x="129498" y="-10530" z="-3650" respawnTime="60sec" /> <!-- Ghostly Warrior -->
+			<npc id="22679" x="130019" y="-11887" z="-3593" respawnTime="60sec" /> <!-- Bloody Priest - Invader of the Ancient Battleground -->
+			<npc id="22677" x="129806" y="-11841" z="-3621" respawnTime="60sec" /> <!-- Ghostly Warrior -->
+			<npc id="22678" x="129979" y="-11673" z="-3601" respawnTime="60sec" /> <!-- Nihil Invader -->
+			<npc id="22676" x="130141" y="-11813" z="-3581" respawnTime="60sec" /> <!-- Knight of the Past -->
+			<npc id="22677" x="130111" y="-11649" z="-3591" respawnTime="60sec" /> <!-- Ghostly Warrior -->
+			<npc id="22678" x="129957" y="-11651" z="-3601" respawnTime="60sec" /> <!-- Nihil Invader -->
+			<npc id="22676" x="130015" y="-12110" z="-3613" respawnTime="60sec" /> <!-- Knight of the Past -->
+			<npc id="22679" x="130384" y="-10684" z="-3611" respawnTime="60sec" /> <!-- Bloody Priest - Invader of the Ancient Battleground -->
+			<npc id="22677" x="130241" y="-10607" z="-3609" respawnTime="60sec" /> <!-- Ghostly Warrior -->
+			<npc id="22678" x="130378" y="-10772" z="-3610" respawnTime="60sec" /> <!-- Nihil Invader -->
+			<npc id="22676" x="130309" y="-10791" z="-3610" respawnTime="60sec" /> <!-- Knight of the Past -->
+			<npc id="22676" x="130397" y="-10385" z="-3609" respawnTime="60sec" /> <!-- Knight of the Past -->
+			<npc id="22676" x="130456" y="-10671" z="-3610" respawnTime="60sec" /> <!-- Knight of the Past -->
+			<npc id="22679" x="128365" y="-12882" z="-3669" respawnTime="60sec" /> <!-- Bloody Priest - Invader of the Ancient Battleground -->
+			<npc id="22678" x="128315" y="-12589" z="-3668" respawnTime="60sec" /> <!-- Nihil Invader -->
+			<npc id="22677" x="128593" y="-12648" z="-3667" respawnTime="60sec" /> <!-- Ghostly Warrior -->
+			<npc id="22676" x="128640" y="-13004" z="-3667" respawnTime="60sec" /> <!-- Knight of the Past -->
+			<npc id="22676" x="128242" y="-13255" z="-3688" respawnTime="60sec" /> <!-- Knight of the Past -->
+			<npc id="22677" x="128193" y="-12967" z="-3684" respawnTime="60sec" /> <!-- Ghostly Warrior -->
+			<npc id="22678" x="128771" y="-12879" z="-3668" respawnTime="60sec" /> <!-- Nihil Invader -->
+			<npc id="22676" x="127857" y="-8719" z="-3689" respawnTime="60sec" /> <!-- Knight of the Past -->
+			<npc id="22677" x="127916" y="-8804" z="-3687" respawnTime="60sec" /> <!-- Ghostly Warrior -->
+			<npc id="22678" x="127985" y="-8707" z="-3674" respawnTime="60sec" /> <!-- Nihil Invader -->
+			<npc id="22676" x="128946" y="-11114" z="-3704" respawnTime="60sec" /> <!-- Knight of the Past -->
+			<npc id="22677" x="129109" y="-11106" z="-3693" respawnTime="60sec" /> <!-- Ghostly Warrior -->
+			<npc id="22678" x="129048" y="-11326" z="-3682" respawnTime="60sec" /> <!-- Nihil Invader -->
+			<npc id="22678" x="129389" y="-11275" z="-3658" respawnTime="60sec" /> <!-- Nihil Invader -->
+			<npc id="22676" x="128389" y="-9792" z="-3644" respawnTime="60sec" /> <!-- Knight of the Past -->
+		</group>
+	</spawn>
+</list>

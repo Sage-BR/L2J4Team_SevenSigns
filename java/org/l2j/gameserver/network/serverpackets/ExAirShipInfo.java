@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,7 +16,9 @@
  */
 package org.l2j.gameserver.network.serverpackets;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.model.actor.instance.AirShip;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 
 public class ExAirShipInfo extends ServerPacket
@@ -46,38 +48,38 @@ public class ExAirShipInfo extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_AIR_SHIP_INFO.writeId(this);
-		writeInt(_ship.getObjectId());
-		writeInt(_x);
-		writeInt(_y);
-		writeInt(_z);
-		writeInt(_heading);
-		writeInt(_captain);
-		writeInt(_moveSpeed);
-		writeInt(_rotationSpeed);
-		writeInt(_helm);
+		ServerPackets.EX_AIR_SHIP_INFO.writeId(this, buffer);
+		buffer.writeInt(_ship.getObjectId());
+		buffer.writeInt(_x);
+		buffer.writeInt(_y);
+		buffer.writeInt(_z);
+		buffer.writeInt(_heading);
+		buffer.writeInt(_captain);
+		buffer.writeInt(_moveSpeed);
+		buffer.writeInt(_rotationSpeed);
+		buffer.writeInt(_helm);
 		if (_helm != 0)
 		{
 			// TODO: unhardcode these!
-			writeInt(0x16e); // Controller X
-			writeInt(0x00); // Controller Y
-			writeInt(0x6b); // Controller Z
-			writeInt(0x15c); // Captain X
-			writeInt(0x00); // Captain Y
-			writeInt(0x69); // Captain Z
+			buffer.writeInt(0x16e); // Controller X
+			buffer.writeInt(0x00); // Controller Y
+			buffer.writeInt(0x6b); // Controller Z
+			buffer.writeInt(0x15c); // Captain X
+			buffer.writeInt(0x00); // Captain Y
+			buffer.writeInt(0x69); // Captain Z
 		}
 		else
 		{
-			writeInt(0);
-			writeInt(0);
-			writeInt(0);
-			writeInt(0);
-			writeInt(0);
-			writeInt(0);
+			buffer.writeInt(0);
+			buffer.writeInt(0);
+			buffer.writeInt(0);
+			buffer.writeInt(0);
+			buffer.writeInt(0);
+			buffer.writeInt(0);
 		}
-		writeInt(_ship.getFuel());
-		writeInt(_ship.getMaxFuel());
+		buffer.writeInt(_ship.getFuel());
+		buffer.writeInt(_ship.getMaxFuel());
 	}
 }

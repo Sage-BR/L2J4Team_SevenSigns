@@ -1,0 +1,8 @@
+<html><body>Humanized Rudolph:<br>
+Greetings! It's amazing we can meet like this. I'm Rudolph. Yes, the exact Rudolph who pulls Santa's sled.<br>
+Curious why do I look like this? It's complicated. I was about to go give everyone presents, but suddenly turned into human.<br>
+I cannot help with the sled looking like this, so I left gifts delivery to Santa Claus and decided to guide the adventurers to the city he is it.<br>
+I'm worrying a bit about Santa Claus, he doesn't know the area very well. He's going to give presents from 11:00 to 21:00, so go to see him and ask your gift.<br>
+<Button ALIGN=LEFT ICON="TELEPORT" action="bypass -h Quest HolidayOutOfSchedule GOTO_SANTA">"Go to Santa Claus"</Button>
+<Button ALIGN=LEFT ICON="NORMAL" action="bypass -h Quest HolidayOutOfSchedule 34338-01.htm">"Ask about Santa Claus"</Button>
+</body></html>

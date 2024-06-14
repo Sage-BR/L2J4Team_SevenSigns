@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -75,18 +75,18 @@ public class ClanStrongholdDevice extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onAdvEvent(String event, Npc npc, Player player)
+	public String onEvent(String event, Npc npc, Player player)
 	{
 		if ((npc.getTemplate().getId() != CLAN_STRONGHOLD_DEVICE) || (player == null) || (event == null))
 		{
-			return super.onAdvEvent(event, npc, player);
+			return super.onEvent(event, npc, player);
 		}
 		
 		if (event.equals("capture"))
 		{
 			if (npc.isAlikeDead())
 			{
-				return super.onAdvEvent(event, npc, player);
+				return super.onEvent(event, npc, player);
 			}
 			
 			if (CURRENT_CLAN_ID.containsKey(npc.getScriptValue()))
@@ -112,13 +112,13 @@ public class ClanStrongholdDevice extends AbstractNpcAI
 		{
 			if (npc.isAlikeDead())
 			{
-				return super.onAdvEvent(event, npc, player);
+				return super.onEvent(event, npc, player);
 			}
 			
 			return npc.getId() + (CURRENT_CLAN_ID.containsKey(npc.getScriptValue()) ? "-02" : "") + ".htm";
 		}
 		
-		return super.onAdvEvent(event, npc, player);
+		return super.onEvent(event, npc, player);
 	}
 	
 	@Override

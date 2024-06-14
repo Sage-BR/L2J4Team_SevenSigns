@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,32 +16,30 @@
  */
 package org.l2j.gameserver.network.clientpackets;
 
-import org.l2j.commons.network.ReadablePacket;
 import org.l2j.gameserver.model.actor.Player;
-import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.serverpackets.ExListMpccWaiting;
 
 /**
  * @author Sdw
  */
-public class RequestExListMpccWaiting implements ClientPacket
+public class RequestExListMpccWaiting extends ClientPacket
 {
 	private int _page;
 	private int _location;
 	private int _level;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_page = packet.readInt();
-		_location = packet.readInt();
-		_level = packet.readInt();
+		_page = readInt();
+		_location = readInt();
+		_level = readInt();
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
-		final Player player = client.getPlayer();
+		final Player player = getPlayer();
 		if (player == null)
 		{
 			return;

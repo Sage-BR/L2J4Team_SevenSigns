@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/multisell.xsd">
+	<npcs>
+		<npc>-1</npc> <!-- Item Multisell -->
+	</npcs>
+	<!-- Boss Weapon Coupon (Sealed) - Sealed (98813) -->
+	<item>
+		<ingredient id="98813" count="1" /> <!-- Boss Weapon Coupon (Sealed) - Sealed -->
+		<production id="93291" count="1" /> <!-- Zaken's Blood Sword - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98813" count="1" /> <!-- Boss Weapon Coupon (Sealed) - Sealed -->
+		<production id="93292" count="1" /> <!-- Core's Plasmic Bow - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98813" count="1" /> <!-- Boss Weapon Coupon (Sealed) - Sealed -->
+		<production id="93293" count="1" /> <!-- Orfen's Venom Sword - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98813" count="1" /> <!-- Boss Weapon Coupon (Sealed) - Sealed -->
+		<production id="93294" count="1" /> <!-- Baium's Thunder Breaker - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98813" count="1" /> <!-- Boss Weapon Coupon (Sealed) - Sealed -->
+		<production id="93295" count="1" /> <!-- Queen Ant's Stone Breaker - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98813" count="1" /> <!-- Boss Weapon Coupon (Sealed) - Sealed -->
+		<production id="95422" count="1" /> <!-- Anakim's Divine Pistols - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98813" count="1" /> <!-- Boss Weapon Coupon (Sealed) - Sealed -->
+		<production id="96269" count="1" /> <!-- Beleth' Soul Eater - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98813" count="1" /> <!-- Boss Weapon Coupon (Sealed) - Sealed -->
+		<production id="97302" count="1" /> <!-- Gorde's Flame Spear - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98813" count="1" /> <!-- Boss Weapon Coupon (Sealed) - Sealed -->
+		<production id="97957" count="1" /> <!-- Galaxia's Ancient Sword - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98813" count="1" /> <!-- Boss Weapon Coupon (Sealed) - Sealed -->
+		<production id="97959" count="1" /> <!-- Phiriel's Rapier - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98813" count="1" /> <!-- Boss Weapon Coupon (Sealed) - Sealed -->
+		<production id="97961" count="1" /> <!-- Anais' Fists - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98813" count="1" /> <!-- Boss Weapon Coupon (Sealed) - Sealed -->
+		<production id="97963" count="1" /> <!-- Juriel's Dual Swords - Sealed -->
+	</item>
+</list>

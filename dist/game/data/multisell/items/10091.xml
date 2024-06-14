@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/multisell.xsd">
+	<npcs>
+		<npc>-1</npc> <!-- Item Multisell -->
+	</npcs>
+	<!-- Rare Accessory Coupon (Time-limited) - Sealed (97985) -->
+	<item>
+		<ingredient id="97985" count="7" /> <!-- Rare Accessory Coupon (Time-limited) - Sealed -->
+		<production id="90992" count="1" /> <!-- Antharas' Earring -->
+	</item>
+	<item>
+		<ingredient id="97985" count="6" /> <!-- Rare Accessory Coupon (Time-limited) - Sealed -->
+		<production id="91550" count="1" /> <!-- Frintezza's Necklace -->
+	</item>
+	<item>
+		<ingredient id="97985" count="5" /> <!-- Rare Accessory Coupon (Time-limited) - Sealed -->
+		<production id="49580" count="1" /> <!-- Baium's Ring -->
+	</item>
+	<item>
+		<ingredient id="97985" count="3" /> <!-- Rare Accessory Coupon (Time-limited) - Sealed -->
+		<production id="96600" count="1" /> <!-- Beleth' Ring -->
+	</item>
+	<item>
+		<ingredient id="97985" count="3" /> <!-- Rare Accessory Coupon (Time-limited) - Sealed -->
+		<production id="90763" count="1" /> <!-- Zaken's Earring -->
+	</item>
+	<item>
+		<ingredient id="97985" count="2" /> <!-- Rare Accessory Coupon (Time-limited) - Sealed -->
+		<production id="6661" count="1" /> <!-- Orfen's Earring -->
+	</item>
+	<item>
+		<ingredient id="97985" count="2" /> <!-- Rare Accessory Coupon (Time-limited) - Sealed -->
+		<production id="6660" count="1" /> <!-- Queen Ant's Ring -->
+	</item>
+	<item>
+		<ingredient id="97985" count="1" /> <!-- Rare Accessory Coupon (Time-limited) - Sealed -->
+		<production id="6662" count="1" /> <!-- Ring of Core -->
+	</item>
+</list>

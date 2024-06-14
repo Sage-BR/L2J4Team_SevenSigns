@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -152,7 +152,7 @@ public class SiegeZone extends ZoneType
 					player.setInSiege(true); // in siege
 					if (getSettings().getSiege().giveFame() && (getSettings().getSiege().getFameFrequency() > 0))
 					{
-						player.startFameTask(getSettings().getSiege().getFameFrequency() * 1000, getSettings().getSiege().getFameAmount());
+						player.startFameTask(getSettings().getSiege().getFameFrequency() * 1000L, getSettings().getSiege().getFameAmount());
 					}
 				}
 				

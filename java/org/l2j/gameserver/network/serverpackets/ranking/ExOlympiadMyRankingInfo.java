@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -24,12 +24,14 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.commons.database.DatabaseFactory;
 import org.l2j.gameserver.instancemanager.RankManager;
 import org.l2j.gameserver.model.StatSet;
 import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.model.olympiad.Hero;
 import org.l2j.gameserver.model.olympiad.Olympiad;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.PacketLogger;
 import org.l2j.gameserver.network.ServerPackets;
 import org.l2j.gameserver.network.serverpackets.ServerPacket;
@@ -51,9 +53,9 @@ public class ExOlympiadMyRankingInfo extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_OLYMPIAD_MY_RANKING_INFO.writeId(this);
+		ServerPackets.EX_OLYMPIAD_MY_RANKING_INFO.writeId(this, buffer);
 		final Date date = new Date();
 		final Calendar calendar = new GregorianCalendar();
 		calendar.setTime(date);
@@ -125,19 +127,19 @@ public class ExOlympiadMyRankingInfo extends ServerPacket
 			heroCount = hero.getInt("count", 0);
 			legendCount = hero.getInt("legend_count", 0);
 		}
-		writeInt(year); // Year
-		writeInt(month); // Month
-		writeInt(Math.min(Olympiad.getInstance().getCurrentCycle() - 1, 0)); // cycle ?
-		writeInt(currentPlace); // Place on current cycle ?
-		writeInt(currentWins); // Wins
-		writeInt(currentLoses); // Loses
-		writeInt(currentPoints); // Points
-		writeInt(previousPlace); // Place on previous cycle
-		writeInt(previousWins); // win count & lose count previous cycle? lol
-		writeInt(previousLoses); // ??
-		writeInt(previousPoints); // Points on previous cycle
-		writeInt(heroCount); // Hero counts
-		writeInt(legendCount); // Legend counts
-		writeInt(0); // change to 1 causes shows nothing
+		buffer.writeInt(year); // Year
+		buffer.writeInt(month); // Month
+		buffer.writeInt(Math.min(Olympiad.getInstance().getCurrentCycle() - 1, 0)); // cycle ?
+		buffer.writeInt(currentPlace); // Place on current cycle ?
+		buffer.writeInt(currentWins); // Wins
+		buffer.writeInt(currentLoses); // Loses
+		buffer.writeInt(currentPoints); // Points
+		buffer.writeInt(previousPlace); // Place on previous cycle
+		buffer.writeInt(previousWins); // win count & lose count previous cycle? lol
+		buffer.writeInt(previousLoses); // ??
+		buffer.writeInt(previousPoints); // Points on previous cycle
+		buffer.writeInt(heroCount); // Hero counts
+		buffer.writeInt(legendCount); // Legend counts
+		buffer.writeInt(0); // change to 1 causes shows nothing
 	}
 }

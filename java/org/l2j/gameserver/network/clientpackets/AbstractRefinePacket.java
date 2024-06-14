@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,7 +20,6 @@ import java.util.Arrays;
 
 import org.l2j.Config;
 import org.l2j.gameserver.enums.ItemLocation;
-import org.l2j.gameserver.enums.PrivateStoreType;
 import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.model.actor.request.EnchantItemAttributeRequest;
 import org.l2j.gameserver.model.actor.request.EnchantItemRequest;
@@ -31,7 +30,7 @@ import org.l2j.gameserver.model.options.VariationFee;
 import org.l2j.gameserver.model.skill.AbnormalType;
 import org.l2j.gameserver.network.SystemMessageId;
 
-public abstract class AbstractRefinePacket implements ClientPacket
+public abstract class AbstractRefinePacket extends ClientPacket
 {
 	/**
 	 * Checks player, source item, lifestone and gemstone validity for augmentation process
@@ -44,7 +43,12 @@ public abstract class AbstractRefinePacket implements ClientPacket
 	 */
 	protected static boolean isValid(Player player, Item item, Item mineralItem, Item feeItem, VariationFee fee)
 	{
-		if ((fee == null) || !isValid(player, item, mineralItem))
+		if (fee == null)
+		{
+			return false;
+		}
+		
+		if (!isValid(player, item, mineralItem))
 		{
 			return false;
 		}
@@ -75,10 +79,19 @@ public abstract class AbstractRefinePacket implements ClientPacket
 	 */
 	protected static boolean isValid(Player player, Item item, Item mineralItem)
 	{
+		if (!isValid(player, item))
+		{
+			return false;
+		}
 		
 		// Item must belong to owner
+		if (mineralItem.getOwnerId() != player.getObjectId())
+		{
+			return false;
+		}
+		
 		// Lifestone must be located in inventory
-		if (!isValid(player, item) || (mineralItem.getOwnerId() != player.getObjectId()) || (mineralItem.getItemLocation() != ItemLocation.INVENTORY))
+		if (mineralItem.getItemLocation() != ItemLocation.INVENTORY)
 		{
 			return false;
 		}
@@ -94,9 +107,22 @@ public abstract class AbstractRefinePacket implements ClientPacket
 	 */
 	protected static boolean isValid(Player player, Item item)
 	{
+		if (!isValid(player))
+		{
+			return false;
+		}
 		
 		// Item must belong to owner
-		if (!isValid(player) || (item.getOwnerId() != player.getObjectId()) || item.isHeroItem() || item.isShadowItem())
+		if (item.getOwnerId() != player.getObjectId())
+		{
+			return false;
+		}
+		
+		if (item.isHeroItem())
+		{
+			return false;
+		}
+		if (item.isShadowItem())
 		{
 			return false;
 		}
@@ -152,7 +178,7 @@ public abstract class AbstractRefinePacket implements ClientPacket
 	 */
 	protected static boolean isValid(Player player)
 	{
-		if (player.getPrivateStoreType() != PrivateStoreType.NONE)
+		if (player.isInStoreMode())
 		{
 			player.sendPacket(SystemMessageId.YOU_CANNOT_AUGMENT_ITEMS_WHILE_A_PRIVATE_STORE_OR_PRIVATE_WORKSHOP_IS_IN_OPERATION);
 			return false;
@@ -182,7 +208,11 @@ public abstract class AbstractRefinePacket implements ClientPacket
 			player.sendPacket(SystemMessageId.YOU_CANNOT_AUGMENT_ITEMS_WHILE_SITTING_DOWN);
 			return false;
 		}
-		if (player.isCursedWeaponEquipped() || player.hasRequest(EnchantItemRequest.class, EnchantItemAttributeRequest.class) || player.isProcessingTransaction())
+		if (player.isCursedWeaponEquipped())
+		{
+			return false;
+		}
+		if (player.hasRequest(EnchantItemRequest.class, EnchantItemAttributeRequest.class) || player.isProcessingTransaction())
 		{
 			return false;
 		}

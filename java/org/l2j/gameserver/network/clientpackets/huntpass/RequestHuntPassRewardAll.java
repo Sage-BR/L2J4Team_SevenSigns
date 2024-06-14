@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,7 +16,6 @@
  */
 package org.l2j.gameserver.network.clientpackets.huntpass;
 
-import org.l2j.commons.network.ReadablePacket;
 import org.l2j.commons.threads.ThreadPool;
 import org.l2j.gameserver.data.xml.HuntPassData;
 import org.l2j.gameserver.data.xml.ItemData;
@@ -25,7 +24,6 @@ import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.model.actor.request.RewardRequest;
 import org.l2j.gameserver.model.holders.ItemHolder;
 import org.l2j.gameserver.model.item.ItemTemplate;
-import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.SystemMessageId;
 import org.l2j.gameserver.network.clientpackets.ClientPacket;
 import org.l2j.gameserver.network.serverpackets.SystemMessage;
@@ -36,21 +34,26 @@ import org.l2j.gameserver.network.serverpackets.huntpass.HuntPassSimpleInfo;
 /**
  * @author Serenitty, Mobius, Fakee
  */
-public class RequestHuntPassRewardAll implements ClientPacket
+public class RequestHuntPassRewardAll extends ClientPacket
 {
 	private int _huntPassType;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_huntPassType = packet.readByte();
+		_huntPassType = readByte();
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
-		final Player player = client.getPlayer();
-		if ((player == null) || player.hasRequest(RewardRequest.class))
+		final Player player = getPlayer();
+		if (player == null)
+		{
+			return;
+		}
+		
+		if (player.hasRequest(RewardRequest.class))
 		{
 			return;
 		}
@@ -148,7 +151,12 @@ public class RequestHuntPassRewardAll implements ClientPacket
 	{
 		final HuntPass huntPass = player.getHuntPass();
 		final int premiumRewardIndex = huntPass.getPremiumRewardStep();
-		if ((premiumRewardIndex >= HuntPassData.getInstance().getPremiumRewardsCount()) || !huntPass.isPremium())
+		if (premiumRewardIndex >= HuntPassData.getInstance().getPremiumRewardsCount())
+		{
+			return;
+		}
+		
+		if (!huntPass.isPremium())
 		{
 			return;
 		}
@@ -161,7 +169,12 @@ public class RequestHuntPassRewardAll implements ClientPacket
 	{
 		final HuntPass huntPass = player.getHuntPass();
 		final int rewardIndex = huntPass.getRewardStep();
-		if ((rewardIndex >= HuntPassData.getInstance().getRewardsCount()) || (huntPass.isPremium() && ((huntPass.getPremiumRewardStep() < rewardIndex) || (huntPass.getPremiumRewardStep() >= HuntPassData.getInstance().getPremiumRewardsCount()))))
+		if (rewardIndex >= HuntPassData.getInstance().getRewardsCount())
+		{
+			return;
+		}
+		
+		if (huntPass.isPremium() && ((huntPass.getPremiumRewardStep() < rewardIndex) || (huntPass.getPremiumRewardStep() >= HuntPassData.getInstance().getPremiumRewardsCount())))
 		{
 			return;
 		}

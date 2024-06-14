@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,9 +20,11 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.instancemanager.MentorManager;
 import org.l2j.gameserver.model.Mentee;
 import org.l2j.gameserver.model.actor.Player;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 import org.l2j.gameserver.network.serverpackets.ServerPacket;
 
@@ -59,19 +61,19 @@ public class ExMentorList extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_MENTOR_LIST.writeId(this);
-		writeInt(_type);
-		writeInt(0);
-		writeInt(_mentees.size());
+		ServerPackets.EX_MENTOR_LIST.writeId(this, buffer);
+		buffer.writeInt(_type);
+		buffer.writeInt(0);
+		buffer.writeInt(_mentees.size());
 		for (Mentee mentee : _mentees)
 		{
-			writeInt(mentee.getObjectId());
-			writeString(mentee.getName());
-			writeInt(mentee.getClassId());
-			writeInt(mentee.getLevel());
-			writeInt(mentee.isOnlineInt());
+			buffer.writeInt(mentee.getObjectId());
+			buffer.writeString(mentee.getName());
+			buffer.writeInt(mentee.getClassId());
+			buffer.writeInt(mentee.getLevel());
+			buffer.writeInt(mentee.isOnlineInt());
 		}
 	}
 }

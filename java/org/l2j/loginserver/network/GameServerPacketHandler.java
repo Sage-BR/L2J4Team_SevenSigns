@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,7 +18,7 @@ package org.l2j.loginserver.network;
 
 import java.util.logging.Logger;
 
-import org.l2j.commons.network.ReadablePacket;
+import org.l2j.commons.network.base.BaseReadablePacket;
 import org.l2j.loginserver.GameServerThread;
 import org.l2j.loginserver.network.gameserverpackets.BlowFishKey;
 import org.l2j.loginserver.network.gameserverpackets.ChangeAccessLevel;
@@ -47,9 +47,9 @@ public class GameServerPacketHandler
 		AUTHED
 	}
 	
-	public static ReadablePacket handlePacket(byte[] data, GameServerThread server)
+	public static BaseReadablePacket handlePacket(byte[] data, GameServerThread server)
 	{
-		ReadablePacket msg = null;
+		BaseReadablePacket msg = null;
 		final int opcode = data[0] & 0xff;
 		final GameServerState state = server.getLoginConnectionState();
 		switch (state)

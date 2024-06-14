@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,8 +16,10 @@
  */
 package org.l2j.gameserver.network.serverpackets;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.model.stats.Stat;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 
 public class RecipeShopItemInfo extends ServerPacket
@@ -36,20 +38,20 @@ public class RecipeShopItemInfo extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.RECIPE_SHOP_ITEM_INFO.writeId(this);
-		writeInt(_player.getObjectId());
-		writeInt(_recipeId);
-		writeInt((int) _player.getCurrentMp());
-		writeInt(_player.getMaxMp());
-		writeInt(0xffffffff); // item creation none/success/failed
-		writeLong(0); // manufacturePrice
-		writeByte(0); // Trigger offering window if 1
-		writeLong(0); // Adena worth of items for maximum offering.
-		writeDouble(Math.min(_craftRate, 100.0));
-		writeByte(_craftCritical > 0);
-		writeDouble(Math.min(_craftCritical, 100.0));
-		writeByte(0); // find me
+		ServerPackets.RECIPE_SHOP_ITEM_INFO.writeId(this, buffer);
+		buffer.writeInt(_player.getObjectId());
+		buffer.writeInt(_recipeId);
+		buffer.writeInt((int) _player.getCurrentMp());
+		buffer.writeInt(_player.getMaxMp());
+		buffer.writeInt(0xffffffff); // item creation none/success/failed
+		buffer.writeLong(0); // manufacturePrice
+		buffer.writeByte(0); // Trigger offering window if 1
+		buffer.writeLong(0); // Adena worth of items for maximum offering.
+		buffer.writeDouble(Math.min(_craftRate, 100.0));
+		buffer.writeByte(_craftCritical > 0);
+		buffer.writeDouble(Math.min(_craftCritical, 100.0));
+		buffer.writeByte(0); // find me
 	}
 }

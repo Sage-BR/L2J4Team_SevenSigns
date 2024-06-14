@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,13 +18,11 @@ package org.l2j.gameserver.network.clientpackets.ensoul;
 
 import java.util.Collection;
 
-import org.l2j.commons.network.ReadablePacket;
 import org.l2j.gameserver.data.xml.EnsoulData;
 import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.model.ensoul.EnsoulOption;
 import org.l2j.gameserver.model.holders.ItemHolder;
 import org.l2j.gameserver.model.item.instance.Item;
-import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.SystemMessageId;
 import org.l2j.gameserver.network.clientpackets.ClientPacket;
 import org.l2j.gameserver.network.serverpackets.InventoryUpdate;
@@ -33,24 +31,24 @@ import org.l2j.gameserver.network.serverpackets.ensoul.ExEnSoulExtractionResult;
 /**
  * @author Mobius
  */
-public class RequestTryEnSoulExtraction implements ClientPacket
+public class RequestTryEnSoulExtraction extends ClientPacket
 {
 	private int _itemObjectId;
 	private int _type;
 	private int _position;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_itemObjectId = packet.readInt();
-		_type = packet.readByte();
-		_position = packet.readByte() - 1;
+		_itemObjectId = readInt();
+		_type = readByte();
+		_position = readByte() - 1;
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
-		final Player player = client.getPlayer();
+		final Player player = getPlayer();
 		if (player == null)
 		{
 			return;

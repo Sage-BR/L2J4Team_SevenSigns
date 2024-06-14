@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,10 +20,12 @@ import java.util.logging.Logger;
 
 import org.l2j.Config;
 import org.l2j.gameserver.enums.TeleportWhereType;
+import org.l2j.gameserver.instancemanager.MapRegionManager;
 import org.l2j.gameserver.model.Location;
 import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.model.instancezone.Instance;
 import org.l2j.gameserver.model.olympiad.OlympiadManager;
+import org.l2j.gameserver.model.variables.PlayerVariables;
 import org.l2j.gameserver.network.ConnectionState;
 import org.l2j.gameserver.network.Disconnection;
 import org.l2j.gameserver.network.GameClient;
@@ -35,14 +37,19 @@ import org.l2j.gameserver.util.OfflineTradeUtil;
 /**
  * @version $Revision: 1.11.2.1.2.4 $ $Date: 2005/03/27 15:29:30 $
  */
-public class RequestRestart implements ClientPacket
+public class RequestRestart extends ClientPacket
 {
 	protected static final Logger LOGGER_ACCOUNTING = Logger.getLogger("accounting");
 	
 	@Override
-	public void run(GameClient client)
+	protected void readImpl()
 	{
-		final Player player = client.getPlayer();
+	}
+	
+	@Override
+	protected void runImpl()
+	{
+		final Player player = getPlayer();
 		if (player == null)
 		{
 			return;
@@ -61,29 +68,35 @@ public class RequestRestart implements ClientPacket
 			OlympiadManager.getInstance().unRegisterNoble(player);
 		}
 		
+		// Set restore location for next enter world.
+		Location location = null;
 		final Instance world = player.getInstanceWorld();
 		if (world != null)
 		{
 			if (Config.RESTORE_PLAYER_INSTANCE)
 			{
-				player.getVariables().set("INSTANCE_RESTORE", world.getId());
+				player.getVariables().set(PlayerVariables.INSTANCE_RESTORE, world.getId());
 			}
 			else
 			{
-				final Location location = world.getExitLocation(player);
-				if (location != null)
+				location = world.getExitLocation(player);
+				if (location == null)
 				{
-					player.teleToLocation(location);
+					location = MapRegionManager.getInstance().getTeleToLocation(player, TeleportWhereType.TOWN);
 				}
-				else
-				{
-					player.teleToLocation(TeleportWhereType.TOWN);
-				}
-				player.getSummonedNpcs().forEach(npc -> npc.teleToLocation(player, true));
 			}
-			world.onInstanceChange(player, false);
+			player.setInstance(null);
+		}
+		else if (player.isInTimedHuntingZone())
+		{
+			location = MapRegionManager.getInstance().getTeleToLocation(player, TeleportWhereType.TOWN);
+		}
+		if (location != null)
+		{
+			player.getVariables().set(PlayerVariables.RESTORE_LOCATION, location.getX() + ";" + location.getY() + ";" + location.getZ());
 		}
 		
+		final GameClient client = getClient();
 		LOGGER_ACCOUNTING.info("Logged out, " + client);
 		
 		if (!OfflineTradeUtil.enteredOfflineMode(player))

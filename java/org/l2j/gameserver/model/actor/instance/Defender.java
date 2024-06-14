@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -90,7 +90,11 @@ public class Defender extends Attackable
 	@Override
 	public void returnHome()
 	{
-		if ((getWalkSpeed() <= 0) || (getSpawn() == null))
+		if (getWalkSpeed() <= 0)
+		{
+			return;
+		}
+		if (getSpawn() == null)
 		{
 			return;
 		}

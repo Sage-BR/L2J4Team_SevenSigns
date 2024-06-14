@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,11 +18,13 @@ package org.l2j.gameserver.network.serverpackets.friend;
 
 import java.util.Calendar;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.data.sql.CharInfoTable;
 import org.l2j.gameserver.data.sql.ClanTable;
 import org.l2j.gameserver.model.World;
 import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.model.clan.Clan;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 import org.l2j.gameserver.network.serverpackets.ServerPacket;
 
@@ -45,61 +47,61 @@ public class ExBlockDetailInfo extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_FRIEND_DETAIL_INFO.writeId(this);
-		writeInt(_objectId);
+		ServerPackets.EX_FRIEND_DETAIL_INFO.writeId(this, buffer);
+		buffer.writeInt(_objectId);
 		if (_friend == null)
 		{
 			final int charId = CharInfoTable.getInstance().getIdByName(_name);
-			writeString(_name);
-			writeInt(0); // isonline = 0
-			writeInt(charId);
-			writeShort(CharInfoTable.getInstance().getLevelById(charId));
-			writeShort(CharInfoTable.getInstance().getClassIdById(charId));
+			buffer.writeString(_name);
+			buffer.writeInt(0); // isonline = 0
+			buffer.writeInt(charId);
+			buffer.writeShort(CharInfoTable.getInstance().getLevelById(charId));
+			buffer.writeShort(CharInfoTable.getInstance().getClassIdById(charId));
 			final Clan clan = ClanTable.getInstance().getClan(CharInfoTable.getInstance().getClanIdById(charId));
 			if (clan != null)
 			{
-				writeInt(clan.getId());
-				writeInt(clan.getCrestId());
-				writeString(clan.getName());
-				writeInt(clan.getAllyId());
-				writeInt(clan.getAllyCrestId());
-				writeString(clan.getAllyName());
+				buffer.writeInt(clan.getId());
+				buffer.writeInt(clan.getCrestId());
+				buffer.writeString(clan.getName());
+				buffer.writeInt(clan.getAllyId());
+				buffer.writeInt(clan.getAllyCrestId());
+				buffer.writeString(clan.getAllyName());
 			}
 			else
 			{
-				writeInt(0);
-				writeInt(0);
-				writeString("");
-				writeInt(0);
-				writeInt(0);
-				writeString("");
+				buffer.writeInt(0);
+				buffer.writeInt(0);
+				buffer.writeString("");
+				buffer.writeInt(0);
+				buffer.writeInt(0);
+				buffer.writeString("");
 			}
 			final Calendar createDate = CharInfoTable.getInstance().getCharacterCreationDate(charId);
-			writeByte(createDate.get(Calendar.MONTH) + 1);
-			writeByte(createDate.get(Calendar.DAY_OF_MONTH));
-			writeInt(CharInfoTable.getInstance().getLastAccessDelay(charId));
-			writeString(CharInfoTable.getInstance().getFriendMemo(_objectId, charId));
+			buffer.writeByte(createDate.get(Calendar.MONTH) + 1);
+			buffer.writeByte(createDate.get(Calendar.DAY_OF_MONTH));
+			buffer.writeInt(CharInfoTable.getInstance().getLastAccessDelay(charId));
+			buffer.writeString(CharInfoTable.getInstance().getFriendMemo(_objectId, charId));
 		}
 		else
 		{
-			writeString(_friend.getName());
-			writeInt(_friend.isOnlineInt());
-			writeInt(_friend.getObjectId());
-			writeShort(_friend.getLevel());
-			writeShort(_friend.getClassId().getId());
-			writeInt(_friend.getClanId());
-			writeInt(_friend.getClanCrestId());
-			writeString(_friend.getClan() != null ? _friend.getClan().getName() : "");
-			writeInt(_friend.getAllyId());
-			writeInt(_friend.getAllyCrestId());
-			writeString(_friend.getClan() != null ? _friend.getClan().getAllyName() : "");
+			buffer.writeString(_friend.getName());
+			buffer.writeInt(_friend.isOnlineInt());
+			buffer.writeInt(_friend.getObjectId());
+			buffer.writeShort(_friend.getLevel());
+			buffer.writeShort(_friend.getClassId().getId());
+			buffer.writeInt(_friend.getClanId());
+			buffer.writeInt(_friend.getClanCrestId());
+			buffer.writeString(_friend.getClan() != null ? _friend.getClan().getName() : "");
+			buffer.writeInt(_friend.getAllyId());
+			buffer.writeInt(_friend.getAllyCrestId());
+			buffer.writeString(_friend.getClan() != null ? _friend.getClan().getAllyName() : "");
 			final Calendar createDate = _friend.getCreateDate();
-			writeByte(createDate.get(Calendar.MONTH) + 1);
-			writeByte(createDate.get(Calendar.DAY_OF_MONTH));
-			writeInt(_lastAccess);
-			writeString(CharInfoTable.getInstance().getFriendMemo(_objectId, _friend.getObjectId()));
+			buffer.writeByte(createDate.get(Calendar.MONTH) + 1);
+			buffer.writeByte(createDate.get(Calendar.DAY_OF_MONTH));
+			buffer.writeInt(_lastAccess);
+			buffer.writeString(CharInfoTable.getInstance().getFriendMemo(_objectId, _friend.getObjectId()));
 		}
 	}
 }

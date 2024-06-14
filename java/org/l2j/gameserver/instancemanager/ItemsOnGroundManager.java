@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -203,7 +203,12 @@ public class ItemsOnGroundManager implements Runnable
 		{
 			for (Item item : _items)
 			{
-				if ((item == null) || CursedWeaponsManager.getInstance().isCursed(item.getId()))
+				if (item == null)
+				{
+					continue;
+				}
+				
+				if (CursedWeaponsManager.getInstance().isCursed(item.getId()))
 				{
 					continue; // Cursed Items not saved to ground, prevent double save
 				}

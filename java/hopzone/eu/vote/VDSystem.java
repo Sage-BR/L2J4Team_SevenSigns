@@ -21,34 +21,42 @@
  */
 package hopzone.eu.vote;
 
-import org.l2j.gameserver.handler.VoicedCommandHandler;
-
 import hopzone.eu.Configurations;
 import hopzone.eu.command.VoteCMD;
-import hopzone.eu.global.Global;
 import hopzone.eu.task.ItemDeliveryManager;
+import hopzone.eu.global.Global;
 import hopzone.eu.util.Logs;
 import hopzone.eu.util.VDSThreadPool;
+import org.l2j.gameserver.handler.VoicedCommandHandler;
 
 /**
- * @Author Nightwolf iToPz Discord: https://discord.gg/KkPms6B5aE
- * @Author Rationale Base structure credits goes on Rationale Discord: Rationale#7773
- *         <p>
- *         VDS Stands for: Vote Donation System Script website: https://itopz.com/ Partner website: https://hopzone.eu/ Script version: 1.8 Pack Support: 4Team Essence SevenSigns
- *         <p>
- *         Freemium Donate Panel V4: https://www.denart-designs.com/ Download: https://mega.nz/folder/6oxUyaIJ#qQDUXeoXlPvBjbPMDYzu-g Buy: https://shop.denart-designs.com/product/auto-donate-panel-v4/ Quick Guide: https://github.com/nightw0lv/VDSystem/tree/master/Guide
+ * @Author Nightwolf
+ * iToPz Discord: https://discord.gg/KkPms6B5aE
+ * @Author Rationale
+ * Base structure credits goes on Rationale Discord: Rationale#7773
+ * <p>
+ * VDS Stands for: Vote Donation System
+ * Script website: https://itopz.com/
+ * Partner website: https://hopzone.eu/
+ * Script version: 1.8
+ * Pack Support: Mobius Essence 7.0 Assassin
+ * <p>
+ * Freemium Donate Panel V4: https://www.denart-designs.com/
+ * Download: https://mega.nz/folder/6oxUyaIJ#qQDUXeoXlPvBjbPMDYzu-g
+ * Buy: https://shop.denart-designs.com/product/auto-donate-panel-v4/
+ *
+ * Quick Guide: https://github.com/nightw0lv/VDSystem/tree/master/Guide
  */
 public class VDSystem
 {
 	// logger
 	private static final Logs _log = new Logs(VDSystem.class.getSimpleName());
-	
+
 	public enum VoteType
 	{
-		GLOBAL,
-		INDIVIDUAL;
+		GLOBAL, INDIVIDUAL;
 	}
-	
+
 	/**
 	 * Constructor
 	 */
@@ -56,7 +64,7 @@ public class VDSystem
 	{
 		onLoad();
 	}
-	
+
 	/**
 	 * Vod function on load
 	 */
@@ -67,25 +75,25 @@ public class VDSystem
 		{
 			// start donation manager
 			VDSThreadPool.scheduleAtFixedRate(new ItemDeliveryManager(), 100, 5000);
-			
+
 			// initiate Donation reward
 			_log.info(ItemDeliveryManager.class.getSimpleName() + ": started.");
 		}
-		
+
 		// register individual reward command
 		VoicedCommandHandler.getInstance().registerHandler(new VoteCMD());
-		
+
 		// load global system rewards
 		Global.getInstance();
-		
+
 		_log.info(VDSystem.class.getSimpleName() + ": System initialized.");
 	}
-	
+
 	public static VDSystem getInstance()
 	{
 		return SingletonHolder._instance;
 	}
-	
+
 	private static class SingletonHolder
 	{
 		protected static final VDSystem _instance = new VDSystem();

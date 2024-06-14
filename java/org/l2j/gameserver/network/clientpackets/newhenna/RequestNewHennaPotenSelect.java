@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,35 +16,38 @@
  */
 package org.l2j.gameserver.network.clientpackets.newhenna;
 
-import org.l2j.commons.network.ReadablePacket;
 import org.l2j.gameserver.data.xml.HennaPatternPotentialData;
 import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.model.item.henna.DyePotential;
 import org.l2j.gameserver.model.item.henna.HennaPoten;
-import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.clientpackets.ClientPacket;
 import org.l2j.gameserver.network.serverpackets.newhenna.NewHennaPotenSelect;
 
 /**
  * @author Index, Serenitty
  */
-public class RequestNewHennaPotenSelect implements ClientPacket
+public class RequestNewHennaPotenSelect extends ClientPacket
 {
 	private int _slotId;
 	private int _potenId;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_slotId = packet.readByte();
-		_potenId = packet.readInt();
+		_slotId = readByte();
+		_potenId = readInt();
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
-		final Player player = client.getPlayer();
-		if ((player == null) || (_slotId < 1) || (_slotId > player.getHennaPotenList().length))
+		final Player player = getPlayer();
+		if (player == null)
+		{
+			return;
+		}
+		
+		if ((_slotId < 1) || (_slotId > player.getHennaPotenList().length))
 		{
 			return;
 		}

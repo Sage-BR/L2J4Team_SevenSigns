@@ -47,7 +47,7 @@ import hopzone.eu.vote.VDSystem;
  * @Author Nightwolf iToPz Discord: https://discord.gg/KkPms6B5aE
  * @Author Rationale Base structure credits goes on Rationale Discord: Rationale#7773
  *         <p>
- *         VDS Stands for: Vote Donation System Script website: https://itopz.com/ Partner website: https://hopzone.eu/ Script version: 1.8 Pack Support: 4Team Essence SevenSigns
+ *         VDS Stands for: Vote Donation System Script website: https://itopz.com/ Partner website: https://hopzone.eu/ Script version: 1.8 Pack Support: Mobius Essence 7.0 Assassin
  *         <p>
  *         Freemium Donate Panel V4: https://www.denart-designs.com/ Download: https://mega.nz/folder/6oxUyaIJ#qQDUXeoXlPvBjbPMDYzu-g Buy: https://shop.denart-designs.com/product/auto-donate-panel-v4/ Quick Guide: https://github.com/nightw0lv/VDSystem/tree/master/Guide
  */
@@ -170,53 +170,43 @@ public class Global
 		// write console info from response
 		switch (TOPSITE)
 		{
-			case "HOPZONE" ->
-			{
+			case "HOPZONE" -> {
 				Gui.getInstance().ConsoleWrite(TOPSITE + " Server Votes: " + serverVotes + " votes.");
 				Gui.getInstance().UpdateHopzoneStats(serverVotes);
 			}
-			case "ITOPZ" ->
-			{
+			case "ITOPZ" -> {
 				Gui.getInstance().ConsoleWrite(TOPSITE + " Server Votes:" + serverVotes + " Rank:" + serverRank + " Next Rank(" + serverNextRank + ") need: " + serverNeededVotes + "votes.");
 				Gui.getInstance().UpdateItopzStats(serverVotes, serverRank, serverNextRank, serverNeededVotes);
 			}
-			case "HOPZONENET" ->
-			{
+			case "HOPZONENET" -> {
 				Gui.getInstance().ConsoleWrite(TOPSITE + " Server Votes: " + serverVotes + " votes.");
 				Gui.getInstance().UpdateHopzonenetStats(serverVotes);
 			}
-			case "L2JBRASIL" ->
-			{
+			case "L2JBRASIL" -> {
 				Gui.getInstance().ConsoleWrite(TOPSITE + " Server Votes: " + serverVotes + " votes.");
 				Gui.getInstance().UpdateBrasilStats(serverVotes);
 			}
-			case "L2NETWORK" ->
-			{
+			case "L2NETWORK" -> {
 				Gui.getInstance().ConsoleWrite(TOPSITE + " Server Votes: " + serverVotes + " votes.");
 				Gui.getInstance().UpdateNetworkStats(serverVotes);
 			}
-			case "L2TOPGAMESERVER" ->
-			{
+			case "L2TOPGAMESERVER" -> {
 				Gui.getInstance().ConsoleWrite(TOPSITE + " Server Votes: " + serverVotes + " votes.");
 				Gui.getInstance().UpdateTopGameServerStats(serverVotes);
 			}
-			case "HOTSERVERS" ->
-			{
+			case "HOTSERVERS" -> {
 				Gui.getInstance().ConsoleWrite(TOPSITE + " Server Votes: " + serverVotes + " votes.");
 				Gui.getInstance().UpdateHotServersStats(serverVotes);
 			}
-			case "L2VOTES" ->
-			{
+			case "L2VOTES" -> {
 				Gui.getInstance().ConsoleWrite(TOPSITE + " Server Votes: " + serverVotes + " votes.");
 				Gui.getInstance().UpdateVotesStats(serverVotes);
 			}
-			case "L2RANKZONE" ->
-			{
+			case "L2RANKZONE" -> {
 				Gui.getInstance().ConsoleWrite(TOPSITE + " Server Votes: " + serverVotes + " votes.");
 				Gui.getInstance().UpdateL2RankZoneStats(serverVotes);
 			}
-			case "TOP4TEAMBR" ->
-			{
+			case "TOP4TEAMBR" -> {
 				Gui.getInstance().ConsoleWrite(TOPSITE + " Server Votes: " + serverVotes + " votes.");
 				Gui.getInstance().UpdateTop4TeamBRStats(serverVotes);
 			}
@@ -254,8 +244,7 @@ public class Global
 		// announce current votes
 		switch (TOPSITE)
 		{
-			case "HOPZONE" ->
-			{
+			case "HOPZONE" -> {
 				if (Configurations.HOPZONE_EU_ANNOUNCE_STATISTICS)
 				{
 					Gui.getInstance().UpdateHopzoneStats(serverVotes);
@@ -269,8 +258,7 @@ public class Global
 				// announce next reward
 				Utilities.announce(TOPSITE, "Next reward at " + (storedVotes + Configurations.HOPZONE_EU_VOTE_STEP) + " votes!");
 			}
-			case "ITOPZ" ->
-			{
+			case "ITOPZ" -> {
 				if (Configurations.ITOPZ_ANNOUNCE_STATISTICS)
 				{
 					Utilities.announce(TOPSITE, "Server Votes:" + serverVotes + " Rank:" + serverRank + " Next Rank(" + serverNextRank + ") need:" + serverNeededVotes + "votes");
@@ -284,8 +272,7 @@ public class Global
 				// announce next reward
 				Utilities.announce(TOPSITE, "Next reward at " + (storedVotes + Configurations.ITOPZ_VOTE_STEP) + " votes!");
 			}
-			case "HOPZONENET" ->
-			{
+			case "HOPZONENET" -> {
 				if (Configurations.HOPZONE_NET_ANNOUNCE_STATISTICS)
 				{
 					Gui.getInstance().UpdateHopzonenetStats(serverVotes);
@@ -299,8 +286,7 @@ public class Global
 				// announce next reward
 				Utilities.announce(TOPSITE, "Next reward at " + (storedVotes + Configurations.HOPZONE_NET_VOTE_STEP) + " votes!");
 			}
-			case "L2JBRASIL" ->
-			{
+			case "L2JBRASIL" -> {
 				if (Configurations.L2JBRASIL_ANNOUNCE_STATISTICS)
 				{
 					Gui.getInstance().UpdateBrasilStats(serverVotes);
@@ -313,8 +299,7 @@ public class Global
 				// announce next reward
 				Utilities.announce(TOPSITE, "Next reward at " + (storedVotes + Configurations.L2JBRASIL_VOTE_STEP) + " votes!");
 			}
-			case "L2NETWORK" ->
-			{
+			case "L2NETWORK" -> {
 				if (Configurations.L2NETWORK_ANNOUNCE_STATISTICS)
 				{
 					Gui.getInstance().UpdateNetworkStats(serverVotes);
@@ -328,8 +313,7 @@ public class Global
 				// announce next reward
 				Utilities.announce(TOPSITE, "Next reward at " + (storedVotes + Configurations.L2NETWORK_VOTE_STEP) + " votes!");
 			}
-			case "L2TOPGAMESERVER" ->
-			{
+			case "L2TOPGAMESERVER" -> {
 				if (Configurations.L2TOPGAMESERVER_ANNOUNCE_STATISTICS)
 				{
 					Gui.getInstance().UpdateTopGameServerStats(serverVotes);
@@ -343,8 +327,7 @@ public class Global
 				// announce next reward
 				Utilities.announce(TOPSITE, "Next reward at " + (storedVotes + Configurations.L2TOPGAMESERVER_VOTE_STEP) + " votes!");
 			}
-			case "HOTSERVERS" ->
-			{
+			case "HOTSERVERS" -> {
 				if (Configurations.HOTSERVERS_ANNOUNCE_STATISTICS)
 				{
 					Gui.getInstance().UpdateHotServersStats(serverVotes);
@@ -358,8 +341,7 @@ public class Global
 				// announce next reward
 				Utilities.announce(TOPSITE, "Next reward at " + (storedVotes + Configurations.HOTSERVERS_VOTE_STEP) + " votes!");
 			}
-			case "L2VOTES" ->
-			{
+			case "L2VOTES" -> {
 				if (Configurations.L2VOTES_ANNOUNCE_STATISTICS)
 				{
 					Gui.getInstance().UpdateVotesStats(serverVotes);
@@ -373,8 +355,7 @@ public class Global
 				// announce next reward
 				Utilities.announce(TOPSITE, "Next reward at " + (storedVotes + Configurations.L2VOTES_VOTE_STEP) + " votes!");
 			}
-			case "L2RANKZONE" ->
-			{
+			case "L2RANKZONE" -> {
 				if (Configurations.L2RANKZONE_ANNOUNCE_STATISTICS)
 				{
 					Gui.getInstance().UpdateL2RankZoneStats(serverVotes);
@@ -388,8 +369,7 @@ public class Global
 				// announce next reward
 				Utilities.announce(TOPSITE, "Next reward at " + (storedVotes + Configurations.L2RANKZONE_VOTE_STEP) + " votes!");
 			}
-			case "TOP4TEAMBR" ->
-			{
+			case "TOP4TEAMBR" -> {
 				if (Configurations.TOP4TEAMBR_ANNOUNCE_STATISTICS)
 				{
 					Gui.getInstance().UpdateTop4TeamBRStats(serverVotes);

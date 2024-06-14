@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,10 +16,8 @@
  */
 package org.l2j.gameserver.network.clientpackets.huntpass;
 
-import org.l2j.commons.network.ReadablePacket;
 import org.l2j.gameserver.model.HuntPass;
 import org.l2j.gameserver.model.actor.Player;
-import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.SystemMessageId;
 import org.l2j.gameserver.network.clientpackets.ClientPacket;
 import org.l2j.gameserver.network.serverpackets.huntpass.HuntPassSayhasSupportInfo;
@@ -27,20 +25,20 @@ import org.l2j.gameserver.network.serverpackets.huntpass.HuntPassSayhasSupportIn
 /**
  * @author Serenitty
  */
-public class HuntpassSayhasToggle implements ClientPacket
+public class HuntpassSayhasToggle extends ClientPacket
 {
 	private boolean _sayhaToggle;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_sayhaToggle = packet.readByte() != 0;
+		_sayhaToggle = readByte() != 0;
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
-		final Player player = client.getPlayer();
+		final Player player = getPlayer();
 		if (player == null)
 		{
 			return;

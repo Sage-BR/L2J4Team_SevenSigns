@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,7 +18,9 @@ package org.l2j.gameserver.network.serverpackets.balok;
 
 import java.util.concurrent.TimeUnit;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.instancemanager.GlobalVariablesManager;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 import org.l2j.gameserver.network.serverpackets.ServerPacket;
 
@@ -37,13 +39,13 @@ public class BalrogWarHud extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_BALROGWAR_HUD.writeId(this);
+		ServerPackets.EX_BALROGWAR_HUD.writeId(this, buffer);
 		final long remainTime = GlobalVariablesManager.getInstance().getLong(GlobalVariablesManager.BALOK_REMAIN_TIME, 0);
 		final long currentTime = System.currentTimeMillis();
-		writeInt(_state); // State
-		writeInt(_stage); // Progress Step
-		writeInt((int) TimeUnit.MILLISECONDS.toSeconds(remainTime - currentTime)); // Time (in seconds)
+		buffer.writeInt(_state); // State
+		buffer.writeInt(_stage); // Progress Step
+		buffer.writeInt((int) TimeUnit.MILLISECONDS.toSeconds(remainTime - currentTime)); // Time (in seconds)
 	}
 }

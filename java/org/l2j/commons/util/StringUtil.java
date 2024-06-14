@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -15,8 +15,6 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 package org.l2j.commons.util;
-
-import org.l2j.Config;
 
 /**
  * String utilities optimized for the best performance.<br>
@@ -268,7 +266,7 @@ public class StringUtil
 		final StringBuilder sbString = new StringBuilder();
 		for (StackTraceElement element : trace)
 		{
-			sbString.append(element.toString()).append(Config.EOL);
+			sbString.append(element.toString()).append(System.lineSeparator());
 		}
 		return sbString.toString();
 	}

@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,37 +16,35 @@
  */
 package org.l2j.gameserver.network.clientpackets.quest;
 
-import org.l2j.commons.network.ReadablePacket;
 import org.l2j.gameserver.instancemanager.QuestManager;
 import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.model.quest.Quest;
-import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.clientpackets.ClientPacket;
 
 /**
  * @author Magik, Mobius
  */
-public class RequestExQuestAccept implements ClientPacket
+public class RequestExQuestAccept extends ClientPacket
 {
 	private int _questId;
 	private boolean _isAccepted;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_questId = packet.readInt();
-		_isAccepted = packet.readBoolean();
+		_questId = readInt();
+		_isAccepted = readBoolean();
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
 		if (!_isAccepted)
 		{
 			return;
 		}
 		
-		final Player player = client.getPlayer();
+		final Player player = getPlayer();
 		if (player == null)
 		{
 			return;

@@ -15,4 +15,4 @@ Else
 End If
 
 'Run the installer.
-shell.Run "cmd /c start ""L2J 4Team - SQL Account Manager"" " & path & "java -Djava.util.logging.config.file=console.cfg -cp ./../libs/* org.l2j.tools.accountmanager.SQLAccountManager", 1, False
+shell.Run "cmd /c start ""L2J 4TeaM - SQL Account Manager"" " & path & "java -Djava.util.logging.config.file=console.cfg -cp ./../libs/* org.l2j.tools.accountmanager.SQLAccountManager", 1, False

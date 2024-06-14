@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,7 +16,9 @@
  */
 package org.l2j.gameserver.network.serverpackets;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.model.actor.instance.Door;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 
 public class DoorStatusUpdate extends ServerPacket
@@ -29,15 +31,15 @@ public class DoorStatusUpdate extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.DOOR_STATUS_UPDATE.writeId(this);
-		writeInt(_door.getObjectId());
-		writeInt(!_door.isOpen());
-		writeInt(_door.getDamage());
-		writeInt(_door.isEnemy());
-		writeInt(_door.getId());
-		writeInt((int) _door.getCurrentHp());
-		writeInt(_door.getMaxHp());
+		ServerPackets.DOOR_STATUS_UPDATE.writeId(this, buffer);
+		buffer.writeInt(_door.getObjectId());
+		buffer.writeInt(!_door.isOpen());
+		buffer.writeInt(_door.getDamage());
+		buffer.writeInt(_door.isEnemy());
+		buffer.writeInt(_door.getId());
+		buffer.writeInt((int) _door.getCurrentHp());
+		buffer.writeInt(_door.getMaxHp());
 	}
 }

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/multisell.xsd">
+	<npcs>
+		<npc>-1</npc> <!-- Item Multisell -->
+	</npcs>
+	<!-- +8 Agathion Coupon - Sealed (100174) -->
+	<item>
+		<ingredient id="100174" count="1" /> <!-- +8 Agathion Coupon - Sealed -->
+		<production id="98017" count="1" /> <!-- Package: +8 Agathion Ignis - Sealed -->
+	</item>
+	<item>
+		<ingredient id="100174" count="1" /> <!-- +8 Agathion Coupon - Sealed -->
+		<production id="98018" count="1" /> <!-- Package: +8 Agathion Nebula - Sealed -->
+	</item>
+	<item>
+		<ingredient id="100174" count="1" /> <!-- +8 Agathion Coupon - Sealed -->
+		<production id="98019" count="1" /> <!-- Package: +8 Agathion Procella - Sealed -->
+	</item>
+	<item>
+		<ingredient id="100174" count="1" /> <!-- +8 Agathion Coupon - Sealed -->
+		<production id="98020" count="1" /> <!-- Package: +8 Agathion Petram - Sealed -->
+	</item>
+	<item>
+		<ingredient id="100174" count="1" /> <!-- +8 Agathion Coupon - Sealed -->
+		<production id="98021" count="1" /> <!-- Package: +8 Agathion Joy - Sealed -->
+	</item>
+	<item>
+		<ingredient id="100174" count="5" /> <!-- +8 Agathion Coupon - Sealed -->
+		<production id="98954" count="1" /> <!-- Package: +8 Agathion Dragon Egg - Sealed -->
+	</item>
+</list>

@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -153,10 +153,10 @@ public abstract class Vehicle extends Creature
 						final MoveData m = new MoveData();
 						m.disregardingGeodata = false;
 						m.onGeodataPathIndex = -1;
-						m._xDestination = point.getX();
-						m._yDestination = point.getY();
-						m._zDestination = point.getZ();
-						m._heading = 0;
+						m.xDestination = point.getX();
+						m.yDestination = point.getY();
+						m.zDestination = point.getZ();
+						m.heading = 0;
 						
 						final double distance = Math.hypot(point.getX() - getX(), point.getY() - getY());
 						if (distance > 1)
@@ -164,7 +164,7 @@ public abstract class Vehicle extends Creature
 							setHeading(Util.calculateHeadingFrom(getX(), getY(), point.getX(), point.getY()));
 						}
 						
-						m._moveStartTime = GameTimeTaskManager.getInstance().getGameTicks();
+						m.moveStartTime = GameTimeTaskManager.getInstance().getGameTicks();
 						_move = m;
 						MovementTaskManager.getInstance().registerMovingObject(this);
 						
@@ -277,8 +277,13 @@ public abstract class Vehicle extends Creature
 	
 	public boolean addPassenger(Player player)
 	{
+		if ((player == null) || _passengers.contains(player))
+		{
+			return false;
+		}
+		
 		// already in other vehicle
-		if ((player == null) || _passengers.contains(player) || ((player.getVehicle() != null) && (player.getVehicle() != this)))
+		if ((player.getVehicle() != null) && (player.getVehicle() != this))
 		{
 			return false;
 		}

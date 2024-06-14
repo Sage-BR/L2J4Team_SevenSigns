@@ -14,5 +14,36 @@ Else
 	path = Replace(path, "Program Files", "Progra~1")
 End If
 
+'Load java.cfg parameters.
+Dim parameters
+Set file = CreateObject("Scripting.FileSystemObject").OpenTextFile("java.cfg", 1)
+parameters = file.ReadLine()
+file.Close
+Set file = Nothing
+
+'Load GUI configuration.
+window = 1
+Set file = CreateObject("Scripting.FileSystemObject").OpenTextFile("config\Interface.ini", 1)
+Do While Not file.AtEndOfStream
+	If Replace(LCase(file.ReadLine()), " ", "") = "enablegui=true" Then
+		window = 0
+		Exit Do
+	End If
+Loop
+file.Close
+Set file = Nothing
+
 'Generate command.
-shell.Run "cmd /c start ""L2J 4Team - Game Server"" " & path & "java -server -XX:+UseCodeCacheFlushing -XX:+OptimizeStringConcat -XX:+UseG1GC -XX:+TieredCompilation -XX:+UseCompressedOops -XX:SurvivorRatio=8 -XX:NewRatio=4 -Xmx3g -Xms3g -cp ../libs/GameServer.jar; org.l2j.gameserver.GameServer", 1, False
+command = path & "java " & parameters & " -jar ../libs/GameServer.jar"
+If window = 1 Then
+	command = "cmd /c start ""L2J 4TeaM - Game Server Console"" " & command
+End If
+
+'Run the server.
+exitcode = 0
+Do
+	exitcode = shell.Run(command, window, True)
+	If exitcode <> 0 And exitcode <> 2 Then	'0 Terminated - 2 Restarted
+		MsgBox "Game Server terminated abnormally!", vbOKOnly, "Game Server"
+	End If
+Loop While exitcode = 2

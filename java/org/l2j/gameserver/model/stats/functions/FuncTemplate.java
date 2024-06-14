@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -30,12 +30,12 @@ public class FuncTemplate
 {
 	private final Class<?> _functionClass;
 	private final Condition _attachCond;
-	private final Condition _applayCond;
+	private final Condition _applyCond;
 	private final Stat _stat;
 	private final int _order;
 	private final double _value;
 	
-	public FuncTemplate(Condition attachCond, Condition applayCond, String functionName, int order, Stat stat, double value)
+	public FuncTemplate(Condition attachCond, Condition applyCond, String functionName, int order, Stat stat, double value)
 	{
 		final StatFunction function = StatFunction.valueOf(functionName.toUpperCase());
 		if (order >= 0)
@@ -48,7 +48,7 @@ public class FuncTemplate
 		}
 		
 		_attachCond = attachCond;
-		_applayCond = applayCond;
+		_applyCond = applyCond;
 		_stat = stat;
 		_value = value;
 		
@@ -96,7 +96,12 @@ public class FuncTemplate
 	
 	public boolean meetCondition(Creature effected, Skill skill)
 	{
-		if (((_attachCond != null) && !_attachCond.test(effected, effected, skill)) || ((_applayCond != null) && !_applayCond.test(effected, effected, skill)))
+		if ((_attachCond != null) && !_attachCond.test(effected, effected, skill))
+		{
+			return false;
+		}
+		
+		if ((_applyCond != null) && !_applyCond.test(effected, effected, skill))
 		{
 			return false;
 		}

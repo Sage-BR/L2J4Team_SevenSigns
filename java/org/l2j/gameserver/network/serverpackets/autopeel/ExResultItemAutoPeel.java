@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,7 +18,9 @@ package org.l2j.gameserver.network.serverpackets.autopeel;
 
 import java.util.Collection;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.model.holders.ItemHolder;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 import org.l2j.gameserver.network.serverpackets.ServerPacket;
 
@@ -41,20 +43,20 @@ public class ExResultItemAutoPeel extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_RESULT_ITEM_AUTO_PEEL.writeId(this);
-		writeByte(_result);
-		writeLong(_totalPeelCount);
-		writeLong(_remainingPeelCount);
-		writeInt(_itemList.size());
+		ServerPackets.EX_RESULT_ITEM_AUTO_PEEL.writeId(this, buffer);
+		buffer.writeByte(_result);
+		buffer.writeLong(_totalPeelCount);
+		buffer.writeLong(_remainingPeelCount);
+		buffer.writeInt(_itemList.size());
 		for (ItemHolder holder : _itemList)
 		{
-			writeInt(holder.getId());
-			writeLong(holder.getCount());
-			writeInt(0); // Announce level.
-			writeInt(0); // Enchanted.
-			writeInt(0); // Grade color.
+			buffer.writeInt(holder.getId());
+			buffer.writeLong(holder.getCount());
+			buffer.writeInt(0); // Announce level.
+			buffer.writeByte(0); // Enchanted.
+			buffer.writeByte(0); // Grade color.
 		}
 	}
 }

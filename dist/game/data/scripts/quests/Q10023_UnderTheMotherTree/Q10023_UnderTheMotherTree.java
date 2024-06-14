@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,7 +18,7 @@ package quests.Q10023_UnderTheMotherTree;
 
 import org.l2j.Config;
 import org.l2j.gameserver.data.xml.TeleportListData;
-import org.l2j.gameserver.enums.ClassId;
+import org.l2j.gameserver.instancemanager.QuestManager;
 import org.l2j.gameserver.model.Location;
 import org.l2j.gameserver.model.actor.Npc;
 import org.l2j.gameserver.model.actor.Player;
@@ -39,7 +39,7 @@ import quests.Q10024_NewLifesLessons.Q10024_NewLifesLessons;
 import quests.Q10025_NewLifesLessons.Q10025_NewLifesLessons;
 
 /**
- * @author Magik
+ * @author Magik, Mobius
  */
 public class Q10023_UnderTheMotherTree extends Quest
 {
@@ -51,7 +51,7 @@ public class Q10023_UnderTheMotherTree extends Quest
 	}
 	
 	@Override
-	public String onAdvEvent(String event, Npc npc, Player player)
+	public String onEvent(String event, Npc npc, Player player)
 	{
 		switch (event)
 		{
@@ -71,19 +71,40 @@ public class Q10023_UnderTheMotherTree extends Quest
 			}
 			case "TELEPORT":
 			{
-				final QuestState questState = getQuestState(player, false);
+				QuestState questState = getQuestState(player, false);
 				if (questState == null)
 				{
+					if (!canStartQuest(player))
+					{
+						break;
+					}
+					
+					questState = getQuestState(player, true);
+					
+					final NewQuestLocation questLocation = getQuestData().getLocation();
+					if (questLocation.getStartLocationId() > 0)
+					{
+						final Location location = TeleportListData.getInstance().getTeleport(questLocation.getStartLocationId()).getLocation();
+						if (teleportToQuestLocation(player, location))
+						{
+							questState.setCond(QuestCondType.ACT);
+							sendAcceptDialog(player);
+						}
+					}
 					break;
 				}
 				
 				final NewQuestLocation questLocation = getQuestData().getLocation();
 				if (questState.isCond(QuestCondType.STARTED))
 				{
-					if (questLocation.getStartLocationId() > 0)
+					if (questLocation.getQuestLocationId() > 0)
 					{
-						final Location location = TeleportListData.getInstance().getTeleport(questLocation.getStartLocationId()).getLocation();
-						teleportToQuestLocation(player, location);
+						final Location location = TeleportListData.getInstance().getTeleport(questLocation.getQuestLocationId()).getLocation();
+						if (teleportToQuestLocation(player, location) && (questLocation.getQuestLocationId() == questLocation.getEndLocationId()))
+						{
+							questState.setCond(QuestCondType.DONE);
+							sendEndDialog(player);
+						}
 					}
 				}
 				else if (questState.isCond(QuestCondType.DONE) && !questState.isCompleted())
@@ -91,7 +112,10 @@ public class Q10023_UnderTheMotherTree extends Quest
 					if (questLocation.getEndLocationId() > 0)
 					{
 						final Location location = TeleportListData.getInstance().getTeleport(questLocation.getEndLocationId()).getLocation();
-						teleportToQuestLocation(player, location);
+						if (teleportToQuestLocation(player, location))
+						{
+							sendEndDialog(player);
+						}
 					}
 				}
 				break;
@@ -108,7 +132,8 @@ public class Q10023_UnderTheMotherTree extends Quest
 				{
 					questState.exitQuest(false, true);
 					
-					if ((player.getClassId().getId() >= ClassId.ELVEN_FIGHTER.getId()) && (player.getClassId().getId() < ClassId.ELVEN_MAGE.getId()))
+					Quest quest = QuestManager.getInstance().getQuest(10024);
+					if (quest.canStartQuest(player))
 					{
 						final QuestState nextQuestState = player.getQuestState(Q10024_NewLifesLessons.class.getSimpleName());
 						if (nextQuestState == null)
@@ -118,10 +143,14 @@ public class Q10023_UnderTheMotherTree extends Quest
 					}
 					else
 					{
-						final QuestState nextQuestState = player.getQuestState(Q10025_NewLifesLessons.class.getSimpleName());
-						if (nextQuestState == null)
+						quest = QuestManager.getInstance().getQuest(10025);
+						if (quest.canStartQuest(player))
 						{
-							player.sendPacket(new ExQuestDialog(10025, QuestDialogType.ACCEPT));
+							final QuestState nextQuestState = player.getQuestState(Q10025_NewLifesLessons.class.getSimpleName());
+							if (nextQuestState == null)
+							{
+								player.sendPacket(new ExQuestDialog(10025, QuestDialogType.ACCEPT));
+							}
 						}
 					}
 				}

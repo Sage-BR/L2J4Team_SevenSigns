@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,7 +16,6 @@
  */
 package org.l2j.gameserver.network.clientpackets;
 
-import org.l2j.commons.network.ReadablePacket;
 import org.l2j.gameserver.model.CharSelectInfoPackage;
 import org.l2j.gameserver.model.events.EventDispatcher;
 import org.l2j.gameserver.model.events.EventType;
@@ -27,20 +26,21 @@ import org.l2j.gameserver.network.serverpackets.CharSelectionInfo;
 /**
  * @version $Revision: 1.4.2.1.2.2 $ $Date: 2005/03/27 15:29:29 $
  */
-public class CharacterRestore implements ClientPacket
+public class CharacterRestore extends ClientPacket
 {
 	// cd
 	private int _charSlot;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_charSlot = packet.readInt();
+		_charSlot = readInt();
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
+		final GameClient client = getClient();
 		if (!client.getFloodProtectors().canSelectCharacter())
 		{
 			return;

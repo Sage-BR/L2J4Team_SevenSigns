@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,9 +19,11 @@ package org.l2j.gameserver.network.serverpackets;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.model.item.henna.HennaPoten;
 import org.l2j.gameserver.model.stats.BaseStat;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 
 /**
@@ -46,26 +48,26 @@ public class GMHennaInfo extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.GMHENNA_INFO.writeId(this);
-		writeShort(_player.getHennaValue(BaseStat.INT)); // equip INT
-		writeShort(_player.getHennaValue(BaseStat.STR)); // equip STR
-		writeShort(_player.getHennaValue(BaseStat.CON)); // equip CON
-		writeShort(_player.getHennaValue(BaseStat.MEN)); // equip MEN
-		writeShort(_player.getHennaValue(BaseStat.DEX)); // equip DEX
-		writeShort(_player.getHennaValue(BaseStat.WIT)); // equip WIT
-		writeShort(0); // equip LUC
-		writeShort(0); // equip CHA
-		writeInt(3); // Slots
-		writeInt(_hennas.size()); // Size
+		ServerPackets.GMHENNA_INFO.writeId(this, buffer);
+		buffer.writeShort(_player.getHennaValue(BaseStat.INT)); // equip INT
+		buffer.writeShort(_player.getHennaValue(BaseStat.STR)); // equip STR
+		buffer.writeShort(_player.getHennaValue(BaseStat.CON)); // equip CON
+		buffer.writeShort(_player.getHennaValue(BaseStat.MEN)); // equip MEN
+		buffer.writeShort(_player.getHennaValue(BaseStat.DEX)); // equip DEX
+		buffer.writeShort(_player.getHennaValue(BaseStat.WIT)); // equip WIT
+		buffer.writeShort(0); // equip LUC
+		buffer.writeShort(0); // equip CHA
+		buffer.writeInt(3); // Slots
+		buffer.writeInt(_hennas.size()); // Size
 		for (HennaPoten henna : _hennas)
 		{
-			writeInt(henna.getPotenId());
-			writeInt(1);
+			buffer.writeInt(henna.getPotenId());
+			buffer.writeInt(1);
 		}
-		writeInt(0);
-		writeInt(0);
-		writeInt(0);
+		buffer.writeInt(0);
+		buffer.writeInt(0);
+		buffer.writeInt(0);
 	}
 }

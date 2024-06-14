@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,10 +16,12 @@
  */
 package org.l2j.gameserver.network.serverpackets;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.model.Shortcut;
 import org.l2j.gameserver.model.VariationInstance;
 import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.model.item.instance.Item;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 
 public class ShortCutRegister extends ServerPacket
@@ -39,38 +41,56 @@ public class ShortCutRegister extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.SHORT_CUT_REGISTER.writeId(this);
-		writeInt(_shortcut.getType().ordinal());
-		writeInt(_shortcut.getSlot() + (_shortcut.getPage() * 12)); // C4 Client
-		writeByte(0); // 228
+		ServerPackets.SHORT_CUT_REGISTER.writeId(this, buffer);
+		buffer.writeInt(_shortcut.getType().ordinal());
+		buffer.writeInt(_shortcut.getSlot() + (_shortcut.getPage() * 12)); // C4 Client
+		buffer.writeByte(_shortcut.isAutoUse()); // 228
 		switch (_shortcut.getType())
 		{
 			case ITEM:
 			{
+				buffer.writeInt(_shortcut.getId());
+				buffer.writeInt(_shortcut.getCharacterType());
+				buffer.writeInt(_shortcut.getSharedReuseGroup());
+				buffer.writeInt(0); // unknown
+				buffer.writeInt(0); // unknown
 				final Item item = _player.getInventory().getItemByObjectId(_shortcut.getId());
-				final VariationInstance augment = item.getAugmentation();
-				writeInt(_shortcut.getId());
-				writeInt(_shortcut.getCharacterType());
-				writeInt(_shortcut.getSharedReuseGroup());
-				writeInt(0); // unknown
-				writeInt(0); // unknown
-				writeInt(augment != null ? augment.getOption1Id() : 0); // item augment id
-				writeInt(augment != null ? augment.getOption2Id() : 0); // item augment id
-				writeInt(item.getVisualId()); // visual id
+				if (item != null)
+				{
+					final VariationInstance augment = item.getAugmentation();
+					if (augment != null)
+					{
+						buffer.writeInt(augment.getOption1Id());
+						buffer.writeInt(augment.getOption2Id());
+					}
+					else
+					{
+						buffer.writeInt(0);
+						buffer.writeInt(0);
+					}
+					buffer.writeInt(item.getVisualId());
+				}
+				else
+				{
+					buffer.writeInt(0);
+					buffer.writeInt(0);
+					buffer.writeInt(0);
+				}
+				
 				break;
 			}
 			case SKILL:
 			{
-				writeInt(_shortcut.getId());
-				writeShort(_shortcut.getLevel());
-				writeShort(_shortcut.getSubLevel());
-				writeInt(_shortcut.getSharedReuseGroup());
-				writeByte(0); // C5
-				writeInt(_shortcut.getCharacterType());
-				writeInt(0); // if 1 - cant use
-				writeInt(0); // reuse delay ?
+				buffer.writeInt(_shortcut.getId());
+				buffer.writeShort(_shortcut.getLevel());
+				buffer.writeShort(_shortcut.getSubLevel());
+				buffer.writeInt(_shortcut.getSharedReuseGroup());
+				buffer.writeByte(0); // C5
+				buffer.writeInt(_shortcut.getCharacterType());
+				buffer.writeInt(0); // if 1 - cant use
+				buffer.writeInt(0); // reuse delay ?
 				break;
 			}
 			case ACTION:
@@ -78,8 +98,8 @@ public class ShortCutRegister extends ServerPacket
 			case RECIPE:
 			case BOOKMARK:
 			{
-				writeInt(_shortcut.getId());
-				writeInt(_shortcut.getCharacterType());
+				buffer.writeInt(_shortcut.getId());
+				buffer.writeInt(_shortcut.getCharacterType());
 				break;
 			}
 		}

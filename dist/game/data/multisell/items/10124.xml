@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/multisell.xsd">
+	<npcs>
+		<npc>-1</npc> <!-- Item Multisell -->
+	</npcs>
+	<!-- Doll Coupon Lv. 2 (Time-limited) - Sealed (98919) -->
+	<item>
+		<ingredient id="98919" count="10" /> <!-- Doll Coupon Lv. 2 (Sealed) (Time-limited) - Sealed -->
+		<production id="100049" count="1" /> <!-- Glakias Doll Lv. 2 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98919" count="10" /> <!-- Doll Coupon Lv. 2 (Sealed) (Time-limited) - Sealed -->
+		<production id="100045" count="1" /> <!-- Behemoth Doll Lv. 2 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98919" count="6" /> <!-- Doll Coupon Lv. 2 (Sealed) (Time-limited) - Sealed -->
+		<production id="100042" count="1" /> <!-- Antharas Doll Lv. 2 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98919" count="3" /> <!-- Doll Coupon Lv. 2 (Sealed) (Time-limited) - Sealed -->
+		<production id="100024" count="1" /> <!-- Baium Doll Lv. 2 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98919" count="3" /> <!-- Doll Coupon Lv. 2 (Sealed) (Time-limited) - Sealed -->
+		<production id="100033" count="1" /> <!-- Frintezza Doll Lv. 2 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98919" count="3" /> <!-- Doll Coupon Lv. 2 (Sealed) (Time-limited) - Sealed -->
+		<production id="100036" count="1" /> <!-- Zaken Doll Lv. 2 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98919" count="2" /> <!-- Doll Coupon Lv. 2 (Sealed) (Time-limited) - Sealed -->
+		<production id="100039" count="1" /> <!-- Core Doll Lv. 2 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98919" count="1" /> <!-- Doll Coupon Lv. 2 (Sealed) (Time-limited) - Sealed -->
+		<production id="100027" count="1" /> <!-- Queen Ant Doll Lv. 2 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98919" count="1" /> <!-- Doll Coupon Lv. 2 (Sealed) (Time-limited) - Sealed -->
+		<production id="100030" count="1" /> <!-- Orfen Doll Lv. 2 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98919" count="1" /> <!-- Doll Coupon Lv. 2 (Sealed) (Time-limited) - Sealed -->
+		<production id="100056" count="40" /> <!-- Doll Lucky Box (Time-limited) - Sealed -->
+	</item>
+</list>

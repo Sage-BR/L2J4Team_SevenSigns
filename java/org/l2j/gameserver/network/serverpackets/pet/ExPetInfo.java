@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,12 +18,14 @@ package org.l2j.gameserver.network.serverpackets.pet;
 
 import java.util.Set;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.enums.NpcInfoType;
 import org.l2j.gameserver.enums.Team;
 import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.model.actor.Summon;
 import org.l2j.gameserver.model.skill.AbnormalVisualEffect;
 import org.l2j.gameserver.model.zone.ZoneId;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 import org.l2j.gameserver.network.serverpackets.AbstractMaskPacket;
 
@@ -204,166 +206,166 @@ public class ExPetInfo extends AbstractMaskPacket<NpcInfoType>
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_PET_INFO.writeId(this);
-		writeInt(_summon.getObjectId());
-		writeByte(_value); // 0=teleported 1=default 2=summoned
-		writeShort(38); // 338 - mask_bits_38
-		writeBytes(_masks);
+		ServerPackets.EX_PET_INFO.writeId(this, buffer);
+		buffer.writeInt(_summon.getObjectId());
+		buffer.writeByte(_value); // 0=teleported 1=default 2=summoned
+		buffer.writeShort(38); // 338 - mask_bits_38
+		buffer.writeBytes(_masks);
 		// Block 1
-		writeByte(_initSize);
+		buffer.writeByte(_initSize);
 		if (containsMask(NpcInfoType.ATTACKABLE))
 		{
-			writeByte(_summon.isAutoAttackable(_attacker));
+			buffer.writeByte(_summon.isAutoAttackable(_attacker));
 		}
 		if (containsMask(NpcInfoType.RELATIONS))
 		{
-			writeLong(_relation);
+			buffer.writeLong(_relation);
 		}
 		if (containsMask(NpcInfoType.TITLE))
 		{
-			writeString(_title);
+			buffer.writeString(_title);
 		}
 		// Block 2
-		writeShort(_blockSize);
+		buffer.writeShort(_blockSize);
 		if (containsMask(NpcInfoType.ID))
 		{
-			writeInt(_summon.getTemplate().getDisplayId() + 1000000);
+			buffer.writeInt(_summon.getTemplate().getDisplayId() + 1000000);
 		}
 		if (containsMask(NpcInfoType.POSITION))
 		{
-			writeInt(_summon.getX());
-			writeInt(_summon.getY());
-			writeInt(_summon.getZ());
+			buffer.writeInt(_summon.getX());
+			buffer.writeInt(_summon.getY());
+			buffer.writeInt(_summon.getZ());
 		}
 		if (containsMask(NpcInfoType.HEADING))
 		{
-			writeInt(_summon.getHeading());
+			buffer.writeInt(_summon.getHeading());
 		}
 		if (containsMask(NpcInfoType.VEHICLE_ID))
 		{
-			writeInt(0); // Vehicle object id.
+			buffer.writeInt(0); // Vehicle object id.
 		}
 		if (containsMask(NpcInfoType.ATK_CAST_SPEED))
 		{
-			writeInt(_summon.getPAtkSpd());
-			writeInt(_summon.getMAtkSpd());
+			buffer.writeInt(_summon.getPAtkSpd());
+			buffer.writeInt(_summon.getMAtkSpd());
 		}
 		if (containsMask(NpcInfoType.SPEED_MULTIPLIER))
 		{
-			writeFloat((float) _summon.getStat().getMovementSpeedMultiplier());
-			writeFloat((float) _summon.getStat().getAttackSpeedMultiplier());
+			buffer.writeFloat((float) _summon.getStat().getMovementSpeedMultiplier());
+			buffer.writeFloat((float) _summon.getStat().getAttackSpeedMultiplier());
 		}
 		if (containsMask(NpcInfoType.EQUIPPED))
 		{
-			writeInt(_summon.getWeapon());
-			writeInt(_summon.getArmor()); // Armor id?
-			writeInt(0);
+			buffer.writeInt(_summon.getWeapon());
+			buffer.writeInt(_summon.getArmor()); // Armor id?
+			buffer.writeInt(0);
 		}
 		if (containsMask(NpcInfoType.STOP_MODE))
 		{
-			writeByte(!_summon.isDead());
+			buffer.writeByte(!_summon.isDead());
 		}
 		if (containsMask(NpcInfoType.MOVE_MODE))
 		{
-			writeByte(_summon.isRunning());
+			buffer.writeByte(_summon.isRunning());
 		}
 		if (containsMask(NpcInfoType.SWIM_OR_FLY))
 		{
-			writeByte(_summon.isInsideZone(ZoneId.WATER) ? 1 : _summon.isFlying() ? 2 : 0);
+			buffer.writeByte(_summon.isInsideZone(ZoneId.WATER) ? 1 : _summon.isFlying() ? 2 : 0);
 		}
 		if (containsMask(NpcInfoType.TEAM))
 		{
-			writeByte(_summon.getTeam().getId());
+			buffer.writeByte(_summon.getTeam().getId());
 		}
 		if (containsMask(NpcInfoType.ENCHANT))
 		{
-			writeInt(_summon.getTemplate().getWeaponEnchant());
+			buffer.writeInt(_summon.getTemplate().getWeaponEnchant());
 		}
 		if (containsMask(NpcInfoType.FLYING))
 		{
-			writeInt(_summon.isFlying());
+			buffer.writeInt(_summon.isFlying());
 		}
 		if (containsMask(NpcInfoType.CLONE))
 		{
-			writeInt(0); // Player ObjectId with Decoy
+			buffer.writeInt(0); // Player ObjectId with Decoy
 		}
 		if (containsMask(NpcInfoType.PET_EVOLUTION_ID))
 		{
-			writeInt(0); // Unknown
+			buffer.writeInt(0); // Unknown
 		}
 		if (containsMask(NpcInfoType.DISPLAY_EFFECT))
 		{
-			writeInt(0);
+			buffer.writeInt(0);
 		}
 		if (containsMask(NpcInfoType.TRANSFORMATION))
 		{
-			writeInt(_summon.getTransformationDisplayId()); // Transformation ID
+			buffer.writeInt(_summon.getTransformationDisplayId()); // Transformation ID
 		}
 		if (containsMask(NpcInfoType.CURRENT_HP))
 		{
-			writeInt((int) _summon.getCurrentHp());
+			buffer.writeInt((int) _summon.getCurrentHp());
 		}
 		if (containsMask(NpcInfoType.CURRENT_MP))
 		{
-			writeInt((int) _summon.getCurrentMp());
+			buffer.writeInt((int) _summon.getCurrentMp());
 		}
 		if (containsMask(NpcInfoType.MAX_HP))
 		{
-			writeInt(_summon.getMaxHp());
+			buffer.writeInt(_summon.getMaxHp());
 		}
 		if (containsMask(NpcInfoType.MAX_MP))
 		{
-			writeInt(_summon.getMaxMp());
+			buffer.writeInt(_summon.getMaxMp());
 		}
 		if (containsMask(NpcInfoType.SUMMONED))
 		{
-			writeByte(_summon.isShowSummonAnimation() ? 2 : 0); // 2 - do some animation on spawn
+			buffer.writeByte(_summon.isShowSummonAnimation() ? 2 : 0); // 2 - do some animation on spawn
 		}
 		if (containsMask(NpcInfoType.FOLLOW_INFO))
 		{
-			writeInt(0);
-			writeInt(0);
+			buffer.writeInt(0);
+			buffer.writeInt(0);
 		}
 		if (containsMask(NpcInfoType.NAME))
 		{
-			writeString(_summon.getName());
+			buffer.writeString(_summon.getName());
 		}
 		if (containsMask(NpcInfoType.NAME_NPCSTRINGID))
 		{
-			writeInt(-1); // NPCStringId for name
+			buffer.writeInt(-1); // NPCStringId for name
 		}
 		if (containsMask(NpcInfoType.TITLE_NPCSTRINGID))
 		{
-			writeInt(-1); // NPCStringId for title
+			buffer.writeInt(-1); // NPCStringId for title
 		}
 		if (containsMask(NpcInfoType.PVP_FLAG))
 		{
-			writeByte(_summon.getPvpFlag()); // PVP flag
+			buffer.writeByte(_summon.getPvpFlag()); // PVP flag
 		}
 		if (containsMask(NpcInfoType.REPUTATION))
 		{
-			writeInt(_summon.getReputation()); // Name color
+			buffer.writeInt(_summon.getReputation()); // Name color
 		}
 		if (containsMask(NpcInfoType.CLAN))
 		{
-			writeInt(_clanId);
-			writeInt(_clanCrest);
-			writeInt(_clanLargeCrest);
-			writeInt(_allyId);
-			writeInt(_allyCrest);
+			buffer.writeInt(_clanId);
+			buffer.writeInt(_clanCrest);
+			buffer.writeInt(_clanLargeCrest);
+			buffer.writeInt(_allyId);
+			buffer.writeInt(_allyCrest);
 		}
 		if (containsMask(NpcInfoType.VISUAL_STATE))
 		{
-			writeInt(_statusMask); // Main writeC, Essence writeD.
+			buffer.writeInt(_statusMask); // Main writeC, Essence writeD.
 		}
 		if (containsMask(NpcInfoType.ABNORMALS))
 		{
-			writeShort(_abnormalVisualEffects.size());
+			buffer.writeShort(_abnormalVisualEffects.size());
 			for (AbnormalVisualEffect abnormalVisualEffect : _abnormalVisualEffects)
 			{
-				writeShort(abnormalVisualEffect.getClientId());
+				buffer.writeShort(abnormalVisualEffect.getClientId());
 			}
 		}
 	}

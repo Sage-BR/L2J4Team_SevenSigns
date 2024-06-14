@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/multisell.xsd">
+	<npcs>
+		<npc>-1</npc> <!-- Item Multisell -->
+	</npcs>
+	<!-- Scroll of Blessing: Weapon/ Armor Selection Ticket (Time-limited) - Sealed (100079) -->
+	<item>
+		<ingredient id="100079" count="1" /> <!-- Scroll of Blessing: Weapon/ Armor Selection Ticket (Time-limited) - Sealed -->
+		<production id="94208" count="1" /> <!-- Scroll of Blessing: Weapon - Sealed -->
+	</item>
+	<item>
+		<ingredient id="100079" count="1" /> <!-- Scroll of Blessing: Weapon/ Armor Selection Ticket (Time-limited) - Sealed -->
+		<production id="97339" count="1" /> <!-- Scroll of Blessing: Armor - Sealed -->
+	</item>
+</list>

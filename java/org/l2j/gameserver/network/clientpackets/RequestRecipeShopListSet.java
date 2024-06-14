@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,14 +19,12 @@ package org.l2j.gameserver.network.clientpackets;
 import static org.l2j.gameserver.model.itemcontainer.Inventory.MAX_ADENA;
 
 import org.l2j.Config;
-import org.l2j.commons.network.ReadablePacket;
 import org.l2j.gameserver.data.xml.RecipeData;
 import org.l2j.gameserver.enums.PrivateStoreType;
 import org.l2j.gameserver.model.ManufactureItem;
 import org.l2j.gameserver.model.RecipeList;
 import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.model.zone.ZoneId;
-import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.SystemMessageId;
 import org.l2j.gameserver.network.serverpackets.ActionFailed;
 import org.l2j.gameserver.network.serverpackets.RecipeShopMsg;
@@ -37,17 +35,17 @@ import org.l2j.gameserver.util.Util;
 /**
  * RequestRecipeShopListSet client packet class.
  */
-public class RequestRecipeShopListSet implements ClientPacket
+public class RequestRecipeShopListSet extends ClientPacket
 {
 	private static final int BATCH_LENGTH = 12;
 	
 	private ManufactureItem[] _items = null;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		final int count = packet.readInt();
-		if ((count <= 0) || (count > Config.MAX_ITEM_IN_PACKET) || ((count * BATCH_LENGTH) != packet.getRemainingLength()))
+		final int count = readInt();
+		if ((count <= 0) || (count > Config.MAX_ITEM_IN_PACKET) || ((count * BATCH_LENGTH) != remaining()))
 		{
 			return;
 		}
@@ -55,8 +53,8 @@ public class RequestRecipeShopListSet implements ClientPacket
 		_items = new ManufactureItem[count];
 		for (int i = 0; i < count; i++)
 		{
-			final int id = packet.readInt();
-			final long cost = packet.readLong();
+			final int id = readInt();
+			final long cost = readLong();
 			if (cost < 0)
 			{
 				_items = null;
@@ -67,9 +65,9 @@ public class RequestRecipeShopListSet implements ClientPacket
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
-		final Player player = client.getPlayer();
+		final Player player = getPlayer();
 		if (player == null)
 		{
 			return;

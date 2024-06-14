@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../xsd/multisell.xsd">
+	<npcs>
+		<npc>-1</npc> <!-- Dimensional Merchant / Everywhere -->
+	</npcs>
+	<item>
+		<!-- Pet's Supply Pouch -->
+		<ingredient count="1" id="97398" />
+		<!-- Sealed Wolf Necklace -->
+		<production count="1" id="94097" />
+	</item>
+	<item>
+		<!-- Pet's Supply Pouch -->
+		<ingredient count="1" id="97398" />
+		<!-- Sealed Buffalo Necklace -->
+		<production count="1" id="94098" />
+	</item>
+	<item>
+		<!-- Pet's Supply Pouch -->
+		<ingredient count="1" id="97398" />
+		<!-- Sealed Tiger Necklace -->
+		<production count="1" id="94099" />
+	</item>
+	<item>
+		<!-- Pet's Supply Pouch -->
+		<ingredient count="1" id="97398" />
+		<!-- Sealed Kookaburra Necklace -->
+		<production count="1" id="94100" />
+	</item>
+	<item>
+		<!-- Pet's Supply Pouch -->
+		<ingredient count="1" id="97398" />
+		<!-- Sealed Dragon's Necklace -->
+		<production count="1" id="94101" />
+	</item>
+	<item>
+		<!-- Pet's Supply Pouch -->
+		<ingredient count="1" id="97398" />
+		<!-- Sealed Hawk Necklace -->
+		<production count="1" id="94102" />
+	</item>
+</list>

@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -156,7 +156,7 @@ public class Pet extends Summon
 		}
 		catch (SQLException e)
 		{
-			e.printStackTrace();
+			LOGGER.log(Level.WARNING, "Could not store evolved pets: ", e);
 		}
 		getOwner().setPetEvolve(controlItemObjId, new PetEvolveHolder(index, evolveLevel, getName(), getLevel(), getExpForThisLevel()));
 	}
@@ -1153,10 +1153,19 @@ public class Pet extends Summon
 					final Skill skill = info.getSkill();
 					
 					// Do not store those effects.
+					if (skill.isDeleteAbnormalOnLeave())
+					{
+						continue;
+					}
 					
 					// Do not save heals.
+					if (skill.getAbnormalType() == AbnormalType.LIFE_FORCE_OTHERS)
+					{
+						continue;
+					}
+					
 					// Toggles are skipped, unless they are necessary to be always on.
-					if (skill.isDeleteAbnormalOnLeave() || (skill.getAbnormalType() == AbnormalType.LIFE_FORCE_OTHERS) || (skill.isToggle() && !skill.isNecessaryToggle()))
+					if (skill.isToggle() && !skill.isNecessaryToggle())
 					{
 						continue;
 					}

@@ -1,0 +1,407 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/multisell.xsd">
+	<npcs>
+		<npc>-1</npc> <!-- Item Multisell -->
+	</npcs>
+	<!-- Hardin's Spellbook Coupon - 3 Stars (Not Available) - Sealed (98857) -->
+	<item>
+		<ingredient id="98857" count="1" /> <!-- Hardin's Spellbook Coupon - 3 Stars (Not Available) - Sealed -->
+		<production id="98493" count="1" /> <!-- Spellbook: Clone Dance - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98857" count="1" /> <!-- Hardin's Spellbook Coupon - 3 Stars (Not Available) - Sealed -->
+		<production id="98494" count="1" /> <!-- Spellbook: Assassination - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98857" count="1" /> <!-- Hardin's Spellbook Coupon - 3 Stars (Not Available) - Sealed -->
+		<production id="98495" count="1" /> <!-- Spellbook: Constraint - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98857" count="1" /> <!-- Hardin's Spellbook Coupon - 3 Stars (Not Available) - Sealed -->
+		<production id="98496" count="1" /> <!-- Spellbook: Resolve to Kill - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98857" count="1" /> <!-- Hardin's Spellbook Coupon - 3 Stars (Not Available) - Sealed -->
+		<production id="98447" count="1" /> <!-- Spellbook: Powerful Servitor Share - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98857" count="1" /> <!-- Hardin's Spellbook Coupon - 3 Stars (Not Available) - Sealed -->
+		<production id="98324" count="1" /> <!-- Spellbook: Bloody Strike - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98857" count="1" /> <!-- Hardin's Spellbook Coupon - 3 Stars (Not Available) - Sealed -->
+		<production id="98291" count="1" /> <!-- Spellbook: Trophy Thief - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98857" count="1" /> <!-- Hardin's Spellbook Coupon - 3 Stars (Not Available) - Sealed -->
+		<production id="98292" count="1" /> <!-- Spellbook: Hammer Rumble - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98857" count="1" /> <!-- Hardin's Spellbook Coupon - 3 Stars (Not Available) - Sealed -->
+		<production id="97847" count="1" /> <!-- Spellbook: Music Mastery - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98857" count="1" /> <!-- Hardin's Spellbook Coupon - 3 Stars (Not Available) - Sealed -->
+		<production id="97848" count="1" /> <!-- Spellbook: Dance Mastery - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98857" count="1" /> <!-- Hardin's Spellbook Coupon - 3 Stars (Not Available) - Sealed -->
+		<production id="97849" count="1" /> <!-- Spellbook: Song of Silence Lv. 4 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98857" count="1" /> <!-- Hardin's Spellbook Coupon - 3 Stars (Not Available) - Sealed -->
+		<production id="97850" count="1" /> <!-- Spellbook: Dance of Medusa Lv. 4 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98857" count="1" /> <!-- Hardin's Spellbook Coupon - 3 Stars (Not Available) - Sealed -->
+		<production id="97852" count="1" /> <!-- Spellbook: Unique Seal of Damage - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98857" count="1" /> <!-- Hardin's Spellbook Coupon - 3 Stars (Not Available) - Sealed -->
+		<production id="97854" count="1" /> <!-- Spellbook: Essential Energy - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98857" count="1" /> <!-- Hardin's Spellbook Coupon - 3 Stars (Not Available) - Sealed -->
+		<production id="97856" count="1" /> <!-- Spellbook: Great Attack Lv. 3 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98857" count="1" /> <!-- Hardin's Spellbook Coupon - 3 Stars (Not Available) - Sealed -->
+		<production id="97464" count="1" /> <!-- Spellbook: Death Pain - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98857" count="1" /> <!-- Hardin's Spellbook Coupon - 3 Stars (Not Available) - Sealed -->
+		<production id="97472" count="1" /> <!-- Spellbook: Lightning Tornado - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98857" count="1" /> <!-- Hardin's Spellbook Coupon - 3 Stars (Not Available) - Sealed -->
+		<production id="97468" count="1" /> <!-- Spellbook: Resonance - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98857" count="1" /> <!-- Hardin's Spellbook Coupon - 3 Stars (Not Available) - Sealed -->
+		<production id="97460" count="1" /> <!-- Spellbook: Soul Guard Lv. 3 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98857" count="1" /> <!-- Hardin's Spellbook Coupon - 3 Stars (Not Available) - Sealed -->
+		<production id="97329" count="1" /> <!-- Spellbook: Blade Wave - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98857" count="1" /> <!-- Hardin's Spellbook Coupon - 3 Stars (Not Available) - Sealed -->
+		<production id="98493" count="1" /> <!-- Spellbook: Clone Dance - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98857" count="1" /> <!-- Hardin's Spellbook Coupon - 3 Stars (Not Available) - Sealed -->
+		<production id="98494" count="1" /> <!-- Spellbook: Assassination - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98857" count="1" /> <!-- Hardin's Spellbook Coupon - 3 Stars (Not Available) - Sealed -->
+		<production id="98495" count="1" /> <!-- Spellbook: Constraint - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98857" count="1" /> <!-- Hardin's Spellbook Coupon - 3 Stars (Not Available) - Sealed -->
+		<production id="98496" count="1" /> <!-- Spellbook: Resolve to Kill - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98857" count="1" /> <!-- Hardin's Spellbook Coupon - 3 Stars (Not Available) - Sealed -->
+		<production id="98447" count="1" /> <!-- Spellbook: Powerful Servitor Share - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98857" count="1" /> <!-- Hardin's Spellbook Coupon - 3 Stars (Not Available) - Sealed -->
+		<production id="98324" count="1" /> <!-- Spellbook: Bloody Strike - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98857" count="1" /> <!-- Hardin's Spellbook Coupon - 3 Stars (Not Available) - Sealed -->
+		<production id="98291" count="1" /> <!-- Spellbook: Trophy Thief - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98857" count="1" /> <!-- Hardin's Spellbook Coupon - 3 Stars (Not Available) - Sealed -->
+		<production id="98292" count="1" /> <!-- Spellbook: Hammer Rumble - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98857" count="1" /> <!-- Hardin's Spellbook Coupon - 3 Stars (Not Available) - Sealed -->
+		<production id="97847" count="1" /> <!-- Spellbook: Music Mastery - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98857" count="1" /> <!-- Hardin's Spellbook Coupon - 3 Stars (Not Available) - Sealed -->
+		<production id="97848" count="1" /> <!-- Spellbook: Dance Mastery - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98857" count="1" /> <!-- Hardin's Spellbook Coupon - 3 Stars (Not Available) - Sealed -->
+		<production id="97849" count="1" /> <!-- Spellbook: Song of Silence Lv. 4 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98857" count="1" /> <!-- Hardin's Spellbook Coupon - 3 Stars (Not Available) - Sealed -->
+		<production id="97850" count="1" /> <!-- Spellbook: Dance of Medusa Lv. 4 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98857" count="1" /> <!-- Hardin's Spellbook Coupon - 3 Stars (Not Available) - Sealed -->
+		<production id="97852" count="1" /> <!-- Spellbook: Unique Seal of Damage - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98857" count="1" /> <!-- Hardin's Spellbook Coupon - 3 Stars (Not Available) - Sealed -->
+		<production id="97854" count="1" /> <!-- Spellbook: Essential Energy - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98857" count="1" /> <!-- Hardin's Spellbook Coupon - 3 Stars (Not Available) - Sealed -->
+		<production id="97856" count="1" /> <!-- Spellbook: Great Attack Lv. 3 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98857" count="1" /> <!-- Hardin's Spellbook Coupon - 3 Stars (Not Available) - Sealed -->
+		<production id="97464" count="1" /> <!-- Spellbook: Death Pain - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98857" count="1" /> <!-- Hardin's Spellbook Coupon - 3 Stars (Not Available) - Sealed -->
+		<production id="97472" count="1" /> <!-- Spellbook: Lightning Tornado - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98857" count="1" /> <!-- Hardin's Spellbook Coupon - 3 Stars (Not Available) - Sealed -->
+		<production id="97468" count="1" /> <!-- Spellbook: Resonance - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98857" count="1" /> <!-- Hardin's Spellbook Coupon - 3 Stars (Not Available) - Sealed -->
+		<production id="97460" count="1" /> <!-- Spellbook: Soul Guard Lv. 3 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98857" count="1" /> <!-- Hardin's Spellbook Coupon - 3 Stars (Not Available) - Sealed -->
+		<production id="97329" count="1" /> <!-- Spellbook: Blade Wave - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98857" count="1" /> <!-- Hardin's Spellbook Coupon - 3 Stars (Not Available) - Sealed -->
+		<production id="98493" count="1" /> <!-- Spellbook: Clone Dance - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98857" count="1" /> <!-- Hardin's Spellbook Coupon - 3 Stars (Not Available) - Sealed -->
+		<production id="98494" count="1" /> <!-- Spellbook: Assassination - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98857" count="1" /> <!-- Hardin's Spellbook Coupon - 3 Stars (Not Available) - Sealed -->
+		<production id="98495" count="1" /> <!-- Spellbook: Constraint - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98857" count="1" /> <!-- Hardin's Spellbook Coupon - 3 Stars (Not Available) - Sealed -->
+		<production id="98496" count="1" /> <!-- Spellbook: Resolve to Kill - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98857" count="1" /> <!-- Hardin's Spellbook Coupon - 3 Stars (Not Available) - Sealed -->
+		<production id="98447" count="1" /> <!-- Spellbook: Powerful Servitor Share - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98857" count="1" /> <!-- Hardin's Spellbook Coupon - 3 Stars (Not Available) - Sealed -->
+		<production id="98324" count="1" /> <!-- Spellbook: Bloody Strike - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98857" count="1" /> <!-- Hardin's Spellbook Coupon - 3 Stars (Not Available) - Sealed -->
+		<production id="98291" count="1" /> <!-- Spellbook: Trophy Thief - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98857" count="1" /> <!-- Hardin's Spellbook Coupon - 3 Stars (Not Available) - Sealed -->
+		<production id="98292" count="1" /> <!-- Spellbook: Hammer Rumble - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98857" count="1" /> <!-- Hardin's Spellbook Coupon - 3 Stars (Not Available) - Sealed -->
+		<production id="97847" count="1" /> <!-- Spellbook: Music Mastery - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98857" count="1" /> <!-- Hardin's Spellbook Coupon - 3 Stars (Not Available) - Sealed -->
+		<production id="97848" count="1" /> <!-- Spellbook: Dance Mastery - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98857" count="1" /> <!-- Hardin's Spellbook Coupon - 3 Stars (Not Available) - Sealed -->
+		<production id="97849" count="1" /> <!-- Spellbook: Song of Silence Lv. 4 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98857" count="1" /> <!-- Hardin's Spellbook Coupon - 3 Stars (Not Available) - Sealed -->
+		<production id="97850" count="1" /> <!-- Spellbook: Dance of Medusa Lv. 4 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98857" count="1" /> <!-- Hardin's Spellbook Coupon - 3 Stars (Not Available) - Sealed -->
+		<production id="97852" count="1" /> <!-- Spellbook: Unique Seal of Damage - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98857" count="1" /> <!-- Hardin's Spellbook Coupon - 3 Stars (Not Available) - Sealed -->
+		<production id="97854" count="1" /> <!-- Spellbook: Essential Energy - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98857" count="1" /> <!-- Hardin's Spellbook Coupon - 3 Stars (Not Available) - Sealed -->
+		<production id="97856" count="1" /> <!-- Spellbook: Great Attack Lv. 3 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98857" count="1" /> <!-- Hardin's Spellbook Coupon - 3 Stars (Not Available) - Sealed -->
+		<production id="97464" count="1" /> <!-- Spellbook: Death Pain - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98857" count="1" /> <!-- Hardin's Spellbook Coupon - 3 Stars (Not Available) - Sealed -->
+		<production id="97472" count="1" /> <!-- Spellbook: Lightning Tornado - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98857" count="1" /> <!-- Hardin's Spellbook Coupon - 3 Stars (Not Available) - Sealed -->
+		<production id="97468" count="1" /> <!-- Spellbook: Resonance - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98857" count="1" /> <!-- Hardin's Spellbook Coupon - 3 Stars (Not Available) - Sealed -->
+		<production id="97460" count="1" /> <!-- Spellbook: Soul Guard Lv. 3 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98857" count="1" /> <!-- Hardin's Spellbook Coupon - 3 Stars (Not Available) - Sealed -->
+		<production id="97329" count="1" /> <!-- Spellbook: Blade Wave - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98857" count="1" /> <!-- Hardin's Spellbook Coupon - 3 Stars (Not Available) - Sealed -->
+		<production id="98493" count="1" /> <!-- Spellbook: Clone Dance - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98857" count="1" /> <!-- Hardin's Spellbook Coupon - 3 Stars (Not Available) - Sealed -->
+		<production id="98494" count="1" /> <!-- Spellbook: Assassination - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98857" count="1" /> <!-- Hardin's Spellbook Coupon - 3 Stars (Not Available) - Sealed -->
+		<production id="98495" count="1" /> <!-- Spellbook: Constraint - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98857" count="1" /> <!-- Hardin's Spellbook Coupon - 3 Stars (Not Available) - Sealed -->
+		<production id="98496" count="1" /> <!-- Spellbook: Resolve to Kill - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98857" count="1" /> <!-- Hardin's Spellbook Coupon - 3 Stars (Not Available) - Sealed -->
+		<production id="98447" count="1" /> <!-- Spellbook: Powerful Servitor Share - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98857" count="1" /> <!-- Hardin's Spellbook Coupon - 3 Stars (Not Available) - Sealed -->
+		<production id="98324" count="1" /> <!-- Spellbook: Bloody Strike - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98857" count="1" /> <!-- Hardin's Spellbook Coupon - 3 Stars (Not Available) - Sealed -->
+		<production id="98291" count="1" /> <!-- Spellbook: Trophy Thief - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98857" count="1" /> <!-- Hardin's Spellbook Coupon - 3 Stars (Not Available) - Sealed -->
+		<production id="98292" count="1" /> <!-- Spellbook: Hammer Rumble - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98857" count="1" /> <!-- Hardin's Spellbook Coupon - 3 Stars (Not Available) - Sealed -->
+		<production id="97847" count="1" /> <!-- Spellbook: Music Mastery - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98857" count="1" /> <!-- Hardin's Spellbook Coupon - 3 Stars (Not Available) - Sealed -->
+		<production id="97848" count="1" /> <!-- Spellbook: Dance Mastery - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98857" count="1" /> <!-- Hardin's Spellbook Coupon - 3 Stars (Not Available) - Sealed -->
+		<production id="97849" count="1" /> <!-- Spellbook: Song of Silence Lv. 4 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98857" count="1" /> <!-- Hardin's Spellbook Coupon - 3 Stars (Not Available) - Sealed -->
+		<production id="97850" count="1" /> <!-- Spellbook: Dance of Medusa Lv. 4 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98857" count="1" /> <!-- Hardin's Spellbook Coupon - 3 Stars (Not Available) - Sealed -->
+		<production id="97852" count="1" /> <!-- Spellbook: Unique Seal of Damage - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98857" count="1" /> <!-- Hardin's Spellbook Coupon - 3 Stars (Not Available) - Sealed -->
+		<production id="97854" count="1" /> <!-- Spellbook: Essential Energy - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98857" count="1" /> <!-- Hardin's Spellbook Coupon - 3 Stars (Not Available) - Sealed -->
+		<production id="97856" count="1" /> <!-- Spellbook: Great Attack Lv. 3 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98857" count="1" /> <!-- Hardin's Spellbook Coupon - 3 Stars (Not Available) - Sealed -->
+		<production id="97464" count="1" /> <!-- Spellbook: Death Pain - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98857" count="1" /> <!-- Hardin's Spellbook Coupon - 3 Stars (Not Available) - Sealed -->
+		<production id="97472" count="1" /> <!-- Spellbook: Lightning Tornado - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98857" count="1" /> <!-- Hardin's Spellbook Coupon - 3 Stars (Not Available) - Sealed -->
+		<production id="97468" count="1" /> <!-- Spellbook: Resonance - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98857" count="1" /> <!-- Hardin's Spellbook Coupon - 3 Stars (Not Available) - Sealed -->
+		<production id="97460" count="1" /> <!-- Spellbook: Soul Guard Lv. 3 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98857" count="1" /> <!-- Hardin's Spellbook Coupon - 3 Stars (Not Available) - Sealed -->
+		<production id="97329" count="1" /> <!-- Spellbook: Blade Wave - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98857" count="1" /> <!-- Hardin's Spellbook Coupon - 3 Stars (Not Available) - Sealed -->
+		<production id="98493" count="1" /> <!-- Spellbook: Clone Dance - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98857" count="1" /> <!-- Hardin's Spellbook Coupon - 3 Stars (Not Available) - Sealed -->
+		<production id="98494" count="1" /> <!-- Spellbook: Assassination - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98857" count="1" /> <!-- Hardin's Spellbook Coupon - 3 Stars (Not Available) - Sealed -->
+		<production id="98495" count="1" /> <!-- Spellbook: Constraint - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98857" count="1" /> <!-- Hardin's Spellbook Coupon - 3 Stars (Not Available) - Sealed -->
+		<production id="98496" count="1" /> <!-- Spellbook: Resolve to Kill - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98857" count="1" /> <!-- Hardin's Spellbook Coupon - 3 Stars (Not Available) - Sealed -->
+		<production id="98447" count="1" /> <!-- Spellbook: Powerful Servitor Share - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98857" count="1" /> <!-- Hardin's Spellbook Coupon - 3 Stars (Not Available) - Sealed -->
+		<production id="98324" count="1" /> <!-- Spellbook: Bloody Strike - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98857" count="1" /> <!-- Hardin's Spellbook Coupon - 3 Stars (Not Available) - Sealed -->
+		<production id="98291" count="1" /> <!-- Spellbook: Trophy Thief - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98857" count="1" /> <!-- Hardin's Spellbook Coupon - 3 Stars (Not Available) - Sealed -->
+		<production id="98292" count="1" /> <!-- Spellbook: Hammer Rumble - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98857" count="1" /> <!-- Hardin's Spellbook Coupon - 3 Stars (Not Available) - Sealed -->
+		<production id="97847" count="1" /> <!-- Spellbook: Music Mastery - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98857" count="1" /> <!-- Hardin's Spellbook Coupon - 3 Stars (Not Available) - Sealed -->
+		<production id="97848" count="1" /> <!-- Spellbook: Dance Mastery - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98857" count="1" /> <!-- Hardin's Spellbook Coupon - 3 Stars (Not Available) - Sealed -->
+		<production id="97849" count="1" /> <!-- Spellbook: Song of Silence Lv. 4 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98857" count="1" /> <!-- Hardin's Spellbook Coupon - 3 Stars (Not Available) - Sealed -->
+		<production id="97850" count="1" /> <!-- Spellbook: Dance of Medusa Lv. 4 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98857" count="1" /> <!-- Hardin's Spellbook Coupon - 3 Stars (Not Available) - Sealed -->
+		<production id="97852" count="1" /> <!-- Spellbook: Unique Seal of Damage - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98857" count="1" /> <!-- Hardin's Spellbook Coupon - 3 Stars (Not Available) - Sealed -->
+		<production id="97854" count="1" /> <!-- Spellbook: Essential Energy - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98857" count="1" /> <!-- Hardin's Spellbook Coupon - 3 Stars (Not Available) - Sealed -->
+		<production id="97856" count="1" /> <!-- Spellbook: Great Attack Lv. 3 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98857" count="1" /> <!-- Hardin's Spellbook Coupon - 3 Stars (Not Available) - Sealed -->
+		<production id="97464" count="1" /> <!-- Spellbook: Death Pain - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98857" count="1" /> <!-- Hardin's Spellbook Coupon - 3 Stars (Not Available) - Sealed -->
+		<production id="97472" count="1" /> <!-- Spellbook: Lightning Tornado - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98857" count="1" /> <!-- Hardin's Spellbook Coupon - 3 Stars (Not Available) - Sealed -->
+		<production id="97468" count="1" /> <!-- Spellbook: Resonance - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98857" count="1" /> <!-- Hardin's Spellbook Coupon - 3 Stars (Not Available) - Sealed -->
+		<production id="97460" count="1" /> <!-- Spellbook: Soul Guard Lv. 3 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98857" count="1" /> <!-- Hardin's Spellbook Coupon - 3 Stars (Not Available) - Sealed -->
+		<production id="97329" count="1" /> <!-- Spellbook: Blade Wave - Sealed -->
+	</item>
+</list>

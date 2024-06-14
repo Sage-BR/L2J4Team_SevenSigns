@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -89,8 +89,18 @@ public class ItemSkillsTemplate implements IItemHandler
 					hasConsumeSkill = true;
 				}
 				
+				if (!itemSkill.hasEffectType(EffectType.SUMMON_PET) && !itemSkill.checkCondition(playable, playable.getTarget(), true))
+				{
+					continue;
+				}
+				
+				if (playable.isSkillDisabled(itemSkill))
+				{
+					continue;
+				}
+				
 				// Verify that skill is not under reuse.
-				if ((!itemSkill.hasEffectType(EffectType.SUMMON_PET) && !itemSkill.checkCondition(playable, playable.getTarget(), true)) || playable.isSkillDisabled(itemSkill) || !checkReuse(playable, itemSkill, item))
+				if (!checkReuse(playable, itemSkill, item))
 				{
 					continue;
 				}

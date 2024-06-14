@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -72,6 +72,9 @@ public enum Stat
 	ADDITIONAL_POTION_HP("addPotionHp"),
 	ADDITIONAL_POTION_MP("addPotionMp"),
 	ADDITIONAL_POTION_CP("addPotionCp"),
+	ADDITIONAL_POTION_HP_PER("addPotionHpPer"),
+	ADDITIONAL_POTION_MP_PER("addPotionMpPer"),
+	ADDITIONAL_POTION_CP_PER("addPotionCpPer"),
 	MANA_CHARGE("manaCharge"),
 	HEAL_EFFECT("healEffect"),
 	HEAL_EFFECT_ADD("healEffectAdd"),
@@ -171,6 +174,7 @@ public enum Stat
 	DEFENCE_IGNORE_REMOVAL("defIgnoreRemoval"),
 	DEFENCE_IGNORE_REMOVAL_ADD("defIgnoreRemovalAdd"),
 	AREA_OF_EFFECT_DAMAGE_DEFENCE("aoeDamageDefence"),
+	AREA_OF_EFFECT_DAMAGE_DEFENCE_ADD("aoeDamageDefenceAdd"),
 	AREA_OF_EFFECT_DAMAGE_MODIFY("aoeDamageModify"),
 	BLOW_RATE("blowRate"),
 	BLOW_RATE_DEFENCE("blowRateDefence"),
@@ -450,15 +454,15 @@ public enum Stat
 	
 	public static double defaultValue(Creature creature, OptionalDouble base, Stat stat)
 	{
-		final double mul = creature.getStat().getMul(stat);
-		final double add = creature.getStat().getAdd(stat);
+		final double mul = creature.getStat().getMulValue(stat);
+		final double add = creature.getStat().getAddValue(stat);
 		return base.isPresent() ? defaultValue(creature, stat, base.getAsDouble()) : mul * (add + creature.getStat().getMoveTypeValue(stat, creature.getMoveType()));
 	}
 	
 	public static double defaultValue(Creature creature, Stat stat, double baseValue)
 	{
-		final double mul = creature.getStat().getMul(stat);
-		final double add = creature.getStat().getAdd(stat);
+		final double mul = creature.getStat().getMulValue(stat);
+		final double add = creature.getStat().getAddValue(stat);
 		return (mul * baseValue) + add + creature.getStat().getMoveTypeValue(stat, creature.getMoveType());
 	}
 }

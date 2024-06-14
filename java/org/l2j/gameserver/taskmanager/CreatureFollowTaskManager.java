@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -41,8 +41,8 @@ public class CreatureFollowTaskManager
 	
 	protected CreatureFollowTaskManager()
 	{
-		ThreadPool.scheduleAtFixedRate(new CreatureFollowNormalTask(), 1000, 1000);
-		ThreadPool.scheduleAtFixedRate(new CreatureFollowAttackTask(), 500, 500);
+		ThreadPool.schedulePriorityTaskAtFixedRate(new CreatureFollowNormalTask(), 1000, 1000);
+		ThreadPool.schedulePriorityTaskAtFixedRate(new CreatureFollowAttackTask(), 500, 500);
 	}
 	
 	protected class CreatureFollowNormalTask implements Runnable

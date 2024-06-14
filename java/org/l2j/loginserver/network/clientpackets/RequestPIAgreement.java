@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,28 +16,27 @@
  */
 package org.l2j.loginserver.network.clientpackets;
 
-import org.l2j.commons.network.ReadablePacket;
-import org.l2j.loginserver.network.LoginClient;
 import org.l2j.loginserver.network.serverpackets.PIAgreementAck;
 
 /**
  * @author UnAfraid
  */
-public class RequestPIAgreement implements LoginClientPacket
+public class RequestPIAgreement extends LoginClientPacket
 {
 	private int _accountId;
 	private int _status;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected boolean readImpl()
 	{
-		_accountId = packet.readInt();
-		_status = packet.readByte();
+		_accountId = readInt();
+		_status = readByte();
+		return true;
 	}
 	
 	@Override
-	public void run(LoginClient client)
+	public void run()
 	{
-		client.sendPacket(new PIAgreementAck(_accountId, _status));
+		getClient().sendPacket(new PIAgreementAck(_accountId, _status));
 	}
 }

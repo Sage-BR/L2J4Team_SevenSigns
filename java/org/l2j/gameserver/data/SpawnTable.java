@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -147,11 +147,11 @@ public class SpawnTable
 							final NpcTemplate template = NpcData.getInstance().getTemplate(spawn.getId());
 							final String title = template.getTitle();
 							final String name = title.isEmpty() ? template.getName() : template.getName() + " - " + title;
-							writer.write("			<npc id=\"" + spawnId + (spawn.getAmount() > 1 ? "\" count=\"" + spawnCount : "") + "\" x=\"" + spawnX + "\" y=\"" + spawnY + "\" z=\"" + spawnZ + (spawn.getHeading() > 0 ? "\" heading=\"" + spawnHeading : "") + "\" respawnTime=\"" + spawnDelay + "sec\" /> <!-- " + name + " -->" + Config.EOL);
-							writer.write(currentLine + Config.EOL);
+							writer.write("			<npc id=\"" + spawnId + (spawn.getAmount() > 1 ? "\" count=\"" + spawnCount : "") + "\" x=\"" + spawnX + "\" y=\"" + spawnY + "\" z=\"" + spawnZ + (spawn.getHeading() > 0 ? "\" heading=\"" + spawnHeading : "") + "\" respawnTime=\"" + spawnDelay + "sec\" /> <!-- " + name + " -->" + System.lineSeparator());
+							writer.write(currentLine + System.lineSeparator());
 							continue;
 						}
-						writer.write(currentLine + Config.EOL);
+						writer.write(currentLine + System.lineSeparator());
 					}
 					writer.close();
 					reader.close();
@@ -171,14 +171,14 @@ public class SpawnTable
 					final String title = template.getTitle();
 					final String name = title.isEmpty() ? template.getName() : template.getName() + " - " + title;
 					final BufferedWriter writer = new BufferedWriter(new FileWriter(spawnFile));
-					writer.write("<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + Config.EOL);
-					writer.write("<list xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:noNamespaceSchemaLocation=\"../../xsd/spawns.xsd\">" + Config.EOL);
-					writer.write("	<spawn name=\"" + x + "_" + y + "\">" + Config.EOL);
-					writer.write("		<group>" + Config.EOL);
-					writer.write("			<npc id=\"" + spawnId + (spawn.getAmount() > 1 ? "\" count=\"" + spawnCount : "") + "\" x=\"" + spawnX + "\" y=\"" + spawnY + "\" z=\"" + spawnZ + (spawn.getHeading() > 0 ? "\" heading=\"" + spawnHeading : "") + "\" respawnTime=\"" + spawnDelay + "sec\" /> <!-- " + name + " -->" + Config.EOL);
-					writer.write("		</group>" + Config.EOL);
-					writer.write("	</spawn>" + Config.EOL);
-					writer.write("</list>" + Config.EOL);
+					writer.write("<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + System.lineSeparator());
+					writer.write("<list xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:noNamespaceSchemaLocation=\"../../xsd/spawns.xsd\">" + System.lineSeparator());
+					writer.write("	<spawn name=\"" + x + "_" + y + "\">" + System.lineSeparator());
+					writer.write("		<group>" + System.lineSeparator());
+					writer.write("			<npc id=\"" + spawnId + (spawn.getAmount() > 1 ? "\" count=\"" + spawnCount : "") + "\" x=\"" + spawnX + "\" y=\"" + spawnY + "\" z=\"" + spawnZ + (spawn.getHeading() > 0 ? "\" heading=\"" + spawnHeading : "") + "\" respawnTime=\"" + spawnDelay + "sec\" /> <!-- " + name + " -->" + System.lineSeparator());
+					writer.write("		</group>" + System.lineSeparator());
+					writer.write("	</spawn>" + System.lineSeparator());
+					writer.write("</list>" + System.lineSeparator());
 					writer.close();
 					LOGGER.info(getClass().getSimpleName() + ": Created file: " + OTHER_XML_FOLDER + "/" + x + "_" + y + ".xml");
 				}
@@ -265,7 +265,7 @@ public class SpawnTable
 								continue;
 							}
 						}
-						writer.write(currentLine + Config.EOL);
+						writer.write(currentLine + System.lineSeparator());
 						if (currentLine.contains("</list>"))
 						{
 							lastLineFound = true;
@@ -299,7 +299,7 @@ public class SpawnTable
 								}
 							}
 						}
-						writer.write(currentLine + Config.EOL);
+						writer.write(currentLine + System.lineSeparator());
 						if (currentLine.contains("</list>"))
 						{
 							lastLineFound = true;

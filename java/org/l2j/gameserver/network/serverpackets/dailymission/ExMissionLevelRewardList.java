@@ -2,10 +2,12 @@ package org.l2j.gameserver.network.serverpackets.dailymission;
 
 import java.util.List;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.data.xml.MissionLevel;
 import org.l2j.gameserver.model.MissionLevelHolder;
 import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.model.holders.MissionLevelPlayerDataHolder;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 import org.l2j.gameserver.network.serverpackets.ServerPacket;
 
@@ -32,32 +34,32 @@ public class ExMissionLevelRewardList extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
 		final MissionLevelPlayerDataHolder info = _player.getMissionLevelProgress();
 		_collectedNormalRewards = info.getCollectedNormalRewards();
 		_collectedKeyRewards = info.getCollectedKeyRewards();
 		_collectedBonusRewards = info.getListOfCollectedBonusRewards();
 		
-		ServerPackets.EX_MISSION_LEVEL_REWARD_LIST.writeId(this);
+		ServerPackets.EX_MISSION_LEVEL_REWARD_LIST.writeId(this, buffer);
 		if (info.getCurrentLevel() == 0)
 		{
-			writeInt(1); // 0 -> does not work, -1 -> game crushed
-			writeInt(3); // Type
-			writeInt(-1); // Level
-			writeInt(0); // State
+			buffer.writeInt(1); // 0 -> does not work, -1 -> game crushed
+			buffer.writeInt(3); // Type
+			buffer.writeInt(-1); // Level
+			buffer.writeInt(0); // State
 		}
 		else
 		{
-			sendAvailableRewardsList(info);
+			sendAvailableRewardsList(buffer, info);
 		}
-		writeInt(info.getCurrentLevel()); // Level
-		writeInt(getPercent(info)); // PointPercent
+		buffer.writeInt(info.getCurrentLevel()); // Level
+		buffer.writeInt(getPercent(info)); // PointPercent
 		String year = _currentSeason.substring(0, 4);
-		writeInt(Integer.parseInt(year)); // SeasonYear
+		buffer.writeInt(Integer.parseInt(year)); // SeasonYear
 		String month = _currentSeason.substring(4, 6);
-		writeInt(Integer.parseInt(month)); // SeasonMonth
-		writeInt(getAvailableRewards(info)); // TotalRewardsAvailable
+		buffer.writeInt(Integer.parseInt(month)); // SeasonMonth
+		buffer.writeInt(getAvailableRewards(info)); // TotalRewardsAvailable
 		if (_holder.getBonusRewardIsAvailable() && _holder.getBonusRewardByLevelUp())
 		{
 			boolean check = false;
@@ -69,20 +71,20 @@ public class ExMissionLevelRewardList extends ServerPacket
 					break;
 				}
 			}
-			writeInt(check); // ExtraRewardsAvailable
+			buffer.writeInt(check); // ExtraRewardsAvailable
 		}
 		else
 		{
 			if (_holder.getBonusRewardIsAvailable() && info.getCollectedSpecialReward() && !info.getCollectedBonusReward())
 			{
-				writeInt(1); // ExtraRewardsAvailable
+				buffer.writeInt(1); // ExtraRewardsAvailable
 			}
 			else
 			{
-				writeInt(0); // ExtraRewardsAvailable
+				buffer.writeInt(0); // ExtraRewardsAvailable
 			}
 		}
-		writeInt(0); // RemainSeasonTime / does not work? / not used?
+		buffer.writeInt(0); // RemainSeasonTime / does not work? / not used?
 	}
 	
 	private int getAvailableRewards(MissionLevelPlayerDataHolder info)
@@ -177,30 +179,30 @@ public class ExMissionLevelRewardList extends ServerPacket
 		return (int) Math.floor(((double) info.getCurrentEXP() / (double) _holder.getXPForSpecifiedLevel(info.getCurrentLevel())) * 100.0);
 	}
 	
-	private void sendAvailableRewardsList(MissionLevelPlayerDataHolder info)
+	private void sendAvailableRewardsList(WritableBuffer buffer, MissionLevelPlayerDataHolder info)
 	{
-		writeInt(getTotalRewards(info)); // PkMissionLevelReward
+		buffer.writeInt(getTotalRewards(info)); // PkMissionLevelReward
 		for (int level : _holder.getNormalRewards().keySet())
 		{
 			if (level <= info.getCurrentLevel())
 			{
-				writeInt(1); // Type
-				writeInt(level); // Level
-				writeInt(_collectedNormalRewards.contains(level) ? 2 : 1); // State
+				buffer.writeInt(1); // Type
+				buffer.writeInt(level); // Level
+				buffer.writeInt(_collectedNormalRewards.contains(level) ? 2 : 1); // State
 			}
 		}
 		for (int level : _holder.getKeyRewards().keySet())
 		{
 			if (level <= info.getCurrentLevel())
 			{
-				writeInt(2); // Type
-				writeInt(level); // Level
-				writeInt(_collectedKeyRewards.contains(level) ? 2 : 1); // State
+				buffer.writeInt(2); // Type
+				buffer.writeInt(level); // Level
+				buffer.writeInt(_collectedKeyRewards.contains(level) ? 2 : 1); // State
 			}
 		}
 		if (_holder.getBonusRewardByLevelUp() && info.getCollectedSpecialReward() && _holder.getBonusRewardIsAvailable() && (_maxNormalLevel <= info.getCurrentLevel()))
 		{
-			writeInt(3); // Type
+			buffer.writeInt(3); // Type
 			int sendLevel = 0;
 			for (int level = _maxNormalLevel; level <= _holder.getMaxLevel(); level++)
 			{
@@ -210,20 +212,20 @@ public class ExMissionLevelRewardList extends ServerPacket
 					break;
 				}
 			}
-			writeInt(sendLevel == 0 ? _holder.getMaxLevel() : sendLevel); // Level
-			writeInt(2); // State
+			buffer.writeInt(sendLevel == 0 ? _holder.getMaxLevel() : sendLevel); // Level
+			buffer.writeInt(2); // State
 		}
 		else if (info.getCollectedSpecialReward() && _holder.getBonusRewardIsAvailable() && (_maxNormalLevel <= info.getCurrentLevel()))
 		{
-			writeInt(3); // Type
-			writeInt(_holder.getMaxLevel()); // Level
-			writeInt(2); // State
+			buffer.writeInt(3); // Type
+			buffer.writeInt(_holder.getMaxLevel()); // Level
+			buffer.writeInt(2); // State
 		}
 		else if (_maxNormalLevel <= info.getCurrentLevel())
 		{
-			writeInt(3); // Type
-			writeInt(_holder.getMaxLevel()); // Level
-			writeInt(!info.getCollectedSpecialReward()); // State
+			buffer.writeInt(3); // Type
+			buffer.writeInt(_holder.getMaxLevel()); // Level
+			buffer.writeInt(!info.getCollectedSpecialReward()); // State
 		}
 	}
 }

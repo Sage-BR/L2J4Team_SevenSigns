@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/multisell.xsd">
+	<npcs>
+		<npc>-1</npc> <!-- Item Multisell -->
+	</npcs>
+	<!-- Glakias/ Behemoth Doll Selection Ticket (Time-limited) - Sealed (98795) -->
+	<item>
+		<ingredient id="98795" count="1" /> <!-- Glakias/ Behemoth Doll Selection Ticket (Time-limited) - Sealed -->
+		<production id="98803" count="1" /> <!-- Kit: Glakias and Elixir (Time-limited) - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98795" count="1" /> <!-- Glakias/ Behemoth Doll Selection Ticket (Time-limited) - Sealed -->
+		<production id="98804" count="1" /> <!-- Kit: Behemoth and Elixir (Time-limited) - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98795" count="1" /> <!-- Glakias/ Behemoth Doll Selection Ticket (Time-limited) - Sealed -->
+		<production id="98801" count="1" /> <!-- Kit: Glakias and Potion (Time-limited) - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98795" count="1" /> <!-- Glakias/ Behemoth Doll Selection Ticket (Time-limited) - Sealed -->
+		<production id="98802" count="1" /> <!-- Kit: Behemoth and Potion (Time-limited) - Sealed -->
+	</item>
+</list>

@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -26,6 +26,7 @@ import java.util.logging.Level;
 
 import org.l2j.Config;
 import org.l2j.commons.database.DatabaseFactory;
+import org.l2j.commons.util.TimeUtil;
 import org.l2j.gameserver.data.sql.CharInfoTable;
 import org.l2j.gameserver.enums.MailType;
 import org.l2j.gameserver.instancemanager.MailManager;
@@ -35,7 +36,6 @@ import org.l2j.gameserver.taskmanager.Task;
 import org.l2j.gameserver.taskmanager.TaskManager;
 import org.l2j.gameserver.taskmanager.TaskManager.ExecutedTask;
 import org.l2j.gameserver.taskmanager.TaskTypes;
-import org.l2j.gameserver.util.Util;
 
 /**
  * @author Nyaran
@@ -63,7 +63,7 @@ public class TaskBirthday extends Task
 			lastExecDate.setTimeInMillis(lastActivation);
 		}
 		
-		final String rangeDate = "[" + Util.getDateString(lastExecDate.getTime()) + "] - [" + Util.getDateString(TODAY.getTime()) + "]";
+		final String rangeDate = "[" + TimeUtil.getDateString(lastExecDate.getTime()) + "] - [" + TimeUtil.getDateString(TODAY.getTime()) + "]";
 		for (; !TODAY.before(lastExecDate); lastExecDate.add(Calendar.DATE, 1))
 		{
 			checkBirthday(lastExecDate.get(Calendar.YEAR), lastExecDate.get(Calendar.MONTH), lastExecDate.get(Calendar.DATE));

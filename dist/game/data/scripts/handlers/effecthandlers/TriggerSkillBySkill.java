@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -84,7 +84,17 @@ public class TriggerSkillBySkill extends AbstractEffect
 		}
 		
 		WorldObject target = event.getTarget();
-		if ((target == null) || !target.isCreature() || ((_chance < 100) && (Rnd.get(100) > _chance)))
+		if (target == null)
+		{
+			return;
+		}
+		
+		if (!target.isCreature())
+		{
+			return;
+		}
+		
+		if ((_chance < 100) && (Rnd.get(100) > _chance))
 		{
 			return;
 		}

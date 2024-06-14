@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,23 +16,21 @@
  */
 package org.l2j.gameserver.network.clientpackets.variation;
 
-import org.l2j.commons.network.ReadablePacket;
-import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.clientpackets.ClientPacket;
 
 /**
  * @author Index
  */
-public class ExVariationOpenUi implements ClientPacket
+public class ExVariationOpenUi extends ClientPacket
 {
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		packet.readByte();
+		readByte();
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
 		// final Player player = client.getPlayer();
 		// if (player == null)

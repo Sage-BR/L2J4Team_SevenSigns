@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,8 +16,10 @@
  */
 package org.l2j.gameserver.network.serverpackets.fishing;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.model.interfaces.ILocational;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 import org.l2j.gameserver.network.serverpackets.ServerPacket;
 
@@ -45,22 +47,22 @@ public class ExUserInfoFishing extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_USER_INFO_FISHING.writeId(this);
-		writeInt(_player.getObjectId());
-		writeByte(_isFishing);
+		ServerPackets.EX_USER_INFO_FISHING.writeId(this, buffer);
+		buffer.writeInt(_player.getObjectId());
+		buffer.writeByte(_isFishing);
 		if (_baitLocation == null)
 		{
-			writeInt(0);
-			writeInt(0);
-			writeInt(0);
+			buffer.writeInt(0);
+			buffer.writeInt(0);
+			buffer.writeInt(0);
 		}
 		else
 		{
-			writeInt(_baitLocation.getX());
-			writeInt(_baitLocation.getY());
-			writeInt(_baitLocation.getZ());
+			buffer.writeInt(_baitLocation.getX());
+			buffer.writeInt(_baitLocation.getY());
+			buffer.writeInt(_baitLocation.getZ());
 		}
 	}
 }

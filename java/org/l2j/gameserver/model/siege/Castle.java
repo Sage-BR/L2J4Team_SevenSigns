@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,6 +21,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -42,6 +43,7 @@ import org.l2j.gameserver.enums.TaxType;
 import org.l2j.gameserver.instancemanager.CastleManager;
 import org.l2j.gameserver.instancemanager.CastleManorManager;
 import org.l2j.gameserver.instancemanager.FortManager;
+import org.l2j.gameserver.instancemanager.GlobalVariablesManager;
 import org.l2j.gameserver.instancemanager.SiegeManager;
 import org.l2j.gameserver.instancemanager.ZoneManager;
 import org.l2j.gameserver.model.Spawn;
@@ -53,10 +55,9 @@ import org.l2j.gameserver.model.actor.instance.Artefact;
 import org.l2j.gameserver.model.actor.instance.Door;
 import org.l2j.gameserver.model.clan.Clan;
 import org.l2j.gameserver.model.holders.CastleSpawnHolder;
+import org.l2j.gameserver.model.holders.SkillHolder;
 import org.l2j.gameserver.model.itemcontainer.Inventory;
 import org.l2j.gameserver.model.residences.AbstractResidence;
-import org.l2j.gameserver.model.skill.CommonSkill;
-import org.l2j.gameserver.model.skill.Skill;
 import org.l2j.gameserver.model.zone.type.CastleZone;
 import org.l2j.gameserver.model.zone.type.ResidenceTeleportZone;
 import org.l2j.gameserver.model.zone.type.SiegeZone;
@@ -80,6 +81,7 @@ public class Castle extends AbstractResidence
 	private Calendar _siegeTimeRegistrationEndDate; // last siege end date + 1 day
 	private CastleSide _castleSide = null;
 	private long _treasury = 0;
+	private long _tempTreasury = 0;
 	private boolean _showNpcCrest = false;
 	private SiegeZone _zone = null;
 	private ResidenceTeleportZone _teleZone;
@@ -333,6 +335,63 @@ public class Castle extends AbstractResidence
 		}
 		
 		addToTreasuryNoTax(amount);
+	}
+	
+	public void updateTempTreasure(long amountValue)
+	{
+		LOGGER.info("Update tempTreasure for mercenary castle - " + getName());
+		try (Connection con = DatabaseFactory.getConnection();
+			PreparedStatement ps = con.prepareStatement("UPDATE castle SET dynamicTreasury = ? WHERE id = ?"))
+		{
+			ps.setLong(1, amountValue);
+			ps.setInt(2, getResidenceId());
+			ps.execute();
+		}
+		catch (Exception e)
+		{
+			LOGGER.log(Level.WARNING, e.getMessage(), e);
+		}
+	}
+	
+	public boolean addToTreasuryTemp(long amountValue)
+	{
+		if (_ownerId <= 0)
+		{
+			return false;
+		}
+		
+		long amount = amountValue;
+		if (amount < 0)
+		{
+			amount *= -1;
+			if (_tempTreasury < amount)
+			{
+				return false;
+			}
+			_tempTreasury -= amount;
+		}
+		else if ((_tempTreasury + amount) > Inventory.MAX_ADENA)
+		{
+			_tempTreasury = Inventory.MAX_ADENA;
+		}
+		else
+		{
+			_tempTreasury += amount;
+		}
+		
+		try (Connection con = DatabaseFactory.getConnection();
+			PreparedStatement ps = con.prepareStatement("UPDATE castle SET dynamicTreasury = ? WHERE id = ?"))
+		{
+			ps.setLong(1, _tempTreasury);
+			ps.setInt(2, getResidenceId());
+			ps.execute();
+		}
+		catch (Exception e)
+		{
+			LOGGER.log(Level.WARNING, e.getMessage(), e);
+		}
+		
+		return true;
 	}
 	
 	/**
@@ -665,6 +724,7 @@ public class Castle extends AbstractResidence
 					_isTimeRegistrationOver = rs.getBoolean("regTimeOver");
 					_castleSide = Enum.valueOf(CastleSide.class, rs.getString("side"));
 					_treasury = rs.getLong("treasury");
+					_tempTreasury = rs.getLong("dynamicTreasury");
 					_showNpcCrest = rs.getBoolean("showNpcCrest");
 					_ticketBuyCount = rs.getInt("ticketBuyCount");
 				}
@@ -728,7 +788,11 @@ public class Castle extends AbstractResidence
 	
 	public boolean updateFunctions(Player player, int type, int lvl, int lease, long rate, boolean addNew)
 	{
-		if ((player == null) || ((lease > 0) && !player.destroyItemByItemId("Consume", Inventory.ADENA_ID, lease, null, true)))
+		if (player == null)
+		{
+			return false;
+		}
+		if ((lease > 0) && !player.destroyItemByItemId("Consume", Inventory.ADENA_ID, lease, null, true))
 		{
 			return false;
 		}
@@ -986,7 +1050,7 @@ public class Castle extends AbstractResidence
 			}
 			default:
 			{
-				taxPercent = type == TaxType.BUY ? Config.CASTLE_BUY_TAX_NEUTRAL : Config.CASTLE_SELL_TAX_NEUTRAL;
+				taxPercent = GlobalVariablesManager.getInstance().getInt(Clan.TAX_RATE_VAR + getResidenceId(), 0);
 				break;
 			}
 		}
@@ -996,6 +1060,11 @@ public class Castle extends AbstractResidence
 	public double getTaxRate(TaxType taxType)
 	{
 		return getTaxPercent(taxType) / 100.0;
+	}
+	
+	public long getTempTreasury()
+	{
+		return _tempTreasury;
 	}
 	
 	public long getTreasury()
@@ -1019,30 +1088,30 @@ public class Castle extends AbstractResidence
 	
 	public void updateClansReputation()
 	{
+		final Clan owner = ClanTable.getInstance().getClan(getOwnerId());
 		if (_formerOwner != null)
 		{
-			if (_formerOwner != ClanTable.getInstance().getClan(getOwnerId()))
+			if (_formerOwner != owner)
 			{
 				final int maxreward = Math.max(0, _formerOwner.getReputationScore());
 				_formerOwner.takeReputationScore(Config.LOOSE_CASTLE_POINTS);
-				final Clan owner = ClanTable.getInstance().getClan(getOwnerId());
 				if (owner != null)
 				{
 					owner.addReputationScore(Math.min(Config.TAKE_CASTLE_POINTS, maxreward));
+					owner.broadcastToOnlineMembers(new SystemMessage(SystemMessageId.YOUR_CLAN_HAS_WON_THE_SIEGE_CLAN_REPUTATION_POINTS_S1).addInt(Math.min(Config.TAKE_CASTLE_POINTS, maxreward)));
 				}
+				_formerOwner.broadcastToOnlineMembers(new SystemMessage(SystemMessageId.YOUR_CLAN_HAS_LOST_THE_SIEGE_CLAN_REPUTATION_POINTS_S1).addInt(Config.LOOSE_CASTLE_POINTS));
 			}
 			else
 			{
 				_formerOwner.addReputationScore(Config.CASTLE_DEFENDED_POINTS);
+				_formerOwner.broadcastToOnlineMembers(new SystemMessage(SystemMessageId.YOUR_CLAN_HAS_WON_THE_SIEGE_CLAN_REPUTATION_POINTS_S1).addInt(Config.CASTLE_DEFENDED_POINTS));
 			}
 		}
-		else
+		else if (owner != null)
 		{
-			final Clan owner = ClanTable.getInstance().getClan(getOwnerId());
-			if (owner != null)
-			{
-				owner.addReputationScore(Config.TAKE_CASTLE_POINTS);
-			}
+			owner.addReputationScore(Config.TAKE_CASTLE_POINTS);
+			owner.broadcastToOnlineMembers(new SystemMessage(SystemMessageId.YOUR_CLAN_HAS_WON_THE_SIEGE_CLAN_REPUTATION_POINTS_S1).addInt(Config.TAKE_CASTLE_POINTS));
 		}
 	}
 	
@@ -1171,16 +1240,22 @@ public class Castle extends AbstractResidence
 	public void giveResidentialSkills(Player player)
 	{
 		super.giveResidentialSkills(player);
-		final Skill skill = _castleSide == CastleSide.DARK ? CommonSkill.ABILITY_OF_DARKNESS.getSkill() : CommonSkill.ABILITY_OF_LIGHT.getSkill();
-		player.addSkill(skill);
+		
+		for (SkillHolder sh : CastleData.getSkills().getOrDefault(getResidenceId(), Collections.emptyList()))
+		{
+			player.addSkill(sh.getSkill());
+		}
 	}
 	
 	@Override
 	public void removeResidentialSkills(Player player)
 	{
 		super.removeResidentialSkills(player);
-		player.removeSkill(CommonSkill.ABILITY_OF_DARKNESS.getId());
-		player.removeSkill(CommonSkill.ABILITY_OF_LIGHT.getId());
+		
+		for (SkillHolder sh : CastleData.getSkills().getOrDefault(getResidenceId(), Collections.emptyList()))
+		{
+			player.removeSkill(sh.getSkill());
+		}
 	}
 	
 	public void spawnSideNpcs()

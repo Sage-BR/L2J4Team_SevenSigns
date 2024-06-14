@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -65,6 +65,7 @@ public class SkillConditionMasterHandler
 		SkillConditionHandler.getInstance().registerHandler("MaxMpSkillCondition", MaxMpSkillCondition::new);
 		SkillConditionHandler.getInstance().registerHandler("NotFeared", NotFearedSkillCondition::new);
 		SkillConditionHandler.getInstance().registerHandler("NotInUnderwater", NotInUnderwaterSkillCondition::new);
+		SkillConditionHandler.getInstance().registerHandler("Op1hWeapon", Op1hWeaponSkillCondition::new);
 		SkillConditionHandler.getInstance().registerHandler("Op2hWeapon", Op2hWeaponSkillCondition::new);
 		SkillConditionHandler.getInstance().registerHandler("OpAffectedBySkill", OpAffectedBySkillSkillCondition::new);
 		SkillConditionHandler.getInstance().registerHandler("OpAgathionEnergy", OpAgathionEnergySkillCondition::new);
@@ -102,9 +103,12 @@ public class SkillConditionMasterHandler
 		SkillConditionHandler.getInstance().registerHandler("OpHome", OpHomeSkillCondition::new);
 		SkillConditionHandler.getInstance().registerHandler("OpInSiege", OpInSiegeSkillCondition::new);
 		SkillConditionHandler.getInstance().registerHandler("OpInstantzone", OpInstantzoneSkillCondition::new);
+		SkillConditionHandler.getInstance().registerHandler("OpInZone", OpInZoneSkillCondition::new);
+		SkillConditionHandler.getInstance().registerHandler("OpMagicWeapon", OpMagicWeaponSkillCondition::new);
 		SkillConditionHandler.getInstance().registerHandler("OpMainjob", OpMainjobSkillCondition::new);
 		SkillConditionHandler.getInstance().registerHandler("OpNeedAgathion", OpNeedAgathionSkillCondition::new);
 		SkillConditionHandler.getInstance().registerHandler("OpNeedSummonOrPet", OpNeedSummonOrPetSkillCondition::new);
+		SkillConditionHandler.getInstance().registerHandler("OpNonMagicWeapon", OpNonMagicWeaponSkillCondition::new);
 		SkillConditionHandler.getInstance().registerHandler("OpNotAffectedBySkill", OpNotAffectedBySkillSkillCondition::new);
 		SkillConditionHandler.getInstance().registerHandler("OpNotCursed", OpNotCursedSkillCondition::new);
 		SkillConditionHandler.getInstance().registerHandler("OpNotInPeacezone", OpNotInPeacezoneSkillCondition::new);

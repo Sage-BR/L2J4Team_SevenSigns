@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -35,7 +35,7 @@ public class PcCafePointsManager
 			return;
 		}
 		
-		ThreadPool.scheduleAtFixedRate(() -> giveRetailPcCafePont(player), 300000, 300000);
+		ThreadPool.scheduleAtFixedRate(() -> giveRetailPcCafePont(player), Config.PC_CAFE_REWARD_TIME, Config.PC_CAFE_REWARD_TIME);
 	}
 	
 	public void giveRetailPcCafePont(Player player)
@@ -88,7 +88,12 @@ public class PcCafePointsManager
 		}
 		
 		// PC-points only premium accounts
-		if ((Config.PC_CAFE_ONLY_PREMIUM && !player.hasPremiumStatus()) || (Config.PC_CAFE_ONLY_VIP && (player.getVipTier() <= 0)))
+		if (Config.PC_CAFE_ONLY_PREMIUM && !player.hasPremiumStatus())
+		{
+			return;
+		}
+		
+		if (Config.PC_CAFE_ONLY_VIP && (player.getVipTier() <= 0))
 		{
 			return;
 		}

@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -57,21 +57,16 @@ public class TriggerSkillByStat extends AbstractEffect
 		ThreadPool.schedule(() ->
 		{
 			final int currentValue = (int) effected.getStat().getValue(_stat);
-			
-			// Synchronized because the same skill could be used twice and isAffectedBySkill ignored.
-			synchronized (target)
+			if ((currentValue >= _min) && (currentValue <= _max))
 			{
-				if ((currentValue >= _min) && (currentValue <= _max))
+				if (!target.isAffectedBySkill(_skillId))
 				{
-					if (!target.isAffectedBySkill(_skillId))
-					{
-						SkillCaster.triggerCast(target, target, SkillData.getInstance().getSkill(_skillId, _skillLevel, _skillSubLevel));
-					}
+					SkillCaster.triggerCast(target, target, SkillData.getInstance().getSkill(_skillId, _skillLevel, _skillSubLevel));
 				}
-				else
-				{
-					target.getEffectList().stopSkillEffects(SkillFinishType.REMOVED, _skillId);
-				}
+			}
+			else
+			{
+				target.getEffectList().stopSkillEffects(SkillFinishType.REMOVED, _skillId);
 			}
 		}, 100);
 	}

@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,8 +16,10 @@
  */
 package org.l2j.gameserver.network.serverpackets.huntpass;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.model.HuntPass;
 import org.l2j.gameserver.model.actor.Player;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 import org.l2j.gameserver.network.serverpackets.ServerPacket;
 
@@ -38,11 +40,11 @@ public class HuntPassSayhasSupportInfo extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_SAYHAS_SUPPORT_INFO.writeId(this);
-		writeByte(_sayhaToggle);
-		writeInt(_huntPass.getAvailableSayhaTime());
-		writeInt(_timeUsed);
+		ServerPackets.EX_SAYHAS_SUPPORT_INFO.writeId(this, buffer);
+		buffer.writeByte(_sayhaToggle);
+		buffer.writeInt(_huntPass.getAvailableSayhaTime());
+		buffer.writeInt(_timeUsed);
 	}
 }

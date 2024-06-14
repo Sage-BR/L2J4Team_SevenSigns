@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,7 +19,9 @@ package org.l2j.gameserver.network.serverpackets;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.model.skill.BuffInfo;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 
 public class AbnormalStatusUpdate extends ServerPacket
@@ -35,19 +37,19 @@ public class AbnormalStatusUpdate extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.ABNORMAL_STATUS_UPDATE.writeId(this);
-		writeShort(_effects.size());
+		ServerPackets.ABNORMAL_STATUS_UPDATE.writeId(this, buffer);
+		buffer.writeShort(_effects.size());
 		for (BuffInfo info : _effects)
 		{
 			if ((info != null) && info.isInUse())
 			{
-				writeInt(info.getSkill().getDisplayId());
-				writeShort(info.getSkill().getDisplayLevel());
-				writeShort(info.getSkill().getSubLevel());
-				writeInt(info.getSkill().getAbnormalType().getClientId());
-				writeOptionalInt(info.getSkill().isAura() || info.getSkill().isToggle() ? -1 : info.getTime());
+				buffer.writeInt(info.getSkill().getDisplayId());
+				buffer.writeShort(info.getSkill().getDisplayLevel());
+				buffer.writeShort(info.getSkill().getSubLevel());
+				buffer.writeInt(info.getSkill().getAbnormalType().getClientId());
+				writeOptionalInt((info.getSkill().isAura() || info.getSkill().isToggle() ? -1 : info.getTime()), buffer);
 			}
 		}
 	}

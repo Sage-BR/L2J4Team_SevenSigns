@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -142,7 +142,7 @@ public class Core extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onAdvEvent(String event, Npc npc, Player player)
+	public String onEvent(String event, Npc npc, Player player)
 	{
 		if (event.equalsIgnoreCase("core_unlock"))
 		{
@@ -161,7 +161,7 @@ public class Core extends AbstractNpcAI
 			_minions.forEach(Attackable::decayMe);
 			_minions.clear();
 		}
-		return super.onAdvEvent(event, npc, player);
+		return super.onEvent(event, npc, player);
 	}
 	
 	@Override
@@ -196,9 +196,13 @@ public class Core extends AbstractNpcAI
 			npc.broadcastSay(ChatType.NPC_GENERAL, NpcStringId.SYSTEM_IS_BEING_SHUT_DOWN);
 			npc.broadcastSay(ChatType.NPC_GENERAL, NpcStringId.EMPTY);
 			_firstAttacked = false;
+			addSpawn(900103, 16502, 110165, -6394, 0, false, 900000);
+			addSpawn(900103, 18948, 110166, -6397, 0, false, 900000);
 			GrandBossManager.getInstance().setStatus(CORE, DEAD);
-			// Calculate Min and Max respawn times randomly.
-			final long respawnTime = (Config.CORE_SPAWN_INTERVAL + getRandom(-Config.CORE_SPAWN_RANDOM, Config.CORE_SPAWN_RANDOM)) * 3600000;
+			
+			final long baseIntervalMillis = Config.CORE_SPAWN_INTERVAL * 3600000;
+			final long randomRangeMillis = Config.CORE_SPAWN_RANDOM * 3600000;
+			final long respawnTime = baseIntervalMillis + getRandom(-randomRangeMillis, randomRangeMillis);
 			startQuestTimer("core_unlock", respawnTime, null, null);
 			// Also save the respawn time so that the info is maintained past reboots.
 			final StatSet info = GrandBossManager.getInstance().getStatSet(CORE);

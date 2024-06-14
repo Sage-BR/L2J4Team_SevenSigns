@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -67,13 +67,13 @@ public class DraconidFortress extends AbstractInstance
 	private static final String DREAM_WATCHER_COUNTER = "DREAM_WATCHER_COUNTER";
 	
 	private static final NpcStringId DREAM_WATCHER = NpcStringId.DREAM_WATCHER;
-	private static final NpcStringId STRING_ID_01 = NpcStringId.HE_HE_YOU_WOULDNT_BE_SCARED_BY_A_DEVIL_IT_SEEMS_SINCE_YOU_DARE_TO_SET_YOUR_FOOT_IN_HERE_HE_HE; // guess
+	private static final NpcStringId STRING_ID_01 = NpcStringId.HE_HE_YOU_WOULDN_T_BE_SCARED_BY_A_DEVIL_IT_SEEMS_SINCE_YOU_DARE_TO_SET_YOUR_FOOT_IN_HERE_HE_HE; // guess
 	private static final NpcStringId STRING_ID_02 = NpcStringId.WILL_YOU_TURN_BACK_OR_MOVE_FURTHER_HE_HE;
-	private static final NpcStringId STRING_ID_03 = NpcStringId.WELL_I_WAS_BORED_BEFORE_BUT_NOW_THE_THINGS_HAVE_TAKEN_A_COMPLETELY_DIFFERENT_TURN_PLEASE_COME_IN_DONT_BE_SHY;
+	private static final NpcStringId STRING_ID_03 = NpcStringId.WELL_I_WAS_BORED_BEFORE_BUT_NOW_THE_THINGS_HAVE_TAKEN_A_COMPLETELY_DIFFERENT_TURN_PLEASE_COME_IN_DON_T_BE_SHY;
 	private static final NpcStringId STRING_ID_04 = NpcStringId.OH_MIGHTY_TIAT_OUR_ENEMIES_ARE_WEAKENED_IT_S_TIME_TO_DEFEAT_THEM_ONCE_AND_FOR_ALL;
 	private static final NpcStringId STRING_ID_05 = NpcStringId.OH_THOSE_POWERLESS_ADEN_WARRIORS_LET_S_FINISH_THEM_NOW_AND_MOVE_ON_THE_ADEN_CASTLE;
 	private static final NpcStringId STRING_ID_06 = NpcStringId.I_M_GOING_TO_ADEN_COMMANDER_ASSISTANT_FOLLOW_ME;
-	private static final NpcStringId STRING_ID_07 = NpcStringId.HE_HE_EXCELLENT_BUT_ARE_YOU_SURE_YOUVE_WON_MAYBE_ALL_OF_THIS_IS_NOTHING_BUT_A_DREAM;
+	private static final NpcStringId STRING_ID_07 = NpcStringId.HE_HE_EXCELLENT_BUT_ARE_YOU_SURE_YOU_VE_WON_MAYBE_ALL_OF_THIS_IS_NOTHING_BUT_A_DREAM;
 	
 	private static final int FIRST_DOOR = 12240030;
 	private static final int SECOND_DOOR = 12240031;
@@ -90,6 +90,7 @@ public class DraconidFortress extends AbstractInstance
 		addKillId(MONSTERS);
 		addKillId(RED_DRACONID_FOLLOWER_MONSTER_ID);
 		addKillId(TIAD, BAINT);
+		addInstanceCreatedId(INSTANCE_ID);
 		setInstanceStatusChangeId(this::onInstanceStatusChange, INSTANCE_ID);
 	}
 	
@@ -246,17 +247,17 @@ public class DraconidFortress extends AbstractInstance
 				{
 					case 1:
 					{
-						instance.broadcastPacket(new ExShowScreenMessage(NpcStringId.DREAM_WATCHERS_DEATH_1_4_4, ExShowScreenMessage.BOTTOM_RIGHT, 10000, false));
+						instance.broadcastPacket(new ExShowScreenMessage(NpcStringId.DREAM_WATCHER_S_DEATH_1_4_4, ExShowScreenMessage.BOTTOM_RIGHT, 10000, false));
 						break;
 					}
 					case 2:
 					{
-						instance.broadcastPacket(new ExShowScreenMessage(NpcStringId.DREAM_WATCHERS_DEATH_2_4_4, ExShowScreenMessage.BOTTOM_RIGHT, 10000, false));
+						instance.broadcastPacket(new ExShowScreenMessage(NpcStringId.DREAM_WATCHER_S_DEATH_2_4_4, ExShowScreenMessage.BOTTOM_RIGHT, 10000, false));
 						break;
 					}
 					case 3:
 					{
-						instance.broadcastPacket(new ExShowScreenMessage(NpcStringId.DREAM_WATCHERS_DEATH_3_4_4, ExShowScreenMessage.BOTTOM_RIGHT, 10000, false));
+						instance.broadcastPacket(new ExShowScreenMessage(NpcStringId.DREAM_WATCHER_S_DEATH_3_4_4, ExShowScreenMessage.BOTTOM_RIGHT, 10000, false));
 						break;
 					}
 					case 4:
@@ -304,9 +305,6 @@ public class DraconidFortress extends AbstractInstance
 		getDoor(SECOND_DOOR, instanceId).broadcastInfo();
 		getDoor(CLOSED_DOOR[0], instanceId).broadcastInfo();
 		getDoor(CLOSED_DOOR[1], instanceId).broadcastInfo();
-		/*
-		 * instance.broadcastPacket(new StaticObject(getDoor(FIRST_DOOR, instanceId), false)); instance.broadcastPacket(new StaticObject(getDoor(SECOND_DOOR, instanceId), false));
-		 */
 		super.onInstanceCreated(instance, player);
 	}
 	

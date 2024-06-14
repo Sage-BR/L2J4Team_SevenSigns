@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -28,9 +28,9 @@ import org.w3c.dom.Document;
 import org.l2j.commons.util.IXmlReader;
 import org.l2j.gameserver.handler.EffectHandler;
 import org.l2j.gameserver.model.StatSet;
+import org.l2j.gameserver.model.options.Options;
 import org.l2j.gameserver.model.options.OptionSkillHolder;
 import org.l2j.gameserver.model.options.OptionSkillType;
-import org.l2j.gameserver.model.options.Options;
 import org.l2j.gameserver.model.skill.Skill;
 
 /**

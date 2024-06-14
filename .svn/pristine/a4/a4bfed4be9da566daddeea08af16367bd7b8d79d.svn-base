@@ -1,0 +1,7 @@
+<html><body>Siben:<br>
+<br>
+<Button ALIGN=LEFT ICON="TELEPORT" action="bypass -h Quest AztacanArea The_Midway_Gate">The Midway Gate (Lv. 70-87) - 100,000 adena</Button>
+<Button ALIGN=LEFT ICON="TELEPORT" action="bypass -h Quest AztacanArea The_Eastern_Gate">The Eastern Gate (Lv. 88+) - 100,000 adena</button>
+<Button ALIGN=LEFT ICON="TELEPORT" action="bypass -h Quest AztacanArea The_Western_Gate">The Western Gate (Lv. 88) - 100,000 adena</Button>
+<Button ALIGN=LEFT ICON="TELEPORT" action="bypass -h Quest AztacanArea Mineral_shop">Buy supplies and minerals</button>
+</body></html>

@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -77,7 +77,12 @@ public class PlayerStat extends PlayableStat
 		final Player player = getActiveChar();
 		
 		// Allowed to gain exp?
-		if (!player.getAccessLevel().canGainExp() || !super.addExp(value))
+		if (!player.getAccessLevel().canGainExp())
+		{
+			return false;
+		}
+		
+		if (!super.addExp(value))
 		{
 			return false;
 		}
@@ -368,6 +373,11 @@ public class PlayerStat extends PlayableStat
 	 */
 	public int getTalismanSlots()
 	{
+		if (!getActiveChar().hasEnteredWorld())
+		{
+			return 6;
+		}
+		
 		return _talismanSlots.get();
 	}
 	

@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,8 +18,10 @@ package org.l2j.gameserver.network.serverpackets;
 
 import java.util.Collection;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.model.clan.Clan;
 import org.l2j.gameserver.model.clan.ClanWar;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 
 /**
@@ -39,11 +41,11 @@ public class PledgeReceiveWarList extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.PLEDGE_RECEIVE_WAR_LIST.writeId(this);
-		writeInt(_tab); // page
-		writeInt(_clanList.size());
+		ServerPackets.PLEDGE_RECEIVE_WAR_LIST.writeId(this, buffer);
+		buffer.writeInt(_tab); // page
+		buffer.writeInt(_clanList.size());
 		for (ClanWar clanWar : _clanList)
 		{
 			final Clan clan = clanWar.getOpposingClan(_clan);
@@ -51,12 +53,12 @@ public class PledgeReceiveWarList extends ServerPacket
 			{
 				continue;
 			}
-			writeString(clan.getName());
-			writeInt(clanWar.getState().ordinal()); // type: 0 = Declaration, 1 = Blood Declaration, 2 = In War, 3 = Victory, 4 = Defeat, 5 = Tie, 6 = Error
-			writeInt(clanWar.getRemainingTime()); // Time if friends to start remaining
-			writeInt(clanWar.getKillDifference(_clan)); // Score
-			writeInt(0); // @TODO: Recent change in points
-			writeInt(clanWar.getKillToStart()); // Friends to start war left
+			buffer.writeString(clan.getName());
+			buffer.writeInt(clanWar.getState().ordinal()); // type: 0 = Declaration, 1 = Blood Declaration, 2 = In War, 3 = Victory, 4 = Defeat, 5 = Tie, 6 = Error
+			buffer.writeInt(clanWar.getRemainingTime()); // Time if friends to start remaining
+			buffer.writeInt(clanWar.getKillDifference(_clan)); // Score
+			buffer.writeInt(0); // @TODO: Recent change in points
+			buffer.writeInt(clanWar.getKillToStart()); // Friends to start war left
 		}
 	}
 }

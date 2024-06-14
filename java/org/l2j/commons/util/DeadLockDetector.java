@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -24,8 +24,6 @@ import java.lang.management.ThreadMXBean;
 import java.time.Duration;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
-import org.l2j.Config;
 
 /**
  * Thread to check for deadlocked threads.
@@ -62,7 +60,7 @@ public class DeadLockDetector extends Thread
 					final ThreadInfo[] tis = tmx.getThreadInfo(ids, true, true);
 					final StringBuilder info = new StringBuilder();
 					info.append("DeadLock Found!");
-					info.append(Config.EOL);
+					info.append(System.lineSeparator());
 					for (ThreadInfo ti : tis)
 					{
 						info.append(ti.toString());
@@ -79,14 +77,14 @@ public class DeadLockDetector extends Thread
 						
 						ThreadInfo dl = ti;
 						info.append("Java-level deadlock:");
-						info.append(Config.EOL);
+						info.append(System.lineSeparator());
 						info.append('\t');
 						info.append(dl.getThreadName());
 						info.append(" is waiting to lock ");
 						info.append(dl.getLockInfo().toString());
 						info.append(" which is held by ");
 						info.append(dl.getLockOwnerName());
-						info.append(Config.EOL);
+						info.append(System.lineSeparator());
 						while ((dl = tmx.getThreadInfo(new long[]
 						{
 							dl.getLockOwnerId()
@@ -98,7 +96,7 @@ public class DeadLockDetector extends Thread
 							info.append(dl.getLockInfo().toString());
 							info.append(" which is held by ");
 							info.append(dl.getLockOwnerName());
-							info.append(Config.EOL);
+							info.append(System.lineSeparator());
 						}
 					}
 					

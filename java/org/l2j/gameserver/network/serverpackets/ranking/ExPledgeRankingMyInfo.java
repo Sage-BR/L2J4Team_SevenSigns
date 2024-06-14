@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,8 +16,10 @@
  */
 package org.l2j.gameserver.network.serverpackets.ranking;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.instancemanager.RankManager;
 import org.l2j.gameserver.model.actor.Player;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 import org.l2j.gameserver.network.serverpackets.ServerPacket;
 
@@ -34,11 +36,11 @@ public class ExPledgeRankingMyInfo extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_PLEDGE_RANKING_MY_INFO.writeId(this);
-		writeInt(_player.getClan() != null ? RankManager.getInstance().getClanRankList().entrySet().stream().anyMatch(it -> it.getValue().getInt("clan_id") == _player.getClanId()) ? RankManager.getInstance().getClanRankList().entrySet().stream().filter(it -> it.getValue().getInt("clan_id") == _player.getClanId()).findFirst().orElse(null).getKey() : 0 : 0); // rank
-		writeInt(_player.getClan() != null ? RankManager.getInstance().getSnapshotClanRankList().entrySet().stream().anyMatch(it -> it.getValue().getInt("clan_id") == _player.getClanId()) ? RankManager.getInstance().getSnapshotClanRankList().entrySet().stream().filter(it -> it.getValue().getInt("clan_id") == _player.getClanId()).findFirst().orElse(null).getKey() : 0 : 0); // snapshot
-		writeInt(_player.getClan() != null ? _player.getClan().getExp() : 0); // exp
+		ServerPackets.EX_PLEDGE_RANKING_MY_INFO.writeId(this, buffer);
+		buffer.writeInt(_player.getClan() != null ? RankManager.getInstance().getClanRankList().entrySet().stream().anyMatch(it -> it.getValue().getInt("clan_id") == _player.getClanId()) ? RankManager.getInstance().getClanRankList().entrySet().stream().filter(it -> it.getValue().getInt("clan_id") == _player.getClanId()).findFirst().orElse(null).getKey() : 0 : 0); // rank
+		buffer.writeInt(_player.getClan() != null ? RankManager.getInstance().getSnapshotClanRankList().entrySet().stream().anyMatch(it -> it.getValue().getInt("clan_id") == _player.getClanId()) ? RankManager.getInstance().getSnapshotClanRankList().entrySet().stream().filter(it -> it.getValue().getInt("clan_id") == _player.getClanId()).findFirst().orElse(null).getKey() : 0 : 0); // snapshot
+		buffer.writeInt(_player.getClan() != null ? _player.getClan().getExp() : 0); // exp
 	}
 }

@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,7 +18,9 @@ package org.l2j.gameserver.network.serverpackets.crystalization;
 
 import java.util.List;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.model.holders.ItemChanceHolder;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 import org.l2j.gameserver.network.serverpackets.ServerPacket;
 
@@ -35,15 +37,15 @@ public class ExGetCrystalizingEstimation extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_GET_CRYSTALIZING_ESTIMATION.writeId(this);
-		writeInt(_items.size());
+		ServerPackets.EX_GET_CRYSTALIZING_ESTIMATION.writeId(this, buffer);
+		buffer.writeInt(_items.size());
 		for (ItemChanceHolder holder : _items)
 		{
-			writeInt(holder.getId());
-			writeLong(holder.getCount());
-			writeDouble(holder.getChance());
+			buffer.writeInt(holder.getId());
+			buffer.writeLong(holder.getCount());
+			buffer.writeDouble(holder.getChance());
 		}
 	}
 }

@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -1242,6 +1242,7 @@ public class AdminEditChar implements IAdminCommandHandler
 		adminReply.replace("%protocol%", String.valueOf(player.getClient() != null ? player.getClient().getProtocolVersion() : "NULL"));
 		adminReply.replace("%hwid%", (player.getClient() != null) && (player.getClient().getHardwareInfo() != null) ? player.getClient().getHardwareInfo().getMacAddress() : "Unknown");
 		adminReply.replace("%ai%", player.getAI().getIntention().name());
+		adminReply.replace("%autoplay%", Config.ENABLE_AUTO_PLAY ? "<br1>AutoPlay: " + (player.isAutoPlaying() ? "Enabled" : "Disabled") : "");
 		adminReply.replace("%inst%", player.isInInstance() ? " " + player.getInstanceWorld().getName() + "</td><td><button value=\"Go\" action=\"bypass -h admin_instanceteleport " + player.getInstanceId() + "\"width=60 height=20 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\">" : "NONE");
 		adminReply.replace("%noblesse%", player.isNoble() ? "Yes" : "No");
 		activeChar.sendPacket(adminReply);
@@ -1617,7 +1618,11 @@ public class AdminEditChar implements IAdminCommandHandler
 			{
 				return true;
 			}
-			if ((obj == null) || (getClass() != obj.getClass()))
+			if (obj == null)
+			{
+				return false;
+			}
+			if (getClass() != obj.getClass())
 			{
 				return false;
 			}

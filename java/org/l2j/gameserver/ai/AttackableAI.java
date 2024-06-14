@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -46,6 +46,7 @@ import org.l2j.gameserver.model.actor.instance.GrandBoss;
 import org.l2j.gameserver.model.actor.instance.Guard;
 import org.l2j.gameserver.model.actor.instance.Monster;
 import org.l2j.gameserver.model.actor.instance.RaidBoss;
+import org.l2j.gameserver.model.actor.templates.NpcTemplate;
 import org.l2j.gameserver.model.effects.EffectType;
 import org.l2j.gameserver.model.events.EventDispatcher;
 import org.l2j.gameserver.model.events.EventType;
@@ -99,10 +100,19 @@ public class AttackableAI extends CreatureAI
 	 */
 	private boolean isAggressiveTowards(Creature target)
 	{
+		if ((target == null) || (getActiveChar() == null))
+		{
+			return false;
+		}
 		
 		// Check if the target isn't invulnerable
+		if (target.isInvul())
+		{
+			return false;
+		}
+		
 		// Check if the target isn't a Folk or a Door
-		if ((target == null) || (getActiveChar() == null) || target.isInvul() || target.isDoor())
+		if (target.isDoor())
 		{
 			return false;
 		}
@@ -699,14 +709,15 @@ public class AttackableAI extends CreatureAI
 			return;
 		}
 		
-		final int collision = npc.getTemplate().getCollisionRadius();
+		final NpcTemplate template = npc.getTemplate();
+		final int collision = template.getCollisionRadius();
 		
 		// Handle all WorldObject of its Faction inside the Faction Range
 		
-		final Set<Integer> clans = getActiveChar().getTemplate().getClans();
+		final Set<Integer> clans = template.getClans();
 		if ((clans != null) && !clans.isEmpty())
 		{
-			final int factionRange = npc.getTemplate().getClanHelpRange() + collision;
+			final int factionRange = template.getClanHelpRange() + collision;
 			// Go through all WorldObject that belong to its faction
 			try
 			{
@@ -724,16 +735,21 @@ public class AttackableAI extends CreatureAI
 				}
 				if (targetExistsInAttackByList)
 				{
-					World.getInstance().forEachVisibleObjectInRange(npc, Attackable.class, factionRange, called ->
+					World.getInstance().forEachVisibleObjectInRange(npc, Attackable.class, factionRange, nearby ->
 					{
 						// Don't call dead npcs, npcs without ai or npcs which are too far away.
-						if (called.isDead() || !called.hasAI() || (Math.abs(finalTarget.getZ() - called.getZ()) > 600))
+						if (nearby.isDead() || !nearby.hasAI() || (Math.abs(finalTarget.getZ() - nearby.getZ()) > 600))
 						{
 							return;
 						}
 						// Don't call npcs who are already doing some action (e.g. attacking, casting).
+						if ((nearby.getAI()._intention != CtrlIntention.AI_INTENTION_IDLE) && (nearby.getAI()._intention != CtrlIntention.AI_INTENTION_ACTIVE))
+						{
+							return;
+						}
 						// Don't call npcs who aren't in the same clan.
-						if (((called.getAI()._intention != CtrlIntention.AI_INTENTION_IDLE) && (called.getAI()._intention != CtrlIntention.AI_INTENTION_ACTIVE)) || !getActiveChar().getTemplate().isClan(called.getTemplate().getClans()))
+						final NpcTemplate nearbytemplate = nearby.getTemplate();
+						if (!template.isClan(nearbytemplate.getClans()) || (nearbytemplate.hasIgnoreClanNpcIds() && nearbytemplate.getIgnoreClanNpcIds().contains(npc.getId())))
 						{
 							return;
 						}
@@ -742,17 +758,17 @@ public class AttackableAI extends CreatureAI
 						{
 							// By default, when a faction member calls for help, attack the caller's attacker.
 							// Notify the AI with EVT_AGGRESSION
-							called.getAI().notifyEvent(CtrlEvent.EVT_AGGRESSION, finalTarget, 1);
+							nearby.getAI().notifyEvent(CtrlEvent.EVT_AGGRESSION, finalTarget, 1);
 							
-							if (EventDispatcher.getInstance().hasListener(EventType.ON_ATTACKABLE_FACTION_CALL, called))
+							if (EventDispatcher.getInstance().hasListener(EventType.ON_ATTACKABLE_FACTION_CALL, nearby))
 							{
-								EventDispatcher.getInstance().notifyEventAsync(new OnAttackableFactionCall(called, getActiveChar(), finalTarget.getActingPlayer(), finalTarget.isSummon()), called);
+								EventDispatcher.getInstance().notifyEventAsync(new OnAttackableFactionCall(nearby, npc, finalTarget.getActingPlayer(), finalTarget.isSummon()), nearby);
 							}
 						}
-						else if (called.getAI()._intention != CtrlIntention.AI_INTENTION_ATTACK)
+						else if (nearby.getAI()._intention != AI_INTENTION_ATTACK)
 						{
-							called.addDamageHate(finalTarget, 0, npc.getHating(finalTarget));
-							called.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, finalTarget);
+							nearby.addDamageHate(finalTarget, 0, npc.getHating(finalTarget));
+							nearby.getAI().setIntention(AI_INTENTION_ATTACK, finalTarget);
 						}
 					});
 				}
@@ -768,22 +784,22 @@ public class AttackableAI extends CreatureAI
 			return;
 		}
 		
-		final List<Skill> aiSuicideSkills = npc.getTemplate().getAISkills(AISkillScope.SUICIDE);
+		final List<Skill> aiSuicideSkills = template.getAISkills(AISkillScope.SUICIDE);
 		if (!aiSuicideSkills.isEmpty() && ((int) ((npc.getCurrentHp() / npc.getMaxHp()) * 100) < 30) && npc.hasSkillChance())
 		{
 			final Skill skill = aiSuicideSkills.get(Rnd.get(aiSuicideSkills.size()));
 			if (SkillCaster.checkUseConditions(npc, skill) && checkSkillTarget(skill, target))
 			{
 				npc.doCast(skill);
-				LOGGER.finer(this + " used suicide skill " + skill);
+				// LOGGER.finer(this + " used suicide skill " + skill);
 				return;
 			}
 		}
 		
 		// ------------------------------------------------------
-		// In case many mobs are trying to hit from same place, move a bit, circling around the target
+		// In case many mobs are trying to hit from same place, move a bit, circling around the target.
 		// Note from Gnacik:
-		// On l2js because of that sometimes mobs don't attack player only running around player without any sense, so decrease chance for now
+		// On l2js because of that sometimes mobs don't attack player only running around player without any sense, so decrease chance for now.
 		final int combinedCollision = collision + target.getTemplate().getCollisionRadius();
 		if (!npc.isMovementDisabled() && (Rnd.get(100) <= 3))
 		{
@@ -901,12 +917,13 @@ public class AttackableAI extends CreatureAI
 			setTarget(target);
 		}
 		
-		if (npc.hasSkillChance())
+		// Cast skills.
+		if ((!npc.isMoving() && npc.hasSkillChance()) || (npc.getAiType() == AIType.MAGE))
 		{
 			// First use the most important skill - heal. Even reconsider target.
-			if (!npc.getTemplate().getAISkills(AISkillScope.HEAL).isEmpty())
+			if (!template.getAISkills(AISkillScope.HEAL).isEmpty())
 			{
-				final Skill healSkill = npc.getTemplate().getAISkills(AISkillScope.HEAL).get(Rnd.get(npc.getTemplate().getAISkills(AISkillScope.HEAL).size()));
+				final Skill healSkill = template.getAISkills(AISkillScope.HEAL).get(Rnd.get(template.getAISkills(AISkillScope.HEAL).size()));
 				if (SkillCaster.checkUseConditions(npc, healSkill))
 				{
 					final Creature healTarget = skillTargetReconsider(healSkill, false);
@@ -917,7 +934,7 @@ public class AttackableAI extends CreatureAI
 						{
 							setTarget(healTarget);
 							npc.doCast(healSkill);
-							LOGGER.finer(this + " used heal skill " + healSkill + " with target " + getTarget());
+							// LOGGER.finer(this + " used heal skill " + healSkill + " with target " + getTarget());
 							return;
 						}
 					}
@@ -925,9 +942,9 @@ public class AttackableAI extends CreatureAI
 			}
 			
 			// Then use the second most important skill - buff. Even reconsider target.
-			if (!npc.getTemplate().getAISkills(AISkillScope.BUFF).isEmpty())
+			if (!template.getAISkills(AISkillScope.BUFF).isEmpty())
 			{
-				final Skill buffSkill = npc.getTemplate().getAISkills(AISkillScope.BUFF).get(Rnd.get(npc.getTemplate().getAISkills(AISkillScope.BUFF).size()));
+				final Skill buffSkill = template.getAISkills(AISkillScope.BUFF).get(Rnd.get(template.getAISkills(AISkillScope.BUFF).size()));
 				if (SkillCaster.checkUseConditions(npc, buffSkill))
 				{
 					final Creature buffTarget = skillTargetReconsider(buffSkill, true);
@@ -935,44 +952,44 @@ public class AttackableAI extends CreatureAI
 					{
 						setTarget(buffTarget);
 						npc.doCast(buffSkill);
-						LOGGER.finer(this + " used buff skill " + buffSkill + " with target " + getTarget());
+						// LOGGER.finer(this + " used buff skill " + buffSkill + " with target " + getTarget());
 						return;
 					}
 				}
 			}
 			
 			// Then try to immobolize target if moving.
-			if (target.isMoving() && !npc.getTemplate().getAISkills(AISkillScope.IMMOBILIZE).isEmpty())
+			if (target.isMoving() && !template.getAISkills(AISkillScope.IMMOBILIZE).isEmpty())
 			{
-				final Skill immobolizeSkill = npc.getTemplate().getAISkills(AISkillScope.IMMOBILIZE).get(Rnd.get(npc.getTemplate().getAISkills(AISkillScope.IMMOBILIZE).size()));
+				final Skill immobolizeSkill = template.getAISkills(AISkillScope.IMMOBILIZE).get(Rnd.get(template.getAISkills(AISkillScope.IMMOBILIZE).size()));
 				if (SkillCaster.checkUseConditions(npc, immobolizeSkill) && checkSkillTarget(immobolizeSkill, target))
 				{
 					npc.doCast(immobolizeSkill);
-					LOGGER.finer(this + " used immobolize skill " + immobolizeSkill + " with target " + getTarget());
+					// LOGGER.finer(this + " used immobolize skill " + immobolizeSkill + " with target " + getTarget());
 					return;
 				}
 			}
 			
 			// Then try to mute target if he is casting.
-			if (target.isCastingNow() && !npc.getTemplate().getAISkills(AISkillScope.COT).isEmpty())
+			if (target.isCastingNow() && !template.getAISkills(AISkillScope.COT).isEmpty())
 			{
-				final Skill muteSkill = npc.getTemplate().getAISkills(AISkillScope.COT).get(Rnd.get(npc.getTemplate().getAISkills(AISkillScope.COT).size()));
+				final Skill muteSkill = template.getAISkills(AISkillScope.COT).get(Rnd.get(template.getAISkills(AISkillScope.COT).size()));
 				if (SkillCaster.checkUseConditions(npc, muteSkill) && checkSkillTarget(muteSkill, target))
 				{
 					npc.doCast(muteSkill);
-					LOGGER.finer(this + " used mute skill " + muteSkill + " with target " + getTarget());
+					// LOGGER.finer(this + " used mute skill " + muteSkill + " with target " + getTarget());
 					return;
 				}
 			}
 			
 			// Try cast short range skill.
-			if (!npc.getShortRangeSkills().isEmpty())
+			if (!npc.getShortRangeSkills().isEmpty() && (npc.calculateDistance2D(target) <= 150))
 			{
 				final Skill shortRangeSkill = npc.getShortRangeSkills().get(Rnd.get(npc.getShortRangeSkills().size()));
 				if (SkillCaster.checkUseConditions(npc, shortRangeSkill) && checkSkillTarget(shortRangeSkill, target))
 				{
 					npc.doCast(shortRangeSkill);
-					LOGGER.finer(this + " used short range skill " + shortRangeSkill + " with target " + getTarget());
+					// LOGGER.finer(this + " used short range skill " + shortRangeSkill + " with target " + getTarget());
 					return;
 				}
 			}
@@ -984,19 +1001,19 @@ public class AttackableAI extends CreatureAI
 				if (SkillCaster.checkUseConditions(npc, longRangeSkill) && checkSkillTarget(longRangeSkill, target))
 				{
 					npc.doCast(longRangeSkill);
-					LOGGER.finer(this + " used long range skill " + longRangeSkill + " with target " + getTarget());
+					// LOGGER.finer(this + " used long range skill " + longRangeSkill + " with target " + getTarget());
 					return;
 				}
 			}
 			
 			// Finally, if none succeed, try to cast any skill.
-			if (!npc.getTemplate().getAISkills(AISkillScope.GENERAL).isEmpty())
+			if (!template.getAISkills(AISkillScope.GENERAL).isEmpty())
 			{
-				final Skill generalSkill = npc.getTemplate().getAISkills(AISkillScope.GENERAL).get(Rnd.get(npc.getTemplate().getAISkills(AISkillScope.GENERAL).size()));
+				final Skill generalSkill = template.getAISkills(AISkillScope.GENERAL).get(Rnd.get(template.getAISkills(AISkillScope.GENERAL).size()));
 				if (SkillCaster.checkUseConditions(npc, generalSkill) && checkSkillTarget(generalSkill, target))
 				{
 					npc.doCast(generalSkill);
-					LOGGER.finer(this + " used general skill " + generalSkill + " with target " + getTarget());
+					// LOGGER.finer(this + " used general skill " + generalSkill + " with target " + getTarget());
 					return;
 				}
 			}
@@ -1031,9 +1048,18 @@ public class AttackableAI extends CreatureAI
 	
 	private boolean checkSkillTarget(Skill skill, WorldObject target)
 	{
+		if (target == null)
+		{
+			return false;
+		}
 		
 		// Check if target is valid and within cast range.
-		if ((target == null) || (skill.getTarget(getActiveChar(), target, false, getActiveChar().isMovementDisabled(), false) == null) || !Util.checkIfInRange(skill.getCastRange(), getActiveChar(), target, true))
+		if (skill.getTarget(getActiveChar(), target, false, getActiveChar().isMovementDisabled(), false) == null)
+		{
+			return false;
+		}
+		
+		if (!Util.checkIfInRange(skill.getCastRange(), getActiveChar(), target, true))
 		{
 			return false;
 		}
@@ -1098,7 +1124,12 @@ public class AttackableAI extends CreatureAI
 			
 			if (npc.isMovementDisabled())
 			{
-				if (!npc.isInsideRadius2D(target, npc.getPhysicalAttackRange() + npc.getTemplate().getCollisionRadius() + ((Creature) target).getTemplate().getCollisionRadius()) || !GeoEngine.getInstance().canSeeTarget(npc, target))
+				if (!npc.isInsideRadius2D(target, npc.getPhysicalAttackRange() + npc.getTemplate().getCollisionRadius() + ((Creature) target).getTemplate().getCollisionRadius()))
+				{
+					return false;
+				}
+				
+				if (!GeoEngine.getInstance().canSeeTarget(npc, target))
 				{
 					return false;
 				}
@@ -1259,8 +1290,13 @@ public class AttackableAI extends CreatureAI
 		
 		// Check if region and its neighbors are active.
 		final WorldRegion region = _actor.getWorldRegion();
+		if ((region == null) || !region.areNeighborsActive())
+		{
+			return;
+		}
+		
 		// Check if the actor is all skills disabled.
-		if ((region == null) || !region.areNeighborsActive() || getActiveChar().isAllSkillsDisabled())
+		if (getActiveChar().isAllSkillsDisabled())
 		{
 			return;
 		}
@@ -1326,8 +1362,11 @@ public class AttackableAI extends CreatureAI
 			_globalAggro = 0;
 		}
 		
-		// Add the attacker to the _aggroList of the actor
-		me.addDamageHate(attacker, 0, 1);
+		// Add the attacker to the _aggroList of the actor if not present.
+		if (!me.isInAggroList(attacker))
+		{
+			me.addDamageHate(attacker, 0, 1);
+		}
 		
 		// Set the Creature movement type to run and send Server->Client packet ChangeMoveType to all others Player
 		if (!me.isRunning())

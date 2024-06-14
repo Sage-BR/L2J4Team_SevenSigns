@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/multisell.xsd">
+	<npcs>
+		<npc>-1</npc> <!-- Item Multisell -->
+	</npcs>
+	<!-- Improved Supply Order (Time-limited) - Sealed (98783) -->
+	<item>
+		<ingredient id="98783" count="1" /> <!-- Improved Supply Order (Time-limited) - Sealed -->
+		<production id="98249" count="3" /> <!-- Scroll: PK (Time-limited) - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98783" count="1" /> <!-- Improved Supply Order (Time-limited) - Sealed -->
+		<production id="95693" count="2" /> <!-- Berserker's Scroll (Time-limited) - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98783" count="1" /> <!-- Improved Supply Order (Time-limited) - Sealed -->
+		<production id="91690" count="33" /> <!-- Special HP Recovery Potion - Sealed -->
+	</item>
+</list>

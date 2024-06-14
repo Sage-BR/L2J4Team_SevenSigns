@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,7 +21,6 @@ import java.util.Date;
 import java.util.logging.Formatter;
 import java.util.logging.LogRecord;
 
-import org.l2j.Config;
 import org.l2j.commons.util.StringUtil;
 
 public class OlympiadFormatter extends Formatter
@@ -44,7 +43,7 @@ public class OlympiadFormatter extends Formatter
 				StringUtil.append(output, ",", p.toString());
 			}
 		}
-		output.append(Config.EOL);
+		output.append(System.lineSeparator());
 		return output.toString();
 	}
 }

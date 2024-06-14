@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/multisell.xsd">
+	<npcs>
+		<npc>-1</npc> <!-- Item Multisell -->
+	</npcs>
+	<!-- Doll Coupon Lv. 1 - Sealed (98761) -->
+	<item>
+		<ingredient id="98761" count="1" /> <!-- Doll Coupon Lv. 1 - Sealed -->
+		<production id="94154" count="1" /> <!-- Queen Ant Doll Lv. 1 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98761" count="1" /> <!-- Doll Coupon Lv. 1 - Sealed -->
+		<production id="94155" count="1" /> <!-- Orfen Doll Lv. 1 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98761" count="1" /> <!-- Doll Coupon Lv. 1 - Sealed -->
+		<production id="94648" count="1" /> <!-- Core Doll Lv. 1 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98761" count="1" /> <!-- Doll Coupon Lv. 1 - Sealed -->
+		<production id="94645" count="1" /> <!-- Zaken Doll Lv. 1 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98761" count="1" /> <!-- Doll Coupon Lv. 1 - Sealed -->
+		<production id="94153" count="1" /> <!-- Baium Doll Lv. 1 - Sealed -->
+	</item>
+</list>

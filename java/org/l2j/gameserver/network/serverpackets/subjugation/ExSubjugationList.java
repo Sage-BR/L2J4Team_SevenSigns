@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,7 +21,9 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.stream.Collectors;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.model.holders.PurgePlayerHolder;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 import org.l2j.gameserver.network.serverpackets.ServerPacket;
 
@@ -38,16 +40,16 @@ public class ExSubjugationList extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_SUBJUGATION_LIST.writeId(this);
-		writeInt(_playerHolder.size());
+		ServerPackets.EX_SUBJUGATION_LIST.writeId(this, buffer);
+		buffer.writeInt(_playerHolder.size());
 		for (Entry<Integer, PurgePlayerHolder> integerPurgePlayerHolderEntry : _playerHolder)
 		{
-			writeInt(integerPurgePlayerHolderEntry.getKey());
-			writeInt(integerPurgePlayerHolderEntry.getValue() != null ? integerPurgePlayerHolderEntry.getValue().getPoints() : 0);
-			writeInt(integerPurgePlayerHolderEntry.getValue() != null ? integerPurgePlayerHolderEntry.getValue().getKeys() : 0);
-			writeInt(integerPurgePlayerHolderEntry.getValue() != null ? integerPurgePlayerHolderEntry.getValue().getRemainingKeys() : 40);
+			buffer.writeInt(integerPurgePlayerHolderEntry.getKey());
+			buffer.writeInt(integerPurgePlayerHolderEntry.getValue() != null ? integerPurgePlayerHolderEntry.getValue().getPoints() : 0);
+			buffer.writeInt(integerPurgePlayerHolderEntry.getValue() != null ? integerPurgePlayerHolderEntry.getValue().getKeys() : 0);
+			buffer.writeInt(integerPurgePlayerHolderEntry.getValue() != null ? integerPurgePlayerHolderEntry.getValue().getRemainingKeys() : 40);
 		}
 	}
 }

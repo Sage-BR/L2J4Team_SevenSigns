@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -75,12 +75,12 @@ public class ElementalSpirit
 		
 		_data.addExperience(experience);
 		_owner.sendPacket(new ExElementalSpiritGetExp(_data.getType(), _data.getExperience()));
-		_owner.sendPacket(new SystemMessage(SystemMessageId.YOU_HAVE_ACQUIRED_S1_S2_ATTRIBUTE_XP).addInt(experience).addElementalSpirit(_data.getType()));
+		_owner.sendPacket(new SystemMessage(SystemMessageId.YOU_HAVE_ACQUIRED_S1_S2_ATTRIBUTE_XP).addInt(experience).addElementalSpiritName(_data.getType()));
 		
 		if (_data.getExperience() > getExperienceToNextLevel())
 		{
 			levelUp();
-			_owner.sendPacket(new SystemMessage(SystemMessageId.S1_ATTRIBUTE_SPIRIT_HAS_REACHED_LV_S2).addElementalSpirit(_data.getType()).addByte(_data.getLevel()));
+			_owner.sendPacket(new SystemMessage(SystemMessageId.S1_ATTRIBUTE_SPIRIT_HAS_REACHED_LV_S2).addElementalSpiritName(_data.getType()).addByte(_data.getLevel()));
 			_owner.sendPacket(new ElementalSpiritInfo(_owner, (byte) 0));
 			_owner.sendPacket(new ExElementalSpiritAttackType(_owner));
 			final UserInfo userInfo = new UserInfo(_owner);

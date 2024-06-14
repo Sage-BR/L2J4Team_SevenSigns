@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,34 +16,32 @@
  */
 package org.l2j.gameserver.network.clientpackets.teleports;
 
-import org.l2j.commons.network.ReadablePacket;
 import org.l2j.gameserver.model.actor.Player;
-import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.clientpackets.ClientPacket;
 import org.l2j.gameserver.network.serverpackets.teleports.ExTeleportFavoritesList;
 
 /**
  * @author Mobius
  */
-public class ExRequestTeleportFavoritesUIToggle implements ClientPacket
+public class ExRequestTeleportFavoritesUIToggle extends ClientPacket
 {
 	private boolean _enable;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_enable = packet.readByte() == 1;
+		_enable = readByte() == 1;
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
-		final Player player = client.getPlayer();
+		final Player player = getPlayer();
 		if (player == null)
 		{
 			return;
 		}
 		
-		client.sendPacket(new ExTeleportFavoritesList(player, _enable));
+		player.sendPacket(new ExTeleportFavoritesList(player, _enable));
 	}
 }

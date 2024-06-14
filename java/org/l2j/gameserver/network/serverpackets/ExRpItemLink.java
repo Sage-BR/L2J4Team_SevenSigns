@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,8 +16,10 @@
  */
 package org.l2j.gameserver.network.serverpackets;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.model.item.instance.Item;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 
 /**
@@ -33,20 +35,20 @@ public class ExRpItemLink extends AbstractItemPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_RP_ITEM_LINK.writeId(this);
+		ServerPackets.EX_RP_ITEM_LINK.writeId(this, buffer);
 		final Player player = _item.getActingPlayer();
 		if ((player != null) && player.isOnline())
 		{
-			writeByte(1);
-			writeInt(player.getObjectId());
+			buffer.writeByte(1);
+			buffer.writeInt(player.getObjectId());
 		}
 		else
 		{
-			writeByte(0);
-			writeInt(0);
+			buffer.writeByte(0);
+			buffer.writeInt(0);
 		}
-		writeItem(_item);
+		writeItem(_item, buffer);
 	}
 }

@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,7 +16,7 @@
  */
 package org.l2j.loginserver.network.gameserverpackets;
 
-import org.l2j.commons.network.ReadablePacket;
+import org.l2j.commons.network.base.BaseReadablePacket;
 import org.l2j.loginserver.GameServerThread;
 import org.l2j.loginserver.LoginController;
 
@@ -24,12 +24,12 @@ import org.l2j.loginserver.LoginController;
  * Thanks to mochitto.
  * @author mrTJO
  */
-public class ReplyCharacters extends ReadablePacket
+public class ReplyCharacters extends BaseReadablePacket
 {
 	public ReplyCharacters(byte[] decrypt, GameServerThread server)
 	{
 		super(decrypt);
-		readByte(); // id (already processed)
+		readByte(); // Packet id, it is already processed.
 		
 		final String account = readString();
 		final int chars = readByte();

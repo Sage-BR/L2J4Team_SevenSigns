@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -157,6 +157,7 @@ import org.l2j.gameserver.network.serverpackets.ExMax;
 import org.l2j.gameserver.network.serverpackets.ExTeleportToLocationActivate;
 import org.l2j.gameserver.network.serverpackets.FakePlayerInfo;
 import org.l2j.gameserver.network.serverpackets.MoveToLocation;
+import org.l2j.gameserver.network.serverpackets.MoveToPawn;
 import org.l2j.gameserver.network.serverpackets.NpcInfo;
 import org.l2j.gameserver.network.serverpackets.Revive;
 import org.l2j.gameserver.network.serverpackets.ServerObjectInfo;
@@ -199,7 +200,7 @@ public abstract class Creature extends WorldObject implements ISkillsHolder, IDe
 {
 	public static final Logger LOGGER = Logger.getLogger(Creature.class.getName());
 	
-	private Set<WeakReference<Creature>> _attackByList;
+	private final Set<WeakReference<Creature>> _attackByList = ConcurrentHashMap.newKeySet(1);
 	
 	private boolean _isDead = false;
 	private boolean _isImmobilized = false;
@@ -249,9 +250,9 @@ public abstract class Creature extends WorldObject implements ISkillsHolder, IDe
 	
 	private boolean _lethalable = true;
 	
-	private Map<Integer, OptionSkillHolder> _triggerSkills;
+	private final Map<Integer, OptionSkillHolder> _triggerSkills = new ConcurrentHashMap<>(1);
 	
-	private Map<Integer, IgnoreSkillHolder> _ignoreSkillEffects;
+	private final Map<Integer, IgnoreSkillHolder> _ignoreSkillEffects = new ConcurrentHashMap<>(1);
 	/** Creatures effect list. */
 	private final EffectList _effectList = new EffectList(this);
 	/** The creature that summons this character. */
@@ -298,7 +299,7 @@ public abstract class Creature extends WorldObject implements ISkillsHolder, IDe
 	private final Map<StatusUpdateType, Integer> _statusUpdates = new ConcurrentHashMap<>();
 	
 	/** A map holding info about basic property mesmerizing system. */
-	private Map<BasicProperty, BasicPropertyResist> _basicPropertyResists;
+	private final Map<BasicProperty, BasicPropertyResist> _basicPropertyResists = new ConcurrentHashMap<>(1);
 	
 	/** A set containing the shot types currently charged. */
 	private Set<ShotType> _chargedShots = EnumSet.noneOf(ShotType.class);
@@ -686,20 +687,23 @@ public abstract class Creature extends WorldObject implements ISkillsHolder, IDe
 	 * <br>
 	 * Player in the detection area of the Creature are identified in <b>_knownPlayers</b>.<br>
 	 * In order to inform other players of state modification on the Creature, server just need to go through _knownPlayers to send Server->Client Packet
-	 * @param mov
+	 * @param packet
 	 */
-	public void broadcastPacket(ServerPacket mov)
+	public void broadcastPacket(ServerPacket packet)
 	{
-		broadcastPacket(mov, true);
+		broadcastPacket(packet, true);
 	}
 	
-	public void broadcastPacket(ServerPacket mov, boolean includeSelf)
+	public void broadcastPacket(ServerPacket packet, boolean includeSelf)
 	{
+		// TODO: Maybe add some nearby player count logic here.
+		packet.sendInBroadcast(true);
+		
 		World.getInstance().forEachVisibleObject(this, Player.class, player ->
 		{
 			if (isVisibleFor(player))
 			{
-				player.sendPacket(mov);
+				player.sendPacket(packet);
 			}
 		});
 	}
@@ -711,22 +715,41 @@ public abstract class Creature extends WorldObject implements ISkillsHolder, IDe
 	 * <br>
 	 * Player in the detection area of the Creature are identified in <b>_knownPlayers</b>.<br>
 	 * In order to inform other players of state modification on the Creature, server just need to go through _knownPlayers to send Server->Client Packet
-	 * @param mov
+	 * @param packet
 	 * @param radiusInKnownlist
 	 */
-	public void broadcastPacket(ServerPacket mov, int radiusInKnownlist)
+	public void broadcastPacket(ServerPacket packet, int radiusInKnownlist)
 	{
 		World.getInstance().forEachVisibleObjectInRange(this, Player.class, radiusInKnownlist, player ->
 		{
 			if (isVisibleFor(player))
 			{
-				player.sendPacket(mov);
+				player.sendPacket(packet);
 			}
 		});
 	}
 	
 	public void broadcastMoveToLocation()
 	{
+		broadcastMoveToLocation(false);
+	}
+	
+	public void broadcastMoveToLocation(boolean force)
+	{
+		final MoveData move = _move;
+		if (move == null)
+		{
+			return;
+		}
+		
+		// Broadcast MoveToLocation when forced or once per second.
+		final int gameTicks = GameTimeTaskManager.getInstance().getGameTicks();
+		if (!force && (move.moveTimestamp > 0) && ((gameTicks - move.lastBroadcastTime) < 10))
+		{
+			return;
+		}
+		move.lastBroadcastTime = gameTicks;
+		
 		if (isPlayable())
 		{
 			broadcastPacket(new MoveToLocation(this));
@@ -736,7 +759,15 @@ public abstract class Creature extends WorldObject implements ISkillsHolder, IDe
 			final WorldRegion region = getWorldRegion();
 			if ((region != null) && region.areNeighborsActive())
 			{
-				broadcastPacket(new MoveToLocation(this));
+				final WorldObject target = hasAI() ? getAI().getTarget() : null;
+				if ((target != null) && (target != this) && (move.moveTimestamp == 0) && (getAI().getIntention() != CtrlIntention.AI_INTENTION_ACTIVE) && (getAI().getIntention() != CtrlIntention.AI_INTENTION_MOVE_TO))
+				{
+					broadcastPacket(new MoveToPawn(this, target, getAI().getClientMovingToPawnOffset()));
+				}
+				else
+				{
+					broadcastPacket(new MoveToLocation(this));
+				}
 			}
 		}
 	}
@@ -850,6 +881,12 @@ public abstract class Creature extends WorldObject implements ISkillsHolder, IDe
 	 */
 	public void teleToLocation(int xValue, int yValue, int zValue, int headingValue, Instance instanceValue)
 	{
+		// Prevent teleporting for players that disconnected unexpectedly.
+		if (isPlayer() && !getActingPlayer().isOnline())
+		{
+			return;
+		}
+		
 		int x = xValue;
 		int y = yValue;
 		int z = _isFlying ? zValue : GeoEngine.getInstance().getHeight(x, y, zValue);
@@ -1037,7 +1074,7 @@ public abstract class Creature extends WorldObject implements ISkillsHolder, IDe
 		}
 		try
 		{
-			if ((target == null) || (isAttackDisabled() && !isSummon()) || !target.isTargetable())
+			if ((target == null) || (!isPlayable() && isAttackDisabled()) || !target.isTargetable())
 			{
 				return;
 			}
@@ -1066,12 +1103,12 @@ public abstract class Creature extends WorldObject implements ISkillsHolder, IDe
 					sendPacket(ActionFailed.STATIC_PACKET);
 					return;
 				}
-				else if (getActingPlayer().isSiegeFriend(target))
-				{
-					sendPacket(SystemMessageId.FORCE_ATTACK_IS_IMPOSSIBLE_AGAINST_A_TEMPORARY_ALLIED_MEMBER_DURING_A_SIEGE);
-					sendPacket(ActionFailed.STATIC_PACKET);
-					return;
-				}
+				// else if (getActingPlayer().isSiegeFriend(target))
+				// {
+				// sendPacket(SystemMessageId.FORCE_ATTACK_IS_IMPOSSIBLE_AGAINST_A_TEMPORARY_ALLIED_MEMBER_DURING_A_SIEGE);
+				// sendPacket(ActionFailed.STATIC_PACKET);
+				// return;
+				// }
 				// Checking if target has moved to peace zone
 				else if (target.isInsidePeaceZone(getActingPlayer()))
 				{
@@ -1366,12 +1403,25 @@ public abstract class Creature extends WorldObject implements ISkillsHolder, IDe
 			for (Creature obj : World.getInstance().getVisibleObjectsInRange(this, Creature.class, maxRadius))
 			{
 				// Skip main target.
+				if (obj == target)
+				{
+					continue;
+				}
 				
 				// Skip dead or fake dead target.
+				if (obj.isAlikeDead())
+				{
+					continue;
+				}
 				
 				// Check if target is auto attackable.
+				if (!obj.isAutoAttackable(this))
+				{
+					continue;
+				}
+				
 				// Check if target is within attack angle.
-				if ((obj == target) || obj.isAlikeDead() || !obj.isAutoAttackable(this) || (Math.abs(calculateDirectionTo(obj) - headingAngle) > physicalAttackAngle))
+				if (Math.abs(calculateDirectionTo(obj) - headingAngle) > physicalAttackAngle)
 				{
 					continue;
 				}
@@ -1453,6 +1503,12 @@ public abstract class Creature extends WorldObject implements ISkillsHolder, IDe
 	 */
 	public synchronized void doCast(Skill skill, Item item, boolean ctrlPressed, boolean shiftPressed)
 	{
+		// Attackables cannot cast while moving.
+		if (isAttackable() && isMoving())
+		{
+			return;
+		}
+		
 		// Get proper casting type.
 		SkillCastingType castingType = SkillCastingType.NORMAL;
 		if (skill.canDoubleCast() && isAffected(EffectFlag.DOUBLE_CAST) && isCastingNow(castingType))
@@ -1828,8 +1884,12 @@ public abstract class Creature extends WorldObject implements ISkillsHolder, IDe
 							return;
 						}
 						// Don't call npcs who are already doing some action (e.g. attacking, casting).
+						if ((called.getAI().getIntention() != CtrlIntention.AI_INTENTION_IDLE) && (called.getAI().getIntention() != CtrlIntention.AI_INTENTION_ACTIVE))
+						{
+							return;
+						}
 						// Don't call npcs who aren't in the same clan.
-						if (((called.getAI().getIntention() != CtrlIntention.AI_INTENTION_IDLE) && (called.getAI().getIntention() != CtrlIntention.AI_INTENTION_ACTIVE)) || !template.isClan(called.getTemplate().getClans()))
+						if (!template.isClan(called.getTemplate().getClans()))
 						{
 							return;
 						}
@@ -2079,16 +2139,6 @@ public abstract class Creature extends WorldObject implements ISkillsHolder, IDe
 	 */
 	public Set<WeakReference<Creature>> getAttackByList()
 	{
-		if (_attackByList == null)
-		{
-			synchronized (this)
-			{
-				if (_attackByList == null)
-				{
-					_attackByList = ConcurrentHashMap.newKeySet();
-				}
-			}
-		}
 		return _attackByList;
 	}
 	
@@ -2765,32 +2815,21 @@ public abstract class Creature extends WorldObject implements ISkillsHolder, IDe
 	}
 	
 	/**
-	 * This class group all movement data.<br>
-	 * <br>
-	 * <b><u>Data</u>:</b>
-	 * <ul>
-	 * <li>_moveTimestamp : Last time position update</li>
-	 * <li>_xDestination, _yDestination, _zDestination : Position of the destination</li>
-	 * <li>_xMoveFrom, _yMoveFrom, _zMoveFrom : Position of the origin</li>
-	 * <li>_moveStartTime : Start time of the movement</li>
-	 * <li>_ticksToMove : Number of ticks between the start and the destination</li>
-	 * <li>_xSpeedTicks, _ySpeedTicks : Speed in unit/ticks</li>
-	 * </ul>
+	 * This class groups all movement data.
 	 */
 	public static class MoveData
 	{
-		// when we retrieve x/y/z we use GameTimeControl.getGameTicks()
-		// if we are moving, but move timestamp==gameticks, we don't need
-		// to recalculate position
-		public int _moveStartTime;
-		public int _moveTimestamp; // last update
-		public int _xDestination;
-		public int _yDestination;
-		public int _zDestination;
-		public double _xAccurate; // otherwise there would be rounding errors
-		public double _yAccurate;
-		public double _zAccurate;
-		public int _heading;
+		// When we retrieve x/y/z we use GameTimeControl.getGameTicks()
+		// If we are moving, but move timestamp==gameticks, we don't need to recalculate position.
+		public int moveStartTime;
+		public int moveTimestamp; // Last movement update.
+		public int xDestination;
+		public int yDestination;
+		public int zDestination;
+		public double xAccurate; // Otherwise there would be rounding errors.
+		public double yAccurate;
+		public double zAccurate;
+		public int heading;
 		
 		public boolean disregardingGeodata;
 		public int onGeodataPathIndex;
@@ -2799,11 +2838,18 @@ public abstract class Creature extends WorldObject implements ISkillsHolder, IDe
 		public int geoPathAccurateTy;
 		public int geoPathGtx;
 		public int geoPathGty;
+		
+		public int lastBroadcastTime;
 	}
 	
 	public void broadcastModifiedStats(Set<Stat> changed)
 	{
-		if (!isSpawned() || (changed == null) || changed.isEmpty())
+		if (!isSpawned())
+		{
+			return;
+		}
+		
+		if ((changed == null) || changed.isEmpty())
 		{
 			return;
 		}
@@ -2850,7 +2896,8 @@ public abstract class Creature extends WorldObject implements ISkillsHolder, IDe
 				}
 				else if (isPlayer())
 				{
-					final UserInfo info = new UserInfo(getActingPlayer(), false);
+					final Player player = getActingPlayer();
+					final UserInfo info = new UserInfo(player, false);
 					info.addComponentType(UserInfoType.SLOTS, UserInfoType.ENCHANTLEVEL);
 					
 					boolean updateWeight = false;
@@ -2911,6 +2958,7 @@ public abstract class Creature extends WorldObject implements ISkillsHolder, IDe
 							case STAT_WIT:
 							case STAT_MEN:
 							{
+								player.calculateStatIncreaseSkills();
 								info.addComponentType(UserInfoType.BASE_STATS);
 								updateWeight = true;
 								break;
@@ -2956,7 +3004,6 @@ public abstract class Creature extends WorldObject implements ISkillsHolder, IDe
 						}
 					}
 					
-					final Player player = getActingPlayer();
 					if (updateWeight)
 					{
 						player.refreshOverloaded(true);
@@ -3000,13 +3047,17 @@ public abstract class Creature extends WorldObject implements ISkillsHolder, IDe
 		}
 	}
 	
+	/**
+	 * @return the X destination of the Creature or the X position if not in movement.
+	 */
 	public int getXdestination()
 	{
-		final MoveData m = _move;
-		if (m != null)
+		final MoveData move = _move;
+		if (move != null)
 		{
-			return m._xDestination;
+			return move.xDestination;
 		}
+		
 		return getX();
 	}
 	
@@ -3015,11 +3066,12 @@ public abstract class Creature extends WorldObject implements ISkillsHolder, IDe
 	 */
 	public int getYdestination()
 	{
-		final MoveData m = _move;
-		if (m != null)
+		final MoveData move = _move;
+		if (move != null)
 		{
-			return m._yDestination;
+			return move.yDestination;
 		}
+		
 		return getY();
 	}
 	
@@ -3028,11 +3080,12 @@ public abstract class Creature extends WorldObject implements ISkillsHolder, IDe
 	 */
 	public int getZdestination()
 	{
-		final MoveData m = _move;
-		if (m != null)
+		final MoveData move = _move;
+		if (move != null)
 		{
-			return m._zDestination;
+			return move.zDestination;
 		}
+		
 		return getZ();
 	}
 	
@@ -3057,12 +3110,49 @@ public abstract class Creature extends WorldObject implements ISkillsHolder, IDe
 	 */
 	public boolean isOnGeodataPath()
 	{
-		final MoveData m = _move;
-		if ((m == null) || (m.onGeodataPathIndex == -1) || (m.onGeodataPathIndex == (m.geoPath.size() - 1)))
+		final MoveData move = _move;
+		if (move == null)
 		{
 			return false;
 		}
+		
+		return isOnGeodataPath(move);
+	}
+	
+	/**
+	 * @param move the MoveData to check (must not be null).
+	 * @return True if the Creature is traveling a calculated path.
+	 */
+	public boolean isOnGeodataPath(MoveData move)
+	{
+		if (move.onGeodataPathIndex == -1)
+		{
+			return false;
+		}
+		
+		if (move.onGeodataPathIndex == (move.geoPath.size() - 1))
+		{
+			return false;
+		}
+		
 		return true;
+	}
+	
+	/**
+	 * This method returns a list of {@link AbstractNodeLoc} objects representing the movement path.<br>
+	 * If the move operation is defined (not null), it returns the path from the 'geoPath' field of the move.<br>
+	 * Otherwise, it returns null.
+	 * @return List of {@link AbstractNodeLoc} representing the movement path, or null if move is undefined.
+	 */
+	public List<AbstractNodeLoc> getGeoPath()
+	{
+		final MoveData move = _move;
+		if (move != null)
+		{
+			return move.geoPath;
+		}
+		
+		return null;
 	}
 	
 	/**
@@ -3172,31 +3262,30 @@ public abstract class Creature extends WorldObject implements ISkillsHolder, IDe
 	 */
 	public boolean updatePosition()
 	{
-		// Get movement data
-		final MoveData m = _move;
-		if (m == null)
-		{
-			return true;
-		}
-		
 		if (!isSpawned())
 		{
 			_move = null;
 			return true;
 		}
 		
-		// Check if this is the first update
-		if (m._moveTimestamp == 0)
+		// Get movement data
+		final MoveData move = _move;
+		if (move == null)
 		{
-			m._moveTimestamp = m._moveStartTime;
-			m._xAccurate = getX();
-			m._yAccurate = getY();
+			return true;
 		}
 		
-		final int gameTicks = GameTimeTaskManager.getInstance().getGameTicks();
+		// Check if this is the first update
+		if (move.moveTimestamp == 0)
+		{
+			move.moveTimestamp = move.moveStartTime;
+			move.xAccurate = getX();
+			move.yAccurate = getY();
+		}
 		
 		// Check if the position has already been calculated
-		if (m._moveTimestamp == gameTicks)
+		final int gameTicks = GameTimeTaskManager.getInstance().getGameTicks();
+		if (move.moveTimestamp == gameTicks)
 		{
 			return false;
 		}
@@ -3205,9 +3294,9 @@ public abstract class Creature extends WorldObject implements ISkillsHolder, IDe
 		final int xPrev = getX();
 		final int yPrev = getY();
 		final int zPrev = getZ(); // the z coordinate may be modified by coordinate synchronizations
-		double dx = m._xDestination - m._xAccurate;
-		double dy = m._yDestination - m._yAccurate;
-		double dz = m._zDestination - zPrev; // Z coordinate will follow client values
+		double dx = move.xDestination - move.xAccurate;
+		double dy = move.yDestination - move.yAccurate;
+		double dz = move.zDestination - zPrev; // Z coordinate will follow client values
 		if (isPlayer() && !_isFlying)
 		{
 			// In case of cursor movement, avoid moving through obstacles.
@@ -3344,35 +3433,36 @@ public abstract class Creature extends WorldObject implements ISkillsHolder, IDe
 		double distFraction = Double.MAX_VALUE;
 		if (delta > 1)
 		{
-			final double distPassed = (_stat.getMoveSpeed() * (gameTicks - m._moveTimestamp)) / GameTimeTaskManager.TICKS_PER_SECOND;
+			final double distPassed = (_stat.getMoveSpeed() * (gameTicks - move.moveTimestamp)) / GameTimeTaskManager.TICKS_PER_SECOND;
 			distFraction = distPassed / delta;
 		}
 		
-		if (distFraction > 1.79)
+		final boolean arrived = distFraction > 1.79;
+		if (arrived)
 		{
 			// Set the position of the Creature to the destination.
-			super.setXYZ(m._xDestination, m._yDestination, m._zDestination);
+			super.setXYZ(move.xDestination, move.yDestination, move.zDestination);
 		}
 		else
 		{
-			m._xAccurate += dx * distFraction;
-			m._yAccurate += dy * distFraction;
+			move.xAccurate += dx * distFraction;
+			move.yAccurate += dy * distFraction;
 			
 			// Set the position of the Creature to estimated after parcial move.
-			super.setXYZ((int) m._xAccurate, (int) m._yAccurate, zPrev + (int) ((dz * distFraction) + 0.895));
+			super.setXYZ((int) move.xAccurate, (int) move.yAccurate, zPrev + (int) ((dz * distFraction) + 0.895));
 		}
 		revalidateZone(false);
 		
 		// Set the timer of last position update to now.
-		m._moveTimestamp = gameTicks;
+		move.moveTimestamp = gameTicks;
 		
-		// Broadcast MoveToLocation when Playable tries to reach a Playable target (once per second).
-		if (isPlayable() && (target != null) && target.isPlayable() && ((gameTicks % 10) == 0) && (calculateDistance3D(target) > 150))
+		// Broadcast MoveToLocation on arrived.
+		if (arrived && !isOnGeodataPath())
 		{
-			broadcastPacket(new MoveToLocation(this));
+			broadcastMoveToLocation(true);
 		}
 		
-		return distFraction > 1.79; // Arrived.
+		return arrived;
 	}
 	
 	public void revalidateZone(boolean force)
@@ -3524,6 +3614,7 @@ public abstract class Creature extends WorldObject implements ISkillsHolder, IDe
 		final double speed = _stat.getMoveSpeed();
 		if ((speed <= 0) || isMovementDisabled())
 		{
+			sendPacket(ActionFailed.STATIC_PACKET);
 			return;
 		}
 		
@@ -3580,7 +3671,7 @@ public abstract class Creature extends WorldObject implements ISkillsHolder, IDe
 		double sin;
 		
 		// Check if a movement offset is defined or no distance to go through
-		if ((offset > 0) || (distance < 1))
+		if ((offset > 0) || (distance < 1.79))
 		{
 			// approximation for moving closer when z coordinates are different
 			// TODO: handle Z axis movement better
@@ -3591,7 +3682,7 @@ public abstract class Creature extends WorldObject implements ISkillsHolder, IDe
 			}
 			
 			// If no distance to go through, the movement is canceled
-			if ((distance < 1) || ((distance - offset) <= 0))
+			if ((distance < 1.79) || ((distance - offset) <= 0))
 			{
 				// Notify the AI that the Creature is arrived at destination
 				getAI().notifyEvent(CtrlEvent.EVT_ARRIVED);
@@ -3615,18 +3706,18 @@ public abstract class Creature extends WorldObject implements ISkillsHolder, IDe
 		}
 		
 		// Create and Init a MoveData object
-		final MoveData m = new MoveData();
+		final MoveData move = new MoveData();
 		
 		// GEODATA MOVEMENT CHECKS AND PATHFINDING
 		final WorldRegion region = getWorldRegion();
-		m.disregardingGeodata = (region == null) || !region.areNeighborsActive();
-		m.onGeodataPathIndex = -1; // Initialize not on geodata path
-		if (!m.disregardingGeodata && !_isFlying && !isInWater && !isVehicle() && !_cursorKeyMovement)
+		move.disregardingGeodata = (region == null) || !region.areNeighborsActive();
+		move.onGeodataPathIndex = -1; // Initialize not on geodata path
+		if (!move.disregardingGeodata && !_isFlying && !isInWater && !isVehicle() && !_cursorKeyMovement)
 		{
 			final boolean isInVehicle = isPlayer() && (getActingPlayer().getVehicle() != null);
 			if (isInVehicle)
 			{
-				m.disregardingGeodata = true;
+				move.disregardingGeodata = true;
 			}
 			
 			// Movement checks.
@@ -3646,11 +3737,11 @@ public abstract class Creature extends WorldObject implements ISkillsHolder, IDe
 						{
 							return;
 						}
+						
 						_move.onGeodataPathIndex = -1; // Set not on geodata path.
 					}
 					catch (NullPointerException e)
 					{
-						// nothing
 					}
 				}
 				
@@ -3671,7 +3762,10 @@ public abstract class Creature extends WorldObject implements ISkillsHolder, IDe
 					final Location destiny = GeoEngine.getInstance().getValidLocation(curX, curY, curZ, x, y, z, getInstanceWorld());
 					x = destiny.getX();
 					y = destiny.getY();
-					z = destiny.getZ();
+					if (!isPlayer())
+					{
+						z = destiny.getZ();
+					}
 					dx = x - curX;
 					dy = y - curY;
 					dz = z - curZ;
@@ -3682,8 +3776,8 @@ public abstract class Creature extends WorldObject implements ISkillsHolder, IDe
 				if (!directMove && ((originalDistance - distance) > 30) && !isControlBlocked() && !isInVehicle)
 				{
 					// Path calculation -- overrides previous movement check
-					m.geoPath = PathFinding.getInstance().findPath(curX, curY, curZ, originalX, originalY, originalZ, getInstanceWorld(), isPlayer());
-					boolean found = (m.geoPath != null) && (m.geoPath.size() > 1);
+					move.geoPath = PathFinding.getInstance().findPath(curX, curY, curZ, originalX, originalY, originalZ, getInstanceWorld(), isPlayer());
+					boolean found = (move.geoPath != null) && (move.geoPath.size() > 1);
 					
 					// If path not found and this is an Attackable, attempt to find closest path to destination.
 					if (!found && isAttackable())
@@ -3714,14 +3808,14 @@ public abstract class Creature extends WorldObject implements ISkillsHolder, IDe
 									if (found)
 									{
 										shortDistance = tempDistance;
-										m.geoPath = tempPath;
+										move.geoPath = tempPath;
 										destinationX = sX;
 										destinationY = sY;
 									}
 								}
 							}
 						}
-						found = (m.geoPath != null) && (m.geoPath.size() > 1);
+						found = (move.geoPath != null) && (move.geoPath.size() > 1);
 						if (found)
 						{
 							originalX = destinationX;
@@ -3731,14 +3825,14 @@ public abstract class Creature extends WorldObject implements ISkillsHolder, IDe
 					
 					if (found)
 					{
-						m.onGeodataPathIndex = 0; // On first segment.
-						m.geoPathGtx = gtx;
-						m.geoPathGty = gty;
-						m.geoPathAccurateTx = originalX;
-						m.geoPathAccurateTy = originalY;
-						x = m.geoPath.get(m.onGeodataPathIndex).getX();
-						y = m.geoPath.get(m.onGeodataPathIndex).getY();
-						z = m.geoPath.get(m.onGeodataPathIndex).getZ();
+						move.onGeodataPathIndex = 0; // On first segment.
+						move.geoPathGtx = gtx;
+						move.geoPathGty = gty;
+						move.geoPathAccurateTx = originalX;
+						move.geoPathAccurateTy = originalY;
+						x = move.geoPath.get(move.onGeodataPathIndex).getX();
+						y = move.geoPath.get(move.onGeodataPathIndex).getY();
+						z = move.geoPath.get(move.onGeodataPathIndex).getZ();
 						dx = x - curX;
 						dy = y - curY;
 						dz = z - curZ;
@@ -3750,10 +3844,11 @@ public abstract class Creature extends WorldObject implements ISkillsHolder, IDe
 					{
 						if (isPlayer() && !_isFlying && !isInWater)
 						{
+							sendPacket(ActionFailed.STATIC_PACKET);
 							return;
 						}
 						
-						m.disregardingGeodata = true;
+						move.disregardingGeodata = true;
 						
 						x = originalX;
 						y = originalY;
@@ -3764,7 +3859,7 @@ public abstract class Creature extends WorldObject implements ISkillsHolder, IDe
 			}
 			
 			// If no distance to go through, the movement is canceled
-			if ((distance < 1) && ((Config.PATHFINDING > 0) || isPlayable()))
+			if ((distance < 1.79) && ((Config.PATHFINDING > 0) || isPlayable()))
 			{
 				if (isSummon())
 				{
@@ -3779,6 +3874,7 @@ public abstract class Creature extends WorldObject implements ISkillsHolder, IDe
 				{
 					getAI().setIntention(CtrlIntention.AI_INTENTION_IDLE);
 				}
+				sendPacket(ActionFailed.STATIC_PACKET);
 				return;
 			}
 		}
@@ -3791,22 +3887,22 @@ public abstract class Creature extends WorldObject implements ISkillsHolder, IDe
 		
 		// Calculate the number of ticks between the current position and the destination.
 		final int ticksToMove = (int) ((GameTimeTaskManager.TICKS_PER_SECOND * distance) / speed);
-		m._xDestination = x;
-		m._yDestination = y;
-		m._zDestination = z; // this is what was requested from client
+		move.xDestination = x;
+		move.yDestination = y;
+		move.zDestination = z; // this is what was requested from client
 		
 		// Calculate and set the heading of the Creature
-		m._heading = 0; // initial value for coordinate sync
-		// Does not broke heading on vertical movements
+		move.heading = 0; // initial value for coordinate sync
+		// Does not break heading on vertical movements
 		if (!verticalMovementOnly)
 		{
 			setHeading(Util.calculateHeadingFrom(cos, sin));
 		}
 		
-		m._moveStartTime = GameTimeTaskManager.getInstance().getGameTicks();
+		move.moveStartTime = GameTimeTaskManager.getInstance().getGameTicks();
 		
 		// Set the Creature _move object to MoveData object
-		_move = m;
+		_move = move;
 		
 		// Add the Creature to moving objects of the MovementTaskManager.
 		// The MovementTaskManager manages object movement.
@@ -3820,9 +3916,19 @@ public abstract class Creature extends WorldObject implements ISkillsHolder, IDe
 		// the CtrlEvent.EVT_ARRIVED will be sent when the character will actually arrive to destination by MovementTaskManager
 	}
 	
+	/**
+	 * Move to next route point.
+	 * @return true, if successful
+	 */
 	public boolean moveToNextRoutePoint()
 	{
-		if (!isOnGeodataPath())
+		final MoveData move = _move;
+		if (move == null)
+		{
+			return false;
+		}
+		
+		if (!isOnGeodataPath(move))
 		{
 			// Cancel the move action
 			_move = null;
@@ -3838,53 +3944,47 @@ public abstract class Creature extends WorldObject implements ISkillsHolder, IDe
 			return false;
 		}
 		
-		final MoveData md = _move;
-		if (md == null)
-		{
-			return false;
-		}
-		
 		// Get current position of the Creature
 		final int curX = getX();
 		final int curY = getY();
 		
 		// Create and Init a MoveData object
-		final MoveData m = new MoveData();
+		final MoveData newMove = new MoveData();
 		
 		// Update MoveData object
-		m.onGeodataPathIndex = md.onGeodataPathIndex + 1; // next segment
-		m.geoPath = md.geoPath;
-		m.geoPathGtx = md.geoPathGtx;
-		m.geoPathGty = md.geoPathGty;
-		m.geoPathAccurateTx = md.geoPathAccurateTx;
-		m.geoPathAccurateTy = md.geoPathAccurateTy;
-		if (md.onGeodataPathIndex == (md.geoPath.size() - 2))
+		newMove.onGeodataPathIndex = move.onGeodataPathIndex + 1; // next segment
+		newMove.geoPath = move.geoPath;
+		newMove.geoPathGtx = move.geoPathGtx;
+		newMove.geoPathGty = move.geoPathGty;
+		newMove.geoPathAccurateTx = move.geoPathAccurateTx;
+		newMove.geoPathAccurateTy = move.geoPathAccurateTy;
+		if (move.onGeodataPathIndex == (move.geoPath.size() - 2))
 		{
-			m._xDestination = md.geoPathAccurateTx;
-			m._yDestination = md.geoPathAccurateTy;
-			m._zDestination = md.geoPath.get(m.onGeodataPathIndex).getZ();
+			newMove.xDestination = move.geoPathAccurateTx;
+			newMove.yDestination = move.geoPathAccurateTy;
+			newMove.zDestination = move.geoPath.get(newMove.onGeodataPathIndex).getZ();
 		}
 		else
 		{
-			m._xDestination = md.geoPath.get(m.onGeodataPathIndex).getX();
-			m._yDestination = md.geoPath.get(m.onGeodataPathIndex).getY();
-			m._zDestination = md.geoPath.get(m.onGeodataPathIndex).getZ();
+			newMove.xDestination = move.geoPath.get(newMove.onGeodataPathIndex).getX();
+			newMove.yDestination = move.geoPath.get(newMove.onGeodataPathIndex).getY();
+			newMove.zDestination = move.geoPath.get(newMove.onGeodataPathIndex).getZ();
 		}
 		
 		// Calculate and set the heading of the Creature.
-		final double distance = Math.hypot(m._xDestination - curX, m._yDestination - curY);
+		final double distance = Math.hypot(newMove.xDestination - curX, newMove.yDestination - curY);
 		if (distance != 0)
 		{
-			setHeading(Util.calculateHeadingFrom(curX, curY, m._xDestination, m._yDestination));
+			setHeading(Util.calculateHeadingFrom(curX, curY, newMove.xDestination, newMove.yDestination));
 		}
 		
 		// Calculate the number of ticks between the current position and the destination.
 		final int ticksToMove = (int) ((GameTimeTaskManager.TICKS_PER_SECOND * distance) / speed);
-		m._heading = 0; // initial value for coordinate sync
-		m._moveStartTime = GameTimeTaskManager.getInstance().getGameTicks();
+		newMove.heading = 0; // initial value for coordinate sync
+		newMove.moveStartTime = GameTimeTaskManager.getInstance().getGameTicks();
 		
 		// Set the Creature _move object to MoveData object
-		_move = m;
+		_move = newMove;
 		
 		// Add the Creature to moving objects of the MovementTaskManager.
 		// The MovementTaskManager manages object movement.
@@ -3899,23 +3999,28 @@ public abstract class Creature extends WorldObject implements ISkillsHolder, IDe
 		// the CtrlEvent.EVT_ARRIVED will be sent when the character will actually arrive to destination by MovementTaskManager
 		
 		// Send a Server->Client packet MoveToLocation to the actor and all Player in its _knownPlayers
-		broadcastMoveToLocation();
+		broadcastMoveToLocation(true);
 		return true;
 	}
 	
+	/**
+	 * Validate movement heading.
+	 * @param heading the heading
+	 * @return true, if successful
+	 */
 	public boolean validateMovementHeading(int heading)
 	{
-		final MoveData m = _move;
-		if (m == null)
+		final MoveData move = _move;
+		if (move == null)
 		{
 			return true;
 		}
 		
 		boolean result = true;
-		if (m._heading != heading)
+		if (move.heading != heading)
 		{
-			result = (m._heading == 0); // initial value or false
-			m._heading = heading;
+			result = (move.heading == 0); // initial value or false
+			move.heading = heading;
 		}
 		
 		return result;
@@ -4171,7 +4276,7 @@ public abstract class Creature extends WorldObject implements ISkillsHolder, IDe
 			EventDispatcher.getInstance().notifyEvent(_onCreatureAttacked, target);
 		}
 		
-		if (_triggerSkills != null)
+		if (!_triggerSkills.isEmpty())
 		{
 			for (OptionSkillHolder holder : _triggerSkills.values())
 			{
@@ -4320,7 +4425,13 @@ public abstract class Creature extends WorldObject implements ISkillsHolder, IDe
 				return;
 			}
 		}
-		if (((player.getTarget() != null) && !player.getTarget().canBeAttacked() && !player.getAccessLevel().allowPeaceAttack()) || player.isConfused())
+		if ((player.getTarget() != null) && !player.getTarget().canBeAttacked() && !player.getAccessLevel().allowPeaceAttack())
+		{
+			// If target is not attackable, send a Server->Client packet ActionFailed
+			player.sendPacket(ActionFailed.STATIC_PACKET);
+			return;
+		}
+		if (player.isConfused())
 		{
 			// If target is confused, send a Server->Client packet ActionFailed
 			player.sendPacket(ActionFailed.STATIC_PACKET);
@@ -4886,7 +4997,7 @@ public abstract class Creature extends WorldObject implements ISkillsHolder, IDe
 		target.reduceCurrentHp(damage, this, skill, isDOT, directlyToHp, critical, reflect);
 		
 		// Check if damage should be reflected or absorbed. When killing blow is made, the target doesn't reflect (vamp too?).
-		if (!reflect && !isDOT && !target.isDead())
+		if (!reflect && !isDOT && !target.isDead() && !target.isHpBlocked())
 		{
 			int reflectedDamage = 0;
 			
@@ -4930,6 +5041,12 @@ public abstract class Creature extends WorldObject implements ISkillsHolder, IDe
 	public void reduceCurrentHp(double amountValue, Creature attacker, Skill skill, boolean isDOT, boolean directlyToHp, boolean critical, boolean reflect)
 	{
 		double amount = amountValue;
+		
+		// Auto attacks make you stand up.
+		if (isPlayer() && getActingPlayer().isFakeDeath() && Config.FAKE_DEATH_DAMAGE_STAND && (amount > 0))
+		{
+			stopFakeDeath(true);
+		}
 		
 		// Notify of this attack only if there is an attacking creature.
 		if ((attacker != null) && EventDispatcher.getInstance().hasListener(EventType.ON_CREATURE_DAMAGE_DEALT, attacker))
@@ -5018,6 +5135,11 @@ public abstract class Creature extends WorldObject implements ISkillsHolder, IDe
 		}
 		else if (isPlayer())
 		{
+			getActingPlayer().addDamageTaken(attacker, skill != null ? skill.getDisplayId() : 0, amount, isDOT, reflect);
+			if (!isDOT && (skill != null) && (skill.getCastRange() > 0) && (attacker != null) && !GeoEngine.getInstance().canSeeTarget(attacker, this))
+			{
+				amount = 0;
+			}
 			getActingPlayer().getStatus().reduceHp(amount, attacker, skill, (skill == null) || !skill.isToggle(), isDOT, false, directlyToHp);
 		}
 		else
@@ -5277,21 +5399,11 @@ public abstract class Creature extends WorldObject implements ISkillsHolder, IDe
 	
 	public boolean hasTriggerSkills()
 	{
-		return (_triggerSkills != null) && !_triggerSkills.isEmpty();
+		return !_triggerSkills.isEmpty();
 	}
 	
 	public Map<Integer, OptionSkillHolder> getTriggerSkills()
 	{
-		if (_triggerSkills == null)
-		{
-			synchronized (this)
-			{
-				if (_triggerSkills == null)
-				{
-					_triggerSkills = new ConcurrentHashMap<>(1);
-				}
-			}
-		}
 		return _triggerSkills;
 	}
 	
@@ -5642,7 +5754,7 @@ public abstract class Creature extends WorldObject implements ISkillsHolder, IDe
 	
 	public boolean isIgnoringSkillEffects(int skillId, int skillLevel)
 	{
-		if (_ignoreSkillEffects != null)
+		if (!_ignoreSkillEffects.isEmpty())
 		{
 			final SkillHolder holder = getIgnoreSkillEffects().get(skillId);
 			return ((holder != null) && ((holder.getSkillLevel() < 1) || (holder.getSkillLevel() == skillLevel)));
@@ -5652,16 +5764,6 @@ public abstract class Creature extends WorldObject implements ISkillsHolder, IDe
 	
 	private Map<Integer, IgnoreSkillHolder> getIgnoreSkillEffects()
 	{
-		if (_ignoreSkillEffects == null)
-		{
-			synchronized (this)
-			{
-				if (_ignoreSkillEffects == null)
-				{
-					_ignoreSkillEffects = new ConcurrentHashMap<>();
-				}
-			}
-		}
 		return _ignoreSkillEffects;
 	}
 	
@@ -5925,16 +6027,6 @@ public abstract class Creature extends WorldObject implements ISkillsHolder, IDe
 	 */
 	public BasicPropertyResist getBasicPropertyResist(BasicProperty basicProperty)
 	{
-		if (_basicPropertyResists == null)
-		{
-			synchronized (this)
-			{
-				if (_basicPropertyResists == null)
-				{
-					_basicPropertyResists = new ConcurrentHashMap<>();
-				}
-			}
-		}
 		return _basicPropertyResists.computeIfAbsent(basicProperty, k -> new BasicPropertyResist());
 	}
 	

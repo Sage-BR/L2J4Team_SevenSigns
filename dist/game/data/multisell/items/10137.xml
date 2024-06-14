@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/multisell.xsd">
+	<npcs>
+		<npc>-1</npc> <!-- Item Multisell -->
+	</npcs>
+	<!-- Frost Lord's Weapon Coupon - Sealed (97133) -->
+	<item>
+		<ingredient id="97133" count="1" /> <!-- Frost Lord's Weapon Coupon - Sealed -->
+		<production id="95725" count="1" /> <!-- Frost Lord's Sword -->
+	</item>
+	<item>
+		<ingredient id="97133" count="1" /> <!-- Frost Lord's Weapon Coupon - Sealed -->
+		<production id="95734" count="1" /> <!-- Frost Lord's Ancient Sword -->
+	</item>
+	<item>
+		<ingredient id="97133" count="1" /> <!-- Frost Lord's Weapon Coupon - Sealed -->
+		<production id="95728" count="1" /> <!-- Frost Lord's Dagger -->
+	</item>
+	<item>
+		<ingredient id="97133" count="1" /> <!-- Frost Lord's Weapon Coupon - Sealed -->
+		<production id="95726" count="1" /> <!-- Frost Lord's Two-handed Sword -->
+	</item>
+	<item>
+		<ingredient id="97133" count="1" /> <!-- Frost Lord's Weapon Coupon - Sealed -->
+		<production id="95727" count="1" /> <!-- Frost Lord's Axe -->
+	</item>
+	<item>
+		<ingredient id="97133" count="1" /> <!-- Frost Lord's Weapon Coupon - Sealed -->
+		<production id="95732" count="1" /> <!-- Frost Lord's Magic Blunt Weapon -->
+	</item>
+	<item>
+		<ingredient id="97133" count="1" /> <!-- Frost Lord's Weapon Coupon - Sealed -->
+		<production id="95735" count="1" /> <!-- Frost Lord's Rapier -->
+	</item>
+	<item>
+		<ingredient id="97133" count="1" /> <!-- Frost Lord's Weapon Coupon - Sealed -->
+		<production id="95737" count="1" /> <!-- Frost Lord's Dual Swords -->
+	</item>
+	<item>
+		<ingredient id="97133" count="1" /> <!-- Frost Lord's Weapon Coupon - Sealed -->
+		<production id="95733" count="1" /> <!-- Frost Lord's Staff -->
+	</item>
+	<item>
+		<ingredient id="97133" count="1" /> <!-- Frost Lord's Weapon Coupon - Sealed -->
+		<production id="95729" count="1" /> <!-- Frost Lord's Spear -->
+	</item>
+	<item>
+		<ingredient id="97133" count="1" /> <!-- Frost Lord's Weapon Coupon - Sealed -->
+		<production id="95736" count="1" /> <!-- Frost Lord's Pistols -->
+	</item>
+	<item>
+		<ingredient id="97133" count="1" /> <!-- Frost Lord's Weapon Coupon - Sealed -->
+		<production id="95731" count="1" /> <!-- Frost Lord's Blade Fists -->
+	</item>
+	<item>
+		<ingredient id="97133" count="1" /> <!-- Frost Lord's Weapon Coupon - Sealed -->
+		<production id="95730" count="1" /> <!-- Frost Lord's Bow -->
+	</item>
+</list>

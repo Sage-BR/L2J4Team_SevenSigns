@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,8 +18,11 @@ package org.l2j.gameserver.network.serverpackets.storereview;
 
 import java.util.List;
 
+import org.l2j.commons.network.WritableBuffer;
+
 import org.l2j.gameserver.enums.PrivateStoreType;
 import org.l2j.gameserver.instancemanager.PrivateStoreHistoryManager.ItemHistoryTransaction;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 import org.l2j.gameserver.network.serverpackets.AbstractItemPacket;
 
@@ -45,23 +48,23 @@ public class ExPrivateStoreSearchHistory extends AbstractItemPacket
 	 * 80841E0000000000 0100000000000000 C6000000 00 00 FF117A0000000000 0100000000000000
 	 */
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_PRIVATE_STORE_SEARCH_HISTORY.writeId(this);
+		ServerPackets.EX_PRIVATE_STORE_SEARCH_HISTORY.writeId(this, buffer);
 		
-		writeByte(_page); // cPage
-		writeByte(_maxPage); // cMaxPage
+		buffer.writeByte(_page); // cPage
+		buffer.writeByte(_maxPage); // cMaxPage
 		
-		writeInt(_history.size()); // nSize -> Items count for loop below
+		buffer.writeInt(_history.size()); // nSize -> Items count for loop below
 		
 		for (int i = 0; i < _history.size(); i++)
 		{
 			final ItemHistoryTransaction transaction = _history.get(i);
-			writeInt(transaction.getItemId()); // itemId
-			writeByte(transaction.getTransactionType() == PrivateStoreType.SELL ? 0x00 : 0x01); // cStoreType
-			writeByte(transaction.getEnchantLevel()); // cEnchant
-			writeLong(transaction.getPrice() / transaction.getCount()); // nPrice
-			writeLong(transaction.getCount()); // nAmount
+			buffer.writeInt(transaction.getItemId()); // itemId
+			buffer.writeByte(transaction.getTransactionType() == PrivateStoreType.SELL ? 0x00 : 0x01); // cStoreType
+			buffer.writeByte(transaction.getEnchantLevel()); // cEnchant
+			buffer.writeLong(transaction.getPrice() / transaction.getCount()); // nPrice
+			buffer.writeLong(transaction.getCount()); // nAmount
 		}
 	}
 }

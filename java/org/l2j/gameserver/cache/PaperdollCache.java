@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -38,7 +38,7 @@ public class PaperdollCache
 	
 	private final Map<BaseStat, Double> _baseStatValues = new ConcurrentHashMap<>();
 	private final Map<Stat, Double> _statValues = new ConcurrentHashMap<>();
-	private int _maxSetEnchant = -1;
+	private int _armorSetEnchant = -1;
 	
 	public Set<Item> getPaperdollItems()
 	{
@@ -50,12 +50,12 @@ public class PaperdollCache
 		_baseStatValues.clear();
 		_statValues.clear();
 		
-		clearMaxSetEnchant();
+		clearArmorSetEnchant();
 	}
 	
-	public void clearMaxSetEnchant()
+	public void clearArmorSetEnchant()
 	{
-		_maxSetEnchant = -1;
+		_armorSetEnchant = -1;
 	}
 	
 	public double getBaseStatValue(Player player, BaseStat stat)
@@ -72,7 +72,7 @@ public class PaperdollCache
 		{
 			for (ArmorSet set : ArmorSetData.getInstance().getSets(item.getId()))
 			{
-				if ((set.getPiecesCountById(player) >= set.getMinimumPieces()) && appliedSets.add(set))
+				if ((set.getPieceCount(player) >= set.getMinimumPieces()) && appliedSets.add(set))
 				{
 					value += set.getStatsBonus(stat);
 				}
@@ -83,28 +83,29 @@ public class PaperdollCache
 		return value;
 	}
 	
-	public int getMaxSetEnchant(Playable playable)
+	public int getArmorSetEnchant(Playable playable)
 	{
-		if (_maxSetEnchant >= 0)
+		int armorSetEnchant = _armorSetEnchant;
+		if (armorSetEnchant >= 0)
 		{
-			return _maxSetEnchant;
+			return armorSetEnchant;
 		}
 		
-		int maxSetEnchant = 0;
+		armorSetEnchant = 0;
 		for (Item item : _paperdollItems)
 		{
 			for (ArmorSet set : ArmorSetData.getInstance().getSets(item.getId()))
 			{
-				final int enchantEffect = set.getLowestSetEnchant(playable);
-				if (enchantEffect > maxSetEnchant)
+				final int enchantEffect = set.getSetEnchant(playable);
+				if (enchantEffect > armorSetEnchant)
 				{
-					maxSetEnchant = enchantEffect;
+					armorSetEnchant = enchantEffect;
 				}
 			}
 		}
 		
-		_maxSetEnchant = maxSetEnchant;
-		return maxSetEnchant;
+		_armorSetEnchant = armorSetEnchant;
+		return armorSetEnchant;
 	}
 	
 	public double getStats(Stat stat)

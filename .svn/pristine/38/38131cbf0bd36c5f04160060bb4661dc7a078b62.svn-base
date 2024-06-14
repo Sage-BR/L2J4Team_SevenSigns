@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/multisell.xsd">
+	<npcs>
+		<npc>-1</npc> <!-- Item Multisell -->
+	</npcs>
+	<!-- Bracelet & Brooch Coupon Lv. 3 - Sealed (98999) -->
+	<item>
+		<ingredient id="98999" count="1" /> <!-- Bracelet and Brooch Coupon Lv. 3 - Sealed -->
+		<production id="96984" count="1" /> <!-- Package: Talisman Bracelet Lv. 3 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98999" count="1" /> <!-- Bracelet and Brooch Coupon Lv. 3 - Sealed -->
+		<production id="96983" count="1" /> <!-- Package: Agathion Summon Bracelet Lv. 3 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98999" count="1" /> <!-- Bracelet and Brooch Coupon Lv. 3 - Sealed -->
+		<production id="96985" count="1" /> <!-- Package: Brooch Lv. 3 - Sealed -->
+	</item>
+</list>

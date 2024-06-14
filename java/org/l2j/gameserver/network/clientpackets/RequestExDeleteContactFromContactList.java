@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,33 +17,36 @@
 package org.l2j.gameserver.network.clientpackets;
 
 import org.l2j.Config;
-import org.l2j.commons.network.ReadablePacket;
 import org.l2j.gameserver.model.actor.Player;
-import org.l2j.gameserver.network.GameClient;
 
 /**
  * Format: (ch)S S: Character Name
  * @author UnAfraid & mrTJO
  */
-public class RequestExDeleteContactFromContactList implements ClientPacket
+public class RequestExDeleteContactFromContactList extends ClientPacket
 {
 	private String _name;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_name = packet.readString();
+		_name = readString();
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
-		if (!Config.ALLOW_MAIL || (_name == null))
+		if (!Config.ALLOW_MAIL)
 		{
 			return;
 		}
 		
-		final Player player = client.getPlayer();
+		if (_name == null)
+		{
+			return;
+		}
+		
+		final Player player = getPlayer();
 		if (player == null)
 		{
 			return;

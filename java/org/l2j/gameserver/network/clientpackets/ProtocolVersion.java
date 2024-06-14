@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,29 +19,36 @@ package org.l2j.gameserver.network.clientpackets;
 import java.util.logging.Logger;
 
 import org.l2j.Config;
-import org.l2j.commons.network.ReadablePacket;
 import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.serverpackets.KeyPacket;
 
 /**
  * @version $Revision: 1.5.2.8.2.8 $ $Date: 2005/04/02 10:43:04 $
  */
-public class ProtocolVersion implements ClientPacket
+public class ProtocolVersion extends ClientPacket
 {
 	private static final Logger LOGGER_ACCOUNTING = Logger.getLogger("accounting");
 	
 	private int _version;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_version = packet.readInt();
+		try
+		{
+			_version = readInt();
+		}
+		catch (Exception e)
+		{
+			_version = 0;
+		}
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
 		// This packet is never encrypted.
+		final GameClient client = getClient();
 		if (_version == -2)
 		{
 			// This is just a ping attempt from the new C2 client.

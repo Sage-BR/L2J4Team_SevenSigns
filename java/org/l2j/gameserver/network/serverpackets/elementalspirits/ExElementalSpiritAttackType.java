@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,8 +16,10 @@
  */
 package org.l2j.gameserver.network.serverpackets.elementalspirits;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.enums.ElementalType;
 import org.l2j.gameserver.model.actor.Player;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 import org.l2j.gameserver.network.serverpackets.ServerPacket;
 
@@ -34,21 +36,21 @@ public class ExElementalSpiritAttackType extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_ELEMENTAL_SPIRIT_ATTACK_TYPE.writeId(this);
+		ServerPackets.EX_ELEMENTAL_SPIRIT_ATTACK_TYPE.writeId(this, buffer);
 		final byte elementalId = _player.getActiveElementalSpiritType();
 		if (elementalId == ElementalType.WIND.getId())
 		{
-			writeByte(4);
+			buffer.writeByte(4);
 		}
 		else if (elementalId == ElementalType.EARTH.getId())
 		{
-			writeByte(8);
+			buffer.writeByte(8);
 		}
 		else
 		{
-			writeByte(elementalId);
+			buffer.writeByte(elementalId);
 		}
 	}
 }

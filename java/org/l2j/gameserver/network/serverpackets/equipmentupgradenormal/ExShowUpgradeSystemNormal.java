@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,8 +19,10 @@ package org.l2j.gameserver.network.serverpackets.equipmentupgradenormal;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.data.xml.EquipmentUpgradeNormalData;
 import org.l2j.gameserver.model.holders.ItemHolder;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 import org.l2j.gameserver.network.serverpackets.AbstractItemPacket;
 
@@ -48,21 +50,21 @@ public class ExShowUpgradeSystemNormal extends AbstractItemPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_SHOW_UPGRADE_SYSTEM_NORMAL.writeId(this);
-		writeShort(_mode);
-		writeShort(_type);
-		writeShort(_commission); // default - 100
-		writeInt(_materials.size()); // array of materials with discount
+		ServerPackets.EX_SHOW_UPGRADE_SYSTEM_NORMAL.writeId(this, buffer);
+		buffer.writeShort(_mode);
+		buffer.writeShort(_type);
+		buffer.writeShort(_commission); // default - 100
+		buffer.writeInt(_materials.size()); // array of materials with discount
 		for (int id : _materials)
 		{
-			writeInt(id);
+			buffer.writeInt(id);
 		}
-		writeInt(_discountRatio.size()); // array of discount count
+		buffer.writeInt(_discountRatio.size()); // array of discount count
 		for (int discount : _discountRatio)
 		{
-			writeInt(discount);
+			buffer.writeInt(discount);
 		}
 	}
 }

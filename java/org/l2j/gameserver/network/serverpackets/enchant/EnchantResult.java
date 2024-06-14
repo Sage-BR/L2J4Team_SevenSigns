@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,7 +16,9 @@
  */
 package org.l2j.gameserver.network.serverpackets.enchant;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.model.holders.ItemHolder;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 import org.l2j.gameserver.network.serverpackets.ServerPacket;
 
@@ -83,14 +85,14 @@ public class EnchantResult extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.ENCHANT_RESULT.writeId(this);
-		writeInt(_result);
-		writeInt(_crystal.getId());
-		writeLong(_crystal.getCount());
-		writeInt(_additional.getId());
-		writeLong(_additional.getCount());
-		writeInt(_enchantLevel);
+		ServerPackets.ENCHANT_RESULT.writeId(this, buffer);
+		buffer.writeInt(_result);
+		buffer.writeInt(_crystal.getId());
+		buffer.writeLong(_crystal.getCount());
+		buffer.writeInt(_additional.getId());
+		buffer.writeLong(_additional.getCount());
+		buffer.writeInt(_enchantLevel);
 	}
 }

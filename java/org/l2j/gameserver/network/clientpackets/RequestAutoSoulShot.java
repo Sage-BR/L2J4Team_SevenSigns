@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,15 +16,12 @@
  */
 package org.l2j.gameserver.network.clientpackets;
 
-import org.l2j.commons.network.ReadablePacket;
-import org.l2j.gameserver.enums.PrivateStoreType;
 import org.l2j.gameserver.enums.ShotType;
 import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.model.actor.Summon;
 import org.l2j.gameserver.model.item.ItemTemplate;
 import org.l2j.gameserver.model.item.instance.Item;
 import org.l2j.gameserver.model.item.type.ActionType;
-import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.SystemMessageId;
 import org.l2j.gameserver.network.serverpackets.ExAutoSoulShot;
 import org.l2j.gameserver.network.serverpackets.SystemMessage;
@@ -32,30 +29,30 @@ import org.l2j.gameserver.network.serverpackets.SystemMessage;
 /**
  * @author Unknown, UnAfraid
  */
-public class RequestAutoSoulShot implements ClientPacket
+public class RequestAutoSoulShot extends ClientPacket
 {
 	private int _itemId;
 	private boolean _enable;
 	private int _type;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_itemId = packet.readInt();
-		_enable = packet.readInt() == 1;
-		_type = packet.readInt();
+		_itemId = readInt();
+		_enable = readInt() == 1;
+		_type = readInt();
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
-		final Player player = client.getPlayer();
+		final Player player = getPlayer();
 		if (player == null)
 		{
 			return;
 		}
 		
-		if ((player.getPrivateStoreType() == PrivateStoreType.NONE) && (player.getActiveRequester() == null) && !player.isDead())
+		if (!player.isInStoreMode() && (player.getActiveRequester() == null) && !player.isDead())
 		{
 			final Item item = player.getInventory().getItemByItemId(_itemId);
 			if (item == null)

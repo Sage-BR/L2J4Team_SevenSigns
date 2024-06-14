@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,9 +16,11 @@
  */
 package org.l2j.gameserver.network.serverpackets.castlewar;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.enums.TaxType;
 import org.l2j.gameserver.instancemanager.CastleManager;
 import org.l2j.gameserver.model.siege.Castle;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 import org.l2j.gameserver.network.serverpackets.ServerPacket;
 
@@ -35,33 +37,33 @@ public class MercenaryCastleWarCastleInfo extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_MERCENARY_CASTLEWAR_CASTLE_INFO.writeId(this);
+		ServerPackets.EX_MERCENARY_CASTLEWAR_CASTLE_INFO.writeId(this, buffer);
 		
 		final Castle castle = CastleManager.getInstance().getCastleById(_castleId);
 		if (castle == null)
 		{
-			writeInt(_castleId);
-			writeInt(0);
-			writeInt(0);
-			writeSizedString("");
-			writeSizedString("");
-			writeInt(0);
-			writeLong(0);
-			writeLong(0);
-			writeInt(0);
+			buffer.writeInt(_castleId);
+			buffer.writeInt(0);
+			buffer.writeInt(0);
+			buffer.writeSizedString("");
+			buffer.writeSizedString("");
+			buffer.writeInt(0);
+			buffer.writeLong(0);
+			buffer.writeLong(0);
+			buffer.writeInt(0);
 			return;
 		}
 		
-		writeInt(castle.getResidenceId());
-		writeInt(castle.getOwner() != null ? castle.getOwner().getCrestId() : 0); // CastleOwnerPledgeSID
-		writeInt(castle.getOwner() != null ? castle.getOwner().getCrestLargeId() : 0); // CastleOwnerPledgeCrestDBID
-		writeSizedString(castle.getOwner() != null ? castle.getOwner().getName() : "-"); // CastleOwnerPledgeName
-		writeSizedString(castle.getOwner() != null ? castle.getOwner().getLeaderName() : "-"); // CastleOwnerPledgeMasterName
-		writeInt(castle.getTaxPercent(TaxType.BUY)); // CastleTaxRate
-		writeLong((long) (castle.getTreasury() * castle.getTaxRate(TaxType.BUY))); // CurrentIncome
-		writeLong((long) (castle.getTreasury() + (castle.getTreasury() * castle.getTaxRate(TaxType.BUY)))); // TotalIncome
-		writeInt(castle.getSiegeDate() != null ? (int) (castle.getSiegeDate().getTimeInMillis() / 1000) : 0); // NextSiegeTime
+		buffer.writeInt(castle.getResidenceId());
+		buffer.writeInt(castle.getOwner() != null ? castle.getOwner().getCrestId() : 0); // CastleOwnerPledgeSID
+		buffer.writeInt(castle.getOwner() != null ? castle.getOwner().getCrestLargeId() : 0); // CastleOwnerPledgeCrestDBID
+		buffer.writeSizedString(castle.getOwner() != null ? castle.getOwner().getName() : "-"); // CastleOwnerPledgeName
+		buffer.writeSizedString(castle.getOwner() != null ? castle.getOwner().getLeaderName() : "-"); // CastleOwnerPledgeMasterName
+		buffer.writeInt(castle.getTaxPercent(TaxType.BUY)); // CastleTaxRate
+		buffer.writeLong(castle.getTempTreasury());
+		buffer.writeLong((long) (castle.getTreasury() + (castle.getTreasury() * castle.getTaxRate(TaxType.BUY)))); // TotalIncome
+		buffer.writeInt(castle.getSiegeDate() != null ? (int) (castle.getSiegeDate().getTimeInMillis() / 1000) : 0); // NextSiegeTime
 	}
 }

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/multisell.xsd">
+	<npcs>
+		<npc>-1</npc> <!-- Item Multisell -->
+	</npcs>
+	<!-- Sayha's Supply Order (Time-limited) - Sealed (98592) -->
+	<item>
+		<ingredient id="98592" count="1" /> <!-- Sayha's Supply Order (Time-limited) - Sealed -->
+		<production id="91641" count="1" /> <!-- Sayha's Blessing - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98592" count="1" /> <!-- Sayha's Supply Order (Time-limited) - Sealed -->
+		<production id="94269" count="1" /> <!-- Scroll: Boost Attack - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98592" count="1" /> <!-- Sayha's Supply Order (Time-limited) - Sealed -->
+		<production id="94271" count="1" /> <!-- Scroll: Boost Defense - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98592" count="1" /> <!-- Sayha's Supply Order (Time-limited) - Sealed -->
+		<production id="91712" count="1" /> <!-- Sayha's Storm - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98592" count="1" /> <!-- Sayha's Supply Order (Time-limited) - Sealed -->
+		<production id="49674" count="1" /> <!-- XP Growth Scroll - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98592" count="2" /> <!-- Sayha's Supply Order (Time-limited) - Sealed -->
+		<production id="96729" count="1" /> <!-- Einhasad's Protection - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98592" count="5" /> <!-- Sayha's Supply Order (Time-limited) - Sealed -->
+		<production id="90835" count="1" /> <!-- Life Control Tower's Scroll of Blessing - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98592" count="5" /> <!-- Sayha's Supply Order (Time-limited) - Sealed -->
+		<production id="94838" count="1" /> <!-- Transformation Scroll (Time-limited) - Sealed -->
+	</item>
+</list>

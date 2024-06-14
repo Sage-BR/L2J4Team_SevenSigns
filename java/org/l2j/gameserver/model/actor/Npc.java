@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -27,6 +27,7 @@ import org.l2j.commons.threads.ThreadPool;
 import org.l2j.commons.util.Rnd;
 import org.l2j.gameserver.cache.HtmCache;
 import org.l2j.gameserver.data.xml.ClanHallData;
+import org.l2j.gameserver.data.xml.DynamicExpRateData;
 import org.l2j.gameserver.data.xml.ItemData;
 import org.l2j.gameserver.enums.AISkillScope;
 import org.l2j.gameserver.enums.AIType;
@@ -34,7 +35,6 @@ import org.l2j.gameserver.enums.ChatType;
 import org.l2j.gameserver.enums.ElementalType;
 import org.l2j.gameserver.enums.InstanceType;
 import org.l2j.gameserver.enums.MpRewardAffectType;
-import org.l2j.gameserver.enums.PrivateStoreType;
 import org.l2j.gameserver.enums.Race;
 import org.l2j.gameserver.enums.RaidBossStatus;
 import org.l2j.gameserver.enums.ShotType;
@@ -166,6 +166,8 @@ public class Npc extends Creature
 	
 	private final List<QuestTimer> _questTimers = new ArrayList<>();
 	private final List<TimerHolder<?>> _timerHolders = new ArrayList<>();
+	
+	private final Set<Player> _talkedPlayers = ConcurrentHashMap.newKeySet(0);
 	
 	/**
 	 * Constructor of Npc (use Creature constructor).<br>
@@ -486,7 +488,7 @@ public class Npc extends Creature
 		{
 			return false;
 		}
-		else if (player.getPrivateStoreType() != PrivateStoreType.NONE)
+		else if (player.isInStoreMode())
 		{
 			return false;
 		}
@@ -530,20 +532,37 @@ public class Npc extends Creature
 	 */
 	public double getCastleTaxRate(TaxType type)
 	{
-		final Castle castle = getTaxCastle();
-		return (castle != null) ? (castle.getTaxPercent(type) / 100.0) : 0;
+		// Global tax by all castles.
+		final Castle giran = CastleManager.getInstance().getCastleById(3);
+		final Castle goddart = CastleManager.getInstance().getCastleById(7);
+		final double giranTaxPercent = giran == null ? 0 : giran.getTaxPercent(type);
+		final double goddartTaxPercent = goddart == null ? 0 : goddart.getTaxPercent(type);
+		final double taxPercent = giranTaxPercent + goddartTaxPercent;
+		return taxPercent / 100.0;
 	}
 	
 	/**
 	 * Increase castle vault by specified tax amount.
-	 * @param amount tax amount
+	 * @param amount total price with tax
 	 */
 	public void handleTaxPayment(long amount)
 	{
-		final Castle taxCastle = getTaxCastle();
-		if (taxCastle != null)
+		final Castle giran = CastleManager.getInstance().getCastleById(3);
+		final double giranTax = giran.getTaxPercent(TaxType.BUY) / 100.0;
+		final Castle goddart = CastleManager.getInstance().getCastleById(7);
+		final double goddartTax = goddart.getTaxPercent(TaxType.BUY) / 100.0;
+		if (giranTax == 0)
 		{
-			taxCastle.addToTreasury(amount);
+			goddart.addToTreasuryTemp((long) (amount * goddartTax));
+		}
+		else if (goddartTax == 0)
+		{
+			giran.addToTreasuryTemp((long) (amount * giranTax));
+		}
+		else
+		{
+			goddart.addToTreasuryTemp((long) (amount * goddartTax));
+			giran.addToTreasuryTemp((long) (amount * giranTax));
 		}
 	}
 	
@@ -708,6 +727,14 @@ public class Npc extends Creature
 	
 	public void showChatWindow(Player player)
 	{
+		if (_talkedPlayers.contains(player))
+		{
+			return;
+		}
+		
+		_talkedPlayers.add(player);
+		ThreadPool.schedule(() -> _talkedPlayers.remove(player), 1000);
+		
 		showChatWindow(player, 0);
 	}
 	
@@ -860,20 +887,32 @@ public class Npc extends Creature
 	}
 	
 	/**
-	 * @return the Exp Reward of this Npc (modified by RATE_XP).
+	 * @param level
+	 * @return the Exp Reward of this Npc (modified by RATE_XP, or from DynamicExpRates.xml if enabled).
 	 */
-	public double getExpReward()
+	public double getExpReward(int level)
 	{
+		if (DynamicExpRateData.getInstance().isEnabled())
+		{
+			return getTemplate().getExp() * DynamicExpRateData.getInstance().getDynamicExpRate(level);
+		}
+		
 		final Instance instance = getInstanceWorld();
 		final float rateMul = instance != null ? instance.getExpRate() : Config.RATE_XP;
 		return getTemplate().getExp() * rateMul;
 	}
 	
 	/**
-	 * @return the SP Reward of this Npc (modified by RATE_SP).
+	 * @param level
+	 * @return the SP Reward of this Npc (modified by RATE_SP, or from DynamicExpRates.xml if enabled).
 	 */
-	public double getSpReward()
+	public double getSpReward(int level)
 	{
+		if (DynamicExpRateData.getInstance().isEnabled())
+		{
+			return getTemplate().getSP() * DynamicExpRateData.getInstance().getDynamicSpRate(level);
+		}
+		
 		final Instance instance = getInstanceWorld();
 		final float rateMul = instance != null ? instance.getSPRate() : Config.RATE_SP;
 		return getTemplate().getSP() * rateMul;
@@ -1420,7 +1459,7 @@ public class Npc extends Creature
 			}
 			if (magic)
 			{
-				Broadcast.toSelfAndKnownPlayersInRadius(this, new MagicSkillUse(this, this, 2061, 1, 0, 0), 600);
+				Broadcast.toSelfAndKnownPlayersInRadius(this, new MagicSkillUse(this, this, 2159, 1, 0, 0), 600);
 				chargeShot(ShotType.SPIRITSHOTS);
 			}
 		}
@@ -1443,7 +1482,7 @@ public class Npc extends Creature
 					return;
 				}
 				_spiritshotamount--;
-				Broadcast.toSelfAndKnownPlayersInRadius(this, new MagicSkillUse(this, this, 2061, 1, 0, 0), 600);
+				Broadcast.toSelfAndKnownPlayersInRadius(this, new MagicSkillUse(this, this, 2159, 1, 0, 0), 600);
 				chargeShot(ShotType.SPIRITSHOTS);
 			}
 		}

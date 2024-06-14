@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,17 +16,21 @@
  */
 package org.l2j.gameserver.network.clientpackets;
 
-import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.PacketLogger;
 
 /**
  * Format: (ch) just a trigger
  * @author -Wooden-
  */
-public class RequestExFishRanking implements ClientPacket
+public class RequestExFishRanking extends ClientPacket
 {
 	@Override
-	public void run(GameClient client)
+	protected void readImpl()
+	{
+	}
+	
+	@Override
+	protected void runImpl()
 	{
 		PacketLogger.info("C5: RequestExFishRanking");
 	}

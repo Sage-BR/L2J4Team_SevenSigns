@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -58,6 +58,34 @@ public class ComplexBlock implements IBlock
 	}
 	
 	@Override
+	public void setNearestNswe(int geoX, int geoY, int worldZ, byte nswe)
+	{
+		final byte currentNswe = getCellNSWE(geoX, geoY);
+		if ((currentNswe & nswe) == 0)
+		{
+			final short currentHeight = (short) getCellHeight(geoX, geoY);
+			final short encodedHeight = (short) (currentHeight << 1); // Shift left by 1 bit.
+			final short newNswe = (short) (currentNswe | nswe); // Add NSWE.
+			final short newCombinedData = (short) (encodedHeight | newNswe); // Combine height and NSWE.
+			_data[((geoX % IBlock.BLOCK_CELLS_X) * IBlock.BLOCK_CELLS_Y) + (geoY % IBlock.BLOCK_CELLS_Y)] = (short) (newCombinedData & 0xffff);
+		}
+	}
+	
+	@Override
+	public void unsetNearestNswe(int geoX, int geoY, int worldZ, byte nswe)
+	{
+		final byte currentNswe = getCellNSWE(geoX, geoY);
+		if ((currentNswe & nswe) != 0)
+		{
+			final short currentHeight = (short) getCellHeight(geoX, geoY);
+			final short encodedHeight = (short) (currentHeight << 1); // Shift left by 1 bit.
+			final short newNswe = (short) (currentNswe & ~nswe); // Subtract NSWE.
+			final short newCombinedData = (short) (encodedHeight | newNswe); // Combine height and NSWE.
+			_data[((geoX % IBlock.BLOCK_CELLS_X) * IBlock.BLOCK_CELLS_Y) + (geoY % IBlock.BLOCK_CELLS_Y)] = (short) (newCombinedData & 0xffff);
+		}
+	}
+	
+	@Override
 	public int getNearestZ(int geoX, int geoY, int worldZ)
 	{
 		return getCellHeight(geoX, geoY);
@@ -75,5 +103,10 @@ public class ComplexBlock implements IBlock
 	{
 		final int cellHeight = getCellHeight(geoX, geoY);
 		return cellHeight >= worldZ ? cellHeight : worldZ;
+	}
+	
+	public short[] getData()
+	{
+		return _data;
 	}
 }

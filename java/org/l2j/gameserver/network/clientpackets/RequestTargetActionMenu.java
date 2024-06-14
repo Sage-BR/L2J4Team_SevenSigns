@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,35 +16,33 @@
  */
 package org.l2j.gameserver.network.clientpackets;
 
-import org.l2j.commons.network.ReadablePacket;
 import org.l2j.gameserver.model.World;
 import org.l2j.gameserver.model.WorldObject;
 import org.l2j.gameserver.model.actor.Player;
-import org.l2j.gameserver.network.GameClient;
 
 /**
  * @author Mobius
  */
-public class RequestTargetActionMenu implements ClientPacket
+public class RequestTargetActionMenu extends ClientPacket
 {
 	private int _objectId;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_objectId = packet.readInt();
-		packet.readShort(); // action?
+		_objectId = readInt();
+		readShort(); // action?
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
-		if (!client.getFloodProtectors().canPerformPlayerAction())
+		if (!getClient().getFloodProtectors().canPerformPlayerAction())
 		{
 			return;
 		}
 		
-		final Player player = client.getPlayer();
+		final Player player = getPlayer();
 		if ((player == null) || player.isTargetingDisabled())
 		{
 			return;

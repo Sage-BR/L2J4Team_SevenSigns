@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,8 +16,10 @@
  */
 package org.l2j.gameserver.network.serverpackets;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.Config;
 import org.l2j.gameserver.model.clan.Clan;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 
 public class PledgeShowInfoUpdate extends ServerPacket
@@ -30,27 +32,27 @@ public class PledgeShowInfoUpdate extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.PLEDGE_SHOW_INFO_UPDATE.writeId(this);
+		ServerPackets.PLEDGE_SHOW_INFO_UPDATE.writeId(this, buffer);
 		// sending empty data so client will ask all the info in response ;)
-		writeInt(_clan.getId());
-		writeInt(Config.SERVER_ID);
-		writeInt(_clan.getCrestId());
-		writeInt(_clan.getLevel()); // clan level
-		writeInt(_clan.getCastleId());
-		writeInt(0); // castle state ?
-		writeInt(_clan.getHideoutId());
-		writeInt(_clan.getFortId());
-		writeInt(_clan.getRank());
-		writeInt(_clan.getReputationScore()); // clan reputation score
-		writeInt(0); // ?
-		writeInt(0); // ?
-		writeInt(_clan.getAllyId());
-		writeString(_clan.getAllyName()); // c5
-		writeInt(_clan.getAllyCrestId()); // c5
-		writeInt(_clan.isAtWar()); // c5
-		writeInt(0); // TODO: Find me!
-		writeInt(0); // TODO: Find me!
+		buffer.writeInt(_clan.getId());
+		buffer.writeInt(Config.SERVER_ID);
+		buffer.writeInt(_clan.getCrestId());
+		buffer.writeInt(_clan.getLevel()); // clan level
+		buffer.writeInt(_clan.getCastleId());
+		buffer.writeInt(0); // castle state ?
+		buffer.writeInt(_clan.getHideoutId());
+		buffer.writeInt(_clan.getFortId());
+		buffer.writeInt(_clan.getRank());
+		buffer.writeInt(_clan.getReputationScore()); // clan reputation score
+		buffer.writeInt(0); // ?
+		buffer.writeInt(0); // ?
+		buffer.writeInt(_clan.getAllyId());
+		buffer.writeString(_clan.getAllyName()); // c5
+		buffer.writeInt(_clan.getAllyCrestId()); // c5
+		buffer.writeInt(_clan.isAtWar()); // c5
+		buffer.writeInt(0); // TODO: Find me!
+		buffer.writeInt(0); // TODO: Find me!
 	}
 }

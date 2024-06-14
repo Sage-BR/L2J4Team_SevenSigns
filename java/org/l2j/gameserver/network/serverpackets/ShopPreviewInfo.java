@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,7 +18,9 @@ package org.l2j.gameserver.network.serverpackets;
 
 import java.util.Map;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.model.itemcontainer.Inventory;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 
 /**
@@ -34,30 +36,30 @@ public class ShopPreviewInfo extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.SHOP_PREVIEW_INFO.writeId(this);
-		writeInt(Inventory.PAPERDOLL_TOTALSLOTS);
+		ServerPackets.SHOP_PREVIEW_INFO.writeId(this, buffer);
+		buffer.writeInt(Inventory.PAPERDOLL_TOTALSLOTS);
 		// Slots
-		writeInt(getFromList(Inventory.PAPERDOLL_UNDER));
-		writeInt(getFromList(Inventory.PAPERDOLL_REAR));
-		writeInt(getFromList(Inventory.PAPERDOLL_LEAR));
-		writeInt(getFromList(Inventory.PAPERDOLL_NECK));
-		writeInt(getFromList(Inventory.PAPERDOLL_RFINGER));
-		writeInt(getFromList(Inventory.PAPERDOLL_LFINGER));
-		writeInt(getFromList(Inventory.PAPERDOLL_HEAD));
-		writeInt(getFromList(Inventory.PAPERDOLL_RHAND));
-		writeInt(getFromList(Inventory.PAPERDOLL_LHAND));
-		writeInt(getFromList(Inventory.PAPERDOLL_GLOVES));
-		writeInt(getFromList(Inventory.PAPERDOLL_CHEST));
-		writeInt(getFromList(Inventory.PAPERDOLL_LEGS));
-		writeInt(getFromList(Inventory.PAPERDOLL_FEET));
-		writeInt(getFromList(Inventory.PAPERDOLL_CLOAK));
-		writeInt(getFromList(Inventory.PAPERDOLL_RHAND));
-		writeInt(getFromList(Inventory.PAPERDOLL_HAIR));
-		writeInt(getFromList(Inventory.PAPERDOLL_HAIR2));
-		writeInt(getFromList(Inventory.PAPERDOLL_RBRACELET));
-		writeInt(getFromList(Inventory.PAPERDOLL_LBRACELET));
+		buffer.writeInt(getFromList(Inventory.PAPERDOLL_UNDER));
+		buffer.writeInt(getFromList(Inventory.PAPERDOLL_REAR));
+		buffer.writeInt(getFromList(Inventory.PAPERDOLL_LEAR));
+		buffer.writeInt(getFromList(Inventory.PAPERDOLL_NECK));
+		buffer.writeInt(getFromList(Inventory.PAPERDOLL_RFINGER));
+		buffer.writeInt(getFromList(Inventory.PAPERDOLL_LFINGER));
+		buffer.writeInt(getFromList(Inventory.PAPERDOLL_HEAD));
+		buffer.writeInt(getFromList(Inventory.PAPERDOLL_RHAND));
+		buffer.writeInt(getFromList(Inventory.PAPERDOLL_LHAND));
+		buffer.writeInt(getFromList(Inventory.PAPERDOLL_GLOVES));
+		buffer.writeInt(getFromList(Inventory.PAPERDOLL_CHEST));
+		buffer.writeInt(getFromList(Inventory.PAPERDOLL_LEGS));
+		buffer.writeInt(getFromList(Inventory.PAPERDOLL_FEET));
+		buffer.writeInt(getFromList(Inventory.PAPERDOLL_CLOAK));
+		buffer.writeInt(getFromList(Inventory.PAPERDOLL_RHAND));
+		buffer.writeInt(getFromList(Inventory.PAPERDOLL_HAIR));
+		buffer.writeInt(getFromList(Inventory.PAPERDOLL_HAIR2));
+		buffer.writeInt(getFromList(Inventory.PAPERDOLL_RBRACELET));
+		buffer.writeInt(getFromList(Inventory.PAPERDOLL_LBRACELET));
 	}
 	
 	private int getFromList(int key)

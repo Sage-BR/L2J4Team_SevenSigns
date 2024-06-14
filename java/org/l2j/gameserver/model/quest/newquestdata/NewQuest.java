@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -55,7 +55,7 @@ public class NewQuest
 		_startNpcId = set.getInt("startNpcId", -1);
 		_endNpcId = set.getInt("endNpcId", -1);
 		_startItemId = set.getInt("startItemId", -1);
-		_location = new NewQuestLocation(set.getInt("startLocationId", 0), set.getInt("endLocationId", 0));
+		_location = new NewQuestLocation(set.getInt("startLocationId", 0), set.getInt("endLocationId", 0), set.getInt("questLocationId", 0));
 		
 		final String classIds = set.getString("classIds", "");
 		final List<ClassId> classRestriction = classIds.isEmpty() ? Collections.emptyList() : Arrays.stream(classIds.split(";")).map(it -> ClassId.getClassId(Integer.parseInt(it))).collect(Collectors.toList());
@@ -72,7 +72,7 @@ public class NewQuest
 			{
 				LOGGER.warning(getClass().getSimpleName() + _id + ": Could not find goal item template with id " + goalItemId);
 			}
-			else
+			else if (goalCount > 1)
 			{
 				if (!template.isStackable())
 				{

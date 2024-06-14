@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -61,6 +61,7 @@ public class ManaHeal extends AbstractEffect
 		double amount = _power;
 		if ((item != null) && (item.isPotion() || item.isElixir()))
 		{
+			amount *= ((effected.getStat().getValue(Stat.ADDITIONAL_POTION_HP_PER, 0) / 100) + 1);
 			amount += effected.getStat().getValue(Stat.ADDITIONAL_POTION_MP, 0);
 		}
 		

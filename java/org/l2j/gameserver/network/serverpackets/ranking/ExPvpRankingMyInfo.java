@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,9 +19,11 @@ package org.l2j.gameserver.network.serverpackets.ranking;
 import java.util.Map;
 import java.util.Optional;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.instancemanager.RankManager;
 import org.l2j.gameserver.model.StatSet;
 import org.l2j.gameserver.model.actor.Player;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 import org.l2j.gameserver.network.serverpackets.ServerPacket;
 
@@ -42,9 +44,9 @@ public class ExPvpRankingMyInfo extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_PVP_RANKING_MY_INFO.writeId(this);
+		ServerPackets.EX_PVP_RANKING_MY_INFO.writeId(this, buffer);
 		if (!_playerList.isEmpty())
 		{
 			boolean found = false;
@@ -55,29 +57,29 @@ public class ExPvpRankingMyInfo extends ServerPacket
 				{
 					final Optional<Map.Entry<Integer, StatSet>> snapshotValue = _snapshotList.entrySet().stream().filter(it -> it.getValue().getInt("charId") == _player.getObjectId()).findFirst();
 					found = true;
-					writeLong(ss.getInt("points")); // pvp points
-					writeInt(id); // current rank
-					writeInt(snapshotValue.isPresent() ? snapshotValue.get().getKey() : id); // ingame shown change in rank as this value - current rank value.
-					writeInt(ss.getInt("kills")); // kills
-					writeInt(ss.getInt("deaths")); // deaths
+					buffer.writeLong(ss.getInt("points")); // pvp points
+					buffer.writeInt(id); // current rank
+					buffer.writeInt(snapshotValue.isPresent() ? snapshotValue.get().getKey() : id); // ingame shown change in rank as this value - current rank value.
+					buffer.writeInt(ss.getInt("kills")); // kills
+					buffer.writeInt(ss.getInt("deaths")); // deaths
 				}
 			}
 			if (!found)
 			{
-				writeLong(0); // pvp points
-				writeInt(0); // current rank
-				writeInt(0); // ingame shown change in rank as this value - current rank value.
-				writeInt(0); // kills
-				writeInt(0); // deaths
+				buffer.writeLong(0); // pvp points
+				buffer.writeInt(0); // current rank
+				buffer.writeInt(0); // ingame shown change in rank as this value - current rank value.
+				buffer.writeInt(0); // kills
+				buffer.writeInt(0); // deaths
 			}
 		}
 		else
 		{
-			writeLong(0); // pvp points
-			writeInt(0); // current rank
-			writeInt(0); // ingame shown change in rank as this value - current rank value.
-			writeInt(0); // kills
-			writeInt(0); // deaths
+			buffer.writeLong(0); // pvp points
+			buffer.writeInt(0); // current rank
+			buffer.writeInt(0); // ingame shown change in rank as this value - current rank value.
+			buffer.writeInt(0); // kills
+			buffer.writeInt(0); // deaths
 		}
 	}
 }

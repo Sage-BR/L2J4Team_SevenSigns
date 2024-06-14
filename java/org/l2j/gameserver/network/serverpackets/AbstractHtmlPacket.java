@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -35,13 +35,11 @@ public abstract class AbstractHtmlPacket extends ServerPacket
 	
 	protected AbstractHtmlPacket()
 	{
-		super(1024);
 		_npcObjId = 0;
 	}
 	
 	protected AbstractHtmlPacket(int npcObjId)
 	{
-		super(1024);
 		if (npcObjId < 0)
 		{
 			throw new IllegalArgumentException();
@@ -51,14 +49,12 @@ public abstract class AbstractHtmlPacket extends ServerPacket
 	
 	protected AbstractHtmlPacket(String html)
 	{
-		super(1024);
 		_npcObjId = 0;
 		setHtml(html);
 	}
 	
 	protected AbstractHtmlPacket(int npcObjId, String html)
 	{
-		super(1024);
 		if (npcObjId < 0)
 		{
 			throw new IllegalArgumentException();
@@ -79,12 +75,17 @@ public abstract class AbstractHtmlPacket extends ServerPacket
 			PacketLogger.warning(getClass().getSimpleName() + ": Html is too long! this will crash the client!");
 			_html = html.substring(0, 17200);
 		}
-		if (!html.contains("<html") && !html.startsWith("..\\L2"))
+		else
 		{
-			_html = "<html><body>" + html + "</body></html>";
-			return;
+			if (!html.contains("<html") && !html.startsWith("..\\L2"))
+			{
+				_html = "<html><body>" + html + "</body></html>";
+			}
+			else
+			{
+				_html = html;
+			}
 		}
-		_html = html;
 	}
 	
 	public boolean setFile(Player player, String path)
@@ -131,9 +132,8 @@ public abstract class AbstractHtmlPacket extends ServerPacket
 	}
 	
 	@Override
-	public void run()
+	public void runImpl(Player player)
 	{
-		final Player player = getPlayer();
 		if (player != null)
 		{
 			player.clearHtmlActions(getScope());

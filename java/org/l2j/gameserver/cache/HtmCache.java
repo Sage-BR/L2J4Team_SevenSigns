@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -127,6 +127,13 @@ public class HtmCache
 			content = new String(raw, StandardCharsets.UTF_8);
 			content = content.replaceAll("(?s)<!--.*?-->", ""); // Remove html comments.
 			content = content.replaceAll("[\\t\\n]", ""); // Remove tabs and new lines.
+			
+			// Automatic removal of -h parameter from specific bypasses.
+			if (Config.HIDE_BYPASS_REMOVAL)
+			{
+				content = content.replace("bypass -h npc_%objectId%_Chat ", "bypass npc_%objectId%_Chat ");
+				content = content.replace("bypass -h npc_%objectId%_Quest", "bypass npc_%objectId%_Quest");
+			}
 			
 			filePath = file.toURI().getPath().substring(Config.DATAPACK_ROOT.toURI().getPath().length());
 			if (Config.CHECK_HTML_ENCODING && !filePath.startsWith("data/lang") && !StandardCharsets.US_ASCII.newEncoder().canEncode(content))

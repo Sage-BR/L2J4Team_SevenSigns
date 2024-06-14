@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -73,7 +73,7 @@ public class RealDamage extends AbstractEffect
 		final double damage;
 		if (_mode == StatModifierType.DIFF)
 		{
-			damage = _power - (_power * (Math.min(effected.getStat().getMul(Stat.REAL_DAMAGE_RESIST, 1), 1.8) - 1));
+			damage = _power - (_power * (Math.min(effected.getStat().getMulValue(Stat.REAL_DAMAGE_RESIST, 1), 1.8) - 1));
 		}
 		else // PER
 		{

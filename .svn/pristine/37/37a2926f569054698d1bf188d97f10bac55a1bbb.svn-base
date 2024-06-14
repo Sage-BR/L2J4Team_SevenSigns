@@ -1,0 +1,59 @@
+/*
+ * This file is part of the L2J Mobius project.
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ */
+package org.l2jmobius.gameserver.network.serverpackets.steadybox;
+
+import org.l2jmobius.commons.network.WritableBuffer;
+import org.l2jmobius.gameserver.model.AchievementBox;
+import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.holders.AchievementBoxHolder;
+import org.l2jmobius.gameserver.network.GameClient;
+import org.l2jmobius.gameserver.network.ServerPackets;
+import org.l2jmobius.gameserver.network.serverpackets.ServerPacket;
+
+/**
+ * @author Serenitty
+ */
+public class ExSteadyAllBoxUpdate extends ServerPacket
+{
+	private final AchievementBox _achievementBox;
+	
+	public ExSteadyAllBoxUpdate(Player player)
+	{
+		_achievementBox = player.getAchievementBox();
+	}
+	
+	@Override
+	public void writeImpl(GameClient client, WritableBuffer buffer)
+	{
+		ServerPackets.EX_STEADY_ALL_BOX_UPDATE.writeId(this, buffer);
+		
+		buffer.writeInt(_achievementBox.getMonsterPoints());
+		buffer.writeInt(_achievementBox.getPvpPoints());
+		buffer.writeInt(_achievementBox.getBoxOwned());
+		
+		for (int i = 1; i <= _achievementBox.getBoxOwned(); i++)
+		{
+			final AchievementBoxHolder boxholder = _achievementBox.getAchievementBox().get(i - 1);
+			buffer.writeInt(i); //
+			buffer.writeInt(boxholder.getState().ordinal());
+			buffer.writeInt(boxholder.getType().ordinal());
+		}
+		
+		final int rewardTimeStage = (int) ((_achievementBox.getBoxOpenTime() - System.currentTimeMillis()) / 1000);
+		buffer.writeInt(rewardTimeStage > 0 ? rewardTimeStage : 0);
+	}
+}

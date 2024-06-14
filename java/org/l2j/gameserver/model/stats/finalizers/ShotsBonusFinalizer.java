@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,6 +18,7 @@ package org.l2j.gameserver.model.stats.finalizers;
 
 import java.util.OptionalDouble;
 
+import org.l2j.gameserver.enums.Race;
 import org.l2j.gameserver.model.actor.Creature;
 import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.model.item.instance.Item;
@@ -66,11 +67,24 @@ public class ShotsBonusFinalizer implements IStatFunction
 					}
 				}
 			}
-			if (player.getActiveRubyJewel() != null)
+			
+			if (isMageCaster(player))
+			{
+				if ((player.getActiveShappireJewel() != null))
+				{
+					baseValue += player.getActiveShappireJewel().getBonus();
+				}
+			}
+			else if (player.getActiveRubyJewel() != null)
 			{
 				baseValue += player.getActiveRubyJewel().getBonus();
 			}
 		}
 		return Stat.defaultValue(creature, stat, baseValue);
+	}
+	
+	private boolean isMageCaster(Player player)
+	{
+		return player.isMageClass() && (player.getRace() != Race.ORC);
 	}
 }

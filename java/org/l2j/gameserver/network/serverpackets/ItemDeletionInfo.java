@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,7 +19,9 @@ package org.l2j.gameserver.network.serverpackets;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.instancemanager.events.ItemDeletionInfoManager;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 
 /**
@@ -32,20 +34,20 @@ public class ItemDeletionInfo extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_ITEM_DELETION_INFO.writeId(this);
+		ServerPackets.EX_ITEM_DELETION_INFO.writeId(this, buffer);
 		
 		// Items.
 		final Map<Integer, Integer> itemDates = ItemDeletionInfoManager.getInstance().getItemDates();
-		writeInt(itemDates.size());
+		buffer.writeInt(itemDates.size());
 		for (Entry<Integer, Integer> info : itemDates.entrySet())
 		{
-			writeInt(info.getKey()); // item
-			writeInt(info.getValue()); // date
+			buffer.writeInt(info.getKey()); // item
+			buffer.writeInt(info.getValue()); // date
 		}
 		
 		// Skills.
-		writeInt(0);
+		buffer.writeInt(0);
 	}
 }

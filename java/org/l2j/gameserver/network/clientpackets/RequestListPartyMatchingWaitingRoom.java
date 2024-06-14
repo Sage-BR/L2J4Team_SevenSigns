@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,16 +19,14 @@ package org.l2j.gameserver.network.clientpackets;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.l2j.commons.network.ReadablePacket;
 import org.l2j.gameserver.enums.ClassId;
 import org.l2j.gameserver.model.actor.Player;
-import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.serverpackets.ExListPartyMatchingWaitingRoom;
 
 /**
  * @author Gnacik
  */
-public class RequestListPartyMatchingWaitingRoom implements ClientPacket
+public class RequestListPartyMatchingWaitingRoom extends ClientPacket
 {
 	private int _page;
 	private int _minLevel;
@@ -37,30 +35,30 @@ public class RequestListPartyMatchingWaitingRoom implements ClientPacket
 	private String _query;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_page = packet.readInt();
-		_minLevel = packet.readInt();
-		_maxLevel = packet.readInt();
-		final int size = packet.readInt();
+		_page = readInt();
+		_minLevel = readInt();
+		_maxLevel = readInt();
+		final int size = readInt();
 		if ((size > 0) && (size < 128))
 		{
 			_classId = new LinkedList<>();
 			for (int i = 0; i < size; i++)
 			{
-				_classId.add(ClassId.getClassId(packet.readInt()));
+				_classId.add(ClassId.getClassId(readInt()));
 			}
 		}
-		if (packet.getRemainingLength() > 0)
+		if (remaining() > 0)
 		{
-			_query = packet.readString();
+			_query = readString();
 		}
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
-		final Player player = client.getPlayer();
+		final Player player = getPlayer();
 		if (player == null)
 		{
 			return;

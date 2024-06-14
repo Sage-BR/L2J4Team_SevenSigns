@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,13 +17,11 @@
 package org.l2j.gameserver.network.clientpackets.newhenna;
 
 import org.l2j.Config;
-import org.l2j.commons.network.ReadablePacket;
 import org.l2j.gameserver.data.xml.HennaData;
 import org.l2j.gameserver.enums.PlayerCondOverride;
 import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.model.item.henna.Henna;
 import org.l2j.gameserver.model.item.instance.Item;
-import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.PacketLogger;
 import org.l2j.gameserver.network.SystemMessageId;
 import org.l2j.gameserver.network.clientpackets.ClientPacket;
@@ -36,25 +34,30 @@ import org.l2j.gameserver.util.Util;
 /**
  * @author Index, Serenitty
  */
-public class RequestNewHennaEquip implements ClientPacket
+public class RequestNewHennaEquip extends ClientPacket
 {
 	private int _slotId;
 	private int _symbolId;
 	private int _otherItemId;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_slotId = packet.readByte();
-		_symbolId = packet.readInt();
-		_otherItemId = packet.readInt(); // CostItemId
+		_slotId = readByte();
+		_symbolId = readInt();
+		_otherItemId = readInt(); // CostItemId
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
-		final Player player = client.getPlayer();
-		if ((player == null) || !client.getFloodProtectors().canPerformTransaction())
+		final Player player = getPlayer();
+		if (player == null)
+		{
+			return;
+		}
+		
+		if (!getClient().getFloodProtectors().canPerformTransaction())
 		{
 			return;
 		}
@@ -63,7 +66,7 @@ public class RequestNewHennaEquip implements ClientPacket
 		{
 			PacketLogger.warning(player + ": Invalid Henna error 0 Id " + _symbolId + " " + _slotId);
 			player.sendPacket(SystemMessageId.YOU_CANNOT_MAKE_A_PATTERN);
-			client.sendPacket(ActionFailed.STATIC_PACKET);
+			player.sendPacket(ActionFailed.STATIC_PACKET);
 			return;
 		}
 		
@@ -79,7 +82,7 @@ public class RequestNewHennaEquip implements ClientPacket
 		if (henna == null)
 		{
 			PacketLogger.warning(player + ": Invalid Henna SymbolId " + _symbolId + " " + _slotId + " " + item.getTemplate());
-			client.sendPacket(ActionFailed.STATIC_PACKET);
+			player.sendPacket(ActionFailed.STATIC_PACKET);
 			player.sendPacket(SystemMessageId.YOU_CANNOT_MAKE_A_PATTERN);
 			return;
 		}

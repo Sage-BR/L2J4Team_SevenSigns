@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,16 +16,21 @@
  */
 package org.l2j.gameserver.network.serverpackets;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.commons.network.WritablePacket;
+import org.l2j.commons.util.CommonUtil;
 import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.model.itemcontainer.Inventory;
+import org.l2j.gameserver.network.ConnectionState;
+import org.l2j.gameserver.network.GameClient;
+import org.l2j.gameserver.network.PacketLogger;
 
 /**
  * @author Mobius
  */
-public abstract class ServerPacket extends WritablePacket
+public abstract class ServerPacket extends WritablePacket<GameClient>
 {
-	protected static final int[] PAPERDOLL_ORDER =
+	private static final int[] PAPERDOLL_ORDER =
 	{
 		Inventory.PAPERDOLL_UNDER,
 		Inventory.PAPERDOLL_REAR,
@@ -88,13 +93,13 @@ public abstract class ServerPacket extends WritablePacket
 		Inventory.PAPERDOLL_ARTIFACT20,
 		Inventory.PAPERDOLL_ARTIFACT21,
 	};
-	protected static final int[] PAPERDOLL_ORDER_AUGMENT =
+	private static final int[] PAPERDOLL_ORDER_AUGMENT =
 	{
 		Inventory.PAPERDOLL_RHAND,
 		Inventory.PAPERDOLL_LHAND,
 		Inventory.PAPERDOLL_RHAND
 	};
-	protected static final int[] PAPERDOLL_ORDER_VISUAL_ID =
+	private static final int[] PAPERDOLL_ORDER_VISUAL_ID =
 	{
 		Inventory.PAPERDOLL_RHAND,
 		Inventory.PAPERDOLL_LHAND,
@@ -122,51 +127,44 @@ public abstract class ServerPacket extends WritablePacket
 		return PAPERDOLL_ORDER_VISUAL_ID;
 	}
 	
-	/**
-	 * Construct a ServerPacket with an initial data size of 32 bytes.
-	 */
-	protected ServerPacket()
-	{
-		super(32);
-	}
-	
-	/**
-	 * Construct a ServerPacket with a given initial data size.
-	 * @param initialSize
-	 */
-	protected ServerPacket(int initialSize)
-	{
-		super(initialSize);
-	}
-	
-	private Player _player;
-	
-	/**
-	 * @return the Player
-	 */
-	public Player getPlayer()
-	{
-		return _player;
-	}
-	
-	/**
-	 * @param player the Player to set.
-	 */
-	public void setPlayer(Player player)
-	{
-		_player = player;
-	}
-	
-	protected void writeOptionalInt(int value)
+	protected void writeOptionalInt(int value, WritableBuffer buffer)
 	{
 		if (value >= Short.MAX_VALUE)
 		{
-			writeShort(Short.MAX_VALUE);
-			writeInt(value);
+			buffer.writeShort(Short.MAX_VALUE);
+			buffer.writeInt(value);
 		}
 		else
 		{
-			writeShort(value);
+			buffer.writeShort(value);
 		}
 	}
+	
+	@Override
+	protected boolean write(GameClient client, WritableBuffer buffer)
+	{
+		final GameClient c = client;
+		if ((c == null) || c.isDetached() || (c.getConnectionState() == ConnectionState.DISCONNECTED))
+		{
+			return true; // Disconnected client.
+		}
+		
+		try
+		{
+			writeImpl(c, buffer);
+			return true;
+		}
+		catch (Exception e)
+		{
+			PacketLogger.warning("Error writing packet " + this + " to client (" + e.getMessage() + ") " + c + "]]");
+			PacketLogger.warning(CommonUtil.getStackTrace(e));
+		}
+		return false;
+	}
+	
+	public void runImpl(Player player)
+	{
+	}
+	
+	protected abstract void writeImpl(GameClient client, WritableBuffer buffer) throws Exception;
 }

@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,8 +16,10 @@
  */
 package org.l2j.gameserver.network.serverpackets.elementalspirits;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.model.ElementalSpirit;
 import org.l2j.gameserver.model.actor.Player;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 
 /**
@@ -35,33 +37,33 @@ public class ElementalSpiritInfo extends AbstractElementalSpiritPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_ELEMENTAL_SPIRIT_INFO.writeId(this);
+		ServerPackets.EX_ELEMENTAL_SPIRIT_INFO.writeId(this, buffer);
 		final ElementalSpirit[] spirits = _player.getSpirits();
 		if (spirits == null)
 		{
-			writeByte(0);
-			writeByte(0);
-			writeByte(0);
+			buffer.writeByte(0);
+			buffer.writeByte(0);
+			buffer.writeByte(0);
 			return;
 		}
 		
-		writeByte(_type); // show spirit info window 1; Change type 2; Only update 0
-		writeByte(spirits.length); // spirit count
+		buffer.writeByte(_type); // show spirit info window 1; Change type 2; Only update 0
+		buffer.writeByte(spirits.length); // spirit count
 		
 		for (ElementalSpirit spirit : spirits)
 		{
-			writeByte(spirit.getType());
-			writeByte(1);
-			writeSpiritInfo(spirit);
+			buffer.writeByte(spirit.getType());
+			buffer.writeByte(1);
+			writeSpiritInfo(buffer, spirit);
 		}
 		
-		writeInt(1); // Reset talent items count
+		buffer.writeInt(1); // Reset talent items count
 		for (int i = 0; i < 1; i++)
 		{
-			writeInt(57);
-			writeLong(50000);
+			buffer.writeInt(57);
+			buffer.writeLong(50000);
 		}
 	}
 }

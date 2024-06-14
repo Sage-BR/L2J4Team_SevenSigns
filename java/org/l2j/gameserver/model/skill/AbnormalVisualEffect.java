@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -1043,7 +1043,9 @@ public enum AbnormalVisualEffect
 	BR_TRANS_LV3_DECO(10170),
 	H_R_PROTECTION_SHIELD_AVE_2(10171),
 	Y_INFINITE_SHIELD4_AVE(10172),
-	JDK_BODY_FIRE_3(10174);
+	JDK_BODY_FIRE_3(10174),
+	MP_TWINKLE(10175),
+	SHINING_TRIANGLE(10176);
 	
 	private final int _clientId;
 	

@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,7 +16,9 @@
  */
 package org.l2j.gameserver.network.serverpackets;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.enums.HtmlActionScope;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 
 /**
@@ -30,13 +32,13 @@ public class ExPremiumManagerShowHtml extends AbstractHtmlPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_PREMIUM_MANAGER_SHOW_HTML.writeId(this);
-		writeInt(getNpcObjId());
-		writeString(getHtml());
-		writeInt(-1);
-		writeInt(0);
+		ServerPackets.EX_PREMIUM_MANAGER_SHOW_HTML.writeId(this, buffer);
+		buffer.writeInt(getNpcObjId());
+		buffer.writeString(getHtml());
+		buffer.writeInt(-1);
+		buffer.writeInt(0);
 	}
 	
 	@Override

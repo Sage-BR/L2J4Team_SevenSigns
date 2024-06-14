@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,17 +16,15 @@
  */
 package org.l2j.gameserver.network.clientpackets.shuttle;
 
-import org.l2j.commons.network.ReadablePacket;
 import org.l2j.gameserver.model.Location;
 import org.l2j.gameserver.model.actor.Player;
-import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.clientpackets.ClientPacket;
 import org.l2j.gameserver.network.serverpackets.shuttle.ExStopMoveInShuttle;
 
 /**
  * @author UnAfraid
  */
-public class CannotMoveAnymoreInShuttle implements ClientPacket
+public class CannotMoveAnymoreInShuttle extends ClientPacket
 {
 	private int _x;
 	private int _y;
@@ -35,19 +33,19 @@ public class CannotMoveAnymoreInShuttle implements ClientPacket
 	private int _boatId;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_boatId = packet.readInt();
-		_x = packet.readInt();
-		_y = packet.readInt();
-		_z = packet.readInt();
-		_heading = packet.readInt();
+		_boatId = readInt();
+		_x = readInt();
+		_y = readInt();
+		_z = readInt();
+		_heading = readInt();
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
-		final Player player = client.getPlayer();
+		final Player player = getPlayer();
 		if (player == null)
 		{
 			return;

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/multisell.xsd">
+	<npcs>
+		<npc>-1</npc> <!-- Item Multisell -->
+	</npcs>
+	<!-- Kit: Ancient Adena (Time-limited) - Sealed (98923) -->
+	<item>
+		<ingredient id="98923" count="1" /> <!-- Kit: Ancient Adena (Time-limited) - Sealed -->
+		<production id="98924" count="1" /> <!-- Kit: Ancient Adena - Elixir (Time-limited) - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98923" count="1" /> <!-- Kit: Ancient Adena (Time-limited) - Sealed -->
+		<production id="98925" count="1" /> <!-- Kit: Ancient Adena - Hidden Power (Time-limited) - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98923" count="1" /> <!-- Kit: Ancient Adena (Time-limited) - Sealed -->
+		<production id="98926" count="1" /> <!-- Kit: Ancient Adena - Special HP Recovery Potion (Time-limited) - Sealed -->
+	</item>
+</list>

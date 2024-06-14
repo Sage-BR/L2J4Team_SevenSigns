@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -62,7 +62,7 @@ public class ResidenceOfKingProcella extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onAdvEvent(String event, Npc npc, Player player)
+	public String onEvent(String event, Npc npc, Player player)
 	{
 		switch (event)
 		{
@@ -114,14 +114,14 @@ public class ResidenceOfKingProcella extends AbstractNpcAI
 				final Instance world = npc.getInstanceWorld();
 				if (world != null)
 				{
-					final Player plr = world.getPlayers().stream().findAny().orElse(null); // Usamos orElse(null) para evitar el Optional vacΓ­o
+					final Player plr = world.getPlayers().stream().findAny().orElse(null);
 					if ((plr != null) && (plr.isInsideRadius3D(npc, 100)))
 					{
 						npc.abortAttack();
 						npc.abortCast();
 						npc.setTarget(plr);
 						
-						if (plr.getKnownSkill(HURRICANE_BOLT) != null) // Verificamos si el jugador tiene la habilidad
+						if (plr.getKnownSkill(HURRICANE_BOLT) != null)
 						{
 							if (plr.getAffectedSkillLevel(HURRICANE_BOLT) == 1)
 							{

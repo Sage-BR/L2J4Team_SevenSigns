@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,26 +16,23 @@
  */
 package org.l2j.gameserver.network.loginserverpackets.login;
 
-import org.l2j.commons.network.ReadablePacket;
+import org.l2j.commons.network.base.BaseReadablePacket;
 
 /**
- * @author mrTJO Thanks to mochitto
+ * @author mrTJO, mochitto
  */
-public class RequestCharacters extends ReadablePacket
+public class RequestCharacters extends BaseReadablePacket
 {
 	private final String _account;
 	
 	public RequestCharacters(byte[] decrypt)
 	{
 		super(decrypt);
-		readByte(); // id (already processed)
+		readByte(); // Packet id, it is already processed.
 		
 		_account = readString();
 	}
 	
-	/**
-	 * @return Return account name
-	 */
 	public String getAccount()
 	{
 		return _account;

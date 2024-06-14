@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -59,11 +59,11 @@ public class frmAbout
 		frmAbout.setType(Type.UTILITY);
 		frmAbout.getContentPane().setLayout(null);
 		
-		final JLabel lblLjmobius = new JLabel("L2J4Team");
-		lblLjmobius.setFont(new Font("Tahoma", Font.PLAIN, 32));
-		lblLjmobius.setHorizontalAlignment(SwingConstants.CENTER);
-		lblLjmobius.setBounds(10, 11, 271, 39);
-		frmAbout.getContentPane().add(lblLjmobius);
+		final JLabel lblLj4team = new JLabel("L2J4Team");
+		lblLj4team.setFont(new Font("Tahoma", Font.PLAIN, 32));
+		lblLj4team.setHorizontalAlignment(SwingConstants.CENTER);
+		lblLj4team.setBounds(10, 11, 271, 39);
+		frmAbout.getContentPane().add(lblLj4team);
 		
 		final JLabel lblData = new JLabel("2013-" + Calendar.getInstance().get(Calendar.YEAR));
 		lblData.setHorizontalAlignment(SwingConstants.CENTER);

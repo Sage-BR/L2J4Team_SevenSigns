@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,33 +16,31 @@
  */
 package org.l2j.gameserver.network.clientpackets.shuttle;
 
-import org.l2j.commons.network.ReadablePacket;
 import org.l2j.gameserver.model.actor.Player;
-import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.clientpackets.ClientPacket;
 
 /**
  * @author UnAfraid
  */
-public class RequestShuttleGetOff implements ClientPacket
+public class RequestShuttleGetOff extends ClientPacket
 {
 	private int _x;
 	private int _y;
 	private int _z;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		packet.readInt(); // charId
-		_x = packet.readInt();
-		_y = packet.readInt();
-		_z = packet.readInt();
+		readInt(); // charId
+		_x = readInt();
+		_y = readInt();
+		_z = readInt();
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
-		final Player player = client.getPlayer();
+		final Player player = getPlayer();
 		if (player == null)
 		{
 			return;

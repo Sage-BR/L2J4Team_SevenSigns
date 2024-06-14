@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,7 +18,9 @@ package org.l2j.gameserver.network.serverpackets;
 
 import java.util.Set;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.model.actor.Player;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 
 /**
@@ -34,10 +36,10 @@ public class ExShowContactList extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_RECEIVE_SHOW_POST_FRIEND.writeId(this);
-		writeInt(_contacts.size());
-		_contacts.forEach(this::writeString);
+		ServerPackets.EX_RECEIVE_SHOW_POST_FRIEND.writeId(this, buffer);
+		buffer.writeInt(_contacts.size());
+		_contacts.forEach(buffer::writeString);
 	}
 }

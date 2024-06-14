@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,7 +19,9 @@ package org.l2j.gameserver.network.serverpackets;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.model.holders.NpcLogListHolder;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.NpcStringId;
 import org.l2j.gameserver.network.ServerPackets;
 
@@ -52,16 +54,16 @@ public class ExQuestNpcLogList extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_QUEST_NPC_LOG_LIST.writeId(this);
-		writeInt(_questId);
-		writeByte(_npcLogList.size());
+		ServerPackets.EX_QUEST_NPC_LOG_LIST.writeId(this, buffer);
+		buffer.writeInt(_questId);
+		buffer.writeByte(_npcLogList.size());
 		for (NpcLogListHolder holder : _npcLogList)
 		{
-			writeInt(holder.isNpcString() ? holder.getId() : holder.getId() + 1000000);
-			writeByte(holder.isNpcString());
-			writeInt(holder.getCount());
+			buffer.writeInt(holder.isNpcString() ? holder.getId() : holder.getId() + 1000000);
+			buffer.writeByte(holder.isNpcString());
+			buffer.writeInt(holder.getCount());
 		}
 	}
 }

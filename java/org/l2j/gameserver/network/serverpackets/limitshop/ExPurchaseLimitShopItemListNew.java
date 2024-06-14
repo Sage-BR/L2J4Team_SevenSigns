@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,9 +18,11 @@ package org.l2j.gameserver.network.serverpackets.limitshop;
 
 import java.util.Collection;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.model.holders.LimitShopProductHolder;
 import org.l2j.gameserver.model.variables.AccountVariables;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 import org.l2j.gameserver.network.serverpackets.ServerPacket;
 
@@ -45,73 +47,84 @@ public class ExPurchaseLimitShopItemListNew extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_PURCHASE_LIMIT_SHOP_ITEM_LIST_NEW.writeId(this);
-		writeByte(_shopType);
-		writeByte(_page); // 311
-		writeByte(_totalPages); // 311
-		writeInt(_products.size());
+		ServerPackets.EX_PURCHASE_LIMIT_SHOP_ITEM_LIST_NEW.writeId(this, buffer);
+		buffer.writeByte(_shopType);
+		buffer.writeByte(_page); // 311
+		buffer.writeByte(_totalPages); // 311
+		buffer.writeInt(_products.size());
 		for (LimitShopProductHolder product : _products)
 		{
-			writeInt(product.getId());
-			writeInt(product.getProductionId());
-			writeInt(product.getIngredientIds()[0]);
-			writeInt(product.getIngredientIds()[1]);
-			writeInt(product.getIngredientIds()[2]);
-			writeInt(product.getIngredientIds()[3]); // 306
-			writeInt(product.getIngredientIds()[4]); // 306
-			writeLong(product.getIngredientQuantities()[0]);
-			writeLong(product.getIngredientQuantities()[1]);
-			writeLong(product.getIngredientQuantities()[2]);
-			writeLong(product.getIngredientQuantities()[3]); // 306
-			writeLong(product.getIngredientQuantities()[4]); // 306
-			writeShort(product.getIngredientEnchants()[0]);
-			writeShort(product.getIngredientEnchants()[1]);
-			writeShort(product.getIngredientEnchants()[2]);
-			writeShort(product.getIngredientEnchants()[3]); // 306
-			writeShort(product.getIngredientEnchants()[4]); // 306
+			buffer.writeInt(product.getId());
+			buffer.writeInt(product.getProductionId());
+			buffer.writeInt(product.getIngredientIds()[0]);
+			buffer.writeInt(product.getIngredientIds()[1]);
+			buffer.writeInt(product.getIngredientIds()[2]);
+			buffer.writeInt(product.getIngredientIds()[3]); // 306
+			buffer.writeInt(product.getIngredientIds()[4]); // 306
+			buffer.writeLong(product.getIngredientQuantities()[0]);
+			buffer.writeLong(product.getIngredientQuantities()[1]);
+			buffer.writeLong(product.getIngredientQuantities()[2]);
+			buffer.writeLong(product.getIngredientQuantities()[3]); // 306
+			buffer.writeLong(product.getIngredientQuantities()[4]); // 306
+			buffer.writeShort(product.getIngredientEnchants()[0]);
+			buffer.writeShort(product.getIngredientEnchants()[1]);
+			buffer.writeShort(product.getIngredientEnchants()[2]);
+			buffer.writeShort(product.getIngredientEnchants()[3]); // 306
+			buffer.writeShort(product.getIngredientEnchants()[4]); // 306
 			// Check limits.
 			if (product.getAccountDailyLimit() > 0) // Sale period.
 			{
 				if (_player.getAccountVariables().getInt(AccountVariables.LCOIN_SHOP_PRODUCT_DAILY_COUNT + product.getProductionId(), 0) >= product.getAccountDailyLimit())
 				{
-					writeInt(0);
+					buffer.writeInt(0);
 				}
 				else
 				{
-					writeInt(product.getAccountDailyLimit() - _player.getAccountVariables().getInt(AccountVariables.LCOIN_SHOP_PRODUCT_DAILY_COUNT + product.getProductionId(), 0));
+					buffer.writeInt(product.getAccountDailyLimit() - _player.getAccountVariables().getInt(AccountVariables.LCOIN_SHOP_PRODUCT_DAILY_COUNT + product.getProductionId(), 0));
 				}
 			}
-			else if (product.getAccountMontlyLimit() > 0)
+			else if (product.getAccountWeeklyLimit() > 0)
 			{
-				if (_player.getAccountVariables().getInt(AccountVariables.LCOIN_SHOP_PRODUCT_MONTLY_COUNT + product.getProductionId(), 0) >= product.getAccountMontlyLimit())
+				if (_player.getAccountVariables().getInt(AccountVariables.LCOIN_SHOP_PRODUCT_WEEKLY_COUNT + product.getProductionId(), 0) >= product.getAccountWeeklyLimit())
 				{
-					writeInt(0);
+					buffer.writeInt(0);
 				}
 				else
 				{
-					writeInt(product.getAccountMontlyLimit() - _player.getAccountVariables().getInt(AccountVariables.LCOIN_SHOP_PRODUCT_MONTLY_COUNT + product.getProductionId(), 0));
+					buffer.writeInt(product.getAccountWeeklyLimit() - _player.getAccountVariables().getInt(AccountVariables.LCOIN_SHOP_PRODUCT_WEEKLY_COUNT + product.getProductionId(), 0));
+				}
+			}
+			else if (product.getAccountMonthlyLimit() > 0)
+			{
+				if (_player.getAccountVariables().getInt(AccountVariables.LCOIN_SHOP_PRODUCT_MONTHLY_COUNT + product.getProductionId(), 0) >= product.getAccountMonthlyLimit())
+				{
+					buffer.writeInt(0);
+				}
+				else
+				{
+					buffer.writeInt(product.getAccountMonthlyLimit() - _player.getAccountVariables().getInt(AccountVariables.LCOIN_SHOP_PRODUCT_MONTHLY_COUNT + product.getProductionId(), 0));
 				}
 			}
 			else if (product.getAccountBuyLimit() > 0) // Count limit.
 			{
 				if (_player.getAccountVariables().getInt(AccountVariables.LCOIN_SHOP_PRODUCT_COUNT + product.getProductionId(), 0) >= product.getAccountBuyLimit())
 				{
-					writeInt(0);
+					buffer.writeInt(0);
 				}
 				else
 				{
-					writeInt(product.getAccountBuyLimit() - _player.getAccountVariables().getInt(AccountVariables.LCOIN_SHOP_PRODUCT_COUNT + product.getProductionId(), 0));
+					buffer.writeInt(product.getAccountBuyLimit() - _player.getAccountVariables().getInt(AccountVariables.LCOIN_SHOP_PRODUCT_COUNT + product.getProductionId(), 0));
 				}
 			}
 			else // No account limits.
 			{
-				writeInt(1);
+				buffer.writeInt(1);
 			}
-			writeInt(0); // nRemainSec
-			writeInt(0); // nRemainServerItemAmount
-			writeShort(0); // sCircleNum (311)
+			buffer.writeInt(0); // nRemainSec
+			buffer.writeInt(0); // nRemainServerItemAmount
+			buffer.writeShort(0); // sCircleNum (311)
 		}
 	}
 }

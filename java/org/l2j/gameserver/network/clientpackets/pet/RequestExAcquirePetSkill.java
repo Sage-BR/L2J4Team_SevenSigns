@@ -2,35 +2,33 @@ package org.l2j.gameserver.network.clientpackets.pet;
 
 import java.util.Optional;
 
-import org.l2j.commons.network.ReadablePacket;
 import org.l2j.gameserver.data.xml.PetAcquireList;
 import org.l2j.gameserver.data.xml.SkillData;
 import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.model.actor.instance.Pet;
 import org.l2j.gameserver.model.holders.PetSkillAcquireHolder;
 import org.l2j.gameserver.model.skill.Skill;
-import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.clientpackets.ClientPacket;
 import org.l2j.gameserver.network.serverpackets.pet.ExPetSkillList;
 
 /**
  * @author Berezkin Nikolay
  */
-public class RequestExAcquirePetSkill implements ClientPacket
+public class RequestExAcquirePetSkill extends ClientPacket
 {
 	private int skillId, skillLevel;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		skillId = packet.readInt();
-		skillLevel = packet.readInt();
+		skillId = readInt();
+		skillLevel = readInt();
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
-		final Player player = client.getPlayer();
+		final Player player = getPlayer();
 		if (player == null)
 		{
 			return;

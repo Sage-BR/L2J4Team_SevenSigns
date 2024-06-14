@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,7 +16,9 @@
  */
 package org.l2j.gameserver.network.serverpackets;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.model.matching.CommandChannelMatchingRoom;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 
 /**
@@ -32,15 +34,15 @@ public class ExMPCCRoomInfo extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_MPCC_ROOM_INFO.writeId(this);
-		writeInt(_room.getId());
-		writeInt(_room.getMaxMembers());
-		writeInt(_room.getMinLevel());
-		writeInt(_room.getMaxLevel());
-		writeInt(_room.getLootType());
-		writeInt(_room.getLocation());
-		writeString(_room.getTitle());
+		ServerPackets.EX_MPCC_ROOM_INFO.writeId(this, buffer);
+		buffer.writeInt(_room.getId());
+		buffer.writeInt(_room.getMaxMembers());
+		buffer.writeInt(_room.getMinLevel());
+		buffer.writeInt(_room.getMaxLevel());
+		buffer.writeInt(_room.getLootType());
+		buffer.writeInt(_room.getLocation());
+		buffer.writeString(_room.getTitle());
 	}
 }

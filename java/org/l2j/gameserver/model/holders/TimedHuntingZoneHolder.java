@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,11 +16,7 @@
  */
 package org.l2j.gameserver.model.holders;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.l2j.gameserver.model.Location;
-import org.l2j.gameserver.model.World;
 
 /**
  * @author Mobius
@@ -46,13 +42,11 @@ public class TimedHuntingZoneHolder
 	private final boolean _useWorldPrefix;
 	private final boolean _zonePremiumUserOnly;
 	private final Location _enterLocation;
-	private final Location _subEnterLocation1;
-	private final Location _subEnterLocation2;
-	private final Location _subEnterLocation3;
 	private final Location _exitLocation;
-	private final List<MapHolder> _maps = new ArrayList<>();
+	private final boolean _isEvenWeek;
+	private final boolean _isSwapWeek;
 	
-	public TimedHuntingZoneHolder(int id, String name, int initialTime, int maximumAddedTime, int resetDelay, int entryItemId, int entryFee, int minLevel, int maxLevel, int remainRefillTime, int refillTimeMax, boolean pvpZone, boolean noPvpZone, int instanceId, boolean soloInstance, boolean weekly, boolean useWorldPrefix, boolean zonePremiumUserOnly, Location enterLocation, Location subEnterLocation1, Location subEnterLocation2, Location subEnterLocation3, Location exitLocation)
+	public TimedHuntingZoneHolder(int id, String name, int initialTime, int maximumAddedTime, int resetDelay, int entryItemId, int entryFee, int minLevel, int maxLevel, int remainRefillTime, int refillTimeMax, boolean pvpZone, boolean noPvpZone, int instanceId, boolean soloInstance, boolean weekly, boolean useWorldPrefix, boolean zonePremiumUserOnly, Location enterLocation, Location exitLocation, boolean isEvenWeek, boolean isSwapWeek)
 	{
 		_id = id;
 		_name = name;
@@ -73,33 +67,9 @@ public class TimedHuntingZoneHolder
 		_useWorldPrefix = useWorldPrefix;
 		_zonePremiumUserOnly = zonePremiumUserOnly;
 		_enterLocation = enterLocation;
-		_subEnterLocation1 = subEnterLocation1;
-		_subEnterLocation2 = subEnterLocation2;
-		_subEnterLocation3 = subEnterLocation3;
 		_exitLocation = exitLocation;
-		_maps.add(new MapHolder(getMapX(_enterLocation), getMapY(_enterLocation)));
-		if (_subEnterLocation1 != null)
-		{
-			_maps.add(new MapHolder(getMapX(_subEnterLocation1), getMapY(_subEnterLocation1)));
-		}
-		if (_subEnterLocation2 != null)
-		{
-			_maps.add(new MapHolder(getMapX(_subEnterLocation2), getMapY(_subEnterLocation2)));
-		}
-		if (_subEnterLocation3 != null)
-		{
-			_maps.add(new MapHolder(getMapX(_subEnterLocation3), getMapY(_subEnterLocation3)));
-		}
-	}
-	
-	private int getMapY(Location location)
-	{
-		return ((location.getY() - World.WORLD_Y_MIN) >> 15) + World.TILE_Y_MIN;
-	}
-	
-	private int getMapX(Location location)
-	{
-		return ((location.getX() - World.WORLD_X_MIN) >> 15) + World.TILE_X_MIN;
+		_isEvenWeek = isEvenWeek;
+		_isSwapWeek = isSwapWeek;
 	}
 	
 	public int getZoneId()
@@ -197,13 +167,18 @@ public class TimedHuntingZoneHolder
 		return _enterLocation;
 	}
 	
-	public List<MapHolder> getMaps()
-	{
-		return _maps;
-	}
-	
 	public Location getExitLocation()
 	{
 		return _exitLocation;
+	}
+	
+	public boolean isEvenWeek()
+	{
+		return _isEvenWeek;
+	}
+	
+	public boolean isSwapWeek()
+	{
+		return _isSwapWeek;
 	}
 }

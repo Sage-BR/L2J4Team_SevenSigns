@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -115,7 +115,7 @@ public class BeeHive extends AbstractNpcAI
 			// Check if already spawned.
 			for (Monster monster : World.getInstance().getVisibleObjects(killer, Monster.class))
 			{
-				if (monster.getScriptValue() == killer.getObjectId())
+				if (((monster.getId() == PET_70_MONSTER) || (monster.getId() == PET_80_MONSTER) || (monster.getId() == PLAYER_70_MONSTER) || (monster.getId() == PLAYER_80_MONSTER)) && (monster.getScriptValue() == killer.getObjectId()))
 				{
 					return super.onKill(npc, killer, isSummon);
 				}

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../xsd/multisell.xsd">
+	<npcs>
+		<npc>-1</npc> <!-- Dimensional Merchant / Everywhere -->
+	</npcs>
+	<item>
+		<ingredient id="98994" count="1" /> <!-- Pet Book Coupon - 1 Star -->
+		<production id="94469" count="1" /> <!-- Pet Book: Blocked Target Change -->
+	</item>
+	<item>
+		<ingredient id="98994" count="1" /> <!-- Pet Book Coupon - 1 Star -->
+		<production id="94471" count="1" /> <!-- Pet Book: Strong Bite -->
+	</item>
+	<item>
+		<ingredient id="98994" count="1" /> <!-- Pet Book Coupon - 1 Star -->
+		<production id="94472" count="1" /> <!-- Pet Book: Last Dire Claw -->
+	</item>
+	<item>
+		<ingredient id="98994" count="1" /> <!-- Pet Book Coupon - 1 Star -->
+		<production id="94477" count="1" /> <!-- Pet Book: Back Explosion -->
+	</item>
+	<item>
+		<ingredient id="98994" count="1" /> <!-- Pet Book Coupon - 1 Star -->
+		<production id="94475" count="1" /> <!-- Pet Book: Exploding Feather -->
+	</item>
+	<item>
+		<ingredient id="98994" count="1" /> <!-- Pet Book Coupon - 1 Star -->
+		<production id="94096" count="1" /> <!-- Regular Pet Training Guide -->
+	</item>
+</list>

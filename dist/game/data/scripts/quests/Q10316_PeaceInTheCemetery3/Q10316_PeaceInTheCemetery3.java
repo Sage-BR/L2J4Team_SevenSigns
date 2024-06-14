@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -64,7 +64,7 @@ public class Q10316_PeaceInTheCemetery3 extends Quest
 	}
 	
 	@Override
-	public String onAdvEvent(String event, Npc npc, Player player)
+	public String onEvent(String event, Npc npc, Player player)
 	{
 		switch (event)
 		{
@@ -84,19 +84,40 @@ public class Q10316_PeaceInTheCemetery3 extends Quest
 			}
 			case "TELEPORT":
 			{
-				final QuestState questState = getQuestState(player, false);
+				QuestState questState = getQuestState(player, false);
 				if (questState == null)
 				{
+					if (!canStartQuest(player))
+					{
+						break;
+					}
+					
+					questState = getQuestState(player, true);
+					
+					final NewQuestLocation questLocation = getQuestData().getLocation();
+					if (questLocation.getStartLocationId() > 0)
+					{
+						final Location location = TeleportListData.getInstance().getTeleport(questLocation.getStartLocationId()).getLocation();
+						if (teleportToQuestLocation(player, location))
+						{
+							questState.setCond(QuestCondType.ACT);
+							sendAcceptDialog(player);
+						}
+					}
 					break;
 				}
 				
 				final NewQuestLocation questLocation = getQuestData().getLocation();
 				if (questState.isCond(QuestCondType.STARTED))
 				{
-					if (questLocation.getStartLocationId() > 0)
+					if (questLocation.getQuestLocationId() > 0)
 					{
-						final Location location = TeleportListData.getInstance().getTeleport(questLocation.getStartLocationId()).getLocation();
-						teleportToQuestLocation(player, location);
+						final Location location = TeleportListData.getInstance().getTeleport(questLocation.getQuestLocationId()).getLocation();
+						if (teleportToQuestLocation(player, location) && (questLocation.getQuestLocationId() == questLocation.getEndLocationId()))
+						{
+							questState.setCond(QuestCondType.DONE);
+							sendEndDialog(player);
+						}
 					}
 				}
 				else if (questState.isCond(QuestCondType.DONE) && !questState.isCompleted())
@@ -104,7 +125,10 @@ public class Q10316_PeaceInTheCemetery3 extends Quest
 					if (questLocation.getEndLocationId() > 0)
 					{
 						final Location location = TeleportListData.getInstance().getTeleport(questLocation.getEndLocationId()).getLocation();
-						teleportToQuestLocation(player, location);
+						if (teleportToQuestLocation(player, location))
+						{
+							sendEndDialog(player);
+						}
 					}
 				}
 				break;

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/multisell.xsd">
+	<npcs>
+		<npc>-1</npc> <!-- Item Multisell -->
+	</npcs>
+	<!-- Armor of Protection Change Coupon - Sealed (100397) -->
+	<item>
+		<ingredient id="94844" count="1" /> <!-- Leather Armor of Protection -->
+		<ingredient id="92314" count="650" /> <!-- Giran Seal -->
+		<ingredient id="100397" count="1" /> <!-- Armor of Protection Change Coupon - Sealed -->
+		<production id="94840" count="1" /> <!-- Breastplate of Protection -->
+	</item>
+	<item>
+		<ingredient id="94848" count="1" /> <!-- Tunic of Protection -->
+		<ingredient id="92314" count="650" /> <!-- Giran Seal -->
+		<ingredient id="100397" count="1" /> <!-- Armor of Protection Change Coupon - Sealed -->
+		<production id="94840" count="1" /> <!-- Breastplate of Protection -->
+	</item>
+	<item>
+		<ingredient id="94840" count="1" /> <!-- Breastplate of Protection -->
+		<ingredient id="92314" count="650" /> <!-- Giran Seal -->
+		<ingredient id="100397" count="1" /> <!-- Armor of Protection Change Coupon - Sealed -->
+		<production id="94844" count="1" /> <!-- Leather Armor of Protection -->
+	</item>
+	<item>
+		<ingredient id="94848" count="1" /> <!-- Tunic of Protection -->
+		<ingredient id="92314" count="650" /> <!-- Giran Seal -->
+		<ingredient id="100397" count="1" /> <!-- Armor of Protection Change Coupon - Sealed -->
+		<production id="94844" count="1" /> <!-- Leather Armor of Protection -->
+	</item>
+	<item>
+		<ingredient id="94840" count="1" /> <!-- Breastplate of Protection -->
+		<ingredient id="92314" count="650" /> <!-- Giran Seal -->
+		<ingredient id="100397" count="1" /> <!-- Armor of Protection Change Coupon - Sealed -->
+		<production id="94848" count="1" /> <!-- Tunic of Protection -->
+	</item>
+	<item>
+		<ingredient id="94844" count="1" /> <!-- Leather Armor of Protection -->
+		<ingredient id="92314" count="650" /> <!-- Giran Seal -->
+		<ingredient id="100397" count="1" /> <!-- Armor of Protection Change Coupon - Sealed -->
+		<production id="94848" count="1" /> <!-- Tunic of Protection -->
+	</item>
+	<item>
+		<ingredient id="94845" count="1" /> <!-- Leather Leggings of Protection -->
+		<ingredient id="92314" count="650" /> <!-- Giran Seal -->
+		<ingredient id="100397" count="1" /> <!-- Armor of Protection Change Coupon - Sealed -->
+		<production id="94841" count="1" /> <!-- Gaiters of Protection -->
+	</item>
+	<item>
+		<ingredient id="94849" count="1" /> <!-- Stockings of Protection -->
+		<ingredient id="92314" count="650" /> <!-- Giran Seal -->
+		<ingredient id="100397" count="1" /> <!-- Armor of Protection Change Coupon - Sealed -->
+		<production id="94841" count="1" /> <!-- Gaiters of Protection -->
+	</item>
+	<item>
+		<ingredient id="94841" count="1" /> <!-- Gaiters of Protection -->
+		<ingredient id="92314" count="650" /> <!-- Giran Seal -->
+		<ingredient id="100397" count="1" /> <!-- Armor of Protection Change Coupon - Sealed -->
+		<production id="94845" count="1" /> <!-- Leather Leggings of Protection -->
+	</item>
+	<item>
+		<ingredient id="94849" count="1" /> <!-- Stockings of Protection -->
+		<ingredient id="92314" count="650" /> <!-- Giran Seal -->
+		<ingredient id="100397" count="1" /> <!-- Armor of Protection Change Coupon - Sealed -->
+		<production id="94845" count="1" /> <!-- Leather Leggings of Protection -->
+	</item>
+	<item>
+		<ingredient id="94841" count="1" /> <!-- Gaiters of Protection -->
+		<ingredient id="92314" count="650" /> <!-- Giran Seal -->
+		<ingredient id="100397" count="1" /> <!-- Armor of Protection Change Coupon - Sealed -->
+		<production id="94849" count="1" /> <!-- Stockings of Protection -->
+	</item>
+	<item>
+		<ingredient id="94845" count="1" /> <!-- Leather Leggings of Protection -->
+		<ingredient id="92314" count="650" /> <!-- Giran Seal -->
+		<ingredient id="100397" count="1" /> <!-- Armor of Protection Change Coupon - Sealed -->
+		<production id="94849" count="1" /> <!-- Stockings of Protection -->
+	</item>
+	<item>
+		<ingredient id="95665" count="1" /> <!-- Shield of Protection -->
+		<ingredient id="92314" count="650" /> <!-- Giran Seal -->
+		<ingredient id="100397" count="1" /> <!-- Armor of Protection Change Coupon - Sealed -->
+		<production id="95663" count="1" /> <!-- Sigil of Protection -->
+	</item>
+	<item>
+		<ingredient id="95663" count="1" /> <!-- Sigil of Protection -->
+		<ingredient id="92314" count="650" /> <!-- Giran Seal -->
+		<ingredient id="100397" count="1" /> <!-- Armor of Protection Change Coupon - Sealed -->
+		<production id="95665" count="1" /> <!-- Shield of Protection -->
+	</item>
+</list>

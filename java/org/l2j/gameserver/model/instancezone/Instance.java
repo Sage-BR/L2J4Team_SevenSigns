@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -309,7 +309,7 @@ public class Instance implements IIdentifiable, INamable
 			{
 				destroy();
 			}
-			else if ((emptyTime >= 0) && (_emptyDestroyTask == null) && (getRemainingTime() < emptyTime))
+			else if ((emptyTime >= 0) && (_emptyDestroyTask == null))
 			{
 				_emptyDestroyTask = ThreadPool.schedule(this::destroy, emptyTime);
 			}
@@ -887,6 +887,12 @@ public class Instance implements IIdentifiable, INamable
 			EventDispatcher.getInstance().notifyEvent(new OnInstanceDestroy(this), _template);
 		}
 		
+		// Set reenter time when empty time is positive and reenter type is ON_FINISH.
+		if ((_template.getEmptyDestroyTime() > 0) && (_template.getReenterType() == InstanceReenterType.ON_FINISH))
+		{
+			setReenterTime();
+		}
+		
 		removePlayers();
 		removeDoors();
 		removeNpcs();
@@ -1069,13 +1075,17 @@ public class Instance implements IIdentifiable, INamable
 			player.sendPacket(sm);
 			
 			// Start eject task
-			_ejectDeadTasks.put(player.getObjectId(), ThreadPool.schedule(() ->
+			final ScheduledFuture<?> oldTAsk = _ejectDeadTasks.put(player.getObjectId(), ThreadPool.schedule(() ->
 			{
 				if (player.isDead())
 				{
 					ejectPlayer(player.getActingPlayer());
 				}
 			}, _template.getEjectTime() * 60 * 1000)); // minutes to milliseconds
+			if (oldTAsk != null)
+			{
+				oldTAsk.cancel(true);
+			}
 		}
 	}
 	
@@ -1105,6 +1115,14 @@ public class Instance implements IIdentifiable, INamable
 			if (enter)
 			{
 				addPlayer(player);
+				
+				// Cancel _emptyDestroyTask when remaining time is bigger than empty time.
+				final long emptyTime = _template.getEmptyDestroyTime();
+				if ((_emptyDestroyTask != null) && (emptyTime > 0) && (getRemainingTime() > emptyTime))
+				{
+					_emptyDestroyTask.cancel(false);
+					_emptyDestroyTask = null;
+				}
 				
 				// Set origin return location if enabled
 				if (_template.getExitLocationType() == InstanceTeleportType.ORIGIN)
@@ -1162,7 +1180,7 @@ public class Instance implements IIdentifiable, INamable
 		removePlayer(player);
 		if (Config.RESTORE_PLAYER_INSTANCE)
 		{
-			player.getVariables().set("INSTANCE_RESTORE", _id);
+			player.getVariables().set(PlayerVariables.INSTANCE_RESTORE, _id);
 		}
 		else
 		{
@@ -1296,6 +1314,11 @@ public class Instance implements IIdentifiable, INamable
 	 */
 	private void cleanUp()
 	{
+		if (_cleanUpTask != null)
+		{
+			_cleanUpTask.cancel(true);
+		}
+		
 		if (getRemainingTime() <= TimeUnit.MINUTES.toMillis(1))
 		{
 			sendWorldDestroyMessage(1);

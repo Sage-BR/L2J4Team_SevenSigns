@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -178,6 +178,11 @@ public class EnchantScroll extends AbstractEnchantItem
 	 */
 	public double getChance(Player player, Item enchantItem)
 	{
+		if (enchantItem == null)
+		{
+			return -1;
+		}
+		
 		final int scrollGroupId = _items.getOrDefault(enchantItem.getId(), _scrollGroupId);
 		if (EnchantItemGroupsData.getInstance().getScrollGroup(scrollGroupId) == null)
 		{

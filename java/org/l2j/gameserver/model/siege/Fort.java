@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -70,11 +70,11 @@ public class Fort extends AbstractResidence
 	private Calendar _siegeDate;
 	private Calendar _lastOwnedTime;
 	private SiegeZone _zone;
-	Clan _fortOwner = null;
+	private Clan _fortOwner = null;
 	private int _fortType = 0;
 	private int _state = 0;
 	private int _castleId = 0;
-	private int _supplyLvL = 0;
+	private int _supplyLeveL = 0;
 	private final Map<Integer, FortFunction> _function = new ConcurrentHashMap<>();
 	private final ScheduledFuture<?>[] _fortUpdater = new ScheduledFuture<?>[2];
 	
@@ -97,7 +97,7 @@ public class Fort extends AbstractResidence
 	public class FortFunction
 	{
 		final int _type;
-		private int _lvl;
+		private int _level;
 		protected int _fee;
 		protected int _tempFee;
 		final long _rate;
@@ -105,10 +105,10 @@ public class Fort extends AbstractResidence
 		protected boolean _inDebt;
 		public boolean _cwh;
 		
-		public FortFunction(int type, int lvl, int lease, int tempLease, long rate, long time, boolean cwh)
+		public FortFunction(int type, int level, int lease, int tempLease, long rate, long time, boolean cwh)
 		{
 			_type = type;
-			_lvl = lvl;
+			_level = level;
 			_fee = lease;
 			_tempFee = tempLease;
 			_rate = rate;
@@ -121,9 +121,9 @@ public class Fort extends AbstractResidence
 			return _type;
 		}
 		
-		public int getLvl()
+		public int getLevel()
 		{
-			return _lvl;
+			return _level;
 		}
 		
 		public int getLease()
@@ -141,9 +141,9 @@ public class Fort extends AbstractResidence
 			return _endDate;
 		}
 		
-		public void setLvl(int lvl)
+		public void setLevel(int level)
 		{
-			_lvl = lvl;
+			_level = level;
 		}
 		
 		public void setLease(int lease)
@@ -219,7 +219,7 @@ public class Fort extends AbstractResidence
 			{
 				ps.setInt(1, getResidenceId());
 				ps.setInt(2, _type);
-				ps.setInt(3, _lvl);
+				ps.setInt(3, _level);
 				ps.setInt(4, _fee);
 				ps.setLong(5, _rate);
 				ps.setLong(6, _endDate);
@@ -423,7 +423,7 @@ public class Fort extends AbstractResidence
 			FortManager.getInstance().getFortByOwner(clan).removeOwner(true);
 		}
 		
-		setSupplyLvL(0);
+		setSupplyLeveL(0);
 		setOwnerClan(clan);
 		updateOwnerInDB(); // Update in database
 		saveFortVariables();
@@ -454,7 +454,7 @@ public class Fort extends AbstractResidence
 			clan.setFortId(0);
 			clan.broadcastToOnlineMembers(new PledgeShowInfoUpdate(clan));
 			setOwnerClan(null);
-			setSupplyLvL(0);
+			setSupplyLeveL(0);
 			saveFortVariables();
 			removeAllFunctions();
 			if (updateDB)
@@ -464,26 +464,26 @@ public class Fort extends AbstractResidence
 		}
 	}
 	
-	public void raiseSupplyLvL()
+	public void raiseSupplyLeveL()
 	{
-		_supplyLvL++;
-		if (_supplyLvL > Config.FS_MAX_SUPPLY_LEVEL)
+		_supplyLeveL++;
+		if (_supplyLeveL > Config.FS_MAX_SUPPLY_LEVEL)
 		{
-			_supplyLvL = Config.FS_MAX_SUPPLY_LEVEL;
+			_supplyLeveL = Config.FS_MAX_SUPPLY_LEVEL;
 		}
 	}
 	
-	public void setSupplyLvL(int value)
+	public void setSupplyLeveL(int value)
 	{
 		if (value <= Config.FS_MAX_SUPPLY_LEVEL)
 		{
-			_supplyLvL = value;
+			_supplyLeveL = value;
 		}
 	}
 	
-	public int getSupplyLvL()
+	public int getSupplyLeveL()
 	{
-		return _supplyLvL;
+		return _supplyLeveL;
 	}
 	
 	public void saveFortVariables()
@@ -491,7 +491,7 @@ public class Fort extends AbstractResidence
 		try (Connection con = DatabaseFactory.getConnection();
 			PreparedStatement ps = con.prepareStatement("UPDATE fort SET supplyLvL=? WHERE id = ?"))
 		{
-			ps.setInt(1, _supplyLvL);
+			ps.setInt(1, _supplyLeveL);
 			ps.setInt(2, getResidenceId());
 			ps.execute();
 		}
@@ -542,31 +542,17 @@ public class Fort extends AbstractResidence
 		loadDoorUpgrade(); // Check for any upgrade the doors may have
 	}
 	
-	public void OpenOrcFortressDoors()
+	public void openOrcFortressDoors()
 	{
-		for (Door door : _doors)
-		{
-			if (!door.isOpen())
-			{
-				door.openMe();
-				
-			}
-		}
+		DoorData.getInstance().getDoor(23170012).openMe();
 	}
 	
-	public void CloseOrcFortressDoors()
+	public void closeOrcFortressDoors()
 	{
-		for (Door door : _doors)
-		{
-			if (door.isOpen())
-			{
-				door.closeMe();
-			}
-		}
+		DoorData.getInstance().getDoor(23170012).closeMe();
 	}
 	
-	// Orc Fortress
-	public void SetOrcFortressOwnerNpcs(boolean val)
+	public void setOrcFortressOwnerNpcs(boolean val)
 	{
 		SpawnData.getInstance().getSpawns().forEach(spawnTemplate -> spawnTemplate.getGroupsByName("orc_fortress_owner_npcs").forEach(holder ->
 		{
@@ -615,7 +601,7 @@ public class Fort extends AbstractResidence
 					_fortType = rs.getInt("fortType");
 					_state = rs.getInt("state");
 					_castleId = rs.getInt("castleId");
-					_supplyLvL = rs.getInt("supplyLvL");
+					_supplyLeveL = rs.getInt("supplyLvL");
 				}
 			}
 			if (ownerId > 0)
@@ -706,29 +692,33 @@ public class Fort extends AbstractResidence
 		}
 	}
 	
-	public boolean updateFunctions(Player player, int type, int lvl, int lease, long rate, boolean addNew)
+	public boolean updateFunctions(Player player, int type, int level, int lease, long rate, boolean addNew)
 	{
-		if ((player == null) || ((lease > 0) && !player.destroyItemByItemId("Consume", Inventory.ADENA_ID, lease, null, true)))
+		if (player == null)
+		{
+			return false;
+		}
+		if ((lease > 0) && !player.destroyItemByItemId("Consume", Inventory.ADENA_ID, lease, null, true))
 		{
 			return false;
 		}
 		if (addNew)
 		{
-			_function.put(type, new FortFunction(type, lvl, lease, 0, rate, 0, false));
+			_function.put(type, new FortFunction(type, level, lease, 0, rate, 0, false));
 		}
-		else if ((lvl == 0) && (lease == 0))
+		else if ((level == 0) && (lease == 0))
 		{
 			removeFunction(type);
 		}
 		else if ((lease - _function.get(type).getLease()) > 0)
 		{
 			_function.remove(type);
-			_function.put(type, new FortFunction(type, lvl, lease, 0, rate, -1, false));
+			_function.put(type, new FortFunction(type, level, lease, 0, rate, -1, false));
 		}
 		else
 		{
 			_function.get(type).setLease(lease);
-			_function.get(type).setLvl(lvl);
+			_function.get(type).setLevel(level);
 			_function.get(type).dbSave();
 		}
 		return true;

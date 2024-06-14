@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -57,7 +57,11 @@ public class Fan implements IAffectScopeHandler
 			{
 				return false;
 			}
-			if ((c.isDead() && (targetType != TargetType.NPC_BODY) && (targetType != TargetType.PC_BODY)) || (Math.abs(Util.calculateAngleFrom(creature, c) - (headingAngle + fanStartAngle)) > fanHalfAngle))
+			if (c.isDead() && (targetType != TargetType.NPC_BODY) && (targetType != TargetType.PC_BODY))
+			{
+				return false;
+			}
+			if (Math.abs(Util.calculateAngleFrom(creature, c) - (headingAngle + fanStartAngle)) > fanHalfAngle)
 			{
 				return false;
 			}

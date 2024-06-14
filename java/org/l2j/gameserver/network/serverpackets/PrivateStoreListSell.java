@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,9 +16,11 @@
  */
 package org.l2j.gameserver.network.serverpackets;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.instancemanager.SellBuffsManager;
 import org.l2j.gameserver.model.TradeItem;
 import org.l2j.gameserver.model.actor.Player;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 
 public class PrivateStoreListSell extends AbstractItemPacket
@@ -33,7 +35,7 @@ public class PrivateStoreListSell extends AbstractItemPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
 		if (_seller.isSellingBuffs())
 		{
@@ -41,17 +43,17 @@ public class PrivateStoreListSell extends AbstractItemPacket
 		}
 		else
 		{
-			ServerPackets.PRIVATE_STORE_LIST.writeId(this);
-			writeInt(_seller.getObjectId());
-			writeInt(_seller.getSellList().isPackaged());
-			writeLong(_player.getAdena());
-			writeInt(0);
-			writeInt(_seller.getSellList().getItems().size());
+			ServerPackets.PRIVATE_STORE_LIST.writeId(this, buffer);
+			buffer.writeInt(_seller.getObjectId());
+			buffer.writeInt(_seller.getSellList().isPackaged());
+			buffer.writeLong(_player.getAdena());
+			buffer.writeInt(0);
+			buffer.writeInt(_seller.getSellList().getItems().size());
 			for (TradeItem item : _seller.getSellList().getItems())
 			{
-				writeItem(item);
-				writeLong(item.getPrice());
-				writeLong(item.getItem().getReferencePrice() * 2);
+				writeItem(item, buffer);
+				buffer.writeLong(item.getPrice());
+				buffer.writeLong(item.getItem().getReferencePrice() * 2);
 			}
 		}
 	}

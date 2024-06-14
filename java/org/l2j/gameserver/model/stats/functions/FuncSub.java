@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -27,15 +27,15 @@ import org.l2j.gameserver.model.stats.Stat;
  */
 public class FuncSub extends AbstractFunction
 {
-	public FuncSub(Stat stat, int order, Object owner, double value, Condition applayCond)
+	public FuncSub(Stat stat, int order, Object owner, double value, Condition applyCond)
 	{
-		super(stat, order, owner, value, applayCond);
+		super(stat, order, owner, value, applyCond);
 	}
 	
 	@Override
 	public double calc(Creature effector, Creature effected, Skill skill, double initVal)
 	{
-		if ((getApplayCond() == null) || getApplayCond().test(effector, effected, skill))
+		if ((getApplyCond() == null) || getApplyCond().test(effector, effected, skill))
 		{
 			return initVal - getValue();
 		}

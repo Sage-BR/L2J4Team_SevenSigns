@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,6 +16,7 @@
  */
 package org.l2j.gameserver.taskmanager;
 
+import java.util.Iterator;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -54,8 +55,11 @@ public class AttackableThinkTaskManager
 			}
 			
 			CreatureAI ai;
-			for (Attackable attackable : _attackables)
+			Attackable attackable;
+			final Iterator<Attackable> iterator = _attackables.iterator();
+			while (iterator.hasNext())
 			{
+				attackable = iterator.next();
 				if (attackable.hasAI())
 				{
 					ai = attackable.getAI();
@@ -65,12 +69,12 @@ public class AttackableThinkTaskManager
 					}
 					else
 					{
-						_attackables.remove(attackable);
+						iterator.remove();
 					}
 				}
 				else
 				{
-					_attackables.remove(attackable);
+					iterator.remove();
 				}
 			}
 		}
@@ -97,7 +101,7 @@ public class AttackableThinkTaskManager
 		
 		final Set<Attackable> pool = ConcurrentHashMap.newKeySet(POOL_SIZE);
 		pool.add(attackable);
-		ThreadPool.scheduleAtFixedRate(new AttackableThink(pool), TASK_DELAY, TASK_DELAY);
+		ThreadPool.schedulePriorityTaskAtFixedRate(new AttackableThink(pool), TASK_DELAY, TASK_DELAY);
 		POOLS.add(pool);
 	}
 	

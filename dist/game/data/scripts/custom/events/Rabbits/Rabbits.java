@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,13 +16,22 @@
  */
 package custom.events.Rabbits;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.atomic.AtomicInteger;
+
+import org.w3c.dom.Document;
+import org.w3c.dom.Node;
 
 import org.l2j.Config;
+import org.l2j.commons.time.SchedulingPattern;
 import org.l2j.commons.util.CommonUtil;
+import org.l2j.commons.util.IXmlReader;
+import org.l2j.commons.util.TimeUtil;
+import org.l2j.gameserver.model.StatSet;
 import org.l2j.gameserver.model.WorldObject;
 import org.l2j.gameserver.model.actor.Npc;
 import org.l2j.gameserver.model.actor.Player;
@@ -81,6 +90,63 @@ public class Rabbits extends Event
 		addStartNpc(NPC_MANAGER);
 		addSkillSeeId(CHEST);
 		addAttackId(CHEST);
+		
+		loadConfig();
+	}
+	
+	private void loadConfig()
+	{
+		new IXmlReader()
+		{
+			@Override
+			public void load()
+			{
+				parseDatapackFile("data/scripts/custom/events/Rabbits/config.xml");
+			}
+			
+			@Override
+			public void parseDocument(Document doc, File f)
+			{
+				final AtomicInteger count = new AtomicInteger(0);
+				forEach(doc, "event", eventNode ->
+				{
+					final StatSet att = new StatSet(parseAttributes(eventNode));
+					final String name = att.getString("name");
+					for (Node node = doc.getDocumentElement().getFirstChild(); node != null; node = node.getNextSibling())
+					{
+						switch (node.getNodeName())
+						{
+							case "schedule":
+							{
+								final StatSet attributes = new StatSet(parseAttributes(node));
+								final String pattern = attributes.getString("pattern");
+								final SchedulingPattern schedulingPattern = new SchedulingPattern(pattern);
+								final StatSet params = new StatSet();
+								params.set("Name", name);
+								params.set("SchedulingPattern", pattern);
+								final long delay = schedulingPattern.getDelayToNextFromNow();
+								getTimers().addTimer("Schedule" + count.incrementAndGet(), params, delay + 5000, null, null); // Added 5 seconds to prevent overlapping.
+								LOGGER.info("Event " + name + " scheduled at " + TimeUtil.getDateTimeString(System.currentTimeMillis() + delay));
+								break;
+							}
+						}
+					}
+				});
+			}
+		}.load();
+	}
+	
+	@Override
+	public void onTimerEvent(String event, StatSet params, Npc npc, Player player)
+	{
+		if (event.startsWith("Schedule"))
+		{
+			eventStart(null);
+			final SchedulingPattern schedulingPattern = new SchedulingPattern(params.getString("SchedulingPattern"));
+			final long delay = schedulingPattern.getDelayToNextFromNow();
+			getTimers().addTimer(event, params, delay + 5000, null, null); // Added 5 seconds to prevent overlapping.
+			LOGGER.info("Event " + params.getString("Name") + " scheduled at " + TimeUtil.getDateTimeString(System.currentTimeMillis() + delay));
+		}
 	}
 	
 	@Override
@@ -162,7 +228,7 @@ public class Rabbits extends Event
 	}
 	
 	@Override
-	public String onAdvEvent(String event, Npc npc, Player player)
+	public String onEvent(String event, Npc npc, Player player)
 	{
 		String htmltext = null;
 		switch (event)

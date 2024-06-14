@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,7 +18,9 @@ package org.l2j.gameserver.network.serverpackets;
 
 import java.util.List;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.model.Location;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 
 /**
@@ -35,24 +37,24 @@ public class ExCursedWeaponLocation extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_CURSED_WEAPON_LOCATION.writeId(this);
+		ServerPackets.EX_CURSED_WEAPON_LOCATION.writeId(this, buffer);
 		if (!_cursedWeaponInfo.isEmpty())
 		{
-			writeInt(_cursedWeaponInfo.size());
+			buffer.writeInt(_cursedWeaponInfo.size());
 			for (CursedWeaponInfo w : _cursedWeaponInfo)
 			{
-				writeInt(w.id);
-				writeInt(w.activated);
-				writeInt(w.pos.getX());
-				writeInt(w.pos.getY());
-				writeInt(w.pos.getZ());
+				buffer.writeInt(w.id);
+				buffer.writeInt(w.activated);
+				buffer.writeInt(w.pos.getX());
+				buffer.writeInt(w.pos.getY());
+				buffer.writeInt(w.pos.getZ());
 			}
 		}
 		else
 		{
-			writeInt(0);
+			buffer.writeInt(0);
 		}
 	}
 	

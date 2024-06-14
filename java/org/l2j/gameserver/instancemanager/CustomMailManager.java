@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -33,7 +33,8 @@ import org.l2j.gameserver.enums.MailType;
 import org.l2j.gameserver.model.Message;
 import org.l2j.gameserver.model.World;
 import org.l2j.gameserver.model.actor.Player;
-import org.l2j.gameserver.model.holders.ItemHolder;
+import org.l2j.gameserver.model.holders.ItemEnchantHolder;
+import org.l2j.gameserver.model.item.instance.Item;
 import org.l2j.gameserver.model.itemcontainer.Mail;
 import org.l2j.gameserver.util.Util;
 
@@ -65,29 +66,35 @@ public class CustomMailManager
 						// Create message.
 						final String items = rs.getString("items");
 						final Message msg = new Message(playerId, rs.getString("subject"), rs.getString("message"), items.length() > 0 ? MailType.PRIME_SHOP_GIFT : MailType.REGULAR);
-						final List<ItemHolder> itemHolders = new ArrayList<>();
+						final List<ItemEnchantHolder> itemHolders = new ArrayList<>();
 						for (String str : items.split(";"))
 						{
 							if (str.contains(" "))
 							{
-								final String itemId = str.split(" ")[0];
-								final String itemCount = str.split(" ")[1];
+								final String[] split = str.split(" ");
+								final String itemId = split[0];
+								final String itemCount = split[1];
+								final String enchant = split.length > 2 ? split[2] : "0";
 								if (Util.isDigit(itemId) && Util.isDigit(itemCount))
 								{
-									itemHolders.add(new ItemHolder(Integer.parseInt(itemId), Long.parseLong(itemCount)));
+									itemHolders.add(new ItemEnchantHolder(Integer.parseInt(itemId), Long.parseLong(itemCount), Integer.parseInt(enchant)));
 								}
 							}
 							else if (Util.isDigit(str))
 							{
-								itemHolders.add(new ItemHolder(Integer.parseInt(str), 1));
+								itemHolders.add(new ItemEnchantHolder(Integer.parseInt(str), 1));
 							}
 						}
 						if (!itemHolders.isEmpty())
 						{
 							final Mail attachments = msg.createAttachments();
-							for (ItemHolder itemHolder : itemHolders)
+							for (ItemEnchantHolder itemHolder : itemHolders)
 							{
-								attachments.addItem("Custom-Mail", itemHolder.getId(), itemHolder.getCount(), null, null);
+								final Item item = attachments.addItem("Custom-Mail", itemHolder.getId(), itemHolder.getCount(), null, null);
+								if (itemHolder.getEnchantLevel() > 0)
+								{
+									item.setEnchantLevel(itemHolder.getEnchantLevel());
+								}
 							}
 						}
 						

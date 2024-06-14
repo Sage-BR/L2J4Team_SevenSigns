@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -33,7 +33,7 @@ public class Rascal extends AbstractNpcAI
 	
 	// NPC STRINGS
 	private static final NpcStringId STRING_ID_01 = NpcStringId.MASTER_GUSTAV_TOOK_MY_HORSIE;
-	private static final NpcStringId STRING_ID_02 = NpcStringId.THE_HORSIE_IS_IN_THE_MANOR_I_WILL_OPEN_THE_DOORS_AND_WELL_GO_IN_AND_PLAY;
+	private static final NpcStringId STRING_ID_02 = NpcStringId.THE_HORSIE_IS_IN_THE_MANOR_I_WILL_OPEN_THE_DOORS_AND_WE_LL_GO_IN_AND_PLAY;
 	
 	private Rascal()
 	{

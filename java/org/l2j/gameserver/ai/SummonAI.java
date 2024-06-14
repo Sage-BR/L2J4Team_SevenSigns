@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -169,7 +169,12 @@ public class SummonAI extends PlayableAI implements Runnable
 	private void thinkPickUp()
 	{
 		final WorldObject target = getTarget();
-		if (checkTargetLost(target) || maybeMoveToPawn(target, 36))
+		if (checkTargetLost(target))
+		{
+			return;
+		}
+		
+		if (maybeMoveToPawn(target, 36))
 		{
 			return;
 		}
@@ -181,7 +186,12 @@ public class SummonAI extends PlayableAI implements Runnable
 	private void thinkInteract()
 	{
 		final WorldObject target = getTarget();
-		if (checkTargetLost(target) || maybeMoveToPawn(target, 36))
+		if (checkTargetLost(target))
+		{
+			return;
+		}
+		
+		if (maybeMoveToPawn(target, 36))
 		{
 			return;
 		}

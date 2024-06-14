@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,8 +21,6 @@ import java.util.concurrent.RejectedExecutionHandler;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.logging.Logger;
 
-import org.l2j.Config;
-
 /**
  * @author NB4L1
  */
@@ -38,7 +36,7 @@ public class RejectedExecutionHandlerImpl implements RejectedExecutionHandler
 			return;
 		}
 		
-		LOGGER.warning(runnable.getClass().getSimpleName() + Config.EOL + runnable + " from " + executor + " " + new RejectedExecutionException());
+		LOGGER.warning(runnable.getClass().getSimpleName() + System.lineSeparator() + runnable + " from " + executor + " " + new RejectedExecutionException());
 		
 		if (Thread.currentThread().getPriority() > Thread.NORM_PRIORITY)
 		{

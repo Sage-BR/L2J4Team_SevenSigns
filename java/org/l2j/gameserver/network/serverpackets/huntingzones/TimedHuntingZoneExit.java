@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,6 +16,10 @@
  */
 package org.l2j.gameserver.network.serverpackets.huntingzones;
 
+import org.l2j.commons.network.WritableBuffer;
+import org.l2j.gameserver.model.actor.Player;
+import org.l2j.gameserver.model.variables.PlayerVariables;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 import org.l2j.gameserver.network.serverpackets.ServerPacket;
 
@@ -32,9 +36,15 @@ public class TimedHuntingZoneExit extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_TIME_RESTRICT_FIELD_USER_EXIT.writeId(this);
-		writeInt(_zoneId);
+		ServerPackets.EX_TIME_RESTRICT_FIELD_USER_EXIT.writeId(this, buffer);
+		buffer.writeInt(_zoneId);
+	}
+	
+	@Override
+	public void runImpl(Player player)
+	{
+		player.getVariables().set(PlayerVariables.LAST_HUNTING_ZONE_ID, 0);
 	}
 }

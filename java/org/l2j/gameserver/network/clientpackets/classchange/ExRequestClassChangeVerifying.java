@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,35 +16,43 @@
  */
 package org.l2j.gameserver.network.clientpackets.classchange;
 
-import org.l2j.commons.network.ReadablePacket;
 import org.l2j.gameserver.enums.CategoryType;
 import org.l2j.gameserver.enums.ClassId;
 import org.l2j.gameserver.instancemanager.QuestManager;
 import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.model.quest.Quest;
 import org.l2j.gameserver.model.quest.QuestState;
-import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.clientpackets.ClientPacket;
 import org.l2j.gameserver.network.serverpackets.classchange.ExClassChangeSetAlarm;
 
 /**
  * @author Mobius
  */
-public class ExRequestClassChangeVerifying implements ClientPacket
+public class ExRequestClassChangeVerifying extends ClientPacket
 {
 	private int _classId;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_classId = packet.readInt();
+		_classId = readInt();
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
-		final Player player = client.getPlayer();
-		if ((player == null) || (_classId != player.getClassId().getId()) || player.isInCategory(CategoryType.FOURTH_CLASS_GROUP))
+		final Player player = getPlayer();
+		if (player == null)
+		{
+			return;
+		}
+		
+		if (_classId != player.getClassId().getId())
+		{
+			return;
+		}
+		
+		if (player.isInCategory(CategoryType.FOURTH_CLASS_GROUP))
 		{
 			return;
 		}

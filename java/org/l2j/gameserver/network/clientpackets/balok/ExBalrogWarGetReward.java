@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,19 +19,23 @@ package org.l2j.gameserver.network.clientpackets.balok;
 import org.l2j.gameserver.instancemanager.BattleWithBalokManager;
 import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.model.variables.PlayerVariables;
-import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.clientpackets.ClientPacket;
 import org.l2j.gameserver.network.serverpackets.balok.BalrogWarGetReward;
 
 /**
  * @author Serenitty
  */
-public class ExBalrogWarGetReward implements ClientPacket
+public class ExBalrogWarGetReward extends ClientPacket
 {
 	@Override
-	public void run(GameClient client)
+	protected void readImpl()
 	{
-		final Player player = client.getPlayer();
+	}
+	
+	@Override
+	protected void runImpl()
+	{
+		final Player player = getPlayer();
 		if (player == null)
 		{
 			return;

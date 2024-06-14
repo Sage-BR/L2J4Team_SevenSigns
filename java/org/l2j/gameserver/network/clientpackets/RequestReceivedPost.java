@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,11 +17,9 @@
 package org.l2j.gameserver.network.clientpackets;
 
 import org.l2j.Config;
-import org.l2j.commons.network.ReadablePacket;
 import org.l2j.gameserver.instancemanager.MailManager;
 import org.l2j.gameserver.model.Message;
 import org.l2j.gameserver.model.actor.Player;
-import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.serverpackets.ExChangePostState;
 import org.l2j.gameserver.network.serverpackets.ExReplyReceivedPost;
 import org.l2j.gameserver.util.Util;
@@ -29,20 +27,20 @@ import org.l2j.gameserver.util.Util;
 /**
  * @author Migi, DS
  */
-public class RequestReceivedPost implements ClientPacket
+public class RequestReceivedPost extends ClientPacket
 {
 	private int _msgId;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_msgId = packet.readInt();
+		_msgId = readInt();
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
-		final Player player = client.getPlayer();
+		final Player player = getPlayer();
 		if ((player == null) || !Config.ALLOW_MAIL)
 		{
 			return;

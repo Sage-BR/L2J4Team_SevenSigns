@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,9 +20,11 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.model.actor.request.EnchantItemRequest;
 import org.l2j.gameserver.model.holders.ItemHolder;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 import org.l2j.gameserver.network.serverpackets.ServerPacket;
 
@@ -83,7 +85,7 @@ public class ExResultMultiEnchantItemList extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
 		if (_player.getRequest(EnchantItemRequest.class) == null)
 		{
@@ -91,58 +93,58 @@ public class ExResultMultiEnchantItemList extends ServerPacket
 		}
 		final EnchantItemRequest request = _player.getRequest(EnchantItemRequest.class);
 		
-		ServerPackets.EX_RES_MULTI_ENCHANT_ITEM_LIST.writeId(this);
+		ServerPackets.EX_RES_MULTI_ENCHANT_ITEM_LIST.writeId(this, buffer);
 		
 		if (_error)
 		{
-			writeByte(0);
+			buffer.writeByte(0);
 			return;
 		}
 		
-		writeByte(1);
+		buffer.writeByte(1);
 		
 		/* EnchantSuccessItem */
 		if (_failureReward.size() == 0)
 		{
-			writeInt(_successEnchant.size());
+			buffer.writeInt(_successEnchant.size());
 			if (_successEnchant.size() != 0)
 			{
 				for (int[] success : _successEnchant.values())
 				{
-					writeInt(success[0]);
-					writeInt(success[1]);
+					buffer.writeInt(success[0]);
+					buffer.writeInt(success[1]);
 				}
 			}
 		}
 		else
 		{
-			writeInt(0);
+			buffer.writeInt(0);
 		}
 		
 		/* EnchantFailItem */
-		writeInt(_failureEnchant.size());
+		buffer.writeInt(_failureEnchant.size());
 		if (_failureEnchant.size() != 0)
 		{
 			for (int failure : _failureEnchant.values())
 			{
-				writeInt(failure);
-				writeInt(0);
+				buffer.writeInt(failure);
+				buffer.writeInt(0);
 			}
 		}
 		else
 		{
-			writeInt(0);
+			buffer.writeInt(0);
 		}
 		
 		/* EnchantFailRewardItem */
 		if (((_successEnchant.size() == 0) && (request.getMultiFailItemsCount() != 0)) || (_isResult && (request.getMultiFailItemsCount() != 0)))
 		{
-			writeInt(request.getMultiFailItemsCount());
+			buffer.writeInt(request.getMultiFailItemsCount());
 			_failureReward = request.getMultiEnchantFailItems();
 			for (ItemHolder failure : _failureReward.values())
 			{
-				writeInt(failure.getId());
-				writeInt((int) failure.getCount());
+				buffer.writeInt(failure.getId());
+				buffer.writeInt((int) failure.getCount());
 			}
 			if (_isResult)
 			{
@@ -153,16 +155,16 @@ public class ExResultMultiEnchantItemList extends ServerPacket
 		}
 		else
 		{
-			writeInt(0);
+			buffer.writeInt(0);
 		}
 		
 		/* EnchantFailChallengePointInfo */
 		
-		writeInt(_failChallengePointInfoList.size());
+		buffer.writeInt(_failChallengePointInfoList.size());
 		for (Entry<Integer, Integer> item : _failChallengePointInfoList.entrySet())
 		{
-			writeInt(item.getKey());
-			writeInt(item.getValue());
+			buffer.writeInt(item.getKey());
+			buffer.writeInt(item.getValue());
 		}
 	}
 }

@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,12 +17,8 @@
 package handlers.itemhandlers;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-import org.l2j.gameserver.enums.ItemGrade;
-import org.l2j.gameserver.enums.PrivateStoreType;
 import org.l2j.gameserver.handler.IItemHandler;
 import org.l2j.gameserver.model.ItemInfo;
 import org.l2j.gameserver.model.actor.Playable;
@@ -36,14 +32,6 @@ import org.l2j.gameserver.network.serverpackets.attributechange.ExChangeAttribut
  */
 public class ChangeAttributeCrystal implements IItemHandler
 {
-	private static final Map<Integer, ItemGrade> ITEM_GRADES = new HashMap<>();
-	static
-	{
-		ITEM_GRADES.put(33502, ItemGrade.S);
-		ITEM_GRADES.put(35749, ItemGrade.R);
-		ITEM_GRADES.put(45817, ItemGrade.R);
-	}
-	
 	@Override
 	public boolean useItem(Playable playable, Item item, boolean forceUse)
 	{
@@ -54,22 +42,16 @@ public class ChangeAttributeCrystal implements IItemHandler
 		}
 		
 		final Player player = playable.getActingPlayer();
-		if (player.getPrivateStoreType() != PrivateStoreType.NONE)
+		if (player.isInStoreMode())
 		{
 			player.sendPacket(SystemMessageId.YOU_CANNOT_CHANGE_AN_ATTRIBUTE_WHILE_USING_A_PRIVATE_STORE_OR_WORKSHOP);
-			return false;
-		}
-		
-		if (ITEM_GRADES.get(item.getId()) == null)
-		{
-			player.sendPacket(SystemMessageId.CHANGING_ATTRIBUTES_HAS_BEEN_FAILED);
 			return false;
 		}
 		
 		final List<ItemInfo> itemList = new ArrayList<>();
 		for (Item i : player.getInventory().getItems())
 		{
-			if (i.isWeapon() && i.hasAttributes() && (i.getTemplate().getItemGrade() == ITEM_GRADES.get(item.getId())))
+			if (i.isWeapon() && i.hasAttributes() && (i.getTemplate().getCrystalTypePlus() == item.getTemplate().getCrystalTypePlus()))
 			{
 				itemList.add(new ItemInfo(i));
 			}
@@ -81,7 +63,8 @@ public class ChangeAttributeCrystal implements IItemHandler
 			return false;
 		}
 		
-		player.sendPacket(new ExChangeAttributeItemList(item.getId(), itemList));
+		player.sendPacket(new ExChangeAttributeItemList(1, item.getId(), itemList));
+		player.sendPacket(new ExChangeAttributeItemList(0, item.getId(), itemList));
 		return true;
 	}
 }

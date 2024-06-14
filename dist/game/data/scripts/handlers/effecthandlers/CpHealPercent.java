@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -71,18 +71,21 @@ public class CpHealPercent extends AbstractEffect
 			effected.broadcastStatusUpdate(effector);
 		}
 		
-		if ((effector != null) && (effector != effected))
+		if (amount > 0)
 		{
-			final SystemMessage sm = new SystemMessage(SystemMessageId.YOU_HAVE_RECOVERED_S2_CP_WITH_C1_S_HELP);
-			sm.addString(effector.getName());
-			sm.addInt((int) amount);
-			effected.sendPacket(sm);
-		}
-		else
-		{
-			final SystemMessage sm = new SystemMessage(SystemMessageId.YOU_HAVE_RECOVERED_S1_CP);
-			sm.addInt((int) amount);
-			effected.sendPacket(sm);
+			if ((effector != null) && (effector != effected))
+			{
+				final SystemMessage sm = new SystemMessage(SystemMessageId.YOU_HAVE_RECOVERED_S2_CP_WITH_C1_S_HELP);
+				sm.addString(effector.getName());
+				sm.addInt((int) amount);
+				effected.sendPacket(sm);
+			}
+			else
+			{
+				final SystemMessage sm = new SystemMessage(SystemMessageId.YOU_HAVE_RECOVERED_S1_CP);
+				sm.addInt((int) amount);
+				effected.sendPacket(sm);
+			}
 		}
 	}
 }

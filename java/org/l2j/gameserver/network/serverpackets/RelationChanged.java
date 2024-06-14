@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,7 +19,9 @@ package org.l2j.gameserver.network.serverpackets;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.model.actor.Playable;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 
 /**
@@ -98,33 +100,33 @@ public class RelationChanged extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.RELATION_CHANGED.writeId(this);
-		writeByte(_mask);
+		ServerPackets.RELATION_CHANGED.writeId(this, buffer);
+		buffer.writeByte(_mask);
 		if (_multi == null)
 		{
-			writeRelation(_singled);
+			writeRelation(_singled, buffer);
 		}
 		else
 		{
-			writeShort(_multi.size());
+			buffer.writeShort(_multi.size());
 			for (Relation r : _multi)
 			{
-				writeRelation(r);
+				writeRelation(r, buffer);
 			}
 		}
 	}
 	
-	private void writeRelation(Relation relation)
+	private void writeRelation(Relation relation, WritableBuffer buffer)
 	{
-		writeInt(relation._objId);
+		buffer.writeInt(relation._objId);
 		if ((_mask & SEND_DEFAULT) != SEND_DEFAULT)
 		{
-			writeLong(relation._relation);
-			writeByte(relation._autoAttackable);
-			writeInt(relation._reputation);
-			writeByte(relation._pvpFlag);
+			buffer.writeLong(relation._relation);
+			buffer.writeByte(relation._autoAttackable);
+			buffer.writeInt(relation._reputation);
+			buffer.writeByte(relation._pvpFlag);
 		}
 	}
 }

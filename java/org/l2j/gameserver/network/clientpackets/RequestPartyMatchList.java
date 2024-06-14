@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,18 +16,16 @@
  */
 package org.l2j.gameserver.network.clientpackets;
 
-import org.l2j.commons.network.ReadablePacket;
 import org.l2j.gameserver.enums.MatchingRoomType;
 import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.model.matching.MatchingRoom;
 import org.l2j.gameserver.model.matching.PartyMatchingRoom;
-import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.serverpackets.PartyRoomInfo;
 
 /**
  * author: Gnacik
  */
-public class RequestPartyMatchList implements ClientPacket
+public class RequestPartyMatchList extends ClientPacket
 {
 	private int _roomId;
 	private int _maxMembers;
@@ -37,20 +35,20 @@ public class RequestPartyMatchList implements ClientPacket
 	private String _roomTitle;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_roomId = packet.readInt();
-		_maxMembers = packet.readInt();
-		_minLevel = packet.readInt();
-		_maxLevel = packet.readInt();
-		_lootType = packet.readInt();
-		_roomTitle = packet.readString();
+		_roomId = readInt();
+		_maxMembers = readInt();
+		_minLevel = readInt();
+		_maxLevel = readInt();
+		_lootType = readInt();
+		_roomTitle = readString();
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
-		final Player player = client.getPlayer();
+		final Player player = getPlayer();
 		if (player == null)
 		{
 			return;

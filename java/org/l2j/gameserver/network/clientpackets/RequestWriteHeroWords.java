@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,30 +16,33 @@
  */
 package org.l2j.gameserver.network.clientpackets;
 
-import org.l2j.commons.network.ReadablePacket;
 import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.model.olympiad.Hero;
-import org.l2j.gameserver.network.GameClient;
 
 /**
  * Format chS c (id) 0xD0 h (subid) 0x0C S the hero's words :)
  * @author -Wooden-
  */
-public class RequestWriteHeroWords implements ClientPacket
+public class RequestWriteHeroWords extends ClientPacket
 {
 	private String _heroWords;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_heroWords = packet.readString();
+		_heroWords = readString();
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
-		final Player player = client.getPlayer();
-		if ((player == null) || !player.isHero() || (_heroWords == null) || (_heroWords.length() > 300))
+		final Player player = getPlayer();
+		if ((player == null) || !player.isHero())
+		{
+			return;
+		}
+		
+		if ((_heroWords == null) || (_heroWords.length() > 300))
 		{
 			return;
 		}

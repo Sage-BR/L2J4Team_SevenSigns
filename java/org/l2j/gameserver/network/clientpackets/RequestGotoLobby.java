@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,11 +23,17 @@ import org.l2j.gameserver.network.serverpackets.CharSelectionInfo;
  * (ch)
  * @author KenM
  */
-public class RequestGotoLobby implements ClientPacket
+public class RequestGotoLobby extends ClientPacket
 {
 	@Override
-	public void run(GameClient client)
+	protected void readImpl()
 	{
+	}
+	
+	@Override
+	protected void runImpl()
+	{
+		final GameClient client = getClient();
 		client.sendPacket(new CharSelectionInfo(client.getAccountName(), client.getSessionId().playOkID1));
 	}
 }

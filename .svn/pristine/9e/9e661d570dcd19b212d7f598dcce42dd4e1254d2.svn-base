@@ -1,0 +1,15 @@
+<html><body>Additional Services' Researcher Hermin:<br>
+Hello, my name is Hermine, and I am a researcher of value-added services..<br1>
+Now the class change service is available.<br1>When you change class, some items will be dropped. Remember.<br>
+<font color="LEVEL">All previously learned skills</font><br1><font color="LEVEL">Distributed characteristics</font><br1>
+<font color="LEVEL">Bonuses for ranking</font><br1><font color="LEVEL">3 vs 3 Olympiad points and rank</font><br1>
+<font color="LEVEL">All positive effects</font><br>When you change classes you get <font color="LEVEL">Scrolls SP</font> for each level.<br>
+Note that <font color="LEVEL">all skills learned with the Spell Books and the books themselves will not return</font>.<br>
+When <font color="LEVEL">you change classes to the one you had before, all learned skills are retained, so SP Scrolls are not issued</font>.<br>
+<font color="LEVEL">The Dragon Slayer Shape, the White Guardian Transformation, the Extended Paint Potential, the Wyvern Transformation from 3 and 4 star skills, and skills gained through one-time quests will be issued as Sealed Spell Books.</font><br>
+Changing classes is a very important step, so think about it carefully.<br>
+Do you want to change classes?<br>
+<Button ALIGN="LEFT" ICON="NORMAL" action="bypass -h Quest AdditionalServicesAdvisor 34153-1.htm"><font color="LEVEL">Application for class change</font></button>
+<Button ALIGN="LEFT" ICON="TELEPORT" action="bypass -h Quest AdditionalServicesAdvisor teleport_aden">Move to Aden</button>
+<Button ALIGN="LEFT" ICON="TELEPORT" action="bypass -h Quest AdditionalServicesAdvisor teleport_giran">Move to Giran</button>
+</body></html>

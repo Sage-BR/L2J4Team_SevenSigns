@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,7 +18,7 @@ package org.l2j.loginserver.network.gameserverpackets;
 
 import java.util.logging.Logger;
 
-import org.l2j.commons.network.ReadablePacket;
+import org.l2j.commons.network.base.BaseReadablePacket;
 import org.l2j.loginserver.GameServerTable;
 import org.l2j.loginserver.GameServerTable.GameServerInfo;
 import org.l2j.loginserver.GameServerThread;
@@ -26,11 +26,11 @@ import org.l2j.loginserver.GameServerThread;
 /**
  * @author -Wooden-
  */
-public class ServerStatus extends ReadablePacket
+public class ServerStatus extends BaseReadablePacket
 {
 	protected static final Logger LOGGER = Logger.getLogger(ServerStatus.class.getName());
 	
-	// Ids
+	// Server list ids.
 	public static final int SERVER_LIST_STATUS = 0x01;
 	public static final int SERVER_TYPE = 0x02;
 	public static final int SERVER_LIST_SQUARE_BRACKET = 0x03;
@@ -38,7 +38,7 @@ public class ServerStatus extends ReadablePacket
 	public static final int TEST_SERVER = 0x05;
 	public static final int SERVER_AGE = 0x06;
 	
-	// Server Status
+	// Server status.
 	public static final int STATUS_AUTO = 0x00;
 	public static final int STATUS_GOOD = 0x01;
 	public static final int STATUS_NORMAL = 0x02;
@@ -46,7 +46,7 @@ public class ServerStatus extends ReadablePacket
 	public static final int STATUS_DOWN = 0x04;
 	public static final int STATUS_GM_ONLY = 0x05;
 	
-	// Server Types
+	// Server types.
 	public static final int SERVER_NORMAL = 0x01;
 	public static final int SERVER_RELAX = 0x02;
 	public static final int SERVER_TEST = 0x04;
@@ -55,7 +55,7 @@ public class ServerStatus extends ReadablePacket
 	public static final int SERVER_EVENT = 0x20;
 	public static final int SERVER_FREE = 0x40;
 	
-	// Server Ages
+	// Server ages.
 	public static final int SERVER_AGE_ALL = 0x00;
 	public static final int SERVER_AGE_15 = 0x0F;
 	public static final int SERVER_AGE_18 = 0x12;
@@ -66,7 +66,7 @@ public class ServerStatus extends ReadablePacket
 	public ServerStatus(byte[] decrypt, GameServerThread server)
 	{
 		super(decrypt);
-		readByte(); // id (already processed)
+		readByte(); // Packet id, it is already processed.
 		
 		final GameServerInfo gsi = GameServerTable.getInstance().getRegisteredGameServerById(server.getServerId());
 		if (gsi != null)

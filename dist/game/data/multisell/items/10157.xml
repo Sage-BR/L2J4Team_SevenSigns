@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/multisell.xsd">
+	<npcs>
+		<npc>-1</npc> <!-- Item Multisell -->
+	</npcs>
+	<!-- Manager's +7 Talisman Coupon (Time-limited) - Sealed (100101) -->
+	<item>
+		<ingredient id="100101" count="1" /> <!-- Sayha's +7 Talisman Coupon (Time-limited) - Sealed -->
+		<production id="92466" count="1" /> <!-- +7 Talisman of Speed Pack - Sealed -->
+	</item>
+	<item>
+		<ingredient id="100101" count="1" /> <!-- Sayha's +7 Talisman Coupon (Time-limited) - Sealed -->
+		<production id="92457" count="1" /> <!-- +7 Talisman of Eva Pack - Sealed -->
+	</item>
+	<item>
+		<ingredient id="100101" count="1" /> <!-- Sayha's +7 Talisman Coupon (Time-limited) - Sealed -->
+		<production id="92449" count="1" /> <!-- +7 Talisman of Aden Pack - Sealed -->
+	</item>
+	<item>
+		<ingredient id="100101" count="1" /> <!-- Sayha's +7 Talisman Coupon (Time-limited) - Sealed -->
+		<production id="94094" count="1" /> <!-- +7 Talisman of Authority Pack - Sealed -->
+	</item>
+</list>

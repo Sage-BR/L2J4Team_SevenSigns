@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,6 +19,7 @@ package org.l2j.gameserver.model.actor.stat;
 import org.l2j.gameserver.data.xml.ExperienceData;
 import org.l2j.gameserver.data.xml.PetDataTable;
 import org.l2j.gameserver.model.actor.instance.Pet;
+import org.l2j.gameserver.model.item.instance.Item;
 import org.l2j.gameserver.model.stats.Stat;
 import org.l2j.gameserver.network.SystemMessageId;
 import org.l2j.gameserver.network.serverpackets.SocialAction;
@@ -123,14 +124,16 @@ public class PetStat extends SummonStat
 		{
 			throw new IllegalArgumentException("No pet data for npc: " + getActiveChar().getTemplate().getId() + " level: " + value);
 		}
+		
 		getActiveChar().stopFeed();
 		super.setLevel(value);
-		
 		getActiveChar().startFeed();
 		
-		if (getActiveChar().getControlItem() != null)
+		final Item item = getActiveChar().getControlItem();
+		if (item != null)
 		{
-			getActiveChar().getControlItem().setEnchantLevel(getLevel());
+			item.setEnchantLevel(getLevel());
+			getActiveChar().getOwner().sendItemList();
 		}
 	}
 	

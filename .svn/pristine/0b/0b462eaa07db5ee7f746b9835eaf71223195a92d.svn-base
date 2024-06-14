@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/multisell.xsd">
+	<npcs>
+		<npc>-1</npc> <!-- Item Multisell -->
+	</npcs>
+	<!-- Jewel Coupon Lv. 4 (Time-limited) - Sealed (98798) -->
+	<item>
+		<ingredient id="98798" count="5" /> <!-- Jewel Coupon Lv. 4 (Time-limited) - Sealed -->
+		<production id="97601" count="1" /> <!-- Beryl Jewelry Box Lv. 4 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98798" count="3" /> <!-- Jewel Coupon Lv. 4 (Time-limited) - Sealed -->
+		<production id="97606" count="1" /> <!-- Onyx Jewelry Box Lv. 4 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98798" count="3" /> <!-- Jewel Coupon Lv. 4 (Time-limited) - Sealed -->
+		<production id="97611" count="1" /> <!-- Spinel Jewelry Box Lv. 4 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98798" count="3" /> <!-- Jewel Coupon Lv. 4 (Time-limited) - Sealed -->
+		<production id="97616" count="1" /> <!-- Zircon Jewelry Box Lv. 4 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98798" count="2" /> <!-- Jewel Coupon Lv. 4 (Time-limited) - Sealed -->
+		<production id="97621" count="1" /> <!-- Coral Jewelry Box Lv. 4 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98798" count="2" /> <!-- Jewel Coupon Lv. 4 (Time-limited) - Sealed -->
+		<production id="97626" count="1" /> <!-- Opal Jewelry Box Lv. 4 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98798" count="1" /> <!-- Jewel Coupon Lv. 4 (Time-limited) - Sealed -->
+		<production id="97631" count="1" /> <!-- Amber Jewelry Box Lv. 4 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98798" count="1" /> <!-- Jewel Coupon Lv. 4 (Time-limited) - Sealed -->
+		<production id="97636" count="1" /> <!-- Moonstone Jewelry Box Lv. 4 - Sealed -->
+	</item>
+</list>

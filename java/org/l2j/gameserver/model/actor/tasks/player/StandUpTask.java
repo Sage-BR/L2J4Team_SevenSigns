@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -35,10 +35,14 @@ public class StandUpTask implements Runnable
 	@Override
 	public void run()
 	{
-		if (_player != null)
+		if (_player == null)
 		{
-			_player.setSitting(false);
-			_player.getAI().setIntention(CtrlIntention.AI_INTENTION_IDLE);
+			return;
 		}
+		
+		_player.setBlockActions(false);
+		_player.setSitting(false);
+		_player.setSittingProgress(false);
+		_player.getAI().setIntention(CtrlIntention.AI_INTENTION_IDLE);
 	}
 }

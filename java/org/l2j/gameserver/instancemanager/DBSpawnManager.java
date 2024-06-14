@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,7 +20,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -34,6 +33,7 @@ import org.l2j.commons.database.DatabaseFactory;
 import org.l2j.commons.threads.ThreadPool;
 import org.l2j.commons.time.SchedulingPattern;
 import org.l2j.commons.util.Rnd;
+import org.l2j.commons.util.TimeUtil;
 import org.l2j.gameserver.data.SpawnTable;
 import org.l2j.gameserver.data.xml.NpcData;
 import org.l2j.gameserver.data.xml.SpawnData;
@@ -43,7 +43,6 @@ import org.l2j.gameserver.model.StatSet;
 import org.l2j.gameserver.model.actor.Npc;
 import org.l2j.gameserver.model.actor.templates.NpcTemplate;
 import org.l2j.gameserver.model.spawns.NpcSpawnTemplate;
-import org.l2j.gameserver.util.Util;
 
 /**
  * Database spawn manager.
@@ -243,7 +242,7 @@ public class DBSpawnManager
 			info.set("respawnTime", respawnTime);
 			if ((!_schedules.containsKey(npc.getId()) && ((respawnMinDelay > 0) || (respawnMaxDelay > 0))) || (respawnPattern != null))
 			{
-				LOGGER.info(getClass().getSimpleName() + ": Updated " + npc.getName() + " respawn time to " + Util.formatDate(new Date(respawnTime), "dd.MM.yyyy HH:mm"));
+				LOGGER.info(getClass().getSimpleName() + ": Updated " + npc.getName() + " respawn time to " + TimeUtil.getDateTimeString(respawnTime));
 				_schedules.put(npc.getId(), ThreadPool.schedule(() -> scheduleSpawn(npc.getId()), respawnDelay));
 				updateDb();
 			}
@@ -269,7 +268,11 @@ public class DBSpawnManager
 	 */
 	public void addNewSpawn(Spawn spawn, long respawnTime, double currentHP, double currentMP, boolean storeInDb)
 	{
-		if ((spawn == null) || _spawns.containsKey(spawn.getId()))
+		if (spawn == null)
+		{
+			return;
+		}
+		if (_spawns.containsKey(spawn.getId()))
 		{
 			return;
 		}
@@ -507,7 +510,7 @@ public class DBSpawnManager
 	 */
 	public String getNpcsStatus(int npcId)
 	{
-		String msg = "NPC Status..." + Config.EOL;
+		String msg = "NPC Status..." + System.lineSeparator();
 		if (_npcs == null)
 		{
 			msg += "None";

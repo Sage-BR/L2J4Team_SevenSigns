@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -263,7 +263,12 @@ public class SecondaryPasswordAuth
 	
 	private boolean validatePassword(String password)
 	{
-		if (!Util.isDigit(password) || (password.length() < 6) || (password.length() > 8))
+		if (!Util.isDigit(password))
+		{
+			return false;
+		}
+		
+		if ((password.length() < 6) || (password.length() > 8))
 		{
 			return false;
 		}

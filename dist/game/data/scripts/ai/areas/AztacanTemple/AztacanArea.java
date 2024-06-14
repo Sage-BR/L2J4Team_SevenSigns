@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -109,7 +109,7 @@ public class AztacanArea extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onAdvEvent(String event, Npc npc, Player player)
+	public String onEvent(String event, Npc npc, Player player)
 	{
 		switch (event)
 		{
@@ -134,7 +134,7 @@ public class AztacanArea extends AbstractNpcAI
 				break;
 			}
 		}
-		return super.onAdvEvent(event, npc, player);
+		return super.onEvent(event, npc, player);
 	}
 	
 	private void spawnMonsters()
@@ -229,7 +229,7 @@ public class AztacanArea extends AbstractNpcAI
 			final Player player = creature.getActingPlayer();
 			player.sendPacket(new ExSendUIEvent(player, true, false, 0, 0, NpcStringId.TIME_TILL_THE_RITUAL_END));
 		}
-		return super.onEnterZone(creature, zone);
+		return super.onExitZone(creature, zone);
 	}
 	
 	@Override

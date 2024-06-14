@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,10 +19,8 @@ package org.l2j.gameserver.network.clientpackets.enchant.multi;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.l2j.commons.network.ReadablePacket;
 import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.model.actor.request.EnchantItemRequest;
-import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.clientpackets.ClientPacket;
 import org.l2j.gameserver.network.serverpackets.enchant.multi.ExResultSetMultiEnchantItemList;
 import org.l2j.gameserver.network.serverpackets.enchant.single.ChangedEnchantTargetItemProbabilityList;
@@ -30,25 +28,25 @@ import org.l2j.gameserver.network.serverpackets.enchant.single.ChangedEnchantTar
 /**
  * @author Index
  */
-public class ExRequestSetMultiEnchantItemList implements ClientPacket
+public class ExRequestSetMultiEnchantItemList extends ClientPacket
 {
 	private int _slotId;
 	private final Map<Integer, Integer> _itemObjectId = new HashMap<>();
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_slotId = packet.readInt();
-		for (int i = 1; packet.getRemainingLength() != 0; i++)
+		_slotId = readInt();
+		for (int i = 1; remaining() != 0; i++)
 		{
-			_itemObjectId.put(i, packet.readInt());
+			_itemObjectId.put(i, readInt());
 		}
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
-		final Player player = client.getPlayer();
+		final Player player = getPlayer();
 		if (player == null)
 		{
 			return;

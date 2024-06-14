@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -43,6 +43,8 @@ public class GlobalVariablesManager extends AbstractVariables
 	
 	// Public variable names
 	public static final String DAILY_TASK_RESET = "DAILY_TASK_RESET";
+	public static final String IS_EVEN_WEEK = "IS_EVEN_WEEK";
+	public static final String NEXT_EVEN_WEEK_SWAP = "NEXT_EVEN_WEEK_SWAP";
 	public static final String MONSTER_ARENA_VARIABLE = "MA_C";
 	public static final String RANKING_POWER_COOLDOWN = "RANKING_POWER_COOLDOWN";
 	public static final String RANKING_POWER_LOCATION = "RANKING_POWER_LOCATION";

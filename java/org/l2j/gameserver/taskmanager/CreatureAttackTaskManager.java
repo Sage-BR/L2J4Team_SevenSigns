@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -164,7 +164,7 @@ public class CreatureAttackTaskManager
 		
 		final Map<Creature, ScheduledAttack> pool = new ConcurrentHashMap<>();
 		pool.put(creature, scheduledAttack);
-		ThreadPool.scheduleAtFixedRate(new ScheduleAttackTask(pool), TASK_DELAY, TASK_DELAY);
+		ThreadPool.schedulePriorityTaskAtFixedRate(new ScheduleAttackTask(pool), TASK_DELAY, TASK_DELAY);
 		ATTACK_POOLS.add(pool);
 	}
 	
@@ -183,7 +183,7 @@ public class CreatureAttackTaskManager
 		
 		final Map<Creature, ScheduledFinish> pool = new ConcurrentHashMap<>();
 		pool.put(creature, scheduledFinish);
-		ThreadPool.scheduleAtFixedRate(new ScheduleAbortTask(pool), TASK_DELAY, TASK_DELAY);
+		ThreadPool.schedulePriorityTaskAtFixedRate(new ScheduleAbortTask(pool), TASK_DELAY, TASK_DELAY);
 		FINISH_POOLS.add(pool);
 	}
 	

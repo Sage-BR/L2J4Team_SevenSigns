@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,7 +18,9 @@ package org.l2j.gameserver.network.serverpackets.ranking;
 
 import java.util.concurrent.TimeUnit;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.instancemanager.GlobalVariablesManager;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 import org.l2j.gameserver.network.serverpackets.ServerPacket;
 
@@ -32,19 +34,19 @@ public class ExRankingBuffZoneNpcInfo extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_RANKING_CHAR_BUFFZONE_NPC_INFO.writeId(this);
+		ServerPackets.EX_RANKING_CHAR_BUFFZONE_NPC_INFO.writeId(this, buffer);
 		final long cooldown = GlobalVariablesManager.getInstance().getLong(GlobalVariablesManager.RANKING_POWER_COOLDOWN, 0);
 		final long currentTime = System.currentTimeMillis();
 		if (cooldown > currentTime)
 		{
 			final long reuseTime = TimeUnit.MILLISECONDS.toSeconds(cooldown - currentTime);
-			writeInt((int) reuseTime);
+			buffer.writeInt((int) reuseTime);
 		}
 		else
 		{
-			writeInt(0);
+			buffer.writeInt(0);
 		}
 	}
 }

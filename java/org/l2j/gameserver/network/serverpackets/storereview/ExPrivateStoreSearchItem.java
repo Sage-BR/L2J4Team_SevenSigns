@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,7 +18,9 @@ package org.l2j.gameserver.network.serverpackets.storereview;
 
 import java.util.List;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.enums.PrivateStoreType;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 import org.l2j.gameserver.network.clientpackets.storereview.ExRequestPrivateStoreSearchList;
 import org.l2j.gameserver.network.clientpackets.storereview.ExRequestPrivateStoreSearchList.ShopItem;
@@ -43,26 +45,26 @@ public class ExPrivateStoreSearchItem extends AbstractItemPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_PRIVATE_STORE_SEARCH_ITEM.writeId(this);
-		writeByte(_page); // cPage
-		writeByte(_maxPage); // cMaxPage
-		writeInt(_nSize); // nSize
+		ServerPackets.EX_PRIVATE_STORE_SEARCH_ITEM.writeId(this, buffer);
+		buffer.writeByte(_page); // cPage
+		buffer.writeByte(_maxPage); // cMaxPage
+		buffer.writeInt(_nSize); // nSize
 		if (_nSize > 0)
 		{
 			for (int itemIndex = (_page - 1) * ExRequestPrivateStoreSearchList.MAX_ITEM_PER_PAGE; (itemIndex < (_page * ExRequestPrivateStoreSearchList.MAX_ITEM_PER_PAGE)) && (itemIndex < _items.size()); itemIndex++)
 			{
 				final ShopItem shopItem = _items.get(itemIndex);
-				writeSizedString(shopItem.getOwner().getName()); // Vendor name
-				writeInt(shopItem.getOwner().getObjectId());
-				writeByte(shopItem.getStoreType() == PrivateStoreType.PACKAGE_SELL ? 2 : shopItem.getStoreType() == PrivateStoreType.SELL ? 0 : 1); // store type (maybe "sold"/buy/Package (translated as Total Score...))
-				writeLong(shopItem.getPrice()); // Price
-				writeInt(shopItem.getOwner().getX()); // X
-				writeInt(shopItem.getOwner().getY()); // Y
-				writeInt(shopItem.getOwner().getZ()); // Z
-				writeInt(calculatePacketSize(shopItem.getItemInfo() /* , shopItem.getCount() */)); // size
-				writeItem(shopItem.getItemInfo(), shopItem.getCount()); // itemAssemble
+				buffer.writeSizedString(shopItem.getOwner().getName()); // Vendor name
+				buffer.writeInt(shopItem.getOwner().getObjectId());
+				buffer.writeByte(shopItem.getStoreType() == PrivateStoreType.PACKAGE_SELL ? 2 : shopItem.getStoreType() == PrivateStoreType.SELL ? 0 : 1); // store type (maybe "sold"/buy/Package (translated as Total Score...))
+				buffer.writeLong(shopItem.getPrice()); // Price
+				buffer.writeInt(shopItem.getOwner().getX()); // X
+				buffer.writeInt(shopItem.getOwner().getY()); // Y
+				buffer.writeInt(shopItem.getOwner().getZ()); // Z
+				buffer.writeInt(calculatePacketSize(shopItem.getItemInfo() /* , shopItem.getCount() */)); // size
+				writeItem(shopItem.getItemInfo(), shopItem.getCount(), buffer); // itemAssemble
 			}
 		}
 	}

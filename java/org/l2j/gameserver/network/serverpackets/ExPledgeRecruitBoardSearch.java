@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,8 +18,10 @@ package org.l2j.gameserver.network.serverpackets;
 
 import java.util.List;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.model.clan.Clan;
 import org.l2j.gameserver.model.clan.entry.PledgeRecruitInfo;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 
 /**
@@ -46,30 +48,30 @@ public class ExPledgeRecruitBoardSearch extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_PLEDGE_RECRUIT_BOARD_SEARCH.writeId(this);
-		writeInt(_currentPage);
-		writeInt(_totalNumberOfPage);
-		writeInt(_clanOnCurrentPage);
+		ServerPackets.EX_PLEDGE_RECRUIT_BOARD_SEARCH.writeId(this, buffer);
+		buffer.writeInt(_currentPage);
+		buffer.writeInt(_totalNumberOfPage);
+		buffer.writeInt(_clanOnCurrentPage);
 		for (int i = _startIndex; i < _endIndex; i++)
 		{
-			writeInt(_clanList.get(i).getClanId());
-			writeInt(_clanList.get(i).getClan().getAllyId());
+			buffer.writeInt(_clanList.get(i).getClanId());
+			buffer.writeInt(_clanList.get(i).getClan().getAllyId());
 		}
 		for (int i = _startIndex; i < _endIndex; i++)
 		{
 			final Clan clan = _clanList.get(i).getClan();
-			writeInt(clan.getCrestId());
-			writeInt(clan.getAllyCrestId());
-			writeString(clan.getName());
-			writeString(clan.getLeaderName());
-			writeInt(clan.getLevel());
-			writeInt(clan.getMembersCount());
-			writeInt(_clanList.get(i).getKarma());
-			writeString(_clanList.get(i).getInformation());
-			writeInt(_clanList.get(i).getApplicationType()); // Helios
-			writeInt(_clanList.get(i).getRecruitType()); // Helios
+			buffer.writeInt(clan.getCrestId());
+			buffer.writeInt(clan.getAllyCrestId());
+			buffer.writeString(clan.getName());
+			buffer.writeString(clan.getLeaderName());
+			buffer.writeInt(clan.getLevel());
+			buffer.writeInt(clan.getMembersCount());
+			buffer.writeInt(_clanList.get(i).getKarma());
+			buffer.writeString(_clanList.get(i).getInformation());
+			buffer.writeInt(_clanList.get(i).getApplicationType()); // Helios
+			buffer.writeInt(_clanList.get(i).getRecruitType()); // Helios
 		}
 	}
 }

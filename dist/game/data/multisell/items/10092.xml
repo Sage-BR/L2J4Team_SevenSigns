@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/multisell.xsd">
+	<npcs>
+		<npc>-1</npc> <!-- Item Multisell -->
+	</npcs>
+	<!-- +7 Boss Weapon Coupon (Sealed) (Time-limited) - Sealed (98679) -->
+	<item>
+		<ingredient id="98679" count="1" /> <!-- +7 Boss Weapon Coupon (Sealed) (Time-limited) - Sealed -->
+		<production id="98680" count="1" /> <!-- Package: +7 Zaken's Blood Sword (Sealed) - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98679" count="1" /> <!-- +7 Boss Weapon Coupon (Sealed) (Time-limited) - Sealed -->
+		<production id="98681" count="1" /> <!-- Package: +7 Core's Plasmic Bow (Sealed) - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98679" count="1" /> <!-- +7 Boss Weapon Coupon (Sealed) (Time-limited) - Sealed -->
+		<production id="98682" count="1" /> <!-- Package: +7 Orfen's Venom Sword (Sealed) - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98679" count="1" /> <!-- +7 Boss Weapon Coupon (Sealed) (Time-limited) - Sealed -->
+		<production id="98683" count="1" /> <!-- Package: +7 Baium's Thunder Breaker (Sealed) - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98679" count="1" /> <!-- +7 Boss Weapon Coupon (Sealed) (Time-limited) - Sealed -->
+		<production id="98684" count="1" /> <!-- Package: +7 Queen Ant's Stone Breaker (Sealed) - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98679" count="1" /> <!-- +7 Boss Weapon Coupon (Sealed) (Time-limited) - Sealed -->
+		<production id="98685" count="1" /> <!-- Package: +7 Anakim's Divine Pistols (Sealed) - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98679" count="1" /> <!-- +7 Boss Weapon Coupon (Sealed) (Time-limited) - Sealed -->
+		<production id="98686" count="1" /> <!-- Package: +7 Beleth' Soul Eater (Sealed) - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98679" count="1" /> <!-- +7 Boss Weapon Coupon (Sealed) (Time-limited) - Sealed -->
+		<production id="98687" count="1" /> <!-- Package: +7 Gorde's Flame Spear (Sealed) - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98679" count="1" /> <!-- +7 Boss Weapon Coupon (Sealed) (Time-limited) - Sealed -->
+		<production id="98688" count="1" /> <!-- Package: +7 Galaxia's Ancient Sword (Sealed) - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98679" count="1" /> <!-- +7 Boss Weapon Coupon (Sealed) (Time-limited) - Sealed -->
+		<production id="98689" count="1" /> <!-- Package: +7 Phiriel's Rapier (Sealed) - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98679" count="1" /> <!-- +7 Boss Weapon Coupon (Sealed) (Time-limited) - Sealed -->
+		<production id="98690" count="1" /> <!-- Package: +7 Anais' Fists (Sealed) - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98679" count="1" /> <!-- +7 Boss Weapon Coupon (Sealed) (Time-limited) - Sealed -->
+		<production id="98691" count="1" /> <!-- Package: +7 Juriel's Dual Swords (Sealed) - Sealed -->
+	</item>
+</list>

@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,20 +16,18 @@
  */
 package org.l2j.gameserver.network.clientpackets;
 
-import org.l2j.commons.network.ReadablePacket;
 import org.l2j.gameserver.instancemanager.ClanEntryManager;
 import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.model.clan.Clan;
 import org.l2j.gameserver.model.clan.ClanPrivilege;
 import org.l2j.gameserver.model.clan.entry.PledgeRecruitInfo;
-import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.SystemMessageId;
 import org.l2j.gameserver.network.serverpackets.SystemMessage;
 
 /**
  * @author Sdw
  */
-public class RequestPledgeRecruitBoardAccess implements ClientPacket
+public class RequestPledgeRecruitBoardAccess extends ClientPacket
 {
 	private int _applyType;
 	private int _karma;
@@ -39,27 +37,33 @@ public class RequestPledgeRecruitBoardAccess implements ClientPacket
 	private int _recruitingType;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_applyType = packet.readInt();
-		_karma = packet.readInt();
-		_information = packet.readString();
-		_datailedInformation = packet.readString();
-		_applicationType = packet.readInt(); // 0 - Allow, 1 - Public
-		_recruitingType = packet.readInt(); // 0 - Main clan
+		_applyType = readInt();
+		_karma = readInt();
+		_information = readString();
+		_datailedInformation = readString();
+		_applicationType = readInt(); // 0 - Allow, 1 - Public
+		_recruitingType = readInt(); // 0 - Main clan
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
-		final Player player = client.getPlayer();
+		final Player player = getPlayer();
 		if (player == null)
 		{
 			return;
 		}
 		
 		final Clan clan = player.getClan();
-		if ((clan == null) || !player.hasClanPrivilege(ClanPrivilege.CL_MANAGE_RANKS))
+		if (clan == null)
+		{
+			player.sendPacket(SystemMessageId.ONLY_THE_CLAN_LEADER_OR_SOMEONE_WITH_RANK_MANAGEMENT_AUTHORITY_MAY_REGISTER_THE_CLAN);
+			return;
+		}
+		
+		if (!player.hasClanPrivilege(ClanPrivilege.CL_MANAGE_RANKS))
 		{
 			player.sendPacket(SystemMessageId.ONLY_THE_CLAN_LEADER_OR_SOMEONE_WITH_RANK_MANAGEMENT_AUTHORITY_MAY_REGISTER_THE_CLAN);
 			return;

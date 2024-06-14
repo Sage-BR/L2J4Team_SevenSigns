@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,16 +23,20 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.LineNumberReader;
+import java.net.InetSocketAddress;
 import java.security.GeneralSecurityException;
 import java.util.logging.Level;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
+import javax.swing.UIManager;
+
 import org.l2j.Config;
 import org.l2j.commons.database.DatabaseBackup;
 import org.l2j.commons.database.DatabaseFactory;
 import org.l2j.commons.enums.ServerMode;
-import org.l2j.commons.network.NetServer;
+import org.l2j.commons.network.ConnectionBuilder;
+import org.l2j.commons.network.ConnectionHandler;
 import org.l2j.commons.threads.ThreadPool;
 import org.l2j.commons.util.PropertiesParser;
 import org.l2j.gameserver.network.loginserverpackets.game.ServerStatus;
@@ -45,12 +49,11 @@ import org.l2j.loginserver.ui.Gui;
  */
 public class LoginServer
 {
-	public Logger LOGGER = Logger.getLogger(LoginServer.class.getName());
+	public static final Logger LOGGER = Logger.getLogger(LoginServer.class.getName());
 	
 	public static final int PROTOCOL_REV = 0x0106;
 	private static LoginServer INSTANCE;
 	private GameServerListener _gameServerListener;
-	private Thread _restartLoginServer;
 	private static int _loginStatus = ServerStatus.STATUS_NORMAL;
 	
 	public static void main(String[] args) throws Exception
@@ -65,22 +68,22 @@ public class LoginServer
 	
 	private LoginServer() throws Exception
 	{
-		// GUI
+		// GUI.
 		final PropertiesParser interfaceConfig = new PropertiesParser(Config.INTERFACE_CONFIG_FILE);
 		Config.ENABLE_GUI = interfaceConfig.getBoolean("EnableGUI", true);
 		if (Config.ENABLE_GUI && !GraphicsEnvironment.isHeadless())
 		{
 			Config.DARK_THEME = interfaceConfig.getBoolean("DarkTheme", true);
 			System.out.println("LoginServer: Running in GUI mode.");
+			UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
 			new Gui();
 		}
 		
-		// Create log folder
+		// Create log folder.
 		final File logFolder = new File(".", "log");
 		logFolder.mkdir();
 		
-		// Create input stream for log file -- or store file data into memory
-		
+		// Create input stream for log file -- or store file data into memory.
 		try (InputStream is = new FileInputStream(new File("./log.cfg")))
 		{
 			LogManager.getLogManager().readConfiguration(is);
@@ -90,10 +93,10 @@ public class LoginServer
 			LOGGER.warning(getClass().getSimpleName() + ": " + e.getMessage());
 		}
 		
-		// Load Config
+		// Load Config.
 		Config.load(ServerMode.LOGIN);
 		
-		// Prepare Database
+		// Prepare the database.
 		DatabaseFactory.init();
 		
 		// Initialize ThreadPool.
@@ -115,10 +118,8 @@ public class LoginServer
 		
 		if (Config.LOGIN_SERVER_SCHEDULE_RESTART)
 		{
-			LOGGER.info("Scheduled LS restart after " + Config.LOGIN_SERVER_SCHEDULE_RESTART_TIME + " hours");
-			_restartLoginServer = new LoginServerRestart();
-			_restartLoginServer.setDaemon(true);
-			_restartLoginServer.start();
+			LOGGER.info("Scheduled LS restart after " + Config.LOGIN_SERVER_SCHEDULE_RESTART_TIME + " hours.");
+			ThreadPool.schedule(() -> shutdown(true), Config.LOGIN_SERVER_SCHEDULE_RESTART_TIME * 3600000);
 		}
 		
 		try
@@ -133,18 +134,9 @@ public class LoginServer
 			System.exit(1);
 		}
 		
-		final NetServer<LoginClient> server = new NetServer<>(Config.LOGIN_BIND_ADDRESS, Config.PORT_LOGIN, new LoginPacketHandler(), LoginClient::new);
-		server.setName(getClass().getSimpleName());
-		server.getNetConfig().setReadPoolSize(Config.CLIENT_READ_POOL_SIZE);
-		server.getNetConfig().setSendPoolSize(Config.CLIENT_SEND_POOL_SIZE);
-		server.getNetConfig().setExecutePoolSize(Config.CLIENT_EXECUTE_POOL_SIZE);
-		server.getNetConfig().setPacketQueueLimit(Config.PACKET_QUEUE_LIMIT);
-		server.getNetConfig().setPacketFloodDisconnect(Config.PACKET_FLOOD_DISCONNECT);
-		server.getNetConfig().setPacketFloodDrop(Config.PACKET_FLOOD_DROP);
-		server.getNetConfig().setPacketFloodLogged(Config.PACKET_FLOOD_LOGGED);
-		server.getNetConfig().setFailedDecryptionLogged(Config.FAILED_DECRYPTION_LOGGED);
-		server.getNetConfig().setTcpNoDelay(Config.TCP_NO_DELAY);
-		server.start();
+		final ConnectionHandler<LoginClient> connectionHandlerClients = new ConnectionBuilder<>(new InetSocketAddress(Config.LOGIN_BIND_ADDRESS, Config.PORT_LOGIN), LoginClient::new, new LoginPacketHandler(), ThreadPool::execute).build();
+		connectionHandlerClients.start();
+		LOGGER.info(getClass().getSimpleName() + ": is now listening on: " + Config.LOGIN_BIND_ADDRESS + ":" + Config.PORT_LOGIN);
 	}
 	
 	public GameServerListener getGameServerListener()
@@ -161,41 +153,36 @@ public class LoginServer
 				InputStreamReader is = new InputStreamReader(fis);
 				LineNumberReader lnr = new LineNumberReader(is))
 			{
-				//@formatter:off
-				lnr.lines()
-					.map(String::trim)
-					.filter(l -> !l.isEmpty() && (l.charAt(0) != '#'))
-					.forEach(lineValue ->
+				lnr.lines().map(String::trim).filter(l -> !l.isEmpty() && (l.charAt(0) != '#')).forEach(lineValue ->
+				{
+					String line = lineValue;
+					String[] parts = line.split("#", 2); // address[ duration][ # comments]
+					line = parts[0];
+					parts = line.split("\\s+"); // Durations might be aligned via multiple spaces.
+					final String address = parts[0];
+					long duration = 0;
+					if (parts.length > 1)
 					{
-						String line = lineValue; 
-						String[] parts = line.split("#", 2); // address[ duration][ # comments]
-						line = parts[0];
-						parts = line.split("\\s+"); // durations might be aligned via multiple spaces
-						final String address = parts[0];
-						long duration = 0;
-						if (parts.length > 1)
-						{
-							try
-							{
-								duration = Long.parseLong(parts[1]);
-							}
-							catch (NumberFormatException nfe)
-							{
-								LOGGER.warning("Skipped: Incorrect ban duration (" + parts[1] + ") on (" + bannedFile.getName() + "). Line: " + lnr.getLineNumber());
-								return;
-							}
-						}
-						
 						try
 						{
-							LoginController.getInstance().addBanForAddress(address, duration);
+							duration = Long.parseLong(parts[1]);
 						}
-						catch (Exception e)
+						catch (NumberFormatException nfe)
 						{
-							LOGGER.warning("Skipped: Invalid address (" + address + ") on (" + bannedFile.getName() + "). Line: " + lnr.getLineNumber());
+							LOGGER.warning("Skipped: Incorrect ban duration (" + parts[1] + ") on (" + bannedFile.getName() + "). Line: " + lnr.getLineNumber());
+							return;
 						}
-					});
-				//@formatter:on
+					}
+					
+					try
+					{
+						LoginController.getInstance().addBanForAddress(address, duration);
+					}
+					catch (Exception e)
+					{
+						LOGGER.warning("Skipped: Invalid address (" + address + ") on (" + bannedFile.getName() + "). Line: " + lnr.getLineNumber());
+					}
+				});
 			}
 			catch (IOException e)
 			{
@@ -206,31 +193,6 @@ public class LoginServer
 		else
 		{
 			LOGGER.warning("IP Bans file (" + bannedFile.getName() + ") is missing or is a directory, skipped.");
-		}
-	}
-	
-	class LoginServerRestart extends Thread
-	{
-		public LoginServerRestart()
-		{
-			setName("LoginServerRestart");
-		}
-		
-		@Override
-		public void run()
-		{
-			while (!isInterrupted())
-			{
-				try
-				{
-					Thread.sleep(Config.LOGIN_SERVER_SCHEDULE_RESTART_TIME * 3600000);
-				}
-				catch (InterruptedException e)
-				{
-					return;
-				}
-				shutdown(true);
-			}
 		}
 	}
 	

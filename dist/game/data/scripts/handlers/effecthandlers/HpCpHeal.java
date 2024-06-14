@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -123,14 +123,20 @@ public class HpCpHeal extends AbstractEffect
 		
 		// Additional potion HP.
 		double additionalHp = 0;
+		double additionalHpPer = 1;
 		
 		// Additional potion CP.
 		double additionalCp = 0;
+		double additionalCpPer = 1;
 		
-		if ((item != null) && (item.isPotion() || item.isElixir()))
+		final boolean isPotion = (item != null) && (item.isPotion() || item.isElixir());
+		if (isPotion)
 		{
 			additionalHp = effected.getStat().getValue(Stat.ADDITIONAL_POTION_HP, 0);
 			additionalCp = effected.getStat().getValue(Stat.ADDITIONAL_POTION_CP, 0);
+			
+			additionalHpPer = ((effected.getStat().getValue(Stat.ADDITIONAL_POTION_HP_PER, 0) / 100) + 1);
+			additionalCpPer = ((effected.getStat().getValue(Stat.ADDITIONAL_POTION_CP_PER, 0) / 100) + 1);
 			
 			// Classic Potion Mastery
 			// TODO: Create an effect if more mastery skills are added.
@@ -138,7 +144,7 @@ public class HpCpHeal extends AbstractEffect
 		}
 		
 		// Prevents overheal and negative amount
-		final double healAmount = Math.max(Math.min(amount, effected.getMaxRecoverableHp() - effected.getCurrentHp()), 0);
+		final double healAmount = Math.max(Math.min(amount * (isPotion ? additionalHpPer : 1), effected.getMaxRecoverableHp() - effected.getCurrentHp()), 0);
 		if (healAmount != 0)
 		{
 			final double newHp = healAmount + effected.getCurrentHp();
@@ -166,7 +172,7 @@ public class HpCpHeal extends AbstractEffect
 		// CP recovery.
 		if (effected.isPlayer())
 		{
-			amount = Math.max(Math.min(amount - healAmount, effected.getMaxRecoverableCp() - effected.getCurrentCp()), 0);
+			amount = Math.max(Math.min((amount - healAmount) * (isPotion ? additionalCpPer : 1), effected.getMaxRecoverableCp() - effected.getCurrentCp()), 0);
 			if (amount != 0)
 			{
 				final double newCp = amount + effected.getCurrentCp();

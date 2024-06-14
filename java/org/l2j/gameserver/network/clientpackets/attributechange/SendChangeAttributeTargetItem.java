@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,10 +16,8 @@
  */
 package org.l2j.gameserver.network.clientpackets.attributechange;
 
-import org.l2j.commons.network.ReadablePacket;
 import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.model.item.instance.Item;
-import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.clientpackets.ClientPacket;
 import org.l2j.gameserver.network.serverpackets.ActionFailed;
 import org.l2j.gameserver.network.serverpackets.attributechange.ExChangeAttributeInfo;
@@ -27,22 +25,22 @@ import org.l2j.gameserver.network.serverpackets.attributechange.ExChangeAttribut
 /**
  * @author Mobius
  */
-public class SendChangeAttributeTargetItem implements ClientPacket
+public class SendChangeAttributeTargetItem extends ClientPacket
 {
 	private int _crystalItemId;
 	private int _itemObjId;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_crystalItemId = packet.readInt();
-		_itemObjId = packet.readInt();
+		_crystalItemId = readInt();
+		_itemObjId = readInt();
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
-		final Player player = client.getPlayer();
+		final Player player = getPlayer();
 		if (player == null)
 		{
 			return;

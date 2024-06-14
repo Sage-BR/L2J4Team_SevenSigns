@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,7 +16,9 @@
  */
 package org.l2j.gameserver.network.serverpackets.appearance;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.model.actor.Player;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 import org.l2j.gameserver.network.serverpackets.ServerPacket;
 
@@ -41,13 +43,13 @@ public class ExCuriousHouseMemberUpdate extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_CURIOUS_HOUSE_MEMBER_UPDATE.writeId(this);
-		writeInt(_objId);
-		writeInt(_maxHp);
-		writeInt(_maxCp);
-		writeInt(_currentHp);
-		writeInt(_currentCp);
+		ServerPackets.EX_CURIOUS_HOUSE_MEMBER_UPDATE.writeId(this, buffer);
+		buffer.writeInt(_objId);
+		buffer.writeInt(_maxHp);
+		buffer.writeInt(_maxCp);
+		buffer.writeInt(_currentHp);
+		buffer.writeInt(_currentCp);
 	}
 }

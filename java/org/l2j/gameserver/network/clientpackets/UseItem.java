@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,7 +20,6 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.l2j.Config;
-import org.l2j.commons.network.ReadablePacket;
 import org.l2j.commons.threads.ThreadPool;
 import org.l2j.gameserver.ai.CtrlEvent;
 import org.l2j.gameserver.ai.CtrlIntention;
@@ -28,7 +27,6 @@ import org.l2j.gameserver.ai.NextAction;
 import org.l2j.gameserver.data.xml.EnchantItemGroupsData;
 import org.l2j.gameserver.enums.IllegalActionPunishmentType;
 import org.l2j.gameserver.enums.ItemSkillType;
-import org.l2j.gameserver.enums.PrivateStoreType;
 import org.l2j.gameserver.enums.Race;
 import org.l2j.gameserver.handler.AdminCommandHandler;
 import org.l2j.gameserver.handler.IItemHandler;
@@ -51,7 +49,6 @@ import org.l2j.gameserver.model.item.type.ActionType;
 import org.l2j.gameserver.model.item.type.ArmorType;
 import org.l2j.gameserver.model.item.type.WeaponType;
 import org.l2j.gameserver.model.zone.ZoneId;
-import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.PacketLogger;
 import org.l2j.gameserver.network.SystemMessageId;
 import org.l2j.gameserver.network.serverpackets.ActionFailed;
@@ -63,25 +60,30 @@ import org.l2j.gameserver.network.serverpackets.ensoul.ExShowEnsoulWindow;
 import org.l2j.gameserver.network.serverpackets.variation.ExShowVariationMakeWindow;
 import org.l2j.gameserver.util.Util;
 
-public class UseItem implements ClientPacket
+public class UseItem extends ClientPacket
 {
 	private int _objectId;
 	private boolean _ctrlPressed;
 	private int _itemId;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_objectId = packet.readInt();
-		_ctrlPressed = packet.readInt() != 0;
+		_objectId = readInt();
+		_ctrlPressed = readInt() != 0;
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
-		final Player player = client.getPlayer();
+		final Player player = getPlayer();
+		if (player == null)
+		{
+			return;
+		}
+		
 		// Flood protect UseItem
-		if ((player == null) || !client.getFloodProtectors().canUseItem())
+		if (!getClient().getFloodProtectors().canUseItem())
 		{
 			return;
 		}
@@ -97,7 +99,7 @@ public class UseItem implements ClientPacket
 			player.cancelActiveTrade();
 		}
 		
-		if (player.getPrivateStoreType() != PrivateStoreType.NONE)
+		if (player.isInStoreMode())
 		{
 			player.sendPacket(SystemMessageId.WHILE_OPERATING_A_PRIVATE_STORE_OR_WORKSHOP_YOU_CANNOT_DISCARD_DESTROY_OR_TRADE_AN_ITEM);
 			player.sendPacket(ActionFailed.STATIC_PACKET);

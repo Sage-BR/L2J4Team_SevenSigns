@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,6 +19,8 @@ package org.l2j.gameserver.network.serverpackets.enchant.single;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.l2j.commons.network.WritableBuffer;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 import org.l2j.gameserver.network.serverpackets.ServerPacket;
 
@@ -41,18 +43,18 @@ public class ExChangedEnchantTargetItemProbList extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_CHANGED_ENCHANT_TARGET_ITEM_PROB_LIST.writeId(this);
+		ServerPackets.EX_CHANGED_ENCHANT_TARGET_ITEM_PROB_LIST.writeId(this, buffer);
 		
-		writeInt(_probList.size()); // vProbList;
+		buffer.writeInt(_probList.size()); // vProbList;
 		for (EnchantProbInfo info : _probList)
 		{
-			writeInt(info.itemObjId); // nItemServerId;
-			writeInt(info.totalSuccessProb);// nTotalSuccessProbPermyriad;
-			writeInt(info.baseProb);// nBaseProbPermyriad;
-			writeInt(info.supportProb);// nSupportProbPermyriad;
-			writeInt(info.itemSkillProb);// nItemSkillProbPermyriad;
+			buffer.writeInt(info.itemObjId); // nItemServerId;
+			buffer.writeInt(info.totalSuccessProb);// nTotalSuccessProbPermyriad;
+			buffer.writeInt(info.baseProb);// nBaseProbPermyriad;
+			buffer.writeInt(info.supportProb);// nSupportProbPermyriad;
+			buffer.writeInt(info.itemSkillProb);// nItemSkillProbPermyriad;
 		}
 	}
 	

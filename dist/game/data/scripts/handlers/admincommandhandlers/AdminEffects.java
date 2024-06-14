@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -680,7 +680,12 @@ public class AdminEffects implements IAdminCommandHandler
 		{
 			if (target.isCreature())
 			{
-				if ((target instanceof Chest) || ((target.isNpc()) && ((action < 1) || (action > 20))))
+				if (target instanceof Chest)
+				{
+					activeChar.sendPacket(SystemMessageId.NOTHING_HAPPENED);
+					return false;
+				}
+				if ((target.isNpc()) && ((action < 1) || (action > 20)))
 				{
 					activeChar.sendPacket(SystemMessageId.NOTHING_HAPPENED);
 					return false;

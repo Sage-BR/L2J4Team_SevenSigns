@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,9 +16,9 @@
  */
 package org.l2j.gameserver.network.loginserverpackets.login;
 
-import org.l2j.commons.network.ReadablePacket;
+import org.l2j.commons.network.base.BaseReadablePacket;
 
-public class InitLS extends ReadablePacket
+public class InitLS extends BaseReadablePacket
 {
 	private final int _rev;
 	private final byte[] _key;
@@ -33,13 +33,10 @@ public class InitLS extends ReadablePacket
 		return _key;
 	}
 	
-	/**
-	 * @param decrypt
-	 */
 	public InitLS(byte[] decrypt)
 	{
 		super(decrypt);
-		readByte(); // id (already processed)
+		readByte(); // Packet id, it is already processed.
 		
 		_rev = readInt();
 		final int size = readInt();

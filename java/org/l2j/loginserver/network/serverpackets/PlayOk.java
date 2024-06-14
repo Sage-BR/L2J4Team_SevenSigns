@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,11 +16,11 @@
  */
 package org.l2j.loginserver.network.serverpackets;
 
-import org.l2j.commons.network.WritablePacket;
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.loginserver.SessionKey;
-import org.l2j.loginserver.network.LoginServerPackets;
+import org.l2j.loginserver.network.LoginClient;
 
-public class PlayOk extends WritablePacket
+public class PlayOk extends LoginServerPacket
 {
 	private final int _playOk1;
 	private final int _playOk2;
@@ -32,10 +32,10 @@ public class PlayOk extends WritablePacket
 	}
 	
 	@Override
-	public void write()
+	protected void writeImpl(LoginClient client, WritableBuffer buffer)
 	{
-		LoginServerPackets.PLAY_OK.writeId(this);
-		writeInt(_playOk1);
-		writeInt(_playOk2);
+		buffer.writeByte(0x07);
+		buffer.writeInt(_playOk1);
+		buffer.writeInt(_playOk2);
 	}
 }

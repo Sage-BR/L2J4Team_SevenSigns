@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,7 +16,9 @@
  */
 package org.l2j.gameserver.network.serverpackets;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.model.actor.Player;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 
 /**
@@ -32,12 +34,12 @@ public class ExUserInfoCubic extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_USER_INFO_CUBIC.writeId(this);
-		writeInt(_player.getObjectId());
-		writeShort(_player.getCubics().size());
-		_player.getCubics().keySet().forEach(this::writeShort);
-		writeInt(_player.getAgathionId());
+		ServerPackets.EX_USER_INFO_CUBIC.writeId(this, buffer);
+		buffer.writeInt(_player.getObjectId());
+		buffer.writeShort(_player.getCubics().size());
+		_player.getCubics().keySet().forEach(buffer::writeShort);
+		buffer.writeInt(_player.getAgathionId());
 	}
 }

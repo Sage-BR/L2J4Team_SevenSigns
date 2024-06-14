@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,8 +20,10 @@ import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.model.quest.QuestState;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 import org.l2j.gameserver.network.serverpackets.ServerPacket;
 
@@ -40,14 +42,14 @@ public class ExQuestUI extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
 		if (_player == null)
 		{
 			return;
 		}
 		
-		ServerPackets.EX_QUEST_UI.writeId(this);
+		ServerPackets.EX_QUEST_UI.writeId(this, buffer);
 		if (!_allQuests.isEmpty())
 		{
 			final List<QuestState> activeQuests = new LinkedList<>();
@@ -59,19 +61,19 @@ public class ExQuestUI extends ServerPacket
 				}
 			}
 			
-			writeInt(_allQuests.size());
+			buffer.writeInt(_allQuests.size());
 			_allQuests.forEach(qs ->
 			{
-				writeInt(qs.getQuest().getId());
-				writeInt(qs.getCount());
-				writeByte(qs.getState());
+				buffer.writeInt(qs.getQuest().getId());
+				buffer.writeInt(qs.getCount());
+				buffer.writeByte(qs.getState());
 			});
-			writeInt(activeQuests.size());
+			buffer.writeInt(activeQuests.size());
 		}
 		else
 		{
-			writeInt(0);
-			writeInt(0);
+			buffer.writeInt(0);
+			buffer.writeInt(0);
 		}
 	}
 }

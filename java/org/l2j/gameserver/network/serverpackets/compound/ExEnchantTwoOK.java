@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,6 +16,8 @@
  */
 package org.l2j.gameserver.network.serverpackets.compound;
 
+import org.l2j.commons.network.WritableBuffer;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 import org.l2j.gameserver.network.serverpackets.ServerPacket;
 
@@ -31,9 +33,9 @@ public class ExEnchantTwoOK extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_ENCHANT_TWO_OK.writeId(this);
-		writeInt(0); // success percent (if 0 - takes from dat, if 1 - will be 0.01)
+		ServerPackets.EX_ENCHANT_TWO_OK.writeId(this, buffer);
+		buffer.writeInt(0); // success percent (if 0 - takes from dat, if 1 - will be 0.01)
 	}
 }

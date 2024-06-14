@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,12 +19,14 @@ package org.l2j.gameserver.network.serverpackets.pet;
 import java.util.Set;
 
 import org.l2j.Config;
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.enums.EvolveLevel;
 import org.l2j.gameserver.enums.Team;
 import org.l2j.gameserver.model.actor.Summon;
 import org.l2j.gameserver.model.actor.instance.Pet;
 import org.l2j.gameserver.model.actor.instance.Servitor;
 import org.l2j.gameserver.model.skill.AbnormalVisualEffect;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 import org.l2j.gameserver.network.serverpackets.ServerPacket;
 import org.l2j.gameserver.taskmanager.AttackStanceTaskManager;
@@ -96,117 +98,116 @@ public class PetSummonInfo extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.PET_INFO.writeId(this);
-		writeByte(_summon.getSummonType());
-		writeInt(_summon.getObjectId());
-		writeInt(_summon.getTemplate().getDisplayId() + 1000000);
-		writeInt(_summon.getX());
-		writeInt(_summon.getY());
-		writeInt(_summon.getZ());
-		writeInt(_summon.getHeading());
-		writeInt(_summon.getStat().getMAtkSpd());
-		writeInt(_summon.getStat().getPAtkSpd());
-		writeShort(_runSpd);
-		writeShort(_walkSpd);
-		writeShort(_swimRunSpd);
-		writeShort(_swimWalkSpd);
-		writeShort(_flRunSpd);
-		writeShort(_flWalkSpd);
-		writeShort(_flyRunSpd);
-		writeShort(_flyWalkSpd);
-		writeDouble(_moveMultiplier);
-		writeDouble(_summon.getAttackSpeedMultiplier()); // attack speed multiplier
-		writeDouble(_summon.getTemplate().getFCollisionRadius());
-		writeDouble(_summon.getTemplate().getFCollisionHeight());
-		writeInt(_summon.getWeapon()); // right hand weapon
-		writeInt(_summon.getArmor()); // body armor
-		writeInt(0); // left hand weapon
-		writeByte(_summon.isDead() ? 0 : _summon.isShowSummonAnimation() ? 2 : _value);
-		writeInt(-1); // High Five NPCString ID
+		ServerPackets.PET_INFO.writeId(this, buffer);
+		buffer.writeByte(_summon.getSummonType());
+		buffer.writeInt(_summon.getObjectId());
+		buffer.writeInt(_summon.getTemplate().getDisplayId() + 1000000);
+		buffer.writeInt(_summon.getX());
+		buffer.writeInt(_summon.getY());
+		buffer.writeInt(_summon.getZ());
+		buffer.writeInt(_summon.getHeading());
+		buffer.writeInt(_summon.getStat().getMAtkSpd());
+		buffer.writeInt(_summon.getStat().getPAtkSpd());
+		buffer.writeShort(_runSpd);
+		buffer.writeShort(_walkSpd);
+		buffer.writeShort(_swimRunSpd);
+		buffer.writeShort(_swimWalkSpd);
+		buffer.writeShort(_flRunSpd);
+		buffer.writeShort(_flWalkSpd);
+		buffer.writeShort(_flyRunSpd);
+		buffer.writeShort(_flyWalkSpd);
+		buffer.writeDouble(_moveMultiplier);
+		buffer.writeDouble(_summon.getAttackSpeedMultiplier()); // attack speed multiplier
+		buffer.writeDouble(_summon.getTemplate().getFCollisionRadius());
+		buffer.writeDouble(_summon.getTemplate().getFCollisionHeight());
+		buffer.writeInt(_summon.getWeapon()); // right hand weapon
+		buffer.writeInt(_summon.getArmor()); // body armor
+		buffer.writeInt(0); // left hand weapon
+		buffer.writeByte(_summon.isDead() ? 0 : _summon.isShowSummonAnimation() ? 2 : _value);
+		buffer.writeInt(-1); // High Five NPCString ID
 		if (_summon.isPet())
 		{
-			writeString(_summon.getName()); // Pet name.
+			buffer.writeString(_summon.getName()); // Pet name.
 		}
 		else
 		{
-			writeString(_summon.getTemplate().isUsingServerSideName() ? _summon.getName() : ""); // Summon name.
+			buffer.writeString(_summon.getTemplate().isUsingServerSideName() ? _summon.getName() : ""); // Summon name.
 		}
-		writeInt(-1); // High Five NPCString ID
-		writeString(_summon.getTitle()); // owner name
-		writeByte(_summon.getPvpFlag()); // confirmed
-		writeInt(_summon.getReputation()); // confirmed
-		writeInt(_curFed); // how fed it is
-		writeInt(_maxFed); // max fed it can be
-		writeInt((int) _summon.getCurrentHp()); // current hp
-		writeInt(_summon.getMaxHp()); // max hp
-		writeInt((int) _summon.getCurrentMp()); // current mp
-		writeInt(_summon.getMaxMp()); // max mp
-		writeLong(_summon.getStat().getSp()); // sp
-		writeShort(_summon.getLevel()); // level
-		writeLong(_summon.getStat().getExp());
-		// 0% absolute value
-		writeLong(Math.min(_summon.getExpForThisLevel(), _summon.getStat().getExp())); // 0% absolute value
-		writeLong(_summon.getExpForNextLevel()); // 100% absoulte value
-		writeInt(_summon.isPet() ? _summon.getInventory().getTotalWeight() : 0); // weight
-		writeInt(_summon.getMaxLoad()); // max weight it can carry
-		writeInt(_summon.getPAtk()); // patk
-		writeInt(_summon.getPDef()); // pdef
-		writeInt(_summon.getAccuracy()); // accuracy
-		writeInt(_summon.getEvasionRate()); // evasion
-		writeInt(_summon.getCriticalHit()); // critical
-		writeInt(_summon.getMAtk()); // matk
-		writeInt(_summon.getMDef()); // mdef
-		writeInt(_summon.getMagicAccuracy()); // magic accuracy
-		writeInt(_summon.getMagicEvasionRate()); // magic evasion
-		writeInt(_summon.getMCriticalHit()); // mcritical
-		writeInt((int) _summon.getStat().getMoveSpeed()); // speed
-		writeInt(_summon.getPAtkSpd()); // atkspeed
-		writeInt(_summon.getMAtkSpd()); // casting speed
-		writeByte(0); // TODO: Check me, might be ride status
-		writeByte(_summon.getTeam().getId()); // Confirmed
-		writeByte(_summon.getSoulShotsPerHit()); // How many soulshots this servitor uses per hit - Confirmed
-		writeByte(_summon.getSpiritShotsPerHit()); // How many spiritshots this servitor uses per hit - - Confirmed
-		writeInt(-1);
-		writeInt(0); // "Transformation ID - Confirmed" - Used to bug Fenrir after 64 level.
-		writeByte(0); // Used Summon Points
-		writeByte(0); // Maximum Summon Points
+		buffer.writeInt(-1); // High Five NPCString ID
+		buffer.writeString(_summon.getTitle()); // owner name
+		buffer.writeByte(_summon.getPvpFlag()); // confirmed
+		buffer.writeInt(_summon.getReputation()); // confirmed
+		buffer.writeInt(_curFed); // how fed it is
+		buffer.writeInt(_maxFed); // max fed it can be
+		buffer.writeInt((int) _summon.getCurrentHp()); // current hp
+		buffer.writeInt(_summon.getMaxHp()); // max hp
+		buffer.writeInt((int) _summon.getCurrentMp()); // current mp
+		buffer.writeInt(_summon.getMaxMp()); // max mp
+		buffer.writeLong(_summon.getStat().getSp()); // sp
+		buffer.writeShort(_summon.getLevel()); // level
+		buffer.writeLong(_summon.getStat().getExp()); // 0% absolute value
+		buffer.writeLong(Math.min(_summon.getExpForThisLevel(), _summon.getStat().getExp())); // 0% absolute value
+		buffer.writeLong(_summon.getExpForNextLevel()); // 100% absoulte value
+		buffer.writeInt(_summon.isPet() ? _summon.getInventory().getTotalWeight() : 0); // weight
+		buffer.writeInt(_summon.getMaxLoad()); // max weight it can carry
+		buffer.writeInt(_summon.getPAtk()); // patk
+		buffer.writeInt(_summon.getPDef()); // pdef
+		buffer.writeInt(_summon.getAccuracy()); // accuracy
+		buffer.writeInt(_summon.getEvasionRate()); // evasion
+		buffer.writeInt(_summon.getCriticalHit()); // critical
+		buffer.writeInt(_summon.getMAtk()); // matk
+		buffer.writeInt(_summon.getMDef()); // mdef
+		buffer.writeInt(_summon.getMagicAccuracy()); // magic accuracy
+		buffer.writeInt(_summon.getMagicEvasionRate()); // magic evasion
+		buffer.writeInt(_summon.getMCriticalHit()); // mcritical
+		buffer.writeInt((int) _summon.getStat().getMoveSpeed()); // speed
+		buffer.writeInt(_summon.getPAtkSpd()); // atkspeed
+		buffer.writeInt(_summon.getMAtkSpd()); // casting speed
+		buffer.writeByte(0); // TODO: Check me, might be ride status
+		buffer.writeByte(_summon.getTeam().getId()); // Confirmed
+		buffer.writeByte(_summon.getSoulShotsPerHit()); // How many soulshots this servitor uses per hit - Confirmed
+		buffer.writeByte(_summon.getSpiritShotsPerHit()); // How many spiritshots this servitor uses per hit - - Confirmed
+		buffer.writeInt(-1);
+		buffer.writeInt(0); // "Transformation ID - Confirmed" - Used to bug Fenrir after 64 level.
+		buffer.writeByte(0); // Used Summon Points
+		buffer.writeByte(0); // Maximum Summon Points
 		final Set<AbnormalVisualEffect> aves = _summon.getEffectList().getCurrentAbnormalVisualEffects();
 		final Team team = (Config.BLUE_TEAM_ABNORMAL_EFFECT != null) && (Config.RED_TEAM_ABNORMAL_EFFECT != null) ? _summon.getTeam() : Team.NONE;
-		writeShort(aves.size() + (_summon.isInvisible() ? 1 : 0) + (team != Team.NONE ? 1 : 0)); // Confirmed
+		buffer.writeShort(aves.size() + (_summon.isInvisible() ? 1 : 0) + (team != Team.NONE ? 1 : 0)); // Confirmed
 		for (AbnormalVisualEffect ave : aves)
 		{
-			writeShort(ave.getClientId()); // Confirmed
+			buffer.writeShort(ave.getClientId()); // Confirmed
 		}
 		if (_summon.isInvisible())
 		{
-			writeShort(AbnormalVisualEffect.STEALTH.getClientId());
+			buffer.writeShort(AbnormalVisualEffect.STEALTH.getClientId());
 		}
 		if (team == Team.BLUE)
 		{
 			if (Config.BLUE_TEAM_ABNORMAL_EFFECT != null)
 			{
-				writeShort(Config.BLUE_TEAM_ABNORMAL_EFFECT.getClientId());
+				buffer.writeShort(Config.BLUE_TEAM_ABNORMAL_EFFECT.getClientId());
 			}
 		}
 		else if ((team == Team.RED) && (Config.RED_TEAM_ABNORMAL_EFFECT != null))
 		{
-			writeShort(Config.RED_TEAM_ABNORMAL_EFFECT.getClientId());
+			buffer.writeShort(Config.RED_TEAM_ABNORMAL_EFFECT.getClientId());
 		}
-		writeByte(_statusMask);
+		buffer.writeByte(_statusMask);
 		if (_summon.isPet())
 		{
 			final Pet pet = (Pet) _summon;
-			writeInt(pet.getPetData().getType());
-			writeInt(pet.getEvolveLevel());
-			writeInt(pet.getEvolveLevel() == 0 ? -1 : pet.getId());
+			buffer.writeInt(pet.getPetData().getType());
+			buffer.writeInt(pet.getEvolveLevel());
+			buffer.writeInt(pet.getEvolveLevel() == 0 ? -1 : pet.getId());
 		}
 		else
 		{
-			writeInt(0);
-			writeInt(EvolveLevel.None.ordinal());
-			writeInt(0);
+			buffer.writeInt(0);
+			buffer.writeInt(EvolveLevel.None.ordinal());
+			buffer.writeInt(0);
 		}
 	}
 }

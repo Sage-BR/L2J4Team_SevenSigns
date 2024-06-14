@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,10 +16,8 @@
  */
 package org.l2j.gameserver.network.clientpackets;
 
-import org.l2j.commons.network.ReadablePacket;
 import org.l2j.gameserver.model.World;
 import org.l2j.gameserver.model.actor.Player;
-import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.SystemMessageId;
 import org.l2j.gameserver.network.serverpackets.ExRotation;
 import org.l2j.gameserver.network.serverpackets.SocialAction;
@@ -29,26 +27,31 @@ import org.l2j.gameserver.util.Util;
 /**
  * @author JIV
  */
-public class AnswerCoupleAction implements ClientPacket
+public class AnswerCoupleAction extends ClientPacket
 {
 	private int _objectId;
 	private int _actionId;
 	private int _answer;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_actionId = packet.readInt();
-		_answer = packet.readInt();
-		_objectId = packet.readInt();
+		_actionId = readInt();
+		_answer = readInt();
+		_objectId = readInt();
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
-		final Player player = client.getPlayer();
+		final Player player = getPlayer();
 		final Player target = World.getInstance().getPlayer(_objectId);
-		if ((player == null) || (target == null) || (target.getMultiSocialTarget() != player.getObjectId()) || (target.getMultiSociaAction() != _actionId))
+		if ((player == null) || (target == null))
+		{
+			return;
+		}
+		
+		if ((target.getMultiSocialTarget() != player.getObjectId()) || (target.getMultiSociaAction() != _actionId))
 		{
 			return;
 		}

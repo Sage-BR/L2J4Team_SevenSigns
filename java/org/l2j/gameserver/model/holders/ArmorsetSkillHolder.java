@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -61,10 +61,19 @@ public class ArmorsetSkillHolder extends SkillHolder
 	public boolean validateConditions(Playable playable, ArmorSet armorSet, Function<Item, Integer> idProvider)
 	{
 		// Playable doesn't have full busy (1 of 3) artifact real slot
+		if (_artifactSlotMask > armorSet.getArtifactSlotMask(playable, _artifactBookSlot))
+		{
+			return false;
+		}
 		
 		// Playable doesn't have enough items equipped to use this skill
+		if (_minimumPieces > armorSet.getPieceCount(playable, idProvider))
+		{
+			return false;
+		}
+		
 		// Playable set enchantment isn't enough to use this skill
-		if ((_artifactSlotMask > armorSet.getArtifactSlotMask(playable, _artifactBookSlot)) || (_minimumPieces > armorSet.getPiecesCount(playable, idProvider)) || (_minEnchant > armorSet.getLowestSetEnchant(playable)))
+		if (_minEnchant > armorSet.getSetEnchant(playable))
 		{
 			return false;
 		}

@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,7 +16,9 @@
  */
 package org.l2j.gameserver.network.serverpackets.mentoring;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.model.actor.Player;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 import org.l2j.gameserver.network.serverpackets.ServerPacket;
 
@@ -33,11 +35,11 @@ public class ExMentorAdd extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_MENTOR_ADD.writeId(this);
-		writeString(_mentor.getName());
-		writeInt(_mentor.getActiveClass());
-		writeInt(_mentor.getLevel());
+		ServerPackets.EX_MENTOR_ADD.writeId(this, buffer);
+		buffer.writeString(_mentor.getName());
+		buffer.writeInt(_mentor.getActiveClass());
+		buffer.writeInt(_mentor.getLevel());
 	}
 }

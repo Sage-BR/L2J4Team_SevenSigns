@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,7 +22,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.l2j.Config;
-import org.l2j.commons.network.ReadablePacket;
+import org.l2j.commons.threads.ThreadPool;
 import org.l2j.commons.util.Rnd;
 import org.l2j.gameserver.data.xml.LimitShopClanData;
 import org.l2j.gameserver.data.xml.LimitShopCraftData;
@@ -36,7 +36,6 @@ import org.l2j.gameserver.model.holders.LimitShopRandomCraftReward;
 import org.l2j.gameserver.model.item.instance.Item;
 import org.l2j.gameserver.model.itemcontainer.Inventory;
 import org.l2j.gameserver.model.variables.AccountVariables;
-import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.SystemMessageId;
 import org.l2j.gameserver.network.clientpackets.ClientPacket;
 import org.l2j.gameserver.network.serverpackets.ExItemAnnounce;
@@ -48,7 +47,7 @@ import org.l2j.gameserver.util.Broadcast;
 /**
  * @author Mobius
  */
-public class RequestPurchaseLimitShopItemBuy implements ClientPacket
+public class RequestPurchaseLimitShopItemBuy extends ClientPacket
 {
 	private int _shopIndex;
 	private int _productId;
@@ -56,11 +55,11 @@ public class RequestPurchaseLimitShopItemBuy implements ClientPacket
 	private LimitShopProductHolder _product;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_shopIndex = packet.readByte(); // 3 Lcoin Store, 4 Special Craft, 100 Clan Shop
-		_productId = packet.readInt();
-		_amount = packet.readInt();
+		_shopIndex = readByte(); // 3 Lcoin Store, 4 Special Craft, 100 Clan Shop
+		_productId = readInt();
+		_amount = readInt();
 		
 		switch (_shopIndex)
 		{
@@ -85,15 +84,20 @@ public class RequestPurchaseLimitShopItemBuy implements ClientPacket
 			}
 		}
 		
-		packet.readInt(); // SuccessionItemSID
-		packet.readInt(); // MaterialItemSID
+		readInt(); // SuccessionItemSID
+		readInt(); // MaterialItemSID
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
-		final Player player = client.getPlayer();
-		if ((player == null) || (_product == null))
+		final Player player = getPlayer();
+		if (player == null)
+		{
+			return;
+		}
+		
+		if (_product == null)
 		{
 			return;
 		}
@@ -149,9 +153,9 @@ public class RequestPurchaseLimitShopItemBuy implements ClientPacket
 				return;
 			}
 		}
-		else if (_product.getAccountMontlyLimit() > 0)
+		else if (_product.getAccountWeeklyLimit() > 0)
 		{
-			final long amount = _product.getAccountMontlyLimit() * _amount;
+			final long amount = _product.getAccountWeeklyLimit() * _amount;
 			if (amount < 1)
 			{
 				player.sendPacket(SystemMessageId.INCORRECT_ITEM_COUNT_2);
@@ -159,14 +163,33 @@ public class RequestPurchaseLimitShopItemBuy implements ClientPacket
 				player.sendPacket(new ExPurchaseLimitShopItemResult(false, _shopIndex, _productId, 0, Collections.emptyList()));
 				return;
 			}
-			if (player.getAccountVariables().getInt(AccountVariables.LCOIN_SHOP_PRODUCT_MONTLY_COUNT + _product.getProductionId(), 0) >= amount)
+			
+			if (player.getAccountVariables().getInt(AccountVariables.LCOIN_SHOP_PRODUCT_WEEKLY_COUNT + _product.getProductionId(), 0) >= amount)
 			{
-				player.sendMessage("You have reached your montly limit.");
+				player.sendMessage("You have reached your weekly limit."); // TODO: Retail system message?
+				player.removeRequest(PrimeShopRequest.class);
+				player.sendPacket(new ExPurchaseLimitShopItemResult(false, _shopIndex, _productId, 0, Collections.emptyList()));
+				return;
+			}
+		}
+		else if (_product.getAccountMonthlyLimit() > 0)
+		{
+			final long amount = _product.getAccountMonthlyLimit() * _amount;
+			if (amount < 1)
+			{
+				player.sendPacket(SystemMessageId.INCORRECT_ITEM_COUNT_2);
 				player.removeRequest(PrimeShopRequest.class);
 				player.sendPacket(new ExPurchaseLimitShopItemResult(false, _shopIndex, _productId, 0, Collections.emptyList()));
 				return;
 			}
 			
+			if (player.getAccountVariables().getInt(AccountVariables.LCOIN_SHOP_PRODUCT_MONTHLY_COUNT + _product.getProductionId(), 0) >= amount)
+			{
+				player.sendMessage("You have reached your monthly limit."); // TODO: Retail system message?
+				player.removeRequest(PrimeShopRequest.class);
+				player.sendPacket(new ExPurchaseLimitShopItemResult(false, _shopIndex, _productId, 0, Collections.emptyList()));
+				return;
+			}
 		}
 		else if (_product.getAccountBuyLimit() > 0) // Count limit.
 		{
@@ -189,13 +212,14 @@ public class RequestPurchaseLimitShopItemBuy implements ClientPacket
 		}
 		
 		// Check existing items.
-		final int remainingInfo = Math.max(0, Math.max(_product.getAccountBuyLimit(), Math.max(_product.getAccountDailyLimit(), _product.getAccountMontlyLimit())));
+		final int remainingInfo = Math.max(0, Math.max(_product.getAccountBuyLimit(), Math.max(_product.getAccountDailyLimit(), _product.getAccountMonthlyLimit())));
 		for (int i = 0; i < _product.getIngredientIds().length; i++)
 		{
 			if (_product.getIngredientIds()[i] == 0)
 			{
 				continue;
 			}
+			
 			if (_product.getIngredientIds()[i] == Inventory.ADENA_ID)
 			{
 				final long amount = _product.getIngredientQuantities()[i] * _amount;
@@ -281,6 +305,7 @@ public class RequestPurchaseLimitShopItemBuy implements ClientPacket
 			{
 				continue;
 			}
+			
 			if (_product.getIngredientIds()[i] == Inventory.ADENA_ID)
 			{
 				player.reduceAdena("LCoinShop", _product.getIngredientQuantities()[i] * _amount, player, true);
@@ -399,9 +424,13 @@ public class RequestPurchaseLimitShopItemBuy implements ClientPacket
 		{
 			player.getAccountVariables().set(AccountVariables.LCOIN_SHOP_PRODUCT_DAILY_COUNT + _product.getProductionId(), player.getAccountVariables().getInt(AccountVariables.LCOIN_SHOP_PRODUCT_DAILY_COUNT + _product.getProductionId(), 0) + _amount);
 		}
-		if (_product.getAccountMontlyLimit() > 0)
+		else if (_product.getAccountWeeklyLimit() > 0)
 		{
-			player.getAccountVariables().set(AccountVariables.LCOIN_SHOP_PRODUCT_MONTLY_COUNT + _product.getProductionId(), player.getAccountVariables().getInt(AccountVariables.LCOIN_SHOP_PRODUCT_MONTLY_COUNT + _product.getProductionId(), 0) + _amount);
+			player.getAccountVariables().set(AccountVariables.LCOIN_SHOP_PRODUCT_WEEKLY_COUNT + _product.getProductionId(), player.getAccountVariables().getInt(AccountVariables.LCOIN_SHOP_PRODUCT_WEEKLY_COUNT + _product.getProductionId(), 0) + _amount);
+		}
+		else if (_product.getAccountMonthlyLimit() > 0)
+		{
+			player.getAccountVariables().set(AccountVariables.LCOIN_SHOP_PRODUCT_MONTHLY_COUNT + _product.getProductionId(), player.getAccountVariables().getInt(AccountVariables.LCOIN_SHOP_PRODUCT_MONTHLY_COUNT + _product.getProductionId(), 0) + _amount);
 		}
 		else if (_product.getAccountBuyLimit() > 0)
 		{
@@ -412,6 +441,6 @@ public class RequestPurchaseLimitShopItemBuy implements ClientPacket
 		player.sendItemList();
 		
 		// Remove request.
-		player.removeRequest(PrimeShopRequest.class);
+		ThreadPool.schedule(() -> player.removeRequest(PrimeShopRequest.class), 1000);
 	}
 }

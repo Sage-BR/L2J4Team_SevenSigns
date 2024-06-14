@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -24,12 +24,14 @@ import java.util.Map.Entry;
 import java.util.stream.Collectors;
 
 import org.l2j.Config;
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.enums.ClassId;
 import org.l2j.gameserver.enums.RankingOlympiadCategory;
 import org.l2j.gameserver.enums.RankingOlympiadScope;
 import org.l2j.gameserver.instancemanager.RankManager;
 import org.l2j.gameserver.model.StatSet;
 import org.l2j.gameserver.model.actor.Player;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 import org.l2j.gameserver.network.serverpackets.ServerPacket;
 
@@ -60,40 +62,40 @@ public class ExOlympiadRankingInfo extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_OLYMPIAD_RANKING_INFO.writeId(this);
-		writeByte(_tabId); // Tab id
-		writeByte(_rankingType); // ranking type
-		writeByte(_unk); // unk, shows 1 all time
-		writeInt(_classId); // class id (default 148) or caller class id for personal rank
-		writeInt(_serverId); // 0 - all servers, server id - for caller server
-		writeInt(933); // unk, 933 all time
+		ServerPackets.EX_OLYMPIAD_RANKING_INFO.writeId(this, buffer);
+		buffer.writeByte(_tabId); // Tab id
+		buffer.writeByte(_rankingType); // ranking type
+		buffer.writeByte(_unk); // unk, shows 1 all time
+		buffer.writeInt(_classId); // class id (default 148) or caller class id for personal rank
+		buffer.writeInt(_serverId); // 0 - all servers, server id - for caller server
+		buffer.writeInt(933); // unk, 933 all time
 		if (!_playerList.isEmpty())
 		{
 			final RankingOlympiadCategory category = RankingOlympiadCategory.values()[_tabId];
-			writeFilteredRankingData(category, category.getScopeByGroup(_rankingType), ClassId.getClassId(_classId));
+			writeFilteredRankingData(category, category.getScopeByGroup(_rankingType), ClassId.getClassId(_classId), buffer);
 		}
 	}
 	
-	private void writeFilteredRankingData(RankingOlympiadCategory category, RankingOlympiadScope scope, ClassId classId)
+	private void writeFilteredRankingData(RankingOlympiadCategory category, RankingOlympiadScope scope, ClassId classId, WritableBuffer buffer)
 	{
 		switch (category)
 		{
 			case SERVER:
 			{
-				writeScopeData(scope, new ArrayList<>(_playerList.entrySet()), new ArrayList<>(_snapshotList.entrySet()));
+				writeScopeData(scope, new ArrayList<>(_playerList.entrySet()), new ArrayList<>(_snapshotList.entrySet()), buffer);
 				break;
 			}
 			case CLASS:
 			{
-				writeScopeData(scope, _playerList.entrySet().stream().filter(it -> it.getValue().getInt("classId") == classId.getId()).collect(Collectors.toList()), _snapshotList.entrySet().stream().filter(it -> it.getValue().getInt("classId") == classId.getId()).collect(Collectors.toList()));
+				writeScopeData(scope, _playerList.entrySet().stream().filter(it -> it.getValue().getInt("classId") == classId.getId()).collect(Collectors.toList()), _snapshotList.entrySet().stream().filter(it -> it.getValue().getInt("classId") == classId.getId()).collect(Collectors.toList()), buffer);
 				break;
 			}
 		}
 	}
 	
-	private void writeScopeData(RankingOlympiadScope scope, List<Entry<Integer, StatSet>> list, List<Entry<Integer, StatSet>> snapshot)
+	private void writeScopeData(RankingOlympiadScope scope, List<Entry<Integer, StatSet>> list, List<Entry<Integer, StatSet>> snapshot, WritableBuffer buffer)
 	{
 		Entry<Integer, StatSet> playerData = list.stream().filter(it -> it.getValue().getInt("charId", 0) == _player.getObjectId()).findFirst().orElse(null);
 		final int indexOf = list.indexOf(playerData);
@@ -125,15 +127,15 @@ public class ExOlympiadRankingInfo extends ServerPacket
 				limited = Collections.emptyList();
 			}
 		}
-		writeInt(limited.size());
+		buffer.writeInt(limited.size());
 		int rank = 1;
 		for (Entry<Integer, StatSet> data : limited.stream().sorted(Entry.comparingByKey()).collect(Collectors.toList()))
 		{
 			int curRank = rank++;
 			final StatSet player = data.getValue();
-			writeSizedString(player.getString("name")); // name
-			writeSizedString(player.getString("clanName")); // clan name
-			writeInt(scope == RankingOlympiadScope.SELF ? data.getKey() : curRank); // rank
+			buffer.writeSizedString(player.getString("name")); // name
+			buffer.writeSizedString(player.getString("clanName")); // clan name
+			buffer.writeInt(scope == RankingOlympiadScope.SELF ? data.getKey() : curRank); // rank
 			if (!snapshot.isEmpty())
 			{
 				int snapshotRank = 1;
@@ -142,23 +144,23 @@ public class ExOlympiadRankingInfo extends ServerPacket
 					final StatSet snapshotData = ssData.getValue();
 					if (player.getInt("charId") == snapshotData.getInt("charId"))
 					{
-						writeInt(scope == RankingOlympiadScope.SELF ? ssData.getKey() : snapshotRank++); // previous rank
+						buffer.writeInt(scope == RankingOlympiadScope.SELF ? ssData.getKey() : snapshotRank++); // previous rank
 					}
 				}
 			}
 			else
 			{
-				writeInt(scope == RankingOlympiadScope.SELF ? data.getKey() : curRank);
+				buffer.writeInt(scope == RankingOlympiadScope.SELF ? data.getKey() : curRank);
 			}
-			writeInt(Config.SERVER_ID); // server id
-			writeInt(player.getInt("level")); // level
-			writeInt(player.getInt("classId")); // class id
-			writeInt(player.getInt("clanLevel")); // clan level
-			writeInt(player.getInt("competitions_won")); // win count
-			writeInt(player.getInt("competitions_lost")); // lose count
-			writeInt(player.getInt("olympiad_points")); // points
-			writeInt(player.getInt("legend_count")); // legend count
-			writeInt(player.getInt("count")); // hero count
+			buffer.writeInt(Config.SERVER_ID); // server id
+			buffer.writeInt(player.getInt("level")); // level
+			buffer.writeInt(player.getInt("classId")); // class id
+			buffer.writeInt(player.getInt("clanLevel")); // clan level
+			buffer.writeInt(player.getInt("competitions_won")); // win count
+			buffer.writeInt(player.getInt("competitions_lost")); // lose count
+			buffer.writeInt(player.getInt("olympiad_points")); // points
+			buffer.writeInt(player.getInt("legend_count")); // legend count
+			buffer.writeInt(player.getInt("count")); // hero count
 		}
 	}
 }

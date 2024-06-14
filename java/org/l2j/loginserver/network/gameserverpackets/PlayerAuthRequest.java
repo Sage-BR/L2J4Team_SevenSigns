@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,7 +16,7 @@
  */
 package org.l2j.loginserver.network.gameserverpackets;
 
-import org.l2j.commons.network.ReadablePacket;
+import org.l2j.commons.network.base.BaseReadablePacket;
 import org.l2j.loginserver.GameServerThread;
 import org.l2j.loginserver.LoginController;
 import org.l2j.loginserver.SessionKey;
@@ -25,30 +25,29 @@ import org.l2j.loginserver.network.loginserverpackets.PlayerAuthResponse;
 /**
  * @author -Wooden-
  */
-public class PlayerAuthRequest extends ReadablePacket
+public class PlayerAuthRequest extends BaseReadablePacket
 {
 	public PlayerAuthRequest(byte[] decrypt, GameServerThread server)
 	{
 		super(decrypt);
-		readByte(); // id (already processed)
+		readByte(); // Packet id, it is already processed.
 		
 		final String account = readString();
 		final int playKey1 = readInt();
 		final int playKey2 = readInt();
 		final int loginKey1 = readInt();
 		final int loginKey2 = readInt();
+		
 		final SessionKey sessionKey = new SessionKey(loginKey1, loginKey2, playKey1, playKey2);
-		PlayerAuthResponse authResponse;
 		final SessionKey key = LoginController.getInstance().getKeyForAccount(account);
 		if ((key != null) && key.equals(sessionKey))
 		{
 			LoginController.getInstance().removeAuthedLoginClient(account);
-			authResponse = new PlayerAuthResponse(account, true);
+			server.sendPacket(new PlayerAuthResponse(account, true));
 		}
 		else
 		{
-			authResponse = new PlayerAuthResponse(account, false);
+			server.sendPacket(new PlayerAuthResponse(account, false));
 		}
-		server.sendPacket(authResponse);
 	}
 }

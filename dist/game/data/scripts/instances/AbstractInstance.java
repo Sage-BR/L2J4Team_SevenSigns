@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -117,9 +117,16 @@ public abstract class AbstractInstance extends AbstractNpcAI
 		{
 			if (instance.getTemplateId() != templateId)
 			{
-				player.sendPacket(new SystemMessage(SystemMessageId.YOU_CANNOT_ENTER_AS_C1_IS_IN_ANOTHER_INSTANCE_ZONE).addString(player.getName()));
-				return;
+				if (instance.getPlayersCount() > 0)
+				{
+					player.sendPacket(new SystemMessage(SystemMessageId.YOU_CANNOT_ENTER_AS_C1_IS_IN_ANOTHER_INSTANCE_ZONE).addString(player.getName()));
+					return;
+				}
+				
+				instance.finishInstance(0);
+				instance.destroy();
 			}
+			
 			onEnter(player, instance, false);
 		}
 		else
@@ -158,10 +165,17 @@ public abstract class AbstractInstance extends AbstractNpcAI
 			// Check if any player from enter group has active instance
 			for (Player member : enterGroup)
 			{
-				if (getPlayerInstance(member) != null)
+				final Instance memberInstance = getPlayerInstance(member);
+				if (memberInstance != null)
 				{
-					enterGroup.forEach(p -> p.sendPacket(new SystemMessage(SystemMessageId.YOU_CANNOT_ENTER_AS_C1_IS_IN_ANOTHER_INSTANCE_ZONE).addString(member.getName())));
-					return;
+					if (memberInstance.getPlayersCount() > 0)
+					{
+						enterGroup.forEach(p -> p.sendPacket(new SystemMessage(SystemMessageId.YOU_CANNOT_ENTER_AS_C1_IS_IN_ANOTHER_INSTANCE_ZONE).addString(member.getName())));
+						return;
+					}
+					
+					memberInstance.finishInstance(0);
+					memberInstance.destroy();
 				}
 				
 				// Check if any player from the group has already finished the instance

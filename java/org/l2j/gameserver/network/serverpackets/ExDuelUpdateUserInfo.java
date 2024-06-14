@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,7 +16,9 @@
  */
 package org.l2j.gameserver.network.serverpackets;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.model.actor.Player;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 
 /**
@@ -32,18 +34,18 @@ public class ExDuelUpdateUserInfo extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_DUEL_UPDATE_USER_INFO.writeId(this);
-		writeString(_player.getName());
-		writeInt(_player.getObjectId());
-		writeInt(_player.getClassId().getId());
-		writeInt(_player.getLevel());
-		writeInt((int) _player.getCurrentHp());
-		writeInt(_player.getMaxHp());
-		writeInt((int) _player.getCurrentMp());
-		writeInt(_player.getMaxMp());
-		writeInt((int) _player.getCurrentCp());
-		writeInt(_player.getMaxCp());
+		ServerPackets.EX_DUEL_UPDATE_USER_INFO.writeId(this, buffer);
+		buffer.writeString(_player.getName());
+		buffer.writeInt(_player.getObjectId());
+		buffer.writeInt(_player.getClassId().getId());
+		buffer.writeInt(_player.getLevel());
+		buffer.writeInt((int) _player.getCurrentHp());
+		buffer.writeInt(_player.getMaxHp());
+		buffer.writeInt((int) _player.getCurrentMp());
+		buffer.writeInt(_player.getMaxMp());
+		buffer.writeInt((int) _player.getCurrentCp());
+		buffer.writeInt(_player.getMaxCp());
 	}
 }

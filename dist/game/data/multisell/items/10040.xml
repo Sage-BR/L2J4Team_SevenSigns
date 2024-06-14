@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/multisell.xsd">
+	<npcs>
+		<npc>-1</npc> <!-- Item Multisell -->
+	</npcs>
+	<!-- Box of Choice Coupon (Time-limited) - Sealed (98293) -->
+	<item>
+		<ingredient id="98293" count="4" /> <!-- Box of Choice Coupon (Time-limited) - Sealed -->
+		<production id="98297" count="1" /> <!-- Box of Choice - Weapon/ Armor/ Accessory (Time-limited) - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98293" count="2" /> <!-- Box of Choice Coupon (Time-limited) - Sealed -->
+		<production id="98298" count="1" /> <!-- Box of Choice - Special Equipment (Time-limited) - Sealed -->
+	</item>
+	<item>
+		<ingredient id="98293" count="1" /> <!-- Box of Choice Coupon (Time-limited) - Sealed -->
+		<production id="98299" count="1" /> <!-- Box of Choice - Skill/ Enchantment/ Supplies (Time-limited) - Sealed -->
+	</item>
+</list>

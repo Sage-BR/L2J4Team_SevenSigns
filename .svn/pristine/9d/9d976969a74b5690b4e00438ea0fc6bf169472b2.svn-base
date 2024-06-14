@@ -1,0 +1,7 @@
+<html><title>Chat</title><body>Dream Priestess:<br>
+<font color="LEVEL">You are going to enter as part of a group, not a command channel.</font><br>
+In this case, there should be no more than 5 warriors in the group...<br>
+It will be a difficult journey. Do you want to test your strength?<br>
+<Button ALIGN="LEFT" ICON="NORMAL" action="bypass -h Quest DreamPriestess enter_dream_dungeon party_confirm">Enter the dream</button>
+<Button ALIGN="LEFT" ICON="RETURN" action="bypass -h Quest DreamPriestess back">Back</button>
+</body></html>

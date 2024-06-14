@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/multisell.xsd">
+	<npcs>
+		<npc>-1</npc> <!-- Item Multisell -->
+	</npcs>
+	<!-- +5 Enchanted Accessory Coupon (Time-limited) - Sealed (100521) -->
+	<item>
+		<ingredient id="100521" count="1" /> <!-- +5 Enhanced Ornament Coupon (Time-limited) - Sealed -->
+		<production id="92464" count="1" /> <!-- +5 Talisman of Speed Pack - Sealed -->
+	</item>
+	<item>
+		<ingredient id="100521" count="1" /> <!-- +5 Enhanced Ornament Coupon (Time-limited) - Sealed -->
+		<production id="92455" count="1" /> <!-- +5 Talisman of Eva Pack - Sealed -->
+	</item>
+	<item>
+		<ingredient id="100521" count="1" /> <!-- +5 Enhanced Ornament Coupon (Time-limited) - Sealed -->
+		<production id="97953" count="1" /> <!-- +5 Talisman of Authority Pack - Sealed -->
+	</item>
+	<item>
+		<ingredient id="100521" count="1" /> <!-- +5 Enhanced Ornament Coupon (Time-limited) - Sealed -->
+		<production id="94618" count="1" /> <!-- Package: +5 Circlet of Hero - Sealed -->
+	</item>
+</list>

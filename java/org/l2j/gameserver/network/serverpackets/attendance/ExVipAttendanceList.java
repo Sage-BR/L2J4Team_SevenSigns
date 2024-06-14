@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,10 +18,12 @@ package org.l2j.gameserver.network.serverpackets.attendance;
 
 import java.util.List;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.data.xml.AttendanceRewardData;
 import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.model.holders.AttendanceInfoHolder;
 import org.l2j.gameserver.model.holders.ItemHolder;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 import org.l2j.gameserver.network.serverpackets.ServerPacket;
 
@@ -45,51 +47,51 @@ public class ExVipAttendanceList extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_VIP_ATTENDANCE_LIST.writeId(this);
+		ServerPackets.EX_VIP_ATTENDANCE_LIST.writeId(this, buffer);
 		
-		writeInt(_rewardItems.size());
+		buffer.writeInt(_rewardItems.size());
 		for (ItemHolder reward : _rewardItems)
 		{
-			writeInt(reward.getId());
-			writeLong(reward.getCount());
-			writeByte(0); // Enchant level?
+			buffer.writeInt(reward.getId());
+			buffer.writeLong(reward.getCount());
+			buffer.writeByte(0); // Enchant level?
 		}
 		
-		writeInt(1); // MinimumLevel
-		writeInt(_delayreward); // RemainCheckTime
+		buffer.writeInt(1); // MinimumLevel
+		buffer.writeInt(_delayreward); // RemainCheckTime
 		if (_available)
 		{
-			writeByte(_index + 1); // RollBookDay
+			buffer.writeByte(_index + 1); // RollBookDay
 			if ((_delayreward == 0) && (_available))
 			{
-				writeByte(_index + 1); // AttendanceDay
+				buffer.writeByte(_index + 1); // AttendanceDay
 			}
 			else
 			{
-				writeByte(_index); // AttendanceDay
+				buffer.writeByte(_index); // AttendanceDay
 			}
-			writeByte(_index); // RewardDay
-			writeByte(0); // FollowBaseDay
-			// writeByte(_available);
-			writeByte(0); // FollowBaseDay
+			buffer.writeByte(_index); // RewardDay
+			buffer.writeByte(0); // FollowBaseDay
+			// buffer.writeByte(_available);
+			buffer.writeByte(0); // FollowBaseDay
 		}
 		else
 		{
-			writeByte(_index); // RollBookDay
+			buffer.writeByte(_index); // RollBookDay
 			if ((_delayreward == 0) && (_available))
 			{
-				writeByte(_index + 1); // AttendanceDay
+				buffer.writeByte(_index + 1); // AttendanceDay
 			}
 			else
 			{
-				writeByte(_index); // AttendanceDay
+				buffer.writeByte(_index); // AttendanceDay
 			}
-			writeByte(_index); // RewardDay
-			writeByte(0); // FollowBaseDay
-			// writeByte(_available);
-			writeByte(1); // FollowBaseDay
+			buffer.writeByte(_index); // RewardDay
+			buffer.writeByte(0); // FollowBaseDay
+			// buffer.writeByte(_available);
+			buffer.writeByte(1); // FollowBaseDay
 		}
 	}
 }

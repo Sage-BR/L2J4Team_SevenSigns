@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,7 +16,9 @@
  */
 package org.l2j.gameserver.network.serverpackets;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.model.VehiclePathPoint;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 
 public class ExAirShipTeleportList extends ServerPacket
@@ -33,27 +35,27 @@ public class ExAirShipTeleportList extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_AIR_SHIP_TELEPORT_LIST.writeId(this);
-		writeInt(_dockId);
+		ServerPackets.EX_AIR_SHIP_TELEPORT_LIST.writeId(this, buffer);
+		buffer.writeInt(_dockId);
 		if (_teleports != null)
 		{
-			writeInt(_teleports.length);
+			buffer.writeInt(_teleports.length);
 			for (int i = 0; i < _teleports.length; i++)
 			{
-				writeInt(i - 1);
-				writeInt(_fuelConsumption[i]);
+				buffer.writeInt(i - 1);
+				buffer.writeInt(_fuelConsumption[i]);
 				final VehiclePathPoint[] path = _teleports[i];
 				final VehiclePathPoint dst = path[path.length - 1];
-				writeInt(dst.getX());
-				writeInt(dst.getY());
-				writeInt(dst.getZ());
+				buffer.writeInt(dst.getX());
+				buffer.writeInt(dst.getY());
+				buffer.writeInt(dst.getZ());
 			}
 		}
 		else
 		{
-			writeInt(0);
+			buffer.writeInt(0);
 		}
 	}
 }

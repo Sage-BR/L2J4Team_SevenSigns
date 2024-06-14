@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,9 +16,11 @@
  */
 package org.l2j.gameserver.network.serverpackets;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.enums.FlyType;
 import org.l2j.gameserver.model.actor.Creature;
 import org.l2j.gameserver.model.interfaces.ILocational;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 
 /**
@@ -84,19 +86,19 @@ public class FlyToLocation extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.FLY_TO_LOCATION.writeId(this);
-		writeInt(_chaObjId);
-		writeInt(_destX);
-		writeInt(_destY);
-		writeInt(_destZ);
-		writeInt(_orgX);
-		writeInt(_orgY);
-		writeInt(_orgZ);
-		writeInt(_type.ordinal());
-		writeInt(_flySpeed);
-		writeInt(_flyDelay);
-		writeInt(_animationSpeed);
+		ServerPackets.FLY_TO_LOCATION.writeId(this, buffer);
+		buffer.writeInt(_chaObjId);
+		buffer.writeInt(_destX);
+		buffer.writeInt(_destY);
+		buffer.writeInt(_destZ);
+		buffer.writeInt(_orgX);
+		buffer.writeInt(_orgY);
+		buffer.writeInt(_orgZ);
+		buffer.writeInt(_type.ordinal());
+		buffer.writeInt(_flySpeed);
+		buffer.writeInt(_flyDelay);
+		buffer.writeInt(_animationSpeed);
 	}
 }

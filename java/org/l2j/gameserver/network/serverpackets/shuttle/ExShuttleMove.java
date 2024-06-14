@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,7 +16,9 @@
  */
 package org.l2j.gameserver.network.serverpackets.shuttle;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.model.actor.instance.Shuttle;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 import org.l2j.gameserver.network.serverpackets.ServerPacket;
 
@@ -39,14 +41,14 @@ public class ExShuttleMove extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_SUTTLE_MOVE.writeId(this);
-		writeInt(_shuttle.getObjectId());
-		writeInt((int) _shuttle.getStat().getMoveSpeed());
-		writeInt((int) _shuttle.getStat().getRotationSpeed());
-		writeInt(_x);
-		writeInt(_y);
-		writeInt(_z);
+		ServerPackets.EX_SUTTLE_MOVE.writeId(this, buffer);
+		buffer.writeInt(_shuttle.getObjectId());
+		buffer.writeInt((int) _shuttle.getStat().getMoveSpeed());
+		buffer.writeInt((int) _shuttle.getStat().getRotationSpeed());
+		buffer.writeInt(_x);
+		buffer.writeInt(_y);
+		buffer.writeInt(_z);
 	}
 }

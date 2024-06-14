@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -191,7 +191,12 @@ public class TradeList
 		}
 		
 		final Item item = (Item) o;
-		if (!(item.isTradeable() || (_owner.isGM() && Config.GM_TRADE_RESTRICTED_ITEMS)) || item.isQuestItem() || !_owner.getInventory().canManipulateWithItemId(item.getId()))
+		if (!(item.isTradeable() || (_owner.isGM() && Config.GM_TRADE_RESTRICTED_ITEMS)) || item.isQuestItem())
+		{
+			return null;
+		}
+		
+		if (!_owner.getInventory().canManipulateWithItemId(item.getId()))
 		{
 			return null;
 		}
@@ -902,7 +907,12 @@ public class TradeList
 				break;
 			}
 			
-			if ((ownerInventory.getAdena() < _totalPrice) || (item.getObjectId() < 1) || (item.getObjectId() > sellerItems.length))
+			if (ownerInventory.getAdena() < _totalPrice)
+			{
+				continue;
+			}
+			
+			if ((item.getObjectId() < 1) || (item.getObjectId() > sellerItems.length))
 			{
 				continue;
 			}

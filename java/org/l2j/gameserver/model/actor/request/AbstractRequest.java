@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -38,7 +38,7 @@ public abstract class AbstractRequest
 		_player = player;
 	}
 	
-	public Player getActiveChar()
+	public Player getPlayer()
 	{
 		return _player;
 	}
@@ -61,6 +61,14 @@ public abstract class AbstractRequest
 	public boolean isTimeout()
 	{
 		return (_timeOutTask != null) && !_timeOutTask.isDone();
+	}
+	
+	public void cancelTimeout()
+	{
+		if (_timeOutTask != null)
+		{
+			_timeOutTask.cancel(false);
+		}
 	}
 	
 	public boolean isProcessing()

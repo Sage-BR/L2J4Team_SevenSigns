@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,13 +18,11 @@ package org.l2j.gameserver.network.clientpackets;
 
 import java.util.List;
 
-import org.l2j.commons.network.ReadablePacket;
 import org.l2j.gameserver.enums.PlayerCondOverride;
 import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.model.item.EtcItem;
 import org.l2j.gameserver.model.item.ItemTemplate;
 import org.l2j.gameserver.model.item.instance.Item;
-import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.SystemMessageId;
 import org.l2j.gameserver.network.serverpackets.InventoryUpdate;
 import org.l2j.gameserver.network.serverpackets.SystemMessage;
@@ -32,7 +30,7 @@ import org.l2j.gameserver.network.serverpackets.SystemMessage;
 /**
  * @author Zoey76
  */
-public class RequestUnEquipItem implements ClientPacket
+public class RequestUnEquipItem extends ClientPacket
 {
 	private int _slot;
 	
@@ -40,15 +38,15 @@ public class RequestUnEquipItem implements ClientPacket
 	 * Packet type id 0x16 format: cd
 	 */
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_slot = packet.readInt();
+		_slot = readInt();
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
-		final Player player = client.getPlayer();
+		final Player player = getPlayer();
 		if (player == null)
 		{
 			return;
@@ -86,7 +84,13 @@ public class RequestUnEquipItem implements ClientPacket
 			return;
 		}
 		
-		if (!player.getInventory().canManipulateWithItemId(item.getId()) || (item.isWeapon() && item.getWeaponItem().isForceEquip() && !player.canOverrideCond(PlayerCondOverride.ITEM_CONDITIONS)))
+		if (!player.getInventory().canManipulateWithItemId(item.getId()))
+		{
+			player.sendPacket(SystemMessageId.THAT_ITEM_CANNOT_BE_TAKEN_OFF);
+			return;
+		}
+		
+		if (item.isWeapon() && item.getWeaponItem().isForceEquip() && !player.canOverrideCond(PlayerCondOverride.ITEM_CONDITIONS))
 		{
 			player.sendPacket(SystemMessageId.THAT_ITEM_CANNOT_BE_TAKEN_OFF);
 			return;

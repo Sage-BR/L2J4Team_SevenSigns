@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,11 +19,13 @@ package org.l2j.gameserver.network.serverpackets;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.enums.PartyMatchingRoomLevelType;
 import org.l2j.gameserver.instancemanager.MatchingRoomManager;
 import org.l2j.gameserver.model.World;
 import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.model.matching.MatchingRoom;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 
 /**
@@ -53,28 +55,28 @@ public class ListPartyWaiting extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.LIST_PARTY_WATING.writeId(this);
-		writeInt(_size);
-		writeInt(_rooms.size());
+		ServerPackets.LIST_PARTY_WATING.writeId(this, buffer);
+		buffer.writeInt(_size);
+		buffer.writeInt(_rooms.size());
 		for (MatchingRoom room : _rooms)
 		{
-			writeInt(room.getId());
-			writeString(room.getTitle());
-			writeInt(room.getLocation());
-			writeInt(room.getMinLevel());
-			writeInt(room.getMaxLevel());
-			writeInt(room.getMaxMembers());
-			writeString(room.getLeader().getName());
-			writeInt(room.getMembersCount());
+			buffer.writeInt(room.getId());
+			buffer.writeString(room.getTitle());
+			buffer.writeInt(room.getLocation());
+			buffer.writeInt(room.getMinLevel());
+			buffer.writeInt(room.getMaxLevel());
+			buffer.writeInt(room.getMaxMembers());
+			buffer.writeString(room.getLeader().getName());
+			buffer.writeInt(room.getMembersCount());
 			for (Player member : room.getMembers())
 			{
-				writeInt(member.getClassId().getId());
-				writeString(member.getName());
+				buffer.writeInt(member.getClassId().getId());
+				buffer.writeString(member.getName());
 			}
 		}
-		writeInt(World.getInstance().getPartyCount()); // Helios
-		writeInt(World.getInstance().getPartyMemberCount()); // Helios
+		buffer.writeInt(World.getInstance().getPartyCount()); // Helios
+		buffer.writeInt(World.getInstance().getPartyMemberCount()); // Helios
 	}
 }

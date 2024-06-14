@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/multisell.xsd">
+	<npcs>
+		<npc>-1</npc> <!-- Item Multisell -->
+	</npcs>
+	<!-- Doll Coupon Lv. 3 (Sealed) - Sealed (100168) -->
+	<item>
+		<ingredient id="100168" count="10" /> <!-- Doll Coupon Lv. 3 (Sealed) - Sealed -->
+		<production id="100050" count="1" /> <!-- Glakias Doll Lv. 3 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="100168" count="10" /> <!-- Doll Coupon Lv. 3 (Sealed) - Sealed -->
+		<production id="100046" count="1" /> <!-- Behemoth Doll Lv. 3 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="100168" count="6" /> <!-- Doll Coupon Lv. 3 (Sealed) - Sealed -->
+		<production id="100043" count="1" /> <!-- Antharas Doll Lv. 3 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="100168" count="3" /> <!-- Doll Coupon Lv. 3 (Sealed) - Sealed -->
+		<production id="100025" count="1" /> <!-- Baium Doll Lv. 3 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="100168" count="3" /> <!-- Doll Coupon Lv. 3 (Sealed) - Sealed -->
+		<production id="100034" count="1" /> <!-- Frintezza Doll Lv. 3 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="100168" count="3" /> <!-- Doll Coupon Lv. 3 (Sealed) - Sealed -->
+		<production id="100037" count="1" /> <!-- Zaken Doll Lv. 3 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="100168" count="2" /> <!-- Doll Coupon Lv. 3 (Sealed) - Sealed -->
+		<production id="100040" count="1" /> <!-- Core Doll Lv. 3 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="100168" count="1" /> <!-- Doll Coupon Lv. 3 (Sealed) - Sealed -->
+		<production id="100028" count="1" /> <!-- Queen Ant Doll Lv. 3 - Sealed -->
+	</item>
+	<item>
+		<ingredient id="100168" count="1" /> <!-- Doll Coupon Lv. 3 (Sealed) - Sealed -->
+		<production id="100031" count="1" /> <!-- Orfen Doll Lv. 3 - Sealed -->
+	</item>
+</list>

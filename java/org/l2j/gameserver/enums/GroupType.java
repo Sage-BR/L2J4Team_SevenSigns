@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -27,7 +27,7 @@ public enum GroupType implements IUpdateTypeComponent
 	PARTY(2),
 	COMMAND_CHANNEL(4);
 	
-	private int _mask;
+	private final int _mask;
 	
 	private GroupType(int mask)
 	{

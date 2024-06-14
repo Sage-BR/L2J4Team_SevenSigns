@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,32 +16,35 @@
  */
 package org.l2j.gameserver.network.clientpackets.revenge;
 
-import org.l2j.commons.network.ReadablePacket;
 import org.l2j.gameserver.instancemanager.RevengeHistoryManager;
 import org.l2j.gameserver.model.actor.Player;
-import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.clientpackets.ClientPacket;
 
 /**
  * @author Mobius
  */
-public class RequestExPvpBookShareRevengeTeleportToKiller implements ClientPacket
+public class RequestExPvpBookShareRevengeTeleportToKiller extends ClientPacket
 {
 	private String _victimName;
 	private String _killerName;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_victimName = packet.readSizedString();
-		_killerName = packet.readSizedString();
+		_victimName = readSizedString();
+		_killerName = readSizedString();
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
-		final Player player = client.getPlayer();
-		if ((player == null) || !_victimName.equals(player.getName()))
+		final Player player = getPlayer();
+		if (player == null)
+		{
+			return;
+		}
+		
+		if (!_victimName.equals(player.getName()))
 		{
 			return;
 		}

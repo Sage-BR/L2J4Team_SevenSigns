@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -49,7 +49,7 @@ public class HappyHours extends LongTimeEvent
 	}
 	
 	@Override
-	public String onAdvEvent(String event, Npc npc, Player player)
+	public String onEvent(String event, Npc npc, Player player)
 	{
 		String htmltext = null;
 		switch (event)
@@ -80,7 +80,7 @@ public class HappyHours extends LongTimeEvent
 					{
 						_lastRewardTime = System.currentTimeMillis();
 						final ExShowScreenMessage screenMsg = new ExShowScreenMessage("You obtained 20 Sibi's coins.", ExShowScreenMessage.TOP_CENTER, 7000, 0, true, true);
-						final SystemMessage systemMsg = new SystemMessage(SystemMessageId.YOU_OBTAINED_S1_SIBIS_COINS);
+						final SystemMessage systemMsg = new SystemMessage(SystemMessageId.YOU_OBTAINED_S1_SIBI_S_COINS);
 						systemMsg.addInt(20);
 						for (Player plr : World.getInstance().getPlayers())
 						{

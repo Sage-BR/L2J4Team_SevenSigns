@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,9 +16,11 @@
  */
 package org.l2j.gameserver.network.serverpackets;
 
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.model.clan.Clan;
 import org.l2j.gameserver.model.clan.ClanMember;
+import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;
 
 /**
@@ -62,26 +64,26 @@ public class PledgeShowMemberListUpdate extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.PLEDGE_SHOW_MEMBER_LIST_UPDATE.writeId(this);
-		writeString(_name);
-		writeInt(_level);
-		writeInt(_classId);
-		writeInt(_sex);
-		writeInt(_race);
+		ServerPackets.PLEDGE_SHOW_MEMBER_LIST_UPDATE.writeId(this, buffer);
+		buffer.writeString(_name);
+		buffer.writeInt(_level);
+		buffer.writeInt(_classId);
+		buffer.writeInt(_sex);
+		buffer.writeInt(_race);
 		if (_onlineStatus > 0)
 		{
-			writeInt(_objectId);
-			writeInt(_pledgeType);
+			buffer.writeInt(_objectId);
+			buffer.writeInt(_pledgeType);
 		}
 		else
 		{
 			// when going offline send as 0
-			writeInt(0);
-			writeInt(0);
+			buffer.writeInt(0);
+			buffer.writeInt(0);
 		}
-		writeInt(_hasSponsor);
-		writeByte(_onlineStatus);
+		buffer.writeInt(_hasSponsor);
+		buffer.writeByte(_onlineStatus);
 	}
 }

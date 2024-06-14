@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,17 +17,15 @@
 package org.l2j.gameserver.network.clientpackets;
 
 import org.l2j.Config;
-import org.l2j.commons.network.ReadablePacket;
 import org.l2j.gameserver.data.sql.CharInfoTable;
 import org.l2j.gameserver.data.xml.FakePlayerData;
-import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.serverpackets.ExIsCharNameCreatable;
 import org.l2j.gameserver.util.Util;
 
 /**
  * @author UnAfraid
  */
-public class RequestCharacterNameCreatable implements ClientPacket
+public class RequestCharacterNameCreatable extends ClientPacket
 {
 	private String _name;
 	
@@ -38,13 +36,13 @@ public class RequestCharacterNameCreatable implements ClientPacket
 	public static final int CANNOT_CREATE_SERVER = 5;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_name = packet.readString();
+		_name = readString();
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
 		final int charId = CharInfoTable.getInstance().getIdByName(_name);
 		int result;
@@ -69,7 +67,7 @@ public class RequestCharacterNameCreatable implements ClientPacket
 			result = -1;
 		}
 		
-		client.sendPacket(new ExIsCharNameCreatable(result));
+		getClient().sendPacket(new ExIsCharNameCreatable(result));
 	}
 	
 	private boolean isValidName(String text)

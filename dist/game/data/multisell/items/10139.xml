@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/multisell.xsd">
+	<npcs>
+		<npc>-1</npc> <!-- Item Multisell -->
+	</npcs>
+	<!-- Purge Collection Coupon (Time-limited) - Sealed (99946) -->
+	<item>
+		<ingredient id="99946" count="1" /> <!-- Purge Collection Coupon (Time-limited) - Sealed -->
+		<production id="99943" count="1" /> <!-- Dragon Valley Purge Kit I (Time-limited) - Sealed -->
+	</item>
+	<item>
+		<ingredient id="99946" count="1" /> <!-- Purge Collection Coupon (Time-limited) - Sealed -->
+		<production id="99942" count="1" /> <!-- Sel Mahum Base Purge Kit I (Time-limited) - Sealed -->
+	</item>
+	<item>
+		<ingredient id="99946" count="1" /> <!-- Purge Collection Coupon (Time-limited) - Sealed -->
+		<production id="99941" count="1" /> <!-- Collector of Low-grade Purge Equipment Kit II (Time-limited) - Sealed -->
+	</item>
+</list>

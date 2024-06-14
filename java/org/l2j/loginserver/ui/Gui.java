@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -146,7 +146,7 @@ public class Gui
 			{
 				gsi.setStatus(ServerStatus.STATUS_NORMAL);
 			}
-			LoginServer.getInstance().LOGGER.info("Status changed to enabled.");
+			LoginServer.LOGGER.info("Status changed to enabled.");
 		});
 		chckbxmntmEnabled.setSelected(true);
 		mnStatus.add(chckbxmntmEnabled);
@@ -163,7 +163,7 @@ public class Gui
 			{
 				gsi.setStatus(ServerStatus.STATUS_DOWN);
 			}
-			LoginServer.getInstance().LOGGER.info("Status changed to disabled.");
+			LoginServer.LOGGER.info("Status changed to disabled.");
 		});
 		mnStatus.add(chckbxmntmDisabled);
 		
@@ -179,7 +179,7 @@ public class Gui
 			{
 				gsi.setStatus(ServerStatus.STATUS_GM_ONLY);
 			}
-			LoginServer.getInstance().LOGGER.info("Status changed to GM only.");
+			LoginServer.LOGGER.info("Status changed to GM only.");
 		});
 		mnStatus.add(chckbxmntmGmOnly);
 		
@@ -215,7 +215,7 @@ public class Gui
 		scrollPanel.setBounds(0, 0, 800, 550);
 		
 		// Set frame.
-		final JFrame frame = new JFrame("4Team - LoginServer");
+		final JFrame frame = new JFrame("Mobius - LoginServer");
 		frame.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
 		frame.addWindowListener(new WindowAdapter()
 		{

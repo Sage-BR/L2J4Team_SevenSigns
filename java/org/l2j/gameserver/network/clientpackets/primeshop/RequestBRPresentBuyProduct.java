@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,7 +19,7 @@ package org.l2j.gameserver.network.clientpackets.primeshop;
 import java.util.Calendar;
 
 import org.l2j.Config;
-import org.l2j.commons.network.ReadablePacket;
+import org.l2j.commons.threads.ThreadPool;
 import org.l2j.gameserver.data.sql.CharInfoTable;
 import org.l2j.gameserver.data.xml.PrimeShopData;
 import org.l2j.gameserver.enums.ExBrProductReplyType;
@@ -32,7 +32,6 @@ import org.l2j.gameserver.model.itemcontainer.Inventory;
 import org.l2j.gameserver.model.itemcontainer.Mail;
 import org.l2j.gameserver.model.primeshop.PrimeShopGroup;
 import org.l2j.gameserver.model.primeshop.PrimeShopItem;
-import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.clientpackets.ClientPacket;
 import org.l2j.gameserver.network.serverpackets.primeshop.ExBRBuyProduct;
 import org.l2j.gameserver.network.serverpackets.primeshop.ExBRGamePoint;
@@ -41,7 +40,7 @@ import org.l2j.gameserver.util.Util;
 /**
  * @author Gnacik, UnAfraid
  */
-public class RequestBRPresentBuyProduct implements ClientPacket
+public class RequestBRPresentBuyProduct extends ClientPacket
 {
 	private static final int HERO_COINS = 23805;
 	
@@ -52,19 +51,19 @@ public class RequestBRPresentBuyProduct implements ClientPacket
 	private String _mailBody;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_brId = packet.readInt();
-		_count = packet.readInt();
-		_charName = packet.readString();
-		_mailTitle = packet.readString();
-		_mailBody = packet.readString();
+		_brId = readInt();
+		_count = readInt();
+		_charName = readString();
+		_mailTitle = readString();
+		_mailBody = readString();
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
-		final Player player = client.getPlayer();
+		final Player player = getPlayer();
 		if (player == null)
 		{
 			return;
@@ -146,7 +145,7 @@ public class RequestBRPresentBuyProduct implements ClientPacket
 			MailManager.getInstance().sendMessage(mail);
 		}
 		
-		player.removeRequest(PrimeShopRequest.class);
+		ThreadPool.schedule(() -> player.removeRequest(PrimeShopRequest.class), 1000);
 	}
 	
 	/**

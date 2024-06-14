@@ -1,5 +1,5 @@
 /*
- * This file is part of the L2J 4Team project.
+ * This file is part of the L2J 4Team Project.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,6 +17,7 @@
 package org.l2j.gameserver.network;
 
 import org.l2j.Config;
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.network.serverpackets.ServerPacket;
 
 /**
@@ -1192,7 +1193,7 @@ public enum ServerPackets
 		_id2 = id2;
 	}
 	
-	public void writeId(ServerPacket packet)
+	public void writeId(ServerPacket packet, WritableBuffer buffer)
 	{
 		if (Config.DEBUG_SERVER_PACKETS)
 		{
@@ -1203,10 +1204,10 @@ public enum ServerPackets
 			}
 		}
 		
-		packet.writeByte(_id1);
+		buffer.writeByte(_id1);
 		if (_id2 > 0)
 		{
-			packet.writeShort(_id2);
+			buffer.writeShort(_id2);
 		}
 	}
 }
