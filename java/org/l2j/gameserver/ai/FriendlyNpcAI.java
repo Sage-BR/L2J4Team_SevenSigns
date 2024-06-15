@@ -52,13 +52,7 @@ public class FriendlyNpcAI extends AttackableAI
 	@Override
 	protected void onIntentionAttack(Creature target)
 	{
-		if (target == null)
-		{
-			clientActionFailed();
-			return;
-		}
-		
-		if (getIntention() == AI_INTENTION_REST)
+		if ((target == null) || (getIntention() == AI_INTENTION_REST))
 		{
 			clientActionFailed();
 			return;

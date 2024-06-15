@@ -77,14 +77,7 @@ public class RequestRefine extends AbstractRefinePacket
 			return;
 		}
 		
-		if (!isValid(player, targetItem, mineralItem, feeItem, fee))
-		{
-			player.sendPacket(ExVariationResult.FAIL);
-			player.sendPacket(SystemMessageId.AUGMENTATION_FAILED_DUE_TO_INAPPROPRIATE_CONDITIONS);
-			return;
-		}
-		
-		if (fee.getAdenaFee() <= 0)
+		if (!isValid(player, targetItem, mineralItem, feeItem, fee) || (fee.getAdenaFee() <= 0))
 		{
 			player.sendPacket(ExVariationResult.FAIL);
 			player.sendPacket(SystemMessageId.AUGMENTATION_FAILED_DUE_TO_INAPPROPRIATE_CONDITIONS);

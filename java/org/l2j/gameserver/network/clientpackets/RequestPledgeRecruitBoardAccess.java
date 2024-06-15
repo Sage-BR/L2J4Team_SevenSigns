@@ -57,13 +57,7 @@ public class RequestPledgeRecruitBoardAccess extends ClientPacket
 		}
 		
 		final Clan clan = player.getClan();
-		if (clan == null)
-		{
-			player.sendPacket(SystemMessageId.ONLY_THE_CLAN_LEADER_OR_SOMEONE_WITH_RANK_MANAGEMENT_AUTHORITY_MAY_REGISTER_THE_CLAN);
-			return;
-		}
-		
-		if (!player.hasClanPrivilege(ClanPrivilege.CL_MANAGE_RANKS))
+		if ((clan == null) || !player.hasClanPrivilege(ClanPrivilege.CL_MANAGE_RANKS))
 		{
 			player.sendPacket(SystemMessageId.ONLY_THE_CLAN_LEADER_OR_SOMEONE_WITH_RANK_MANAGEMENT_AUTHORITY_MAY_REGISTER_THE_CLAN);
 			return;

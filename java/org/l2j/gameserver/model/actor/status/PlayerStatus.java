@@ -84,12 +84,7 @@ public class PlayerStatus extends PlayableStatus
 			return;
 		}
 		
-		if (getActiveChar().isHpBlocked() && !(isDOT || isHPConsumption))
-		{
-			return;
-		}
-		
-		if (getActiveChar().isAffected(EffectFlag.DUELIST_FURY) && !attacker.isAffected(EffectFlag.FACEOFF))
+		if ((getActiveChar().isHpBlocked() && !(isDOT || isHPConsumption)) || (getActiveChar().isAffected(EffectFlag.DUELIST_FURY) && !attacker.isAffected(EffectFlag.FACEOFF)))
 		{
 			return;
 		}

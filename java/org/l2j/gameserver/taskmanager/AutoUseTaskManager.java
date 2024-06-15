@@ -251,25 +251,14 @@ public class AutoUseTaskManager
 					BUFFS: for (Integer skillId : player.getAutoUseSettings().getAutoBuffs())
 					{
 						// Fixes start area issue.
-						if (isInPeaceZone)
-						{
-							break BUFFS;
-						}
+						
 						
 						// Already casting.
-						if (player.isCastingNow())
-						{
-							break BUFFS;
-						}
+						
 						
 						// Attacking.
-						if (player.isAttackingNow())
-						{
-							break BUFFS;
-						}
-						
 						// Player is teleporting.
-						if (player.isTeleporting())
+						if (isInPeaceZone || player.isCastingNow() || player.isAttackingNow() || player.isTeleporting())
 						{
 							break BUFFS;
 						}
@@ -343,13 +332,8 @@ public class AutoUseTaskManager
 					SKILLS: for (int i = 0; i < count; i++)
 					{
 						// Already casting.
-						if (player.isCastingNow())
-						{
-							break SKILLS;
-						}
-						
 						// Player is teleporting.
-						if (player.isTeleporting())
+						if (player.isCastingNow() || player.isTeleporting())
 						{
 							break SKILLS;
 						}
@@ -530,12 +514,7 @@ public class AutoUseTaskManager
 			}
 			
 			final Playable playableTarget = (target == null) || !target.isPlayable() || (skill.getTargetType() == TargetType.SELF) ? player : (Playable) target;
-			if ((player != playableTarget) && (player.calculateDistance3D(playableTarget) > skill.getCastRange()))
-			{
-				return false;
-			}
-			
-			if (!canUseMagic(player, playableTarget, skill))
+			if (((player != playableTarget) && (player.calculateDistance3D(playableTarget) > skill.getCastRange())) || !canUseMagic(player, playableTarget, skill))
 			{
 				return false;
 			}
@@ -555,12 +534,7 @@ public class AutoUseTaskManager
 		
 		private boolean canUseMagic(Playable playable, WorldObject target, Skill skill)
 		{
-			if ((skill.getItemConsumeCount() > 0) && (playable.getInventory().getInventoryItemCount(skill.getItemConsumeId(), -1) < skill.getItemConsumeCount()))
-			{
-				return false;
-			}
-			
-			if ((skill.getMpConsume() > 0) && (playable.getCurrentMp() < skill.getMpConsume()))
+			if (((skill.getItemConsumeCount() > 0) && (playable.getInventory().getInventoryItemCount(skill.getItemConsumeId(), -1) < skill.getItemConsumeCount())) || ((skill.getMpConsume() > 0) && (playable.getCurrentMp() < skill.getMpConsume())))
 			{
 				return false;
 			}

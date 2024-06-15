@@ -18,8 +18,8 @@ package org.l2j.gameserver.network.serverpackets;
 
 import java.util.Collection;
 
-import org.l2j.commons.network.WritableBuffer;
 import org.l2j.Config;
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.data.sql.CharInfoTable;
 import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.model.clan.Clan;

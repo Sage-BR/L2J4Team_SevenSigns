@@ -59,11 +59,7 @@ public abstract class AbstractNode<Loc extends AbstractNodeLoc>
 		{
 			return true;
 		}
-		if (obj == null)
-		{
-			return false;
-		}
-		if (!(obj instanceof AbstractNode))
+		if ((obj == null) || !(obj instanceof AbstractNode))
 		{
 			return false;
 		}

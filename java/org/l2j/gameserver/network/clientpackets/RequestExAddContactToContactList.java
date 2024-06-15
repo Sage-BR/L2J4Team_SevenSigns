@@ -37,12 +37,7 @@ public class RequestExAddContactToContactList extends ClientPacket
 	@Override
 	protected void runImpl()
 	{
-		if (!Config.ALLOW_MAIL)
-		{
-			return;
-		}
-		
-		if (_name == null)
+		if (!Config.ALLOW_MAIL || (_name == null))
 		{
 			return;
 		}

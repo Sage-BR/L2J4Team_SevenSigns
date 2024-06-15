@@ -70,13 +70,7 @@ public class BuilderUtil
 	{
 		if (player.hasEnteredWorld())
 		{
-			if (player.isInvisible() && hide)
-			{
-				// already hiding
-				return false;
-			}
-			
-			if (!player.isInvisible() && !hide)
+			if ((player.isInvisible() && hide) || (!player.isInvisible() && !hide))
 			{
 				// already visible
 				return false;

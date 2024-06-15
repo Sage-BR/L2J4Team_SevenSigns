@@ -34,7 +34,7 @@ import org.l2j.gameserver.network.serverpackets.ActionFailed;
 import org.l2j.gameserver.network.serverpackets.RecipeShopManageList;
 
 /**
- * This class manages the action use request 
+ * This class manages the action use request
  * @author Zoey76
  */
 public class RequestActionUse extends ClientPacket
@@ -112,13 +112,7 @@ public class RequestActionUse extends ClientPacket
 			case 51: // General Manufacture
 			{
 				// Player shouldn't be able to set stores if he/she is alike dead (dead or fake death)
-				if (player.isAlikeDead())
-				{
-					player.sendPacket(ActionFailed.STATIC_PACKET);
-					return;
-				}
-				
-				if (player.isSellingBuffs())
+				if (player.isAlikeDead() || player.isSellingBuffs())
 				{
 					player.sendPacket(ActionFailed.STATIC_PACKET);
 					return;

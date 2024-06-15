@@ -18,8 +18,8 @@ package org.l2j.gameserver.network.serverpackets;
 
 import java.util.Collection;
 
-import org.l2j.commons.network.WritableBuffer;
 import org.l2j.Config;
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.enums.PlayerCondOverride;
 import org.l2j.gameserver.instancemanager.MentorManager;
 import org.l2j.gameserver.model.actor.Player;

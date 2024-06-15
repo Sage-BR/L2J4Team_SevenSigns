@@ -305,7 +305,7 @@ public class Gui
 		layeredPanel.add(systemPanel, 1, 0);
 		
 		// Set frame.
-		final JFrame frame = new JFrame("Mobius - GameServer");
+		final JFrame frame = new JFrame("4TeaM - GameServer");
 		frame.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
 		frame.addWindowListener(new WindowAdapter()
 		{

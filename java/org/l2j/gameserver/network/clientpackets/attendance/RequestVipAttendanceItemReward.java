@@ -91,7 +91,7 @@ public class RequestVipAttendanceItemReward extends ClientPacket
 			msg.addInt(_day);
 			player.sendPacket(msg);
 			
-			// Send confirm 
+			// Send confirm
 			player.sendPacket(new ExVipAttendanceReward());
 		}
 		else

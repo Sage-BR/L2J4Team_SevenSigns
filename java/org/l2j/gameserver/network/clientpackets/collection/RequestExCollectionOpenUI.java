@@ -36,12 +36,7 @@ public class RequestExCollectionOpenUI extends ClientPacket
 	protected void runImpl()
 	{
 		final Player player = getPlayer();
-		if (player == null)
-		{
-			return;
-		}
-		
-		if (player.hasRequest(AutoPeelRequest.class))
+		if ((player == null) || player.hasRequest(AutoPeelRequest.class))
 		{
 			return;
 		}

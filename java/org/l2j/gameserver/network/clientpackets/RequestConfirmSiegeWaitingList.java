@@ -44,13 +44,8 @@ public class RequestConfirmSiegeWaitingList extends ClientPacket
 	protected void runImpl()
 	{
 		final Player player = getPlayer();
-		if (player == null)
-		{
-			return;
-		}
-		
 		// Check if the player has a clan
-		if (player.getClan() == null)
+		if ((player == null) || (player.getClan() == null))
 		{
 			return;
 		}

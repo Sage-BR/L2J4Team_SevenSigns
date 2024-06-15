@@ -16,8 +16,8 @@
  */
 package org.l2j.gameserver.network.serverpackets.training;
 
-import org.l2j.commons.network.WritableBuffer;
 import org.l2j.Config;
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.data.xml.ExperienceData;
 import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;

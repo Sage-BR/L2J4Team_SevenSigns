@@ -342,13 +342,8 @@ public class TamedBeast extends FeedableBeast
 			return;
 		}
 		// if the owner is dead, do nothing...
-		if (_owner.isDead() || _isFreyaBeast)
-		{
-			return;
-		}
-		
 		// if the tamed beast is currently in the middle of casting, let it complete its skill...
-		if (isCastingNow(SkillCaster::isAnyNormalType))
+		if (_owner.isDead() || _isFreyaBeast || isCastingNow(SkillCaster::isAnyNormalType))
 		{
 			return;
 		}
@@ -512,12 +507,8 @@ public class TamedBeast extends FeedableBeast
 				return;
 			}
 			// if the owner is dead, do nothing...
-			if (owner.isDead())
-			{
-				return;
-			}
 			// if the tamed beast is currently casting a spell, do not interfere (do not attempt to cast anything new yet).
-			if (isCastingNow(SkillCaster::isAnyNormalType))
+			if (owner.isDead() || isCastingNow(SkillCaster::isAnyNormalType))
 			{
 				return;
 			}

@@ -46,12 +46,7 @@ public class RequestMissionLevelReceiveReward extends ClientPacket
 	protected void runImpl()
 	{
 		final Player player = getPlayer();
-		if (player == null)
-		{
-			return;
-		}
-		
-		if (player.hasRequest(RewardRequest.class))
+		if ((player == null) || player.hasRequest(RewardRequest.class))
 		{
 			return;
 		}

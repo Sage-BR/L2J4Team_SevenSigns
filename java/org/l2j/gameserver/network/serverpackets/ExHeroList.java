@@ -18,8 +18,8 @@ package org.l2j.gameserver.network.serverpackets;
 
 import java.util.Map;
 
-import org.l2j.commons.network.WritableBuffer;
 import org.l2j.Config;
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.model.StatSet;
 import org.l2j.gameserver.model.olympiad.Hero;
 import org.l2j.gameserver.model.olympiad.Olympiad;

@@ -92,12 +92,7 @@ public class RequestPurchaseLimitShopItemBuy extends ClientPacket
 	protected void runImpl()
 	{
 		final Player player = getPlayer();
-		if (player == null)
-		{
-			return;
-		}
-		
-		if (_product == null)
+		if ((player == null) || (_product == null))
 		{
 			return;
 		}

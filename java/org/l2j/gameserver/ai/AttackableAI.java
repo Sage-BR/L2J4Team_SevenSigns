@@ -100,19 +100,11 @@ public class AttackableAI extends CreatureAI
 	 */
 	private boolean isAggressiveTowards(Creature target)
 	{
-		if ((target == null) || (getActiveChar() == null))
-		{
-			return false;
-		}
+		
 		
 		// Check if the target isn't invulnerable
-		if (target.isInvul())
-		{
-			return false;
-		}
-		
 		// Check if the target isn't a Folk or a Door
-		if (target.isDoor())
+		if ((target == null) || (getActiveChar() == null) || target.isInvul() || target.isDoor())
 		{
 			return false;
 		}
@@ -1048,18 +1040,10 @@ public class AttackableAI extends CreatureAI
 	
 	private boolean checkSkillTarget(Skill skill, WorldObject target)
 	{
-		if (target == null)
-		{
-			return false;
-		}
+		
 		
 		// Check if target is valid and within cast range.
-		if (skill.getTarget(getActiveChar(), target, false, getActiveChar().isMovementDisabled(), false) == null)
-		{
-			return false;
-		}
-		
-		if (!Util.checkIfInRange(skill.getCastRange(), getActiveChar(), target, true))
+		if ((target == null) || (skill.getTarget(getActiveChar(), target, false, getActiveChar().isMovementDisabled(), false) == null) || !Util.checkIfInRange(skill.getCastRange(), getActiveChar(), target, true))
 		{
 			return false;
 		}
@@ -1124,12 +1108,7 @@ public class AttackableAI extends CreatureAI
 			
 			if (npc.isMovementDisabled())
 			{
-				if (!npc.isInsideRadius2D(target, npc.getPhysicalAttackRange() + npc.getTemplate().getCollisionRadius() + ((Creature) target).getTemplate().getCollisionRadius()))
-				{
-					return false;
-				}
-				
-				if (!GeoEngine.getInstance().canSeeTarget(npc, target))
+				if (!npc.isInsideRadius2D(target, npc.getPhysicalAttackRange() + npc.getTemplate().getCollisionRadius() + ((Creature) target).getTemplate().getCollisionRadius()) || !GeoEngine.getInstance().canSeeTarget(npc, target))
 				{
 					return false;
 				}
@@ -1290,13 +1269,8 @@ public class AttackableAI extends CreatureAI
 		
 		// Check if region and its neighbors are active.
 		final WorldRegion region = _actor.getWorldRegion();
-		if ((region == null) || !region.areNeighborsActive())
-		{
-			return;
-		}
-		
 		// Check if the actor is all skills disabled.
-		if (getActiveChar().isAllSkillsDisabled())
+		if ((region == null) || !region.areNeighborsActive() || getActiveChar().isAllSkillsDisabled())
 		{
 			return;
 		}

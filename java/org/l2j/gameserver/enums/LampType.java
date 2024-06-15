@@ -26,7 +26,7 @@ public enum LampType
 	BLUE(3),
 	GREEN(4);
 	
-	private int _grade;
+	private final int _grade;
 	
 	LampType(int grade)
 	{

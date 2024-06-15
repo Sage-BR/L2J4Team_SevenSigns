@@ -433,12 +433,7 @@ public class Fishing
 	 */
 	private static int computeBaitZ(Player player, int baitX, int baitY, FishingZone fishingZone, WaterZone waterZone)
 	{
-		if ((fishingZone == null))
-		{
-			return Integer.MIN_VALUE;
-		}
-		
-		if ((waterZone == null))
+		if ((fishingZone == null) || (waterZone == null))
 		{
 			return Integer.MIN_VALUE;
 		}

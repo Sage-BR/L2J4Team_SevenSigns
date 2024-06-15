@@ -426,13 +426,8 @@ public class Formulas
 	 */
 	public static boolean calcAtkBreak(Creature target, double dmg)
 	{
-		if (target.isChanneling())
-		{
-			return false;
-		}
-		
 		// Cannot interrupt targets affected by Burst or Superior Burst Casting.
-		if (target.hasAbnormalType(AbnormalType.DC_MOD))
+		if (target.isChanneling() || target.hasAbnormalType(AbnormalType.DC_MOD))
 		{
 			return false;
 		}

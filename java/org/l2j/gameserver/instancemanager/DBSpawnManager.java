@@ -268,11 +268,7 @@ public class DBSpawnManager
 	 */
 	public void addNewSpawn(Spawn spawn, long respawnTime, double currentHP, double currentMP, boolean storeInDb)
 	{
-		if (spawn == null)
-		{
-			return;
-		}
-		if (_spawns.containsKey(spawn.getId()))
+		if ((spawn == null) || _spawns.containsKey(spawn.getId()))
 		{
 			return;
 		}

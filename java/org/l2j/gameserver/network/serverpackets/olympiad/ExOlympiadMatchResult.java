@@ -84,9 +84,9 @@ public class ExOlympiadMatchResult extends ServerPacket
 			buffer.writeInt(info.getDiffPoints());
 			buffer.writeInt(0); // Helios
 		}
-        buffer.writeByte(3); // Round 1 outcome
-        buffer.writeByte(2); // Round 2 outcome
-        buffer.writeByte(3); // Round 3 outcome
+		buffer.writeByte(3); // Round 1 outcome
+		buffer.writeByte(2); // Round 2 outcome
+		buffer.writeByte(3); // Round 3 outcome
 		buffer.writeInt(15); // Bonus Reward
 		buffer.writeInt(0); // Bonus Reward for looser
 	}

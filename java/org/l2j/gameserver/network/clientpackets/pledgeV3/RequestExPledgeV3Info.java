@@ -39,12 +39,7 @@ public class RequestExPledgeV3Info extends ClientPacket
 	protected void runImpl()
 	{
 		final Player player = getPlayer();
-		if (player == null)
-		{
-			return;
-		}
-		
-		if (player.getClan() == null)
+		if ((player == null) || (player.getClan() == null))
 		{
 			return;
 		}

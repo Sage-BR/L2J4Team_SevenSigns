@@ -50,12 +50,7 @@ public class FishShots implements IItemHandler
 		final Player player = playable.getActingPlayer();
 		final Item weaponInst = player.getActiveWeaponInstance();
 		final Weapon weaponItem = player.getActiveWeaponItem();
-		if ((weaponInst == null) || (weaponItem.getItemType() != WeaponType.FISHINGROD))
-		{
-			return false;
-		}
-		
-		if (player.isChargedShot(ShotType.FISH_SOULSHOTS))
+		if ((weaponInst == null) || (weaponItem.getItemType() != WeaponType.FISHINGROD) || player.isChargedShot(ShotType.FISH_SOULSHOTS))
 		{
 			return false;
 		}

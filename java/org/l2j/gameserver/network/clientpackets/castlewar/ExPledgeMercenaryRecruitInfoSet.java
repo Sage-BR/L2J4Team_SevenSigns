@@ -44,12 +44,7 @@ public class ExPledgeMercenaryRecruitInfoSet extends ClientPacket
 		}
 		
 		final Clan clan = player.getClan();
-		if (clan == null)
-		{
-			return;
-		}
-		
-		if (clan.isRecruitMercenary() && (clan.getMapMercenary().size() > 0))
+		if ((clan == null) || (clan.isRecruitMercenary() && (clan.getMapMercenary().size() > 0)))
 		{
 			return;
 		}

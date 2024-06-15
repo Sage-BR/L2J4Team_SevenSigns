@@ -20,7 +20,6 @@ import org.l2j.gameserver.model.actor.Creature;
 import org.l2j.gameserver.model.events.EventType;
 import org.l2j.gameserver.model.events.impl.IBaseEvent;
 
-
 public class OnCreaturePDefChange implements IBaseEvent
 {
 	private final Creature _creature;

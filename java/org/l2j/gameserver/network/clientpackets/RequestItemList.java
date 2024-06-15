@@ -32,12 +32,7 @@ public class RequestItemList extends ClientPacket
 	protected void runImpl()
 	{
 		final Player player = getPlayer();
-		if (player == null)
-		{
-			return;
-		}
-		
-		if (player.isInventoryDisabled())
+		if ((player == null) || player.isInventoryDisabled())
 		{
 			return;
 		}

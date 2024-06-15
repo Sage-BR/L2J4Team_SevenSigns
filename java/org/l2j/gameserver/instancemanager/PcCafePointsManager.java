@@ -88,12 +88,7 @@ public class PcCafePointsManager
 		}
 		
 		// PC-points only premium accounts
-		if (Config.PC_CAFE_ONLY_PREMIUM && !player.hasPremiumStatus())
-		{
-			return;
-		}
-		
-		if (Config.PC_CAFE_ONLY_VIP && (player.getVipTier() <= 0))
+		if ((Config.PC_CAFE_ONLY_PREMIUM && !player.hasPremiumStatus()) || (Config.PC_CAFE_ONLY_VIP && (player.getVipTier() <= 0)))
 		{
 			return;
 		}

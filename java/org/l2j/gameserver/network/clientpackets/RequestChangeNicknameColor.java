@@ -54,12 +54,7 @@ public class RequestChangeNicknameColor extends ClientPacket
 	protected void runImpl()
 	{
 		final Player player = getPlayer();
-		if (player == null)
-		{
-			return;
-		}
-		
-		if ((_colorNum < 0) || (_colorNum >= COLORS.length))
+		if ((player == null) || (_colorNum < 0) || (_colorNum >= COLORS.length))
 		{
 			return;
 		}

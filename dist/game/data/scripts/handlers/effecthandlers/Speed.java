@@ -68,7 +68,7 @@ public class Speed extends AbstractEffect
 	@Override
 	public void pump(Creature effected, Skill skill)
 	{
-		if (_condition == null || _condition.test(effected, effected, skill))
+		if ((_condition == null) || _condition.test(effected, effected, skill))
 		{
 			switch (_mode)
 			{

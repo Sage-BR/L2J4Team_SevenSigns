@@ -89,18 +89,8 @@ public class ItemSkillsTemplate implements IItemHandler
 					hasConsumeSkill = true;
 				}
 				
-				if (!itemSkill.hasEffectType(EffectType.SUMMON_PET) && !itemSkill.checkCondition(playable, playable.getTarget(), true))
-				{
-					continue;
-				}
-				
-				if (playable.isSkillDisabled(itemSkill))
-				{
-					continue;
-				}
-				
 				// Verify that skill is not under reuse.
-				if (!checkReuse(playable, itemSkill, item))
+				if ((!itemSkill.hasEffectType(EffectType.SUMMON_PET) && !itemSkill.checkCondition(playable, playable.getTarget(), true)) || playable.isSkillDisabled(itemSkill) || !checkReuse(playable, itemSkill, item))
 				{
 					continue;
 				}

@@ -55,12 +55,7 @@ public class RequestPostAttachment extends ClientPacket
 		}
 		
 		final Player player = getPlayer();
-		if (player == null)
-		{
-			return;
-		}
-		
-		if (!getClient().getFloodProtectors().canPerformTransaction())
+		if ((player == null) || !getClient().getFloodProtectors().canPerformTransaction())
 		{
 			return;
 		}

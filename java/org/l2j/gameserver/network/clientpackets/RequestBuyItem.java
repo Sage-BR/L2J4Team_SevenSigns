@@ -85,14 +85,8 @@ public class RequestBuyItem extends ClientPacket
 			return;
 		}
 		
-		if (_items == null)
-		{
-			player.sendPacket(ActionFailed.STATIC_PACKET);
-			return;
-		}
-		
 		// Alt game - Karma punishment
-		if (!Config.ALT_GAME_KARMA_PLAYER_CAN_SHOP && (player.getReputation() < 0))
+		if ((_items == null) || (!Config.ALT_GAME_KARMA_PLAYER_CAN_SHOP && (player.getReputation() < 0)))
 		{
 			player.sendPacket(ActionFailed.STATIC_PACKET);
 			return;

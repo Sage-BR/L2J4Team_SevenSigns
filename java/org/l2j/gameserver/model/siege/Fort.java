@@ -694,11 +694,7 @@ public class Fort extends AbstractResidence
 	
 	public boolean updateFunctions(Player player, int type, int level, int lease, long rate, boolean addNew)
 	{
-		if (player == null)
-		{
-			return false;
-		}
-		if ((lease > 0) && !player.destroyItemByItemId("Consume", Inventory.ADENA_ID, lease, null, true))
+		if ((player == null) || ((lease > 0) && !player.destroyItemByItemId("Consume", Inventory.ADENA_ID, lease, null, true)))
 		{
 			return false;
 		}

@@ -881,11 +881,7 @@ public class FortManager extends Merchant
 					final int skillId = Integer.parseInt(val);
 					try
 					{
-						if (getFort().getFortFunction(Fort.FUNC_SUPPORT) == null)
-						{
-							return;
-						}
-						if (getFort().getFortFunction(Fort.FUNC_SUPPORT).getLevel() == 0)
+						if ((getFort().getFortFunction(Fort.FUNC_SUPPORT) == null) || (getFort().getFortFunction(Fort.FUNC_SUPPORT).getLevel() == 0))
 						{
 							return;
 						}

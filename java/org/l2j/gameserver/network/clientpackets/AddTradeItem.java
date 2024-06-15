@@ -48,12 +48,7 @@ public class AddTradeItem extends ClientPacket
 	protected void runImpl()
 	{
 		final Player player = getPlayer();
-		if (player == null)
-		{
-			return;
-		}
-		
-		if (_count < 1)
+		if ((player == null) || (_count < 1))
 		{
 			return;
 		}

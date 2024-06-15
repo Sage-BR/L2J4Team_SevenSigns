@@ -959,11 +959,7 @@ public class NpcTemplate extends CreatureTemplate implements IIdentifiable
 			// champion extra drop
 			if (victim.isChampion())
 			{
-				if ((victim.getLevel() < killer.getLevel()) && (Rnd.get(100) < Config.CHAMPION_REWARD_LOWER_LEVEL_ITEM_CHANCE))
-				{
-					return calculatedDrops;
-				}
-				if ((victim.getLevel() > killer.getLevel()) && (Rnd.get(100) < Config.CHAMPION_REWARD_HIGHER_LEVEL_ITEM_CHANCE))
+				if (((victim.getLevel() < killer.getLevel()) && (Rnd.get(100) < Config.CHAMPION_REWARD_LOWER_LEVEL_ITEM_CHANCE)) || ((victim.getLevel() > killer.getLevel()) && (Rnd.get(100) < Config.CHAMPION_REWARD_HIGHER_LEVEL_ITEM_CHANCE)))
 				{
 					return calculatedDrops;
 				}
@@ -1065,11 +1061,7 @@ public class NpcTemplate extends CreatureTemplate implements IIdentifiable
 		// champion extra drop
 		if (victim.isChampion())
 		{
-			if ((victim.getLevel() < killer.getLevel()) && (Rnd.get(100) < Config.CHAMPION_REWARD_LOWER_LEVEL_ITEM_CHANCE))
-			{
-				return calculatedDrops;
-			}
-			if ((victim.getLevel() > killer.getLevel()) && (Rnd.get(100) < Config.CHAMPION_REWARD_HIGHER_LEVEL_ITEM_CHANCE))
+			if (((victim.getLevel() < killer.getLevel()) && (Rnd.get(100) < Config.CHAMPION_REWARD_LOWER_LEVEL_ITEM_CHANCE)) || ((victim.getLevel() > killer.getLevel()) && (Rnd.get(100) < Config.CHAMPION_REWARD_HIGHER_LEVEL_ITEM_CHANCE)))
 			{
 				return calculatedDrops;
 			}

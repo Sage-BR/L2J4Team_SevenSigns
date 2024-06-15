@@ -87,7 +87,7 @@ public class RequestPurchaseLimitShopItemList extends ClientPacket
 			// Get the subList for current page.
 			final List<LimitShopProductHolder> productList = products.subList(start, end);
 			
-			// Send the 
+			// Send the
 			player.sendPacket(new ExPurchaseLimitShopItemListNew(player, _shopType, page + 1, totalPages, productList));
 		}
 	}

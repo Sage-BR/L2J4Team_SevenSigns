@@ -200,14 +200,7 @@ public class RecipeManager
 				return;
 			}
 			
-			if (_target.isAlikeDead())
-			{
-				_target.sendPacket(ActionFailed.STATIC_PACKET);
-				abort();
-				return;
-			}
-			
-			if (_target.isProcessingTransaction())
+			if (_target.isAlikeDead() || _target.isProcessingTransaction())
 			{
 				_target.sendPacket(ActionFailed.STATIC_PACKET);
 				abort();

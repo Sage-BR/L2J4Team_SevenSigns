@@ -47,12 +47,7 @@ public class RequestPetitionFeedback extends ClientPacket
 	protected void runImpl()
 	{
 		final Player player = getPlayer();
-		if ((player == null) || (player.getLastPetitionGmName() == null))
-		{
-			return;
-		}
-		
-		if ((_rate > 4) || (_rate < 0))
+		if ((player == null) || (player.getLastPetitionGmName() == null) || (_rate > 4) || (_rate < 0))
 		{
 			return;
 		}

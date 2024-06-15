@@ -316,17 +316,7 @@ public class UniqueGachaManager
 		}
 		
 		final PlayerInventory inv = player.getInventory();
-		if (inv == null)
-		{
-			return false;
-		}
-		
-		if (!inv.canManipulateWithItemId(_currencyItemId))
-		{
-			return false;
-		}
-		
-		if (getCurrencyCount(player) < currencyCount)
+		if ((inv == null) || !inv.canManipulateWithItemId(_currencyItemId) || (getCurrencyCount(player) < currencyCount))
 		{
 			return false;
 		}
@@ -402,12 +392,7 @@ public class UniqueGachaManager
 		{
 			final ItemTemplate template = ItemData.getInstance().getTemplate(requestedItem.getId());
 			final List<Item> item = template == null ? null : template.isStackable() ? List.of(warehouse.getItemByItemId(requestedItem.getId())) : new ArrayList<>(warehouse.getAllItemsByItemId(requestedItem.getId()));
-			if ((item == null) || item.isEmpty())
-			{
-				return false;
-			}
-			
-			if ((template != null) && template.isStackable() ? item.get(0).getCount() < requestedItem.getCount() : item.size() < requestedItem.getCount())
+			if ((item == null) || item.isEmpty() || ((template != null) && template.isStackable() ? item.get(0).getCount() < requestedItem.getCount() : item.size() < requestedItem.getCount()))
 			{
 				return false;
 			}

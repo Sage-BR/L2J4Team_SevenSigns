@@ -673,12 +673,7 @@ public class World
 			
 			for (WorldObject wo : visibleObjects)
 			{
-				if ((wo == object) || !clazz.isInstance(wo))
-				{
-					continue;
-				}
-				
-				if (wo.getInstanceWorld() != object.getInstanceWorld())
+				if ((wo == object) || !clazz.isInstance(wo) || (wo.getInstanceWorld() != object.getInstanceWorld()))
 				{
 					continue;
 				}
@@ -732,12 +727,7 @@ public class World
 			
 			for (WorldObject wo : visibleObjects)
 			{
-				if ((wo == object) || !clazz.isInstance(wo))
-				{
-					continue;
-				}
-				
-				if (wo.getInstanceWorld() != object.getInstanceWorld())
+				if ((wo == object) || !clazz.isInstance(wo) || (wo.getInstanceWorld() != object.getInstanceWorld()))
 				{
 					continue;
 				}

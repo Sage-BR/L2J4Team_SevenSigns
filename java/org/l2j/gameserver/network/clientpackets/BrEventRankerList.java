@@ -19,7 +19,7 @@ package org.l2j.gameserver.network.clientpackets;
 import org.l2j.gameserver.network.serverpackets.ExBrLoadEventTopRankers;
 
 /**
- * Halloween rank list client  Format: (ch)ddd
+ * Halloween rank list client Format: (ch)ddd
  */
 public class BrEventRankerList extends ClientPacket
 {

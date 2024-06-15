@@ -35,12 +35,7 @@ public class ExBalrogWarShowRanking extends ClientPacket
 	protected void runImpl()
 	{
 		final Player player = getPlayer();
-		if (player == null)
-		{
-			return;
-		}
-		
-		if (!BattleWithBalokManager.getInstance().getInBattle())
+		if ((player == null) || !BattleWithBalokManager.getInstance().getInBattle())
 		{
 			return;
 		}

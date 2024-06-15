@@ -20,8 +20,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import org.l2j.commons.network.WritableBuffer;
 import org.l2j.Config;
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.enums.TaxType;
 import org.l2j.gameserver.instancemanager.CastleManager;
 import org.l2j.gameserver.model.actor.Player;

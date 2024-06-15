@@ -196,12 +196,7 @@ public abstract class OlympiadGameNormal extends AbstractOlympiadGame
 	@Override
 	protected final boolean makeCompetitionStart()
 	{
-		if (!super.makeCompetitionStart())
-		{
-			return false;
-		}
-		
-		if ((_playerOne.getPlayer() == null) || (_playerTwo.getPlayer() == null))
+		if (!super.makeCompetitionStart() || (_playerOne.getPlayer() == null) || (_playerTwo.getPlayer() == null))
 		{
 			return false;
 		}
@@ -279,12 +274,7 @@ public abstract class OlympiadGameNormal extends AbstractOlympiadGame
 	@Override
 	protected final boolean checkBattleStatus()
 	{
-		if (_aborted)
-		{
-			return false;
-		}
-		
-		if ((_playerOne.getPlayer() == null) || _playerOne.isDisconnected())
+		if (_aborted || (_playerOne.getPlayer() == null) || _playerOne.isDisconnected())
 		{
 			return false;
 		}

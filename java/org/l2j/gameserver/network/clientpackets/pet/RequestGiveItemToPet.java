@@ -56,13 +56,8 @@ public class RequestGiveItemToPet extends ClientPacket
 			return;
 		}
 		
-		if (player.hasItemRequest())
-		{
-			return;
-		}
-		
 		// Alt game - Karma punishment
-		if (!Config.ALT_GAME_KARMA_PLAYER_CAN_TRADE && (player.getReputation() < 0))
+		if (player.hasItemRequest() || (!Config.ALT_GAME_KARMA_PLAYER_CAN_TRADE && (player.getReputation() < 0)))
 		{
 			return;
 		}

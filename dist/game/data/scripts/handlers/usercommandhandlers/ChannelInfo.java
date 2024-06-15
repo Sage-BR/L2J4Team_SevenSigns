@@ -35,12 +35,7 @@ public class ChannelInfo implements IUserCommandHandler
 	@Override
 	public boolean useUserCommand(int id, Player player)
 	{
-		if (id != COMMAND_IDS[0])
-		{
-			return false;
-		}
-		
-		if ((player.getParty() == null) || (player.getParty().getCommandChannel() == null))
+		if ((id != COMMAND_IDS[0]) || (player.getParty() == null) || (player.getParty().getCommandChannel() == null))
 		{
 			return false;
 		}

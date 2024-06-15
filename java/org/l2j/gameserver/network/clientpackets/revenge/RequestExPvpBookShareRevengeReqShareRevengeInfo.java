@@ -44,12 +44,7 @@ public class RequestExPvpBookShareRevengeReqShareRevengeInfo extends ClientPacke
 	protected void runImpl()
 	{
 		final Player player = getPlayer();
-		if (player == null)
-		{
-			return;
-		}
-		
-		if (!_victimName.equals(player.getName()))
+		if ((player == null) || !_victimName.equals(player.getName()))
 		{
 			return;
 		}

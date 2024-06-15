@@ -42,12 +42,7 @@ public class RequestNewHennaPotenSelect extends ClientPacket
 	protected void runImpl()
 	{
 		final Player player = getPlayer();
-		if (player == null)
-		{
-			return;
-		}
-		
-		if ((_slotId < 1) || (_slotId > player.getHennaPotenList().length))
+		if ((player == null) || (_slotId < 1) || (_slotId > player.getHennaPotenList().length))
 		{
 			return;
 		}

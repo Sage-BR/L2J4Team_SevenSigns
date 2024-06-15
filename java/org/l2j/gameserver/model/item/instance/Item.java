@@ -852,12 +852,7 @@ public class Item extends WorldObject
 	 */
 	public boolean isDropable()
 	{
-		if (!_itemTemplate.isDropable())
-		{
-			return false;
-		}
-		
-		if (isEquipable() && (getTransmogId() > 0))
+		if (!_itemTemplate.isDropable() || (isEquipable() && (getTransmogId() > 0)))
 		{
 			return false;
 		}
@@ -895,12 +890,7 @@ public class Item extends WorldObject
 	 */
 	public boolean isTradeable()
 	{
-		if (!_itemTemplate.isTradeable())
-		{
-			return false;
-		}
-		
-		if (isEquipable() && (getTransmogId() > 0))
+		if (!_itemTemplate.isTradeable() || (isEquipable() && (getTransmogId() > 0)))
 		{
 			return false;
 		}
@@ -919,12 +909,7 @@ public class Item extends WorldObject
 	 */
 	public boolean isSellable()
 	{
-		if (!_itemTemplate.isSellable())
-		{
-			return false;
-		}
-		
-		if (isEquipable() && (getTransmogId() > 0))
+		if (!_itemTemplate.isSellable() || (isEquipable() && (getTransmogId() > 0)))
 		{
 			return false;
 		}
@@ -1901,11 +1886,7 @@ public class Item extends WorldObject
 	
 	public boolean isAvailable()
 	{
-		if (!_itemTemplate.isConditionAttached())
-		{
-			return true;
-		}
-		if ((_loc == ItemLocation.PET) || (_loc == ItemLocation.PET_EQUIP))
+		if (!_itemTemplate.isConditionAttached() || (_loc == ItemLocation.PET) || (_loc == ItemLocation.PET_EQUIP))
 		{
 			return true;
 		}
@@ -2627,11 +2608,7 @@ public class Item extends WorldObject
 					final Player player = getActingPlayer();
 					if (player != null)
 					{
-						if (!stone.getRaces().isEmpty() && !stone.getRaces().contains(player.getRace()))
-						{
-							return 0;
-						}
-						if (!stone.getRacesNot().isEmpty() && stone.getRacesNot().contains(player.getRace()))
+						if ((!stone.getRaces().isEmpty() && !stone.getRaces().contains(player.getRace())) || (!stone.getRacesNot().isEmpty() && stone.getRacesNot().contains(player.getRace())))
 						{
 							return 0;
 						}

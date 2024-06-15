@@ -226,4 +226,3 @@ public abstract class ReadablePacket<T extends Client<Connection<T>>> implements
 	 */
 	protected abstract boolean read();
 }
-

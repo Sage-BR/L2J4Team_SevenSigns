@@ -122,13 +122,8 @@ public class DailyMissionDataHolder
 		}
 		
 		// Check if its dual class only.
-		if (isDualClassOnly() && !player.isDualClassActive())
-		{
-			return false;
-		}
-		
 		// Check for specific class restrictions
-		if (!_classRestriction.isEmpty() && !_classRestriction.contains(player.getClassId()))
+		if ((isDualClassOnly() && !player.isDualClassActive()) || (!_classRestriction.isEmpty() && !_classRestriction.contains(player.getClassId())))
 		{
 			return false;
 		}

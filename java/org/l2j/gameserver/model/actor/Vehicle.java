@@ -277,13 +277,8 @@ public abstract class Vehicle extends Creature
 	
 	public boolean addPassenger(Player player)
 	{
-		if ((player == null) || _passengers.contains(player))
-		{
-			return false;
-		}
-		
 		// already in other vehicle
-		if ((player.getVehicle() != null) && (player.getVehicle() != this))
+		if ((player == null) || _passengers.contains(player) || ((player.getVehicle() != null) && (player.getVehicle() != this)))
 		{
 			return false;
 		}

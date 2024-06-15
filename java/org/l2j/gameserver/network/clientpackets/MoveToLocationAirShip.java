@@ -50,12 +50,7 @@ public class MoveToLocationAirShip extends ClientPacket
 	protected void runImpl()
 	{
 		final Player player = getPlayer();
-		if (player == null)
-		{
-			return;
-		}
-		
-		if (!player.isInAirShip())
+		if ((player == null) || !player.isInAirShip())
 		{
 			return;
 		}

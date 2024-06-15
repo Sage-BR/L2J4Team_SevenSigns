@@ -56,13 +56,8 @@ public class LoginPacketHandler implements PacketHandler<LoginClient>
 		
 		// Find packet enum.
 		final LoginClientPackets packetEnum = LoginClientPackets.PACKET_ARRAY[packetId];
-		if (packetEnum == null)
-		{
-			return null;
-		}
-		
 		// Check connection state.
-		if (!packetEnum.getConnectionStates().contains(client.getConnectionState()))
+		if ((packetEnum == null) || !packetEnum.getConnectionStates().contains(client.getConnectionState()))
 		{
 			return null;
 		}

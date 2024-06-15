@@ -55,12 +55,7 @@ public class CaptchaManager
 	
 	public void updateCounter(Creature player, Creature monster)
 	{
-		if (!Config.ENABLE_CAPTCHA)
-		{
-			return;
-		}
-		
-		if (!(player instanceof Player) || !(monster instanceof Monster))
+		if (!Config.ENABLE_CAPTCHA || !(player instanceof Player) || !(monster instanceof Monster))
 		{
 			return;
 		}

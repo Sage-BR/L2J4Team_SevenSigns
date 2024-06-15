@@ -44,4 +44,3 @@ public class ExOlympiadMode extends ServerPacket
 		buffer.writeByte(_mode.ordinal());
 	}
 }
-

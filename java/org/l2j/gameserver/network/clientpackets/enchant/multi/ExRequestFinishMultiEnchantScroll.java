@@ -34,12 +34,7 @@ public class ExRequestFinishMultiEnchantScroll extends ClientPacket
 	protected void runImpl()
 	{
 		final Player player = getPlayer();
-		if (player == null)
-		{
-			return;
-		}
-		
-		if (player.getRequest(EnchantItemRequest.class) == null)
+		if ((player == null) || (player.getRequest(EnchantItemRequest.class) == null))
 		{
 			return;
 		}

@@ -36,17 +36,7 @@ public class OpChangeWeaponSkillCondition implements ISkillCondition
 	public boolean canUse(Creature caster, Skill skill, WorldObject target)
 	{
 		final Weapon weaponItem = caster.getActiveWeaponItem();
-		if (weaponItem == null)
-		{
-			return false;
-		}
-		
-		if (weaponItem.getChangeWeaponId() == 0)
-		{
-			return false;
-		}
-		
-		if (caster.getActingPlayer().hasItemRequest())
+		if ((weaponItem == null) || (weaponItem.getChangeWeaponId() == 0) || caster.getActingPlayer().hasItemRequest())
 		{
 			return false;
 		}

@@ -166,12 +166,7 @@ public class QuestState
 	 */
 	public void setState(byte state, boolean saveInDb)
 	{
-		if (_simulated)
-		{
-			return;
-		}
-		
-		if (_state == state)
+		if (_simulated || (_state == state))
 		{
 			return;
 		}
@@ -329,12 +324,7 @@ public class QuestState
 	 */
 	private void setCond(int cond, int old)
 	{
-		if (_simulated)
-		{
-			return;
-		}
-		
-		if (cond == old)
+		if (_simulated || (cond == old))
 		{
 			return;
 		}
@@ -409,12 +399,7 @@ public class QuestState
 	 */
 	public void unset(String variable)
 	{
-		if (_simulated)
-		{
-			return;
-		}
-		
-		if (_vars == null)
+		if (_simulated || (_vars == null))
 		{
 			return;
 		}
@@ -593,12 +578,7 @@ public class QuestState
 	 */
 	public void setCond(int value, boolean playQuestMiddle)
 	{
-		if (_simulated)
-		{
-			return;
-		}
-		
-		if (!isStarted())
+		if (_simulated || !isStarted())
 		{
 			return;
 		}

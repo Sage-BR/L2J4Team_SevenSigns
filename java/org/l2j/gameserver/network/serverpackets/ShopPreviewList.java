@@ -18,8 +18,8 @@ package org.l2j.gameserver.network.serverpackets;
 
 import java.util.Collection;
 
-import org.l2j.commons.network.WritableBuffer;
 import org.l2j.Config;
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.model.buylist.Product;
 import org.l2j.gameserver.model.buylist.ProductList;
 import org.l2j.gameserver.model.item.ItemTemplate;

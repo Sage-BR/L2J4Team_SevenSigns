@@ -23,7 +23,7 @@ import org.l2j.gameserver.network.ConnectionState;
 import org.l2j.gameserver.network.clientpackets.ClientPacket;
 
 /**
- * Request Save Key Mapping client 
+ * Request Save Key Mapping client
  * @author Mobius
  */
 public class RequestSaveKeyMapping extends ClientPacket

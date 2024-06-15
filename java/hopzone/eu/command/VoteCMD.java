@@ -168,11 +168,7 @@ public class VoteCMD implements IVoicedCommandHandler
 		final String TOPSITE = command.replace(".", "").toUpperCase();
 		
 		// check if allowed the individual command to run
-		if (TOPSITE.equals("HOPZONE") && !Configurations.HOPZONE_EU_INDIVIDUAL_REWARD)
-		{
-			return false;
-		}
-		if (TOPSITE.equals("ITOPZ") && !Configurations.ITOPZ_INDIVIDUAL_REWARD)
+		if ((TOPSITE.equals("HOPZONE") && !Configurations.HOPZONE_EU_INDIVIDUAL_REWARD) || (TOPSITE.equals("ITOPZ") && !Configurations.ITOPZ_INDIVIDUAL_REWARD))
 		{
 			return false;
 		}

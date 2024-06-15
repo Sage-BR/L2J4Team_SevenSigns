@@ -64,13 +64,8 @@ public class KarmaCount extends AbstractEffect
 	public void instant(Creature effector, Creature effected, Skill skill, Item item)
 	{
 		final Player player = effected.getActingPlayer();
-		if (player == null)
-		{
-			return;
-		}
-		
 		// Check if player has no karma.
-		if (player.getReputation() >= 0)
+		if ((player == null) || (player.getReputation() >= 0))
 		{
 			return;
 		}

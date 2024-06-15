@@ -48,18 +48,8 @@ public class RingRange implements IAffectScopeHandler
 		final AtomicInteger affected = new AtomicInteger(0);
 		final Predicate<Creature> filter = c ->
 		{
-			if ((affectLimit > 0) && (affected.get() >= affectLimit))
-			{
-				return false;
-			}
-			
-			if (c.isDead())
-			{
-				return false;
-			}
-			
 			// Targets before the start range are unaffected.
-			if (c.isInsideRadius2D(target, startRange))
+			if (((affectLimit > 0) && (affected.get() >= affectLimit)) || c.isDead() || c.isInsideRadius2D(target, startRange))
 			{
 				return false;
 			}

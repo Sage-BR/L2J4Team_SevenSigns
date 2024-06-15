@@ -213,13 +213,7 @@ public class DreamPriestess extends AbstractInstance
 				return true;
 			}
 			
-			if (InstanceManager.getInstance().getPlayerInstance(player, true) != null)
-			{
-				player.sendPacket(new SystemMessage(SystemMessageId.YOU_CANNOT_ENTER_AS_C1_IS_IN_ANOTHER_INSTANCE_ZONE).addString(player.getName()));
-				return true;
-			}
-			
-			if (InstanceManager.getInstance().getPlayerInstance(player, false) != null)
+			if ((InstanceManager.getInstance().getPlayerInstance(player, true) != null) || (InstanceManager.getInstance().getPlayerInstance(player, false) != null))
 			{
 				player.sendPacket(new SystemMessage(SystemMessageId.YOU_CANNOT_ENTER_AS_C1_IS_IN_ANOTHER_INSTANCE_ZONE).addString(player.getName()));
 				return true;

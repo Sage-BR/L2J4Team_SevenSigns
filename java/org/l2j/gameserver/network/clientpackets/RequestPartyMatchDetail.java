@@ -41,12 +41,7 @@ public class RequestPartyMatchDetail extends ClientPacket
 	protected void runImpl()
 	{
 		final Player player = getPlayer();
-		if (player == null)
-		{
-			return;
-		}
-		
-		if (player.isInMatchingRoom())
+		if ((player == null) || player.isInMatchingRoom())
 		{
 			return;
 		}

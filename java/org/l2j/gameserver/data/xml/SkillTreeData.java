@@ -897,17 +897,7 @@ public class SkillTreeData implements IXmlReader
 		final Race race = player.getRace();
 		for (SkillLearn skill : skills.values())
 		{
-			if (!skill.isAutoGet())
-			{
-				continue;
-			}
-			
-			if ((player.getLevel() < skill.getGetLevel()))
-			{
-				continue;
-			}
-			
-			if (!skill.getRaces().isEmpty() && !skill.getRaces().contains(race))
+			if (!skill.isAutoGet() || (player.getLevel() < skill.getGetLevel()) || (!skill.getRaces().isEmpty() && !skill.getRaces().contains(race)))
 			{
 				continue;
 			}
@@ -1885,18 +1875,8 @@ public class SkillTreeData implements IXmlReader
 	 */
 	public boolean isSkillAllowed(Player player, Skill skill)
 	{
-		if (skill.isExcludedFromCheck())
-		{
-			return true;
-		}
-		
-		if (player.isGM() && skill.isGMSkill())
-		{
-			return true;
-		}
-		
 		// Prevent accidental skill remove during reload
-		if (_loading)
+		if (skill.isExcludedFromCheck() || (player.isGM() && skill.isGMSkill()) || _loading)
 		{
 			return true;
 		}

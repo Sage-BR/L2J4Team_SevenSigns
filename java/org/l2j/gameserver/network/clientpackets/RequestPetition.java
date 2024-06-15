@@ -49,12 +49,7 @@ public class RequestPetition extends ClientPacket
 	protected void runImpl()
 	{
 		final Player player = getPlayer();
-		if (player == null)
-		{
-			return;
-		}
-		
-		if ((_type <= 0) || (_type >= 10))
+		if ((player == null) || (_type <= 0) || (_type >= 10))
 		{
 			return;
 		}

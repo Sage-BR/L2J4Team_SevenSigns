@@ -87,12 +87,7 @@ public class ExRequestMultiEnchantItemList extends ClientPacket
 		player.getChallengeInfo().setChallengePointsPendingRecharge(-1, -1);
 		
 		final EnchantItemRequest request = player.getRequest(EnchantItemRequest.class);
-		if (request == null)
-		{
-			return;
-		}
-		
-		if ((request.getEnchantingScroll() == null) || request.isProcessing())
+		if ((request == null) || (request.getEnchantingScroll() == null) || request.isProcessing())
 		{
 			return;
 		}

@@ -24,8 +24,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
-import org.l2j.commons.network.WritableBuffer;
 import org.l2j.commons.database.DatabaseFactory;
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.instancemanager.RankManager;
 import org.l2j.gameserver.model.StatSet;
 import org.l2j.gameserver.model.actor.Player;

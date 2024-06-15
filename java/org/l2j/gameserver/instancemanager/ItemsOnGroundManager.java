@@ -203,12 +203,7 @@ public class ItemsOnGroundManager implements Runnable
 		{
 			for (Item item : _items)
 			{
-				if (item == null)
-				{
-					continue;
-				}
-				
-				if (CursedWeaponsManager.getInstance().isCursed(item.getId()))
+				if ((item == null) || CursedWeaponsManager.getInstance().isCursed(item.getId()))
 				{
 					continue; // Cursed Items not saved to ground, prevent double save
 				}

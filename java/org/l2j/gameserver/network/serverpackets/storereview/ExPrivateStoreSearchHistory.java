@@ -19,7 +19,6 @@ package org.l2j.gameserver.network.serverpackets.storereview;
 import java.util.List;
 
 import org.l2j.commons.network.WritableBuffer;
-
 import org.l2j.gameserver.enums.PrivateStoreType;
 import org.l2j.gameserver.instancemanager.PrivateStoreHistoryManager.ItemHistoryTransaction;
 import org.l2j.gameserver.network.GameClient;

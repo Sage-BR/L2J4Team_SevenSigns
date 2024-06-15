@@ -20,8 +20,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-import org.l2j.commons.network.WritableBuffer;
 import org.l2j.commons.database.DatabaseFactory;
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.PacketLogger;
 import org.l2j.gameserver.network.ServerPackets;

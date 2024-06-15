@@ -279,12 +279,7 @@ public class PlayableStat extends CreatureStat
 	private void addReputationToClanBasedOnLevel(Player player, int leveledUpCount)
 	{
 		Clan clan = player.getClan();
-		if (clan == null)
-		{
-			return;
-		}
-		
-		if (clan.getLevel() < 3) // When a character from clan level 3 or above increases its level, CRP are added
+		if ((clan == null) || (clan.getLevel() < 3)) // When a character from clan level 3 or above increases its level, CRP are added
 		{
 			return;
 		}

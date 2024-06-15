@@ -90,11 +90,7 @@ public class Defender extends Attackable
 	@Override
 	public void returnHome()
 	{
-		if (getWalkSpeed() <= 0)
-		{
-			return;
-		}
-		if (getSpawn() == null)
+		if ((getWalkSpeed() <= 0) || (getSpawn() == null))
 		{
 			return;
 		}

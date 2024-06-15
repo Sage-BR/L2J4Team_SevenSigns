@@ -38,12 +38,7 @@ public class Wear implements IBypassHandler
 	@Override
 	public boolean useBypass(String command, Player player, Creature target)
 	{
-		if (!target.isNpc())
-		{
-			return false;
-		}
-		
-		if (!Config.ALLOW_WEAR)
+		if (!target.isNpc() || !Config.ALLOW_WEAR)
 		{
 			return false;
 		}

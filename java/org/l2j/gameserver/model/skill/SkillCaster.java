@@ -158,12 +158,7 @@ public class SkillCaster implements Runnable
 	 */
 	public static SkillCaster castSkill(Creature caster, WorldObject worldObject, Skill skill, Item item, SkillCastingType castingType, boolean ctrlPressed, boolean shiftPressed, int castTime)
 	{
-		if ((caster == null) || (skill == null) || (castingType == null))
-		{
-			return null;
-		}
-		
-		if (!checkUseConditions(caster, skill, castingType))
+		if ((caster == null) || (skill == null) || (castingType == null) || !checkUseConditions(caster, skill, castingType))
 		{
 			return null;
 		}
@@ -537,11 +532,7 @@ public class SkillCaster implements Runnable
 		if (caster.isPlayer())
 		{
 			// Consume Souls if necessary.
-			if ((_skill.getMaxLightSoulConsumeCount() > 0) && !caster.getActingPlayer().decreaseSouls(_skill.getMaxLightSoulConsumeCount(), SoulType.LIGHT))
-			{
-				return false;
-			}
-			if ((_skill.getMaxShadowSoulConsumeCount() > 0) && !caster.getActingPlayer().decreaseSouls(_skill.getMaxShadowSoulConsumeCount(), SoulType.SHADOW))
+			if (((_skill.getMaxLightSoulConsumeCount() > 0) && !caster.getActingPlayer().decreaseSouls(_skill.getMaxLightSoulConsumeCount(), SoulType.LIGHT)) || ((_skill.getMaxShadowSoulConsumeCount() > 0) && !caster.getActingPlayer().decreaseSouls(_skill.getMaxShadowSoulConsumeCount(), SoulType.SHADOW)))
 			{
 				return false;
 			}
@@ -603,13 +594,8 @@ public class SkillCaster implements Runnable
 		try
 		{
 			// Disabled characters should not be able to finish bad skills.
-			if (skill.isBad() && caster.isDisabled())
-			{
-				return;
-			}
-			
 			// Check if the toggle skill effects are already in progress on the Creature
-			if (skill.isToggle() && caster.isAffectedBySkill(skill.getId()))
+			if ((skill.isBad() && caster.isDisabled()) || (skill.isToggle() && caster.isAffectedBySkill(skill.getId())))
 			{
 				return;
 			}

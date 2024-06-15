@@ -21,29 +21,19 @@
  */
 package hopzone.eu.model;
 
+import hopzone.eu.gui.Gui;
 import hopzone.eu.model.base.IResponse;
+import hopzone.eu.util.Json;
 import hopzone.eu.util.Utilities;
 import hopzone.eu.vote.VDSystem;
-import hopzone.eu.gui.Gui;
-import hopzone.eu.util.Json;
 
 /**
- * @Author Nightwolf
- * iToPz Discord: https://discord.gg/KkPms6B5aE
- * @Author Rationale
- * Base structure credits goes on Rationale Discord: Rationale#7773
- * <p>
- * VDS Stands for: Vote Donation System
- * Script website: https://itopz.com/
- * Partner website: https://hopzone.eu/
- * Script version: 1.8
- * Pack Support: Mobius Essence 7.0 Assassin
- * <p>
- * Freemium Donate Panel V4: https://www.denart-designs.com/
- * Download: https://mega.nz/folder/6oxUyaIJ#qQDUXeoXlPvBjbPMDYzu-g
- * Buy: https://shop.denart-designs.com/product/auto-donate-panel-v4/
- *
- * Quick Guide: https://github.com/nightw0lv/VDSystem/tree/master/Guide
+ * @Author Nightwolf iToPz Discord: https://discord.gg/KkPms6B5aE
+ * @Author Rationale Base structure credits goes on Rationale Discord: Rationale#7773
+ *         <p>
+ *         VDS Stands for: Vote Donation System Script website: https://itopz.com/ Partner website: https://hopzone.eu/ Script version: 1.8 Pack Support: Mobius Essence 7.0 Assassin
+ *         <p>
+ *         Freemium Donate Panel V4: https://www.denart-designs.com/ Download: https://mega.nz/folder/6oxUyaIJ#qQDUXeoXlPvBjbPMDYzu-g Buy: https://shop.denart-designs.com/product/auto-donate-panel-v4/ Quick Guide: https://github.com/nightw0lv/VDSystem/tree/master/Guide
  */
 public class IndividualResponse extends IResponse
 {
@@ -54,11 +44,10 @@ public class IndividualResponse extends IResponse
 	private String _voteError;
 	private int _responseCode;
 	private final String _IPAddress;
-
+	
 	/**
 	 * Constructor
-	 *
-	 * @param url       string
+	 * @param url string
 	 * @param IPAddress string
 	 */
 	public IndividualResponse(final String url, final String IPAddress)
@@ -66,12 +55,11 @@ public class IndividualResponse extends IResponse
 		super(url);
 		_IPAddress = IPAddress;
 	}
-
+	
 	/**
 	 * on fetch data set local variables
-	 *
 	 * @param responseCode int
-	 * @param response     Json object
+	 * @param response Json object
 	 */
 	@Override
 	public void onFetch(final String TOPSITE, final int responseCode, final Json response)
@@ -81,7 +69,7 @@ public class IndividualResponse extends IResponse
 		_voteTime = -1;
 		_serverTime = -1;
 		_voteError = "NONE";
-
+		
 		switch (TOPSITE)
 		{
 			case "HOPZONE":
@@ -128,10 +116,9 @@ public class IndividualResponse extends IResponse
 				break;
 		}
 	}
-
+	
 	/**
 	 * Replace the url address
-	 *
 	 * @param retailURL string
 	 * @return retailURL string
 	 */
@@ -140,10 +127,9 @@ public class IndividualResponse extends IResponse
 	{
 		return retailURL.replace("%IP%", _IPAddress);
 	}
-
+	
 	/**
 	 * Connection
-	 *
 	 * @return super.connect() object
 	 */
 	@Override
@@ -151,61 +137,55 @@ public class IndividualResponse extends IResponse
 	{
 		return (IndividualResponse) super.connect(TOPSITE, TYPE);
 	}
-
+	
 	/**
 	 * Returns response code
-	 *
 	 * @return _responseCode int
 	 */
 	public int getResponseCode()
 	{
 		return _responseCode;
 	}
-
+	
 	/**
 	 * Returns last error
-	 *
 	 * @return string
 	 */
 	public String getError()
 	{
 		return _voteError;
 	}
-
+	
 	/**
 	 * Returns voted value
-	 *
 	 * @return hasVoted boolean
 	 */
 	public boolean hasVoted()
 	{
 		return _hasVoted;
 	}
-
+	
 	/**
 	 * Returns server time value
-	 *
 	 * @return Time long
 	 */
 	public long getServerTime()
 	{
 		return _serverTime;
 	}
-
+	
 	/**
 	 * Returns vote time value
-	 *
 	 * @return VoteTime long
 	 */
 	public long getVoteTime()
 	{
 		return _voteTime;
 	}
-
+	
 	/**
 	 * Return response
-	 *
-	 * @param url       string
+	 * @param url string
 	 * @param IPAddress string
 	 * @return IndividualResponse object
 	 */

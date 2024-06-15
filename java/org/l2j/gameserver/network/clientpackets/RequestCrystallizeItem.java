@@ -113,13 +113,7 @@ public class RequestCrystallizeItem extends ClientPacket
 			return;
 		}
 		
-		if (!itemToRemove.getTemplate().isCrystallizable() || (itemToRemove.getTemplate().getCrystalCount() <= 0) || (itemToRemove.getTemplate().getCrystalType() == CrystalType.NONE))
-		{
-			player.sendPacket(SystemMessageId.THIS_ITEM_CANNOT_BE_CRYSTALLIZED);
-			return;
-		}
-		
-		if (!player.getInventory().canManipulateWithItemId(itemToRemove.getId()))
+		if (!itemToRemove.getTemplate().isCrystallizable() || (itemToRemove.getTemplate().getCrystalCount() <= 0) || (itemToRemove.getTemplate().getCrystalType() == CrystalType.NONE) || !player.getInventory().canManipulateWithItemId(itemToRemove.getId()))
 		{
 			player.sendPacket(SystemMessageId.THIS_ITEM_CANNOT_BE_CRYSTALLIZED);
 			return;

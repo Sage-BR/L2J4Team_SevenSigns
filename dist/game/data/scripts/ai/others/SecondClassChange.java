@@ -42,12 +42,7 @@ public class SecondClassChange extends AbstractNpcAI
 	public void onPlayerLevelChanged(OnPlayerLevelChanged event)
 	{
 		final Player player = event.getPlayer();
-		if (player == null)
-		{
-			return;
-		}
-		
-		if ((player.getLevel() < LEVEL_REQUIREMENT) || !CategoryData.getInstance().isInCategory(CategoryType.SECOND_CLASS_GROUP, player.getClassId().getId()))
+		if ((player == null) || (player.getLevel() < LEVEL_REQUIREMENT) || !CategoryData.getInstance().isInCategory(CategoryType.SECOND_CLASS_GROUP, player.getClassId().getId()))
 		{
 			return;
 		}
@@ -60,12 +55,7 @@ public class SecondClassChange extends AbstractNpcAI
 	public void onPlayerLogin(OnPlayerLogin event)
 	{
 		final Player player = event.getPlayer();
-		if (player == null)
-		{
-			return;
-		}
-		
-		if ((player.getLevel() < LEVEL_REQUIREMENT) || !CategoryData.getInstance().isInCategory(CategoryType.SECOND_CLASS_GROUP, player.getClassId().getId()))
+		if ((player == null) || (player.getLevel() < LEVEL_REQUIREMENT) || !CategoryData.getInstance().isInCategory(CategoryType.SECOND_CLASS_GROUP, player.getClassId().getId()))
 		{
 			return;
 		}

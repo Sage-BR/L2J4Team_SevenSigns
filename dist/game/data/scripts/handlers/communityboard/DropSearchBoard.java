@@ -354,12 +354,7 @@ public class DropSearchBoard implements IParseBoardHandler
 		final List<ItemTemplate> items = new ArrayList<>();
 		for (ItemTemplate item : ItemData.getInstance().getAllItems())
 		{
-			if (item == null)
-			{
-				continue;
-			}
-			
-			if (!existInDropData.contains(item.getId()))
+			if ((item == null) || !existInDropData.contains(item.getId()))
 			{
 				continue;
 			}

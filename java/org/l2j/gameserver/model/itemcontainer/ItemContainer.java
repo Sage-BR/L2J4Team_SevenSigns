@@ -389,12 +389,7 @@ public abstract class ItemContainer
 		
 		synchronized (item)
 		{
-			if (!_items.contains(item))
-			{
-				return null;
-			}
-			
-			if (count > item.getCount())
+			if (!_items.contains(item) || (count > item.getCount()))
 			{
 				return null;
 			}

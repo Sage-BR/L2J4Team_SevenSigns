@@ -19,8 +19,8 @@ package org.l2j.gameserver.network.serverpackets;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.l2j.commons.network.WritableBuffer;
 import org.l2j.Config;
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.enums.AcquireSkillType;
 import org.l2j.gameserver.model.SkillLearn;
 import org.l2j.gameserver.model.actor.Player;

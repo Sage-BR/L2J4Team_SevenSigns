@@ -172,12 +172,7 @@ public class SiegeGuardManager
 	public void addTicket(int itemId, Player player)
 	{
 		final Castle castle = CastleManager.getInstance().getCastle(player);
-		if (castle == null)
-		{
-			return;
-		}
-		
-		if (isAtNpcLimit(castle.getResidenceId(), itemId))
+		if ((castle == null) || isAtNpcLimit(castle.getResidenceId(), itemId))
 		{
 			return;
 		}

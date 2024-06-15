@@ -680,12 +680,7 @@ public class AdminEffects implements IAdminCommandHandler
 		{
 			if (target.isCreature())
 			{
-				if (target instanceof Chest)
-				{
-					activeChar.sendPacket(SystemMessageId.NOTHING_HAPPENED);
-					return false;
-				}
-				if ((target.isNpc()) && ((action < 1) || (action > 20)))
+				if ((target instanceof Chest) || ((target.isNpc()) && ((action < 1) || (action > 20))))
 				{
 					activeChar.sendPacket(SystemMessageId.NOTHING_HAPPENED);
 					return false;

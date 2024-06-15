@@ -56,11 +56,7 @@ public class RequestJoinAlly extends ClientPacket
 			return;
 		}
 		
-		if (!clan.checkAllyJoinCondition(player, target))
-		{
-			return;
-		}
-		if (!player.getRequest().setRequest(target, this))
+		if (!clan.checkAllyJoinCondition(player, target) || !player.getRequest().setRequest(target, this))
 		{
 			return;
 		}

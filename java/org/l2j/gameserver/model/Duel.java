@@ -900,19 +900,11 @@ public class Duel
 		else if (!_partyDuel)
 		{
 			// Duel was interrupted e.g.: player was attacked by mobs / other players
-			if ((_playerA.getDuelState() == DUELSTATE_INTERRUPTED) || (_playerB.getDuelState() == DUELSTATE_INTERRUPTED))
-			{
-				return DuelResult.CANCELED;
-			}
+			
 			
 			// Are the players too far apart?
-			if (!_playerA.isInsideRadius2D(_playerB, 1600))
-			{
-				return DuelResult.CANCELED;
-			}
-			
 			// Did one of the players engage in PvP combat?
-			if (isDuelistInPvp(true))
+			if ((_playerA.getDuelState() == DUELSTATE_INTERRUPTED) || (_playerB.getDuelState() == DUELSTATE_INTERRUPTED) || !_playerA.isInsideRadius2D(_playerB, 1600) || isDuelistInPvp(true))
 			{
 				return DuelResult.CANCELED;
 			}

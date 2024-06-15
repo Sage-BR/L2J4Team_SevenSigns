@@ -143,13 +143,8 @@ public class CreatureStatus
 	public void reduceHp(double value, Creature attacker, boolean awake, boolean isDOT, boolean isHPConsumption)
 	{
 		final Creature creature = _creature;
-		if (creature.isDead())
-		{
-			return;
-		}
-		
 		// invul handling
-		if (creature.isHpBlocked() && !(isDOT || isHPConsumption))
+		if (creature.isDead() || (creature.isHpBlocked() && !(isDOT || isHPConsumption)))
 		{
 			return;
 		}

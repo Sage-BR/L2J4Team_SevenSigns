@@ -260,12 +260,7 @@ public class AppearanceStone
 	 */
 	public boolean checkConditions(Player player, Item targetItem)
 	{
-		if (targetItem == null)
-		{
-			return false;
-		}
-		
-		if (getTargetTypes().isEmpty())
+		if ((targetItem == null) || getTargetTypes().isEmpty())
 		{
 			return false;
 		}

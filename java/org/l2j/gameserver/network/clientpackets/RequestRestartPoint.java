@@ -90,12 +90,7 @@ public class RequestRestartPoint extends ClientPacket
 	protected void runImpl()
 	{
 		final Player player = getPlayer();
-		if (player == null)
-		{
-			return;
-		}
-		
-		if (!player.canRevive())
+		if ((player == null) || !player.canRevive())
 		{
 			return;
 		}

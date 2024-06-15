@@ -317,12 +317,7 @@ public class AchievementBox
 	
 	public void tryFinishBox()
 	{
-		if ((_boxTimeForOpen == 0) || (_boxTimeForOpen >= System.currentTimeMillis()))
-		{
-			return;
-		}
-		
-		if ((_owner == null) || !_owner.isOnline())
+		if ((_boxTimeForOpen == 0) || (_boxTimeForOpen >= System.currentTimeMillis()) || (_owner == null) || !_owner.isOnline())
 		{
 			return;
 		}

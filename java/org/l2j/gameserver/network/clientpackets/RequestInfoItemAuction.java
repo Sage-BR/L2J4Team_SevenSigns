@@ -39,12 +39,7 @@ public class RequestInfoItemAuction extends ClientPacket
 	protected void runImpl()
 	{
 		final Player player = getPlayer();
-		if (player == null)
-		{
-			return;
-		}
-		
-		if (!getClient().getFloodProtectors().canUseItemAuction())
+		if ((player == null) || !getClient().getFloodProtectors().canUseItemAuction())
 		{
 			return;
 		}

@@ -58,12 +58,7 @@ public class RequestShortCutReg extends ClientPacket
 	protected void runImpl()
 	{
 		final Player player = getPlayer();
-		if (player == null)
-		{
-			return;
-		}
-		
-		if ((_page > 25) || (_page < 0))
+		if ((player == null) || (_page > 25) || (_page < 0))
 		{
 			return;
 		}

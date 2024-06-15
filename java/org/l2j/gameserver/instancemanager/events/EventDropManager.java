@@ -47,13 +47,8 @@ public class EventDropManager
 	
 	public void doEventDrop(Creature attacker, Attackable attackable)
 	{
-		if (EVENT_DROPS.isEmpty())
-		{
-			return;
-		}
-		
 		// Event items drop only for players.
-		if ((attacker == null) || !attacker.isPlayable() || attackable.isFakePlayer())
+		if (EVENT_DROPS.isEmpty() || (attacker == null) || !attacker.isPlayable() || attackable.isFakePlayer())
 		{
 			return;
 		}

@@ -54,12 +54,7 @@ public class DispelBySkillId extends AbstractEffect
 	@Override
 	public void instant(Creature effector, Creature effected, Skill skill, Item item)
 	{
-		if (effected.isDead())
-		{
-			return;
-		}
-		
-		if ((_rate < 100) && Formulas.calcCancelSuccess(_rate, effector, effected))
+		if (effected.isDead() || ((_rate < 100) && Formulas.calcCancelSuccess(_rate, effector, effected)))
 		{
 			return;
 		}

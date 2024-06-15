@@ -302,12 +302,7 @@ public class WorldRegion
 	 */
 	public void removeVisibleObject(WorldObject object)
 	{
-		if (object == null)
-		{
-			return;
-		}
-		
-		if (_visibleObjects.isEmpty())
+		if ((object == null) || _visibleObjects.isEmpty())
 		{
 			return;
 		}

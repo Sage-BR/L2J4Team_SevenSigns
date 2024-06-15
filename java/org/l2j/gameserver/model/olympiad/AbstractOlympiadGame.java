@@ -114,12 +114,7 @@ public abstract class AbstractOlympiadGame
 	 */
 	protected static SystemMessage checkDefaulted(Player player)
 	{
-		if ((player == null) || !player.isOnline())
-		{
-			return new SystemMessage(SystemMessageId.YOUR_OPPONENT_MADE_HASTE_WITH_THEIR_TAIL_BETWEEN_THEIR_LEGS_THE_MATCH_HAS_BEEN_CANCELLED);
-		}
-		
-		if ((player.getClient() == null) || player.getClient().isDetached())
+		if ((player == null) || !player.isOnline() || (player.getClient() == null) || player.getClient().isDetached())
 		{
 			return new SystemMessage(SystemMessageId.YOUR_OPPONENT_MADE_HASTE_WITH_THEIR_TAIL_BETWEEN_THEIR_LEGS_THE_MATCH_HAS_BEEN_CANCELLED);
 		}

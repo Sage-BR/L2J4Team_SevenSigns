@@ -44,12 +44,7 @@ public class RequestPetUseItem extends ClientPacket
 	protected void runImpl()
 	{
 		final Player player = getPlayer();
-		if ((player == null) || !player.hasPet())
-		{
-			return;
-		}
-		
-		if (!getClient().getFloodProtectors().canUseItem())
+		if ((player == null) || !player.hasPet() || !getClient().getFloodProtectors().canUseItem())
 		{
 			return;
 		}

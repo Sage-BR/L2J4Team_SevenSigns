@@ -61,19 +61,7 @@ public class ZoneCylinder extends ZoneForm
 		}
 		
 		// Any point of the rectangle intersecting the Circle?
-		if ((Math.pow(ax1 - _x, 2) + Math.pow(ay1 - _y, 2)) < _radS)
-		{
-			return true;
-		}
-		if ((Math.pow(ax1 - _x, 2) + Math.pow(ay2 - _y, 2)) < _radS)
-		{
-			return true;
-		}
-		if ((Math.pow(ax2 - _x, 2) + Math.pow(ay1 - _y, 2)) < _radS)
-		{
-			return true;
-		}
-		if ((Math.pow(ax2 - _x, 2) + Math.pow(ay2 - _y, 2)) < _radS)
+		if (((Math.pow(ax1 - _x, 2) + Math.pow(ay1 - _y, 2)) < _radS) || ((Math.pow(ax1 - _x, 2) + Math.pow(ay2 - _y, 2)) < _radS) || ((Math.pow(ax2 - _x, 2) + Math.pow(ay1 - _y, 2)) < _radS) || ((Math.pow(ax2 - _x, 2) + Math.pow(ay2 - _y, 2)) < _radS))
 		{
 			return true;
 		}

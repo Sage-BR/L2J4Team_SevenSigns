@@ -96,12 +96,7 @@ public class RequestJoinPledge extends ClientPacket
 			return;
 		}
 		
-		if (!clan.checkClanJoinCondition(player, target, _pledgeType))
-		{
-			return;
-		}
-		
-		if (!player.getRequest().setRequest(target, this))
+		if (!clan.checkClanJoinCondition(player, target, _pledgeType) || !player.getRequest().setRequest(target, this))
 		{
 			return;
 		}

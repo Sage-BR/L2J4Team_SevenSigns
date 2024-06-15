@@ -22,8 +22,8 @@ import java.sql.ResultSet;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.l2j.commons.network.WritableBuffer;
 import org.l2j.commons.database.DatabaseFactory;
+import org.l2j.commons.network.WritableBuffer;
 import org.l2j.gameserver.data.sql.CharInfoTable;
 import org.l2j.gameserver.model.World;
 import org.l2j.gameserver.model.actor.Player;

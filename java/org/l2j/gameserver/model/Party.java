@@ -1128,12 +1128,7 @@ public class Party extends AbstractPlayerGroup
 	
 	public synchronized void answerLootChangeRequest(Player member, boolean answer)
 	{
-		if (_changeRequestDistributionType == null)
-		{
-			return;
-		}
-		
-		if (_changeDistributionTypeAnswers.contains(member.getObjectId()))
+		if ((_changeRequestDistributionType == null) || _changeDistributionTypeAnswers.contains(member.getObjectId()))
 		{
 			return;
 		}

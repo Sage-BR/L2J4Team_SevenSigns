@@ -46,12 +46,7 @@ public class AnswerCoupleAction extends ClientPacket
 	{
 		final Player player = getPlayer();
 		final Player target = World.getInstance().getPlayer(_objectId);
-		if ((player == null) || (target == null))
-		{
-			return;
-		}
-		
-		if ((target.getMultiSocialTarget() != player.getObjectId()) || (target.getMultiSociaAction() != _actionId))
+		if ((player == null) || (target == null) || (target.getMultiSocialTarget() != player.getObjectId()) || (target.getMultiSociaAction() != _actionId))
 		{
 			return;
 		}

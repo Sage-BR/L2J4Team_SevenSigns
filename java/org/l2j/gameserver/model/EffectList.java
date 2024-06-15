@@ -908,12 +908,7 @@ public class EffectList
 		final Skill skill = info.getSkill();
 		
 		// Cannot add active buff to dead creature. Even in retail if you are dead with Lv. 3 Shillien's Breath, it will disappear instead of going 1 level down.
-		if (info.getEffected().isDead() && !skill.isStayAfterDeath())
-		{
-			return;
-		}
-		
-		if ((_blockedAbnormalTypes != null) && _blockedAbnormalTypes.contains(skill.getAbnormalType()))
+		if ((info.getEffected().isDead() && !skill.isStayAfterDeath()) || ((_blockedAbnormalTypes != null) && _blockedAbnormalTypes.contains(skill.getAbnormalType())))
 		{
 			return;
 		}

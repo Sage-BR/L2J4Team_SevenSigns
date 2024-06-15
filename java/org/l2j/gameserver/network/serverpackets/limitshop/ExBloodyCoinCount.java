@@ -17,7 +17,6 @@
 package org.l2j.gameserver.network.serverpackets.limitshop;
 
 import org.l2j.commons.network.WritableBuffer;
-
 import org.l2j.gameserver.model.actor.Player;
 import org.l2j.gameserver.model.itemcontainer.Inventory;
 import org.l2j.gameserver.network.GameClient;

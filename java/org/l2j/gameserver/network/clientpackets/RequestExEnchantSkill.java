@@ -82,22 +82,7 @@ public class RequestExEnchantSkill extends ClientPacket
 			return;
 		}
 		
-		if (!player.isAllowedToEnchantSkills())
-		{
-			return;
-		}
-		
-		if (player.isSellingBuffs())
-		{
-			return;
-		}
-		
-		if (player.isInOlympiadMode())
-		{
-			return;
-		}
-		
-		if (player.isInStoreMode())
+		if (!player.isAllowedToEnchantSkills() || player.isSellingBuffs() || player.isInOlympiadMode() || player.isInStoreMode())
 		{
 			return;
 		}

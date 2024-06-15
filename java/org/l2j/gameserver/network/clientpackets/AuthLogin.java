@@ -16,7 +16,6 @@
  */
 package org.l2j.gameserver.network.clientpackets;
 
-
 import org.l2j.gameserver.LoginServerThread;
 import org.l2j.gameserver.LoginServerThread.SessionKey;
 import org.l2j.gameserver.network.GameClient;

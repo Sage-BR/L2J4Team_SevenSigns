@@ -79,13 +79,7 @@ public class RequestUpgradeSystemResult extends ClientPacket
 		}
 		
 		final long adena = upgradeHolder.getAdena();
-		if ((adena > 0) && (player.getAdena() < adena))
-		{
-			player.sendPacket(new ExUpgradeSystemResult(0, 0));
-			return;
-		}
-		
-		if ((existingItem.getTemplate().getId() != upgradeHolder.getRequiredItemId()) || (existingItem.getEnchantLevel() != upgradeHolder.getRequiredItemEnchant()))
+		if (((adena > 0) && (player.getAdena() < adena)) || (existingItem.getTemplate().getId() != upgradeHolder.getRequiredItemId()) || (existingItem.getEnchantLevel() != upgradeHolder.getRequiredItemEnchant()))
 		{
 			player.sendPacket(new ExUpgradeSystemResult(0, 0));
 			return;
@@ -188,7 +182,7 @@ public class RequestUpgradeSystemResult extends ClientPacket
 		// Save item.
 		addedItem.updateDatabase(true);
 		
-		// Send result 
+		// Send result
 		player.sendPacket(new ExUpgradeSystemResult(addedItem.getObjectId(), 1));
 		player.sendItemList();
 	}

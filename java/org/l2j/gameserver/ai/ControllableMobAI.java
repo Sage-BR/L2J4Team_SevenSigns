@@ -377,12 +377,7 @@ public class ControllableMobAI extends AttackableAI
 	
 	private boolean checkAutoAttackCondition(Creature target)
 	{
-		if ((target == null) || !_actor.isAttackable())
-		{
-			return false;
-		}
-		
-		if (target.isNpc() || target.isDoor())
+		if ((target == null) || !_actor.isAttackable() || target.isNpc() || target.isDoor())
 		{
 			return false;
 		}

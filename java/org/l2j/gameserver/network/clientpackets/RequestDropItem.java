@@ -59,13 +59,8 @@ public class RequestDropItem extends ClientPacket
 	protected void runImpl()
 	{
 		final Player player = getPlayer();
-		if ((player == null) || player.isDead())
-		{
-			return;
-		}
-		
 		// Flood protect drop to avoid packet lag
-		if (!getClient().getFloodProtectors().canDropItem())
+		if ((player == null) || player.isDead() || !getClient().getFloodProtectors().canDropItem())
 		{
 			return;
 		}

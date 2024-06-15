@@ -242,13 +242,7 @@ public class CreatureAI extends AbstractAI
 	@Override
 	protected void onIntentionAttack(Creature target)
 	{
-		if ((target == null) || !target.isTargetable())
-		{
-			clientActionFailed();
-			return;
-		}
-		
-		if (getIntention() == AI_INTENTION_REST)
+		if ((target == null) || !target.isTargetable() || (getIntention() == AI_INTENTION_REST))
 		{
 			// Cancel action client side by sending Server->Client packet ActionFailed to the Player actor
 			clientActionFailed();
@@ -365,14 +359,7 @@ public class CreatureAI extends AbstractAI
 	@Override
 	protected void onIntentionMoveTo(ILocational loc)
 	{
-		if (getIntention() == AI_INTENTION_REST)
-		{
-			// Cancel action client side by sending Server->Client packet ActionFailed to the Player actor
-			clientActionFailed();
-			return;
-		}
-		
-		if (_actor.isAllSkillsDisabled() || _actor.isCastingNow())
+		if ((getIntention() == AI_INTENTION_REST) || _actor.isAllSkillsDisabled() || _actor.isCastingNow())
 		{
 			// Cancel action client side by sending Server->Client packet ActionFailed to the Player actor
 			clientActionFailed();
@@ -405,14 +392,7 @@ public class CreatureAI extends AbstractAI
 	@Override
 	protected void onIntentionFollow(Creature target)
 	{
-		if (getIntention() == AI_INTENTION_REST)
-		{
-			// Cancel action client side by sending Server->Client packet ActionFailed to the Player actor
-			clientActionFailed();
-			return;
-		}
-		
-		if (_actor.isAllSkillsDisabled() || _actor.isCastingNow())
+		if ((getIntention() == AI_INTENTION_REST) || _actor.isAllSkillsDisabled() || _actor.isCastingNow())
 		{
 			// Cancel action client side by sending Server->Client packet ActionFailed to the Player actor
 			clientActionFailed();
@@ -463,14 +443,7 @@ public class CreatureAI extends AbstractAI
 	@Override
 	protected void onIntentionPickUp(WorldObject object)
 	{
-		if (getIntention() == AI_INTENTION_REST)
-		{
-			// Cancel action client side by sending Server->Client packet ActionFailed to the Player actor
-			clientActionFailed();
-			return;
-		}
-		
-		if (_actor.isAllSkillsDisabled() || _actor.isCastingNow())
+		if ((getIntention() == AI_INTENTION_REST) || _actor.isAllSkillsDisabled() || _actor.isCastingNow())
 		{
 			// Cancel action client side by sending Server->Client packet ActionFailed to the Player actor
 			clientActionFailed();
@@ -515,14 +488,7 @@ public class CreatureAI extends AbstractAI
 	@Override
 	protected void onIntentionInteract(WorldObject object)
 	{
-		if (getIntention() == AI_INTENTION_REST)
-		{
-			// Cancel action client side by sending Server->Client packet ActionFailed to the Player actor
-			clientActionFailed();
-			return;
-		}
-		
-		if (_actor.isAllSkillsDisabled() || _actor.isCastingNow())
+		if ((getIntention() == AI_INTENTION_REST) || _actor.isAllSkillsDisabled() || _actor.isCastingNow())
 		{
 			// Cancel action client side by sending Server->Client packet ActionFailed to the Player actor
 			clientActionFailed();
@@ -906,13 +872,7 @@ public class CreatureAI extends AbstractAI
 	
 	protected boolean maybeMoveToPosition(ILocational worldPosition, int offset)
 	{
-		if (worldPosition == null)
-		{
-			// LOGGER.warning("maybeMoveToPosition: worldPosition == NULL!");
-			return false;
-		}
-		
-		if (offset < 0)
+		if ((worldPosition == null) || (offset < 0))
 		{
 			return false; // skill radius -1
 		}
@@ -976,12 +936,7 @@ public class CreatureAI extends AbstractAI
 	protected boolean maybeMoveToPawn(WorldObject target, int offsetValue)
 	{
 		// Get the distance between the current position of the Creature and the target (x,y)
-		if (target == null)
-		{
-			// LOGGER.warning("maybeMoveToPawn: target == NULL!");
-			return false;
-		}
-		if (offsetValue < 0)
+		if ((target == null) || (offsetValue < 0))
 		{
 			return false; // skill radius -1
 		}

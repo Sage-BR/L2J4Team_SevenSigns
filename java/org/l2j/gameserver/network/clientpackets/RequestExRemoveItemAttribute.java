@@ -54,12 +54,7 @@ public class RequestExRemoveItemAttribute extends ClientPacket
 		}
 		
 		final AttributeType type = AttributeType.findByClientId(_element);
-		if (type == null)
-		{
-			return;
-		}
-		
-		if ((targetItem.getAttributes() == null) || (targetItem.getAttribute(type) == null))
+		if ((type == null) || (targetItem.getAttributes() == null) || (targetItem.getAttribute(type) == null))
 		{
 			return;
 		}

@@ -79,12 +79,7 @@ public class ResurrectionSpecial extends AbstractEffect
 	@Override
 	public void onExit(Creature effector, Creature effected, Skill skill)
 	{
-		if (!effected.isPlayer() && !effected.isPet())
-		{
-			return;
-		}
-		
-		if (effected.getActingPlayer().isInOlympiadMode())
+		if ((!effected.isPlayer() && !effected.isPet()) || effected.getActingPlayer().isInOlympiadMode())
 		{
 			return;
 		}

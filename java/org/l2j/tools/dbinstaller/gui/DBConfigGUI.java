@@ -54,7 +54,7 @@ public class DBConfigGUI extends JFrame
 	
 	public DBConfigGUI(String db, String dir)
 	{
-		super("Mobius - DB Installer");
+		super("4TeaM - DB Installer");
 		setVisible(false);
 		setLayout(new SpringLayout());
 		setDefaultLookAndFeelDecorated(true);

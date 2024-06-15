@@ -593,12 +593,7 @@ public abstract class Inventory extends ItemContainer
 				{
 					for (ItemSkillHolder holder : onEnchantSkills)
 					{
-						if (playable.getSkillLevel(holder.getSkillId()) >= holder.getSkillLevel())
-						{
-							continue;
-						}
-						
-						if (item.getEnchantLevel() < holder.getValue())
+						if ((playable.getSkillLevel(holder.getSkillId()) >= holder.getSkillLevel()) || (item.getEnchantLevel() < holder.getValue()))
 						{
 							continue;
 						}
@@ -644,12 +639,7 @@ public abstract class Inventory extends ItemContainer
 					{
 						for (ItemSkillHolder holder : onBlessingSkills)
 						{
-							if (playable.getSkillLevel(holder.getSkillId()) >= holder.getSkillLevel())
-							{
-								continue;
-							}
-							
-							if (item.getEnchantLevel() < holder.getValue())
+							if ((playable.getSkillLevel(holder.getSkillId()) >= holder.getSkillLevel()) || (item.getEnchantLevel() < holder.getValue()))
 							{
 								continue;
 							}
@@ -693,13 +683,8 @@ public abstract class Inventory extends ItemContainer
 						}
 						
 						final Skill skill = holder.getSkill();
-						if (skill == null)
-						{
-							continue;
-						}
-						
 						// Check passive skill conditions.
-						if (skill.isPassive() && !skill.checkConditions(SkillConditionScope.PASSIVE, playable, playable))
+						if ((skill == null) || (skill.isPassive() && !skill.checkConditions(SkillConditionScope.PASSIVE, playable, playable)))
 						{
 							continue;
 						}
@@ -760,12 +745,7 @@ public abstract class Inventory extends ItemContainer
 				{
 					for (ItemSkillHolder holder : otherEnchantSkills)
 					{
-						if (playable.getSkillLevel(holder.getSkillId()) >= holder.getSkillLevel())
-						{
-							continue;
-						}
-						
-						if (equipped.getEnchantLevel() < holder.getValue())
+						if ((playable.getSkillLevel(holder.getSkillId()) >= holder.getSkillLevel()) || (equipped.getEnchantLevel() < holder.getValue()))
 						{
 							continue;
 						}
@@ -816,13 +796,8 @@ public abstract class Inventory extends ItemContainer
 						if (equipped.isBlessed())
 						{
 							final Skill skill = holder.getSkill();
-							if (skill == null)
-							{
-								continue;
-							}
-							
 							// Check passive skill conditions.
-							if (skill.isPassive() && !skill.checkConditions(SkillConditionScope.PASSIVE, playable, playable))
+							if ((skill == null) || (skill.isPassive() && !skill.checkConditions(SkillConditionScope.PASSIVE, playable, playable)))
 							{
 								continue;
 							}

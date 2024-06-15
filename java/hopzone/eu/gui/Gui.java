@@ -199,7 +199,7 @@ public class Gui extends JFrame
 		ConsolePanel.setSize(Configurations.VDS_CONSOLE_WIDTH, 500);
 		
 		// Setup the content-pane of JFrame in BorderLayout
-		Container cp = this.getContentPane();
+		Container cp = getContentPane();
 		cp.setBackground(Color.BLACK);
 		cp.setLayout(new GridLayout(1, 2, 5, 5)); // for 1 column, multiple rows
 		

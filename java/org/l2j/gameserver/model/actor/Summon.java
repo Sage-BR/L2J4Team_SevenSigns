@@ -653,13 +653,8 @@ public abstract class Summon extends Playable
 	public boolean useMagic(Skill skill, Item item, boolean forceUse, boolean dontMove)
 	{
 		// Null skill, dead summon or null owner are reasons to prevent casting.
-		if ((skill == null) || isDead() || (_owner == null))
-		{
-			return false;
-		}
-		
 		// Check if the skill is active
-		if (skill.isPassive())
+		if ((skill == null) || isDead() || (_owner == null) || skill.isPassive())
 		{
 			// just ignore the passive skill request. why does the client send it anyway ??
 			return false;
@@ -1008,12 +1003,7 @@ public abstract class Summon extends Playable
 	 */
 	public boolean canAttack(WorldObject target, boolean ctrlPressed)
 	{
-		if (_owner == null)
-		{
-			return false;
-		}
-		
-		if ((target == null) || (this == target) || (_owner == target))
+		if ((_owner == null) || (target == null) || (this == target) || (_owner == target))
 		{
 			return false;
 		}

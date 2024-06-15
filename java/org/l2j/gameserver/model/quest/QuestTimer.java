@@ -94,12 +94,7 @@ public class QuestTimer
 	 */
 	public boolean equals(Quest quest, String name, Npc npc, Player player)
 	{
-		if ((quest == null) || (quest != _quest))
-		{
-			return false;
-		}
-		
-		if ((name == null) || !name.equals(_name))
+		if ((quest == null) || (quest != _quest) || (name == null) || !name.equals(_name))
 		{
 			return false;
 		}

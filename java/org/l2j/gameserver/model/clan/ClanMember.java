@@ -156,11 +156,7 @@ public class ClanMember
 	 */
 	public boolean isOnline()
 	{
-		if ((_player == null) || !_player.isOnline())
-		{
-			return false;
-		}
-		if ((_player.getClient() == null) || _player.getClient().isDetached())
+		if ((_player == null) || !_player.isOnline() || (_player.getClient() == null) || _player.getClient().isDetached())
 		{
 			return false;
 		}

@@ -36,12 +36,7 @@ public class RequestRecipeItemMakeSelf extends ClientPacket
 	protected void runImpl()
 	{
 		final Player player = getPlayer();
-		if (player == null)
-		{
-			return;
-		}
-		
-		if (!getClient().getFloodProtectors().canManufacture())
+		if ((player == null) || !getClient().getFloodProtectors().canManufacture())
 		{
 			return;
 		}

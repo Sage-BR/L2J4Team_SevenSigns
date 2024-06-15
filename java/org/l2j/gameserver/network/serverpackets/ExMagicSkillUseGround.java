@@ -17,7 +17,6 @@
 package org.l2j.gameserver.network.serverpackets;
 
 import org.l2j.commons.network.WritableBuffer;
-
 import org.l2j.gameserver.model.Location;
 import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerPackets;

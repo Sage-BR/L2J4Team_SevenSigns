@@ -60,12 +60,7 @@ public class ExRequestRandomCraftExtract extends ClientPacket
 		}
 		
 		final Player player = getPlayer();
-		if (player == null)
-		{
-			return;
-		}
-		
-		if (player.hasItemRequest() || player.hasRequest(RandomCraftRequest.class))
+		if ((player == null) || player.hasItemRequest() || player.hasRequest(RandomCraftRequest.class))
 		{
 			return;
 		}

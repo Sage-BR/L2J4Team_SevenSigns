@@ -52,13 +52,7 @@ public class RequestPetGetItem extends ClientPacket
 		}
 		
 		final Castle castle = CastleManager.getInstance().getCastle(item);
-		if ((castle != null) && (SiegeGuardManager.getInstance().getSiegeGuardByItem(castle.getResidenceId(), item.getId()) != null))
-		{
-			player.sendPacket(ActionFailed.STATIC_PACKET);
-			return;
-		}
-		
-		if (FortSiegeManager.getInstance().isCombat(item.getId()))
+		if (((castle != null) && (SiegeGuardManager.getInstance().getSiegeGuardByItem(castle.getResidenceId(), item.getId()) != null)) || FortSiegeManager.getInstance().isCombat(item.getId()))
 		{
 			player.sendPacket(ActionFailed.STATIC_PACKET);
 			return;

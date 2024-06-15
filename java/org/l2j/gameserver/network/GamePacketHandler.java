@@ -122,13 +122,8 @@ public class GamePacketHandler implements PacketHandler<GameClient>
 		
 		// Find packet enum.
 		final ClientPackets packetEnum = ClientPackets.PACKET_ARRAY[packetId];
-		if (packetEnum == null)
-		{
-			return null;
-		}
-		
 		// Check connection state.
-		if (!packetEnum.getConnectionStates().contains(client.getConnectionState()))
+		if ((packetEnum == null) || !packetEnum.getConnectionStates().contains(client.getConnectionState()))
 		{
 			return null;
 		}

@@ -100,14 +100,7 @@ public class Action extends ClientPacket
 		}
 		
 		// If object requested does not exist, add warn msg into logs
-		if (obj == null)
-		{
-			// pressing e.g. pickup many times quickly would get you here
-			player.sendPacket(ActionFailed.STATIC_PACKET);
-			return;
-		}
-		
-		if ((!obj.isTargetable() || player.isTargetingDisabled()) && !player.canOverrideCond(PlayerCondOverride.TARGET_ALL))
+		if ((obj == null) || ((!obj.isTargetable() || player.isTargetingDisabled()) && !player.canOverrideCond(PlayerCondOverride.TARGET_ALL)))
 		{
 			player.sendPacket(ActionFailed.STATIC_PACKET);
 			return;

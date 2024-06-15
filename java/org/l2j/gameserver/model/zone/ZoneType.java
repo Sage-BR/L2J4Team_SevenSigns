@@ -200,11 +200,7 @@ public abstract class ZoneType extends ListenersContainer
 		final Instance world = creature.getInstanceWorld();
 		if (world != null)
 		{
-			if (world.getTemplateId() != _instanceTemplateId)
-			{
-				return false;
-			}
-			if (!isEnabled(creature.getInstanceId()))
+			if ((world.getTemplateId() != _instanceTemplateId) || !isEnabled(creature.getInstanceId()))
 			{
 				return false;
 			}

@@ -1074,7 +1074,7 @@ public class CtF extends Event
 	private static Player getTeamCarrier(Player player)
 	{
 		// Check if team carrier has disconnected.
-		if ((BLUE_TEAM.contains(player) && (BLUE_TEAM_CARRIER != null) && (!BLUE_TEAM_CARRIER.isOnline() || (BLUE_TEAM_CARRIER.getInstanceId() != PVP_WORLD.getId()))) || ((RED_TEAM.contains(player) == true) && (RED_TEAM_CARRIER != null) && (!RED_TEAM_CARRIER.isOnline() || (RED_TEAM_CARRIER.getInstanceId() != PVP_WORLD.getId()))))
+		if ((BLUE_TEAM.contains(player) && (BLUE_TEAM_CARRIER != null) && (!BLUE_TEAM_CARRIER.isOnline() || (BLUE_TEAM_CARRIER.getInstanceId() != PVP_WORLD.getId()))) || (RED_TEAM.contains(player) && (RED_TEAM_CARRIER != null) && (!RED_TEAM_CARRIER.isOnline() || (RED_TEAM_CARRIER.getInstanceId() != PVP_WORLD.getId()))))
 		{
 			player.destroyItemByItemId("ctf flag", getEnemyTeamFlagId(player), 1, player, false);
 			return null;
@@ -1086,7 +1086,7 @@ public class CtF extends Event
 	private static Player getEnemyCarrier(Player player)
 	{
 		// Check if enemy carrier has disconnected.
-		if ((BLUE_TEAM.contains(player) && (RED_TEAM_CARRIER != null) && (!RED_TEAM_CARRIER.isOnline() || (RED_TEAM_CARRIER.getInstanceId() != PVP_WORLD.getId()))) || ((RED_TEAM.contains(player) == true) && (BLUE_TEAM_CARRIER != null) && (!BLUE_TEAM_CARRIER.isOnline() || (BLUE_TEAM_CARRIER.getInstanceId() != PVP_WORLD.getId()))))
+		if ((BLUE_TEAM.contains(player) && (RED_TEAM_CARRIER != null) && (!RED_TEAM_CARRIER.isOnline() || (RED_TEAM_CARRIER.getInstanceId() != PVP_WORLD.getId()))) || (RED_TEAM.contains(player) && (BLUE_TEAM_CARRIER != null) && (!BLUE_TEAM_CARRIER.isOnline() || (BLUE_TEAM_CARRIER.getInstanceId() != PVP_WORLD.getId()))))
 		{
 			player.destroyItemByItemId("ctf flag", getEnemyTeamFlagId(player), 1, player, false);
 			return null;

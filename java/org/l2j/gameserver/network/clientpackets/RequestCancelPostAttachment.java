@@ -48,12 +48,7 @@ public class RequestCancelPostAttachment extends ClientPacket
 	protected void runImpl()
 	{
 		final Player player = getPlayer();
-		if ((player == null) || !Config.ALLOW_MAIL || !Config.ALLOW_ATTACHMENTS)
-		{
-			return;
-		}
-		
-		if (!getClient().getFloodProtectors().canPerformTransaction())
+		if ((player == null) || !Config.ALLOW_MAIL || !Config.ALLOW_ATTACHMENTS || !getClient().getFloodProtectors().canPerformTransaction())
 		{
 			return;
 		}

@@ -48,12 +48,7 @@ public class ExRequestItemAutoPeel extends ClientPacket
 	protected void runImpl()
 	{
 		final Player player = getPlayer();
-		if (player == null)
-		{
-			return;
-		}
-		
-		if ((_totalPeelCount < 1) || (_remainingPeelCount < 0))
+		if ((player == null) || (_totalPeelCount < 1) || (_remainingPeelCount < 0))
 		{
 			return;
 		}

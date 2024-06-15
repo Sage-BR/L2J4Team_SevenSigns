@@ -70,11 +70,7 @@ public class VipManager
 	
 	private boolean canReceiveGift(Player player)
 	{
-		if (!Config.VIP_SYSTEM_ENABLED)
-		{
-			return false;
-		}
-		if (player.getVipTier() <= 0)
+		if (!Config.VIP_SYSTEM_ENABLED || (player.getVipTier() <= 0))
 		{
 			return false;
 		}

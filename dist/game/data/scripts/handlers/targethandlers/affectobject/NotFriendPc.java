@@ -34,12 +34,7 @@ public class NotFriendPc implements IAffectObjectHandler
 	@Override
 	public boolean checkAffectedObject(Creature creature, Creature target)
 	{
-		if (!target.isPlayer())
-		{
-			return false;
-		}
-		
-		if (creature == target)
+		if (!target.isPlayer() || (creature == target))
 		{
 			return false;
 		}

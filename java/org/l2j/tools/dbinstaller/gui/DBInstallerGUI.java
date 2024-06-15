@@ -41,7 +41,7 @@ public class DBInstallerGUI extends JFrame implements DBOutputInterface
 	
 	public DBInstallerGUI(Connection con)
 	{
-		super("Mobius - DB Installer");
+		super("4TeaM - DB Installer");
 		setLayout(new BorderLayout());
 		setDefaultLookAndFeelDecorated(true);
 		

@@ -116,12 +116,7 @@ public class Shutdown extends Thread
 	@Override
 	public void run()
 	{
-		if (this == getInstance())
-		{
-			return;
-		}
-		
-		if (_countdownFinished)
+		if ((this == getInstance()) || _countdownFinished)
 		{
 			return;
 		}

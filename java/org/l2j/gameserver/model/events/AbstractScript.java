@@ -2573,12 +2573,7 @@ public abstract class AbstractScript extends ManagedScript implements IEventTime
 	 */
 	public static void rewardItems(Player player, int itemId, long countValue)
 	{
-		if (player.isSimulatingTalking())
-		{
-			return;
-		}
-		
-		if (countValue <= 0)
+		if (player.isSimulatingTalking() || (countValue <= 0))
 		{
 			return;
 		}
@@ -2727,12 +2722,7 @@ public abstract class AbstractScript extends ManagedScript implements IEventTime
 	 */
 	public static void giveItems(Player player, int itemId, long count, int enchantlevel, boolean playSound)
 	{
-		if (player.isSimulatingTalking())
-		{
-			return;
-		}
-		
-		if (count <= 0)
+		if (player.isSimulatingTalking() || (count <= 0))
 		{
 			return;
 		}
@@ -2766,12 +2756,7 @@ public abstract class AbstractScript extends ManagedScript implements IEventTime
 	 */
 	public static void giveItems(Player player, int itemId, long count, AttributeType attributeType, int attributeValue)
 	{
-		if (player.isSimulatingTalking())
-		{
-			return;
-		}
-		
-		if (count <= 0)
+		if (player.isSimulatingTalking() || (count <= 0))
 		{
 			return;
 		}
@@ -2983,16 +2968,8 @@ public abstract class AbstractScript extends ManagedScript implements IEventTime
 	 */
 	protected static boolean takeAllItems(Player player, ItemHolder... itemList)
 	{
-		if (player.isSimulatingTalking())
-		{
-			return false;
-		}
-		if ((itemList == null) || (itemList.length == 0))
-		{
-			return false;
-		}
 		// first check if the player has all items to avoid taking half the items from the list
-		if (!hasAllItems(player, true, itemList))
+		if (player.isSimulatingTalking() || (itemList == null) || (itemList.length == 0) || !hasAllItems(player, true, itemList))
 		{
 			return false;
 		}

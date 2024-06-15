@@ -50,12 +50,7 @@ public class RangeSortByHp implements IAffectScopeHandler
 		final AtomicInteger affected = new AtomicInteger(0);
 		final Predicate<Creature> filter = c ->
 		{
-			if ((affectLimit > 0) && (affected.get() >= affectLimit))
-			{
-				return false;
-			}
-			
-			if (c.isDead())
+			if (((affectLimit > 0) && (affected.get() >= affectLimit)) || c.isDead())
 			{
 				return false;
 			}

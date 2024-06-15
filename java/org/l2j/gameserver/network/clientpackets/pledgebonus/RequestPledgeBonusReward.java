@@ -42,12 +42,7 @@ public class RequestPledgeBonusReward extends ClientPacket
 	protected void runImpl()
 	{
 		final Player player = getPlayer();
-		if ((player == null) || (player.getClan() == null))
-		{
-			return;
-		}
-		
-		if ((_type < 0) || (_type > ClanRewardType.values().length))
+		if ((player == null) || (player.getClan() == null) || (_type < 0) || (_type > ClanRewardType.values().length))
 		{
 			return;
 		}

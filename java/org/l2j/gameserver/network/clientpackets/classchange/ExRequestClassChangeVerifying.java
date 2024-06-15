@@ -42,17 +42,7 @@ public class ExRequestClassChangeVerifying extends ClientPacket
 	protected void runImpl()
 	{
 		final Player player = getPlayer();
-		if (player == null)
-		{
-			return;
-		}
-		
-		if (_classId != player.getClassId().getId())
-		{
-			return;
-		}
-		
-		if (player.isInCategory(CategoryType.FOURTH_CLASS_GROUP))
+		if ((player == null) || (_classId != player.getClassId().getId()) || player.isInCategory(CategoryType.FOURTH_CLASS_GROUP))
 		{
 			return;
 		}

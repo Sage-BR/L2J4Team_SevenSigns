@@ -60,14 +60,7 @@ public class RequestExTryToPutShapeShiftingTargetItem extends ClientPacket
 		final PlayerInventory inventory = player.getInventory();
 		final Item targetItem = inventory.getItemByObjectId(_targetItemObjId);
 		Item stone = request.getAppearanceStone();
-		if ((targetItem == null) || (stone == null))
-		{
-			player.sendPacket(ExPutShapeShiftingTargetItemResult.FAILED);
-			player.removeRequest(ShapeShiftingItemRequest.class);
-			return;
-		}
-		
-		if ((stone.getOwnerId() != player.getObjectId()) || (targetItem.getOwnerId() != player.getObjectId()))
+		if ((targetItem == null) || (stone == null) || (stone.getOwnerId() != player.getObjectId()) || (targetItem.getOwnerId() != player.getObjectId()))
 		{
 			player.sendPacket(ExPutShapeShiftingTargetItemResult.FAILED);
 			player.removeRequest(ShapeShiftingItemRequest.class);

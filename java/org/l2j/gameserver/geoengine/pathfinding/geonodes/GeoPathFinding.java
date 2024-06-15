@@ -67,15 +67,7 @@ public class GeoPathFinding extends PathFinding
 		
 		final GeoNode start = readNode(gx, gy, gz);
 		final GeoNode end = readNode(gtx, gty, gtz);
-		if ((start == null) || (end == null))
-		{
-			return null;
-		}
-		if (Math.abs(start.getLoc().getZ() - z) > 55)
-		{
-			return null; // Not correct layer.
-		}
-		if (Math.abs(end.getLoc().getZ() - tz) > 55)
+		if ((start == null) || (end == null) || (Math.abs(start.getLoc().getZ() - z) > 55) || (Math.abs(end.getLoc().getZ() - tz) > 55))
 		{
 			return null; // Not correct layer.
 		}

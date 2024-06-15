@@ -48,12 +48,8 @@ public class RequestExAskJoinMPCC extends ClientPacket
 		}
 		
 		final Player target = World.getInstance().getPlayer(_name);
-		if (target == null)
-		{
-			return;
-		}
 		// invite yourself? ;)
-		if (player.isInParty() && target.isInParty() && player.getParty().equals(target.getParty()))
+		if ((target == null) || (player.isInParty() && target.isInParty() && player.getParty().equals(target.getParty())))
 		{
 			return;
 		}

@@ -43,13 +43,8 @@ public class ExPetEquipItem extends ClientPacket
 			return;
 		}
 		final Pet pet = player.getPet();
-		if (pet == null)
-		{
-			return;
-		}
-		
 		// Flood protect UseItem
-		if (!getClient().getFloodProtectors().canUseItem())
+		if ((pet == null) || !getClient().getFloodProtectors().canUseItem())
 		{
 			return;
 		}

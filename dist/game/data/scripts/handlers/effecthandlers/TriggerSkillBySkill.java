@@ -84,17 +84,7 @@ public class TriggerSkillBySkill extends AbstractEffect
 		}
 		
 		WorldObject target = event.getTarget();
-		if (target == null)
-		{
-			return;
-		}
-		
-		if (!target.isCreature())
-		{
-			return;
-		}
-		
-		if ((_chance < 100) && (Rnd.get(100) > _chance))
+		if ((target == null) || !target.isCreature() || ((_chance < 100) && (Rnd.get(100) > _chance)))
 		{
 			return;
 		}

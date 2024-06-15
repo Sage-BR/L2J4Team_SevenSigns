@@ -160,13 +160,7 @@ public class RequestSendPost extends ClientPacket
 			return;
 		}
 		
-		if (_subject.length() > MAX_SUBJ_LENGTH)
-		{
-			player.sendPacket(SystemMessageId.THE_ALLOWED_LENGTH_FOR_A_TITLE_EXCEEDED);
-			return;
-		}
-		
-		if (_text.length() > MAX_TEXT_LENGTH)
+		if ((_subject.length() > MAX_SUBJ_LENGTH) || (_text.length() > MAX_TEXT_LENGTH))
 		{
 			// not found message for this
 			player.sendPacket(SystemMessageId.THE_ALLOWED_LENGTH_FOR_A_TITLE_EXCEEDED);

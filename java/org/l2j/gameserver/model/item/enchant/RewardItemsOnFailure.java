@@ -52,17 +52,7 @@ public class RewardItemsOnFailure
 	public boolean checkIfRewardUnavailable(CrystalType grade, int enchantLevel)
 	{
 		// reversed available
-		if (_minEnchantLevel > enchantLevel)
-		{
-			return true;
-		}
-		
-		if (_maxEnchantLevel < enchantLevel)
-		{
-			return true;
-		}
-		
-		if (!_rewards.containsKey(grade))
+		if ((_minEnchantLevel > enchantLevel) || (_maxEnchantLevel < enchantLevel) || !_rewards.containsKey(grade))
 		{
 			return true;
 		}

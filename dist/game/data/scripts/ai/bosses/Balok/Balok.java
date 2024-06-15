@@ -633,12 +633,7 @@ public class Balok extends AbstractNpcAI
 	public void onPlayerLogin(OnPlayerLogin event)
 	{
 		final Player player = event.getPlayer();
-		if (player == null)
-		{
-			return;
-		}
-		
-		if (!_inProgress)
+		if ((player == null) || !_inProgress)
 		{
 			return;
 		}

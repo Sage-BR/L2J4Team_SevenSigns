@@ -52,15 +52,7 @@ public class FanPB implements IAffectScopeHandler
 		final AtomicInteger affected = new AtomicInteger(0);
 		final Predicate<Creature> filter = c ->
 		{
-			if ((affectLimit > 0) && (affected.get() >= affectLimit))
-			{
-				return false;
-			}
-			if (c.isDead())
-			{
-				return false;
-			}
-			if (Math.abs(Util.calculateAngleFrom(creature, c) - (headingAngle + fanStartAngle)) > fanHalfAngle)
+			if (((affectLimit > 0) && (affected.get() >= affectLimit)) || c.isDead() || (Math.abs(Util.calculateAngleFrom(creature, c) - (headingAngle + fanStartAngle)) > fanHalfAngle))
 			{
 				return false;
 			}

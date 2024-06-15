@@ -41,12 +41,7 @@ public class RequestShortCutDel extends ClientPacket
 	protected void runImpl()
 	{
 		final Player player = getPlayer();
-		if (player == null)
-		{
-			return;
-		}
-		
-		if ((_page > 24) || (_page < 0))
+		if ((player == null) || (_page > 24) || (_page < 0))
 		{
 			return;
 		}

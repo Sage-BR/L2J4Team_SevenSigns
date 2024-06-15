@@ -250,12 +250,7 @@ public class PetitionManager
 		{
 			for (Petition currPetition : _pendingPetitions.values())
 			{
-				if (currPetition == null)
-				{
-					continue;
-				}
-				
-				if (currPetition.getState() != PetitionState.IN_PROCESS)
+				if ((currPetition == null) || (currPetition.getState() != PetitionState.IN_PROCESS))
 				{
 					continue;
 				}
@@ -421,12 +416,7 @@ public class PetitionManager
 	
 	public void viewPetition(Player player, int petitionId)
 	{
-		if (!player.isGM())
-		{
-			return;
-		}
-		
-		if (!isValidPetition(petitionId))
+		if (!player.isGM() || !isValidPetition(petitionId))
 		{
 			return;
 		}

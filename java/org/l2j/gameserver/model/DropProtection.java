@@ -54,17 +54,7 @@ public class DropProtection implements Runnable
 	
 	public synchronized boolean tryPickUp(Player actor)
 	{
-		if (!_isProtected)
-		{
-			return true;
-		}
-		
-		if (_owner == actor)
-		{
-			return true;
-		}
-		
-		if ((_owner.getParty() != null) && (_owner.getParty() == actor.getParty()))
+		if (!_isProtected || (_owner == actor) || ((_owner.getParty() != null) && (_owner.getParty() == actor.getParty())))
 		{
 			return true;
 		}

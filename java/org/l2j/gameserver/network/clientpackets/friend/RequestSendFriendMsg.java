@@ -47,12 +47,7 @@ public class RequestSendFriendMsg extends ClientPacket
 	protected void runImpl()
 	{
 		final Player player = getPlayer();
-		if (player == null)
-		{
-			return;
-		}
-		
-		if ((_message == null) || _message.isEmpty() || (_message.length() > 300))
+		if ((player == null) || (_message == null) || _message.isEmpty() || (_message.length() > 300))
 		{
 			return;
 		}
