@@ -5,7 +5,7 @@ XAMPP: https://www.mediafire.com/file/0m05e3p7wdal224/xampp-windows-x64-8.0.30-0
 Eclipse: https://www.mediafire.com/file/kryxpp6u4m49eo9/eclipse-java-2024-03-R-win32-x86_64.zip
 Geodata: https://www.mediafire.com/file/3i9emaug0cirdoj/L2J_4Team_Essence_7.3_SevenSigns_Geodata.zip
 
-Client (password L2j4Team): https://drive.google.com/file/d/1Y2poR011hWzwAtmJm3gB5ZdeD-DI2fsq
+Client (password L2jMobius): https://drive.google.com/file/d/1Y2poR011hWzwAtmJm3gB5ZdeD-DI2fsq
 System: https://mega.nz/file/FskDnQRT#yOZy8R_J6iZ7HNqoDB50RS-L3Wb0lSqmOqv9eYrEA8U
 
 All provided download links are for personal use. Redistribution of these links is bannable.
